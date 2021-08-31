@@ -1,5 +1,5 @@
 % ociamthesis
-% 
+%
 % Originally by Keith A. Gillow (gillow@maths.ox.ac.uk), 1997
 % Modified by Sam Evans (sam@samuelevansresearch.org), 2007
 % Modified by John McManigle (john@oxfordechoes.com), 2015
@@ -72,7 +72,7 @@
 % CRESTS
 %
 
-\def\crest{{\includegraphics{images/beltcrest.pdf}}}
+\def\crest{{\includegraphics{imgs/beltcrest.pdf}}}
 
 
 %
@@ -86,17 +86,17 @@
 \fi
 
 \usepackage{xcolor}
-\usepackage{graphicx} 
+\usepackage{graphicx}
 
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
 \fancyhf{} % clear the header and footers
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter. #1}{\thechapter. #1}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}} 
+\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[LO]{\emph{\leftmark}} 
-\fancyhead[RE]{\emph{\rightmark}} 
+\fancyhead[LO]{\emph{\leftmark}}
+\fancyhead[RE]{\emph{\rightmark}}
 \fancyhead[RO,LE]{\emph{\thepage}}
 
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\emph{\thepage}}}
@@ -108,8 +108,8 @@
    \newpage
    \if@twocolumn\hbox{}\newpage
    \fi
-   \fancyhead[LO]{\emph{\leftmark}} 
-   \fancyhead[RE]{\emph{\rightmark}} 
+   \fancyhead[LO]{\emph{\leftmark}}
+   \fancyhead[RE]{\emph{\rightmark}}
    \fi\fi}
 
 
@@ -119,39 +119,39 @@
 \usepackage{amssymb}
 \usepackage{textcomp}
 
-\usepackage{longtable} 
+\usepackage{longtable}
 	% Allows tables to span multiple pages (this package must be called before hyperref)
 
-\usepackage[font=small,labelfont=bf]{caption} 
+\usepackage[font=small,labelfont=bf]{caption}
 	% Nicer captions
 
-\usepackage{multicol,multirow,array} 
+\usepackage{multicol,multirow,array}
 	% Used to make multiple columns for the indices and for creating columns that span multiple rows in tables
 
-\usepackage{rotating} 
+\usepackage{rotating}
 	% To allow tables in landscape mode
 
-\usepackage{booktabs} 
+\usepackage{booktabs}
 	% For better looking tables
 
-\usepackage{pdfpages} 
+\usepackage{pdfpages}
 	% Allows multi-page pdfs to be inserted as graphics
 
 \usepackage{xfrac}
 
-%\usepackage{enumerate} 
+%\usepackage{enumerate}
 	% Allows different numbering styles for Lists
 	% to use:
-	% \begin{enumerate}[x] 
-		% \item text 
-	% \end{enumerate} 
+	% \begin{enumerate}[x]
+		% \item text
+	% \end{enumerate}
 	% where x is:
 	% A	uppercase letters (as produced by \Alph)
 	% a	lowercase letters (as produced by \alph)
 	% I	uppercase roman numerals (as produced by \Roman)
 	% i	lowercase roman numerals (as produced by \roman)
 	% 1	arabic numbers (as produced by \arabic)
-	
+
 % JEM the following package allows changing spacing in lists (for acknowledgements)
 \usepackage{enumitem}
 
@@ -159,19 +159,19 @@
 \usepackage{dcolumn}
 \newcolumntype{d}[3]{D{.}{\cdot}{#1} }
 
-\usepackage{appendix} 
+\usepackage{appendix}
 	% For helping format appendicies
-\usepackage{notoccite} 
-	% To format the bibliography	
+\usepackage{notoccite}
+	% To format the bibliography
 
 
-\usepackage[colorlinks=false,pdfpagelabels]{hyperref} 
+\usepackage[colorlinks=false,pdfpagelabels]{hyperref}
 	% for linking between references, figures, TOC, etc in the pdf document
 
-\usepackage[nohints,tight]{minitoc} 
-	\setcounter{minitocdepth}{2} 
+\usepackage[nohints,tight]{minitoc}
+	\setcounter{minitocdepth}{2}
 	% Generates mini tables of contents per chapter
-	
+
 % JEM: The following fixes minitoc to not be multiple-spaced.
 \let\oldmtc@verse\mtc@verse
 \renewcommand{\mtc@verse}[1]{\oldmtc@verse{#1}\setlength{\baselineskip}{\z@}}
@@ -181,7 +181,7 @@
 % Environments
 %
 
-% This macro define an environment for front matter that is always 
+% This macro define an environment for front matter that is always
 % single column even in a double-column document.
 
 \newenvironment{alwayssingle}{%
@@ -253,7 +253,7 @@
 
 % ACKNOWLEDGEMENTS
 %
-% The acknowledgements environment puts a large, bold, centered 
+% The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page. The acknowledgements
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
 % on its own page.
@@ -372,7 +372,7 @@
    {\end{list}\mtcaddchapter}
 
 
-\usepackage[grey,utopia]{quotchap} 
+\usepackage[grey,utopia]{quotchap}
 	% To put nice quotes at the beginning of the chapters
 
 \usepackage[nottoc]{tocbibind}
