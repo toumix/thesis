@@ -1,21 +1,20 @@
 \input{header}
 
-\title{Categorical Methods\\
-for Computational Linguistics\\
-on Quantum Hardware}
+\title{Category Theory for Quantum\\
+Natural Language Processing}
 \author{Alexis TOUMI}
 \college{Wolfson College}
 
-\degree{D.Phil. in Computer Science}
+\degree{Doctor of Philosophy}
 \degreedate{\today}
 
 \begin{document}
 \begin{romanpages}
 \maketitle
 
-% \begin{acknowledgements}\end{acknowledgements}
+\begin{acknowledgements}\end{acknowledgements}
 
-% \begin{abstract}\end{abstract}
+\begin{abstract}\end{abstract}
 
 % \flushbottom
 \tableofcontents
@@ -23,68 +22,26 @@ on Quantum Hardware}
 % The Roman pages, like the Roman Empire, must come to its inevitable close.
 \end{romanpages}
 
-\chapter{Categories}
+\addcontentsline{toc}{chapter}{Introduction}
+\chapter*{Introduction}
 
-    \section{Monoids}
-    \section{Preorders}
-    \section{Free Categories}
-    \section{$\mathbf{Set}$ and $\mathbf{FinSet}$}
-    \section{Limits and Colimits}
-    \section{Dagger}
-    \section{Monoid Enrichment}
-    \section{Preorder Enrichment}
+\part{Computational Monoidal Categories}
 
-\chapter{Monoidal categories}
+\input{contents/1-diagrams}
+\chapter{Functors: evaluating diagrams}
+\chapter{Rewrites: simplifying diagrams}
+\chapter{From planar to hypergraph diagrams}
 
-    \section{Preordered monoids}
-    \section{Premonoidal categories}
-    \section{Planar diagram rewriting}
-    \section{Braids and symmetry}
-    \section{Cartesian categories}
+\part{Quantum Natural Language Processing}
 
-\chapter{Closed categories}
+\chapter{Quantum processes as diagrams}
+\chapter{Formal grammars with diagrams}
+\chapter{Functorial learning}
+\chapter{Sums, bubbles and gradients}
 
-    \section{Residuated monoids}
-    \section{Biclosed categories}
-    \section{Pregroups}
-    \section{Rigid categories}
-    \section{Hypergraph categories}
-    \section{Cartesian closed categories}
+\addcontentsline{toc}{chapter}{Conclusion}
+\chapter*{Conclusion}
 
-\chapter{Formal grammars}
-
-    \section{Unrestricted}
-    \section{Context-free}
-    \section{Categorial}
-    \section{Pregroup}
-    \section{Dependency}
-
-\chapter{Language Processing}
-
-    \section{Parsing}
-        \subsection{Probabilistic}
-        \subsection{Incremental}
-        \subsection{Harmonic}
-
-    \section{Classification}
-        \subsection{Yes-no questions}
-        \subsection{Topic and sentiment}
-
-    \section{Language Modeling}
-        \subsection{Missing word prediction}
-        \subsection{Wh- questions}
-
-    \section{Similarity, Entailment, Paraphrase}
-
-    \section{Generation, Translation}
-
-\chapter{Quantum processes}
-
-
-
-\chapter{Bubbles and gradients}
-
-\nocite{*}
 
 \setlength{\baselineskip}{0pt} % JEM: Single-space References
 
