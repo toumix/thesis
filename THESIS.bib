@@ -1,15 +1,481 @@
 
-@inproceedings{DisCoPy,
-  title = {{{DisCoPy}}: {{Monoidal Categories}} in {{Python}}},
-  shorttitle = {{{DisCoPy}}},
-  booktitle = {Proceedings {{ACT}} 2020},
-  author = {{de Felice}, Giovanni and Toumi, Alexis and Coecke, Bob},
+@article{Aaronson15,
+  title = {Read the Fine Print},
+  author = {Aaronson, Scott},
+  year = {2015},
+  month = apr,
+  journal = {Nature Physics},
+  volume = {11},
+  number = {4},
+  pages = {291--293},
+  publisher = {{Nature Publishing Group}},
+  issn = {1745-2481},
+  doi = {10.1038/nphys3272},
+  abstract = {New quantum algorithms promise an exponential speed-up for machine learning, clustering and finding patterns in big data. But to achieve a real speed-up, we need to delve into the details.},
+  copyright = {2015 Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.},
+  langid = {english},
+  annotation = {Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype: Comments \& Opinion Subject\_term: Quantum information Subject\_term\_id: quantum-information},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/R8S6DEMV/aaronson2015.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LTYUZZQB/nphys3272.html}
+}
+
+@article{AharonovBen-Or08,
+  title = {Fault-{{Tolerant Quantum Computation}} with {{Constant Error Rate}}},
+  author = {Aharonov, Dorit and {Ben-Or}, Michael},
+  year = {2008},
+  month = jan,
+  journal = {SIAM Journal on Computing},
+  volume = {38},
+  number = {4},
+  pages = {1207--1282},
+  publisher = {{Society for Industrial and Applied Mathematics}},
+  issn = {0097-5397},
+  doi = {10.1137/S0097539799359385},
+  abstract = {This paper shows that quantum computation can be made fault-tolerant against errors and inaccuracies when \$\textbackslash eta\$, the probability for an error in a qubit or a gate, is smaller than a constant threshold \$\textbackslash eta\_c\$. This result improves on Shor's result [Proceedings of the 37th Symposium on the Foundations of Computer Science, IEEE, Los Alamitos, CA, 1996, pp. 56\textendash 65], which shows how to perform fault-tolerant quantum computation when the error rate \$\textbackslash eta\$ decays polylogarithmically with the size of the computation, an assumption which is physically unreasonable. The cost of making the quantum circuit fault-tolerant in our construction is polylogarithmic in time and space. Our result holds for a very general local noise model, which includes probabilistic errors, decoherence, amplitude damping, depolarization, and systematic inaccuracies in the gates. Moreover, we allow exponentially decaying correlations between the errors both in space and in time. Fault-tolerant computation can be performed with any universal set of gates. The result also holds for quantum particles with \$p{$>$}2\$ states, namely, p-qudits, and is also generalized to one-dimensional quantum computers with only nearest-neighbor interactions. No measurements, or classical operations, are required during the quantum computation. We estimate the threshold of our construction to be \$\textbackslash eta\_c\textbackslash simeq 10\^\{-6\}\$, in the best case. By this we show that local noise is in principle not an obstacle for scalable quantum computation. The main ingredient of our proof is the computation on states encoded by a quantum error correcting code (QECC). To this end we introduce a special class of Calderbank\textendash Shor\textendash Steane (CSS) codes, called polynomial codes (the quantum analogue of Reed\textendash Solomon codes). Their nice algebraic structure allows all of the encoded gates to be transversal. We also provide another version of the proof which uses more general CSS codes, but its encoded gates are slightly less elegant. To achieve fault tolerance, we encode the quantum circuit by another circuit by using one of these QECCs. This step is repeated polyloglog many times, each step slightly improving the effective error rate, to achieve the desired reliability. The resulting circuit exhibits a hierarchical structure, and for the analysis of its robustness we borrow terminology from Khalfin and Tsirelson [Found. Phys., 22 (1992), pp. 879\textendash 948] and G\'acs [Advances in Computing Research: A Research Annual: Randomness and Computation, JAI Press, Greenwich, CT, 1989]. The paper is to a large extent self-contained. In particular, we provide simpler proofs for many of the known results we use, such as the fact that it suffices to correct for bit-flips and phase-flips, the correctness of CSS codes, and the fact that two-qubit gates are universal, together with their extensions to higher-dimensional particles. We also provide full proofs of the universality of the sets of gates we use (the proof of universality was missing in Shor's paper). This paper thus provides a self-contained and complete proof of universal fault-tolerant quantum computation in the presence of local noise.},
+  keywords = {68Q01,81P68,concatenated codes,density matrices,noise and decoherence,polynomial codes,quantum computation,quantum error correction,quantum fault tolerance,quantum Reed–Solomon codes,universal set of gates},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/LECQCGZB/aharonov2008.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LQSDECD9/Aharonov and Ben-Or - 2008 - Fault-Tolerant Quantum Computation with Constant E.pdf}
+}
+
+@article{Ambainis04,
+  title = {Quantum Search Algorithms},
+  author = {Ambainis, A.},
+  year = {2004},
+  month = jun,
+  journal = {ACM SIGACT News},
+  volume = {35},
+  number = {2},
+  pages = {22--35},
+  issn = {0163-5700},
+  doi = {10.1145/992287.992296},
+  abstract = {We review some of quantum algorithms for search problems: Grover's search algorithm, its generalization to amplitude amplification, the applications of amplitude amplification to various problems and the recent quantum algorithms based on quantum walks.},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/B76JEW2K/Ambainis - 2004 - Quantum search algorithms.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Z9DZQN8B/ambainis2004.pdf.pdf}
+}
+
+@article{ArunachalamEtAl15,
+  title = {On the Robustness of Bucket Brigade Quantum {{RAM}}},
+  author = {Arunachalam, Srinivasan and Gheorghiu, Vlad and {Jochym-O'Connor}, Tomas and Mosca, Michele and Srinivasan, Priyaa Varshinee},
+  year = {2015},
+  month = dec,
+  journal = {New Journal of Physics},
+  volume = {17},
+  number = {12},
+  pages = {123010},
+  issn = {1367-2630},
+  doi = {10.1088/1367-2630/17/12/123010},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/HHII8J8A/arunachalam2015.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZGB7N46W/Arunachalam et al. - 2015 - On the robustness of bucket brigade quantum RAM.pdf}
+}
+
+@article{AruteEtAl19,
+  title = {Quantum Supremacy Using a Programmable Superconducting Processor},
+  author = {Arute, Frank and Arya, Kunal and Babbush, Ryan and Bacon, Dave and Bardin, Joseph C. and Barends, Rami and Biswas, Rupak and Boixo, Sergio and Brandao, Fernando G. S. L. and Buell, David A. and Burkett, Brian and Chen, Yu and Chen, Zijun and Chiaro, Ben and Collins, Roberto and Courtney, William and Dunsworth, Andrew and Farhi, Edward and Foxen, Brooks and Fowler, Austin and Gidney, Craig and Giustina, Marissa and Graff, Rob and Guerin, Keith and Habegger, Steve and Harrigan, Matthew P. and Hartmann, Michael J. and Ho, Alan and Hoffmann, Markus and Huang, Trent and Humble, Travis S. and Isakov, Sergei V. and Jeffrey, Evan and Jiang, Zhang and Kafri, Dvir and Kechedzhi, Kostyantyn and Kelly, Julian and Klimov, Paul V. and Knysh, Sergey and Korotkov, Alexander and Kostritsa, Fedor and Landhuis, David and Lindmark, Mike and Lucero, Erik and Lyakh, Dmitry and Mandr{\`a}, Salvatore and McClean, Jarrod R. and McEwen, Matthew and Megrant, Anthony and Mi, Xiao and Michielsen, Kristel and Mohseni, Masoud and Mutus, Josh and Naaman, Ofer and Neeley, Matthew and Neill, Charles and Niu, Murphy Yuezhen and Ostby, Eric and Petukhov, Andre and Platt, John C. and Quintana, Chris and Rieffel, Eleanor G. and Roushan, Pedram and Rubin, Nicholas C. and Sank, Daniel and Satzinger, Kevin J. and Smelyanskiy, Vadim and Sung, Kevin J. and Trevithick, Matthew D. and Vainsencher, Amit and Villalonga, Benjamin and White, Theodore and Yao, Z. Jamie and Yeh, Ping and Zalcman, Adam and Neven, Hartmut and Martinis, John M.},
+  year = {2019},
+  month = oct,
+  journal = {Nature},
+  volume = {574},
+  number = {7779},
+  pages = {505--510},
+  publisher = {{Nature Publishing Group}},
+  issn = {1476-4687},
+  doi = {10.1038/s41586-019-1666-5},
+  abstract = {The promise of quantum computers is that certain computational tasks might be executed exponentially faster on a quantum processor than on a classical processor1. A fundamental challenge is to build a high-fidelity processor capable of running quantum algorithms in an exponentially large computational space. Here we report the use of a processor with programmable superconducting qubits2\textendash 7 to create quantum states on 53 qubits, corresponding to a computational state-space of dimension 253 (about 1016). Measurements from repeated experiments sample the resulting probability distribution, which we verify using classical simulations. Our Sycamore processor takes about 200 seconds to sample one instance of a quantum circuit a million times\textemdash our benchmarks currently indicate that the equivalent task for a state-of-the-art classical supercomputer would take approximately 10,000 years. This dramatic increase in speed compared to all known classical algorithms is an experimental realization of quantum supremacy8\textendash 14 for this specific computational task, heralding a much-anticipated computing paradigm.},
+  copyright = {2019 The Author(s), under exclusive licence to Springer Nature Limited},
+  langid = {english},
+  annotation = {Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype: Research Subject\_term: Quantum information;Quantum physics Subject\_term\_id: quantum-information;quantum-physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/7666WNJ5/arute2019.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CFXAA2BB/Arute et al. - 2019 - Quantum supremacy using a programmable superconduc.pdf;/Users/alexis.toumi/WORK/Zotero/storage/JFSMSR9P/s41586 019 1666 5.html}
+}
+
+@misc{Ball21,
+  title = {Major {{Quantum Computing Strategy Suffers Serious Setbacks}}},
+  author = {Ball, Philip},
   year = {2021},
-  publisher = {{EPTCS}},
-  doi = {10.4204/EPTCS.333.13},
-  abstract = {We introduce DisCoPy, an open source toolbox for computing with monoidal categories. The library provides an intuitive syntax for defining string diagrams and monoidal functors. Its modularity allows the efficient implementation of computational experiments in the various applications of category theory where diagrams have become a lingua franca. As an example, we used DisCoPy to perform natural language processing on quantum hardware for the first time.},
-  file = {/Users/alexis.toumi/WORK/Zotero/storage/ZFD7K224/de Felice et al. - 2021 - DisCoPy Monoidal Categories in Python.pdf;/Users/alexis.toumi/WORK/Zotero/storage/AR69DYVP/2005.html},
-  keywords = {Mathematics - Category Theory}
+  month = sep,
+  journal = {Quanta Magazine},
+  abstract = {So-called topological quantum computing would avoid many of the problems that stand in the way of full-scale quantum computers. But high-profile missteps have led some experts to question whether the\ldots},
+  howpublished = {https://www.quantamagazine.org/major-quantum-computing-strategy-suffers-serious-setbacks-20210929/},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/3QFK7ZYS/major-quantum-computing-strategy-suffers-serious-setbacks-20210929.html}
+}
+
+@article{BenedettiEtAl19,
+  title = {Parameterized Quantum Circuits as Machine Learning Models},
+  author = {Benedetti, Marcello and Lloyd, Erika and Sack, Stefan},
+  year = {2019},
+  month = jun,
+  journal = {arXiv:1906.07682 [quant-ph]},
+  eprint = {1906.07682},
+  eprinttype = {arxiv},
+  primaryclass = {quant-ph},
+  abstract = {Hybrid quantum-classical systems make it possible to utilize existing quantum computers to their fullest extent. Within this framework, parameterized quantum circuits can be thought of as machine learning models with remarkable expressive power. This Review presents components of these models and discusses their application to a variety of data-driven tasks such as supervised learning and generative modeling. With experimental demonstrations carried out on actual quantum hardware, and with software actively being developed, this rapidly growing field could become one of the first instances of quantum computing that addresses real world problems.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/G7R69FWE/Benedetti et al. - 2019 - Parameterized quantum circuits as machine learning.pdf;/Users/alexis.toumi/WORK/Zotero/storage/GH829Q96/1906.html}
+}
+
+@article{Benioff80,
+  title = {The Computer as a Physical System: A Microscopic Quantum Mechanical {{Hamiltonian}} Model of Computers as Represented by {{Turing}} Machines},
+  shorttitle = {The Computer as a Physical System},
+  author = {Benioff, Paul},
+  year = {1980},
+  month = may,
+  journal = {Journal of Statistical Physics},
+  volume = {22},
+  number = {5},
+  pages = {563--591},
+  issn = {1572-9613},
+  doi = {10.1007/BF01011339},
+  abstract = {In this paper a microscopic quantum mechanical model of computers as represented by Turing machines is constructed. It is shown that for each numberN and Turing machineQ there exists a HamiltonianHNQ and a class of appropriate initial states such that if c is such an initial state, then{$\psi$}QN(t)=exp(-1HNQt){$\psi$}QN(0) correctly describes at timest3,t6,{$\cdots$},t3N model states that correspond to the completion of the first, second, {$\cdots$}, Nth computation step ofQ. The model parameters can be adjusted so that for an arbitrary time interval{$\Delta$} aroundt3,t6,{$\cdots$},t3N, the ``machine'' part of{$\psi$}QN(t) is stationary.},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/8NLU85CP/Benioff - The computer as a physical system A microscopic q.pdf}
+}
+
+@article{BennettEtAl97,
+  title = {Strengths and {{Weaknesses}} of {{Quantum Computing}}},
+  author = {Bennett, Charles H. and Bernstein, Ethan and Brassard, Gilles and Vazirani, Umesh},
+  year = {1997},
+  month = oct,
+  journal = {SIAM Journal on Computing},
+  volume = {26},
+  number = {5},
+  pages = {1510--1523},
+  publisher = {{Society for Industrial and Applied Mathematics}},
+  issn = {0097-5397},
+  doi = {10.1137/S0097539796300933},
+  abstract = {Recently a great deal of attention has been focused on quantum computation following a sequence of results [Bernstein and Vazirani, in Proc. 25th Annual ACM Symposium Theory Comput., 1993, pp. 11--20, SIAM J. Comput., 26 (1997), pp. 1277--1339], [Simon, in Proc. 35th Annual IEEE Symposium Foundations Comput. Sci., 1994, pp. 116--123, SIAM J. Comput., 26 (1997), pp. 1340--1349], [Shor, in Proc. 35th Annual IEEE Symposium Foundations Comput. Sci., 1994, pp. 124--134] suggesting that quantum computers are more powerful than classical probabilistic computers. Following Shor's result that factoring and the extraction of discrete logarithms are both solvable in quantum polynomial time, it is natural to ask whether all of \$\textbackslash NP\$ can be efficiently solved in quantum polynomial time. In this paper, we address this question by proving that relative to an oracle chosen uniformly at random with probability 1 the class \$\textbackslash NP\$ cannot be solved on a quantum Turing machine (QTM) in time \$o(2\^\{n/2\})\$. We also show that relative to a permutation oracle chosen uniformly at random with probability 1 the class \$\textbackslash NP \textbackslash cap \textbackslash coNP\$ cannot be solved on a QTM in time \$o(2\^\{n/3\})\$. The former bound is tight since recent work of Grover [in \{\textbackslash it Proc.\textbackslash{} \$28\$th Annual ACM Symposium Theory Comput.\}, 1996] shows how to accept the class \$\textbackslash NP\$ relative to any oracle on a quantum computer in time \$O(2\^\{n/2\})\$.},
+  keywords = {03D10,03D15,68Q05,68Q15,oracle quantum Turing machines,quantum polynomial time,quantum Turing machines},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/JRVA3Y3Z/Bennett et al. - 1997 - Strengths and Weaknesses of Quantum Computing.pdf;/Users/alexis.toumi/WORK/Zotero/storage/WBTHH36Y/bennett1997.pdf.pdf}
+}
+
+@book{BernsteinEtAl09,
+  title = {Post-Quantum Cryptography},
+  author = {Bernstein, Daniel J and Buchmann, Johannes and Dahm{\'e}n, Erik},
+  year = {2009},
+  publisher = {{Springer}},
+  address = {{Berlin}},
+  abstract = {Quantum computers may break popular public-key cryptographic systems, including RSA, DSA, and ECDSA. This book introduces the reader to the next generation of cryptographic algorithms, the systems that resist quantum-computer attacks: in particular, post-quantum public-key encryption systems and post-quantum public-key signature systems.},
+  isbn = {978-3-540-88702-7 978-3-540-88701-0},
+  langid = {english},
+  annotation = {OCLC: 318545517}
+}
+
+@article{BrassardEtAl02,
+  title = {Quantum {{Amplitude Amplification}} and {{Estimation}}},
+  author = {Brassard, Gilles and Hoyer, Peter and Mosca, Michele and Tapp, Alain},
+  year = {2002},
+  journal = {arXiv:quant-ph/0005055},
+  volume = {305},
+  eprint = {quant-ph/0005055},
+  eprinttype = {arxiv},
+  pages = {53--74},
+  doi = {10.1090/conm/305/05215},
+  abstract = {Consider a Boolean function \$\textbackslash chi: X \textbackslash to \textbackslash\{0,1\textbackslash\}\$ that partitions set \$X\$ between its good and bad elements, where \$x\$ is good if \$\textbackslash chi(x)=1\$ and bad otherwise. Consider also a quantum algorithm \$\textbackslash mathcal A\$ such that \$A |0\textbackslash rangle= \textbackslash sum\_\{x\textbackslash in X\} \textbackslash alpha\_x |x\textbackslash rangle\$ is a quantum superposition of the elements of \$X\$, and let \$a\$ denote the probability that a good element is produced if \$A |0\textbackslash rangle\$ is measured. If we repeat the process of running \$A\$, measuring the output, and using \$\textbackslash chi\$ to check the validity of the result, we shall expect to repeat \$1/a\$ times on the average before a solution is found. *Amplitude amplification* is a process that allows to find a good \$x\$ after an expected number of applications of \$A\$ and its inverse which is proportional to \$1/\textbackslash sqrt\{a\}\$, assuming algorithm \$A\$ makes no measurements. This is a generalization of Grover's searching algorithm in which \$A\$ was restricted to producing an equal superposition of all members of \$X\$ and we had a promise that a single \$x\$ existed such that \$\textbackslash chi(x)=1\$. Our algorithm works whether or not the value of \$a\$ is known ahead of time. In case the value of \$a\$ is known, we can find a good \$x\$ after a number of applications of \$A\$ and its inverse which is proportional to \$1/\textbackslash sqrt\{a\}\$ even in the worst case. We show that this quadratic speedup can also be obtained for a large family of search problems for which good classical heuristics exist. Finally, as our main result, we combine ideas from Grover's and Shor's quantum algorithms to perform amplitude estimation, a process that allows to estimate the value of \$a\$. We apply amplitude estimation to the problem of *approximate counting*, in which we wish to estimate the number of \$x\textbackslash in X\$ such that \$\textbackslash chi(x)=1\$. We obtain optimal quantum algorithms in a variety of settings.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/XWNF4SWI/Brassard et al. - 2002 - Quantum Amplitude Amplification and Estimation.pdf;/Users/alexis.toumi/WORK/Zotero/storage/W7M82VXC/0005055.html}
+}
+
+@article{ChuangEtAl98,
+  title = {Experimental {{Implementation}} of {{Fast Quantum Searching}}},
+  author = {Chuang, Isaac L. and Gershenfeld, Neil and Kubinec, Mark},
+  year = {1998},
+  month = apr,
+  journal = {Physical Review Letters},
+  volume = {80},
+  number = {15},
+  pages = {3408--3411},
+  publisher = {{American Physical Society}},
+  doi = {10.1103/PhysRevLett.80.3408},
+  abstract = {Using nuclear magnetic resonance techniques with a solution of chloroform molecules we implement Grover's search algorithm for a system with four states. By performing a tomographic reconstruction of the density matrix during the computation good agreement is seen between theory and experiment. This provides the first complete experimental demonstration of loading an initial state into a quantum computer, performing a computation requiring fewer steps than on a classical computer, and then reading out the final state.},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/QRAM8RMF/PhysRevLett.80.html}
+}
+
+@article{CladerEtAl13,
+  title = {Preconditioned {{Quantum Linear System Algorithm}}},
+  author = {Clader, B. D. and Jacobs, B. C. and Sprouse, C. R.},
+  year = {2013},
+  month = jun,
+  journal = {Physical Review Letters},
+  volume = {110},
+  number = {25},
+  pages = {250504},
+  issn = {0031-9007, 1079-7114},
+  doi = {10.1103/PhysRevLett.110.250504},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/93PZM6F8/Clader et al. - 2013 - Preconditioned Quantum Linear System Algorithm.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DAVRPYS6/clader2013.pdf.pdf}
+}
+
+@article{Deutsch85a,
+  title = {Quantum Theory, the {{Church}}\textendash{{Turing}} Principle and the Universal Quantum Computer},
+  author = {Deutsch, David},
+  year = {1985},
+  journal = {Proceedings of the Royal Society of London. A. Mathematical and Physical Sciences},
+  volume = {400},
+  number = {1818},
+  pages = {97--117},
+  publisher = {{The Royal Society London}},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/CKMRLL9I/Deutsch - 1985 - Quantum theory, the Church–Turing principle and th.pdf}
+}
+
+@article{DeutschJozsa92,
+  title = {Rapid Solution of Problems by Quantum Computation},
+  author = {Deutsch, David and Jozsa, Richard},
+  year = {1992},
+  month = dec,
+  journal = {Proceedings of the Royal Society of London. Series A: Mathematical and Physical Sciences},
+  volume = {439},
+  number = {1907},
+  pages = {553--558},
+  publisher = {{Royal Society}},
+  doi = {10.1098/rspa.1992.0167},
+  abstract = {A class of problems is described which can be solved more efficiently by quantum computation than by any classical or stochastic method. The quantum computation solves the problem with certainty in exponentially less time than any classical deterministic computation.},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/UI5FGZE2/Deutsch and Jozsa - 1992 - Rapid solution of problems by quantum computation.pdf}
+}
+
+@article{FarhiEtAl14,
+  title = {A {{Quantum Approximate Optimization Algorithm}}},
+  author = {Farhi, Edward and Goldstone, Jeffrey and Gutmann, Sam},
+  year = {2014},
+  month = nov,
+  journal = {arXiv:1411.4028 [quant-ph]},
+  eprint = {1411.4028},
+  eprinttype = {arxiv},
+  primaryclass = {quant-ph},
+  abstract = {We introduce a quantum algorithm that produces approximate solutions for combinatorial optimization problems. The algorithm depends on a positive integer p and the quality of the approximation improves as p is increased. The quantum circuit that implements the algorithm consists of unitary gates whose locality is at most the locality of the objective function whose optimum is sought. The depth of the circuit grows linearly with p times (at worst) the number of constraints. If p is fixed, that is, independent of the input size, the algorithm makes use of efficient classical preprocessing. If p grows with the input size a different strategy is proposed. We study the algorithm as applied to MaxCut on regular graphs and analyze its performance on 2-regular and 3-regular graphs for fixed p. For p = 1, on 3-regular graphs the quantum algorithm always finds a cut that is at least 0.6924 times the size of the optimal cut.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/8VQUWIQD/Farhi et al. - 2014 - A Quantum Approximate Optimization Algorithm.pdf;/Users/alexis.toumi/WORK/Zotero/storage/69AEPIDJ/1411.html}
+}
+
+@article{Feynman82,
+  title = {Simulating Physics with Computers},
+  author = {Feynman, Richard P.},
+  year = {1982},
+  month = jun,
+  journal = {International Journal of Theoretical Physics},
+  volume = {21},
+  number = {6},
+  pages = {467--488},
+  issn = {1572-9575},
+  doi = {10.1007/BF02650179},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/8LDC2HMA/Feynman - 1982 - Simulating physics with computers.pdf}
+}
+
+@article{Feynman85,
+  title = {Quantum Mechanical Computers},
+  author = {Feynman, Richard P},
+  year = {1985},
+  journal = {Optics news},
+  volume = {11},
+  number = {2},
+  pages = {11--20},
+  publisher = {{Optical Society of America}},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/Z2PJMDKC/Feynman - 1985 - Quantum mechanical computers.pdf}
+}
+
+@article{FreedmanEtAl03,
+  title = {Topological Quantum Computation},
+  author = {Freedman, Michael and Kitaev, Alexei and Larsen, Michael and Wang, Zhenghan},
+  year = {2003},
+  journal = {Bulletin of the American Mathematical Society},
+  volume = {40},
+  number = {1},
+  pages = {31--38},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/FZJGKDZ4/Freedman et al. - TOPOLOGICAL QUANTUM COMPUTATION.pdf}
+}
+
+@article{GiovannettiEtAl08,
+  title = {Quantum {{Random Access Memory}}},
+  author = {Giovannetti, Vittorio and Lloyd, Seth and Maccone, Lorenzo},
+  year = {2008},
+  month = apr,
+  journal = {Physical Review Letters},
+  volume = {100},
+  number = {16},
+  pages = {160501},
+  issn = {0031-9007, 1079-7114},
+  doi = {10.1103/PhysRevLett.100.160501},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/Q89CFBG3/Giovannetti et al. - 2008 - Quantum Random Access Memory.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Y83KPQUA/giovannetti2008.pdf.pdf}
+}
+
+@article{GrantEtAl19,
+  title = {An Initialization Strategy for Addressing Barren Plateaus in Parametrized Quantum Circuits},
+  author = {Grant, Edward and Wossnig, Leonard and Ostaszewski, Mateusz and Benedetti, Marcello},
+  year = {2019},
+  month = dec,
+  journal = {Quantum},
+  volume = {3},
+  pages = {214},
+  publisher = {{Verein zur F\"orderung des Open Access Publizierens in den Quantenwissenschaften}},
+  doi = {10.22331/q-2019-12-09-214},
+  abstract = {Edward Grant, Leonard Wossnig, Mateusz Ostaszewski, and Marcello Benedetti, Quantum 3, 214 (2019). Parametrized quantum circuits initialized with random initial parameter values are characterized by barren plateaus where the gradient becomes exponentially small in the number of qubits. In\ldots},
+  langid = {british},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/2CR4IWVQ/Grant et al. - 2019 - An initialization strategy for addressing barren p.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2YYYJQ99/q-2019-12-09-214.html}
+}
+
+@article{Grover97,
+  title = {Quantum {{Mechanics}} Helps in Searching for a Needle in a Haystack},
+  author = {Grover, Lov K.},
+  year = {1997},
+  month = jul,
+  journal = {Physical Review Letters},
+  volume = {79},
+  number = {2},
+  eprint = {quant-ph/9706033},
+  eprinttype = {arxiv},
+  pages = {325--328},
+  issn = {0031-9007, 1079-7114},
+  doi = {10.1103/PhysRevLett.79.325},
+  abstract = {Quantum mechanics can speed up a range of search applications over unsorted data. For example imagine a phone directory containing N names arranged in completely random order. To find someone's phone number with a probability of 50\%, any classical algorithm (whether deterministic or probabilistic) will need to access the database a minimum of O(N) times. Quantum mechanical systems can be in a superposition of states and simultaneously examine multiple names. By properly adjusting the phases of various operations, successful computations reinforce each other while others interfere randomly. As a result, the desired phone number can be obtained in only O(sqrt(N)) accesses to the database.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/LGKV2H7V/Grover - 1997 - Quantum Mechanics helps in searching for a needle .pdf;/Users/alexis.toumi/WORK/Zotero/storage/WB9DFVQL/9706033.html}
+}
+
+@article{HarrowEtAl09,
+  title = {Quantum {{Algorithm}} for {{Linear Systems}} of {{Equations}}},
+  author = {Harrow, Aram W. and Hassidim, Avinatan and Lloyd, Seth},
+  year = {2009},
+  month = oct,
+  journal = {Physical Review Letters},
+  volume = {103},
+  number = {15},
+  pages = {150502},
+  issn = {0031-9007, 1079-7114},
+  doi = {10.1103/PhysRevLett.103.150502},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/C8E8J2MP/Harrow et al. - 2009 - Quantum Algorithm for Linear Systems of Equations.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RIN93WE2/harrow2009.pdf.pdf}
+}
+
+@article{Hochreiter98,
+  title = {The {{Vanishing Gradient Problem During Learning Recurrent Neural Nets}} and {{Problem Solutions}}},
+  author = {Hochreiter, Sepp},
+  year = {1998},
+  month = apr,
+  journal = {International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems},
+  volume = {06},
+  number = {02},
+  pages = {107--116},
+  issn = {0218-4885, 1793-6411},
+  doi = {10.1142/S0218488598000094},
+  abstract = {Recurrent nets are in principle capable to store past inputs to produce the currently desired output. Because of this property recurrent nets are used in time series prediction and process control. Practical applications involve temporal dependencies spanning many time steps, e.g. between relevant inputs and desired outputs. In this case, however, gradient based learning methods take too much time. The extremely increased learning time arises because the error vanishes as it gets propagated back. In this article the de-caying error flow is theoretically analyzed. Then methods trying to overcome vanishing gradients are briefly discussed. Finally, experiments comparing conventional algorithms and alternative methods are presented. With advanced methods long time lag problems can be solved in reasonable time.},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/BPU7ZYS4/hochreiter1998.pdf.pdf}
+}
+
+@article{KerenidisPrakash16,
+  title = {Quantum {{Recommendation Systems}}},
+  author = {Kerenidis, Iordanis and Prakash, Anupam},
+  year = {2016},
+  month = mar,
+  journal = {arXiv:1603.08675 [quant-ph]},
+  eprint = {1603.08675},
+  eprinttype = {arxiv},
+  primaryclass = {quant-ph},
+  abstract = {A recommendation system uses the past purchases or ratings of \$n\$ products by a group of \$m\$ users, in order to provide personalized recommendations to individual users. The information is modeled as an \$m \textbackslash times n\$ preference matrix which is assumed to have a good rank-\$k\$ approximation, for a small constant \$k\$. In this work, we present a quantum algorithm for recommendation systems that has running time \$O(\textbackslash text\{poly\}(k)\textbackslash text\{polylog\}(mn))\$. All known classical algorithms for recommendation systems that work through reconstructing an approximation of the preference matrix run in time polynomial in the matrix dimension. Our algorithm provides good recommendations by sampling efficiently from an approximation of the preference matrix, without reconstructing the entire matrix. For this, we design an efficient quantum procedure to project a given vector onto the row space of a given matrix. This is the first algorithm for recommendation systems that runs in time polylogarithmic in the dimensions of the matrix and provides an example of a quantum machine learning algorithm for a real world application.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Data Structures and Algorithms,Computer Science - Information Retrieval,Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/3NHARQV6/Kerenidis and Prakash - 2016 - Quantum Recommendation Systems.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HIIMBCXC/1603.html}
+}
+
+@article{Kitaev03,
+  title = {Fault-Tolerant Quantum Computation by Anyons},
+  author = {Kitaev, A. Yu.},
+  year = {2003},
+  month = jan,
+  journal = {Annals of Physics},
+  volume = {303},
+  number = {1},
+  pages = {2--30},
+  issn = {0003-4916},
+  doi = {10.1016/S0003-4916(02)00018-0},
+  abstract = {A two-dimensional quantum system with anyonic excitations can be considered as a quantum computer. Unitary transformations can be performed by moving the excitations around each other. Measurements can be performed by joining excitations in pairs and observing the result of fusion. Such computation is fault-tolerant by its physical nature.},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/C636LMUK/kitaev2003.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RAI6UHCY/Kitaev - 2003 - Fault-tolerant quantum computation by anyons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/B99FEXMN/S0003491602000180.html}
+}
+
+@article{Kitaev95,
+  title = {Quantum Measurements and the {{Abelian Stabilizer Problem}}},
+  author = {Kitaev, A. Yu},
+  year = {1995},
+  month = nov,
+  journal = {arXiv:quant-ph/9511026},
+  eprint = {quant-ph/9511026},
+  eprinttype = {arxiv},
+  abstract = {We present a polynomial quantum algorithm for the Abelian stabilizer problem which includes both factoring and the discrete logarithm. Thus we extend famous Shor's results. Our method is based on a procedure for measuring an eigenvalue of a unitary operator. Another application of this procedure is a polynomial quantum Fourier transform algorithm for an arbitrary finite Abelian group. The paper also contains a rather detailed introduction to the theory of quantum computation.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/8AG7RQMK/Kitaev - 1995 - Quantum measurements and the Abelian Stabilizer Pr.pdf;/Users/alexis.toumi/WORK/Zotero/storage/U3DMQQTK/9511026.html}
+}
+
+@article{LloydEtAl13,
+  title = {Quantum Algorithms for Supervised and Unsupervised Machine Learning},
+  author = {Lloyd, Seth and Mohseni, Masoud and Rebentrost, Patrick},
+  year = {2013},
+  month = nov,
+  journal = {arXiv:1307.0411 [quant-ph]},
+  eprint = {1307.0411},
+  eprinttype = {arxiv},
+  primaryclass = {quant-ph},
+  abstract = {Machine-learning tasks frequently involve problems of manipulating and classifying large numbers of vectors in high-dimensional spaces. Classical algorithms for solving such problems typically take time polynomial in the number of vectors and the dimension of the space. Quantum computers are good at manipulating high-dimensional vectors in large tensor product spaces. This paper provides supervised and unsupervised quantum machine learning algorithms for cluster assignment and cluster finding. Quantum machine learning can take time logarithmic in both the number of vectors and their dimension, an exponential speed-up over classical algorithms.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/YP56KP26/Lloyd et al. - 2013 - Quantum algorithms for supervised and unsupervised.pdf;/Users/alexis.toumi/WORK/Zotero/storage/7AYX2ZWH/1307.html}
+}
+
+@article{LloydEtAl14a,
+  title = {Quantum Principal Component Analysis},
+  author = {Lloyd, Seth and Mohseni, Masoud and Rebentrost, Patrick},
+  year = {2014},
+  month = jul,
+  journal = {arXiv},
+  publisher = {{Nature Publishing Group}},
+  issn = {1745-2473},
+  abstract = {The usual way to reveal properties of an unknown quantum state, given many copies of a system in that state, is to perform measurements of different observables and to analyse the results statistically. For non-sparse but low-rank quantum states, revealing eigenvectors and corresponding eigenvalues in classical form scales super-linearly with the system dimension. Here we show that multiple copies of a quantum system with density matrix {$\rho$} can be used to construct the unitary transformation e[superscript -i{$\rho$}t]. As a result, one can perform quantum principal component analysis of an unknown low-rank density matrix, revealing in quantum form the eigenvectors corresponding to the large eigenvalues in time exponentially faster than any existing algorithm. We discuss applications to data analysis, process tomography and state discrimination.},
+  copyright = {Creative Commons Attribution-Noncommercial-Share Alike},
+  langid = {american},
+  annotation = {Accepted: 2015-07-01T18:41:03Z},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/DDW6V6VL/Lloyd et al. - 2014 - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UG9UXSBQ/97628.html}
+}
+
+@article{Manin80,
+  title = {Computable and Uncomputable},
+  author = {Manin, Yuri},
+  year = {1980},
+  journal = {Sovetskoye Radio, Moscow},
+  volume = {128}
+}
+
+@article{McCleanEtAl16,
+  title = {The Theory of Variational Hybrid Quantum-Classical Algorithms},
+  author = {McClean, Jarrod R and Romero, Jonathan and Babbush, Ryan and {Aspuru-Guzik}, Al{\'a}n},
+  year = {2016},
+  month = feb,
+  journal = {New Journal of Physics},
+  volume = {18},
+  number = {2},
+  pages = {023023},
+  issn = {1367-2630},
+  doi = {10.1088/1367-2630/18/2/023023},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/HD9Z5X5N/mcclean2016.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/IN48T6QK/McClean et al. - 2016 - The theory of variational hybrid quantum-classical.pdf}
+}
+
+@article{McCleanEtAl18,
+  title = {Barren Plateaus in Quantum Neural Network Training Landscapes},
+  author = {McClean, Jarrod R. and Boixo, Sergio and Smelyanskiy, Vadim N. and Babbush, Ryan and Neven, Hartmut},
+  year = {2018},
+  month = dec,
+  journal = {Nature Communications},
+  volume = {9},
+  number = {1},
+  eprint = {1803.11173},
+  eprinttype = {arxiv},
+  pages = {4812},
+  issn = {2041-1723},
+  doi = {10.1038/s41467-018-07090-4},
+  abstract = {Many experimental proposals for noisy intermediate scale quantum devices involve training a parameterized quantum circuit with a classical optimization loop. Such hybrid quantum-classical algorithms are popular for applications in quantum simulation, optimization, and machine learning. Due to its simplicity and hardware efficiency, random circuits are often proposed as initial guesses for exploring the space of quantum states. We show that the exponential dimension of Hilbert space and the gradient estimation complexity make this choice unsuitable for hybrid quantum-classical algorithms run on more than a few qubits. Specifically, we show that for a wide class of reasonable parameterized quantum circuits, the probability that the gradient along any reasonable direction is non-zero to some fixed precision is exponentially small as a function of the number of qubits. We argue that this is related to the 2-design characteristic of random circuits, and that solutions to this problem must be studied.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Physics - Chemical Physics,Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/MUZ5XVJU/McClean et al. - 2018 - Barren plateaus in quantum neural network training.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KF8G6H4I/1803.html}
 }
 
 @inproceedings{MeichanetzidisEtAl20a,
@@ -18,28 +484,164 @@
   booktitle = {Quantum {{Physics}} and {{Logic}} ({{QPL}})},
   author = {Meichanetzidis, Konstantinos and Gogioso, Stefano and De Felice, Giovanni and Chiappori, Nicol{\`o} and Toumi, Alexis and Coecke, Bob},
   year = {2020},
+  eprint = {2005.04147},
+  eprinttype = {arxiv},
   abstract = {In this work, we describe a full-stack pipeline for natural language processing on near-term quantum computers, aka QNLP. The language modelling framework we employ is that of compositional distributional semantics (DisCoCat), which extends and complements the compositional structure of pregroup grammars. Within this model, the grammatical reduction of a sentence is interpreted as a diagram, encoding a specific interaction of words according to the grammar. It is this interaction which, together with a specific choice of word embedding, realises the meaning (or "semantics") of a sentence. Building on the formal quantum-like nature of such interactions, we present a method for mapping DisCoCat diagrams to quantum circuits. Our methodology is compatible both with NISQ devices and with established Quantum Machine Learning techniques, paving the way to near-term applications of quantum technology to natural language processing.},
   archiveprefix = {arXiv},
   copyright = {All rights reserved},
-  eprint = {2005.04147},
-  eprinttype = {arxiv},
-  file = {/Users/alexis.toumi/WORK/Zotero/storage/5FUF9JMF/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/NA5TLJV4/2005.html},
-  keywords = {Computer Science - Computation and Language,Quantum Physics}
+  keywords = {Computer Science - Computation and Language,Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/5FUF9JMF/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/NA5TLJV4/2005.html}
 }
 
-@article{ToumiEtAl21a,
-  title = {Diagrammatic {{Differentiation}} for {{Quantum Machine Learning}}},
-  author = {Toumi, Alexis and Yeung, Richie and {de Felice}, Giovanni},
-  year = {2021},
-  month = mar,
-  abstract = {We introduce diagrammatic differentiation for tensor calculus by generalising the dual number construction from rigs to monoidal categories. Applying this to ZX diagrams, we show how to calculate diagrammatically the gradient of a linear map with respect to a phase parameter. For diagrams of parametrised quantum circuits, we get the well-known parameter-shift rule at the basis of many variational quantum algorithms. We then extend our method to the automatic differentation of hybrid classical-quantum circuits, using diagrams with bubbles to encode arbitrary non-linear operators. Moreover, diagrammatic differentiation comes with an open-source implementation in DisCoPy, the Python library for monoidal categories. Diagrammatic gradients of classical-quantum circuits can then be simplified using the PyZX library and executed on quantum hardware via the tket compiler. This opens the door to many practical applications harnessing both the structure of string diagrams and the computational power of quantum machine learning.},
-  archiveprefix = {arXiv},
-  eprint = {2103.07960},
+@article{PednaultEtAl19,
+  title = {Leveraging {{Secondary Storage}} to {{Simulate Deep}} 54-Qubit {{Sycamore Circuits}}},
+  author = {Pednault, Edwin and Gunnels, John A. and Nannicini, Giacomo and Horesh, Lior and Wisnieff, Robert},
+  year = {2019},
+  month = oct,
+  journal = {arXiv:1910.09534 [quant-ph]},
+  eprint = {1910.09534},
   eprinttype = {arxiv},
-  file = {/Users/alexis.toumi/WORK/Zotero/storage/X7N9SUKD/Toumi et al. - 2021 - Diagrammatic Differentiation for Quantum Machine L.pdf;/Users/alexis.toumi/WORK/Zotero/storage/IYC9WLNH/2103.html},
-  journal = {arXiv:2103.07960 [quant-ph]},
-  keywords = {Computer Science - Machine Learning,Mathematics - Category Theory,Quantum Physics},
-  primaryclass = {quant-ph}
+  primaryclass = {quant-ph},
+  abstract = {In a recent paper, we showed that secondary storage can extend the range of quantum circuits that can be practically simulated with classical algorithms. Here we refine those techniques and apply them to the simulation of Sycamore circuits with 53 and 54 qubits, with the entanglement pattern ABCDCDAB that has proven difficult to classically simulate with other approaches. Our analysis shows that on the Summit supercomputer at Oak Ridge National Laboratories, such circuits can be simulated with high fidelity to arbitrary depth in a matter of days, outputting all the amplitudes.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/NB3424TF/Pednault et al. - 2019 - Leveraging Secondary Storage to Simulate Deep 54-q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Q5GHEM27/1910.html}
+}
+
+@article{PeruzzoEtAl14,
+  title = {A Variational Eigenvalue Solver on a Photonic Quantum Processor},
+  author = {Peruzzo, Alberto and McClean, Jarrod and Shadbolt, Peter and Yung, Man-Hong and Zhou, Xiao-Qi and Love, Peter J. and {Aspuru-Guzik}, Al{\'a}n and O'Brien, Jeremy L.},
+  year = {2014},
+  month = jul,
+  journal = {Nature Communications},
+  volume = {5},
+  number = {1},
+  pages = {4213},
+  publisher = {{Nature Publishing Group}},
+  issn = {2041-1723},
+  doi = {10.1038/ncomms5213},
+  abstract = {Quantum computers promise to efficiently solve important problems that are intractable on a conventional computer. For quantum systems, where the physical dimension grows exponentially, finding the eigenvalues of certain operators is one such intractable problem and remains a fundamental challenge. The quantum phase estimation algorithm efficiently finds the eigenvalue of a given eigenvector but requires fully coherent evolution. Here we present an alternative approach that greatly reduces the requirements for coherent evolution and combine this method with a new approach to state preparation based on ans\"atze and classical optimization. We implement the algorithm by combining a highly reconfigurable photonic quantum processor with a conventional computer. We experimentally demonstrate the feasibility of this approach with an example from quantum chemistry\textemdash calculating the ground-state molecular energy for He\textendash H+. The proposed approach drastically reduces the coherence time requirements, enhancing the potential of quantum resources available today and in the near future.},
+  copyright = {2014 The Author(s)},
+  langid = {english},
+  annotation = {Bandiera\_abtest: a Cc\_license\_type: cc\_y Cg\_type: Nature Research Journals Primary\_atype: Research Subject\_term: Applied physics;Quantum chemistry;Quantum optics Subject\_term\_id: applied-physics;quantum-chemistry;quantum-optics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/9LUR3CBU/peruzzo2014.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/E49VBDD4/Peruzzo et al. - 2014 - A variational eigenvalue solver on a photonic quan.pdf;/Users/alexis.toumi/WORK/Zotero/storage/4MFJATU9/ncomms5213.html}
+}
+
+@article{PesahEtAl21,
+  title = {Absence of {{Barren Plateaus}} in {{Quantum Convolutional Neural Networks}}},
+  author = {Pesah, Arthur and Cerezo, M. and Wang, Samson and Volkoff, Tyler and Sornborger, Andrew T. and Coles, Patrick J.},
+  year = {2021},
+  month = oct,
+  journal = {Physical Review X},
+  volume = {11},
+  number = {4},
+  pages = {041011},
+  issn = {2160-3308},
+  doi = {10.1103/PhysRevX.11.041011},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/8CP4P37R/Pesah et al. - 2021 - Absence of Barren Plateaus in Quantum Convolutiona.pdf}
+}
+
+@article{Preskill18,
+  title = {Quantum {{Computing}} in the {{NISQ}} Era and Beyond},
+  author = {Preskill, John},
+  year = {2018},
+  month = aug,
+  journal = {Quantum},
+  volume = {2},
+  pages = {79},
+  doi = {10.22331/q-2018-08-06-79},
+  abstract = {John Preskill, Quantum 2, 79 (2018). Noisy Intermediate-Scale Quantum (NISQ) technology will be available in the near future. Quantum computers with 50-100 qubits may be able to perform tasks which surpass the capabilities of t\ldots},
+  langid = {british},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/VUQC6N52/Preskill - 2018 - Quantum Computing in the NISQ era and beyond.pdf;/Users/alexis.toumi/WORK/Zotero/storage/BGT6LWUW/q-2018-08-06-79.html}
+}
+
+@article{RebentrostEtAl14,
+  title = {Quantum {{Support Vector Machine}} for {{Big Data Classification}}},
+  author = {Rebentrost, Patrick and Mohseni, Masoud and Lloyd, Seth},
+  year = {2014},
+  month = sep,
+  journal = {Physical Review Letters},
+  volume = {113},
+  number = {13},
+  pages = {130503},
+  issn = {0031-9007, 1079-7114},
+  doi = {10.1103/PhysRevLett.113.130503},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/7DWUJE2M/Rebentrost et al. - 2014 - Quantum Support Vector Machine for Big Data Classi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G9UYVYRF/rebentrost2014.pdf.pdf}
+}
+
+@inproceedings{Shor94a,
+  title = {Algorithms for Quantum Computation: Discrete Logarithms and Factoring},
+  shorttitle = {Algorithms for Quantum Computation},
+  booktitle = {Proceedings 35th {{Annual Symposium}} on {{Foundations}} of {{Computer Science}}},
+  author = {Shor, P.W.},
+  year = {1994},
+  pages = {124--134},
+  publisher = {{IEEE Comput. Soc. Press}},
+  address = {{Santa Fe, NM, USA}},
+  doi = {10.1109/SFCS.1994.365700},
+  isbn = {978-0-8186-6580-6},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/PH9XT74C/Shor - 1994 - Algorithms for quantum computation discrete logar.pdf}
+}
+
+@inproceedings{Shor96,
+  title = {Fault-Tolerant Quantum Computation},
+  booktitle = {Proceedings of 37th Conference on Foundations of Computer Science},
+  author = {Shor, Peter W},
+  year = {1996},
+  pages = {56--65},
+  organization = {{IEEE}},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/HB9XJWUZ/Shor - 1997 - Fault-tolerant quantum computation.pdf}
+}
+
+@inproceedings{Simon94,
+  title = {On the Power of Quantum Computation},
+  booktitle = {2013 {{IEEE}} 54th Annual Symposium on Foundations of Computer Science},
+  author = {Simon, D.},
+  year = {1994},
+  month = nov,
+  pages = {116--123},
+  publisher = {{IEEE Computer Society}},
+  address = {{Los Alamitos, CA, USA}},
+  doi = {10.1109/SFCS.1994.365701},
+  keywords = {complexity theory,discrete logarithm,integer factoring,probabilistic model,probabilistic turing machine,quantum computation,quantum model of computation},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/C62HSIMB/Simon - 1994 - On the power of quantum computation.pdf}
+}
+
+@article{WiebeEtAl12,
+  title = {Quantum {{Algorithm}} for {{Data Fitting}}},
+  author = {Wiebe, Nathan and Braun, Daniel and Lloyd, Seth},
+  year = {2012},
+  month = aug,
+  journal = {Physical Review Letters},
+  volume = {109},
+  number = {5},
+  pages = {050505},
+  issn = {0031-9007, 1079-7114},
+  doi = {10.1103/PhysRevLett.109.050505},
+  langid = {english},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/EM34SBMH/wiebe2012.pdf.pdf}
+}
+
+@article{ZhongEtAl20a,
+  title = {Quantum Computational Advantage Using Photons},
+  author = {Zhong, Han-Sen and Wang, Hui and Deng, Yu-Hao and Chen, Ming-Cheng and Peng, Li-Chao and Luo, Yi-Han and Qin, Jian and Wu, Dian and Ding, Xing and Hu, Yi and Hu, Peng and Yang, Xiao-Yan and Zhang, Wei-Jun and Li, Hao and Li, Yuxuan and Jiang, Xiao and Gan, Lin and Yang, Guangwen and You, Lixing and Wang, Zhen and Li, Li and Liu, Nai-Le and Lu, Chao-Yang and Pan, Jian-Wei},
+  year = {2020},
+  month = dec,
+  journal = {Science},
+  volume = {370},
+  number = {6523},
+  eprint = {2012.01625},
+  eprinttype = {arxiv},
+  pages = {1460--1463},
+  issn = {0036-8075, 1095-9203},
+  doi = {10.1126/science.abe8770},
+  abstract = {Gaussian boson sampling exploits squeezed states to provide a highly efficient way to demonstrate quantum computational advantage. We perform experiments with 50 input single-mode squeezed states with high indistinguishability and squeezing parameters, which are fed into a 100-mode ultralow-loss interferometer with full connectivity and random transformation, and sampled using 100 high-efficiency single-photon detectors. The whole optical set-up is phase-locked to maintain a high coherence between the superposition of all photon number states. We observe up to 76 output photon-clicks, which yield an output state space dimension of \$10\^\{30\}\$ and a sampling rate that is \$10\^\{14\}\$ faster than using the state-of-the-art simulation strategy and supercomputers. The obtained samples are validated against various hypotheses including using thermal states, distinguishable photons, and uniform distribution.},
+  archiveprefix = {arXiv},
+  keywords = {Condensed Matter - Other Condensed Matter,Physics - Optics,Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/6FRKXU5Z/Zhong et al. - 2020 - Quantum computational advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/XASCJG38/2012.html}
 }
 
 

@@ -16,5 +16,2835 @@
   {}
 \endgroup
 
-\datalist[entry]{none/global//global/global}\enddatalist
+\datalist[entry]{nyt/global//global/global}
+  \entry{Aaronson15}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AS}{%
+         family={Aaronson},
+         familyi={A\bibinitperiod},
+         given={Scott},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Nature Publishing Group}}%
+    }
+    \strng{namehash}{AS1}
+    \strng{fullhash}{AS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Aar15}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    New quantum algorithms promise an exponential speed-up for machine
+  learning, clustering and finding patterns in big data. But to achieve a real
+  speed-up, we need to delve into the details.%
+    }
+    \verb{doi}
+    \verb 10.1038/nphys3272
+    \endverb
+    \field{issn}{1745-2481}
+    \field{number}{4}
+    \field{pages}{291\bibrangedash 293}
+    \field{title}{Read the Fine Print}
+    \field{volume}{11}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/R8S6DEMV/aaronson2015.pdf.pdf
+    \verb ;/Users/alexis.toumi/WORK/Zotero/storage/LTYUZZQB/nphys3272.html
+    \endverb
+    \field{journaltitle}{Nature Physics}
+    \field{annotation}{%
+    Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype:
+  Comments \& Opinion Subject\_term: Quantum information Subject\_term\_id:
+  quantum-information%
+    }
+    \field{month}{04}
+    \field{year}{2015}
+  \endentry
+
+  \entry{AharonovBen-Or08}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AD}{%
+         family={Aharonov},
+         familyi={A\bibinitperiod},
+         given={Dorit},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={{Ben-Or}},
+         familyi={B\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Society for Industrial and Applied Mathematics}}%
+    }
+    \keyw{68Q01,81P68,concatenated codes,density matrices,noise and
+  decoherence,polynomial codes,quantum computation,quantum error
+  correction,quantum fault tolerance,quantum Reed–Solomon codes,universal set
+  of gates}
+    \strng{namehash}{ADBM1}
+    \strng{fullhash}{ADBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{AB08}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    This paper shows that quantum computation can be made fault-tolerant
+  against errors and inaccuracies when \$\textbackslash eta\$, the probability
+  for an error in a qubit or a gate, is smaller than a constant threshold
+  \$\textbackslash eta\_c\$. This result improves on Shor's result [Proceedings
+  of the 37th Symposium on the Foundations of Computer Science, IEEE, Los
+  Alamitos, CA, 1996, pp. 56\textendash 65], which shows how to perform
+  fault-tolerant quantum computation when the error rate \$\textbackslash eta\$
+  decays polylogarithmically with the size of the computation, an assumption
+  which is physically unreasonable. The cost of making the quantum circuit
+  fault-tolerant in our construction is polylogarithmic in time and space. Our
+  result holds for a very general local noise model, which includes
+  probabilistic errors, decoherence, amplitude damping, depolarization, and
+  systematic inaccuracies in the gates. Moreover, we allow exponentially
+  decaying correlations between the errors both in space and in time.
+  Fault-tolerant computation can be performed with any universal set of gates.
+  The result also holds for quantum particles with \$p{$>$}2\$ states, namely,
+  p-qudits, and is also generalized to one-dimensional quantum computers with
+  only nearest-neighbor interactions. No measurements, or classical operations,
+  are required during the quantum computation. We estimate the threshold of our
+  construction to be \$\textbackslash eta\_c\textbackslash simeq 10\^\{-6\}\$,
+  in the best case. By this we show that local noise is in principle not an
+  obstacle for scalable quantum computation. The main ingredient of our proof
+  is the computation on states encoded by a quantum error correcting code
+  (QECC). To this end we introduce a special class of Calderbank\textendash
+  Shor\textendash Steane (CSS) codes, called polynomial codes (the quantum
+  analogue of Reed\textendash Solomon codes). Their nice algebraic structure
+  allows all of the encoded gates to be transversal. We also provide another
+  version of the proof which uses more general CSS codes, but its encoded gates
+  are slightly less elegant. To achieve fault tolerance, we encode the quantum
+  circuit by another circuit by using one of these QECCs. This step is repeated
+  polyloglog many times, each step slightly improving the effective error rate,
+  to achieve the desired reliability. The resulting circuit exhibits a
+  hierarchical structure, and for the analysis of its robustness we borrow
+  terminology from Khalfin and Tsirelson [Found. Phys., 22 (1992), pp.
+  879\textendash 948] and G\'acs [Advances in Computing Research: A Research
+  Annual: Randomness and Computation, JAI Press, Greenwich, CT, 1989]. The
+  paper is to a large extent self-contained. In particular, we provide simpler
+  proofs for many of the known results we use, such as the fact that it
+  suffices to correct for bit-flips and phase-flips, the correctness of CSS
+  codes, and the fact that two-qubit gates are universal, together with their
+  extensions to higher-dimensional particles. We also provide full proofs of
+  the universality of the sets of gates we use (the proof of universality was
+  missing in Shor's paper). This paper thus provides a self-contained and
+  complete proof of universal fault-tolerant quantum computation in the
+  presence of local noise.%
+    }
+    \verb{doi}
+    \verb 10.1137/S0097539799359385
+    \endverb
+    \field{issn}{0097-5397}
+    \field{number}{4}
+    \field{pages}{1207\bibrangedash 1282}
+    \field{title}{Fault-{{Tolerant Quantum Computation}} with {{Constant Error
+  Rate}}}
+    \field{volume}{38}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/LECQCGZB/aharonov2008.pdf.pdf
+    \verb ;/Users/alexis.toumi/WORK/Zotero/storage/LQSDECD9/Aharonov and Ben-Or
+    \verb  - 2008 - Fault-Tolerant Quantum Computation with Constant E.pdf
+    \endverb
+    \field{journaltitle}{SIAM Journal on Computing}
+    \field{month}{01}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Ambainis04}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AA}{%
+         family={Ambainis},
+         familyi={A\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AA1}
+    \strng{fullhash}{AA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Amb04}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    We review some of quantum algorithms for search problems: Grover's search
+  algorithm, its generalization to amplitude amplification, the applications of
+  amplitude amplification to various problems and the recent quantum algorithms
+  based on quantum walks.%
+    }
+    \verb{doi}
+    \verb 10.1145/992287.992296
+    \endverb
+    \field{issn}{0163-5700}
+    \field{number}{2}
+    \field{pages}{22\bibrangedash 35}
+    \field{title}{Quantum Search Algorithms}
+    \field{volume}{35}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/B76JEW2K/Ambainis - 2004 - Qu
+    \verb antum search algorithms.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Z
+    \verb 9DZQN8B/ambainis2004.pdf.pdf
+    \endverb
+    \field{journaltitle}{ACM SIGACT News}
+    \field{month}{06}
+    \field{year}{2004}
+  \endentry
+
+  \entry{ArunachalamEtAl15}{article}{}
+    \name{author}{5}{}{%
+      {{hash=AS}{%
+         family={Arunachalam},
+         familyi={A\bibinitperiod},
+         given={Srinivasan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GV}{%
+         family={Gheorghiu},
+         familyi={G\bibinitperiod},
+         given={Vlad},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=JT}{%
+         family={{Jochym-O'Connor}},
+         familyi={J\bibinitperiod},
+         given={Tomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mosca},
+         familyi={M\bibinitperiod},
+         given={Michele},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SPV}{%
+         family={Srinivasan},
+         familyi={S\bibinitperiod},
+         given={Priyaa\bibnamedelima Varshinee},
+         giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AS+1}
+    \strng{fullhash}{ASGVJTMMSPV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Aru+15}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1088/1367-2630/17/12/123010
+    \endverb
+    \field{issn}{1367-2630}
+    \field{number}{12}
+    \field{pages}{123010}
+    \field{title}{On the Robustness of Bucket Brigade Quantum {{RAM}}}
+    \field{volume}{17}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/HHII8J8A/arunachalam2015.pdf.
+    \verb pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZGB7N46W/Arunachalam et a
+    \verb l. - 2015 - On the robustness of bucket brigade quantum RAM.pdf
+    \endverb
+    \field{journaltitle}{New Journal of Physics}
+    \field{month}{12}
+    \field{year}{2015}
+  \endentry
+
+  \entry{AruteEtAl19}{article}{}
+    \name{author}{77}{}{%
+      {{hash=AF}{%
+         family={Arute},
+         familyi={A\bibinitperiod},
+         given={Frank},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=AK}{%
+         family={Arya},
+         familyi={A\bibinitperiod},
+         given={Kunal},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Babbush},
+         familyi={B\bibinitperiod},
+         given={Ryan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=BD}{%
+         family={Bacon},
+         familyi={B\bibinitperiod},
+         given={Dave},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BJC}{%
+         family={Bardin},
+         familyi={B\bibinitperiod},
+         given={Joseph\bibnamedelima C.},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Barends},
+         familyi={B\bibinitperiod},
+         given={Rami},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Biswas},
+         familyi={B\bibinitperiod},
+         given={Rupak},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Boixo},
+         familyi={B\bibinitperiod},
+         given={Sergio},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BFGSL}{%
+         family={Brandao},
+         familyi={B\bibinitperiod},
+         given={Fernando G. S.\bibnamedelima L.},
+         giveni={F\bibinitperiod\bibinitdelim G\bibinitperiod
+  S\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=BDA}{%
+         family={Buell},
+         familyi={B\bibinitperiod},
+         given={David\bibnamedelima A.},
+         giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=BB}{%
+         family={Burkett},
+         familyi={B\bibinitperiod},
+         given={Brian},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Yu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CZ}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Zijun},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Chiaro},
+         familyi={C\bibinitperiod},
+         given={Ben},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=CR}{%
+         family={Collins},
+         familyi={C\bibinitperiod},
+         given={Roberto},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=CW}{%
+         family={Courtney},
+         familyi={C\bibinitperiod},
+         given={William},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={Dunsworth},
+         familyi={D\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FE}{%
+         family={Farhi},
+         familyi={F\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=FB}{%
+         family={Foxen},
+         familyi={F\bibinitperiod},
+         given={Brooks},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Fowler},
+         familyi={F\bibinitperiod},
+         given={Austin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Gidney},
+         familyi={G\bibinitperiod},
+         given={Craig},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Giustina},
+         familyi={G\bibinitperiod},
+         given={Marissa},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Graff},
+         familyi={G\bibinitperiod},
+         given={Rob},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=GK}{%
+         family={Guerin},
+         familyi={G\bibinitperiod},
+         given={Keith},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=HS}{%
+         family={Habegger},
+         familyi={H\bibinitperiod},
+         given={Steve},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HMP}{%
+         family={Harrigan},
+         familyi={H\bibinitperiod},
+         given={Matthew\bibnamedelima P.},
+         giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=HMJ}{%
+         family={Hartmann},
+         familyi={H\bibinitperiod},
+         given={Michael\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=HA}{%
+         family={Ho},
+         familyi={H\bibinitperiod},
+         given={Alan},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hoffmann},
+         familyi={H\bibinitperiod},
+         given={Markus},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=HT}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Trent},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HTS}{%
+         family={Humble},
+         familyi={H\bibinitperiod},
+         given={Travis\bibnamedelima S.},
+         giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=ISV}{%
+         family={Isakov},
+         familyi={I\bibinitperiod},
+         given={Sergei\bibnamedelima V.},
+         giveni={S\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=JE}{%
+         family={Jeffrey},
+         familyi={J\bibinitperiod},
+         given={Evan},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=JZ}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Zhang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kafri},
+         familyi={K\bibinitperiod},
+         given={Dvir},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=KK}{%
+         family={Kechedzhi},
+         familyi={K\bibinitperiod},
+         given={Kostyantyn},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=KJ}{%
+         family={Kelly},
+         familyi={K\bibinitperiod},
+         given={Julian},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KPV}{%
+         family={Klimov},
+         familyi={K\bibinitperiod},
+         given={Paul\bibnamedelima V.},
+         giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Knysh},
+         familyi={K\bibinitperiod},
+         given={Sergey},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Korotkov},
+         familyi={K\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KF}{%
+         family={Kostritsa},
+         familyi={K\bibinitperiod},
+         given={Fedor},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=LD}{%
+         family={Landhuis},
+         familyi={L\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lindmark},
+         familyi={L\bibinitperiod},
+         given={Mike},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LE}{%
+         family={Lucero},
+         familyi={L\bibinitperiod},
+         given={Erik},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=LD}{%
+         family={Lyakh},
+         familyi={L\bibinitperiod},
+         given={Dmitry},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Mandr{\`a}},
+         familyi={M\bibinitperiod},
+         given={Salvatore},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MJR}{%
+         family={McClean},
+         familyi={M\bibinitperiod},
+         given={Jarrod\bibnamedelima R.},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={McEwen},
+         familyi={M\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Megrant},
+         familyi={M\bibinitperiod},
+         given={Anthony},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MX}{%
+         family={Mi},
+         familyi={M\bibinitperiod},
+         given={Xiao},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Michielsen},
+         familyi={M\bibinitperiod},
+         given={Kristel},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mohseni},
+         familyi={M\bibinitperiod},
+         given={Masoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Mutus},
+         familyi={M\bibinitperiod},
+         given={Josh},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NO}{%
+         family={Naaman},
+         familyi={N\bibinitperiod},
+         given={Ofer},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=NM}{%
+         family={Neeley},
+         familyi={N\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NC}{%
+         family={Neill},
+         familyi={N\bibinitperiod},
+         given={Charles},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=NMY}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Murphy\bibnamedelima Yuezhen},
+         giveni={M\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+      {{hash=OE}{%
+         family={Ostby},
+         familyi={O\bibinitperiod},
+         given={Eric},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Petukhov},
+         familyi={P\bibinitperiod},
+         given={Andre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PJC}{%
+         family={Platt},
+         familyi={P\bibinitperiod},
+         given={John\bibnamedelima C.},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=QC}{%
+         family={Quintana},
+         familyi={Q\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=REG}{%
+         family={Rieffel},
+         familyi={R\bibinitperiod},
+         given={Eleanor\bibnamedelima G.},
+         giveni={E\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=RP}{%
+         family={Roushan},
+         familyi={R\bibinitperiod},
+         given={Pedram},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RNC}{%
+         family={Rubin},
+         familyi={R\bibinitperiod},
+         given={Nicholas\bibnamedelima C.},
+         giveni={N\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Sank},
+         familyi={S\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SKJ}{%
+         family={Satzinger},
+         familyi={S\bibinitperiod},
+         given={Kevin\bibnamedelima J.},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=SV}{%
+         family={Smelyanskiy},
+         familyi={S\bibinitperiod},
+         given={Vadim},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=SKJ}{%
+         family={Sung},
+         familyi={S\bibinitperiod},
+         given={Kevin\bibnamedelima J.},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=TMD}{%
+         family={Trevithick},
+         familyi={T\bibinitperiod},
+         given={Matthew\bibnamedelima D.},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=VA}{%
+         family={Vainsencher},
+         familyi={V\bibinitperiod},
+         given={Amit},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=VB}{%
+         family={Villalonga},
+         familyi={V\bibinitperiod},
+         given={Benjamin},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=WT}{%
+         family={White},
+         familyi={W\bibinitperiod},
+         given={Theodore},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=YZJ}{%
+         family={Yao},
+         familyi={Y\bibinitperiod},
+         given={Z.\bibnamedelima Jamie},
+         giveni={Z\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=YP}{%
+         family={Yeh},
+         familyi={Y\bibinitperiod},
+         given={Ping},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zalcman},
+         familyi={Z\bibinitperiod},
+         given={Adam},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=NH}{%
+         family={Neven},
+         familyi={N\bibinitperiod},
+         given={Hartmut},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=MJM}{%
+         family={Martinis},
+         familyi={M\bibinitperiod},
+         given={John\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Nature Publishing Group}}%
+    }
+    \strng{namehash}{AF+1}
+  \strng{fullhash}{AFAKBRBDBJCBRBRBSBFGSLBDABBCYCZCBCRCWDAFEFBFAGCGMGRGKHSHMPHMJHAHMHTHTSISVJEJZKDKKKJKPVKSKAKFLDLMLELDMSMJRMMMAMXMKMMMJNONMNCNMYOEPAPJCQCREGRPRNCSDSKJSVSKJTMDVAVBWTYZJYPZANHMJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Aru+19}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    The promise of quantum computers is that certain computational tasks might
+  be executed exponentially faster on a quantum processor than on a classical
+  processor1. A fundamental challenge is to build a high-fidelity processor
+  capable of running quantum algorithms in an exponentially large computational
+  space. Here we report the use of a processor with programmable
+  superconducting qubits2\textendash 7 to create quantum states on 53 qubits,
+  corresponding to a computational state-space of dimension 253 (about 1016).
+  Measurements from repeated experiments sample the resulting probability
+  distribution, which we verify using classical simulations. Our Sycamore
+  processor takes about 200 seconds to sample one instance of a quantum circuit
+  a million times\textemdash our benchmarks currently indicate that the
+  equivalent task for a state-of-the-art classical supercomputer would take
+  approximately 10,000 years. This dramatic increase in speed compared to all
+  known classical algorithms is an experimental realization of quantum
+  supremacy8\textendash 14 for this specific computational task, heralding a
+  much-anticipated computing paradigm.%
+    }
+    \verb{doi}
+    \verb 10.1038/s41586-019-1666-5
+    \endverb
+    \field{issn}{1476-4687}
+    \field{number}{7779}
+    \field{pages}{505\bibrangedash 510}
+    \field{title}{Quantum Supremacy Using a Programmable Superconducting
+  Processor}
+    \field{volume}{574}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/7666WNJ5/arute2019.pdf.pdf;/U
+    \verb sers/alexis.toumi/WORK/Zotero/storage/CFXAA2BB/Arute et al. - 2019 -
+    \verb Quantum supremacy using a programmable superconduc.pdf;/Users/alexis.
+    \verb toumi/WORK/Zotero/storage/JFSMSR9P/s41586 019 1666 5.html
+    \endverb
+    \field{journaltitle}{Nature}
+    \field{annotation}{%
+    Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype:
+  Research Subject\_term: Quantum information;Quantum physics
+  Subject\_term\_id: quantum-information;quantum-physics%
+    }
+    \field{month}{10}
+    \field{year}{2019}
+  \endentry
+
+  \entry{Ball21}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=BP}{%
+         family={Ball},
+         familyi={B\bibinitperiod},
+         given={Philip},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BP1}
+    \strng{fullhash}{BP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bal21}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    So-called topological quantum computing would avoid many of the problems
+  that stand in the way of full-scale quantum computers. But high-profile
+  missteps have led some experts to question whether the\ldots%
+    }
+  \field{howpublished}{https://www.quantamagazine.org/major-quantum-computing-strategy-suffers-serious-setbacks-20210929/}
+    \field{title}{Major {{Quantum Computing Strategy Suffers Serious
+  Setbacks}}}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/3QFK7ZYS/major-quantum-comput
+    \verb ing-strategy-suffers-serious-setbacks-20210929.html
+    \endverb
+    \field{journaltitle}{Quanta Magazine}
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{BenedettiEtAl19}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BM}{%
+         family={Benedetti},
+         familyi={B\bibinitperiod},
+         given={Marcello},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LE}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Erika},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sack},
+         familyi={S\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning,Quantum Physics}
+    \strng{namehash}{BMLESS1}
+    \strng{fullhash}{BMLESS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BLS19}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Hybrid quantum-classical systems make it possible to utilize existing
+  quantum computers to their fullest extent. Within this framework,
+  parameterized quantum circuits can be thought of as machine learning models
+  with remarkable expressive power. This Review presents components of these
+  models and discusses their application to a variety of data-driven tasks such
+  as supervised learning and generative modeling. With experimental
+  demonstrations carried out on actual quantum hardware, and with software
+  actively being developed, this rapidly growing field could become one of the
+  first instances of quantum computing that addresses real world problems.%
+    }
+    \verb{eprint}
+    \verb 1906.07682
+    \endverb
+    \field{title}{Parameterized Quantum Circuits as Machine Learning Models}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/G7R69FWE/Benedetti et al. - 2
+    \verb 019 - Parameterized quantum circuits as machine learning.pdf;/Users/a
+    \verb lexis.toumi/WORK/Zotero/storage/GH829Q96/1906.html
+    \endverb
+    \field{journaltitle}{arXiv:1906.07682 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{06}
+    \field{year}{2019}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Benioff80}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BP}{%
+         family={Benioff},
+         familyi={B\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BP2}
+    \strng{fullhash}{BP2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Ben80}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    In this paper a microscopic quantum mechanical model of computers as
+  represented by Turing machines is constructed. It is shown that for each
+  numberN and Turing machineQ there exists a HamiltonianHNQ and a class of
+  appropriate initial states such that if c is such an initial state,
+  then{$\psi$}QN(t)=exp(-1HNQt){$\psi$}QN(0) correctly describes at
+  timest3,t6,{$\cdots$},t3N model states that correspond to the completion of
+  the first, second, {$\cdots$}, Nth computation step ofQ. The model parameters
+  can be adjusted so that for an arbitrary time interval{$\Delta$}
+  aroundt3,t6,{$\cdots$},t3N, the ``machine'' part of{$\psi$}QN(t) is
+  stationary.%
+    }
+    \verb{doi}
+    \verb 10.1007/BF01011339
+    \endverb
+    \field{issn}{1572-9613}
+    \field{number}{5}
+    \field{pages}{563\bibrangedash 591}
+    \field{shorttitle}{The Computer as a Physical System}
+    \field{title}{The Computer as a Physical System: A Microscopic Quantum
+  Mechanical {{Hamiltonian}} Model of Computers as Represented by {{Turing}}
+  Machines}
+    \field{volume}{22}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8NLU85CP/Benioff - The comput
+    \verb er as a physical system A microscopic q.pdf
+    \endverb
+    \field{journaltitle}{Journal of Statistical Physics}
+    \field{month}{05}
+    \field{year}{1980}
+  \endentry
+
+  \entry{BennettEtAl97}{article}{}
+    \name{author}{4}{}{%
+      {{hash=BCH}{%
+         family={Bennett},
+         familyi={B\bibinitperiod},
+         given={Charles\bibnamedelima H.},
+         giveni={C\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=BE}{%
+         family={Bernstein},
+         familyi={B\bibinitperiod},
+         given={Ethan},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=BG}{%
+         family={Brassard},
+         familyi={B\bibinitperiod},
+         given={Gilles},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=VU}{%
+         family={Vazirani},
+         familyi={V\bibinitperiod},
+         given={Umesh},
+         giveni={U\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Society for Industrial and Applied Mathematics}}%
+    }
+    \keyw{03D10,03D15,68Q05,68Q15,oracle quantum Turing machines,quantum
+  polynomial time,quantum Turing machines}
+    \strng{namehash}{BCH+1}
+    \strng{fullhash}{BCHBEBGVU1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ben+97}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Recently a great deal of attention has been focused on quantum computation
+  following a sequence of results [Bernstein and Vazirani, in Proc. 25th Annual
+  ACM Symposium Theory Comput., 1993, pp. 11--20, SIAM J. Comput., 26 (1997),
+  pp. 1277--1339], [Simon, in Proc. 35th Annual IEEE Symposium Foundations
+  Comput. Sci., 1994, pp. 116--123, SIAM J. Comput., 26 (1997), pp.
+  1340--1349], [Shor, in Proc. 35th Annual IEEE Symposium Foundations Comput.
+  Sci., 1994, pp. 124--134] suggesting that quantum computers are more powerful
+  than classical probabilistic computers. Following Shor's result that
+  factoring and the extraction of discrete logarithms are both solvable in
+  quantum polynomial time, it is natural to ask whether all of \$\textbackslash
+  NP\$ can be efficiently solved in quantum polynomial time. In this paper, we
+  address this question by proving that relative to an oracle chosen uniformly
+  at random with probability 1 the class \$\textbackslash NP\$ cannot be solved
+  on a quantum Turing machine (QTM) in time \$o(2\^\{n/2\})\$. We also show
+  that relative to a permutation oracle chosen uniformly at random with
+  probability 1 the class \$\textbackslash NP \textbackslash cap \textbackslash
+  coNP\$ cannot be solved on a QTM in time \$o(2\^\{n/3\})\$. The former bound
+  is tight since recent work of Grover [in \{\textbackslash it
+  Proc.\textbackslash{} \$28\$th Annual ACM Symposium Theory Comput.\}, 1996]
+  shows how to accept the class \$\textbackslash NP\$ relative to any oracle on
+  a quantum computer in time \$O(2\^\{n/2\})\$.%
+    }
+    \verb{doi}
+    \verb 10.1137/S0097539796300933
+    \endverb
+    \field{issn}{0097-5397}
+    \field{number}{5}
+    \field{pages}{1510\bibrangedash 1523}
+    \field{title}{Strengths and {{Weaknesses}} of {{Quantum Computing}}}
+    \field{volume}{26}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/JRVA3Y3Z/Bennett et al. - 199
+    \verb 7 - Strengths and Weaknesses of Quantum Computing.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/WBTHH36Y/bennett1997.pdf.pdf
+    \endverb
+    \field{journaltitle}{SIAM Journal on Computing}
+    \field{month}{10}
+    \field{year}{1997}
+  \endentry
+
+  \entry{BernsteinEtAl09}{book}{}
+    \name{author}{3}{}{%
+      {{hash=BDJ}{%
+         family={Bernstein},
+         familyi={B\bibinitperiod},
+         given={Daniel\bibnamedelima J},
+         giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Buchmann},
+         familyi={B\bibinitperiod},
+         given={Johannes},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DE}{%
+         family={Dahm{\'e}n},
+         familyi={D\bibinitperiod},
+         given={Erik},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{BDJBJDE1}
+    \strng{fullhash}{BDJBJDE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BBD09}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Quantum computers may break popular public-key cryptographic systems,
+  including RSA, DSA, and ECDSA. This book introduces the reader to the next
+  generation of cryptographic algorithms, the systems that resist
+  quantum-computer attacks: in particular, post-quantum public-key encryption
+  systems and post-quantum public-key signature systems.%
+    }
+    \field{isbn}{978-3-540-88702-7 978-3-540-88701-0}
+    \field{title}{Post-Quantum Cryptography}
+    \field{langid}{english}
+    \list{location}{1}{%
+      {{Berlin}}%
+    }
+    \field{annotation}{%
+    OCLC: 318545517%
+    }
+    \field{year}{2009}
+  \endentry
+
+  \entry{BrassardEtAl02}{article}{}
+    \name{author}{4}{}{%
+      {{hash=BG}{%
+         family={Brassard},
+         familyi={B\bibinitperiod},
+         given={Gilles},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=HP}{%
+         family={Hoyer},
+         familyi={H\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mosca},
+         familyi={M\bibinitperiod},
+         given={Michele},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Tapp},
+         familyi={T\bibinitperiod},
+         given={Alain},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{BG+1}
+    \strng{fullhash}{BGHPMMTA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bra+02}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Consider a Boolean function \$\textbackslash chi: X \textbackslash to
+  \textbackslash\{0,1\textbackslash\}\$ that partitions set \$X\$ between its
+  good and bad elements, where \$x\$ is good if \$\textbackslash chi(x)=1\$ and
+  bad otherwise. Consider also a quantum algorithm \$\textbackslash mathcal A\$
+  such that \$A |0\textbackslash rangle= \textbackslash sum\_\{x\textbackslash
+  in X\} \textbackslash alpha\_x |x\textbackslash rangle\$ is a quantum
+  superposition of the elements of \$X\$, and let \$a\$ denote the probability
+  that a good element is produced if \$A |0\textbackslash rangle\$ is measured.
+  If we repeat the process of running \$A\$, measuring the output, and using
+  \$\textbackslash chi\$ to check the validity of the result, we shall expect
+  to repeat \$1/a\$ times on the average before a solution is found. *Amplitude
+  amplification* is a process that allows to find a good \$x\$ after an
+  expected number of applications of \$A\$ and its inverse which is
+  proportional to \$1/\textbackslash sqrt\{a\}\$, assuming algorithm \$A\$
+  makes no measurements. This is a generalization of Grover's searching
+  algorithm in which \$A\$ was restricted to producing an equal superposition
+  of all members of \$X\$ and we had a promise that a single \$x\$ existed such
+  that \$\textbackslash chi(x)=1\$. Our algorithm works whether or not the
+  value of \$a\$ is known ahead of time. In case the value of \$a\$ is known,
+  we can find a good \$x\$ after a number of applications of \$A\$ and its
+  inverse which is proportional to \$1/\textbackslash sqrt\{a\}\$ even in the
+  worst case. We show that this quadratic speedup can also be obtained for a
+  large family of search problems for which good classical heuristics exist.
+  Finally, as our main result, we combine ideas from Grover's and Shor's
+  quantum algorithms to perform amplitude estimation, a process that allows to
+  estimate the value of \$a\$. We apply amplitude estimation to the problem of
+  *approximate counting*, in which we wish to estimate the number of
+  \$x\textbackslash in X\$ such that \$\textbackslash chi(x)=1\$. We obtain
+  optimal quantum algorithms in a variety of settings.%
+    }
+    \verb{doi}
+    \verb 10.1090/conm/305/05215
+    \endverb
+    \verb{eprint}
+    \verb quant-ph/0005055
+    \endverb
+    \field{pages}{53\bibrangedash 74}
+    \field{title}{Quantum {{Amplitude Amplification}} and {{Estimation}}}
+    \field{volume}{305}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/XWNF4SWI/Brassard et al. - 20
+    \verb 02 - Quantum Amplitude Amplification and Estimation.pdf;/Users/alexis
+    \verb .toumi/WORK/Zotero/storage/W7M82VXC/0005055.html
+    \endverb
+    \field{journaltitle}{arXiv:quant-ph/0005055}
+    \field{eprinttype}{arxiv}
+    \field{year}{2002}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{ChuangEtAl98}{article}{}
+    \name{author}{3}{}{%
+      {{hash=CIL}{%
+         family={Chuang},
+         familyi={C\bibinitperiod},
+         given={Isaac\bibnamedelima L.},
+         giveni={I\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=GN}{%
+         family={Gershenfeld},
+         familyi={G\bibinitperiod},
+         given={Neil},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kubinec},
+         familyi={K\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{American Physical Society}}%
+    }
+    \strng{namehash}{CILGNKM1}
+    \strng{fullhash}{CILGNKM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CGK98}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    Using nuclear magnetic resonance techniques with a solution of chloroform
+  molecules we implement Grover's search algorithm for a system with four
+  states. By performing a tomographic reconstruction of the density matrix
+  during the computation good agreement is seen between theory and experiment.
+  This provides the first complete experimental demonstration of loading an
+  initial state into a quantum computer, performing a computation requiring
+  fewer steps than on a classical computer, and then reading out the final
+  state.%
+    }
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.80.3408
+    \endverb
+    \field{number}{15}
+    \field{pages}{3408\bibrangedash 3411}
+    \field{title}{Experimental {{Implementation}} of {{Fast Quantum
+  Searching}}}
+    \field{volume}{80}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/QRAM8RMF/PhysRevLett.80.html
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{04}
+    \field{year}{1998}
+  \endentry
+
+  \entry{CladerEtAl13}{article}{}
+    \name{author}{3}{}{%
+      {{hash=CBD}{%
+         family={Clader},
+         familyi={C\bibinitperiod},
+         given={B.\bibnamedelima D.},
+         giveni={B\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=JBC}{%
+         family={Jacobs},
+         familyi={J\bibinitperiod},
+         given={B.\bibnamedelima C.},
+         giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=SCR}{%
+         family={Sprouse},
+         familyi={S\bibinitperiod},
+         given={C.\bibnamedelima R.},
+         giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CBDJBCSCR1}
+    \strng{fullhash}{CBDJBCSCR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CJS13}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.110.250504
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{25}
+    \field{pages}{250504}
+    \field{title}{Preconditioned {{Quantum Linear System Algorithm}}}
+    \field{volume}{110}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/93PZM6F8/Clader et al. - 2013
+    \verb  - Preconditioned Quantum Linear System Algorithm.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/DAVRPYS6/clader2013.pdf.pdf
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{06}
+    \field{year}{2013}
+  \endentry
+
+  \entry{Deutsch85a}{article}{}
+    \name{author}{1}{}{%
+      {{hash=DD}{%
+         family={Deutsch},
+         familyi={D\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{The Royal Society London}}%
+    }
+    \strng{namehash}{DD1}
+    \strng{fullhash}{DD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Deu85}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{number}{1818}
+    \field{pages}{97\bibrangedash 117}
+    \field{title}{Quantum Theory, the {{Church}}\textendash{{Turing}} Principle
+  and the Universal Quantum Computer}
+    \field{volume}{400}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/CKMRLL9I/Deutsch - 1985 - Qua
+    \verb ntum theory, the Church–Turing principle and th.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the Royal Society of London. A.
+  Mathematical and Physical Sciences}
+    \field{year}{1985}
+  \endentry
+
+  \entry{DeutschJozsa92}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DD}{%
+         family={Deutsch},
+         familyi={D\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=JR}{%
+         family={Jozsa},
+         familyi={J\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Royal Society}}%
+    }
+    \strng{namehash}{DDJR1}
+    \strng{fullhash}{DDJR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{DJ92}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    A class of problems is described which can be solved more efficiently by
+  quantum computation than by any classical or stochastic method. The quantum
+  computation solves the problem with certainty in exponentially less time than
+  any classical deterministic computation.%
+    }
+    \verb{doi}
+    \verb 10.1098/rspa.1992.0167
+    \endverb
+    \field{number}{1907}
+    \field{pages}{553\bibrangedash 558}
+    \field{title}{Rapid Solution of Problems by Quantum Computation}
+    \field{volume}{439}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UI5FGZE2/Deutsch and Jozsa -
+    \verb 1992 - Rapid solution of problems by quantum computation.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the Royal Society of London. Series A:
+  Mathematical and Physical Sciences}
+    \field{month}{12}
+    \field{year}{1992}
+  \endentry
+
+  \entry{FarhiEtAl14}{article}{}
+    \name{author}{3}{}{%
+      {{hash=FE}{%
+         family={Farhi},
+         familyi={F\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Goldstone},
+         familyi={G\bibinitperiod},
+         given={Jeffrey},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gutmann},
+         familyi={G\bibinitperiod},
+         given={Sam},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{FEGJGS1}
+    \strng{fullhash}{FEGJGS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FGG14}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    We introduce a quantum algorithm that produces approximate solutions for
+  combinatorial optimization problems. The algorithm depends on a positive
+  integer p and the quality of the approximation improves as p is increased.
+  The quantum circuit that implements the algorithm consists of unitary gates
+  whose locality is at most the locality of the objective function whose
+  optimum is sought. The depth of the circuit grows linearly with p times (at
+  worst) the number of constraints. If p is fixed, that is, independent of the
+  input size, the algorithm makes use of efficient classical preprocessing. If
+  p grows with the input size a different strategy is proposed. We study the
+  algorithm as applied to MaxCut on regular graphs and analyze its performance
+  on 2-regular and 3-regular graphs for fixed p. For p = 1, on 3-regular graphs
+  the quantum algorithm always finds a cut that is at least 0.6924 times the
+  size of the optimal cut.%
+    }
+    \verb{eprint}
+    \verb 1411.4028
+    \endverb
+    \field{title}{A {{Quantum Approximate Optimization Algorithm}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8VQUWIQD/Farhi et al. - 2014
+    \verb - A Quantum Approximate Optimization Algorithm.pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/69AEPIDJ/1411.html
+    \endverb
+    \field{journaltitle}{arXiv:1411.4028 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{11}
+    \field{year}{2014}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Feynman82}{article}{}
+    \name{author}{1}{}{%
+      {{hash=FRP}{%
+         family={Feynman},
+         familyi={F\bibinitperiod},
+         given={Richard\bibnamedelima P.},
+         giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FRP1}
+    \strng{fullhash}{FRP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fey82}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \verb{doi}
+    \verb 10.1007/BF02650179
+    \endverb
+    \field{issn}{1572-9575}
+    \field{number}{6}
+    \field{pages}{467\bibrangedash 488}
+    \field{title}{Simulating Physics with Computers}
+    \field{volume}{21}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8LDC2HMA/Feynman - 1982 - Sim
+    \verb ulating physics with computers.pdf
+    \endverb
+    \field{journaltitle}{International Journal of Theoretical Physics}
+    \field{month}{06}
+    \field{year}{1982}
+  \endentry
+
+  \entry{Feynman85}{article}{}
+    \name{author}{1}{}{%
+      {{hash=FRP}{%
+         family={Feynman},
+         familyi={F\bibinitperiod},
+         given={Richard\bibnamedelima P},
+         giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Optical Society of America}}%
+    }
+    \strng{namehash}{FRP2}
+    \strng{fullhash}{FRP2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fey85}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{number}{2}
+    \field{pages}{11\bibrangedash 20}
+    \field{title}{Quantum Mechanical Computers}
+    \field{volume}{11}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Z2PJMDKC/Feynman - 1985 - Qua
+    \verb ntum mechanical computers.pdf
+    \endverb
+    \field{journaltitle}{Optics news}
+    \field{year}{1985}
+  \endentry
+
+  \entry{FreedmanEtAl03}{article}{}
+    \name{author}{4}{}{%
+      {{hash=FM}{%
+         family={Freedman},
+         familyi={F\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Kitaev},
+         familyi={K\bibinitperiod},
+         given={Alexei},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Larsen},
+         familyi={L\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Zhenghan},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FM+1}
+    \strng{fullhash}{FMKALMWZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fre+03}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{number}{1}
+    \field{pages}{31\bibrangedash 38}
+    \field{title}{Topological Quantum Computation}
+    \field{volume}{40}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/FZJGKDZ4/Freedman et al. - TO
+    \verb POLOGICAL QUANTUM COMPUTATION.pdf
+    \endverb
+    \field{journaltitle}{Bulletin of the American Mathematical Society}
+    \field{year}{2003}
+  \endentry
+
+  \entry{GiovannettiEtAl08}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GV}{%
+         family={Giovannetti},
+         familyi={G\bibinitperiod},
+         given={Vittorio},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Seth},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ML}{%
+         family={Maccone},
+         familyi={M\bibinitperiod},
+         given={Lorenzo},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GVLSML1}
+    \strng{fullhash}{GVLSML1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{GLM08}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.100.160501
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{16}
+    \field{pages}{160501}
+    \field{title}{Quantum {{Random Access Memory}}}
+    \field{volume}{100}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q89CFBG3/Giovannetti et al. -
+    \verb  2008 - Quantum Random Access Memory.pdf;/Users/alexis.toumi/WORK/Zot
+    \verb ero/storage/Y83KPQUA/giovannetti2008.pdf.pdf
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{04}
+    \field{year}{2008}
+  \endentry
+
+  \entry{GrantEtAl19}{article}{}
+    \name{author}{4}{}{%
+      {{hash=GE}{%
+         family={Grant},
+         familyi={G\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wossnig},
+         familyi={W\bibinitperiod},
+         given={Leonard},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=OM}{%
+         family={Ostaszewski},
+         familyi={O\bibinitperiod},
+         given={Mateusz},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Benedetti},
+         familyi={B\bibinitperiod},
+         given={Marcello},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Verein zur F\"orderung des Open Access Publizierens in den
+  Quantenwissenschaften}}%
+    }
+    \strng{namehash}{GE+1}
+    \strng{fullhash}{GEWLOMBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gra+19}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    Edward Grant, Leonard Wossnig, Mateusz Ostaszewski, and Marcello Benedetti,
+  Quantum 3, 214 (2019). Parametrized quantum circuits initialized with random
+  initial parameter values are characterized by barren plateaus where the
+  gradient becomes exponentially small in the number of qubits. In\ldots%
+    }
+    \verb{doi}
+    \verb 10.22331/q-2019-12-09-214
+    \endverb
+    \field{pages}{214}
+    \field{title}{An Initialization Strategy for Addressing Barren Plateaus in
+  Parametrized Quantum Circuits}
+    \field{volume}{3}
+    \field{langid}{british}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/2CR4IWVQ/Grant et al. - 2019
+    \verb - An initialization strategy for addressing barren p.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/2YYYJQ99/q-2019-12-09-214.html
+    \endverb
+    \field{journaltitle}{Quantum}
+    \field{month}{12}
+    \field{year}{2019}
+  \endentry
+
+  \entry{Grover97}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GLK}{%
+         family={Grover},
+         familyi={G\bibinitperiod},
+         given={Lov\bibnamedelima K.},
+         giveni={L\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{GLK1}
+    \strng{fullhash}{GLK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gro97}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    Quantum mechanics can speed up a range of search applications over unsorted
+  data. For example imagine a phone directory containing N names arranged in
+  completely random order. To find someone's phone number with a probability of
+  50\%, any classical algorithm (whether deterministic or probabilistic) will
+  need to access the database a minimum of O(N) times. Quantum mechanical
+  systems can be in a superposition of states and simultaneously examine
+  multiple names. By properly adjusting the phases of various operations,
+  successful computations reinforce each other while others interfere randomly.
+  As a result, the desired phone number can be obtained in only O(sqrt(N))
+  accesses to the database.%
+    }
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.79.325
+    \endverb
+    \verb{eprint}
+    \verb quant-ph/9706033
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{2}
+    \field{pages}{325\bibrangedash 328}
+    \field{title}{Quantum {{Mechanics}} Helps in Searching for a Needle in a
+  Haystack}
+    \field{volume}{79}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/LGKV2H7V/Grover - 1997 - Quan
+    \verb tum Mechanics helps in searching for a needle .pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/WB9DFVQL/9706033.html
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{eprinttype}{arxiv}
+    \field{month}{07}
+    \field{year}{1997}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{HarrowEtAl09}{article}{}
+    \name{author}{3}{}{%
+      {{hash=HAW}{%
+         family={Harrow},
+         familyi={H\bibinitperiod},
+         given={Aram\bibnamedelima W.},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=HA}{%
+         family={Hassidim},
+         familyi={H\bibinitperiod},
+         given={Avinatan},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Seth},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HAWHALS1}
+    \strng{fullhash}{HAWHALS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HHL09}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.103.150502
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{15}
+    \field{pages}{150502}
+    \field{title}{Quantum {{Algorithm}} for {{Linear Systems}} of
+  {{Equations}}}
+    \field{volume}{103}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/C8E8J2MP/Harrow et al. - 2009
+    \verb  - Quantum Algorithm for Linear Systems of Equations.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/RIN93WE2/harrow2009.pdf.pdf
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{10}
+    \field{year}{2009}
+  \endentry
+
+  \entry{Hochreiter98}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HS}{%
+         family={Hochreiter},
+         familyi={H\bibinitperiod},
+         given={Sepp},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HS1}
+    \strng{fullhash}{HS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hoc98}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Recurrent nets are in principle capable to store past inputs to produce the
+  currently desired output. Because of this property recurrent nets are used in
+  time series prediction and process control. Practical applications involve
+  temporal dependencies spanning many time steps, e.g. between relevant inputs
+  and desired outputs. In this case, however, gradient based learning methods
+  take too much time. The extremely increased learning time arises because the
+  error vanishes as it gets propagated back. In this article the de-caying
+  error flow is theoretically analyzed. Then methods trying to overcome
+  vanishing gradients are briefly discussed. Finally, experiments comparing
+  conventional algorithms and alternative methods are presented. With advanced
+  methods long time lag problems can be solved in reasonable time.%
+    }
+    \verb{doi}
+    \verb 10.1142/S0218488598000094
+    \endverb
+    \field{issn}{0218-4885, 1793-6411}
+    \field{number}{02}
+    \field{pages}{107\bibrangedash 116}
+    \field{title}{The {{Vanishing Gradient Problem During Learning Recurrent
+  Neural Nets}} and {{Problem Solutions}}}
+    \field{volume}{06}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/BPU7ZYS4/hochreiter1998.pdf.p
+    \verb df
+    \endverb
+    \field{journaltitle}{International Journal of Uncertainty, Fuzziness and
+  Knowledge-Based Systems}
+    \field{month}{04}
+    \field{year}{1998}
+  \endentry
+
+  \entry{KerenidisPrakash16}{article}{}
+    \name{author}{2}{}{%
+      {{hash=KI}{%
+         family={Kerenidis},
+         familyi={K\bibinitperiod},
+         given={Iordanis},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Prakash},
+         familyi={P\bibinitperiod},
+         given={Anupam},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Data Structures and Algorithms,Computer Science -
+  Information Retrieval,Quantum Physics}
+    \strng{namehash}{KIPA1}
+    \strng{fullhash}{KIPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{KP16}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{abstract}{%
+    A recommendation system uses the past purchases or ratings of \$n\$
+  products by a group of \$m\$ users, in order to provide personalized
+  recommendations to individual users. The information is modeled as an \$m
+  \textbackslash times n\$ preference matrix which is assumed to have a good
+  rank-\$k\$ approximation, for a small constant \$k\$. In this work, we
+  present a quantum algorithm for recommendation systems that has running time
+  \$O(\textbackslash text\{poly\}(k)\textbackslash text\{polylog\}(mn))\$. All
+  known classical algorithms for recommendation systems that work through
+  reconstructing an approximation of the preference matrix run in time
+  polynomial in the matrix dimension. Our algorithm provides good
+  recommendations by sampling efficiently from an approximation of the
+  preference matrix, without reconstructing the entire matrix. For this, we
+  design an efficient quantum procedure to project a given vector onto the row
+  space of a given matrix. This is the first algorithm for recommendation
+  systems that runs in time polylogarithmic in the dimensions of the matrix and
+  provides an example of a quantum machine learning algorithm for a real world
+  application.%
+    }
+    \verb{eprint}
+    \verb 1603.08675
+    \endverb
+    \field{title}{Quantum {{Recommendation Systems}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/3NHARQV6/Kerenidis and Prakas
+    \verb h - 2016 - Quantum Recommendation Systems.pdf;/Users/alexis.toumi/WOR
+    \verb K/Zotero/storage/HIIMBCXC/1603.html
+    \endverb
+    \field{journaltitle}{arXiv:1603.08675 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{03}
+    \field{year}{2016}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Kitaev95}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KAY}{%
+         family={Kitaev},
+         familyi={K\bibinitperiod},
+         given={A.\bibnamedelima Yu},
+         giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{KAY1}
+    \strng{fullhash}{KAY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Kit95}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{abstract}{%
+    We present a polynomial quantum algorithm for the Abelian stabilizer
+  problem which includes both factoring and the discrete logarithm. Thus we
+  extend famous Shor's results. Our method is based on a procedure for
+  measuring an eigenvalue of a unitary operator. Another application of this
+  procedure is a polynomial quantum Fourier transform algorithm for an
+  arbitrary finite Abelian group. The paper also contains a rather detailed
+  introduction to the theory of quantum computation.%
+    }
+    \verb{eprint}
+    \verb quant-ph/9511026
+    \endverb
+    \field{title}{Quantum Measurements and the {{Abelian Stabilizer Problem}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8AG7RQMK/Kitaev - 1995 - Quan
+    \verb tum measurements and the Abelian Stabilizer Pr.pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/U3DMQQTK/9511026.html
+    \endverb
+    \field{journaltitle}{arXiv:quant-ph/9511026}
+    \field{eprinttype}{arxiv}
+    \field{month}{11}
+    \field{year}{1995}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Kitaev03}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KAY}{%
+         family={Kitaev},
+         familyi={K\bibinitperiod},
+         given={A.\bibnamedelima Yu.},
+         giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KAY2}
+    \strng{fullhash}{KAY2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Kit03}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{abstract}{%
+    A two-dimensional quantum system with anyonic excitations can be considered
+  as a quantum computer. Unitary transformations can be performed by moving the
+  excitations around each other. Measurements can be performed by joining
+  excitations in pairs and observing the result of fusion. Such computation is
+  fault-tolerant by its physical nature.%
+    }
+    \verb{doi}
+    \verb 10.1016/S0003-4916(02)00018-0
+    \endverb
+    \field{issn}{0003-4916}
+    \field{number}{1}
+    \field{pages}{2\bibrangedash 30}
+    \field{title}{Fault-Tolerant Quantum Computation by Anyons}
+    \field{volume}{303}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/C636LMUK/kitaev2003.pdf.pdf;/
+    \verb Users/alexis.toumi/WORK/Zotero/storage/RAI6UHCY/Kitaev - 2003 - Fault
+    \verb -tolerant quantum computation by anyons.pdf;/Users/alexis.toumi/WORK/
+    \verb Zotero/storage/B99FEXMN/S0003491602000180.html
+    \endverb
+    \field{journaltitle}{Annals of Physics}
+    \field{month}{01}
+    \field{year}{2003}
+  \endentry
+
+  \entry{LloydEtAl13}{article}{}
+    \name{author}{3}{}{%
+      {{hash=LS}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Seth},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mohseni},
+         familyi={M\bibinitperiod},
+         given={Masoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RP}{%
+         family={Rebentrost},
+         familyi={R\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{LSMMRP1}
+    \strng{fullhash}{LSMMRP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{LMR13}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    Machine-learning tasks frequently involve problems of manipulating and
+  classifying large numbers of vectors in high-dimensional spaces. Classical
+  algorithms for solving such problems typically take time polynomial in the
+  number of vectors and the dimension of the space. Quantum computers are good
+  at manipulating high-dimensional vectors in large tensor product spaces. This
+  paper provides supervised and unsupervised quantum machine learning
+  algorithms for cluster assignment and cluster finding. Quantum machine
+  learning can take time logarithmic in both the number of vectors and their
+  dimension, an exponential speed-up over classical algorithms.%
+    }
+    \verb{eprint}
+    \verb 1307.0411
+    \endverb
+    \field{title}{Quantum Algorithms for Supervised and Unsupervised Machine
+  Learning}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/YP56KP26/Lloyd et al. - 2013
+    \verb - Quantum algorithms for supervised and unsupervised.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/7AYX2ZWH/1307.html
+    \endverb
+    \field{journaltitle}{arXiv:1307.0411 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{11}
+    \field{year}{2013}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{LloydEtAl14a}{article}{}
+    \name{author}{3}{}{%
+      {{hash=LS}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Seth},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mohseni},
+         familyi={M\bibinitperiod},
+         given={Masoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RP}{%
+         family={Rebentrost},
+         familyi={R\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Nature Publishing Group}}%
+    }
+    \strng{namehash}{LSMMRP1}
+    \strng{fullhash}{LSMMRP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{LMR14}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    The usual way to reveal properties of an unknown quantum state, given many
+  copies of a system in that state, is to perform measurements of different
+  observables and to analyse the results statistically. For non-sparse but
+  low-rank quantum states, revealing eigenvectors and corresponding eigenvalues
+  in classical form scales super-linearly with the system dimension. Here we
+  show that multiple copies of a quantum system with density matrix {$\rho$}
+  can be used to construct the unitary transformation e[superscript
+  -i{$\rho$}t]. As a result, one can perform quantum principal component
+  analysis of an unknown low-rank density matrix, revealing in quantum form the
+  eigenvectors corresponding to the large eigenvalues in time exponentially
+  faster than any existing algorithm. We discuss applications to data analysis,
+  process tomography and state discrimination.%
+    }
+    \field{issn}{1745-2473}
+    \field{title}{Quantum Principal Component Analysis}
+    \field{langid}{american}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/DDW6V6VL/Lloyd et al. - 2014
+    \verb - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Z
+    \verb otero/storage/UG9UXSBQ/97628.html
+    \endverb
+    \field{journaltitle}{arXiv}
+    \field{annotation}{%
+    Accepted: 2015-07-01T18:41:03Z%
+    }
+    \field{month}{07}
+    \field{year}{2014}
+  \endentry
+
+  \entry{Manin80}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MY}{%
+         family={Manin},
+         familyi={M\bibinitperiod},
+         given={Yuri},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MY1}
+    \strng{fullhash}{MY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Man80}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Computable and Uncomputable}
+    \field{volume}{128}
+    \field{journaltitle}{Sovetskoye Radio, Moscow}
+    \field{year}{1980}
+  \endentry
+
+  \entry{McCleanEtAl16}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MJR}{%
+         family={McClean},
+         familyi={M\bibinitperiod},
+         given={Jarrod\bibnamedelima R},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=RJ}{%
+         family={Romero},
+         familyi={R\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Babbush},
+         familyi={B\bibinitperiod},
+         given={Ryan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={{Aspuru-Guzik}},
+         familyi={A\bibinitperiod},
+         given={Al{\'a}n},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJR+1}
+    \strng{fullhash}{MJRRJBRAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{McC+16}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{doi}
+    \verb 10.1088/1367-2630/18/2/023023
+    \endverb
+    \field{issn}{1367-2630}
+    \field{number}{2}
+    \field{pages}{023023}
+    \field{title}{The Theory of Variational Hybrid Quantum-Classical
+  Algorithms}
+    \field{volume}{18}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/HD9Z5X5N/mcclean2016.pdf.pdf;
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/IN48T6QK/McClean et al. - 201
+    \verb 6 - The theory of variational hybrid quantum-classical.pdf
+    \endverb
+    \field{journaltitle}{New Journal of Physics}
+    \field{month}{02}
+    \field{year}{2016}
+  \endentry
+
+  \entry{McCleanEtAl18}{article}{}
+    \name{author}{5}{}{%
+      {{hash=MJR}{%
+         family={McClean},
+         familyi={M\bibinitperiod},
+         given={Jarrod\bibnamedelima R.},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Boixo},
+         familyi={B\bibinitperiod},
+         given={Sergio},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SVN}{%
+         family={Smelyanskiy},
+         familyi={S\bibinitperiod},
+         given={Vadim\bibnamedelima N.},
+         giveni={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Babbush},
+         familyi={B\bibinitperiod},
+         given={Ryan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=NH}{%
+         family={Neven},
+         familyi={N\bibinitperiod},
+         given={Hartmut},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning,Physics - Chemical
+  Physics,Quantum Physics}
+    \strng{namehash}{MJR+2}
+    \strng{fullhash}{MJRBSSVNBRNH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{McC+18}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    Many experimental proposals for noisy intermediate scale quantum devices
+  involve training a parameterized quantum circuit with a classical
+  optimization loop. Such hybrid quantum-classical algorithms are popular for
+  applications in quantum simulation, optimization, and machine learning. Due
+  to its simplicity and hardware efficiency, random circuits are often proposed
+  as initial guesses for exploring the space of quantum states. We show that
+  the exponential dimension of Hilbert space and the gradient estimation
+  complexity make this choice unsuitable for hybrid quantum-classical
+  algorithms run on more than a few qubits. Specifically, we show that for a
+  wide class of reasonable parameterized quantum circuits, the probability that
+  the gradient along any reasonable direction is non-zero to some fixed
+  precision is exponentially small as a function of the number of qubits. We
+  argue that this is related to the 2-design characteristic of random circuits,
+  and that solutions to this problem must be studied.%
+    }
+    \verb{doi}
+    \verb 10.1038/s41467-018-07090-4
+    \endverb
+    \verb{eprint}
+    \verb 1803.11173
+    \endverb
+    \field{issn}{2041-1723}
+    \field{number}{1}
+    \field{pages}{4812}
+    \field{title}{Barren Plateaus in Quantum Neural Network Training
+  Landscapes}
+    \field{volume}{9}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/MUZ5XVJU/McClean et al. - 201
+    \verb 8 - Barren plateaus in quantum neural network training.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/KF8G6H4I/1803.html
+    \endverb
+    \field{journaltitle}{Nature Communications}
+    \field{eprinttype}{arxiv}
+    \field{month}{12}
+    \field{year}{2018}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{PednaultEtAl19}{article}{}
+    \name{author}{5}{}{%
+      {{hash=PE}{%
+         family={Pednault},
+         familyi={P\bibinitperiod},
+         given={Edwin},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=GJA}{%
+         family={Gunnels},
+         familyi={G\bibinitperiod},
+         given={John\bibnamedelima A.},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=NG}{%
+         family={Nannicini},
+         familyi={N\bibinitperiod},
+         given={Giacomo},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Horesh},
+         familyi={H\bibinitperiod},
+         given={Lior},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WR}{%
+         family={Wisnieff},
+         familyi={W\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{PE+1}
+    \strng{fullhash}{PEGJANGHLWR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ped+19}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{abstract}{%
+    In a recent paper, we showed that secondary storage can extend the range of
+  quantum circuits that can be practically simulated with classical algorithms.
+  Here we refine those techniques and apply them to the simulation of Sycamore
+  circuits with 53 and 54 qubits, with the entanglement pattern ABCDCDAB that
+  has proven difficult to classically simulate with other approaches. Our
+  analysis shows that on the Summit supercomputer at Oak Ridge National
+  Laboratories, such circuits can be simulated with high fidelity to arbitrary
+  depth in a matter of days, outputting all the amplitudes.%
+    }
+    \verb{eprint}
+    \verb 1910.09534
+    \endverb
+    \field{title}{Leveraging {{Secondary Storage}} to {{Simulate Deep}}
+  54-Qubit {{Sycamore Circuits}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/NB3424TF/Pednault et al. - 20
+    \verb 19 - Leveraging Secondary Storage to Simulate Deep 54-q.pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/Q5GHEM27/1910.html
+    \endverb
+    \field{journaltitle}{arXiv:1910.09534 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{10}
+    \field{year}{2019}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{PeruzzoEtAl14}{article}{}
+    \name{author}{8}{}{%
+      {{hash=PA}{%
+         family={Peruzzo},
+         familyi={P\bibinitperiod},
+         given={Alberto},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={McClean},
+         familyi={M\bibinitperiod},
+         given={Jarrod},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Shadbolt},
+         familyi={S\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=YMH}{%
+         family={Yung},
+         familyi={Y\bibinitperiod},
+         given={Man-Hong},
+         giveni={M\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=ZXQ}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Xiao-Qi},
+         giveni={X\bibinitperiod-Q\bibinitperiod},
+      }}%
+      {{hash=LPJ}{%
+         family={Love},
+         familyi={L\bibinitperiod},
+         given={Peter\bibnamedelima J.},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={{Aspuru-Guzik}},
+         familyi={A\bibinitperiod},
+         given={Al{\'a}n},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=OJL}{%
+         family={O'Brien},
+         familyi={O\bibinitperiod},
+         given={Jeremy\bibnamedelima L.},
+         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Nature Publishing Group}}%
+    }
+    \strng{namehash}{PA+1}
+    \strng{fullhash}{PAMJSPYMHZXQLPJAAOJL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Per+14}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{abstract}{%
+    Quantum computers promise to efficiently solve important problems that are
+  intractable on a conventional computer. For quantum systems, where the
+  physical dimension grows exponentially, finding the eigenvalues of certain
+  operators is one such intractable problem and remains a fundamental
+  challenge. The quantum phase estimation algorithm efficiently finds the
+  eigenvalue of a given eigenvector but requires fully coherent evolution. Here
+  we present an alternative approach that greatly reduces the requirements for
+  coherent evolution and combine this method with a new approach to state
+  preparation based on ans\"atze and classical optimization. We implement the
+  algorithm by combining a highly reconfigurable photonic quantum processor
+  with a conventional computer. We experimentally demonstrate the feasibility
+  of this approach with an example from quantum chemistry\textemdash
+  calculating the ground-state molecular energy for He\textendash H+. The
+  proposed approach drastically reduces the coherence time requirements,
+  enhancing the potential of quantum resources available today and in the near
+  future.%
+    }
+    \verb{doi}
+    \verb 10.1038/ncomms5213
+    \endverb
+    \field{issn}{2041-1723}
+    \field{number}{1}
+    \field{pages}{4213}
+    \field{title}{A Variational Eigenvalue Solver on a Photonic Quantum
+  Processor}
+    \field{volume}{5}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/9LUR3CBU/peruzzo2014.pdf.pdf;
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/E49VBDD4/Peruzzo et al. - 201
+    \verb 4 - A variational eigenvalue solver on a photonic quan.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/4MFJATU9/ncomms5213.html
+    \endverb
+    \field{journaltitle}{Nature Communications}
+    \field{annotation}{%
+    Bandiera\_abtest: a Cc\_license\_type: cc\_y Cg\_type: Nature Research
+  Journals Primary\_atype: Research Subject\_term: Applied physics;Quantum
+  chemistry;Quantum optics Subject\_term\_id:
+  applied-physics;quantum-chemistry;quantum-optics%
+    }
+    \field{month}{07}
+    \field{year}{2014}
+  \endentry
+
+  \entry{PesahEtAl21}{article}{}
+    \name{author}{6}{}{%
+      {{hash=PA}{%
+         family={Pesah},
+         familyi={P\bibinitperiod},
+         given={Arthur},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Cerezo},
+         familyi={C\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Samson},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=VT}{%
+         family={Volkoff},
+         familyi={V\bibinitperiod},
+         given={Tyler},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=SAT}{%
+         family={Sornborger},
+         familyi={S\bibinitperiod},
+         given={Andrew\bibnamedelima T.},
+         giveni={A\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=CPJ}{%
+         family={Coles},
+         familyi={C\bibinitperiod},
+         given={Patrick\bibnamedelima J.},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PA+2}
+    \strng{fullhash}{PACMWSVTSATCPJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Pes+21}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{doi}
+    \verb 10.1103/PhysRevX.11.041011
+    \endverb
+    \field{issn}{2160-3308}
+    \field{number}{4}
+    \field{pages}{041011}
+    \field{title}{Absence of {{Barren Plateaus}} in {{Quantum Convolutional
+  Neural Networks}}}
+    \field{volume}{11}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8CP4P37R/Pesah et al. - 2021
+    \verb - Absence of Barren Plateaus in Quantum Convolutiona.pdf
+    \endverb
+    \field{journaltitle}{Physical Review X}
+    \field{month}{10}
+    \field{year}{2021}
+  \endentry
+
+  \entry{Preskill18}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PJ}{%
+         family={Preskill},
+         familyi={P\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PJ1}
+    \strng{fullhash}{PJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Pre18}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{abstract}{%
+    John Preskill, Quantum 2, 79 (2018). Noisy Intermediate-Scale Quantum
+  (NISQ) technology will be available in the near future. Quantum computers
+  with 50-100 qubits may be able to perform tasks which surpass the
+  capabilities of t\ldots%
+    }
+    \verb{doi}
+    \verb 10.22331/q-2018-08-06-79
+    \endverb
+    \field{pages}{79}
+    \field{title}{Quantum {{Computing}} in the {{NISQ}} Era and Beyond}
+    \field{volume}{2}
+    \field{langid}{british}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/VUQC6N52/Preskill - 2018 - Qu
+    \verb antum Computing in the NISQ era and beyond.pdf;/Users/alexis.toumi/WO
+    \verb RK/Zotero/storage/BGT6LWUW/q-2018-08-06-79.html
+    \endverb
+    \field{journaltitle}{Quantum}
+    \field{month}{08}
+    \field{year}{2018}
+  \endentry
+
+  \entry{RebentrostEtAl14}{article}{}
+    \name{author}{3}{}{%
+      {{hash=RP}{%
+         family={Rebentrost},
+         familyi={R\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mohseni},
+         familyi={M\bibinitperiod},
+         given={Masoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Seth},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RPMMLS1}
+    \strng{fullhash}{RPMMLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{RML14}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.113.130503
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{13}
+    \field{pages}{130503}
+    \field{title}{Quantum {{Support Vector Machine}} for {{Big Data
+  Classification}}}
+    \field{volume}{113}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/7DWUJE2M/Rebentrost et al. -
+    \verb 2014 - Quantum Support Vector Machine for Big Data Classi.pdf;/Users/
+    \verb alexis.toumi/WORK/Zotero/storage/G9UYVYRF/rebentrost2014.pdf.pdf
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{09}
+    \field{year}{2014}
+  \endentry
+
+  \entry{Shor96}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=SPW}{%
+         family={Shor},
+         familyi={S\bibinitperiod},
+         given={Peter\bibnamedelima W},
+         giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {{IEEE}}%
+    }
+    \strng{namehash}{SPW1}
+    \strng{fullhash}{SPW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Sho96}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Proceedings of 37th Conference on Foundations of Computer
+  Science}
+    \field{pages}{56\bibrangedash 65}
+    \field{title}{Fault-Tolerant Quantum Computation}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/HB9XJWUZ/Shor - 1997 - Fault-
+    \verb tolerant quantum computation.pdf
+    \endverb
+    \field{year}{1996}
+  \endentry
+
+  \entry{Shor94a}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=SP}{%
+         family={Shor},
+         familyi={S\bibinitperiod},
+         given={P.W.},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{IEEE Comput. Soc. Press}}%
+    }
+    \strng{namehash}{SP1}
+    \strng{fullhash}{SP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Sho94}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Proceedings 35th {{Annual Symposium}} on {{Foundations}}
+  of {{Computer Science}}}
+    \verb{doi}
+    \verb 10.1109/SFCS.1994.365700
+    \endverb
+    \field{isbn}{978-0-8186-6580-6}
+    \field{pages}{124\bibrangedash 134}
+    \field{shorttitle}{Algorithms for Quantum Computation}
+    \field{title}{Algorithms for Quantum Computation: Discrete Logarithms and
+  Factoring}
+    \field{langid}{english}
+    \list{location}{1}{%
+      {{Santa Fe, NM, USA}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/PH9XT74C/Shor - 1994 - Algori
+    \verb thms for quantum computation discrete logar.pdf
+    \endverb
+    \field{year}{1994}
+  \endentry
+
+  \entry{Simon94}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=SD}{%
+         family={Simon},
+         familyi={S\bibinitperiod},
+         given={D.},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{IEEE Computer Society}}%
+    }
+    \keyw{complexity theory,discrete logarithm,integer factoring,probabilistic
+  model,probabilistic turing machine,quantum computation,quantum model of
+  computation}
+    \strng{namehash}{SD1}
+    \strng{fullhash}{SD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Sim94}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{2013 {{IEEE}} 54th Annual Symposium on Foundations of
+  Computer Science}
+    \verb{doi}
+    \verb 10.1109/SFCS.1994.365701
+    \endverb
+    \field{pages}{116\bibrangedash 123}
+    \field{title}{On the Power of Quantum Computation}
+    \list{location}{1}{%
+      {{Los Alamitos, CA, USA}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/C62HSIMB/Simon - 1994 - On th
+    \verb e power of quantum computation.pdf
+    \endverb
+    \field{month}{11}
+    \field{year}{1994}
+  \endentry
+
+  \entry{WiebeEtAl12}{article}{}
+    \name{author}{3}{}{%
+      {{hash=WN}{%
+         family={Wiebe},
+         familyi={W\bibinitperiod},
+         given={Nathan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=BD}{%
+         family={Braun},
+         familyi={B\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lloyd},
+         familyi={L\bibinitperiod},
+         given={Seth},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WNBDLS1}
+    \strng{fullhash}{WNBDLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{WBL12}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.109.050505
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{5}
+    \field{pages}{050505}
+    \field{title}{Quantum {{Algorithm}} for {{Data Fitting}}}
+    \field{volume}{109}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/EM34SBMH/wiebe2012.pdf.pdf
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{08}
+    \field{year}{2012}
+  \endentry
+
+  \entry{ZhongEtAl20a}{article}{}
+    \name{author}{24}{}{%
+      {{hash=ZHS}{%
+         family={Zhong},
+         familyi={Z\bibinitperiod},
+         given={Han-Sen},
+         giveni={H\bibinitperiod-S\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Hui},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=DYH}{%
+         family={Deng},
+         familyi={D\bibinitperiod},
+         given={Yu-Hao},
+         giveni={Y\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=CMC}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Ming-Cheng},
+         giveni={M\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=PLC}{%
+         family={Peng},
+         familyi={P\bibinitperiod},
+         given={Li-Chao},
+         giveni={L\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=LYH}{%
+         family={Luo},
+         familyi={L\bibinitperiod},
+         given={Yi-Han},
+         giveni={Y\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=QJ}{%
+         family={Qin},
+         familyi={Q\bibinitperiod},
+         given={Jian},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Dian},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=DX}{%
+         family={Ding},
+         familyi={D\bibinitperiod},
+         given={Xing},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=HY}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Yi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HP}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Peng},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=YXY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Xiao-Yan},
+         giveni={X\bibinitperiod-Y\bibinitperiod},
+      }}%
+      {{hash=ZWJ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Wei-Jun},
+         giveni={W\bibinitperiod-J\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Yuxuan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=JX}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Xiao},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=GL}{%
+         family={Gan},
+         familyi={G\bibinitperiod},
+         given={Lin},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=YG}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Guangwen},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=YL}{%
+         family={You},
+         familyi={Y\bibinitperiod},
+         given={Lixing},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Zhen},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Li},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LNL}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Nai-Le},
+         giveni={N\bibinitperiod-L\bibinitperiod},
+      }}%
+      {{hash=LCY}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Chao-Yang},
+         giveni={C\bibinitperiod-Y\bibinitperiod},
+      }}%
+      {{hash=PJW}{%
+         family={Pan},
+         familyi={P\bibinitperiod},
+         given={Jian-Wei},
+         giveni={J\bibinitperiod-W\bibinitperiod},
+      }}%
+    }
+    \keyw{Condensed Matter - Other Condensed Matter,Physics - Optics,Quantum
+  Physics}
+    \strng{namehash}{ZHS+1}
+  \strng{fullhash}{ZHSWHDYHCMCPLCLYHQJWDDXHYHPYXYZWJLHLYJXGLYGYLWZLLLNLLCYPJW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Zho+20}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{abstract}{%
+    Gaussian boson sampling exploits squeezed states to provide a highly
+  efficient way to demonstrate quantum computational advantage. We perform
+  experiments with 50 input single-mode squeezed states with high
+  indistinguishability and squeezing parameters, which are fed into a 100-mode
+  ultralow-loss interferometer with full connectivity and random
+  transformation, and sampled using 100 high-efficiency single-photon
+  detectors. The whole optical set-up is phase-locked to maintain a high
+  coherence between the superposition of all photon number states. We observe
+  up to 76 output photon-clicks, which yield an output state space dimension of
+  \$10\^\{30\}\$ and a sampling rate that is \$10\^\{14\}\$ faster than using
+  the state-of-the-art simulation strategy and supercomputers. The obtained
+  samples are validated against various hypotheses including using thermal
+  states, distinguishable photons, and uniform distribution.%
+    }
+    \verb{doi}
+    \verb 10.1126/science.abe8770
+    \endverb
+    \verb{eprint}
+    \verb 2012.01625
+    \endverb
+    \field{issn}{0036-8075, 1095-9203}
+    \field{number}{6523}
+    \field{pages}{1460\bibrangedash 1463}
+    \field{title}{Quantum Computational Advantage Using Photons}
+    \field{volume}{370}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/6FRKXU5Z/Zhong et al. - 2020
+    \verb - Quantum computational advantage using photons.pdf;/Users/alexis.tou
+    \verb mi/WORK/Zotero/storage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/User
+    \verb s/alexis.toumi/WORK/Zotero/storage/XASCJG38/2012.html
+    \endverb
+    \field{journaltitle}{Science}
+    \field{eprinttype}{arxiv}
+    \field{month}{12}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+\enddatalist
 \endinput

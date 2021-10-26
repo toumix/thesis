@@ -1,3 +1,5 @@
+%!TEX root = THESIS.tex
+
 \documentclass[a4paper,twoside]{ociamthesis}
 
 \usepackage[utf8]{inputenc}
@@ -9,9 +11,15 @@
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
-\usepackage[style=numeric-comp, sorting=none, backend=bibtex, doi=false, isbn=false]{biblatex}
+\usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=5,doi=false,isbn=false]{biblatex}
+
+\usepackage{epigraph}
 
 \newcommand*{\bibtitle}{References}
 \renewcommand*{\bibfont}{\raggedright\small}
 
 \addbibresource{THESIS.bib}
+
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle#1|#2\rangle}
