@@ -18,6 +18,15 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/R8S6DEMV/aaronson2015.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LTYUZZQB/nphys3272.html}
 }
 
+@inproceedings{AaronsonArkhipov11,
+  title = {The Computational Complexity of Linear Optics},
+  booktitle = {Proceedings of the Forty-Third Annual {{ACM}} Symposium on {{Theory}} of Computing},
+  author = {Aaronson, Scott and Arkhipov, Alex},
+  year = {2011},
+  pages = {333--342},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/74C587CJ/v009a004.pdf}
+}
+
 @article{AharonovBen-Or08,
   title = {Fault-{{Tolerant Quantum Computation}} with {{Constant Error Rate}}},
   author = {Aharonov, Dorit and {Ben-Or}, Michael},
@@ -93,6 +102,21 @@
   howpublished = {https://www.quantamagazine.org/major-quantum-computing-strategy-suffers-serious-setbacks-20210929/},
   langid = {english},
   file = {/Users/alexis.toumi/WORK/Zotero/storage/3QFK7ZYS/major-quantum-computing-strategy-suffers-serious-setbacks-20210929.html}
+}
+
+@article{BangEtAl08,
+  title = {Quantum {{Learning Machine}}},
+  author = {Bang, Jeongho and Lim, James and Kim, M. S. and Lee, Jinhyoung},
+  year = {2008},
+  month = mar,
+  journal = {arXiv:0803.2976 [quant-ph]},
+  eprint = {0803.2976},
+  eprinttype = {arxiv},
+  primaryclass = {quant-ph},
+  abstract = {We propose a novel notion of a quantum learning machine for automatically controlling quantum coherence and for developing quantum algorithms. A quantum learning machine can be trained to learn a certain task with no a priori knowledge on its algorithm. As an example, it is demonstrated that the quantum learning machine learns Deutsch's task and finds itself a quantum algorithm, that is different from but equivalent to the original one.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/D72QG7DP/Bang et al. - 2008 - Quantum Learning Machine.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CE2KVCNB/0803.html}
 }
 
 @article{BenedettiEtAl19,
@@ -244,6 +268,21 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/8VQUWIQD/Farhi et al. - 2014 - A Quantum Approximate Optimization Algorithm.pdf;/Users/alexis.toumi/WORK/Zotero/storage/69AEPIDJ/1411.html}
 }
 
+@article{FarhiNeven18,
+  title = {Classification with {{Quantum Neural Networks}} on {{Near Term Processors}}},
+  author = {Farhi, Edward and Neven, Hartmut},
+  year = {2018},
+  month = aug,
+  journal = {arXiv:1802.06002 [quant-ph]},
+  eprint = {1802.06002},
+  eprinttype = {arxiv},
+  primaryclass = {quant-ph},
+  abstract = {We introduce a quantum neural network, QNN, that can represent labeled data, classical or quantum, and be trained by supervised learning. The quantum circuit consists of a sequence of parameter dependent unitary transformations which acts on an input quantum state. For binary classification a single Pauli operator is measured on a designated readout qubit. The measured output is the quantum neural network's predictor of the binary label of the input state. First we look at classifying classical data sets which consist of n-bit strings with binary labels. The input quantum state is an n-bit computational basis state corresponding to a sample string. We show how to design a circuit made from two qubit unitaries that can correctly represent the label of any Boolean function of n bits. For certain label functions the circuit is exponentially long. We introduce parameter dependent unitaries that can be adapted by supervised learning of labeled data. We study an example of real world data consisting of downsampled images of handwritten digits each of which has been labeled as one of two distinct digits. We show through classical simulation that parameters can be found that allow the QNN to learn to correctly distinguish the two data sets. We then discuss presenting the data as quantum superpositions of computational basis states corresponding to different label values. Here we show through simulation that learning is possible. We consider using our QNN to learn the label of a general quantum state. By example we show that this can be done. Our work is exploratory and relies on the classical simulation of small quantum systems. The QNN proposed here was designed with near-term quantum processors in mind. Therefore it will be possible to run this QNN on a near term gate model quantum computer where its power can be explored beyond what can be explored with simulation.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/XIMXRZRX/Farhi and Neven - 2018 - Classification with Quantum Neural Networks on Nea.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RUG83HYP/1802.html}
+}
+
 @article{Feynman82,
   title = {Simulating Physics with Computers},
   author = {Feynman, Richard P.},
@@ -344,6 +383,25 @@
   doi = {10.1103/PhysRevLett.103.150502},
   langid = {english},
   file = {/Users/alexis.toumi/WORK/Zotero/storage/C8E8J2MP/Harrow et al. - 2009 - Quantum Algorithm for Linear Systems of Equations.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RIN93WE2/harrow2009.pdf.pdf}
+}
+
+@article{HavlicekEtAl19,
+  title = {Supervised Learning with Quantum Enhanced Feature Spaces},
+  author = {Havlicek, Vojtech and C{\'o}rcoles, Antonio D. and Temme, Kristan and Harrow, Aram W. and Kandala, Abhinav and Chow, Jerry M. and Gambetta, Jay M.},
+  year = {2019},
+  month = mar,
+  journal = {Nature},
+  volume = {567},
+  number = {7747},
+  eprint = {1804.11326},
+  eprinttype = {arxiv},
+  pages = {209--212},
+  issn = {0028-0836, 1476-4687},
+  doi = {10.1038/s41586-019-0980-2},
+  abstract = {Machine learning and quantum computing are two technologies each with the potential for altering how computation is performed to address previously untenable problems. Kernel methods for machine learning are ubiquitous for pattern recognition, with support vector machines (SVMs) being the most well-known method for classification problems. However, there are limitations to the successful solution to such problems when the feature space becomes large, and the kernel functions become computationally expensive to estimate. A core element to computational speed-ups afforded by quantum algorithms is the exploitation of an exponentially large quantum state space through controllable entanglement and interference. Here, we propose and experimentally implement two novel methods on a superconducting processor. Both methods represent the feature space of a classification problem by a quantum state, taking advantage of the large dimensionality of quantum Hilbert space to obtain an enhanced solution. One method, the quantum variational classifier builds on [1,2] and operates through using a variational quantum circuit to classify a training set in direct analogy to conventional SVMs. In the second, a quantum kernel estimator, we estimate the kernel function and optimize the classifier directly. The two methods present a new class of tools for exploring the applications of noisy intermediate scale quantum computers [3] to machine learning.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics,Statistics - Machine Learning},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/9JSDDB8Y/Havlicek et al. - 2019 - Supervised learning with quantum enhanced feature .pdf;/Users/alexis.toumi/WORK/Zotero/storage/F78F5SIT/1804.html}
 }
 
 @article{Hochreiter98,
@@ -478,21 +536,6 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/MUZ5XVJU/McClean et al. - 2018 - Barren plateaus in quantum neural network training.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KF8G6H4I/1803.html}
 }
 
-@inproceedings{MeichanetzidisEtAl20a,
-  ids = {MeichanetzidisEtAl20},
-  title = {Quantum {{Natural Language Processing}} on {{Near}}-{{Term Quantum Computers}}},
-  booktitle = {Quantum {{Physics}} and {{Logic}} ({{QPL}})},
-  author = {Meichanetzidis, Konstantinos and Gogioso, Stefano and De Felice, Giovanni and Chiappori, Nicol{\`o} and Toumi, Alexis and Coecke, Bob},
-  year = {2020},
-  eprint = {2005.04147},
-  eprinttype = {arxiv},
-  abstract = {In this work, we describe a full-stack pipeline for natural language processing on near-term quantum computers, aka QNLP. The language modelling framework we employ is that of compositional distributional semantics (DisCoCat), which extends and complements the compositional structure of pregroup grammars. Within this model, the grammatical reduction of a sentence is interpreted as a diagram, encoding a specific interaction of words according to the grammar. It is this interaction which, together with a specific choice of word embedding, realises the meaning (or "semantics") of a sentence. Building on the formal quantum-like nature of such interactions, we present a method for mapping DisCoCat diagrams to quantum circuits. Our methodology is compatible both with NISQ devices and with established Quantum Machine Learning techniques, paving the way to near-term applications of quantum technology to natural language processing.},
-  archiveprefix = {arXiv},
-  copyright = {All rights reserved},
-  keywords = {Computer Science - Computation and Language,Quantum Physics},
-  file = {/Users/alexis.toumi/WORK/Zotero/storage/5FUF9JMF/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/NA5TLJV4/2005.html}
-}
-
 @article{PednaultEtAl19,
   title = {Leveraging {{Secondary Storage}} to {{Simulate Deep}} 54-Qubit {{Sycamore Circuits}}},
   author = {Pednault, Edwin and Gunnels, John A. and Nannicini, Giacomo and Horesh, Lior and Wisnieff, Robert},
@@ -569,6 +612,22 @@
   doi = {10.1103/PhysRevLett.113.130503},
   langid = {english},
   file = {/Users/alexis.toumi/WORK/Zotero/storage/7DWUJE2M/Rebentrost et al. - 2014 - Quantum Support Vector Machine for Big Data Classi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G9UYVYRF/rebentrost2014.pdf.pdf}
+}
+
+@article{ShepherdBremner09,
+  title = {Temporally Unstructured Quantum Computation},
+  author = {Shepherd, Dan and Bremner, Michael J.},
+  year = {2009},
+  month = may,
+  journal = {Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences},
+  volume = {465},
+  number = {2105},
+  pages = {1413--1439},
+  publisher = {{Royal Society}},
+  doi = {10.1098/rspa.2008.0443},
+  abstract = {We examine theoretic architectures and an abstract model for a restricted class of quantum computation, called here temporally unstructured (`instantaneous') quantum computation because it allows for essentially no temporal structure within the quantum dynamics. Using the theory of binary matroids, we argue that the paradigm is rich enough to enable sampling from probability distributions that cannot, classically, be sampled efficiently and accurately. This paradigm also admits simple interactive proof games that may convince a sceptic of the existence of truly quantum effects. Furthermore, these effects can be created using significantly fewer qubits than are required for running Shor's algorithm.},
+  keywords = {Abelian dynamics,binary matroids,quantum algorithm,quantum computational complexity},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/AL755ZLS/shepherd2009.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HRR8GIYU/Shepherd and Bremner - 2009 - Temporally unstructured quantum computation.pdf}
 }
 
 @inproceedings{Shor94a,

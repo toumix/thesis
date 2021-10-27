@@ -147,24 +147,26 @@ Prominent examples include the quantum approximate optimisation algorithm (QAOA~
 These variational algorithms depend on the choice of a parameterised quantum circuit called the \emph{ansatz}, based on the structure of the problem and the resources available.
 Some families of ansätze such as instantaneous quantum polynomial-time (IQP) circuits are believed to be hard to simulate classically even at constant depth \cite{ShepherdBremner09}, opening the door to potentially near-term NISQ speedups.
 
-Although the hybrid approach first appeared in the context of machine learning~\cite{BangEtAl08}, the idea of learning quantum circuits went mostly unnoticed for a decade before being rediscovered under the name of quantum neural networks~\cite{FarhiNeven18}.
-It has then been implemented on two-qubits~\ref{HavlicekEtAl19}
-
-parameterised quantum circuits as machine learning models \cite{BenedettiEtAl19}
-barren plateaus~\cite{McCleanEtAl18}
+Although the hybrid approach first appeared in the context of machine learning~\cite{BangEtAl08}, the idea of using parameterised quantum circuits as machine learning models went mostly unnoticed for a decade~\cite{BenedettiEtAl19}.
+It was rediscovered under the name of quantum neural networks~\cite{FarhiNeven18} then implemented on two-qubits~\cite{HavlicekEtAl19}, generating a new wave of attention for quantum machine learning.
+One of the many challenges on the way to solving real-world problems with parameterised quantum circuits is the existence of \emph{barren plateaus}~\cite{McCleanEtAl18}:
+with a random circuit as ansatz, the probability of non-zero gradients is exponentially small in the number of qubits and our classical optimisation gets lost in a flat landscape.
 One can help but notice the striking similarity with the vanishing gradient
 problem for classical neural networks, formulated twenty years earlier~\cite{Hochreiter98}.
-Barren plateaus are mitigated by circuits with enough structure, e.g. convolution~\cite{PesahEtAl21} or structured initialisation strategies~\cite{GrantEtAl19}.
+Barren plateaus disappear when circuits have enough structure, as in the case of quantum convolutional networks~\cite{PesahEtAl21}, they can also be mitigated by structured initialisation strategies~\cite{GrantEtAl19}.
 
-Quantum advantage: the promise that quantum
-computers will allow to solve problems that cannot be solved by
-classical means in any reasonable time. First controversial claim by
-Google with Sycamore's 53 qubits in 2019~\cite{AruteEtAl19},
-challenged by IBM with a classical simulation~\cite{PednaultEtAl19},
-then Xizang's 76 photons~\cite{ZhongEtAl20a}.
+Random quantum circuits may be unsuitable for machine learning, but they play a crucial role in the quest for \emph{quantum advantage}, the experimental demonstration of a quantum computer solving a task that cannot be solved by classical means in any reasonable time.
+We are back to Feynman's original intuition: simulating a random quantum circuit is the perfect candidate for such a task.
+By construction it is an easy task for a quantum computer (given that we can mitigate the effect of noise).
+If a classical computer could solve it efficiently, then the polynomial hierarchy would collapse to the third level, which is almost as unlikely as P=NP.
+
+Google were the first to claim such an advantage with their 53-qubit Sycamore computer~\cite{AruteEtAl19}.
+Their claim was almost immediately contested by IBM's classical simulation of 54 qubits~\cite{PednaultEtAl19}.
+The following year, USTC makes a new claim~\cite{ZhongEtAl20a} based on the hardness of boson sampling~\cite{AaronsonArkhipov11}.
 The claim of quantum advantage has an asymptotic nature, thus
-its definite proof will span a long period of time. However, quantum
-advantage makes no claim of usefulness.
+its definite proof will span a long period of time.
+
+The demonstration of a quantum advantage for a useful task is still open.
 
 % \section*{Why should we make NLP quantum?}
 %

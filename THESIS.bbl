@@ -64,6 +64,38 @@
     \field{year}{2015}
   \endentry
 
+  \entry{AaronsonArkhipov11}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=AS}{%
+         family={Aaronson},
+         familyi={A\bibinitperiod},
+         given={Scott},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Arkhipov},
+         familyi={A\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ASAA1}
+    \strng{fullhash}{ASAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{AA11}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{Proceedings of the Forty-Third Annual {{ACM}} Symposium
+  on {{Theory}} of Computing}
+    \field{pages}{333\bibrangedash 342}
+    \field{title}{The Computational Complexity of Linear Optics}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/74C587CJ/v009a004.pdf
+    \endverb
+    \field{year}{2011}
+  \endentry
+
   \entry{AharonovBen-Or08}{article}{}
     \name{author}{2}{}{%
       {{hash=AD}{%
@@ -811,6 +843,66 @@
     \field{year}{2021}
   \endentry
 
+  \entry{BangEtAl08}{article}{}
+    \name{author}{4}{}{%
+      {{hash=BJ}{%
+         family={Bang},
+         familyi={B\bibinitperiod},
+         given={Jeongho},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lim},
+         familyi={L\bibinitperiod},
+         given={James},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KMS}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={M.\bibnamedelima S.},
+         giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Jinhyoung},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{BJ+1}
+    \strng{fullhash}{BJLJKMSLJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ban+08}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    We propose a novel notion of a quantum learning machine for automatically
+  controlling quantum coherence and for developing quantum algorithms. A
+  quantum learning machine can be trained to learn a certain task with no a
+  priori knowledge on its algorithm. As an example, it is demonstrated that the
+  quantum learning machine learns Deutsch's task and finds itself a quantum
+  algorithm, that is different from but equivalent to the original one.%
+    }
+    \verb{eprint}
+    \verb 0803.2976
+    \endverb
+    \field{title}{Quantum {{Learning Machine}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/D72QG7DP/Bang et al. - 2008 -
+    \verb  Quantum Learning Machine.pdf;/Users/alexis.toumi/WORK/Zotero/storage
+    \verb /CE2KVCNB/0803.html
+    \endverb
+    \field{journaltitle}{arXiv:0803.2976 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{03}
+    \field{year}{2008}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{BenedettiEtAl19}{article}{}
     \name{author}{3}{}{%
       {{hash=BM}{%
@@ -1379,6 +1471,75 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{FarhiNeven18}{article}{}
+    \name{author}{2}{}{%
+      {{hash=FE}{%
+         family={Farhi},
+         familyi={F\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=NH}{%
+         family={Neven},
+         familyi={N\bibinitperiod},
+         given={Hartmut},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{FENH1}
+    \strng{fullhash}{FENH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FN18}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    We introduce a quantum neural network, QNN, that can represent labeled
+  data, classical or quantum, and be trained by supervised learning. The
+  quantum circuit consists of a sequence of parameter dependent unitary
+  transformations which acts on an input quantum state. For binary
+  classification a single Pauli operator is measured on a designated readout
+  qubit. The measured output is the quantum neural network's predictor of the
+  binary label of the input state. First we look at classifying classical data
+  sets which consist of n-bit strings with binary labels. The input quantum
+  state is an n-bit computational basis state corresponding to a sample string.
+  We show how to design a circuit made from two qubit unitaries that can
+  correctly represent the label of any Boolean function of n bits. For certain
+  label functions the circuit is exponentially long. We introduce parameter
+  dependent unitaries that can be adapted by supervised learning of labeled
+  data. We study an example of real world data consisting of downsampled images
+  of handwritten digits each of which has been labeled as one of two distinct
+  digits. We show through classical simulation that parameters can be found
+  that allow the QNN to learn to correctly distinguish the two data sets. We
+  then discuss presenting the data as quantum superpositions of computational
+  basis states corresponding to different label values. Here we show through
+  simulation that learning is possible. We consider using our QNN to learn the
+  label of a general quantum state. By example we show that this can be done.
+  Our work is exploratory and relies on the classical simulation of small
+  quantum systems. The QNN proposed here was designed with near-term quantum
+  processors in mind. Therefore it will be possible to run this QNN on a near
+  term gate model quantum computer where its power can be explored beyond what
+  can be explored with simulation.%
+    }
+    \verb{eprint}
+    \verb 1802.06002
+    \endverb
+    \field{title}{Classification with {{Quantum Neural Networks}} on {{Near
+  Term Processors}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/XIMXRZRX/Farhi and Neven - 20
+    \verb 18 - Classification with Quantum Neural Networks on Nea.pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/RUG83HYP/1802.html
+    \endverb
+    \field{journaltitle}{arXiv:1802.06002 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{08}
+    \field{year}{2018}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Feynman82}{article}{}
     \name{author}{1}{}{%
       {{hash=FRP}{%
@@ -1698,6 +1859,104 @@
     \field{journaltitle}{Physical Review Letters}
     \field{month}{10}
     \field{year}{2009}
+  \endentry
+
+  \entry{HavlicekEtAl19}{article}{}
+    \name{author}{7}{}{%
+      {{hash=HV}{%
+         family={Havlicek},
+         familyi={H\bibinitperiod},
+         given={Vojtech},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=CAD}{%
+         family={C{\'o}rcoles},
+         familyi={C\bibinitperiod},
+         given={Antonio\bibnamedelima D.},
+         giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=TK}{%
+         family={Temme},
+         familyi={T\bibinitperiod},
+         given={Kristan},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=HAW}{%
+         family={Harrow},
+         familyi={H\bibinitperiod},
+         given={Aram\bibnamedelima W.},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Kandala},
+         familyi={K\bibinitperiod},
+         given={Abhinav},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CJM}{%
+         family={Chow},
+         familyi={C\bibinitperiod},
+         given={Jerry\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=GJM}{%
+         family={Gambetta},
+         familyi={G\bibinitperiod},
+         given={Jay\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics,Statistics - Machine Learning}
+    \strng{namehash}{HV+1}
+    \strng{fullhash}{HVCADTKHAWKACJMGJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hav+19}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Machine learning and quantum computing are two technologies each with the
+  potential for altering how computation is performed to address previously
+  untenable problems. Kernel methods for machine learning are ubiquitous for
+  pattern recognition, with support vector machines (SVMs) being the most
+  well-known method for classification problems. However, there are limitations
+  to the successful solution to such problems when the feature space becomes
+  large, and the kernel functions become computationally expensive to estimate.
+  A core element to computational speed-ups afforded by quantum algorithms is
+  the exploitation of an exponentially large quantum state space through
+  controllable entanglement and interference. Here, we propose and
+  experimentally implement two novel methods on a superconducting processor.
+  Both methods represent the feature space of a classification problem by a
+  quantum state, taking advantage of the large dimensionality of quantum
+  Hilbert space to obtain an enhanced solution. One method, the quantum
+  variational classifier builds on [1,2] and operates through using a
+  variational quantum circuit to classify a training set in direct analogy to
+  conventional SVMs. In the second, a quantum kernel estimator, we estimate the
+  kernel function and optimize the classifier directly. The two methods present
+  a new class of tools for exploring the applications of noisy intermediate
+  scale quantum computers [3] to machine learning.%
+    }
+    \verb{doi}
+    \verb 10.1038/s41586-019-0980-2
+    \endverb
+    \verb{eprint}
+    \verb 1804.11326
+    \endverb
+    \field{issn}{0028-0836, 1476-4687}
+    \field{number}{7747}
+    \field{pages}{209\bibrangedash 212}
+    \field{title}{Supervised Learning with Quantum Enhanced Feature Spaces}
+    \field{volume}{567}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/9JSDDB8Y/Havlicek et al. - 20
+    \verb 19 - Supervised learning with quantum enhanced feature .pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/F78F5SIT/1804.html
+    \endverb
+    \field{journaltitle}{Nature}
+    \field{eprinttype}{arxiv}
+    \field{month}{03}
+    \field{year}{2019}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Hochreiter98}{article}{}
@@ -2495,6 +2754,63 @@
     \field{journaltitle}{Physical Review Letters}
     \field{month}{09}
     \field{year}{2014}
+  \endentry
+
+  \entry{ShepherdBremner09}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SD}{%
+         family={Shepherd},
+         familyi={S\bibinitperiod},
+         given={Dan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BMJ}{%
+         family={Bremner},
+         familyi={B\bibinitperiod},
+         given={Michael\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Royal Society}}%
+    }
+    \keyw{Abelian dynamics,binary matroids,quantum algorithm,quantum
+  computational complexity}
+    \strng{namehash}{SDBMJ1}
+    \strng{fullhash}{SDBMJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SB09}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    We examine theoretic architectures and an abstract model for a restricted
+  class of quantum computation, called here temporally unstructured
+  (`instantaneous') quantum computation because it allows for essentially no
+  temporal structure within the quantum dynamics. Using the theory of binary
+  matroids, we argue that the paradigm is rich enough to enable sampling from
+  probability distributions that cannot, classically, be sampled efficiently
+  and accurately. This paradigm also admits simple interactive proof games that
+  may convince a sceptic of the existence of truly quantum effects.
+  Furthermore, these effects can be created using significantly fewer qubits
+  than are required for running Shor's algorithm.%
+    }
+    \verb{doi}
+    \verb 10.1098/rspa.2008.0443
+    \endverb
+    \field{number}{2105}
+    \field{pages}{1413\bibrangedash 1439}
+    \field{title}{Temporally Unstructured Quantum Computation}
+    \field{volume}{465}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/AL755ZLS/shepherd2009.pdf.pdf
+    \verb ;/Users/alexis.toumi/WORK/Zotero/storage/HRR8GIYU/Shepherd and Bremne
+    \verb r - 2009 - Temporally unstructured quantum computation.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the Royal Society A: Mathematical,
+  Physical and Engineering Sciences}
+    \field{month}{05}
+    \field{year}{2009}
   \endentry
 
   \entry{Shor96}{inproceedings}{}
