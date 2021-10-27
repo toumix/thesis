@@ -22,7 +22,7 @@ wonderful problem, because it doesn't look so easy.
 
 Quantum computers harness the principles of quantum theory such as
 superposition and entanglement to solve information-processing tasks. In
-the space of 40 years, quantum computing has gone from theoretical
+the last 42 years, quantum computing has gone from theoretical
 speculations to the implementation of machines that can solve problems
 beyond what is possible with classical means. This section will sketch a
 brief history of the field, and of its future challenges.
@@ -46,7 +46,7 @@ Deutsch and Jozsa~\cite{DeutschJozsa92}
 design the first quantum algorithm and prove that it solves
 \emph{some} problem exponentially faster than any classical
 \emph{deterministic}\footnote
-{A classical \emph{randomized} algorithm solves the
+{A classical \emph{randomised} algorithm solves the
 problem in constant time with high probability.} algorithm.
 Simon~\cite{Simon94} improves on their result by designing a problem that a
 quantum computer can solve exponentially faster than any classical
@@ -56,7 +56,7 @@ a black box that allows a Turing machine to solve a certain problem in one step.
 and promises\footnote
 {The input is promised to satisfy a certain property, which may be hard to check.}
 and their problems have little practical use. However, they inspired Shor's
-algorithm~\cite{Shor94a} for prime factorization and discrete logarithm. These
+algorithm~\cite{Shor94a} for prime factorisation and discrete logarithm. These
 two problems are believed to require exponential time for a classical
 computer and their hardness is at the basis of the public-key
 cryptography schemes currently used on the internet.
@@ -108,14 +108,14 @@ Two of these challenges are common to many quantum algorithms:
 2) the efficient extraction of classical data via quantum measurements.
 Indeed, what HHL really takes as input is not a vector $\vec{b}$ but
 a quantum state $\ket{b} = \sum_{i=1}^n b_i \ket{i}$.
-Either the input vector $\vec{b}$ has enough structure that we can describe
+Either a) the input vector $\vec{b}$ has enough structure that we can describe
 it with a simple, explicit formula.
 This is the case for example in the calculation of electromagnetic scattering
 cross-sections~\cite{CladerEtAl13}.
-Or we need to assume that our classical data has been loaded onto a
+Or b) we need to assume that our classical data has been loaded onto a
 quantum random-access memory (qRAM)~\cite{GiovannettiEtAl08}.
 Not only is qRAM a daunting challenge from an engineering point of view,
-in some cases it also involves too much error correction
+in some cases it also requires too much error correction
 for the state preparation to be efficient \cite{ArunachalamEtAl15}.
 Symmetrically, the output of HHL is not the solution vector $\vec{x}$
 itself but a quantum state $\ket{x}$ from which we can measure some observable
@@ -124,7 +124,7 @@ exponential in the number of qubits, or if we need exponentially many
 measurements of $\ket{x}$ to compute our classical output, then
 the quantum speedup disappears.
 
-Shor, Grover and HHL all assume \emph{fault-taulerant}
+Shor, Grover and HHL all assume \emph{fault-tolerant}
 quantum computers~\cite{Shor96}.
 Indeed, any machine we can build will be subject to noise when performing
 quantum operations, errors are inevitable.
@@ -136,31 +136,32 @@ given physical error rates below a certain threshold.
 One noteworthy example of such a quantum error correction scheme is Kitaev's
 toric code~\cite{Kitaev03} and the general idea of topological quantum
 computation~\cite{FreedmanEtAl03} which offers the long-term hope for a
-quantum computer that is fault-tolerant \emph{by its physical nature}.
+quantum computer that is fault-tolerant ``by its physical nature''.
 However this hope relies on the existence of quasi-particles called Majorana
 zero-modes, which as of 2021 has yet to be experimentally demonstrated~\cite{Ball21}.
 
-The road to large-scale fault-tolerant quantum computing will most likely be
-a long one.
-So in the meantime, what can we do with the noisy intermediate-scale quantum
-machines we have available today, in the so-called NISQ era~\cite{Preskill18}?
-Most answers involve a hybrid classical-quantum approach where a classical
-algorithm is used to optimise the preparation of quantum states~\cite{McCleanEtAl16}.
-Prominent examples include the quantum approximate optimization algorithm~\cite{FarhiEtAl14}
-and the variational quantum eigensolver~\cite{PeruzzoEtAl14}.
+The road to large-scale fault-tolerant quantum computing will most likely be a long one.
+So in the meantime, what can we do with the noisy intermediate-scale quantum machines we have available today, in the so-called NISQ era~\cite{Preskill18}?
+Most answers involve a hybrid classical-quantum approach where a classical algorithm is used to optimise the preparation of quantum states~\cite{McCleanEtAl16}.
+Prominent examples include the quantum approximate optimisation algorithm (QAOA~\cite{FarhiEtAl14}) for combinatorial problems such as maximum cut and the variational quantum eigensolver (VQE~\cite{PeruzzoEtAl14}) for approximating the ground state of chemical systems.
+These variational algorithms depend on the choice of a parameterised quantum circuit called the \emph{ansatz}, based on the structure of the problem and the resources available.
+Some families of ansätze such as instantaneous quantum polynomial-time (IQP) circuits are believed to be hard to simulate classically even at constant depth \cite{ShepherdBremner09}, opening the door to potentially near-term NISQ speedups.
+
+Although the hybrid approach first appeared in the context of machine learning~\cite{BangEtAl08}, the idea of learning quantum circuits went mostly unnoticed for a decade before being rediscovered under the name of quantum neural networks~\cite{FarhiNeven18}.
+It has then been implemented on two-qubits~\ref{HavlicekEtAl19}
 
 parameterised quantum circuits as machine learning models \cite{BenedettiEtAl19}
 barren plateaus~\cite{McCleanEtAl18}
 One can help but notice the striking similarity with the vanishing gradient
 problem for classical neural networks, formulated twenty years earlier~\cite{Hochreiter98}.
-Barren plateaus are mitigated by clever initialisation~\cite{GrantEtAl19} or circuits with enough structure, e.g. convolution~\cite{PesahEtAl21}
+Barren plateaus are mitigated by circuits with enough structure, e.g. convolution~\cite{PesahEtAl21} or structured initialisation strategies~\cite{GrantEtAl19}.
 
 Quantum advantage: the promise that quantum
 computers will allow to solve problems that cannot be solved by
 classical means in any reasonable time. First controversial claim by
 Google with Sycamore's 53 qubits in 2019~\cite{AruteEtAl19},
 challenged by IBM with a classical simulation~\cite{PednaultEtAl19},
-then Jiuzhang's 76 photons~\cite{ZhongEtAl20a}.
+then Xizang's 76 photons~\cite{ZhongEtAl20a}.
 The claim of quantum advantage has an asymptotic nature, thus
 its definite proof will span a long period of time. However, quantum
 advantage makes no claim of usefulness.
