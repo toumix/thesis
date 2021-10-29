@@ -64,38 +64,6 @@
     \field{year}{2015}
   \endentry
 
-  \entry{AaronsonArkhipov11}{inproceedings}{}
-    \name{author}{2}{}{%
-      {{hash=AS}{%
-         family={Aaronson},
-         familyi={A\bibinitperiod},
-         given={Scott},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=AA}{%
-         family={Arkhipov},
-         familyi={A\bibinitperiod},
-         given={Alex},
-         giveni={A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{ASAA1}
-    \strng{fullhash}{ASAA1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{AA11}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
-    \field{booktitle}{Proceedings of the Forty-Third Annual {{ACM}} Symposium
-  on {{Theory}} of Computing}
-    \field{pages}{333\bibrangedash 342}
-    \field{title}{The Computational Complexity of Linear Optics}
-    \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/74C587CJ/v009a004.pdf
-    \endverb
-    \field{year}{2011}
-  \endentry
-
   \entry{AharonovBen-Or08}{article}{}
     \name{author}{2}{}{%
       {{hash=AD}{%
@@ -2756,6 +2724,123 @@
     \field{year}{2014}
   \endentry
 
+  \entry{Schuld21}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SM}{%
+         family={Schuld},
+         familyi={S\bibinitperiod},
+         given={Maria},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics,Statistics - Machine Learning}
+    \strng{namehash}{SM1}
+    \strng{fullhash}{SM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Sch21}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    With near-term quantum devices available and the race for fault-tolerant
+  quantum computers in full swing, researchers became interested in the
+  question of what happens if we replace a machine learning model with a
+  quantum circuit. While such "quantum models" are sometimes called "quantum
+  neural networks", it has been repeatedly noted that their mathematical
+  structure is actually much more closely related to kernel methods: they
+  analyse data in high-dimensional Hilbert spaces to which we only have access
+  through inner products revealed by measurements. This technical manuscript
+  summarises, formalises and extends the link by systematically rephrasing
+  quantum models as a kernel method. It shows that most near-term and
+  fault-tolerant quantum models can be replaced by a general support vector
+  machine whose kernel computes distances between data-encoding quantum states.
+  In particular, kernel-based training is guaranteed to find better or equally
+  good quantum models than variational circuit training. Overall, the kernel
+  perspective of quantum machine learning tells us that the way that data is
+  encoded into quantum states is the main ingredient that can potentially set
+  quantum models apart from classical machine learning models.%
+    }
+    \verb{eprint}
+    \verb 2101.11020
+    \endverb
+    \field{title}{Quantum Machine Learning Models Are Kernel Methods}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/4UGGKVDM/Schuld - 2021 - Quan
+    \verb tum machine learning models are kernel methods.pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/7JEINM9J/2101.html
+    \endverb
+    \field{journaltitle}{arXiv:2101.11020 [quant-ph, stat]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph, stat}
+    \field{month}{01}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{SchuldKilloran19}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SM}{%
+         family={Schuld},
+         familyi={S\bibinitperiod},
+         given={Maria},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KN}{%
+         family={Killoran},
+         familyi={K\bibinitperiod},
+         given={Nathan},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{SMKN1}
+    \strng{fullhash}{SMKN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SK19}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    The basic idea of quantum computing is surprisingly similar to that of
+  kernel methods in machine learning, namely to efficiently perform
+  computations in an intractably large Hilbert space. In this paper we explore
+  some theoretical foundations of this link and show how it opens up a new
+  avenue for the design of quantum machine learning algorithms. We interpret
+  the process of encoding inputs in a quantum state as a nonlinear feature map
+  that maps data to quantum Hilbert space. A quantum computer can now analyse
+  the input data in this feature space. Based on this link, we discuss two
+  approaches for building a quantum model for classification. In the first
+  approach, the quantum device estimates inner products of quantum states to
+  compute a classically intractable kernel. This kernel can be fed into any
+  classical kernel method such as a support vector machine. In the second
+  approach, we can use a variational quantum circuit as a linear model that
+  classifies data explicitly in Hilbert space. We illustrate these ideas with a
+  feature map based on squeezing in a continuous-variable system, and visualise
+  the working principle with \$2\$-dimensional mini-benchmark datasets.%
+    }
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.122.040504
+    \endverb
+    \verb{eprint}
+    \verb 1803.07128
+    \endverb
+    \field{issn}{0031-9007, 1079-7114}
+    \field{number}{4}
+    \field{pages}{040504}
+    \field{title}{Quantum Machine Learning in Feature {{Hilbert}} Spaces}
+    \field{volume}{122}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q4P3PAHV/Schuld and Killoran
+    \verb - 2019 - Quantum machine learning in feature Hilbert spaces.pdf;/User
+    \verb s/alexis.toumi/WORK/Zotero/storage/EETXFAIS/1803.html
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{eprinttype}{arxiv}
+    \field{month}{02}
+    \field{year}{2019}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{ShepherdBremner09}{article}{}
     \name{author}{2}{}{%
       {{hash=SD}{%
@@ -2968,6 +3053,520 @@
     \field{year}{2012}
   \endentry
 
+  \entry{WuEtAl21}{article}{}
+    \name{author}{54}{}{%
+      {{hash=WY}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Yulin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BWS}{%
+         family={Bao},
+         familyi={B\bibinitperiod},
+         given={Wan-Su},
+         giveni={W\bibinitperiod-S\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Cao},
+         familyi={C\bibinitperiod},
+         given={Sirui},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CF}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Fusheng},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=CMC}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Ming-Cheng},
+         giveni={M\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=CX}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Xiawei},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=CTH}{%
+         family={Chung},
+         familyi={C\bibinitperiod},
+         given={Tung-Hsun},
+         giveni={T\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=DH}{%
+         family={Deng},
+         familyi={D\bibinitperiod},
+         given={Hui},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=DY}{%
+         family={Du},
+         familyi={D\bibinitperiod},
+         given={Yajie},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=FD}{%
+         family={Fan},
+         familyi={F\bibinitperiod},
+         given={Daojin},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Gong},
+         familyi={G\bibinitperiod},
+         given={Ming},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Cheng},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Chu},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Shaojun},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Lianchen},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Hong},
+         familyi={H\bibinitperiod},
+         given={Linyin},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=HHL}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={He-Liang},
+         giveni={H\bibinitperiod-L\bibinitperiod},
+      }}%
+      {{hash=HYH}{%
+         family={Huo},
+         familyi={H\bibinitperiod},
+         given={Yong-Heng},
+         giveni={Y\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Liping},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LN}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Na},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Shaowei},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Yuan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LF}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={Futian},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Chun},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Jin},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=QH}{%
+         family={Qian},
+         familyi={Q\bibinitperiod},
+         given={Haoran},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=QD}{%
+         family={Qiao},
+         familyi={Q\bibinitperiod},
+         given={Dan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=RH}{%
+         family={Rong},
+         familyi={R\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Su},
+         familyi={S\bibinitperiod},
+         given={Hong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Lihua},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Liangyuan},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Shiyu},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Dachao},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=XY}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Yu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YK}{%
+         family={Yan},
+         familyi={Y\bibinitperiod},
+         given={Kai},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=YW}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Weifeng},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Yang},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Ye},
+         familyi={Y\bibinitperiod},
+         given={Yangsen},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YJ}{%
+         family={Yin},
+         familyi={Y\bibinitperiod},
+         given={Jianghan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=YC}{%
+         family={Ying},
+         familyi={Y\bibinitperiod},
+         given={Chong},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=YJ}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Jiale},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zha},
+         familyi={Z\bibinitperiod},
+         given={Chen},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Cha},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Haibin},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZK}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Kaili},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yiming},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Han},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Youwei},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Liang},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=ZQ}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Qingling},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=LCY}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Chao-Yang},
+         giveni={C\bibinitperiod-Y\bibinitperiod},
+      }}%
+      {{hash=PCZ}{%
+         family={Peng},
+         familyi={P\bibinitperiod},
+         given={Cheng-Zhi},
+         giveni={C\bibinitperiod-Z\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Xiaobo},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=PJW}{%
+         family={Pan},
+         familyi={P\bibinitperiod},
+         given={Jian-Wei},
+         giveni={J\bibinitperiod-W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{American Physical Society}}%
+    }
+    \strng{namehash}{WY+1}
+  \strng{fullhash}{WYBWSCSCFCMCCXCTHDHDYFDGMGCGCGSHLHLHHLHYHLLLNLSLYLFLCLJQHQDRHSHSLWLWSWDXYYKYWYYYYYJYCYJZCZCZHZKZYZHZYZLZQLCYPCZZXPJW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Wu+21}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{abstract}{%
+    Scaling up to a large number of qubits with high-precision control is
+  essential in the demonstrations of quantum computational advantage to
+  exponentially outpace the classical hardware and algorithmic improvements.
+  Here, we develop a two-dimensional programmable superconducting quantum
+  processor, Zuchongzhi, which is composed of 66 functional qubits in a tunable
+  coupling architecture. To characterize the performance of the whole system,
+  we perform random quantum circuits sampling for benchmarking, up to a system
+  size of 56 qubits and 20 cycles. The computational cost of the classical
+  simulation of this task is estimated to be 2\textendash 3 orders of magnitude
+  higher than the previous work on 53-qubit Sycamore processor [Nature 574, 505
+  (2019). We estimate that the sampling task finished by Zuchongzhi in about
+  1.2 h will take the most powerful supercomputer at least 8 yr. Our work
+  establishes an unambiguous quantum computational advantage that is infeasible
+  for classical computation in a reasonable amount of time. The high-precision
+  and programmable quantum computing platform opens a new door to explore novel
+  many-body phenomena and implement complex quantum algorithms.%
+    }
+    \verb{doi}
+    \verb 10.1103/PhysRevLett.127.180501
+    \endverb
+    \field{number}{18}
+    \field{pages}{180501}
+    \field{title}{Strong {{Quantum Computational Advantage Using}} a
+  {{Superconducting Quantum Processor}}}
+    \field{volume}{127}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/KU7ZH6CX/Wu et al. - 2021 - S
+    \verb trong quantum computational advantage using a sup.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/KQKPKYGB/PhysRevLett.127.html
+    \endverb
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{10}
+    \field{year}{2021}
+  \endentry
+
+  \entry{YongEtAl21}{article}{}
+    \name{author}{17}{}{%
+      {{hash=Y}{%
+         family={Yong},
+         familyi={Y\bibinitperiod},
+      }}%
+      {{hash=L}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+      }}%
+      {{hash=X}{%
+         family={Xin},
+         familyi={X\bibinitperiod},
+      }}%
+      {{hash=L}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+      }}%
+      {{hash=F}{%
+         family={Fang},
+         familyi={F\bibinitperiod},
+      }}%
+      {{hash=L}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+      }}%
+      {{hash=FH}{%
+         family={Fu},
+         familyi={F\bibinitperiod},
+         given={Haohuan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Yuling},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Jiawei},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZP}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Pengpeng},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Zhen},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Peng},
+         familyi={P\bibinitperiod},
+         given={Dajia},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CH}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Huarong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Chu},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Heliang},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=WW}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Wenzhao},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Dexun},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Distributed; Parallel; and Cluster
+  Computing,Quantum Physics}
+    \strng{namehash}{Y+1}
+    \strng{fullhash}{YLXLFLFHYYSJZPWZPDCHGCHHWWCD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Yon+21}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{abstract}{%
+    We develop a high-performance tensor-based simulator for random quantum
+  circuits(RQCs) on the new Sunway supercomputer. Our major innovations
+  include: (1) a near-optimal slicing scheme, and a path-optimization strategy
+  that considers both complexity and compute density; (2) a three-level
+  parallelization scheme that scales to about 42 million cores; (3) a fused
+  permutation and multiplication design that improves the compute efficiency
+  for a wide range of tensor contraction scenarios; and (4) a mixed-precision
+  scheme to further improve the performance. Our simulator effectively expands
+  the scope of simulatable RQCs to include the 10*10(qubits)*(1+40+1)(depth)
+  circuit, with a sustained performance of 1.2 Eflops (single-precision), or
+  4.4 Eflops (mixed-precision)as a new milestone for classical simulation of
+  quantum circuits; and reduces the simulation sampling time of Google Sycamore
+  to 304 seconds, from the previously claimed 10,000 years.%
+    }
+    \verb{doi}
+    \verb 10.1145/3458817.3487399
+    \endverb
+    \verb{eprint}
+    \verb 2110.14502
+    \endverb
+    \field{pages}{1\bibrangedash 12}
+    \field{shorttitle}{Closing the "{{Quantum Supremacy}}" {{Gap}}}
+    \field{title}{Closing the "{{Quantum Supremacy}}" {{Gap}}: Achieving
+  {{Real}}-{{Time Simulation}} of a {{Random Quantum Circuit Using}} a {{New
+  Sunway Supercomputer}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/J3ZGN672/Yong et al. - 2021 -
+    \verb  Closing the Quantum Supremacy Gap Achieving Rea.pdf;/Users/alexis.to
+    \verb umi/WORK/Zotero/storage/T4NGFFF5/2110.html
+    \endverb
+    \field{journaltitle}{Proceedings of the International Conference for High
+  Performance Computing, Networking, Storage and Analysis}
+    \field{eprinttype}{arxiv}
+    \field{month}{11}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{ZhongEtAl20a}{article}{}
     \name{author}{24}{}{%
       {{hash=ZHS}{%
@@ -3161,6 +3760,372 @@
     \field{month}{12}
     \field{year}{2020}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{ZhuEtAl21}{article}{}
+    \name{author}{53}{}{%
+      {{hash=ZQ}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Qingling},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Cao},
+         familyi={C\bibinitperiod},
+         given={Sirui},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CF}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Fusheng},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=CMC}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Ming-Cheng},
+         giveni={M\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=CX}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Xiawei},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=CTH}{%
+         family={Chung},
+         familyi={C\bibinitperiod},
+         given={Tung-Hsun},
+         giveni={T\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=DH}{%
+         family={Deng},
+         familyi={D\bibinitperiod},
+         given={Hui},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=DY}{%
+         family={Du},
+         familyi={D\bibinitperiod},
+         given={Yajie},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=FD}{%
+         family={Fan},
+         familyi={F\bibinitperiod},
+         given={Daojin},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Gong},
+         familyi={G\bibinitperiod},
+         given={Ming},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Cheng},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Chu},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Shaojun},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Lianchen},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Hong},
+         familyi={H\bibinitperiod},
+         given={Linyin},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=HHL}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={He-Liang},
+         giveni={H\bibinitperiod-L\bibinitperiod},
+      }}%
+      {{hash=HYH}{%
+         family={Huo},
+         familyi={H\bibinitperiod},
+         given={Yong-Heng},
+         giveni={Y\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Liping},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LN}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Na},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Shaowei},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Yuan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LF}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={Futian},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Chun},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Jin},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=QH}{%
+         family={Qian},
+         familyi={Q\bibinitperiod},
+         given={Haoran},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=QD}{%
+         family={Qiao},
+         familyi={Q\bibinitperiod},
+         given={Dan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=RH}{%
+         family={Rong},
+         familyi={R\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Su},
+         familyi={S\bibinitperiod},
+         given={Hong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Lihua},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Liangyuan},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Shiyu},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Dachao},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Yulin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=XY}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Yu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YK}{%
+         family={Yan},
+         familyi={Y\bibinitperiod},
+         given={Kai},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=YW}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Weifeng},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Yang},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Ye},
+         familyi={Y\bibinitperiod},
+         given={Yangsen},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YJ}{%
+         family={Yin},
+         familyi={Y\bibinitperiod},
+         given={Jianghan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=YC}{%
+         family={Ying},
+         familyi={Y\bibinitperiod},
+         given={Chong},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=YJ}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Jiale},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zha},
+         familyi={Z\bibinitperiod},
+         given={Chen},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Cha},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Haibin},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZK}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Kaili},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yiming},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Han},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Youwei},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Liang},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LCY}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Chao-Yang},
+         giveni={C\bibinitperiod-Y\bibinitperiod},
+      }}%
+      {{hash=PCZ}{%
+         family={Peng},
+         familyi={P\bibinitperiod},
+         given={Cheng-Zhi},
+         giveni={C\bibinitperiod-Z\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Xiaobo},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=PJW}{%
+         family={Pan},
+         familyi={P\bibinitperiod},
+         given={Jian-Wei},
+         giveni={J\bibinitperiod-W\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum computation,Quantum information,Quantum
+  physics,Superconducting quantum computing,Superconducting qubit}
+    \strng{namehash}{ZQ+1}
+  \strng{fullhash}{ZQCSCFCMCCXCTHDHDYFDGMGCGCGSHLHLHHLHYHLLLNLSLYLFLCLJQHQDRHSHSLWLWSWDWYXYYKYWYYYYYJYCYJZCZCZHZKZYZHZYZLLCYPCZZXPJW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Zhu+21}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{abstract}{%
+    To ensure a long-term quantum computational advantage, the quantum hardware
+  should be upgraded to withstand the competition of continuously improved
+  classical algorithms and hardwares. Here, we demonstrate a superconducting
+  quantum computing systems Zuchongzhi 2.1, which has 66 qubits in a
+  two-dimensional array in a tunable coupler architecture. The readout fidelity
+  of Zuchongzhi 2.1 is considerably improved to an average of 97.74\%. The more
+  powerful quantum processor enables us to achieve larger-scale random quantum
+  circuit sampling, with a system scale of up to 60 qubits and 24 cycles, and
+  fidelity of FXEB=(3.66{$\pm$}0.345)\texttimes 10-4. The achieved sampling
+  task is about 6 orders of magnitude more difficult than that of Sycamore
+  [Nature 574, 505 (2019)] in the classic simulation, and 3 orders of magnitude
+  more difficult than the sampling task on Zuchongzhi 2.0 [arXiv:2106.14734
+  (2021)]. The time consumption of classically simulating random circuit
+  sampling experiment using state-of-the-art classical algorithm and
+  supercomputer is extended to tens of thousands of years (about 4.8\texttimes
+  104 years), while Zuchongzhi 2.1 only takes about 4.2 hours, thereby
+  significantly enhancing the quantum computational advantage.%
+    }
+    \verb{doi}
+    \verb 10.1016/j.scib.2021.10.017
+    \endverb
+    \field{issn}{2095-9273}
+    \field{title}{Quantum {{Computational Advantage}} via 60-{{Qubit}}
+  24-{{Cycle Random Circuit Sampling}}}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/ZDHH5435/Zhu et al. - 2021 -
+    \verb Quantum Computational Advantage via 60-Qubit 24-Cy.pdf;/Users/alexis.
+    \verb toumi/WORK/Zotero/storage/INC2JPN5/S2095927321006733.html
+    \endverb
+    \field{journaltitle}{Science Bulletin}
+    \field{month}{10}
+    \field{year}{2021}
   \endentry
 \enddatalist
 \endinput
