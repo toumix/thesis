@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
+\usepackage{ragged2e}
+
 \usepackage{minted}
 \usemintedstyle{lovelace}
 
@@ -14,11 +16,12 @@
 \usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=5,doi=false,isbn=false]{biblatex}
 
 \usepackage{epigraph}
+\setlength{\epigraphwidth}{0.5\textwidth}
+\newcommand{\justepigraph}[2]{
+\epigraph{\footnotesize \justifying #1}{#2}}
 
 \newcommand*{\bibtitle}{References}
 \renewcommand*{\bibfont}{\raggedright\small}
-
-\addbibresource{src/THESIS.bib}
 
 \newcommand{\bra}[1]{\langle#1|}
 \newcommand{\ket}[1]{|#1\rangle}

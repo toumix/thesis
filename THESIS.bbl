@@ -1107,6 +1107,37 @@
     \field{year}{2009}
   \endentry
 
+  \entry{Boole54}{book}{}
+    \name{author}{1}{}{%
+      {{hash=BG}{%
+         family={Boole},
+         familyi={B\bibinitperiod},
+         given={George},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{London : Walton and Maberly}}%
+    }
+    \keyw{Logic; Symbolic and mathematical}
+    \strng{namehash}{BG1}
+    \strng{fullhash}{BG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Boo54}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{shorttitle}{An Investigation of the Laws of Thought [Microform]}
+    \field{title}{An Investigation of the Laws of Thought on Which Are Founded
+  the Mathematical Theories of Logic and Probabilities}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/MEE7T7DA/Boole - 1854 - An in
+    \verb vestigation of the laws of thought.pdf
+    \endverb
+    \field{year}{1854}
+  \endentry
+
   \entry{BrassardEtAl02}{article}{}
     \name{author}{4}{}{%
       {{hash=BG}{%
@@ -1191,6 +1222,86 @@
     \field{eprinttype}{arxiv}
     \field{year}{2002}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Carnap47}{book}{}
+    \name{author}{1}{}{%
+      {{hash=CR}{%
+         family={Carnap},
+         familyi={C\bibinitperiod},
+         given={Rudolf},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{University of Chicago Press}}%
+    }
+    \strng{namehash}{CR1}
+    \strng{fullhash}{CR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Car47}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Meaning and Necessity: A Study in Semantics and Modal Logic}
+    \field{year}{1947}
+  \endentry
+
+  \entry{Chomsky56}{article}{}
+    \name{author}{1}{}{%
+      {{hash=CN}{%
+         family={Chomsky},
+         familyi={C\bibinitperiod},
+         given={Noam},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \keyw{Impedance matching,Kernel,Laboratories,Languages,Markov
+  processes,Natural languages,Research and development,Testing}
+    \strng{namehash}{CN1}
+    \strng{fullhash}{CN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Cho56}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    We investigate several conceptions of linguistic structure to determine
+  whether or not they can provide simple and "revealing" grammars that generate
+  all of the sentences of English and only these. We find that no finite-state
+  Markov process that produces symbols with transition from state to state can
+  serve as an English grammar. Furthermore, the particular subclass of such
+  processes that producen-order statistical approximations to English do not
+  come closer, with increasingn, to matching the output of an English grammar.
+  We formalize-the notions of "phrase structure" and show that this gives us a
+  method for describing language which is essentially more powerful, though
+  still representable as a rather elementary type of finite-state process.
+  Nevertheless, it is successful only when limited to a small subset of simple
+  sentences. We study the formal properties of a set of grammatical
+  transformations that carry sentences with phrase structure into new sentences
+  with derived phrase structure, showing that transformational grammars are
+  processes of the same elementary type as phrase-structure grammars; that the
+  grammar of English is materially simplified if phrase structure description
+  is limited to a kernel of simple sentences from which all other sentences are
+  constructed by repeated transformations; and that this view of linguistic
+  structure gives a certain insight into the use and understanding of
+  language.%
+    }
+    \verb{doi}
+    \verb 10.1109/TIT.1956.1056813
+    \endverb
+    \field{issn}{0096-1000}
+    \field{number}{3}
+    \field{pages}{113\bibrangedash 124}
+    \field{title}{Three Models for the Description of Language}
+    \field{volume}{2}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/FN93DGHX/Chomsky - 1956 - Thr
+    \verb ee models for the description of language.pdf
+    \endverb
+    \field{journaltitle}{IRE Transactions on Information Theory}
+    \field{month}{09}
+    \field{year}{1956}
   \endentry
 
   \entry{ChuangEtAl98}{article}{}
@@ -1619,6 +1730,27 @@
     \field{year}{2003}
   \endentry
 
+  \entry{Frege84}{article}{}
+    \name{author}{1}{}{%
+      {{hash=FG}{%
+         family={Frege},
+         familyi={F\bibinitperiod},
+         given={Gottlob},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FG1}
+    \strng{fullhash}{FG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fre84}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{The Foundations of Arithmetic}
+    \field{journaltitle}{JL Austin. New York: Philosophical Library}
+    \field{year}{1884}
+  \endentry
+
   \entry{GiovannettiEtAl08}{article}{}
     \name{author}{3}{}{%
       {{hash=GV}{%
@@ -1976,6 +2108,36 @@
     \field{year}{1998}
   \endentry
 
+  \entry{Hutchins04}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=HWJ}{%
+         family={Hutchins},
+         familyi={H\bibinitperiod},
+         given={W\bibnamedelima John},
+         giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{HWJ1}
+    \strng{fullhash}{HWJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hut04}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{Conference of the Association for Machine Translation in
+  the Americas}
+    \field{pages}{102\bibrangedash 114}
+    \field{title}{The Georgetown-Ibm Experiment Demonstrated in January 1954}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/KGSFS8AR/Hutchins et al. - 19
+    \verb 55 - The Georgetown-I.B.M. experiment.pdf
+    \endverb
+    \field{year}{2004}
+  \endentry
+
   \entry{KerenidisPrakash16}{article}{}
     \name{author}{2}{}{%
       {{hash=KI}{%
@@ -2260,6 +2422,30 @@
     \field{volume}{128}
     \field{journaltitle}{Sovetskoye Radio, Moscow}
     \field{year}{1980}
+  \endentry
+
+  \entry{Markov47}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=MA}{%
+         family={Markov},
+         familyi={M\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+    }
+    \strng{namehash}{MA1}
+    \strng{fullhash}{MA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mar47}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{Doklady Akad. Nauk {{SSSR}}}
+    \field{number}{6}
+    \field{pages}{539\bibrangedash 542}
+    \field{title}{On Certain Insoluble Problems Concerning Matrices}
+    \field{volume}{57}
+    \field{year}{1947}
   \endentry
 
   \entry{McCleanEtAl16}{article}{}
@@ -2637,6 +2823,40 @@
     \field{year}{2021}
   \endentry
 
+  \entry{Post47}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PEL}{%
+         family={Post},
+         familyi={P\bibinitperiod},
+         given={Emil\bibnamedelima L.},
+         giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PEL1}
+    \strng{fullhash}{PEL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Pos47}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{doi}
+    \verb 10.2307/2267170
+    \endverb
+    \field{issn}{0022-4812, 1943-5886}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 11}
+    \field{title}{Recursive {{Unsolvability}} of a Problem of {{Thue}}}
+    \field{volume}{12}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/SVVF3GD3/Post - 1947 - Recurs
+    \verb ive Unsolvability of a problem of Thue.pdf
+    \endverb
+    \field{journaltitle}{Journal of Symbolic Logic}
+    \field{month}{03}
+    \field{year}{1947}
+  \endentry
+
   \entry{Preskill18}{article}{}
     \name{author}{1}{}{%
       {{hash=PJ}{%
@@ -3006,6 +3226,64 @@
     \endverb
     \field{month}{11}
     \field{year}{1994}
+  \endentry
+
+  \entry{Thue14}{book}{}
+    \name{author}{1}{}{%
+      {{hash=TA}{%
+         family={Thue},
+         familyi={T\bibinitperiod},
+         given={Axel},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{na}}%
+    }
+    \strng{namehash}{TA1}
+    \strng{fullhash}{TA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Thu14}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{title}{Probleme \"Uber {{Ver\"anderungen}} von {{Zeichenreihen}}
+  Nach Gegebenen {{Regeln}}.}
+    \field{year}{1914}
+  \endentry
+
+  \entry{Turing50}{article}{}
+    \name{author}{1}{}{%
+      {{hash=TAM}{%
+         family={Turing},
+         familyi={T\bibinitperiod},
+         given={A.\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TAM1}
+    \strng{fullhash}{TAM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Tur50}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1093/mind/LIX.236.433
+    \endverb
+    \field{issn}{1460-2113, 0026-4423}
+    \field{number}{236}
+    \field{pages}{433\bibrangedash 460}
+    \field{title}{Computing Machinery and Intelligence}
+    \field{volume}{LIX}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/YTVEF5UR/Turing - 1950 - Comp
+    \verb uting machinery and intelligence.pdf
+    \endverb
+    \field{journaltitle}{Mind}
+    \field{month}{10}
+    \field{year}{1950}
   \endentry
 
   \entry{WiebeEtAl12}{article}{}

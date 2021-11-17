@@ -2,7 +2,49 @@
 
 \section*{Why make NLP quantum?}
 
-We have seen in the previous section that quantum computers cannot
-simply solve any problem faster: the problem needs to have some
-structure that a quantum computer can exploit. So why should we expect
-quantum computers to be any good at NLP?
+\justepigraph{
+A girl operator typed out on a keyboard the following Russian text in English characters: ``Mi pyeryedayem mislyi posryedstvom ryechi''. The machine printed a translation almost simultaneously: ``We transmit thoughts by means of speech.'' The operator did not know Russian.
+}{
+\textit{New York Times} (8th January 1954)
+}
+
+The previous section hinted at the fact that quantum computing cannot
+simply solve any problem faster.
+There needs to be some structure that a quantum computer can exploit:
+its own structure in the case of physics simulation or the group-theoretic structure of cryptographic protocols in Shor's algorithm.
+So why should we expect quantum computers to be any good at natural language processing (NLP)?
+This section will argue that natural language shares a common structure with quantum theory, in the form of two linguistic principles: \emph{compositionality}
+and \emph{distributionality}.
+
+The history of artificial intelligence (AI) starts in 1950 with a philosophical question from Turing~\cite{Turing50}: ``Can machines think?'' reformulated in terms of a game, now known as the Turing test, in which a machine tries to convince a human interrogator that it is human too.
+In order to put human and machine on an equal footing, Turing suggests to let them communicate only via written language: his thought experiment actually defined an NLP task.
+Only four years later, NLP goes from philosophical speculation to experimental demonstration: the IBM 701 computer successfully translated sentences from Russian English such as ``They produce alcohol out of potatoes.''~\cite{Hutchins04}.
+With only six grammatical rules and a 250-word vocabulary taken from organic chemistry and other general topics, this first experiment generated a great deal of public attention and the overly-optimistic prediction that machine translation would be an accomplished task in ``five, perhaps three'' years.
+
+Two years later, Chomsky~\cite{Chomsky56} proposes a hiearchy of models for natural language syntax which hints at why NLP would not be solved so fast.
+In the most expressive model, which he argues is the most appropriate for studying natural language, the parsing problem is in fact Turing-complete.
+Let alone machine translation, merely deciding whether a given sequence of words is grammatical is beyond the power of any physical computer.
+Chomsky's parsing problem is a linguistic reinterpretation of an older problem from Thue~\cite{Thue14}, now known as the \emph{word problem for monoids}\footnote{
+Historically, Thue, Markov and Post were working with \emph{semigroups}, i.e. unitless monoids.
+} and proved undecidable by Post~\cite{Post47} and Markov~\cite{Markov47} independently.
+This reveals a three-way connection between theoretical linguistics, computer science and abstract algebra which will pervade much of this thesis.
+But if we are interested in solving practical NLP problems, why should we care about such abstract constructions as formal grammars?
+
+Most NLP tasks of interest involve natural language \emph{semantics}, we want machines to compute the \emph{meaning} of sentences.
+If we're given the grammatical structure of a sentence, then we may compute its meaning as a function of the meanings of its words.
+This is known as the \emph{principle of compositionality}, usually attributed to Frege~\cite{Frege84} although he never stated it\footnote{
+What Frege did state is now known as the \emph{context principle}:
+``it is enough if the sentence as whole has meaning; thereby also its parts obtain their meanings''.
+This can be taken as a kind of dual to compositionality: the meanings of the words are functions of the meaning of the sentence.
+}.
+It was arguably implicit in Boole's ``laws of thought''~\cite{Boole54} and then made explicit by Carnap~\cite{Carnap47}.
+From a philosophical principle, compositionality became the basis of symbolic AI, also known as GOFAI (``good old-fashioned artificial intelligence'')~\cite{Haugeland89}.
+Expert systems, knowledge bases
+
+AI winter
+
+Deep learning
+
+distributionality
+
+Firth, Wittgenstein
