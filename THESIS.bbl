@@ -1304,6 +1304,37 @@
     \field{year}{1956}
   \endentry
 
+  \entry{Chomsky57}{book}{}
+    \name{author}{1}{}{%
+      {{hash=CN}{%
+         family={Chomsky},
+         familyi={C\bibinitperiod},
+         given={Noam},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Mouton and Co.}}%
+    }
+    \keyw{imported ml}
+    \strng{namehash}{CN1}
+    \strng{fullhash}{CN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Cho57}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Syntactic {{Structures}}}
+    \list{location}{1}{%
+      {{The Hague}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/B79MKBCE/Chomsky - 1957 - Syn
+    \verb tactic Structures.pdf
+    \endverb
+    \field{year}{1957}
+  \endentry
+
   \entry{ChuangEtAl98}{article}{}
     \name{author}{3}{}{%
       {{hash=CIL}{%
@@ -1684,6 +1715,33 @@
     \field{year}{1985}
   \endentry
 
+  \entry{Firth57}{article}{}
+    \name{author}{1}{}{%
+      {{hash=FJR}{%
+         family={Firth},
+         familyi={F\bibinitperiod},
+         given={John\bibnamedelima R},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Basil Blackwell}}%
+    }
+    \strng{namehash}{FJR1}
+    \strng{fullhash}{FJR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fir57}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{A Synopsis of Linguistic Theory, 1930-1955}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/9CETR4BY/lecture1-firth.pdf
+    \endverb
+    \field{journaltitle}{Studies in linguistic analysis}
+    \field{year}{1957}
+  \endentry
+
   \entry{FreedmanEtAl03}{article}{}
     \name{author}{4}{}{%
       {{hash=FM}{%
@@ -1796,6 +1854,39 @@
     \field{journaltitle}{Physical Review Letters}
     \field{month}{04}
     \field{year}{2008}
+  \endentry
+
+  \entry{GPT-320}{article}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{GPT-3}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \keyw{Artificial intelligence (AI),Computing,Consciousness,Technology}
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{GPT}20}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    We asked GPT-3, OpenAI's powerful new language generator, to write an essay
+  for us from scratch. The assignment? To convince us robots come in peace%
+    }
+    \field{chapter}{Opinion}
+    \field{issn}{0261-3077}
+    \field{title}{A Robot Wrote This Entire Article. {{Are}} You Scared yet,
+  Human?}
+    \field{langid}{british}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/AGI77GKD/robot-wrote-this-art
+    \verb icle-gpt-3.html
+    \endverb
+    \field{journaltitle}{The Guardian}
+    \field{month}{09}
+    \field{year}{2020}
   \endentry
 
   \entry{GrantEtAl19}{article}{}
@@ -1913,6 +2004,47 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{Harris54}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HZS}{%
+         family={Harris},
+         familyi={H\bibinitperiod},
+         given={Zellig\bibnamedelima S.},
+         giveni={Z\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Routledge}}%
+    }
+    \strng{namehash}{HZS1}
+    \strng{fullhash}{HZS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Har54}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1080/00437956.1954.11659520
+    \endverb
+    \field{issn}{0043-7956}
+    \field{number}{2-3}
+    \field{pages}{146\bibrangedash 162}
+    \field{title}{Distributional {{Structure}}}
+    \field{volume}{10}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/IZGD68S9/harris1954.pdf.pdf;/
+    \verb Users/alexis.toumi/WORK/Zotero/storage/P37AHGZ3/Harris - 1954 - Distr
+    \verb ibutional Structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/BV5B3
+    \verb 6AL/00437956.1954.html
+    \endverb
+    \field{journaltitle}{WORD}
+    \field{annotation}{%
+    \_eprint: https://doi.org/10.1080/00437956.1954.11659520%
+    }
+    \field{month}{08}
+    \field{year}{1954}
+  \endentry
+
   \entry{HarrowEtAl09}{article}{}
     \name{author}{3}{}{%
       {{hash=HAW}{%
@@ -1959,6 +2091,29 @@
     \field{journaltitle}{Physical Review Letters}
     \field{month}{10}
     \field{year}{2009}
+  \endentry
+
+  \entry{Haugeland89}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HJ}{%
+         family={Haugeland},
+         familyi={H\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{MIT press}}%
+    }
+    \strng{namehash}{HJ1}
+    \strng{fullhash}{HJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hau89}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{title}{Artificial Intelligence: The Very Idea}
+    \field{year}{1989}
   \endentry
 
   \entry{HavlicekEtAl19}{article}{}
@@ -2281,6 +2436,36 @@
     \field{journaltitle}{Annals of Physics}
     \field{month}{01}
     \field{year}{2003}
+  \endentry
+
+  \entry{LallyFodor11}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LA}{%
+         family={Lally},
+         familyi={L\bibinitperiod},
+         given={Adam},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FP}{%
+         family={Fodor},
+         familyi={F\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LAFP1}
+    \strng{fullhash}{LAFP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{LF11}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{Natural Language Processing with Prolog in the {{IBM Watson}}
+  System}
+    \field{volume}{9}
+    \field{journaltitle}{The Association for Logic Programming (ALP)
+  Newsletter}
+    \field{year}{2011}
   \endentry
 
   \entry{LloydEtAl13}{article}{}
@@ -2944,6 +3129,65 @@
     \field{year}{2014}
   \endentry
 
+  \entry{SaltonEtAl75a}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SG}{%
+         family={Salton},
+         familyi={S\bibinitperiod},
+         given={G.},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Wong},
+         familyi={W\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=YCS}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={C.\bibnamedelima S.},
+         giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SGWAYCS1}
+    \strng{fullhash}{SGWAYCS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SWY75}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    In a document retrieval, or other pattern matching environment where stored
+  entities (documents) are compared with each other or with incoming patterns
+  (search requests), it appears that the best indexing (property) space is one
+  where each entity lies as far away from the others as possible; in these
+  circumstances the value of an indexing system may be expressible as a
+  function of the density of the object space; in particular, retrieval
+  performance may correlate inversely with space density. An approach based on
+  space density computations is used to choose an optimum indexing vocabulary
+  for a collection of documents. Typical evaluation results are shown,
+  demonstating the usefulness of the model.%
+    }
+    \verb{doi}
+    \verb 10.1145/361219.361220
+    \endverb
+    \field{issn}{0001-0782, 1557-7317}
+    \field{number}{11}
+    \field{pages}{613\bibrangedash 620}
+    \field{title}{A Vector Space Model for Automatic Indexing}
+    \field{volume}{18}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/9E3LRIQB/Salton et al. - 1975
+    \verb  - A vector space model for automatic indexing.pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/J6X2E24X/salton1975.pdf.pdf
+    \endverb
+    \field{journaltitle}{Communications of the ACM}
+    \field{month}{11}
+    \field{year}{1975}
+  \endentry
+
   \entry{Schuld21}{article}{}
     \name{author}{1}{}{%
       {{hash=SM}{%
@@ -3286,6 +3530,91 @@
     \field{year}{1950}
   \endentry
 
+  \entry{TurneyPantel10}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TPD}{%
+         family={Turney},
+         familyi={T\bibinitperiod},
+         given={P.\bibnamedelima D.},
+         giveni={P\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=PP}{%
+         family={Pantel},
+         familyi={P\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TPDPP1}
+    \strng{fullhash}{TPDPP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{TP10}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{abstract}{%
+    Computers understand very little of the meaning of human language. This
+  profoundly limits our ability to give instructions to computers, the ability
+  of computers to explain their actions to us, and the ability of computers to
+  analyse and process text. Vector space models (VSMs) of semantics are
+  beginning to address these limits. This paper surveys the use of VSMs for
+  semantic processing of text. We organize the literature on VSMs according to
+  the structure of the matrix in a VSM. There are currently three broad classes
+  of VSMs, based on term-document, word-context, and pair-pattern matrices,
+  yielding three classes of applications. We survey a broad range of
+  applications in these three categories and we take a detailed look at a
+  specific open source project in each category. Our goal in this survey is to
+  show the breadth of applications of VSMs for semantics, to provide a new
+  perspective on VSMs for those who are already familiar with the area, and to
+  provide pointers into the literature for those who are less familiar with the
+  field.%
+    }
+    \verb{doi}
+    \verb 10.1613/jair.2934
+    \endverb
+    \field{issn}{1076-9757}
+    \field{pages}{141\bibrangedash 188}
+    \field{shorttitle}{From {{Frequency}} to {{Meaning}}}
+    \field{title}{From {{Frequency}} to {{Meaning}}: Vector {{Space Models}} of
+  {{Semantics}}}
+    \field{volume}{37}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/RTKSLKBZ/Turney and Pantel -
+    \verb 2010 - From Frequency to Meaning Vector Space Models of .pdf
+    \endverb
+    \field{journaltitle}{Journal of Artificial Intelligence Research}
+    \field{month}{02}
+    \field{year}{2010}
+  \endentry
+
+  \entry{Weaver55}{article}{}
+    \name{author}{1}{}{%
+      {{hash=WW}{%
+         family={Weaver},
+         familyi={W\bibinitperiod},
+         given={Warren},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Cambridge: Technology Press, MIT}}%
+    }
+    \strng{namehash}{WW1}
+    \strng{fullhash}{WW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Wea55}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{number}{15-23}
+    \field{pages}{10}
+    \field{title}{Translation}
+    \field{volume}{14}
+    \field{journaltitle}{Machine translation of languages}
+    \field{year}{1955}
+  \endentry
+
   \entry{WiebeEtAl12}{article}{}
     \name{author}{3}{}{%
       {{hash=WN}{%
@@ -3329,6 +3658,38 @@
     \field{journaltitle}{Physical Review Letters}
     \field{month}{08}
     \field{year}{2012}
+  \endentry
+
+  \entry{Wittgenstein53}{book}{}
+    \name{author}{1}{}{%
+      {{hash=WL}{%
+         family={Wittgenstein},
+         familyi={W\bibinitperiod},
+         given={Ludwig},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Basil Blackwell}}%
+    }
+    \keyw{acts conversational dialogue speech theory}
+    \strng{namehash}{WL1}
+    \strng{fullhash}{WL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Wit53}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{isbn}{0-631-11900-0}
+    \field{title}{Philosophical Investigations}
+    \list{location}{1}{%
+      {{Oxford}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/MX2DDKGT/Wittgenstein-Philoso
+    \verb phical-Investigations.pdf
+    \endverb
+    \field{year}{1953}
   \endentry
 
   \entry{WuEtAl21}{article}{}

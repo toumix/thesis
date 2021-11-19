@@ -18,33 +18,53 @@ and \emph{distributionality}.
 
 The history of artificial intelligence (AI) starts in 1950 with a philosophical question from Turing~\cite{Turing50}: ``Can machines think?'' reformulated in terms of a game, now known as the Turing test, in which a machine tries to convince a human interrogator that it is human too.
 In order to put human and machine on an equal footing, Turing suggests to let them communicate only via written language: his thought experiment actually defined an NLP task.
-Only four years later, NLP goes from philosophical speculation to experimental demonstration: the IBM 701 computer successfully translated sentences from Russian English such as ``They produce alcohol out of potatoes.''~\cite{Hutchins04}.
+Only four years later, NLP goes from philosophical speculation to experimental demonstration: the IBM 701 computer successfully translated sentences from Russian to English such as ``They produce alcohol out of potatoes.''~\cite{Hutchins04}.
 With only six grammatical rules and a 250-word vocabulary taken from organic chemistry and other general topics, this first experiment generated a great deal of public attention and the overly-optimistic prediction that machine translation would be an accomplished task in ``five, perhaps three'' years.
 
-Two years later, Chomsky~\cite{Chomsky56} proposes a hiearchy of models for natural language syntax which hints at why NLP would not be solved so fast.
+Two years later, Chomsky~\cite{Chomsky56, Chomsky57} proposes a hiearchy of models for natural language syntax which hints at why NLP would not be solved so fast.
 In the most expressive model, which he argues is the most appropriate for studying natural language, the parsing problem is in fact Turing-complete.
-Let alone machine translation, merely deciding whether a given sequence of words is grammatical is beyond the power of any physical computer.
+Let alone machine translation, merely deciding whether a given sequence of words is grammatical can go beyond the power of any physical computer.
 Chomsky's parsing problem is a linguistic reinterpretation of an older problem from Thue~\cite{Thue14}, now known as the \emph{word problem for monoids}\footnote{
 Historically, Thue, Markov and Post were working with \emph{semigroups}, i.e. unitless monoids.
 } and proved undecidable by Post~\cite{Post47} and Markov~\cite{Markov47} independently.
 This reveals a three-way connection between theoretical linguistics, computer science and abstract algebra which will pervade much of this thesis.
 But if we are interested in solving practical NLP problems, why should we care about such abstract constructions as formal grammars?
 
-Most NLP tasks of interest involve natural language \emph{semantics}, we want machines to compute the \emph{meaning} of sentences.
-If we're given the grammatical structure of a sentence, then we may compute its meaning as a function of the meanings of its words.
+Most NLP tasks of interest involve natural language \emph{semantics}: we want machines to compute the \emph{meaning} of sentences.
+Given the grammatical structure of a sentence, we can compute its meaning as a function of the meanings of its words.
 This is known as the \emph{principle of compositionality}, usually attributed to Frege~\cite{Frege84} although he never stated it\footnote{
 What Frege did state is now known as the \emph{context principle}:
 ``it is enough if the sentence as whole has meaning; thereby also its parts obtain their meanings''.
 This can be taken as a kind of dual to compositionality: the meanings of the words are functions of the meaning of the sentence.
 }.
-It was arguably implicit in Boole's ``laws of thought''~\cite{Boole54} and then made explicit by Carnap~\cite{Carnap47}.
-From a philosophical principle, compositionality became the basis of symbolic AI, also known as GOFAI (``good old-fashioned artificial intelligence'')~\cite{Haugeland89}.
-Expert systems, knowledge bases
+It was already implicit in Boole's \emph{laws of thought}~\cite{Boole54} and then made explicit by Carnap~\cite{Carnap47}.
+From a philosophical principle, compositionality became the basis of the symbolic approach to NLP, also known as \emph{good old-fashioned artificial intelligence} (GOFAI)~\cite{Haugeland89}.
+The meanings of words is first encoded in a machine-readable format, then the computer can answer complex questions by composing these meanings together.
+This approach culminated in 2011 with IBM Watson defeating a human champion at \emph{Jeopardy!}~\cite{LallyFodor11}.
 
-AI winter
+The same year, Apple deploy their virtual assistant in the pocket of millions of users, soon followed by internet giants Amazon and Google.
+More recently, OpenAI's language generator authored its own article in \emph{The Guardian}: ``A robot wrote this entire article. Are you scared yet, human?''~\cite{GPT-320}.
+While Siri, Alexa and GPT-3 have made NLP mainstream, none of them make any explicit use of formal grammars.
+Instead of the complex grammatical analysis and knowledge representation of expert systems like Watson, the AI of these next-generation NLP machines is powered by deep neural networks and machine learning of big data.
+Although their architecture got increasingly complex, these neural networks implement a simple statistical concept: \emph{language models}, i.e. probability distributions over sequences of words.
+Instead of the compositionality of symbolic AI, these statistical methods rely on another linguistic principle, \emph{distributionality}: words with similar distributions have similar meanings.
 
-Deep learning
+This principle may be traced back to Wittgenstein's \emph{Philosophical Investigations}: ``the meaning of a word is its use in the language''~\cite{Wittgenstein53}, usually shortened into the slogan \emph{meaning is use}.
+It was then formulated in the context of computational linguistics by Harris~\cite{Harris54}, Weaver~\cite{Weaver55} and Firth~\cite{Firth57}, who coined the famous quotation: ``You shall know a word by the company it keeps!''
+Before deep neural networks took over, the standard way to formalise distributionality had been \emph{vector space models}~\cite{SaltonEtAl75a}.
+We have a set of $n$ words appearing in a set of $m$ documents and we simply count how many times each word appears in each document to get a $m \times n$ matrix.
+We normalise it with a weighting scheme like tf-idf (term frequency by inverse document frequency), factorise it (via e.g. singular value decomposition or non-negative matrix factorisation) and we're done!
+The columns of the matrix encode the meanings of words, taking their inner product yields a measure of word similarity which can then be used in tasks such as classification or clustering.
+This method has the advantage of simplicity and it works surprisingly well in a wide range of applications from spam detection to movie recommendation~\cite{TurneyPantel10}.
+Its main limitation is that it forgets grammar and even the order of words, it treats a sentence not as a sequence but as a \emph{bag of words}.
 
-distributionality
+In contrast, neural network with recurrent architectures such as LSTM (long short-term memory)~\cite{HochreiterSchmidhuber97} are inherently sequential.
 
-Firth, Wittgenstein
+
+\begin{itemize}
+    \item recurrent neural networks
+    \item attention mechanism, transformer model
+    \item from black boxes to explainable AI
+    \item neurosymbolic AI: the third wave
+    \item an alternative approach toward essentially the same goal: DisCoCat
+\end{itemize}
