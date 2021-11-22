@@ -92,6 +92,21 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/7666WNJ5/arute2019.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CFXAA2BB/Arute et al. - 2019 - Quantum supremacy using a programmable superconduc.pdf;/Users/alexis.toumi/WORK/Zotero/storage/JFSMSR9P/s41586 019 1666 5.html}
 }
 
+@article{BahdanauEtAl16,
+  title = {Neural {{Machine Translation}} by {{Jointly Learning}} to {{Align}} and {{Translate}}},
+  author = {Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua},
+  year = {2016},
+  month = may,
+  journal = {arXiv:1409.0473 [cs, stat]},
+  eprint = {1409.0473},
+  eprinttype = {arxiv},
+  primaryclass = {cs, stat},
+  abstract = {Neural machine translation is a recently proposed approach to machine translation. Unlike the traditional statistical machine translation, the neural machine translation aims at building a single neural network that can be jointly tuned to maximize the translation performance. The models proposed recently for neural machine translation often belong to a family of encoder-decoders and consists of an encoder that encodes a source sentence into a fixed-length vector from which a decoder generates a translation. In this paper, we conjecture that the use of a fixed-length vector is a bottleneck in improving the performance of this basic encoder-decoder architecture, and propose to extend this by allowing a model to automatically (soft-)search for parts of a source sentence that are relevant to predicting a target word, without having to form these parts as a hard segment explicitly. With this new approach, we achieve a translation performance comparable to the existing state-of-the-art phrase-based system on the task of English-to-French translation. Furthermore, qualitative analysis reveals that the (soft-)alignments found by the model agree well with our intuition.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing,Statistics - Machine Learning},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/Q7JEXDIG/Bahdanau et al. - 2016 - Neural Machine Translation by Jointly Learning to .pdf;/Users/alexis.toumi/WORK/Zotero/storage/7BIDSQ9Z/1409.html}
+}
+
 @misc{Ball21,
   title = {Major {{Quantum Computing Strategy Suffers Serious Setbacks}}},
   author = {Ball, Philip},
@@ -301,6 +316,22 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/UI5FGZE2/Deutsch and Jozsa - 1992 - Rapid solution of problems by quantum computation.pdf}
 }
 
+@article{DevlinEtAl19,
+  title = {{{BERT}}: Pre-Training of {{Deep Bidirectional Transformers}} for {{Language Understanding}}},
+  shorttitle = {{{BERT}}},
+  author = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  year = {2019},
+  month = may,
+  journal = {arXiv:1810.04805 [cs]},
+  eprint = {1810.04805},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  abstract = {We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5\% (7.7\% point absolute improvement), MultiNLI accuracy to 86.7\% (4.6\% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computation and Language},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/9J2SMCK3/Devlin et al. - 2019 - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CBJG7LVJ/1810.html}
+}
+
 @article{FarhiEtAl14,
   title = {A {{Quantum Approximate Optimization Algorithm}}},
   author = {Farhi, Edward and Goldstone, Jeffrey and Gutmann, Sam},
@@ -429,6 +460,15 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/2CR4IWVQ/Grant et al. - 2019 - An initialization strategy for addressing barren p.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2YYYJQ99/q-2019-12-09-214.html}
 }
 
+@inproceedings{GravesEtAl13,
+  title = {Speech Recognition with Deep Recurrent Neural Networks},
+  booktitle = {2013 {{IEEE}} International Conference on Acoustics, Speech and Signal Processing},
+  author = {Graves, Alex and Mohamed, Abdel-rahman and Hinton, Geoffrey},
+  year = {2013},
+  pages = {6645--6649},
+  organization = {{Ieee}}
+}
+
 @article{Grover97,
   title = {Quantum {{Mechanics}} Helps in Searching for a Needle in a Haystack},
   author = {Grover, Lov K.},
@@ -521,6 +561,19 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/BPU7ZYS4/hochreiter1998.pdf.pdf}
 }
 
+@article{HochreiterSchmidhuber97,
+  title = {Long {{Short}}-Term {{Memory}}},
+  author = {Hochreiter, Sepp and Schmidhuber, J{\"u}rgen},
+  year = {1997},
+  month = dec,
+  journal = {Neural computation},
+  volume = {9},
+  pages = {1735--80},
+  doi = {10.1162/neco.1997.9.8.1735},
+  abstract = {Learning to store information over extended time intervals by recurrent backpropagation takes a very long time, mostly because of insufficient, decaying error backflow. We briefly review Hochreiter's (1991) analysis of this problem, then address it by introducing a novel, efficient, gradient-based method called long short-term memory (LSTM). Truncating the gradient where this does not do harm, LSTM can learn to bridge minimal time lags in excess of 1000 discrete-time steps by enforcing constant error flow through constant error carousels within special units. Multiplicative gate units learn to open and close access to the constant error flow. LSTM is local in space and time; its computational complexity per time step and weight is O(1). Our experiments with artificial data involve local, distributed, real-valued, and noisy pattern representations. In comparisons with real-time recurrent learning, back propagation through time, recurrent cascade correlation, Elman nets, and neural sequence chunking, LSTM leads to many more successful runs, and learns much faster. LSTM also solves complex, artificial long-time-lag tasks that have never been solved by previous recurrent network algorithms.},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/6AUXE4SX/Hochreiter and Schmidhuber - 1997 - Long Short-term Memory.pdf;/Users/alexis.toumi/WORK/Zotero/storage/H2HIQ36D/hochreiter1997.pdf.pdf}
+}
+
 @inproceedings{Hutchins04,
   title = {The Georgetown-Ibm Experiment Demonstrated in January 1954},
   booktitle = {Conference of the Association for Machine Translation in the Americas},
@@ -608,19 +661,25 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/YP56KP26/Lloyd et al. - 2013 - Quantum algorithms for supervised and unsupervised.pdf;/Users/alexis.toumi/WORK/Zotero/storage/7AYX2ZWH/1307.html}
 }
 
-@article{LloydEtAl14a,
+@article{LloydEtAl14,
+  ids = {LloydEtAl14a},
   title = {Quantum Principal Component Analysis},
   author = {Lloyd, Seth and Mohseni, Masoud and Rebentrost, Patrick},
   year = {2014},
-  month = jul,
-  journal = {arXiv},
+  month = sep,
+  journal = {Nature Physics},
+  volume = {10},
+  number = {9},
+  eprint = {1307.0401},
+  eprinttype = {arxiv},
+  pages = {631--633},
   publisher = {{Nature Publishing Group}},
-  issn = {1745-2473},
-  abstract = {The usual way to reveal properties of an unknown quantum state, given many copies of a system in that state, is to perform measurements of different observables and to analyse the results statistically. For non-sparse but low-rank quantum states, revealing eigenvectors and corresponding eigenvalues in classical form scales super-linearly with the system dimension. Here we show that multiple copies of a quantum system with density matrix {$\rho$} can be used to construct the unitary transformation e[superscript -i{$\rho$}t]. As a result, one can perform quantum principal component analysis of an unknown low-rank density matrix, revealing in quantum form the eigenvectors corresponding to the large eigenvalues in time exponentially faster than any existing algorithm. We discuss applications to data analysis, process tomography and state discrimination.},
-  copyright = {Creative Commons Attribution-Noncommercial-Share Alike},
-  langid = {american},
-  annotation = {Accepted: 2015-07-01T18:41:03Z},
-  file = {/Users/alexis.toumi/WORK/Zotero/storage/DDW6V6VL/Lloyd et al. - 2014 - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UG9UXSBQ/97628.html}
+  issn = {1745-2473, 1745-2481},
+  doi = {10.1038/nphys3029},
+  abstract = {The usual way to reveal properties of an unknown quantum state, given many copies of a system in that state, is to perform measurements of different observables and to analyze the measurement results statistically. Here we show that the unknown quantum state can play an active role in its own analysis. In particular, given multiple copies of a quantum system with density matrix \textbackslash rho, then it is possible to perform the unitary transformation e\^\{-i\textbackslash rho t\}. As a result, one can create quantum coherence among different copies of the system to perform quantum principal component analysis, revealing the eigenvectors corresponding to the large eigenvalues of the unknown state in time exponentially faster than any existing algorithm.},
+  archiveprefix = {arXiv},
+  keywords = {Quantum Physics},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/4X96V6WQ/Lloyd et al. - 2014 - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DDW6V6VL/Lloyd et al. - 2014 - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G2ZFTTC4/1307.html;/Users/alexis.toumi/WORK/Zotero/storage/UG9UXSBQ/97628.html}
 }
 
 @article{Manin80,
@@ -767,19 +826,43 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/7DWUJE2M/Rebentrost et al. - 2014 - Quantum Support Vector Machine for Big Data Classi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G9UYVYRF/rebentrost2014.pdf.pdf}
 }
 
-@article{SaltonEtAl75a,
-  title = {A Vector Space Model for Automatic Indexing},
+@article{RumelhartEtAl86,
+  title = {Learning Representations by Back-Propagating Errors},
+  author = {Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J.},
+  year = {1986},
+  month = oct,
+  journal = {Nature},
+  volume = {323},
+  number = {6088},
+  pages = {533--536},
+  publisher = {{Nature Publishing Group}},
+  issn = {1476-4687},
+  doi = {10.1038/323533a0},
+  abstract = {We describe a new learning procedure, back-propagation, for networks of neurone-like units. The procedure repeatedly adjusts the weights of the connections in the network so as to minimize a measure of the difference between the actual output vector of the net and the desired output vector. As a result of the weight adjustments, internal `hidden' units which are not part of the input or output come to represent important features of the task domain, and the regularities in the task are captured by the interactions of these units. The ability to create useful new features distinguishes back-propagation from earlier, simpler methods such as the perceptron-convergence procedure1.},
+  copyright = {1986 Nature Publishing Group},
+  langid = {english},
+  keywords = {Humanities and Social Sciences,multidisciplinary,Science},
+  annotation = {Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype: Research},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/XRHBW5WI/Rumelhart et al. - 1986 - Learning representations by back-propagating error.pdf;/Users/alexis.toumi/WORK/Zotero/storage/65VXXP6W/323533a0.html}
+}
+
+@article{SaltonEtAl75,
+  ids = {SaltonEtAl75a},
+  title = {A {{Vector Space Model}} for {{Automatic Indexing}}},
   author = {Salton, G. and Wong, A. and Yang, C. S.},
   year = {1975},
-  month = nov,
-  journal = {Communications of the ACM},
+  journal = {Commun. ACM},
   volume = {18},
   number = {11},
   pages = {613--620},
-  issn = {0001-0782, 1557-7317},
+  publisher = {ACM},
+  location = {New York, NY, USA},
+  issn = {0001-0782},
   doi = {10.1145/361219.361220},
-  abstract = {In a document retrieval, or other pattern matching environment where stored entities (documents) are compared with each other or with incoming patterns (search requests), it appears that the best indexing (property) space is one where each entity lies as far away from the others as possible; in these circumstances the value of an indexing system may be expressible as a function of the density of the object space; in particular, retrieval performance may correlate inversely with space density. An approach based on space density computations is used to choose an optimum indexing vocabulary for a collection of documents. Typical evaluation results are shown, demonstating the usefulness of the model.},
-  langid = {english},
+  acmid = {361220},
+  bdsk-url-2 = {http://dx.doi.org/10.1145/361219.361220},
+  issue_date = {Nov. 1975},
+  numpages = {8},
   file = {/Users/alexis.toumi/WORK/Zotero/storage/9E3LRIQB/Salton et al. - 1975 - A vector space model for automatic indexing.pdf;/Users/alexis.toumi/WORK/Zotero/storage/J6X2E24X/salton1975.pdf.pdf}
 }
 
@@ -815,6 +898,22 @@
   archiveprefix = {arXiv},
   keywords = {Quantum Physics},
   file = {/Users/alexis.toumi/WORK/Zotero/storage/Q4P3PAHV/Schuld and Killoran - 2019 - Quantum machine learning in feature Hilbert spaces.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EETXFAIS/1803.html}
+}
+
+@article{SchusterPaliwal97,
+  title = {Bidirectional Recurrent Neural Networks},
+  author = {Schuster, M. and Paliwal, K.K.},
+  year = {1997},
+  month = nov,
+  journal = {IEEE Transactions on Signal Processing},
+  volume = {45},
+  number = {11},
+  pages = {2673--2681},
+  issn = {1941-0476},
+  doi = {10.1109/78.650093},
+  abstract = {In the first part of this paper, a regular recurrent neural network (RNN) is extended to a bidirectional recurrent neural network (BRNN). The BRNN can be trained without the limitation of using input information just up to a preset future frame. This is accomplished by training it simultaneously in positive and negative time direction. Structure and training procedure of the proposed network are explained. In regression and classification experiments on artificial data, the proposed structure gives better results than other approaches. For real data, classification experiments for phonemes from the TIMIT database show the same tendency. In the second part of this paper, it is shown how the proposed bidirectional structure can be easily modified to allow efficient estimation of the conditional posterior probability of complete symbol sequences without making any explicit assumption about the shape of the distribution. For this part, experiments on real data are reported.},
+  keywords = {Artificial neural networks,Control systems,Databases,Parameter estimation,Probability,Recurrent neural networks,Shape,Speech recognition,Telecommunication control,Training data},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/DK34JT7K/Schuster and Paliwal - 1997 - Bidirectional recurrent neural networks.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HWI2UFN3/650093.html}
 }
 
 @article{ShepherdBremner09,
@@ -872,6 +971,24 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/C62HSIMB/Simon - 1994 - On the power of quantum computation.pdf}
 }
 
+@inproceedings{SutskeverEtAl11,
+  title = {Generating Text with Recurrent Neural Networks},
+  booktitle = {{{ICML}}},
+  author = {Sutskever, Ilya and Martens, James and Hinton, Geoffrey E},
+  year = {2011},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/UW894BXW/Sutskever et al. - Generating Text with Recurrent Neural Networks.pdf}
+}
+
+@inproceedings{SutskeverEtAl14,
+  title = {Sequence to {{Sequence Learning}} with {{Neural Networks}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V},
+  year = {2014},
+  volume = {27},
+  publisher = {{Curran Associates, Inc.}},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/3P56JWGK/Sutskever et al. - 2014 - Sequence to Sequence Learning with Neural Networks.pdf}
+}
+
 @book{Thue14,
   title = {Probleme \"Uber {{Ver\"anderungen}} von {{Zeichenreihen}} Nach Gegebenen {{Regeln}}.},
   author = {Thue, Axel},
@@ -909,6 +1026,21 @@
   copyright = {Copyright (c)},
   langid = {english},
   file = {/Users/alexis.toumi/WORK/Zotero/storage/RTKSLKBZ/Turney and Pantel - 2010 - From Frequency to Meaning Vector Space Models of .pdf}
+}
+
+@article{VaswaniEtAl17,
+  title = {Attention {{Is All You Need}}},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Lukasz and Polosukhin, Illia},
+  year = {2017},
+  month = dec,
+  journal = {arXiv:1706.03762 [cs]},
+  eprint = {1706.03762},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  abstract = {The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning},
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/Q37P5UVI/Vaswani et al. - 2017 - Attention Is All You Need.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZQ8N3KN5/1706.html}
 }
 
 @article{Weaver55,
@@ -985,7 +1117,8 @@
   file = {/Users/alexis.toumi/WORK/Zotero/storage/J3ZGN672/Yong et al. - 2021 - Closing the Quantum Supremacy Gap Achieving Rea.pdf;/Users/alexis.toumi/WORK/Zotero/storage/T4NGFFF5/2110.html}
 }
 
-@article{ZhongEtAl20a,
+@article{ZhongEtAl20,
+  ids = {ZhongEtAl20a},
   title = {Quantum Computational Advantage Using Photons},
   author = {Zhong, Han-Sen and Wang, Hui and Deng, Yu-Hao and Chen, Ming-Cheng and Peng, Li-Chao and Luo, Yi-Han and Qin, Jian and Wu, Dian and Ding, Xing and Hu, Yi and Hu, Peng and Yang, Xiao-Yan and Zhang, Wei-Jun and Li, Hao and Li, Yuxuan and Jiang, Xiao and Gan, Lin and Yang, Guangwen and You, Lixing and Wang, Zhen and Li, Li and Liu, Nai-Le and Lu, Chao-Yang and Pan, Jian-Wei},
   year = {2020},
@@ -996,12 +1129,11 @@
   eprint = {2012.01625},
   eprinttype = {arxiv},
   pages = {1460--1463},
-  issn = {0036-8075, 1095-9203},
+  publisher = {{American Association for the Advancement of Science}},
   doi = {10.1126/science.abe8770},
-  abstract = {Gaussian boson sampling exploits squeezed states to provide a highly efficient way to demonstrate quantum computational advantage. We perform experiments with 50 input single-mode squeezed states with high indistinguishability and squeezing parameters, which are fed into a 100-mode ultralow-loss interferometer with full connectivity and random transformation, and sampled using 100 high-efficiency single-photon detectors. The whole optical set-up is phase-locked to maintain a high coherence between the superposition of all photon number states. We observe up to 76 output photon-clicks, which yield an output state space dimension of \$10\^\{30\}\$ and a sampling rate that is \$10\^\{14\}\$ faster than using the state-of-the-art simulation strategy and supercomputers. The obtained samples are validated against various hypotheses including using thermal states, distinguishable photons, and uniform distribution.},
   archiveprefix = {arXiv},
   keywords = {Condensed Matter - Other Condensed Matter,Physics - Optics,Quantum Physics},
-  file = {/Users/alexis.toumi/WORK/Zotero/storage/6FRKXU5Z/Zhong et al. - 2020 - Quantum computational advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/XASCJG38/2012.html}
+  file = {/Users/alexis.toumi/WORK/Zotero/storage/6FRKXU5Z/Zhong et al. - 2020 - Quantum computational advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CRAFKVP8/Zhong et al. - 2020 - Quantum computational advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UPZH8QF5/science.abe8770.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/XASCJG38/2012.html}
 }
 
 @article{ZhuEtAl21,

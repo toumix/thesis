@@ -43,28 +43,51 @@ The meanings of words is first encoded in a machine-readable format, then the co
 This approach culminated in 2011 with IBM Watson defeating a human champion at \emph{Jeopardy!}~\cite{LallyFodor11}.
 
 The same year, Apple deploy their virtual assistant in the pocket of millions of users, soon followed by internet giants Amazon and Google.
-More recently, OpenAI's language generator authored its own article in \emph{The Guardian}: ``A robot wrote this entire article. Are you scared yet, human?''~\cite{GPT-320}.
-While Siri, Alexa and GPT-3 have made NLP mainstream, none of them make any explicit use of formal grammars.
+While Siri, Alexa and their competitors have made NLP mainstream, none of them make any explicit use of formal grammars.
 Instead of the complex grammatical analysis and knowledge representation of expert systems like Watson, the AI of these next-generation NLP machines is powered by deep neural networks and machine learning of big data.
 Although their architecture got increasingly complex, these neural networks implement a simple statistical concept: \emph{language models}, i.e. probability distributions over sequences of words.
 Instead of the compositionality of symbolic AI, these statistical methods rely on another linguistic principle, \emph{distributionality}: words with similar distributions have similar meanings.
 
 This principle may be traced back to Wittgenstein's \emph{Philosophical Investigations}: ``the meaning of a word is its use in the language''~\cite{Wittgenstein53}, usually shortened into the slogan \emph{meaning is use}.
 It was then formulated in the context of computational linguistics by Harris~\cite{Harris54}, Weaver~\cite{Weaver55} and Firth~\cite{Firth57}, who coined the famous quotation: ``You shall know a word by the company it keeps!''
-Before deep neural networks took over, the standard way to formalise distributionality had been \emph{vector space models}~\cite{SaltonEtAl75a}.
-We have a set of $n$ words appearing in a set of $m$ documents and we simply count how many times each word appears in each document to get a $m \times n$ matrix.
+Before deep neural networks took over, the standard way to formalise distributionality had been \emph{vector space models}~\cite{SaltonEtAl75}.
+We have a set of $N$ words appearing in a set of $M$ documents and we simply count how many times each word appears in each document to get a $M \times N$ matrix.
 We normalise it with a weighting scheme like tf-idf (term frequency by inverse document frequency), factorise it (via e.g. singular value decomposition or non-negative matrix factorisation) and we're done!
 The columns of the matrix encode the meanings of words, taking their inner product yields a measure of word similarity which can then be used in tasks such as classification or clustering.
 This method has the advantage of simplicity and it works surprisingly well in a wide range of applications from spam detection to movie recommendation~\cite{TurneyPantel10}.
-Its main limitation is that it forgets grammar and even the order of words, it treats a sentence not as a sequence but as a \emph{bag of words}.
+Its main limitation is that a sentence is represented not as a sequence but as a \emph{bag of words}, the word vectors will be the same whether the corpus contained ``dog bites man'' or ``man bites dog''.
+A standard way to fix this is to compute vectors not for words in isolation but for $n$-grams, windows of $n$ consecutive words for some fixed size $n$.
+However the fix has its own limits: if $n$ is too small we cannot detect any long-range correlations, if it is too big then the matrix is so sparse that we cannot detect anything at all.
 
-In contrast, neural network with recurrent architectures such as LSTM (long short-term memory)~\cite{HochreiterSchmidhuber97} are inherently sequential.
+In contrast, the recurrent neural networks (RNNs) of Rumelhart, Hinton and Williams~\cite{RumelhartEtAl86} are inherently sequential and their internal state can encode arbitrarily long-range correlations.
+At each step in the process, the network processes the next word in a sequence and updates its internal state.
+This internal memory can then be used to predict the rest of the sequence, or fed as input to another network e.g. for translation into another language.
+Once the obstacles to training were overcome (such as the vanishing gradients mentioned above), RNN architectures such as long short-term memory (LSTM)~\cite{HochreiterSchmidhuber97} set records in a variety of NLP tasks such as language modeling~\cite{SutskeverEtAl11}, speech recognition~\cite{GravesEtAl13} and machine translation~\cite{SutskeverEtAl14}.
+The purely sequential approach of RNNs turned out to be limited: when the network is done reading, the information from the first word has to propagate through the entire text before it can be translated.
+Bidirectional RNNs~\cite{SchusterPaliwal97} fix this issue by reading both left-to-right and right-to-left, with successful implementations such as BERT~\cite{DevlinEtAl19}.
+Bidirectionality is somewhat unsatisfactory from a cognitive perspective (humans manage to understand text without reading backward) but also harder to use in online settings where words need to be processed one at a time.
 
+Attention mechanisms provide a much more elegant solution: instead of assuming that the ``company'' of a word is its immediate left and right neighbourhood, we let the neural network itself learn which words are relevant to which.
+First introduced as a way to boost the performance of RNNs on translation tasks~\cite{BahdanauEtAl16}, attention has then become the basis of the \emph{transformer model}~\cite{VaswaniEtAl17}: a stack of attention mechanisms which process sequences without recurrence altogether.
+Transformers have now replaced RNNs as the state-of-the-art NLP model, culminating
+with the GPT-3 language generator authoring its own article in \emph{The Guardian}~\cite{GPT-320}:
+\linebreak
+``A robot wrote this entire article. Are you scared yet, human?''
+
+Indeed \emph{why} should we be scared?
+Because we are ignorant of \emph{how} the robot wrote the article and we cannot explain what in its billions of parameters made it write the way it did.
+Transformers and neural networks in general are \emph{black boxes}: we can probe the way they map inputs to outputs, but if we look at the terabytes of weights in between, we find no interpreation of the mapping.
+Moreover without explanability there can be no fairness: if we cannot explain how its decisions are made, we can hardly prevent the network from reproducing the discriminations present both in the datasets and in the assumptions of the data scientist who uses them.
+We argue that explainable AI requires to make the distributional black boxes transparent by endowing them with a compositional structure, we need \emph{compositional distributional} models.
 
 \begin{itemize}
-    \item recurrent neural networks
-    \item attention mechanism, transformer model
-    \item from black boxes to explainable AI
-    \item neurosymbolic AI: the third wave
+    \item neurosymbolic AI
     \item an alternative approach toward essentially the same goal: DisCoCat
+\end{itemize}
+
+What this thesis will \emph{not} talk about:
+
+\begin{itemize}
+    \item causality
+    \item contextuality
 \end{itemize}

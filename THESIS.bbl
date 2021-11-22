@@ -777,6 +777,73 @@
     \field{year}{2019}
   \endentry
 
+  \entry{BahdanauEtAl16}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BD}{%
+         family={Bahdanau},
+         familyi={B\bibinitperiod},
+         given={Dzmitry},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CK}{%
+         family={Cho},
+         familyi={C\bibinitperiod},
+         given={Kyunghyun},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=BY}{%
+         family={Bengio},
+         familyi={B\bibinitperiod},
+         given={Yoshua},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Computer Science -
+  Machine Learning,Computer Science - Neural and Evolutionary
+  Computing,Statistics - Machine Learning}
+    \strng{namehash}{BDCKBY1}
+    \strng{fullhash}{BDCKBY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BCB16}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Neural machine translation is a recently proposed approach to machine
+  translation. Unlike the traditional statistical machine translation, the
+  neural machine translation aims at building a single neural network that can
+  be jointly tuned to maximize the translation performance. The models proposed
+  recently for neural machine translation often belong to a family of
+  encoder-decoders and consists of an encoder that encodes a source sentence
+  into a fixed-length vector from which a decoder generates a translation. In
+  this paper, we conjecture that the use of a fixed-length vector is a
+  bottleneck in improving the performance of this basic encoder-decoder
+  architecture, and propose to extend this by allowing a model to automatically
+  (soft-)search for parts of a source sentence that are relevant to predicting
+  a target word, without having to form these parts as a hard segment
+  explicitly. With this new approach, we achieve a translation performance
+  comparable to the existing state-of-the-art phrase-based system on the task
+  of English-to-French translation. Furthermore, qualitative analysis reveals
+  that the (soft-)alignments found by the model agree well with our intuition.%
+    }
+    \verb{eprint}
+    \verb 1409.0473
+    \endverb
+    \field{title}{Neural {{Machine Translation}} by {{Jointly Learning}} to
+  {{Align}} and {{Translate}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q7JEXDIG/Bahdanau et al. - 20
+    \verb 16 - Neural Machine Translation by Jointly Learning to .pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/7BIDSQ9Z/1409.html
+    \endverb
+    \field{journaltitle}{arXiv:1409.0473 [cs, stat]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs, stat}
+    \field{month}{05}
+    \field{year}{2016}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Ball21}{misc}{}
     \name{author}{1}{}{%
       {{hash=BP}{%
@@ -1520,6 +1587,76 @@
     \field{year}{1992}
   \endentry
 
+  \entry{DevlinEtAl19}{article}{}
+    \name{author}{4}{}{%
+      {{hash=DJ}{%
+         family={Devlin},
+         familyi={D\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CMW}{%
+         family={Chang},
+         familyi={C\bibinitperiod},
+         given={Ming-Wei},
+         giveni={M\bibinitperiod-W\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Kenton},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TK}{%
+         family={Toutanova},
+         familyi={T\bibinitperiod},
+         given={Kristina},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language}
+    \strng{namehash}{DJ+1}
+    \strng{fullhash}{DJCMWLKTK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Dev+19}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    We introduce a new language representation model called BERT, which stands
+  for Bidirectional Encoder Representations from Transformers. Unlike recent
+  language representation models, BERT is designed to pre-train deep
+  bidirectional representations from unlabeled text by jointly conditioning on
+  both left and right context in all layers. As a result, the pre-trained BERT
+  model can be fine-tuned with just one additional output layer to create
+  state-of-the-art models for a wide range of tasks, such as question answering
+  and language inference, without substantial task-specific architecture
+  modifications. BERT is conceptually simple and empirically powerful. It
+  obtains new state-of-the-art results on eleven natural language processing
+  tasks, including pushing the GLUE score to 80.5\% (7.7\% point absolute
+  improvement), MultiNLI accuracy to 86.7\% (4.6\% absolute improvement), SQuAD
+  v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and
+  SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).%
+    }
+    \verb{eprint}
+    \verb 1810.04805
+    \endverb
+    \field{shorttitle}{{{BERT}}}
+    \field{title}{{{BERT}}: Pre-Training of {{Deep Bidirectional Transformers}}
+  for {{Language Understanding}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/9J2SMCK3/Devlin et al. - 2019
+    \verb  - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/CBJG7LVJ/1810.html
+    \endverb
+    \field{journaltitle}{arXiv:1810.04805 [cs]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs}
+    \field{month}{05}
+    \field{year}{2019}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{FarhiEtAl14}{article}{}
     \name{author}{3}{}{%
       {{hash=FE}{%
@@ -1951,6 +2088,44 @@
     \field{year}{2019}
   \endentry
 
+  \entry{GravesEtAl13}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=GA}{%
+         family={Graves},
+         familyi={G\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MAr}{%
+         family={Mohamed},
+         familyi={M\bibinitperiod},
+         given={Abdel-rahman},
+         giveni={A\bibinitperiod-r\bibinitperiod},
+      }}%
+      {{hash=HG}{%
+         family={Hinton},
+         familyi={H\bibinitperiod},
+         given={Geoffrey},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {{Ieee}}%
+    }
+    \strng{namehash}{GAMArHG1}
+    \strng{fullhash}{GAMArHG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{GMH13}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{booktitle}{2013 {{IEEE}} International Conference on Acoustics,
+  Speech and Signal Processing}
+    \field{pages}{6645\bibrangedash 6649}
+    \field{title}{Speech Recognition with Deep Recurrent Neural Networks}
+    \field{year}{2013}
+  \endentry
+
   \entry{Grover97}{article}{}
     \name{author}{1}{}{%
       {{hash=GLK}{%
@@ -2263,6 +2438,63 @@
     \field{year}{1998}
   \endentry
 
+  \entry{HochreiterSchmidhuber97}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HS}{%
+         family={Hochreiter},
+         familyi={H\bibinitperiod},
+         given={Sepp},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Schmidhuber},
+         familyi={S\bibinitperiod},
+         given={J{\"u}rgen},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HSSJ1}
+    \strng{fullhash}{HSSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HS97}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Learning to store information over extended time intervals by recurrent
+  backpropagation takes a very long time, mostly because of insufficient,
+  decaying error backflow. We briefly review Hochreiter's (1991) analysis of
+  this problem, then address it by introducing a novel, efficient,
+  gradient-based method called long short-term memory (LSTM). Truncating the
+  gradient where this does not do harm, LSTM can learn to bridge minimal time
+  lags in excess of 1000 discrete-time steps by enforcing constant error flow
+  through constant error carousels within special units. Multiplicative gate
+  units learn to open and close access to the constant error flow. LSTM is
+  local in space and time; its computational complexity per time step and
+  weight is O(1). Our experiments with artificial data involve local,
+  distributed, real-valued, and noisy pattern representations. In comparisons
+  with real-time recurrent learning, back propagation through time, recurrent
+  cascade correlation, Elman nets, and neural sequence chunking, LSTM leads to
+  many more successful runs, and learns much faster. LSTM also solves complex,
+  artificial long-time-lag tasks that have never been solved by previous
+  recurrent network algorithms.%
+    }
+    \verb{doi}
+    \verb 10.1162/neco.1997.9.8.1735
+    \endverb
+    \field{pages}{1735\bibrangedash 80}
+    \field{title}{Long {{Short}}-Term {{Memory}}}
+    \field{volume}{9}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/6AUXE4SX/Hochreiter and Schmi
+    \verb dhuber - 1997 - Long Short-term Memory.pdf;/Users/alexis.toumi/WORK/Z
+    \verb otero/storage/H2HIQ36D/hochreiter1997.pdf.pdf
+    \endverb
+    \field{journaltitle}{Neural computation}
+    \field{month}{12}
+    \field{year}{1997}
+  \endentry
+
   \entry{Hutchins04}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=HWJ}{%
@@ -2526,7 +2758,7 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
-  \entry{LloydEtAl14a}{article}{}
+  \entry{LloydEtAl14}{article}{}
     \name{author}{3}{}{%
       {{hash=LS}{%
          family={Lloyd},
@@ -2550,6 +2782,7 @@
     \list{publisher}{1}{%
       {{Nature Publishing Group}}%
     }
+    \keyw{Quantum Physics}
     \strng{namehash}{LSMMRP1}
     \strng{fullhash}{LSMMRP1}
     \field{labelnamesource}{author}
@@ -2560,31 +2793,39 @@
     \field{abstract}{%
     The usual way to reveal properties of an unknown quantum state, given many
   copies of a system in that state, is to perform measurements of different
-  observables and to analyse the results statistically. For non-sparse but
-  low-rank quantum states, revealing eigenvectors and corresponding eigenvalues
-  in classical form scales super-linearly with the system dimension. Here we
-  show that multiple copies of a quantum system with density matrix {$\rho$}
-  can be used to construct the unitary transformation e[superscript
-  -i{$\rho$}t]. As a result, one can perform quantum principal component
-  analysis of an unknown low-rank density matrix, revealing in quantum form the
-  eigenvectors corresponding to the large eigenvalues in time exponentially
-  faster than any existing algorithm. We discuss applications to data analysis,
-  process tomography and state discrimination.%
+  observables and to analyze the measurement results statistically. Here we
+  show that the unknown quantum state can play an active role in its own
+  analysis. In particular, given multiple copies of a quantum system with
+  density matrix \textbackslash rho, then it is possible to perform the unitary
+  transformation e\^\{-i\textbackslash rho t\}. As a result, one can create
+  quantum coherence among different copies of the system to perform quantum
+  principal component analysis, revealing the eigenvectors corresponding to the
+  large eigenvalues of the unknown state in time exponentially faster than any
+  existing algorithm.%
     }
-    \field{issn}{1745-2473}
-    \field{title}{Quantum Principal Component Analysis}
-    \field{langid}{american}
-    \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/DDW6V6VL/Lloyd et al. - 2014
-    \verb - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Z
-    \verb otero/storage/UG9UXSBQ/97628.html
+    \verb{doi}
+    \verb 10.1038/nphys3029
     \endverb
-    \field{journaltitle}{arXiv}
-    \field{annotation}{%
-    Accepted: 2015-07-01T18:41:03Z%
-    }
-    \field{month}{07}
+    \verb{eprint}
+    \verb 1307.0401
+    \endverb
+    \field{issn}{1745-2473, 1745-2481}
+    \field{number}{9}
+    \field{pages}{631\bibrangedash 633}
+    \field{title}{Quantum Principal Component Analysis}
+    \field{volume}{10}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/4X96V6WQ/Lloyd et al. - 2014
+    \verb - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Z
+    \verb otero/storage/DDW6V6VL/Lloyd et al. - 2014 - Quantum principal compon
+    \verb ent analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G2ZFTTC4/130
+    \verb 7.html;/Users/alexis.toumi/WORK/Zotero/storage/UG9UXSBQ/97628.html
+    \endverb
+    \field{journaltitle}{Nature Physics}
+    \field{eprinttype}{arxiv}
+    \field{month}{09}
     \field{year}{2014}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Manin80}{article}{}
@@ -3129,7 +3370,74 @@
     \field{year}{2014}
   \endentry
 
-  \entry{SaltonEtAl75a}{article}{}
+  \entry{RumelhartEtAl86}{article}{}
+    \name{author}{3}{}{%
+      {{hash=RDE}{%
+         family={Rumelhart},
+         familyi={R\bibinitperiod},
+         given={David\bibnamedelima E.},
+         giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=HGE}{%
+         family={Hinton},
+         familyi={H\bibinitperiod},
+         given={Geoffrey\bibnamedelima E.},
+         giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=WRJ}{%
+         family={Williams},
+         familyi={W\bibinitperiod},
+         given={Ronald\bibnamedelima J.},
+         giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Nature Publishing Group}}%
+    }
+    \keyw{Humanities and Social Sciences,multidisciplinary,Science}
+    \strng{namehash}{RDEHGEWRJ1}
+    \strng{fullhash}{RDEHGEWRJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{RHW86}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{abstract}{%
+    We describe a new learning procedure, back-propagation, for networks of
+  neurone-like units. The procedure repeatedly adjusts the weights of the
+  connections in the network so as to minimize a measure of the difference
+  between the actual output vector of the net and the desired output vector. As
+  a result of the weight adjustments, internal `hidden' units which are not
+  part of the input or output come to represent important features of the task
+  domain, and the regularities in the task are captured by the interactions of
+  these units. The ability to create useful new features distinguishes
+  back-propagation from earlier, simpler methods such as the
+  perceptron-convergence procedure1.%
+    }
+    \verb{doi}
+    \verb 10.1038/323533a0
+    \endverb
+    \field{issn}{1476-4687}
+    \field{number}{6088}
+    \field{pages}{533\bibrangedash 536}
+    \field{title}{Learning Representations by Back-Propagating Errors}
+    \field{volume}{323}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/XRHBW5WI/Rumelhart et al. - 1
+    \verb 986 - Learning representations by back-propagating error.pdf;/Users/a
+    \verb lexis.toumi/WORK/Zotero/storage/65VXXP6W/323533a0.html
+    \endverb
+    \field{journaltitle}{Nature}
+    \field{annotation}{%
+    Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype:
+  Research%
+    }
+    \field{month}{10}
+    \field{year}{1986}
+  \endentry
+
+  \entry{SaltonEtAl75}{article}{}
     \name{author}{3}{}{%
       {{hash=SG}{%
          family={Salton},
@@ -3150,6 +3458,9 @@
          giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {ACM}%
+    }
     \strng{namehash}{SGWAYCS1}
     \strng{fullhash}{SGWAYCS1}
     \field{labelnamesource}{author}
@@ -3157,34 +3468,23 @@
     \field{labelalpha}{SWY75}
     \field{sortinit}{S}
     \field{sortinithash}{S}
-    \field{abstract}{%
-    In a document retrieval, or other pattern matching environment where stored
-  entities (documents) are compared with each other or with incoming patterns
-  (search requests), it appears that the best indexing (property) space is one
-  where each entity lies as far away from the others as possible; in these
-  circumstances the value of an indexing system may be expressible as a
-  function of the density of the object space; in particular, retrieval
-  performance may correlate inversely with space density. An approach based on
-  space density computations is used to choose an optimum indexing vocabulary
-  for a collection of documents. Typical evaluation results are shown,
-  demonstating the usefulness of the model.%
-    }
     \verb{doi}
     \verb 10.1145/361219.361220
     \endverb
-    \field{issn}{0001-0782, 1557-7317}
+    \field{issn}{0001-0782}
     \field{number}{11}
     \field{pages}{613\bibrangedash 620}
-    \field{title}{A Vector Space Model for Automatic Indexing}
+    \field{title}{A {{Vector Space Model}} for {{Automatic Indexing}}}
     \field{volume}{18}
-    \field{langid}{english}
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/9E3LRIQB/Salton et al. - 1975
     \verb  - A vector space model for automatic indexing.pdf;/Users/alexis.toum
     \verb i/WORK/Zotero/storage/J6X2E24X/salton1975.pdf.pdf
     \endverb
-    \field{journaltitle}{Communications of the ACM}
-    \field{month}{11}
+    \field{journaltitle}{Commun. ACM}
     \field{year}{1975}
   \endentry
 
@@ -3303,6 +3603,65 @@
     \field{month}{02}
     \field{year}{2019}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{SchusterPaliwal97}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SM}{%
+         family={Schuster},
+         familyi={S\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PK}{%
+         family={Paliwal},
+         familyi={P\bibinitperiod},
+         given={K.K.},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \keyw{Artificial neural networks,Control systems,Databases,Parameter
+  estimation,Probability,Recurrent neural networks,Shape,Speech
+  recognition,Telecommunication control,Training data}
+    \strng{namehash}{SMPK1}
+    \strng{fullhash}{SMPK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SP97}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    In the first part of this paper, a regular recurrent neural network (RNN)
+  is extended to a bidirectional recurrent neural network (BRNN). The BRNN can
+  be trained without the limitation of using input information just up to a
+  preset future frame. This is accomplished by training it simultaneously in
+  positive and negative time direction. Structure and training procedure of the
+  proposed network are explained. In regression and classification experiments
+  on artificial data, the proposed structure gives better results than other
+  approaches. For real data, classification experiments for phonemes from the
+  TIMIT database show the same tendency. In the second part of this paper, it
+  is shown how the proposed bidirectional structure can be easily modified to
+  allow efficient estimation of the conditional posterior probability of
+  complete symbol sequences without making any explicit assumption about the
+  shape of the distribution. For this part, experiments on real data are
+  reported.%
+    }
+    \verb{doi}
+    \verb 10.1109/78.650093
+    \endverb
+    \field{issn}{1941-0476}
+    \field{number}{11}
+    \field{pages}{2673\bibrangedash 2681}
+    \field{title}{Bidirectional Recurrent Neural Networks}
+    \field{volume}{45}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/DK34JT7K/Schuster and Paliwal
+    \verb  - 1997 - Bidirectional recurrent neural networks.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/HWI2UFN3/650093.html
+    \endverb
+    \field{journaltitle}{IEEE Transactions on Signal Processing}
+    \field{month}{11}
+    \field{year}{1997}
   \endentry
 
   \entry{ShepherdBremner09}{article}{}
@@ -3472,6 +3831,84 @@
     \field{year}{1994}
   \endentry
 
+  \entry{SutskeverEtAl11}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SI}{%
+         family={Sutskever},
+         familyi={S\bibinitperiod},
+         given={Ilya},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Martens},
+         familyi={M\bibinitperiod},
+         given={James},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HGE}{%
+         family={Hinton},
+         familyi={H\bibinitperiod},
+         given={Geoffrey\bibnamedelima E},
+         giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SIMJHGE1}
+    \strng{fullhash}{SIMJHGE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SMH11}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{{{ICML}}}
+    \field{title}{Generating Text with Recurrent Neural Networks}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UW894BXW/Sutskever et al. - G
+    \verb enerating Text with Recurrent Neural Networks.pdf
+    \endverb
+    \field{year}{2011}
+  \endentry
+
+  \entry{SutskeverEtAl14}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SI}{%
+         family={Sutskever},
+         familyi={S\bibinitperiod},
+         given={Ilya},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=VO}{%
+         family={Vinyals},
+         familyi={V\bibinitperiod},
+         given={Oriol},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=LQV}{%
+         family={Le},
+         familyi={L\bibinitperiod},
+         given={Quoc\bibnamedelima V},
+         giveni={Q\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Curran Associates, Inc.}}%
+    }
+    \strng{namehash}{SIVOLQV1}
+    \strng{fullhash}{SIVOLQV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SVL14}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Advances in {{Neural Information Processing Systems}}}
+    \field{title}{Sequence to {{Sequence Learning}} with {{Neural Networks}}}
+    \field{volume}{27}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/3P56JWGK/Sutskever et al. - 2
+    \verb 014 - Sequence to Sequence Learning with Neural Networks.pdf
+    \endverb
+    \field{year}{2014}
+  \endentry
+
   \entry{Thue14}{book}{}
     \name{author}{1}{}{%
       {{hash=TA}{%
@@ -3586,6 +4023,101 @@
     \field{journaltitle}{Journal of Artificial Intelligence Research}
     \field{month}{02}
     \field{year}{2010}
+  \endentry
+
+  \entry{VaswaniEtAl17}{article}{}
+    \name{author}{8}{}{%
+      {{hash=VA}{%
+         family={Vaswani},
+         familyi={V\bibinitperiod},
+         given={Ashish},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SN}{%
+         family={Shazeer},
+         familyi={S\bibinitperiod},
+         given={Noam},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=PN}{%
+         family={Parmar},
+         familyi={P\bibinitperiod},
+         given={Niki},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=UJ}{%
+         family={Uszkoreit},
+         familyi={U\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=JL}{%
+         family={Jones},
+         familyi={J\bibinitperiod},
+         given={Llion},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=GAN}{%
+         family={Gomez},
+         familyi={G\bibinitperiod},
+         given={Aidan\bibnamedelima N.},
+         giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=KL}{%
+         family={Kaiser},
+         familyi={K\bibinitperiod},
+         given={Lukasz},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=PI}{%
+         family={Polosukhin},
+         familyi={P\bibinitperiod},
+         given={Illia},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Computer Science -
+  Machine Learning}
+    \strng{namehash}{VA+1}
+    \strng{fullhash}{VASNPNUJJLGANKLPI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Vas+17}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{abstract}{%
+    The dominant sequence transduction models are based on complex recurrent or
+  convolutional neural networks in an encoder-decoder configuration. The best
+  performing models also connect the encoder and decoder through an attention
+  mechanism. We propose a new simple network architecture, the Transformer,
+  based solely on attention mechanisms, dispensing with recurrence and
+  convolutions entirely. Experiments on two machine translation tasks show
+  these models to be superior in quality while being more parallelizable and
+  requiring significantly less time to train. Our model achieves 28.4 BLEU on
+  the WMT 2014 English-to-German translation task, improving over the existing
+  best results, including ensembles by over 2 BLEU. On the WMT 2014
+  English-to-French translation task, our model establishes a new single-model
+  state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight
+  GPUs, a small fraction of the training costs of the best models from the
+  literature. We show that the Transformer generalizes well to other tasks by
+  applying it successfully to English constituency parsing both with large and
+  limited training data.%
+    }
+    \verb{eprint}
+    \verb 1706.03762
+    \endverb
+    \field{title}{Attention {{Is All You Need}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q37P5UVI/Vaswani et al. - 201
+    \verb 7 - Attention Is All You Need.pdf;/Users/alexis.toumi/WORK/Zotero/sto
+    \verb rage/ZQ8N3KN5/1706.html
+    \endverb
+    \field{journaltitle}{arXiv:1706.03762 [cs]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs}
+    \field{month}{12}
+    \field{year}{2017}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Weaver55}{article}{}
@@ -4206,7 +4738,7 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
-  \entry{ZhongEtAl20a}{article}{}
+  \entry{ZhongEtAl20}{article}{}
     \name{author}{24}{}{%
       {{hash=ZHS}{%
          family={Zhong},
@@ -4353,6 +4885,9 @@
          giveni={J\bibinitperiod-W\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {{American Association for the Advancement of Science}}%
+    }
     \keyw{Condensed Matter - Other Condensed Matter,Physics - Optics,Quantum
   Physics}
     \strng{namehash}{ZHS+1}
@@ -4362,28 +4897,12 @@
     \field{labelalpha}{Zho+20}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
-    \field{abstract}{%
-    Gaussian boson sampling exploits squeezed states to provide a highly
-  efficient way to demonstrate quantum computational advantage. We perform
-  experiments with 50 input single-mode squeezed states with high
-  indistinguishability and squeezing parameters, which are fed into a 100-mode
-  ultralow-loss interferometer with full connectivity and random
-  transformation, and sampled using 100 high-efficiency single-photon
-  detectors. The whole optical set-up is phase-locked to maintain a high
-  coherence between the superposition of all photon number states. We observe
-  up to 76 output photon-clicks, which yield an output state space dimension of
-  \$10\^\{30\}\$ and a sampling rate that is \$10\^\{14\}\$ faster than using
-  the state-of-the-art simulation strategy and supercomputers. The obtained
-  samples are validated against various hypotheses including using thermal
-  states, distinguishable photons, and uniform distribution.%
-    }
     \verb{doi}
     \verb 10.1126/science.abe8770
     \endverb
     \verb{eprint}
     \verb 2012.01625
     \endverb
-    \field{issn}{0036-8075, 1095-9203}
     \field{number}{6523}
     \field{pages}{1460\bibrangedash 1463}
     \field{title}{Quantum Computational Advantage Using Photons}
@@ -4391,8 +4910,11 @@
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/6FRKXU5Z/Zhong et al. - 2020
     \verb - Quantum computational advantage using photons.pdf;/Users/alexis.tou
-    \verb mi/WORK/Zotero/storage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/User
-    \verb s/alexis.toumi/WORK/Zotero/storage/XASCJG38/2012.html
+    \verb mi/WORK/Zotero/storage/CRAFKVP8/Zhong et al. - 2020 - Quantum computa
+    \verb tional advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/st
+    \verb orage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/Users/alexis.toumi/WO
+    \verb RK/Zotero/storage/UPZH8QF5/science.abe8770.pdf.pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/XASCJG38/2012.html
     \endverb
     \field{journaltitle}{Science}
     \field{eprinttype}{arxiv}
