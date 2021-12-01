@@ -1,6 +1,7 @@
 %!TEX root = ../THESIS.tex
 
-\section*{Why make NLP quantum?}
+\section*{Why should we make NLP quantum?}
+\addcontentsline{toc}{section}{Why should we make NLP quantum?}
 
 \justepigraph{
 A girl operator typed out on a keyboard the following Russian text in English characters: ``Mi pyeryedayem mislyi posryedstvom ryechi''. The machine printed a translation almost simultaneously: ``We transmit thoughts by means of speech.'' The operator did not know Russian.
@@ -24,22 +25,22 @@ With only six grammatical rules and a 250-word vocabulary taken from organic che
 Two years later, Chomsky~\cite{Chomsky56, Chomsky57} proposes a hiearchy of models for natural language syntax which hints at why NLP would not be solved so fast.
 In the most expressive model, which he argues is the most appropriate for studying natural language, the parsing problem is in fact Turing-complete.
 Let alone machine translation, merely deciding whether a given sequence of words is grammatical can go beyond the power of any physical computer.
-Chomsky's parsing problem is a linguistic reinterpretation of an older problem from Thue~\cite{Thue14}, now known as the \emph{word problem for monoids}\footnote{
-Historically, Thue, Markov and Post were working with \emph{semigroups}, i.e. unitless monoids.
+Chomsky's parsing problem is a linguistic reinterpretation of an older problem from Thue~\cite{Thue14}, now known as the \emph{word problem for monoids}\footnote
+{Historically, Thue, Markov and Post were working with \emph{semigroups}, i.e. unitless monoids.
 } and proved undecidable by Post~\cite{Post47} and Markov~\cite{Markov47} independently.
 This reveals a three-way connection between theoretical linguistics, computer science and abstract algebra which will pervade much of this thesis.
 But if we are interested in solving practical NLP problems, why should we care about such abstract constructions as formal grammars?
 
 Most NLP tasks of interest involve natural language \emph{semantics}: we want machines to compute the \emph{meaning} of sentences.
 Given the grammatical structure of a sentence, we can compute its meaning as a function of the meanings of its words.
-This is known as the \emph{principle of compositionality}, usually attributed to Frege~\cite{Frege84} although he never stated it\footnote{
-What Frege did state is now known as the \emph{context principle}:
+This is known as the \emph{principle of compositionality}, usually attributed to Frege.\footnote
+{Compositionality does not appear in any of Frege's published work~\cite{Pelletier01}.
+What Frege~\cite{Frege84} did state is now known as the \emph{context principle}:
 ``it is enough if the sentence as whole has meaning; thereby also its parts obtain their meanings''.
-This can be taken as a kind of dual to compositionality: the meanings of the words are functions of the meaning of the sentence.
-}.
+This can be taken as a kind of dual to compositionality: the meanings of the words are functions of the meaning of the sentence.}
 It was already implicit in Boole's \emph{laws of thought}~\cite{Boole54} and then made explicit by Carnap~\cite{Carnap47}.
-From a philosophical principle, compositionality became the basis of the symbolic approach to NLP, also known as \emph{good old-fashioned artificial intelligence} (GOFAI)~\cite{Haugeland89}.
-The meanings of words is first encoded in a machine-readable format, then the computer can answer complex questions by composing these meanings together.
+From a philosophical principle, compositionality became the basis of the symbolic approach to NLP, also known as \emph{good old-fashioned AI} (GOFAI)~\cite{Haugeland89}.
+Word meanings are first encoded in a machine-readable format, then the machine can compose them to answer complex questions.
 This approach culminated in 2011 with IBM Watson defeating a human champion at \emph{Jeopardy!}~\cite{LallyFodor11}.
 
 The same year, Apple deploy their virtual assistant in the pocket of millions of users, soon followed by internet giants Amazon and Google.
@@ -47,6 +48,7 @@ While Siri, Alexa and their competitors have made NLP mainstream, none of them m
 Instead of the complex grammatical analysis and knowledge representation of expert systems like Watson, the AI of these next-generation NLP machines is powered by deep neural networks and machine learning of big data.
 Although their architecture got increasingly complex, these neural networks implement a simple statistical concept: \emph{language models}, i.e. probability distributions over sequences of words.
 Instead of the compositionality of symbolic AI, these statistical methods rely on another linguistic principle, \emph{distributionality}: words with similar distributions have similar meanings.
+Intuitively,
 
 This principle may be traced back to Wittgenstein's \emph{Philosophical Investigations}: ``the meaning of a word is its use in the language''~\cite{Wittgenstein53}, usually shortened into the slogan \emph{meaning is use}.
 It was then formulated in the context of computational linguistics by Harris~\cite{Harris54}, Weaver~\cite{Weaver55} and Firth~\cite{Firth57}, who coined the famous quotation: ``You shall know a word by the company it keeps!''
@@ -60,34 +62,50 @@ A standard way to fix this is to compute vectors not for words in isolation but 
 However the fix has its own limits: if $n$ is too small we cannot detect any long-range correlations, if it is too big then the matrix is so sparse that we cannot detect anything at all.
 
 In contrast, the recurrent neural networks (RNNs) of Rumelhart, Hinton and Williams~\cite{RumelhartEtAl86} are inherently sequential and their internal state can encode arbitrarily long-range correlations.
-At each step in the process, the network processes the next word in a sequence and updates its internal state.
+At each step, the network processes the next word in a sequence and updates its internal state.
 This internal memory can then be used to predict the rest of the sequence, or fed as input to another network e.g. for translation into another language.
 Once the obstacles to training were overcome (such as the vanishing gradients mentioned above), RNN architectures such as long short-term memory (LSTM)~\cite{HochreiterSchmidhuber97} set records in a variety of NLP tasks such as language modeling~\cite{SutskeverEtAl11}, speech recognition~\cite{GravesEtAl13} and machine translation~\cite{SutskeverEtAl14}.
 The purely sequential approach of RNNs turned out to be limited: when the network is done reading, the information from the first word has to propagate through the entire text before it can be translated.
-Bidirectional RNNs~\cite{SchusterPaliwal97} fix this issue by reading both left-to-right and right-to-left, with successful implementations such as BERT~\cite{DevlinEtAl19}.
-Bidirectionality is somewhat unsatisfactory from a cognitive perspective (humans manage to understand text without reading backward) but also harder to use in online settings where words need to be processed one at a time.
+Bidirectional RNNs~\cite{SchusterPaliwal97} fix this issue by reading both left-to-right and right-to-left.
+Nonetheless, it is somewhat unsatisfactory from a cognitive perspective (humans manage to understand text without reading backward, why should a machine do that?) and also harder to use in online settings where words need to be processed one at a time.
 
 Attention mechanisms provide a much more elegant solution: instead of assuming that the ``company'' of a word is its immediate left and right neighbourhood, we let the neural network itself learn which words are relevant to which.
 First introduced as a way to boost the performance of RNNs on translation tasks~\cite{BahdanauEtAl16}, attention has then become the basis of the \emph{transformer model}~\cite{VaswaniEtAl17}: a stack of attention mechanisms which process sequences without recurrence altogether.
-Transformers have now replaced RNNs as the state-of-the-art NLP model, culminating
-with the GPT-3 language generator authoring its own article in \emph{The Guardian}~\cite{GPT-320}:
-\linebreak
+Starting with BERT~\cite{DevlinEtAl19}, transformers have replaced RNNs as the state-of-the-art NLP model, culminating with the GPT-3 language generator authoring its own article in \emph{The Guardian}~\cite{GPT-320}:
 ``A robot wrote this entire article. Are you scared yet, human?''
 
 Indeed \emph{why} should we be scared?
 Because we are ignorant of \emph{how} the robot wrote the article and we cannot explain what in its billions of parameters made it write the way it did.
 Transformers and neural networks in general are \emph{black boxes}: we can probe the way they map inputs to outputs, but if we look at the terabytes of weights in between, we find no interpreation of the mapping.
-Moreover without explanability there can be no fairness: if we cannot explain how its decisions are made, we can hardly prevent the network from reproducing the discriminations present both in the datasets and in the assumptions of the data scientist who uses them.
-We argue that explainable AI requires to make the distributional black boxes transparent by endowing them with a compositional structure, we need \emph{compositional distributional} models.
+Moreover without explanability there can be no fairness: if we cannot explain how its decisions are made, we can hardly prevent the network from reproducing the discriminations present both in the datasets and in the assumptions of the data scientist.
+We argue that explainable AI requires to make the distributional black boxes transparent by endowing them with a compositional structure: we need \emph{compositional distributional} (DisCo) models that reconcile symbolic GOFAI with deep learning.
 
-\begin{itemize}
-    \item neurosymbolic AI
-    \item an alternative approach toward essentially the same goal: DisCoCat
-\end{itemize}
+DisCo models have their roots in neuropsychology rather than AI.
+Indeed, they first appeared as models of the brain rather than architectures of learning machines.
+In their seminal work~\cite{McCullochPitts43}, McCullogh and Pitts give the first formal definition of neural networks and argue that their ``all-or-nothing'' behaviour\footnote
+{A neuron's response is either maximal or zero, regardless of the stimulus strength.}
+make them as expressive as a fragment of propositional logic.
+Hebb~\cite{Hebb49} then introduced the first biological mechanism to explain learning and perception: ``neurons that fire together, wire together''.
+These computational models of the brain became the basis of \emph{connectionism}~\cite{Smolensky87,Smolensky88} and the \emph{neurosymbolic}~\cite{Hilario97} approach to AI: high-level symbolic reasoning emerges from low-level neural networks.
+An influential example is Smolensky's \emph{tensor product representation}~\cite{Smolensky90}, where discrete structures such as lists and trees are embedded into the tensor product of two vector spaces, one for variables and one for values.
+Concretely, a list $x_1, \dots, x_n$ of $n$ vectors of dimension $d$ is represented as a tensor $\sum_{i \leq n} \ket{i} \otimes x_i \in \mathbb{R}^n \otimes \mathbb{R}^d$.
+Smolensky~\cite{Smolensky90} is also the first to make the analogy between the distributional representations of compositional structures in AI and the group representations of quantum physics.
+He argues that symbolic structures embed in neural networks in the same way that the symmetries of particles embed in their state space: via \emph{representation theory}, a precursor of \emph{category theory} which we discuss in the next section.
 
-What this thesis will \emph{not} talk about:
+Clark and Pulman~\cite{ClarkPulman07} propose to apply this tensor product representation to NLP, but they note its main weakness: lists of different lengths do not live in the same space, which makes it impossible to compare sentences with different grammatical structures.
+The categorical compositional distributional (DisCoCat) models of Clark, Coecke and Sadrzadeh~\cite{ClarkEtAl08,ClarkEtAl10} overcome this issue by taking the analogy with quantum one step further.
+Word meanings and grammatical structure are to linguistics what quantum states and entanglement structure are to physics.
+DisCoCat word meanings live in vector spaces and they compose with tensor products: the states of quantum theory do too.
+Grammar tells you how words are connected and how information flows in a sentence and in the same way, entanglement connects quantum states and tells you how information flows in a complex quantum system.
+This analogy allows to borrow well-established mathematical tools from quantum theory, and it was implemented on classical hardware with some empirical success on small-scale tasks such as sentence comparison~\cite{GrefenstetteEtAl10} and word sense disambiguation~\cite{GrefenstetteSadrzadeh11,KartsaklisEtAl13}.
+However representing the meaning of sentences as quantum processes comes with a price: they can be exponentially hard to simulate classically.
 
-\begin{itemize}
-    \item causality
-    \item contextuality
-\end{itemize}
+If DisCoCat models are intractable for classical computers, why not use a quantum computer instead?
+Zeng and Coecke~\cite{ZengCoecke16} answered this question with the first quantum natural language processing (QNLP) algorithm and the proof of a quadratic speedup on a sentence classification task.
+Wieber et al. ~\cite{WiebeEtAl19} later defined a QNLP algorithm based on a generalisation of the tensor product representation and proved it is \texttt{BQP}-complete: if any quantum algorithm has an exponential advantage, then in principle there must be one for QNLP.
+However promising they may be, both algorithms assume fault-tolerance and they are at least as far away from solving real-world problems as Grover and HHL.
+
+Do we really have to wait for fault-tolerant quantum computers before we can run the first QNLP experiments?
+The main point of this thesis is that we don't: we show it is possible to implement DisCoCat models on the NISQ machines available today.
+Future experiments will have to demonstrate that QNLP is more than a mere analogy and that it can achieve a \emph{quantum advantage on a useful task}.
+Before we can discuss our implementation in detail, the analogy has to be defined formally.

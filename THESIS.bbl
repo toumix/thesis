@@ -777,6 +777,97 @@
     \field{year}{2019}
   \endentry
 
+  \entry{Baer34}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BR}{%
+         family={Baer},
+         familyi={B\bibinitperiod},
+         given={Reinhold},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BR1}
+    \strng{fullhash}{BR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bae34}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1007/BF01170643
+    \endverb
+    \field{issn}{0025-5874, 1432-1823}
+    \field{number}{1}
+    \field{pages}{375\bibrangedash 416}
+    \field{title}{{Erweiterung von Gruppen und ihren Isomorphismen}}
+    \field{volume}{38}
+    \field{langid}{german}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/6SMTH6U5/Baer - 1934 - Erweit
+    \verb erung von Gruppen und ihren Isomorphismen.pdf
+    \endverb
+    \field{journaltitle}{Mathematische Zeitschrift}
+    \field{month}{12}
+    \field{year}{1934}
+  \endentry
+
+  \entry{Baez06}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=BJ}{%
+         family={Baez},
+         familyi={B\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Oxford University Press}}%
+    }
+    \keyw{general relativity,Hilbert spaces,nCob,quantum theory}
+    \strng{namehash}{BJ1}
+    \strng{fullhash}{BJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Bae06}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Part of the difficulty of combining general relativity and quantum theory
+  is that they use different sorts of mathematics: one is based on objects such
+  as manifolds, the other on objects such as Hilbert spaces. As `sets equipped
+  with extra structure', these look like very different things, so combining
+  them in a single theory has always seemed a bit like trying to mix oil and
+  water. However, work on topological quantum field theory has uncovered a deep
+  analogy between the two. Moreover, this analogy operates at the level of
+  categories. This chapter focuses on two categories. One is the category Hilb
+  whose objects are Hilbert spaces and whose morphisms are linear operators
+  between these. This plays an important role in quantum theory. The other is
+  the category nCob whose objects are (n \textemdash{} 1)-dimensional manifolds
+  and whose morphisms are n-dimensional manifolds going between these. This
+  plays an important role in relativistic theories where spacetime is assumed
+  to be n-dimensional: in these theories the objects of nCob represent possible
+  choices of `space', while the morphisms \textemdash{} called `cobordisms'
+  \textemdash{} represent possible choices of `spacetime'.%
+    }
+    \field{booktitle}{The {{Structural Foundations}} of {{Quantum Gravity}}}
+    \verb{doi}
+    \verb 10.1093/acprof:oso/9780199269693.003.0008
+    \endverb
+    \field{isbn}{978-0-19-926969-3}
+    \field{shorttitle}{Quantum {{Quandaries}}}
+    \field{title}{Quantum {{Quandaries}}: A {{Category}}-{{Theoretic
+  Perspective}}}
+    \field{langid}{english}
+    \list{location}{1}{%
+      {{Oxford}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UA2E8TCW/Baez - 2004 - Quantu
+    \verb m Quandaries a Category-Theoretic Perspecti.pdf
+    \endverb
+    \field{year}{2006}
+  \endentry
+
   \entry{BahdanauEtAl16}{article}{}
     \name{author}{3}{}{%
       {{hash=BD}{%
@@ -1291,6 +1382,29 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{Carnap37}{book}{}
+    \name{author}{1}{}{%
+      {{hash=CR}{%
+         family={Carnap},
+         familyi={C\bibinitperiod},
+         given={Rudolf},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{London: Kegan Paul and Co., Ltd}}%
+    }
+    \strng{namehash}{CR1}
+    \strng{fullhash}{CR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Car37}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Logical Syntax of Language}
+    \field{year}{1937}
+  \endentry
+
   \entry{Carnap47}{book}{}
     \name{author}{1}{}{%
       {{hash=CR}{%
@@ -1506,6 +1620,196 @@
     \field{year}{2013}
   \endentry
 
+  \entry{ClarkEtAl08}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=CS}{%
+         family={Clark},
+         familyi={C\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSCBSM1}
+    \strng{fullhash}{CSCBSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CCS08}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{Proceedings of the {{Second Symposium}} on {{Quantum
+  Interaction}} ({{QI}}-2008)}
+    \field{pages}{133\bibrangedash 140}
+    \field{title}{A {{Compositional Distributional Model}} of {{Meaning}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/ZUSIUZIL/Clark et al. - 2008
+    \verb - A compositional distributional model of meaning.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/9K9J7BSV/summary.html
+    \endverb
+    \field{year}{2008}
+  \endentry
+
+  \entry{ClarkEtAl10}{incollection}{}
+    \name{author}{3}{}{%
+      {{hash=CS}{%
+         family={Clark},
+         familyi={C\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \name{editor}{3}{}{%
+      {{hash=vJ}{%
+         family={{van Benthem}},
+         familyi={v\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Moortgat},
+         familyi={M\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BW}{%
+         family={Buszkowski},
+         familyi={B\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSCBSM1}
+    \strng{fullhash}{CSCBSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CCS10}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{A {{Festschrift}} for {{Jim Lambek}}}
+    \verb{eprint}
+    \verb 1003.4394
+    \endverb
+    \field{pages}{345\bibrangedash 384}
+    \field{series}{Linguistic {{Analysis}}}
+    \field{title}{Mathematical Foundations for a Compositional Distributional
+  Model of Meaning}
+    \field{volume}{36}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/6YFTAKTL/Coecke et al. - 2010
+    \verb  - Mathematical Foundations for a Compositional Distr.pdf
+    \endverb
+    \field{eprinttype}{arxiv}
+    \field{year}{2010}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{ClarkPulman07}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=CS}{%
+         family={Clark},
+         familyi={C\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Pulman},
+         familyi={P\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{AAAI}}%
+    }
+    \strng{namehash}{CSPS1}
+    \strng{fullhash}{CSPS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CP07}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{Quantum Interaction, Papers from the 2007 {{AAAI}} Spring
+  Symposium, Technical Report {{SS}}-07-08, Stanford, California, {{USA}},
+  March 26-28, 2007}
+    \field{pages}{52\bibrangedash 55}
+    \field{title}{Combining Symbolic and Distributional Models of Meaning}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/QT2N4RAR/Clark - Combining Sy
+    \verb mbolic and Distributional Models of Me.pdf
+    \endverb
+    \field{year}{2007}
+  \endentry
+
+  \entry{CoeckeEtAl13}{article}{}
+    \name{author}{3}{}{%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=GE}{%
+         family={Grefenstette},
+         familyi={G\bibinitperiod},
+         given={E.},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{16B50; 18A10; 68T50,Computer Science - Computation and
+  Language,F.4.1,F.4.2,G.1.3,I.2.7,Mathematics - Category Theory,Mathematics -
+  Logic}
+    \strng{namehash}{CBGESM1}
+    \strng{fullhash}{CBGESM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CGS13}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 1302.0393
+    \endverb
+    \field{title}{Lambek vs. {{Lambek}}: Functorial {{Vector Space Semantics}}
+  and {{String Diagrams}} for {{Lambek Calculus}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UTFLKRMN/Coecke et al. - 2013
+    \verb  - Lambek vs. Lambek Functorial Vector Space Semanti.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/IZ922E7I/1302.html
+    \endverb
+    \field{journaltitle}{ArXiv e-prints}
+    \field{eprinttype}{arxiv}
+    \field{year}{2013}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Deutsch85a}{article}{}
     \name{author}{1}{}{%
       {{hash=DD}{%
@@ -1655,6 +1959,129 @@
     \field{month}{05}
     \field{year}{2019}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{EilenbergMacLane42a}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ES}{%
+         family={Eilenberg},
+         familyi={E\bibinitperiod},
+         given={Samuel},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={MacLane},
+         familyi={M\bibinitperiod},
+         given={Saunders},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Annals of Mathematics}}%
+    }
+    \strng{namehash}{ESMS1}
+    \strng{fullhash}{ESMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{EM42}
+    \field{extraalpha}{1}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \verb{doi}
+    \verb 10.2307/1968966
+    \endverb
+    \field{issn}{0003-486X}
+    \field{number}{4}
+    \field{pages}{757\bibrangedash 831}
+    \field{title}{Group {{Extensions}} and {{Homology}}}
+    \field{volume}{43}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/N7YIAN8T/eilenberg1942.pdf.pd
+    \verb f
+    \endverb
+    \field{journaltitle}{Annals of Mathematics}
+    \field{year}{1942}
+  \endentry
+
+  \entry{EilenbergMacLane42b}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ES}{%
+         family={Eilenberg},
+         familyi={E\bibinitperiod},
+         given={Samuel},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={MacLane},
+         familyi={M\bibinitperiod},
+         given={Saunders},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{National Academy of Sciences}}%
+    }
+    \strng{namehash}{ESMS1}
+    \strng{fullhash}{ESMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{EM42}
+    \field{extraalpha}{2}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{number}{12}
+    \field{pages}{537}
+    \field{title}{Natural Isomorphisms in Group Theory}
+    \field{volume}{28}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/GFIRLMCT/Eilenberg and MacLan
+    \verb e - 1942 - Natural isomorphisms in group theory.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the National Academy of Sciences of the
+  United States of America}
+    \field{year}{1942}
+  \endentry
+
+  \entry{EilenbergMacLane45}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ES}{%
+         family={Eilenberg},
+         familyi={E\bibinitperiod},
+         given={Samuel},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={MacLane},
+         familyi={M\bibinitperiod},
+         given={Saunders},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ESMS1}
+    \strng{fullhash}{ESMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{EM45}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{abstract}{%
+    Advancing research. Creating connections.%
+    }
+    \verb{doi}
+    \verb 10.1090/S0002-9947-1945-0013131-6
+    \endverb
+    \field{issn}{0002-9947, 1088-6850}
+    \field{pages}{231\bibrangedash 294}
+    \field{title}{General Theory of Natural Equivalences}
+    \field{volume}{58}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/2TSUA5QS/Eilenberg and MacLan
+    \verb e - 1945 - General theory of natural equivalences.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/THZ5E7C8/home.html
+    \endverb
+    \field{journaltitle}{Transactions of the American Mathematical Society}
+    \field{year}{1945}
   \endentry
 
   \entry{FarhiEtAl14}{article}{}
@@ -2123,7 +2550,133 @@
   Speech and Signal Processing}
     \field{pages}{6645\bibrangedash 6649}
     \field{title}{Speech Recognition with Deep Recurrent Neural Networks}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/34TUWRGX/Graves et al. - 2013
+    \verb  - Speech recognition with deep recurrent neural netw.pdf
+    \endverb
     \field{year}{2013}
+  \endentry
+
+  \entry{GrefenstetteSadrzadeh11}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GE}{%
+         family={Grefenstette},
+         familyi={G\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{68T50,Computer Science - Computation and
+  Language,G.1.3,H.3.1,H.3.3,Mathematics - Category Theory}
+    \strng{namehash}{GESM1}
+    \strng{fullhash}{GESM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{GS11}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{eprint}
+    \verb 1106.4058
+    \endverb
+    \field{pages}{1394\bibrangedash 1404}
+    \field{title}{Experimental {{Support}} for a {{Categorical Compositional
+  Distributional Model}} of {{Meaning}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/DX2Z4VS7/Grefenstette and Sad
+    \verb rzadeh - 2011 - Experimental Support for a Categorical Composition.pd
+    \verb f;/Users/alexis.toumi/WORK/Zotero/storage/ITB3VLU5/Grefenstette and S
+    \verb adrzadeh - 2011 - Experimental Support for a Categorical Composition.
+    \verb pdf;/Users/alexis.toumi/WORK/Zotero/storage/C9M7WSP6/1106.html;/Users
+    \verb /alexis.toumi/WORK/Zotero/storage/YZJ3FH2D/1106.html
+    \endverb
+    \field{journaltitle}{arXiv:1106.4058 [cs, math]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs, math}
+    \field{year}{2011}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{GrefenstetteEtAl10}{article}{}
+    \name{author}{5}{}{%
+      {{hash=GE}{%
+         family={Grefenstette},
+         familyi={G\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Clark},
+         familyi={C\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Pulman},
+         familyi={P\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{68T50,Computer Science - Artificial Intelligence,Computer Science -
+  Computation and Language,Computer Science - Information
+  Retrieval,G.1.3,H.3.1,H.3.3}
+    \strng{namehash}{GE+2}
+    \strng{fullhash}{GESMCSCBPS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gre+10}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    Coecke, Sadrzadeh, and Clark (arXiv:1003.4394v1 [cs.CL]) developed a
+  compositional model of meaning for distributional semantics, in which each
+  word in a sentence has a meaning vector and the distributional meaning of the
+  sentence is a function of the tensor products of the word vectors. Abstractly
+  speaking, this function is the morphism corresponding to the grammatical
+  structure of the sentence in the category of finite dimensional vector
+  spaces. In this paper, we provide a concrete method for implementing this
+  linear meaning map, by constructing a corpus-based vector space for the type
+  of sentence. Our construction method is based on structured vector spaces
+  whereby meaning vectors of all sentences, regardless of their grammatical
+  structure, live in the same vector space. Our proposed sentence space is the
+  tensor product of two noun spaces, in which the basis vectors are pairs of
+  words each augmented with a grammatical role. This enables us to compare
+  meanings of sentences by simply taking the inner product of their vectors.%
+    }
+    \verb{eprint}
+    \verb 1101.0309
+    \endverb
+    \field{title}{Concrete {{Sentence Spaces}} for {{Compositional
+  Distributional Models}} of {{Meaning}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/GREYMS4H/Grefenstette et al.
+    \verb - 2010 - Concrete Sentence Spaces for Compositional Distrib.pdf;/User
+    \verb s/alexis.toumi/WORK/Zotero/storage/F378PMR7/1101.html
+    \endverb
+    \field{journaltitle}{arXiv:1101.0309 [cs]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs}
+    \field{month}{12}
+    \field{year}{2010}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Grover97}{article}{}
@@ -2389,6 +2942,63 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{Hebb49}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HDO}{%
+         family={Hebb},
+         familyi={H\bibinitperiod},
+         given={Donald\bibnamedelima Olding},
+         giveni={D\bibinitperiod\bibinitdelim O\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Science Editions New York}}%
+    }
+    \strng{namehash}{HDO1}
+    \strng{fullhash}{HDO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Heb49}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{title}{The Organisation of Behaviour: A Neuropsychological Theory}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/35W6A57M/Hebb_1949_The_Organi
+    \verb zation_of_Behavior.pdf
+    \endverb
+    \field{year}{1949}
+  \endentry
+
+  \entry{Hilario97}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HM}{%
+         family={Hilario},
+         familyi={H\bibinitperiod},
+         given={Melanie},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Lawrence Erlbaum Associates}}%
+    }
+    \strng{namehash}{HM1}
+    \strng{fullhash}{HM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hil97}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{pages}{13\bibrangedash 36}
+    \field{title}{An Overview of Strategies for Neurosymbolic Integration}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/IQIBFF4I/Hilario - An overvie
+    \verb w of strategies for neurosymbolic integr.pdf
+    \endverb
+    \field{journaltitle}{Connectionist-Symbolic Integration: From Unified to
+  Hybrid Approaches}
+    \field{year}{1997}
+  \endentry
+
   \entry{Hochreiter98}{article}{}
     \name{author}{1}{}{%
       {{hash=HS}{%
@@ -2523,6 +3133,58 @@
     \verb 55 - The Georgetown-I.B.M. experiment.pdf
     \endverb
     \field{year}{2004}
+  \endentry
+
+  \entry{KartsaklisEtAl13}{article}{}
+    \name{author}{3}{}{%
+      {{hash=KD}{%
+         family={Kartsaklis},
+         familyi={K\bibinitperiod},
+         given={Dimitri},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Pulman},
+         familyi={P\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KDSMPS1}
+    \strng{fullhash}{KDSMPS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{KSP13}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{abstract}{%
+    Most compositional-distributional models of meaning are based on ambiguous
+  vector representations, where all the senses of a word are fused into the
+  same vector. This paper provides evidence that the addition of a vector
+  disambiguation step prior to the actual composition would be beneficial to
+  the whole process, producing better composite representations. Furthermore,
+  we relate this issue with the current evaluation practice, showing that
+  disambiguation-based tasks cannot reliably assess the quality of composition.
+  Using a word sense disambiguation scheme based on the generic procedure of
+  Sch\"utze (1998), we first provide a proof of concept for the necessity of
+  separating disambiguation from composition. Then we demonstrate the benefits
+  of an ``unambiguous'' system on a composition-only task.%
+    }
+    \field{pages}{10}
+    \field{title}{Separating {{Disambiguation}} from {{Composition}} in
+  {{Distributional Semantics}}}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/XF8UT3VC/Kartsaklis et al. -
+    \verb Separating Disambiguation from Composition in Dist.pdf
+    \endverb
+    \field{year}{2013}
   \endentry
 
   \entry{KerenidisPrakash16}{article}{}
@@ -3009,6 +3671,43 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{McCullochPitts43}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MWS}{%
+         family={McCulloch},
+         familyi={M\bibinitperiod},
+         given={Warren\bibnamedelima S},
+         giveni={W\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=PW}{%
+         family={Pitts},
+         familyi={P\bibinitperiod},
+         given={Walter},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{MWSPW1}
+    \strng{fullhash}{MWSPW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{MP43}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{4}
+    \field{pages}{115\bibrangedash 133}
+    \field{title}{A Logical Calculus of the Ideas Immanent in Nervous Activity}
+    \field{volume}{5}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/PJ8RQBC5/A logical calculus o
+    \verb f the ideas immanent in nervou.pdf
+    \endverb
+    \field{journaltitle}{The bulletin of mathematical biophysics}
+    \field{year}{1943}
+  \endentry
+
   \entry{PednaultEtAl19}{article}{}
     \name{author}{5}{}{%
       {{hash=PE}{%
@@ -3076,6 +3775,37 @@
     \field{month}{10}
     \field{year}{2019}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Pelletier01}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PFJ}{%
+         family={Pelletier},
+         familyi={P\bibinitperiod},
+         given={Francis\bibnamedelima Jeffry},
+         giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{PFJ1}
+    \strng{fullhash}{PFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Pel01}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{1}
+    \field{pages}{87\bibrangedash 114}
+    \field{title}{Did {{Frege}} Believe {{Frege}}'s Principle?}
+    \field{volume}{10}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/2JG544KM/Pelletier - Did Freg
+    \verb e Believe Frege's Principle.pdf
+    \endverb
+    \field{journaltitle}{Journal of Logic, Language and information}
+    \field{year}{2001}
   \endentry
 
   \entry{PeruzzoEtAl14}{article}{}
@@ -3831,6 +4561,174 @@
     \field{year}{1994}
   \endentry
 
+  \entry{Smolensky87}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SP}{%
+         family={Smolensky},
+         familyi={S\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SP2}
+    \strng{fullhash}{SP2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Smo87}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    Connectionist AI systems are large networks of extremely simple numerical
+  processors, massively interconnected and running in parallel. There has been
+  great progress in the connectionist approach, and while it is still unclear
+  whether the approach will succeed, it is also unclear exactly what the
+  implications for cognitive science would be if it did succeed. In this paper
+  I present a view of the connectionist approach that implies that the level of
+  analysis at which uniform formal principles of cognition can be found is the
+  subsymbolic level, intermediate between the neural and symbolic levels.
+  Notions such as logical inference, sequential firing of production rules,
+  spreading activation between conceptual units, mental categories, and frames
+  or schemata turn out to provide approximate descriptions of the
+  coarse-grained behaviour of connectionist systems. The implication is that
+  symbol-level structures provide only approximate accounts of cognition,
+  useful for description but not necessarily for constructing detailed formal
+  models.%
+    }
+    \verb{doi}
+    \verb 10.1007/BF00130011
+    \endverb
+    \field{issn}{0269-2821, 1573-7462}
+    \field{number}{2}
+    \field{pages}{95\bibrangedash 109}
+    \field{title}{Connectionist {{AI}}, Symbolic {{AI}}, and the Brain}
+    \field{volume}{1}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/PZ74KTS6/smolensky1987.pdf.pd
+    \verb f
+    \endverb
+    \field{journaltitle}{Artificial Intelligence Review}
+    \field{year}{1987}
+  \endentry
+
+  \entry{Smolensky88}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SP}{%
+         family={Smolensky},
+         familyi={S\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Cambridge University Press}}%
+    }
+    \keyw{cognition,computation,connectionism,dynamical systems,networks,neural
+  models,parallel distributed processing,symbolic models}
+    \strng{namehash}{SP3}
+    \strng{fullhash}{SP3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Smo88}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    A set of hypotheses is formulated for a connectionist approach to cognitive
+  modeling. These hypotheses are shown to be incompatible with the hypotheses
+  underlying traditional cognitive models. The connectionist models considered
+  are massively parallel numerical computational systems that are a kind of
+  continuous dynamical system. The numerical variables in the system correspond
+  semantically to fine-grained features below the level of the concepts
+  consciously used to describe the task domain. The level of analysis is
+  intermediate between those of symbolic cognitive models and neural models.
+  The explanations of behavior provided are like those traditional in the
+  physical sciences, unlike the explanations provided by symbolic
+  models.Higher-level analyses of these connectionist models reveal subtle
+  relations to symbolic models. Parallel connectionist memory and linguistic
+  processes are hypothesized to give rise to processes that are describable at
+  a higher level as sequential rule application. At the lower level,
+  computation has the character of massively parallel satisfaction of soft
+  numerical constraints; at the higher level, this can lead to competence
+  characterizable by hard rules. Performance will typically deviate from this
+  competence since behavior is achieved not by interpreting hard rules but by
+  satisfying soft constraints. The result is a picture in which traditional and
+  connectionist theoretical constructs collaborate intimately to provide an
+  understanding of cognition.%
+    }
+    \verb{doi}
+    \verb 10.1017/S0140525X00052432
+    \endverb
+    \field{issn}{1469-1825, 0140-525X}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 23}
+    \field{title}{On the Proper Treatment of Connectionism}
+    \field{volume}{11}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/FGIJ6Z3K/smolensky1988.pdf.pd
+    \verb f;/Users/alexis.toumi/WORK/Zotero/storage/EHK6QYKS/4B8871A82A932DB96D
+    \verb 183AAC9C0CF037.html
+    \endverb
+    \field{journaltitle}{Behavioral and Brain Sciences}
+    \field{month}{03}
+    \field{year}{1988}
+  \endentry
+
+  \entry{Smolensky90}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SP}{%
+         family={Smolensky},
+         familyi={S\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SP3}
+    \strng{fullhash}{SP3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Smo90}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    A general method, the tensor product representation, is defined for the
+  connectionist representation of value/variable bindings. The technique is a
+  formalization of the idea that a set of value/variable pairs can be
+  represented by accumulating activity in a collection of units each of which
+  computes the product of a feature of a variable and a feature of its value.
+  The method allows the fully distributed representation of bindings and
+  symbolic structures. Fully and partially localized special cases of the
+  tensor product representation reduce to existing cases of connectionist
+  representations of structured data. The representation rests on a principled
+  analysis of structure; it saturates gracefully as larger structures are
+  represented; it permits recursive construction of complex representations
+  from simpler ones; it respects the independence of the capacities to generate
+  and maintain multiple bindings in parallel; it extends naturally to
+  continuous structures and continuous representational patterns; it permits
+  values to also serve as variables; and it enables analysis of the
+  interference of symbolic structures stored in associative memories. It has
+  also served as the basis for working connectionist models of high-level
+  cognitive tasks.%
+    }
+    \verb{doi}
+    \verb 10.1016/0004-3702(90)90007-M
+    \endverb
+    \field{issn}{0004-3702}
+    \field{number}{1}
+    \field{pages}{159\bibrangedash 216}
+    \field{title}{Tensor Product Variable Binding and the Representation of
+  Symbolic Structures in Connectionist Systems}
+    \field{volume}{46}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/JL4V4A45/smolensky1990.pdf.pd
+    \verb f
+    \endverb
+    \field{journaltitle}{Artificial Intelligence}
+    \field{month}{11}
+    \field{year}{1990}
+  \endentry
+
   \entry{SutskeverEtAl11}{inproceedings}{}
     \name{author}{3}{}{%
       {{hash=SI}{%
@@ -4190,6 +5088,86 @@
     \field{journaltitle}{Physical Review Letters}
     \field{month}{08}
     \field{year}{2012}
+  \endentry
+
+  \entry{WiebeEtAl19}{article}{}
+    \name{author}{5}{}{%
+      {{hash=WN}{%
+         family={Wiebe},
+         familyi={W\bibinitperiod},
+         given={Nathan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Bocharov},
+         familyi={B\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Smolensky},
+         familyi={S\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Troyer},
+         familyi={T\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SKM}{%
+         family={Svore},
+         familyi={S\bibinitperiod},
+         given={Krysta\bibnamedelima M.},
+         giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{WN+1}
+    \strng{fullhash}{WNBASPTMSKM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Wie+19}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{abstract}{%
+    We present a representation for linguistic structure that we call a
+  Fock-space representation, which allows us to embed problems in language
+  processing into small quantum devices. We further develop a formalism for
+  understanding both classical as well as quantum linguistic problems and
+  phrase them both as a Harmony optimization problem that can be solved on a
+  quantum computer which we show is related to classifying vectors using
+  quantum Boltzmann machines. We further provide a new training method for
+  learning quantum Harmony operators that describe a language. This also
+  provides a new algorithm for training quantum Boltzmann machines that
+  requires no approximations and works in the presence of hidden units. We
+  additionally show that quantum language processing is BQP-complete, meaning
+  that it is polynomially equivalent to the circuit model of quantum computing
+  which implies that quantum language models are richer than classical models
+  unless BPP=BQP. It also implies that, under certain circumstances, quantum
+  Boltzmann machines are more expressive than classical Boltzmann machines.
+  Finally, we examine the performance of our approach numerically for the case
+  of classical harmonic grammars and find that the method is capable of rapidly
+  parsing even non-trivial grammars. This suggests that the work may have value
+  as a quantum inspired algorithm beyond its initial motivation as a new
+  quantum algorithm.%
+    }
+    \verb{eprint}
+    \verb 1902.05162
+    \endverb
+    \field{title}{Quantum {{Language Processing}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/3VGPUTFS/Wiebe et al. - 2019
+    \verb - Quantum Language Processing.pdf;/Users/alexis.toumi/WORK/Zotero/sto
+    \verb rage/AQ9LMD7N/1902.html
+    \endverb
+    \field{journaltitle}{arXiv:1902.05162 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{02}
+    \field{year}{2019}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Wittgenstein53}{book}{}
@@ -4735,6 +5713,69 @@
     \field{eprinttype}{arxiv}
     \field{month}{11}
     \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{ZengCoecke16}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ZW}{%
+         family={Zeng},
+         familyi={Z\bibinitperiod},
+         given={William},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Quantum Physics}
+    \strng{namehash}{ZWCB1}
+    \strng{fullhash}{ZWCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{ZC16}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{abstract}{%
+    We propose a new application of quantum computing to the field of natural
+  language processing. Ongoing work in this field attempts to incorporate
+  grammatical structure into algorithms that compute meaning. In (Coecke,
+  Sadrzadeh and Clark, 2010), the authors introduce such a model (the CSC
+  model) based on tensor product composition. While this algorithm has many
+  advantages, its implementation is hampered by the large classical
+  computational resources that it requires. In this work we show how
+  computational shortcomings of the CSC approach could be resolved using
+  quantum computation (possibly in addition to existing techniques for
+  dimension reduction). We address the value of quantum RAM (Giovannetti,2008)
+  for this model and extend an algorithm from Wiebe, Braun and Lloyd (2012)
+  into a quantum algorithm to categorize sentences in CSC. Our new algorithm
+  demonstrates a quadratic speedup over classical methods under certain
+  conditions.%
+    }
+    \verb{doi}
+    \verb 10.4204/EPTCS.221.8
+    \endverb
+    \verb{eprint}
+    \verb 1608.01406
+    \endverb
+    \field{issn}{2075-2180}
+    \field{pages}{67\bibrangedash 75}
+    \field{title}{Quantum {{Algorithms}} for {{Compositional Natural Language
+  Processing}}}
+    \field{volume}{221}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/MLJ8KWII/Zeng and Coecke - 20
+    \verb 16 - Quantum Algorithms for Compositional Natural Langu.pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/CYIPND4L/1608.html
+    \endverb
+    \field{journaltitle}{Electronic Proceedings in Theoretical Computer
+  Science}
+    \field{eprinttype}{arxiv}
+    \field{month}{08}
+    \field{year}{2016}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
