@@ -64,6 +64,78 @@
     \field{year}{2015}
   \endentry
 
+  \entry{AbbaszadeEtAl21}{article}{}
+    \name{author}{5}{}{%
+      {{hash=AM}{%
+         family={Abbaszade},
+         familyi={A\bibinitperiod},
+         given={Mina},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SV}{%
+         family={Salari},
+         familyi={S\bibinitperiod},
+         given={Vahid},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=MSS}{%
+         family={Mousavi},
+         familyi={M\bibinitperiod},
+         given={Seyed\bibnamedelima Shahin},
+         giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=ZM}{%
+         family={Zomorodi},
+         familyi={Z\bibinitperiod},
+         given={Mariam},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Xujuan},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \keyw{Computational modeling,Decoding,DisCoCat diagrams,Machine
+  translation,Mathematical model,Q-LSTM,Q-NLP,Quantum circuit,quantum
+  circuits,Semantics,Tensors,ZX-calculus}
+    \strng{namehash}{AM+1}
+    \strng{fullhash}{AMSVMSSZMZX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Abb+21}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    In this paper, we develop compositional vector-based semantics of positive
+  transitive sentences using quantum natural language processing (Q-NLP) to
+  compare the parametrized quantum circuits of two synonymous simple sentences
+  in English and Persian. We propose a protocol based on quantum long
+  short-term memory (Q-LSTM) for Q-NLP to perform various tasks in general but
+  specifically for translating a sentence from English to Persian. Then, we
+  generalize our method to use quantum circuits of sentences as an input for
+  the Q-LSTM cell. This enables us to translate sentences in different
+  languages. Our work paves the way toward representing quantum neural machine
+  translation, which may demonstrate quadratic speedup and converge faster or
+  reaches a better accuracy over classical methods.%
+    }
+    \verb{doi}
+    \verb 10.1109/ACCESS.2021.3108768
+    \endverb
+    \field{issn}{2169-3536}
+    \field{pages}{130434\bibrangedash 130448}
+    \field{title}{Application of {{Quantum Natural Language Processing}} for
+  {{Language Translation}}}
+    \field{volume}{9}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/INZBIMW4/Abbaszade et al. - 2
+    \verb 021 - Application of Quantum Natural Language Processing.pdf
+    \endverb
+    \field{journaltitle}{IEEE Access}
+    \field{year}{2021}
+  \endentry
+
   \entry{AharonovBen-Or08}{article}{}
     \name{author}{2}{}{%
       {{hash=AD}{%
@@ -1265,6 +1337,54 @@
     \field{year}{2009}
   \endentry
 
+  \entry{BlacoeEtAl13}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BW}{%
+         family={Blacoe},
+         familyi={B\bibinitperiod},
+         given={William},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=KE}{%
+         family={Kashefi},
+         familyi={K\bibinitperiod},
+         given={Elham},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lapata},
+         familyi={L\bibinitperiod},
+         given={Mirella},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Association for Computational Linguistics}}%
+    }
+    \strng{namehash}{BWKELM1}
+    \strng{fullhash}{BWKELM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BKL13}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{Proceedings of the 2013 {{Conference}} of the {{North
+  American Chapter}} of the {{Association}} for {{Computational Linguistics}}:
+  Human {{Language Technologies}}}
+    \field{pages}{847\bibrangedash 857}
+    \field{title}{A {{Quantum}}-{{Theoretic Approach}} to {{Distributional
+  Semantics}}}
+    \list{location}{1}{%
+      {{Atlanta, Georgia}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/EGEC84SY/Blacoe et al. - 2013
+    \verb  - A Quantum-Theoretic Approach to Distributional Sem.pdf
+    \endverb
+    \field{month}{06}
+    \field{year}{2013}
+  \endentry
+
   \entry{Boole54}{book}{}
     \name{author}{1}{}{%
       {{hash=BG}{%
@@ -1426,6 +1546,33 @@
     \field{sortinithash}{C}
     \field{title}{Meaning and Necessity: A Study in Semantics and Modal Logic}
     \field{year}{1947}
+  \endentry
+
+  \entry{Chen02}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=CJC}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Joseph\bibnamedelima CH},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CJC1}
+    \strng{fullhash}{CJC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Che02}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Quantum Computation and Natural Language Processing}
+    \list{institution}{1}{%
+      {Staats-und Universit\"atsbibliothek Hamburg Carl von Ossietzky}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/CFEZAGDP/34.pdf
+    \endverb
+    \field{type}{phdthesis}
+    \field{year}{2002}
   \endentry
 
   \entry{Chomsky56}{article}{}
@@ -1807,6 +1954,89 @@
     \field{journaltitle}{ArXiv e-prints}
     \field{eprinttype}{arxiv}
     \field{year}{2013}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{CoeckeEtAl20}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=dG}{%
+         family={{de Felice}},
+         familyi={d\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Quantum Physics}
+    \strng{namehash}{CB+1}
+    \strng{fullhash}{CBdGMKTA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Coe+20}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    We provide conceptual and mathematical foundations for near-term quantum
+  natural language processing (QNLP), and do so in quantum computer scientist
+  friendly terms. We opted for an expository presentation style, and provide
+  references for supporting empirical evidence and formal statements concerning
+  mathematical generality. We recall how the quantum model for natural language
+  that we employ canonically combines linguistic meanings with rich linguistic
+  structure, most notably grammar. In particular, the fact that it takes a
+  quantum-like model to combine meaning and structure, establishes QNLP as
+  quantum-native, on par with simulation of quantum systems. Moreover, the now
+  leading Noisy Intermediate-Scale Quantum (NISQ) paradigm for encoding
+  classical data on quantum hardware, variational quantum circuits, makes NISQ
+  exceptionally QNLP-friendly: linguistic structure can be encoded as a free
+  lunch, in contrast to the apparently exponentially expensive classical
+  encoding of grammar. Quantum speed-up for QNLP tasks has already been
+  established in previous work with Will Zeng. Here we provide a broader range
+  of tasks which all enjoy the same advantage. Diagrammatic reasoning is at the
+  heart of QNLP. Firstly, the quantum model interprets language as quantum
+  processes via the diagrammatic formalism of categorical quantum mechanics.
+  Secondly, these diagrams are via ZX-calculus translated into quantum
+  circuits. Parameterisations of meanings then become the circuit variables to
+  be learned. Our encoding of linguistic structure within quantum circuits also
+  embodies a novel approach for establishing word-meanings that goes beyond the
+  current standards in mainstream AI, by placing linguistic structure at the
+  heart of Wittgenstein's meaning-is-context.%
+    }
+    \verb{eprint}
+    \verb 2012.03755
+    \endverb
+    \field{title}{Foundations for {{Near}}-{{Term Quantum Natural Language
+  Processing}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/T6W6LJ6N/Coecke et al. - 2020
+    \verb  - Foundations for Near-Term Quantum Natural Language.pdf;/Users/alex
+    \verb is.toumi/WORK/Zotero/storage/VXZ5LBXV/Coecke et al. - 2020 - Foundati
+    \verb ons for Near-Term Quantum Natural Language.pdf;/Users/alexis.toumi/WO
+    \verb RK/Zotero/storage/ZP6HJE3X/Coecke et al. - 2020 - Foundations for Nea
+    \verb r-Term Quantum Natural Language.pdf;/Users/alexis.toumi/WORK/Zotero/s
+    \verb torage/6Y5JTBJQ/2012.html;/Users/alexis.toumi/WORK/Zotero/storage/JJ9
+    \verb E98ZW/2012.html;/Users/alexis.toumi/WORK/Zotero/storage/N7NFBEB4/2012
+    \verb .html
+    \endverb
+    \field{journaltitle}{ArXiv e-prints}
+    \field{eprinttype}{arxiv}
+    \field{year}{2020}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
@@ -3105,6 +3335,58 @@
     \field{year}{1997}
   \endentry
 
+  \entry{Hoffmann21}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HT}{%
+         family={Hoffmann},
+         familyi={H\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HT1}
+    \strng{fullhash}{HT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hof21}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    In recent years, developments in machine learning had a tremendous impact
+  on Natural Language Processing (NLP). However, state-of-the-art language
+  models contain billions of parameters that require vast computational
+  resources for optimization and capture syntactic rules only from data, which
+  does not allow an extensive analysis of the underlying logic of language.
+  Hence, to reduce the parameter space of NLP models and close the gap between
+  logic-based language models and statistical vector space models, Coecke,
+  Sadrzadeh, and Clark [11] introduce a compound framework called Compositional
+  Distributional Model of Meaning, based on Lambeks Pregroup grammar and
+  Quantum Theory. This thesis investigates applying the Compositional
+  Distributional Model of Meaning on the word-sense disambiguation task by
+  Kartsaklis, Sadrzadeh, and Pulman [18]. Different quantum embeddings are
+  evaluated in terms of disambiguation power, given a matching context. One
+  focus lies on the description of ambiguous words as mixed states. Mixed
+  states are probabilistic quantum states expressed as density matrices which
+  entail a lack of knowledge about the underlying system. Empirical data was
+  gathered from experiments using quantum circuits and classical computations.
+  We evaluate the performance and discuss the challenges and limitations of the
+  current quantum computing models. The results confirm the comprehensiveness
+  of the Compositional Distributional Model of Meaning and show statistical
+  indications for a richer representation of words by density matrices.%
+    }
+    \field{title}{Quantum {{Models}} for {{Word}}- {{Sense Disambiguation}}}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UCPMV4IV/Hoffmann - 2021 - Qu
+    \verb antum Models for Word- Sense Disambiguation.pdf;/Users/alexis.toumi/W
+    \verb ORK/Zotero/storage/QF226C9S/302687.html
+    \endverb
+    \field{annotation}{%
+    Accepted: 2021-06-23T06:39:31Z%
+    }
+    \field{year}{2021}
+  \endentry
+
   \entry{Hutchins04}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=HWJ}{%
@@ -3362,6 +3644,75 @@
     \field{year}{2011}
   \endentry
 
+  \entry{Lane97}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LSM}{%
+         family={Lane},
+         familyi={L\bibinitperiod},
+         given={Saunders\bibnamedelima Mac},
+         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{National Academy of Sciences}}%
+    }
+    \strng{namehash}{LSM1}
+    \strng{fullhash}{LSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lan97}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    This essay is to describe my experience with the Proceedings of the
+  National Academy of Sciences up until 1970. Mathematicians and other
+  scientists who were National Academy of Science (NAS) members encouraged
+  younger colleagues by communicating their research announcements to the
+  Proceedings . For example, I can perhaps cite my own experiences. S.
+  Eilenberg and I benefited as follows (communicated, I think, by M. H. Stone):
+  ``Natural isomorphisms in group theory'' (1942) Proc. Natl. Acad. Sci. USA
+  28, 537\textendash 543; and ``Relations between homology and homotopy
+  groups'' (1943) Proc. Natl. Acad. Sci. USA 29, 155\textendash 158. The second
+  of these papers was the first introduction of a geometrical object
+  topologists now call an ``Eilenberg\textendash Mac Lane Space.'' This idea
+  was immediately accepted by leading topologists, with later detailed
+  presentation by the authors in specialized journals. The Proceedings
+  presentation of this idea helped Eilenberg and me by its promptness. The
+  first of these papers is a more striking case; it introduced the very
+  abstract idea of a ``category''\textemdash a subject then called ``general
+  abstract nonsense''! When Eilenberg and I submitted a full presentation in
+  1945 (to the Transactions of the American Mathematical Society ), we feared
+  that the editor would turn it down as too ``far out,'' not really
+  mathematics. So Eilenberg, who knew the editor well, persuaded him to choose
+  as referee a young mathematician\textemdash one whom we could influence
+  because he was then a junior member of the Applied Mathematics Group at
+  Columbia University (war research), where Eilenberg and I were then also
+  members, and I was Director. Happily the full paper was accepted, but the
+  subject itself was well off beat and not generally recognized, and it was
+  ignored till 1958, when a student of Eilenberg's made an important
+  breakthrough. So in this case publication in the Proceedings was \ldots%
+    }
+    \field{chapter}{Perspective}
+    \verb{doi}
+    \verb 10.1073/pnas.94.12.5983
+    \endverb
+    \field{issn}{0027-8424, 1091-6490}
+    \field{number}{12}
+    \field{pages}{5983\bibrangedash 5985}
+    \field{title}{The {{PNAS}} Way Back Then}
+    \field{volume}{94}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q37CNQGT/maclane1997.pdf.pdf;
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UMMFCMGQ/Lane - 1997 - The PN
+    \verb AS way back then.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DE94QVFT
+    \verb /5983.html
+    \endverb
+    \field{journaltitle}{Proceedings of the National Academy of Sciences}
+    \field{month}{06}
+    \field{year}{1997}
+  \endentry
+
   \entry{LloydEtAl13}{article}{}
     \name{author}{3}{}{%
       {{hash=LS}{%
@@ -3487,6 +3838,81 @@
     \field{eprinttype}{arxiv}
     \field{month}{09}
     \field{year}{2014}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{LorenzEtAl21}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LR}{%
+         family={Lorenz},
+         familyi={L\bibinitperiod},
+         given={Robin},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pearson},
+         familyi={P\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kartsaklis},
+         familyi={K\bibinitperiod},
+         given={Dimitri},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science -
+  Computation and Language,Computer Science - Machine Learning,Quantum Physics}
+    \strng{namehash}{LR+1}
+    \strng{fullhash}{LRPAMKKDCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Lor+21}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    Quantum Natural Language Processing (QNLP) deals with the design and
+  implementation of NLP models intended to be run on quantum hardware. In this
+  paper, we present results on the first NLP experiments conducted on Noisy
+  Intermediate-Scale Quantum (NISQ) computers for datasets of size {$>$}= 100
+  sentences. Exploiting the formal similarity of the compositional model of
+  meaning by Coecke et al. (2010) with quantum theory, we create
+  representations for sentences that have a natural mapping to quantum
+  circuits. We use these representations to implement and successfully train
+  two NLP models that solve simple sentence classification tasks on quantum
+  hardware. We describe in detail the main principles, the process and
+  challenges of these experiments, in a way accessible to NLP researchers, thus
+  paving the way for practical Quantum Natural Language Processing.%
+    }
+    \verb{eprint}
+    \verb 2102.12846
+    \endverb
+    \field{shorttitle}{{{QNLP}} in {{Practice}}}
+    \field{title}{{{QNLP}} in {{Practice}}: Running {{Compositional Models}} of
+  {{Meaning}} on a {{Quantum Computer}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/45BIXJVI/Lorenz et al. - 2021
+    \verb  - QNLP in Practice Running Compositional Models of .pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/ZTQZKJM6/2102.html
+    \endverb
+    \field{journaltitle}{arXiv:2102.12846 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{02}
+    \field{year}{2021}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
@@ -3706,6 +4132,254 @@
     \endverb
     \field{journaltitle}{The bulletin of mathematical biophysics}
     \field{year}{1943}
+  \endentry
+
+  \entry{MeichanetzidisEtAl20}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=dG}{%
+         family={{de Felice}},
+         familyi={d\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Quantum Physics}
+    \strng{namehash}{MK+1}
+    \strng{fullhash}{MKTAdGCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mei+20}
+    \field{extraalpha}{1}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    Natural language processing (NLP) is at the forefront of great advances in
+  contemporary AI, and it is arguably one of the most challenging areas of the
+  field. At the same time, with the steady growth of quantum hardware and
+  notable improvements towards implementations of quantum algorithms, we are
+  approaching an era when quantum computers perform tasks that cannot be done
+  on classical computers with a reasonable amount of resources. This provides a
+  new range of opportunities for AI, and for NLP specifically. Earlier work has
+  already demonstrated a potential quantum advantage for NLP in a number of
+  manners: (i) algorithmic speedups for search-related or classification tasks,
+  which are the most dominant tasks within NLP, (ii) exponentially large
+  quantum state spaces allow for accommodating complex linguistic structures,
+  (iii) novel models of meaning employing density matrices naturally model
+  linguistic phenomena such as hyponymy and linguistic ambiguity, among others.
+  In this work, we perform the first implementation of an NLP task on noisy
+  intermediate-scale quantum (NISQ) hardware. Sentences are instantiated as
+  parameterised quantum circuits. We encode word-meanings in quantum states and
+  we explicitly account for grammatical structure, which even in mainstream NLP
+  is not commonplace, by faithfully hard-wiring it as entangling operations.
+  This makes our approach to quantum natural language processing (QNLP)
+  particularly NISQ-friendly. Our novel QNLP model shows concrete promise for
+  scalability as the quality of the quantum hardware improves in the near
+  future.%
+    }
+    \verb{eprint}
+    \verb 2012.03756
+    \endverb
+    \field{title}{Grammar-{{Aware Question}}-{{Answering}} on {{Quantum
+  Computers}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/M8S86RYQ/Meichanetzidis et al
+    \verb . - 2020 - Grammar-Aware Question-Answering on Quantum Comput.pdf;/Us
+    \verb ers/alexis.toumi/WORK/Zotero/storage/TMLK5JSQ/Meichanetzidis et al. -
+    \verb  2020 - Grammar-Aware Question-Answering on Quantum Comput.pdf;/Users
+    \verb /alexis.toumi/WORK/Zotero/storage/HFXXKIAA/2012.html;/Users/alexis.to
+    \verb umi/WORK/Zotero/storage/Q9QNRCI7/2012.html
+    \endverb
+    \field{journaltitle}{ArXiv e-prints}
+    \field{eprinttype}{arxiv}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{MeichanetzidisEtAl20a}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gogioso},
+         familyi={G\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DFG}{%
+         family={De\bibnamedelima Felice},
+         familyi={D\bibinitperiod\bibinitdelim F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=CN}{%
+         family={Chiappori},
+         familyi={C\bibinitperiod},
+         given={Nicol{\`o}},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Quantum Physics}
+    \strng{namehash}{MK+1}
+    \strng{fullhash}{MKGSDFGCNTACB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mei+20}
+    \field{extraalpha}{2}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    In this work, we describe a full-stack pipeline for natural language
+  processing on near-term quantum computers, aka QNLP. The language modelling
+  framework we employ is that of compositional distributional semantics
+  (DisCoCat), which extends and complements the compositional structure of
+  pregroup grammars. Within this model, the grammatical reduction of a sentence
+  is interpreted as a diagram, encoding a specific interaction of words
+  according to the grammar. It is this interaction which, together with a
+  specific choice of word embedding, realises the meaning (or "semantics") of a
+  sentence. Building on the formal quantum-like nature of such interactions, we
+  present a method for mapping DisCoCat diagrams to quantum circuits. Our
+  methodology is compatible both with NISQ devices and with established Quantum
+  Machine Learning techniques, paving the way to near-term applications of
+  quantum technology to natural language processing.%
+    }
+    \field{booktitle}{Quantum {{Physics}} and {{Logic}} ({{QPL}})}
+    \verb{eprint}
+    \verb 2005.04147
+    \endverb
+    \field{title}{Quantum {{Natural Language Processing}} on {{Near}}-{{Term
+  Quantum Computers}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/5FUF9JMF/Meichanetzidis et al
+    \verb . - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Us
+    \verb ers/alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. -
+    \verb  2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users
+    \verb /alexis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 20
+    \verb 20 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi
+    \verb /WORK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zote
+    \verb ro/storage/NA5TLJV4/2005.html
+    \endverb
+    \field{eprinttype}{arxiv}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{MirandaEtAl21}{article}{}
+    \name{author}{5}{}{%
+      {{hash=MER}{%
+         family={Miranda},
+         familyi={M\bibinitperiod},
+         given={Eduardo\bibnamedelima Reck},
+         giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=YR}{%
+         family={Yeung},
+         familyi={Y\bibinitperiod},
+         given={Richie},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pearson},
+         familyi={P\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Quantum Physics}
+    \strng{namehash}{MER+1}
+    \strng{fullhash}{MERYRPAMKCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mir+21}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    There has been tremendous progress in Artificial Intelligence (AI) for
+  music, in particular for musical composition and access to large databases
+  for commercialisation through the Internet. We are interested in further
+  advancing this field, focusing on composition. In contrast to current
+  black-box AI methods, we are championing an interpretable compositional
+  outlook on generative music systems. In particular, we are importing methods
+  from the Distributional Compositional Categorical (DisCoCat) modelling
+  framework for Natural Language Processing (NLP), motivated by musical
+  grammars. Quantum computing is a nascent technology, which is very likely to
+  impact the music industry in time to come. Thus, we are pioneering a Quantum
+  Natural Language Processing (QNLP) approach to develop a new generation of
+  intelligent musical systems. This work follows from previous experimental
+  implementations of DisCoCat linguistic models on quantum hardware. In this
+  chapter, we present Quanthoven, the first proof-of-concept ever built, which
+  (a) demonstrates that it is possible to program a quantum computer to learn
+  to classify music that conveys different meanings and (b) illustrates how
+  such a capability might be leveraged to develop a system to compose
+  meaningful pieces of music. After a discussion about our current
+  understanding of music as a communication medium and its relationship to
+  natural language, the chapter focuses on the techniques developed to (a)
+  encode musical compositions as quantum circuits, and (b) design a quantum
+  classifier. The chapter ends with demonstrations of compositions created with
+  the system.%
+    }
+    \verb{eprint}
+    \verb 2111.06741
+    \endverb
+    \field{title}{A {{Quantum Natural Language Processing Approach}} to
+  {{Musical Intelligence}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/29YSIVS9/Miranda et al. - 202
+    \verb 1 - A Quantum Natural Language Processing Approach to .pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/EBTRPZAJ/2111.html
+    \endverb
+    \field{journaltitle}{arXiv:2111.06741 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{11}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{PednaultEtAl19}{article}{}
@@ -5016,6 +5690,36 @@
     \field{month}{12}
     \field{year}{2017}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{VicenteNieto21}{book}{}
+    \name{author}{1}{}{%
+      {{hash=VNI}{%
+         family={Vicente\bibnamedelima Nieto},
+         familyi={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+         given={Irene},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VNI1}
+    \strng{fullhash}{VNI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{VN21}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{abstract}{%
+    DiVA portal is a finding tool for research publications and student theses
+  written at the following 50 universities and research institutions.%
+    }
+    \field{title}{Towards {{Machine Translation}} with {{Quantum Computers}}}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/CMQTTBDH/Vicente Nieto - 2021
+    \verb  - Towards Machine Translation with Quantum Computers.pdf;/Users/alex
+    \verb is.toumi/WORK/Zotero/storage/BXINAL2M/record.html
+    \endverb
+    \field{year}{2021}
   \endentry
 
   \entry{Weaver55}{article}{}

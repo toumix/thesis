@@ -82,10 +82,10 @@ We argue that explainable AI requires to make the distributional black boxes tra
 
 DisCo models have their roots in neuropsychology rather than AI.
 Indeed, they first appeared as models of the brain rather than architectures of learning machines.
-In their seminal work~\cite{McCullochPitts43}, McCullogh and Pitts give the first formal definition of neural networks and argue that their ``all-or-nothing'' behaviour\footnote
+In their seminal work~\cite{McCullochPitts43}, McCullogh and Pitts give the first formal definition of neural networks and show how their ``all-or-nothing'' behaviour\footnote
 {A neuron's response is either maximal or zero, regardless of the stimulus strength.}
-make them as expressive as a fragment of propositional logic.
-Hebb~\cite{Hebb49} then introduced the first biological mechanism to explain learning and perception: ``neurons that fire together, wire together''.
+allow them to encode a fragment of propositional logic.
+Hebb~\cite{Hebb49} then introduced the first biological mechanism to explain learning and structured perception: ``neurons that fire together, wire together''.
 These computational models of the brain became the basis of \emph{connectionism}~\cite{Smolensky87,Smolensky88} and the \emph{neurosymbolic}~\cite{Hilario97} approach to AI: high-level symbolic reasoning emerges from low-level neural networks.
 An influential example is Smolensky's \emph{tensor product representation}~\cite{Smolensky90}, where discrete structures such as lists and trees are embedded into the tensor product of two vector spaces, one for variables and one for values.
 Concretely, a list $x_1, \dots, x_n$ of $n$ vectors of dimension $d$ is represented as a tensor $\sum_{i \leq n} \ket{i} \otimes x_i \in \mathbb{R}^n \otimes \mathbb{R}^d$.
@@ -101,11 +101,15 @@ This analogy allows to borrow well-established mathematical tools from quantum t
 However representing the meaning of sentences as quantum processes comes with a price: they can be exponentially hard to simulate classically.
 
 If DisCoCat models are intractable for classical computers, why not use a quantum computer instead?
-Zeng and Coecke~\cite{ZengCoecke16} answered this question with the first quantum natural language processing (QNLP) algorithm and the proof of a quadratic speedup on a sentence classification task.
+Zeng and Coecke~\cite{ZengCoecke16} answered this question with the first quantum natural language processing (QNLP) algorithm\footnote
+{We do not consider previous algorithms that are inspired by quantum theory but run on classical computers such as the frameworks of Chen~\cite{Chen02} and Blacoe et al.~\cite{BlacoeEtAl13}.}
+and the proof of a quadratic speedup on a sentence classification task.
 Wieber et al. ~\cite{WiebeEtAl19} later defined a QNLP algorithm based on a generalisation of the tensor product representation and proved it is \texttt{BQP}-complete: if any quantum algorithm has an exponential advantage, then in principle there must be one for QNLP.
 However promising they may be, both algorithms assume fault-tolerance and they are at least as far away from solving real-world problems as Grover and HHL.
 
-Do we really have to wait for fault-tolerant quantum computers before we can run the first QNLP experiments?
-The main point of this thesis is that we don't: we show it is possible to implement DisCoCat models on the NISQ machines available today.
-Future experiments will have to demonstrate that QNLP is more than a mere analogy and that it can achieve a \emph{quantum advantage on a useful task}.
-Before we can discuss our implementation in detail, the analogy has to be defined formally.
+This is where the work presented in this thesis comes in: we show it is possible to implement DisCoCat models on the machines available today.
+The author and collaborators~\cite{MeichanetzidisEtAl20a,CoeckeEtAl20} introduced the first NISQ-friendly framework for QNLP by translating DisCoCat models into variational quantum algorithms.
+We then implemented this framework and demonstrated the first QNLP experiment on a toy question-answering task~\cite{MeichanetzidisEtAl20} and more recent experiments showed empirical success on a larger-scale classification task~\cite{LorenzEtAl21}.
+Our framework was later applied to machine translation~\cite{AbbaszadeEtAl21,VicenteNieto21}, word-sense disambiguation~\cite{Hoffmann21} and even to generative music~\cite{MirandaEtAl21}.
+Future experiments will have to demonstrate that QNLP is more than a mere analogy and that it can achieve \emph{quantum advantage on a useful task}.
+But before we can discuss our implementation in detail, we have to make the DisCoCat analogy formal.
