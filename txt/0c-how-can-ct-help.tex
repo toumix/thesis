@@ -8,32 +8,58 @@ A striking aspect of the notation is that it is pictorial rather than sequential
 }{\textit{The Geometry of Tensor Calculus},\\
 Joyal and Street (1991)}
 
-``Every sufficiently good analogy is yearning to become a functor''~\cite{Baez06} and indeed, DisCoCat models are functors.
-Coecke et al.~\cite{CoeckeEtAl13} make a meta-analogy between DisCoCat models and \emph{topological quantum field theories} (TQFTs).
+``Every sufficiently good analogy is yearning to become a functor''~\cite{Baez06} and we will see that the analogy behind DisCoCat models is indeed a functor.
+Coecke et al.~\cite{CoeckeEtAl13} make a meta-analogy between their models of natural language and \emph{topological quantum field theories} (TQFTs).
 Intuitively, there is an analogy between regions of spacetime and quantum processes: both can be composed either in sequence or in parallel.
 TQFTs formalise this analogy: they assign a quantum system to each region of space and a quantum process to each region of spacetime, in a way that respects sequential and parallel composition.
-DisCoCat models assign a vector space to each grammatical type and a linear map to each grammatical derivation in the same structure-preserving way.
-Both TQFTs and DisCoCat can be given a one-sentence definition in the language of category theory: they are examples of functors into the category of vector spaces.
+In the same structure-preserving way, DisCoCat models assign a vector space to each grammatical type and a linear map to each grammatical derivation.
+Both TQFTs and DisCoCat can be given a one-sentence definition in terms of category theory: they are examples of \emph{functors into the category of vector spaces}.
 
-How can the same general abstract nonsense\footnote
-{Before category theory was introduced, it was half-jokingly called ``general abstract nonsense''~\cite{Lane97}.}
-apply both to quantum gravity and to natural language processing?
-And what is a functor exactly?
+How can the same piece of general abstract nonsense (category theory's nickname) apply to both quantum gravity and natural language processing?
+And how can this nonsense be of any help in the implementation of QNLP algorithms?
+This section will answer with a brief and biased history of category theory and its applications to quantum physics and computational linguistics, from an abstract framework for meta-mathematics to a concrete toolbox for NLP on quantum hardware.
+First, a short philosophical digression on the etymology of the words ``functor'' and ``category'' shall bring some light to their divergent meanings in mathematics and linguistics.
 
+The word ``functor'' first appears in Carnap's \emph{Logical syntax of language}~\cite{Carnap37} to describe what would be called a \emph{function symbol} in a modern textbook on first-order logic.
+He introduces them as a way to reduce the laws of empirical sciences like physics to the pure syntax of his formal logic, taking the example of a \emph{temperature functor} $T$ such that $T(3) = 5$ means ``the temperature at position 3 is 5''\footnote
+{MacLane~\cite{MacLane38} would later remark that Carnap's formal language cannot express the coordinate system for positions, nor the scale in which temperature is measured.}.
+In the linguistics community, this meaning has then drifted to become synonymous with \emph{function words} such as ``such'', ``as'', ``with'', etc. These words do not refer to anything in the world but serve as the grammatical glue between the \emph{lexical words} that describe things and actions.
+They represent less than one thousandth of our vocabulary but nearly half of the words we speak~\cite{ChungPennebaker07}.
 
-Category theory as the mathematics of analogy, started by studying the analogies of mathematics.
+Categories (from the ancient Greek \emph{\foreignlanguage{greek}{κατηγορία}}, ``that which can be said'') have a much older philosophical tradition.
+In his \emph{Categories}~\cite{Aristotle66}, Aristotle first makes the distinction between the simple forms of speech (the things that are ``said without any combination'' such as ``man'' or ``arguing'') and the composite ones such as ``a man argued''.
+He then classifies the simple, atomic things into ten categories: ``each signifies either substance or quantity or qualification or a relative or where or when or being-in-a-position or having or doing or being-affected''.
+A common explanation~\cite{Ryle37} for how Aristotle arrived at such a list is that it comes from the possible \emph{types of questions}: the answer to ``What is it?'' has to be a substance, the answer to ``How much?'' a quantity, etc.
+Although he was using language as a tool, his system of categories aims at classifying things in the world, not forms of speech: it was meant as an \emph{ontology}, not a grammar.
+In his \emph{Critique of Pure Reason}~\cite{Kant81}, Kant revisits Aristotle's system to classify not the world, but the mind: he defines categories of understanding rather than categories of being.
+The idea that every object (whether in the world or in the mind) is an object of a certain type has then become foundational in mathematical logic and Russell's \emph{theory of types}~\cite{Russell03}.
+The same idea has also had a great influence in linguistics and especially in the \emph{categorial grammar} tradition initiated by Ajdukiewicz~\cite{Ajdukiewicz35} and Bar-Hillel~\cite{Bar-Hillel53,Bar-Hillel54}, where categories have now become synonymous with \emph{grammatical types} such as nouns, verbs, etc.
 
-\begin{itemize}
-    \item Arguably the first instance of a functor, group extensions \cite{Baer34}
-    \item The word ``functor'' \cite{Carnap37} was only introduced three years later.
-    \item $Hom$ and $Ext$ \cite{EilenbergMacLane42a}
-    \item natural transformation \cite{EilenbergMacLane42b}
-    \item categories and functors \cite{EilenbergMacLane45}
+Independently of their use in linguistics, Eilenberg and MacLane~\cite{EilenbergMacLane42a, EilenbergMacLane42b, EilenbergMacLane45} gave categories and functors their current mathematical definition.
+Inspired by Aristotle's categories of things and Kant's categories of thoughts, they defined categories as types of \emph{mathematical structures}: sets, groups, spaces, etc.
+Their great insight was to focus not on the content of the objects (elements, points, etc.) but on the composition of the \emph{arrows} between them: functions, homomorphisms, continuous maps, etc.
+Applying the same insight to categories themselves, what really matters are the arrows between them: \emph{functors}, maps from one category to another that preserve the form of arrows.\footnote
+{We can play the same game again: what matters are not so much the functors themselves but the \emph{natural transformations} between them, which is what category theory was originally meant to define.
+To keep playing that game is to fall in the rabbit hole of infinity category theory~\cite{RiehlVerity16}.}
+A prototypical example is Poincaré's construction of the fundamental group of a topological space~\cite{Poincare95}, which can be defined as a functor from the category of (pointed) topological spaces to that of groups: every continuous map between spaces induces a homomorphism between their fundamental groups, in a way that respects composition and identity.
+Thus, the abstraction of category theory allowed to formalise the analogies between topology and algebra, proving results about one using methods from the other.
+It was then used as a tool for the foundation of algebraic geometry by the school of Grothendieck~\cite{GrothendieckDieudonne60}, which brought the analogy between geometric shapes and algebraic equations to a new level of abstraction and led to the development of \emph{topos theory}.
 
-\end{itemize}
+The establishment of category theory as an independent branch of mathematics, and as an alternative foundation for mathematics, owes much to the work of Lawvere.
+His influential Ph.D. thesis~\cite{Lawvere63} introduced \emph{functorial semantics}, a framework for model theory where logical theories are categories and their models are functors.
+He then set out to give an axiomatisation of the category of sets~\cite{Lawvere64} and the category of categories~\cite{Lawvere66}.
+His definition of elementary topoi as cartesian closed categories subsumed the notion of Grothendieck topos and put an emphasis on the foundational concept of \emph{adjunction}~\cite{Lawvere69a}.
+``Adjoint functors arise everywhere'' then became the slogan of MacLane's classic textbook \emph{Categories for the working mathematician}~\cite{MacLane71}.
+In parallel, Lambek~\cite{Lambek68,Lambek69,Lambek72} extended the Curry-Howard correspondance between logic and computation to a form a holy trinity with category theory: proofs and programs are arrows, logical formulae and data types are objects in cartesian closed categories.
+The discovery of this three-fold connection resulted in a wide range of applications of category theory to theoretical computer science, see Scott~\cite{Scott00} for a survey.
 
-Category theory starts in 1945 with Eilenberg and MacLane~\cite{EilenbergMacLane45} formalising what had become a colloquial expression among algebraic topologists: \emph{natural transformations}, which are usually depicted as square \emph{commutative diagrams}:
-$$FX \to FY$$
-$$GX \to GY$$
-In order to define them, it was necessary to define \emph{functors}, which is what a natural transformation is transforming, borrowing the word from Carnap.
-In order to define functors, it was necessary to define \emph{categories}, which is what functors themselves are transforming, borrowing the word from Aristotle.
+As the computer science community became a haven for applied category theorists, it should not come as a surprise that \emph{categorical quantum mechanics} (CQM) was first introduced by Abramsky and Coecke~\cite{AbramskyCoecke04,AbramskyCoecke08} in order to formalise quantum computation.
+In quantum theory as in formal logic, the notion of adjunction plays a central role: it gives an abstract definition of entanglement and a correctness proof of the teleportation protocol.
+
+monoidal categories and String diagrams, Hotz, Penrose, Joyal and Street
+
+pregroup diagrams and DisCoCat
+
+Lambek on categories for linguistics
+
+Wrap up?

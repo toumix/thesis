@@ -54,7 +54,7 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/R8S6DEMV/aaronson2015.pdf.pdf
     \verb ;/Users/alexis.toumi/WORK/Zotero/storage/LTYUZZQB/nphys3272.html
     \endverb
-    \field{journaltitle}{Nature Physics}
+    \field{journaltitle}{Nature Phys}
     \field{annotation}{%
     Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype:
   Comments \& Opinion Subject\_term: Quantum information Subject\_term\_id:
@@ -134,6 +134,88 @@
     \endverb
     \field{journaltitle}{IEEE Access}
     \field{year}{2021}
+  \endentry
+
+  \entry{AbramskyCoecke04}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AS}{%
+         family={Abramsky},
+         familyi={A\bibinitperiod},
+         given={Samson},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science,Mathematical
+  Physics,Mathematics - Category Theory,Quantum Physics}
+    \strng{namehash}{ASCB1}
+    \strng{fullhash}{ASCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{AC04}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{A Categorical Semantics of Quantum Protocols}
+    \field{volume}{quant-ph/0402130}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/P6MKS5N9/Abramsky and Coecke
+    \verb - 2004 - A categorical semantics of quantum protocols.pdf;/Users/alex
+    \verb is.toumi/WORK/Zotero/storage/H7FLT9NN/0402130.html
+    \endverb
+    \field{journaltitle}{CoRR}
+    \field{year}{2004}
+  \endentry
+
+  \entry{AbramskyCoecke08}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AS}{%
+         family={Abramsky},
+         familyi={A\bibinitperiod},
+         given={Samson},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Mathematics - Category Theory,Mathematics - Logic,Quantum Physics}
+    \strng{namehash}{ASCB1}
+    \strng{fullhash}{ASCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{AC08}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    This invited chapter in the Handbook of Quantum Logic and Quantum
+  Structures consists of two parts: 1. A substantially updated version of
+  quant-ph/0402130 by the same authors, which initiated the area of categorical
+  quantum mechanics, but had not yet been published in full length; 2. An
+  overview of the progress which has been made since then in this area.%
+    }
+    \verb{eprint}
+    \verb 0808.1023
+    \endverb
+    \field{title}{Categorical Quantum Mechanics}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/NAZCI32D/Abramsky and Coecke
+    \verb - 2008 - Categorical quantum mechanics.pdf;/Users/alexis.toumi/WORK/Z
+    \verb otero/storage/2JH64VTC/0808.html
+    \endverb
+    \field{journaltitle}{arXiv:0808.1023 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{08}
+    \field{year}{2008}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{AharonovBen-Or08}{article}{}
@@ -226,9 +308,35 @@
     \verb ;/Users/alexis.toumi/WORK/Zotero/storage/LQSDECD9/Aharonov and Ben-Or
     \verb  - 2008 - Fault-Tolerant Quantum Computation with Constant E.pdf
     \endverb
-    \field{journaltitle}{SIAM Journal on Computing}
+    \field{journaltitle}{SIAM J. Comput.}
     \field{month}{01}
     \field{year}{2008}
+  \endentry
+
+  \entry{Ajdukiewicz35}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AK}{%
+         family={Ajdukiewicz},
+         familyi={A\bibinitperiod},
+         given={Kazimierz},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AK1}
+    \strng{fullhash}{AK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ajd35}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Die Syntaktische {{Konnexit\"at}}}
+    \field{journaltitle}{Studia Philosophica}
+    \field{annotation}{%
+    English translation ``Syntactic Connexion" by H. Weber in McCall, S. (Ed.)
+  \{\textbackslash em Polish Logic\}, pp. 207--231, Oxford University Press,
+  Oxford, 1967%
+    }
+    \field{year}{1935}
   \endentry
 
   \entry{Ambainis04}{article}{}
@@ -266,9 +374,44 @@
     \verb antum search algorithms.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Z
     \verb 9DZQN8B/ambainis2004.pdf.pdf
     \endverb
-    \field{journaltitle}{ACM SIGACT News}
+    \field{journaltitle}{SIGACT News}
     \field{month}{06}
     \field{year}{2004}
+  \endentry
+
+  \entry{Aristotle66}{book}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Aristotle}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \name{translator}{1}{}{%
+      {{hash=AJL}{%
+         family={Ackrill},
+         familyi={A\bibinitperiod},
+         given={J.\bibnamedelima L.},
+         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Oxford [England] : Clarendon Press ; New York : Oxford University
+  Press}}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Ari}66}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    Bibliography: p. [156]-157; Includes index; \# 020540%
+    }
+    \field{isbn}{978-0-19-872086-7}
+    \field{title}{Categories, and {{De}} Interpretatione}
+    \field{langid}{english}
+    \field{year}{1966}
   \endentry
 
   \entry{ArunachalamEtAl15}{article}{}
@@ -324,7 +467,7 @@
     \verb pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZGB7N46W/Arunachalam et a
     \verb l. - 2015 - On the robustness of bucket brigade quantum RAM.pdf
     \endverb
-    \field{journaltitle}{New Journal of Physics}
+    \field{journaltitle}{New J. Phys.}
     \field{month}{12}
     \field{year}{2015}
   \endentry
@@ -849,40 +992,6 @@
     \field{year}{2019}
   \endentry
 
-  \entry{Baer34}{article}{}
-    \name{author}{1}{}{%
-      {{hash=BR}{%
-         family={Baer},
-         familyi={B\bibinitperiod},
-         given={Reinhold},
-         giveni={R\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{BR1}
-    \strng{fullhash}{BR1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Bae34}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \verb{doi}
-    \verb 10.1007/BF01170643
-    \endverb
-    \field{issn}{0025-5874, 1432-1823}
-    \field{number}{1}
-    \field{pages}{375\bibrangedash 416}
-    \field{title}{{Erweiterung von Gruppen und ihren Isomorphismen}}
-    \field{volume}{38}
-    \field{langid}{german}
-    \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/6SMTH6U5/Baer - 1934 - Erweit
-    \verb erung von Gruppen und ihren Isomorphismen.pdf
-    \endverb
-    \field{journaltitle}{Mathematische Zeitschrift}
-    \field{month}{12}
-    \field{year}{1934}
-  \endentry
-
   \entry{Baez06}{incollection}{}
     \name{author}{1}{}{%
       {{hash=BJ}{%
@@ -1101,6 +1210,74 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{Bar-Hillel53}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BY}{%
+         family={{Bar-Hillel}},
+         familyi={B\bibinitperiod},
+         given={Yehoshua},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BY1}
+    \strng{fullhash}{BY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Bar}53}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.2307/410452
+    \endverb
+    \field{issn}{00978507}
+    \field{number}{1}
+    \field{pages}{47}
+    \field{title}{A {{Quasi}}-{{Arithmetical Notation}} for {{Syntactic
+  Description}}}
+    \field{volume}{29}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/EYCNJNFF/Bar-Hillel - 1953 -
+    \verb A Quasi-Arithmetical Notation for Syntactic Descri.pdf
+    \endverb
+    \field{journaltitle}{Language}
+    \field{month}{01}
+    \field{year}{1953}
+  \endentry
+
+  \entry{Bar-Hillel54}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BY}{%
+         family={{Bar-Hillel}},
+         familyi={B\bibinitperiod},
+         given={Yehoshua},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BY1}
+    \strng{fullhash}{BY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Bar}54}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.2307/410265
+    \endverb
+    \field{issn}{00978507}
+    \field{number}{2}
+    \field{pages}{230}
+    \field{title}{Logical {{Syntax}} and {{Semantics}}}
+    \field{volume}{30}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/3JJAZK7V/bar-hillel1954.pdf.p
+    \verb df
+    \endverb
+    \field{journaltitle}{Language}
+    \field{month}{04}
+    \field{year}{1954}
+  \endentry
+
   \entry{BenedettiEtAl19}{article}{}
     \name{author}{3}{}{%
       {{hash=BM}{%
@@ -1202,7 +1379,7 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/8NLU85CP/Benioff - The comput
     \verb er as a physical system A microscopic q.pdf
     \endverb
-    \field{journaltitle}{Journal of Statistical Physics}
+    \field{journaltitle}{J Stat Phys}
     \field{month}{05}
     \field{year}{1980}
   \endentry
@@ -1282,7 +1459,7 @@
     \verb 7 - Strengths and Weaknesses of Quantum Computing.pdf;/Users/alexis.t
     \verb oumi/WORK/Zotero/storage/WBTHH36Y/bennett1997.pdf.pdf
     \endverb
-    \field{journaltitle}{SIAM Journal on Computing}
+    \field{journaltitle}{SIAM J. Comput.}
     \field{month}{10}
     \field{year}{1997}
   \endentry
@@ -1522,6 +1699,10 @@
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{title}{Logical Syntax of Language}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/JZFFREHW/Carnap - 1937 - Logi
+    \verb cal syntax of language.pdf
+    \endverb
     \field{year}{1937}
   \endentry
 
@@ -1715,9 +1896,57 @@
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/QRAM8RMF/PhysRevLett.80.html
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{04}
     \field{year}{1998}
+  \endentry
+
+  \entry{ChungPennebaker07}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CC}{%
+         family={Chung},
+         familyi={C\bibinitperiod},
+         given={Cindy},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Pennebaker},
+         familyi={P\bibinitperiod},
+         given={James},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CCPJ1}
+    \strng{fullhash}{CCPJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{CP07}
+    \field{extraalpha}{1}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    Language is the currency of most human social processes. We use words to
+  convey our emotions and thoughts, to tell stories, and to understand the
+  world. It is somewhat odd, then, that so few investigations in the social
+  sciences actually focus on natural language use among people in the real
+  world. There are many legitimate reasons for not studying what people say or
+  write. Historically, the analysis of text was slow, complex, and costly. The
+  purpose of this chapter is to suggest that social scientists in general and
+  social psychologists in particular should reconsider the value of language
+  studies. With recent advances in computer text analysis methods, we are now
+  able to explore basic social processes in new and rich ways that could not
+  have been done even a decade ago. When language has been studied at all
+  within social psychology, it has usually relied on fairly rigorous
+  experimental methods using an assortment of standardized human coding
+  procedures. These works are helping researchers to understand social
+  attribution (Fiedler \& Semin, 1992), intercultural communication (Hajek \&
+  Giles, 2003), and even how different cultures think about time (Boroditsky,
+  2001).%
+    }
+    \field{title}{The {{Psychological Functions}} of {{Function Words}}}
+    \field{journaltitle}{Social communication}
+    \field{month}{01}
+    \field{year}{2007}
   \endentry
 
   \entry{CladerEtAl13}{article}{}
@@ -1762,7 +1991,7 @@
     \verb  - Preconditioned Quantum Linear System Algorithm.pdf;/Users/alexis.t
     \verb oumi/WORK/Zotero/storage/DAVRPYS6/clader2013.pdf.pdf
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{06}
     \field{year}{2013}
   \endentry
@@ -1896,6 +2125,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{CP07}
+    \field{extraalpha}{2}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{booktitle}{Quantum Interaction, Papers from the 2007 {{AAAI}} Spring
@@ -2310,7 +2540,7 @@
     \verb e - 1945 - General theory of natural equivalences.pdf;/Users/alexis.t
     \verb oumi/WORK/Zotero/storage/THZ5E7C8/home.html
     \endverb
-    \field{journaltitle}{Transactions of the American Mathematical Society}
+    \field{journaltitle}{Trans. Amer. Math. Soc.}
     \field{year}{1945}
   \endentry
 
@@ -2473,7 +2703,7 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/8LDC2HMA/Feynman - 1982 - Sim
     \verb ulating physics with computers.pdf
     \endverb
-    \field{journaltitle}{International Journal of Theoretical Physics}
+    \field{journaltitle}{Int J Theor Phys}
     \field{month}{06}
     \field{year}{1982}
   \endentry
@@ -2645,7 +2875,7 @@
     \verb  2008 - Quantum Random Access Memory.pdf;/Users/alexis.toumi/WORK/Zot
     \verb ero/storage/Y83KPQUA/giovannetti2008.pdf.pdf
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{04}
     \field{year}{2008}
   \endentry
@@ -2909,6 +3139,40 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{GrothendieckDieudonne60}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GA}{%
+         family={Grothendieck},
+         familyi={G\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DJ}{%
+         family={Dieudonn{\'e}},
+         familyi={D\bibinitperiod},
+         given={Jean},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{GADJ1}
+    \strng{fullhash}{GADJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{GD60}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{number}{1}
+    \field{pages}{5\bibrangedash 214}
+    \field{title}{El\'ements de G\'eom\'etrie Alg\'ebrique}
+    \field{volume}{4}
+    \field{journaltitle}{Publications Math\'ematiques de l'Institut des Hautes
+  \'Etudes Scientifiques}
+    \field{year}{1960}
+  \endentry
+
   \entry{Grover97}{article}{}
     \name{author}{1}{}{%
       {{hash=GLK}{%
@@ -2955,7 +3219,7 @@
     \verb tum Mechanics helps in searching for a needle .pdf;/Users/alexis.toum
     \verb i/WORK/Zotero/storage/WB9DFVQL/9706033.html
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{eprinttype}{arxiv}
     \field{month}{07}
     \field{year}{1997}
@@ -3046,7 +3310,7 @@
     \verb  - Quantum Algorithm for Linear Systems of Equations.pdf;/Users/alexi
     \verb s.toumi/WORK/Zotero/storage/RIN93WE2/harrow2009.pdf.pdf
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{10}
     \field{year}{2009}
   \endentry
@@ -3272,8 +3536,7 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/BPU7ZYS4/hochreiter1998.pdf.p
     \verb df
     \endverb
-    \field{journaltitle}{International Journal of Uncertainty, Fuzziness and
-  Knowledge-Based Systems}
+    \field{journaltitle}{Int. J. Unc. Fuzz. Knowl. Based Syst.}
     \field{month}{04}
     \field{year}{1998}
   \endentry
@@ -3415,6 +3678,37 @@
     \verb 55 - The Georgetown-I.B.M. experiment.pdf
     \endverb
     \field{year}{2004}
+  \endentry
+
+  \entry{Kant81}{book}{}
+    \name{author}{1}{}{%
+      {{hash=KI}{%
+         family={Kant},
+         familyi={K\bibinitperiod},
+         given={Immanuel},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \name{translator}{1}{}{%
+      {{hash=SNK}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Norman\bibnamedelima Kemp},
+         giveni={N\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Read Books Ltd. (2011)}}%
+    }
+    \strng{namehash}{KI1}
+    \strng{fullhash}{KI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Kan81}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Critique of Pure Reason}
+    \field{year}{1781}
   \endentry
 
   \entry{KartsaklisEtAl13}{article}{}
@@ -3644,73 +3938,254 @@
     \field{year}{2011}
   \endentry
 
-  \entry{Lane97}{article}{}
+  \entry{Lambek68}{article}{}
     \name{author}{1}{}{%
-      {{hash=LSM}{%
-         family={Lane},
+      {{hash=LJ}{%
+         family={Lambek},
          familyi={L\bibinitperiod},
-         given={Saunders\bibnamedelima Mac},
-         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+         given={Joachim},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{LJ1}
+    \strng{fullhash}{LJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lam68}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{4}
+    \field{pages}{287\bibrangedash 318}
+    \field{title}{Deductive Systems and Categories}
+    \field{volume}{2}
+    \field{journaltitle}{Mathematical Systems Theory}
+    \field{year}{1968}
+  \endentry
+
+  \entry{Lambek69}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=LJ}{%
+         family={Lambek},
+         familyi={L\bibinitperiod},
+         given={Joachim},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{LJ1}
+    \strng{fullhash}{LJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lam69}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Category Theory, Homology Theory and Their Applications
+  {{I}}}
+    \field{pages}{76\bibrangedash 122}
+    \field{title}{Deductive Systems and Categories {{II}}. {{Standard}}
+  Constructions and Closed Categories}
+    \field{year}{1969}
+  \endentry
+
+  \entry{Lambek72}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=LJ}{%
+         family={Lambek},
+         familyi={L\bibinitperiod},
+         given={Joachim},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \strng{namehash}{LJ1}
+    \strng{fullhash}{LJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lam72}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Toposes, Algebraic Geometry and Logic}
+    \field{pages}{57\bibrangedash 82}
+    \field{title}{Deductive Systems and Categories {{III}}. {{Cartesian}}
+  Closed Categories, Intuitionist Propositional Calculus, and Combinatory
+  Logic}
+    \field{year}{1972}
+  \endentry
+
+  \entry{Lawvere63}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F.\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LFW1}
+    \strng{fullhash}{LFW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law63}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{issn}{0027-8424}
+    \field{number}{5}
+    \field{pages}{869\bibrangedash 872}
+    \field{title}{Functorial {{Semantics}} of {{Algebraic Theories}}}
+    \field{volume}{50}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/DNPEZYTK/Lawvere - 1968 - Som
+    \verb e algebraic problems in the context of functori.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the National Academy of Sciences of the
+  United States of America}
+    \field{year}{1963}
+  \endentry
+
+  \entry{Lawvere64}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
       {{National Academy of Sciences}}%
     }
-    \strng{namehash}{LSM1}
-    \strng{fullhash}{LSM1}
+    \strng{namehash}{LFW2}
+    \strng{fullhash}{LFW2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelalpha}{Lan97}
+    \field{labelalpha}{Law64}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{6}
+    \field{pages}{1506}
+    \field{title}{An Elementary Theory of the Category of Sets}
+    \field{volume}{52}
+    \field{journaltitle}{Proceedings of the National academy of Sciences of the
+  United States of America}
+    \field{year}{1964}
+  \endentry
+
+  \entry{Lawvere66}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F.\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \name{editor}{4}{}{%
+      {{hash=ES}{%
+         family={Eilenberg},
+         familyi={E\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HDK}{%
+         family={Harrison},
+         familyi={H\bibinitperiod},
+         given={D.\bibnamedelima K.},
+         giveni={D\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={MacLane},
+         familyi={M\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=RH}{%
+         family={R{\"o}hrl},
+         familyi={R\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Berlin Heidelberg}}%
+    }
+    \keyw{Abstract Category,Basic Theory,Category Theory,Elementary Theory,Full
+  Subcategory}
+    \strng{namehash}{LFW3}
+    \strng{fullhash}{LFW3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law66}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{abstract}{%
-    This essay is to describe my experience with the Proceedings of the
-  National Academy of Sciences up until 1970. Mathematicians and other
-  scientists who were National Academy of Science (NAS) members encouraged
-  younger colleagues by communicating their research announcements to the
-  Proceedings . For example, I can perhaps cite my own experiences. S.
-  Eilenberg and I benefited as follows (communicated, I think, by M. H. Stone):
-  ``Natural isomorphisms in group theory'' (1942) Proc. Natl. Acad. Sci. USA
-  28, 537\textendash 543; and ``Relations between homology and homotopy
-  groups'' (1943) Proc. Natl. Acad. Sci. USA 29, 155\textendash 158. The second
-  of these papers was the first introduction of a geometrical object
-  topologists now call an ``Eilenberg\textendash Mac Lane Space.'' This idea
-  was immediately accepted by leading topologists, with later detailed
-  presentation by the authors in specialized journals. The Proceedings
-  presentation of this idea helped Eilenberg and me by its promptness. The
-  first of these papers is a more striking case; it introduced the very
-  abstract idea of a ``category''\textemdash a subject then called ``general
-  abstract nonsense''! When Eilenberg and I submitted a full presentation in
-  1945 (to the Transactions of the American Mathematical Society ), we feared
-  that the editor would turn it down as too ``far out,'' not really
-  mathematics. So Eilenberg, who knew the editor well, persuaded him to choose
-  as referee a young mathematician\textemdash one whom we could influence
-  because he was then a junior member of the Applied Mathematics Group at
-  Columbia University (war research), where Eilenberg and I were then also
-  members, and I was Director. Happily the full paper was accepted, but the
-  subject itself was well off beat and not generally recognized, and it was
-  ignored till 1958, when a student of Eilenberg's made an important
-  breakthrough. So in this case publication in the Proceedings was \ldots%
+    In the mathematical development of recent decades one sees clearly the rise
+  of the conviction that the relevant properties of mathematical objects are
+  those which can be stated in terms of their abstract structure rather than in
+  terms of the elements which the objects were thought to be made of. The
+  question thus naturally arises whether one can give a foundation for
+  mathematics which expresses wholeheartedly this conviction concerning what
+  mathematics is about, and in particular in which classes and membership in
+  classes do not play any role. Here by ``foundation'' we mean a single system
+  of first-order axioms in which all usual mathematical objects can be defined
+  and all their usual properties proved. A foundation of the sort we have in
+  mind would seemingly be much more natural and readily-useable than the
+  classical one when developing such subjects as algebraic topology, functional
+  analysis, model theory of general algebraic systems, etc. Clearly any such
+  foundation would have to reckon with the Eilenberg-MacLane theory of
+  categories and functors. The author believes, in fact, that the most
+  reasonable way to arrive at a foundation meeting these requirements is simply
+  to write down axioms descriptive of properties which the
+  intuitively-conceived category of all categories has until an
+  intuitively-adequate list is attained; that is essentially how the theory
+  described below was arrived at. Various metatheorems should of course then be
+  proved to help justify the feeling of adequacy.%
     }
-    \field{chapter}{Perspective}
-    \verb{doi}
-    \verb 10.1073/pnas.94.12.5983
-    \endverb
-    \field{issn}{0027-8424, 1091-6490}
-    \field{number}{12}
-    \field{pages}{5983\bibrangedash 5985}
-    \field{title}{The {{PNAS}} Way Back Then}
-    \field{volume}{94}
+    \field{booktitle}{Proceedings of the {{Conference}} on {{Categorical
+  Algebra}}}
+    \field{isbn}{978-3-642-99902-4}
+    \field{pages}{1\bibrangedash 20}
+    \field{title}{The {{Category}} of {{Categories}} as a {{Foundation}} for
+  {{Mathematics}}}
     \field{langid}{english}
-    \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q37CNQGT/maclane1997.pdf.pdf;
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/UMMFCMGQ/Lane - 1997 - The PN
-    \verb AS way back then.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DE94QVFT
-    \verb /5983.html
+    \field{year}{1966}
+  \endentry
+
+  \entry{Lawvere69a}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F.\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LFW3}
+    \strng{fullhash}{LFW3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law69}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{doi}
+    \verb 10.1111/j.1746-8361.1969.tb01194.x
     \endverb
-    \field{journaltitle}{Proceedings of the National Academy of Sciences}
-    \field{month}{06}
-    \field{year}{1997}
+    \field{number}{34}
+    \field{pages}{281\bibrangedash 296}
+    \field{title}{Adjointness in {{Foundations}}}
+    \field{volume}{23}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/GJYAVB2V/Lawvere - 1969 - Adj
+    \verb ointness in Foundations.pdf
+    \endverb
+    \field{journaltitle}{Dialectica}
+    \field{year}{1969}
   \endentry
 
   \entry{LloydEtAl13}{article}{}
@@ -3916,6 +4391,66 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{MacLane38}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MS}{%
+         family={MacLane},
+         familyi={M\bibinitperiod},
+         given={Saunders},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{American Mathematical Society}}%
+    }
+    \strng{namehash}{MS1}
+    \strng{fullhash}{MS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mac38}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{3}
+    \field{pages}{171\bibrangedash 176}
+    \field{title}{Carnap on Logical Syntax}
+    \field{volume}{44}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/75CYZAI3/S0002-9904-1938-0669
+    \verb 4-3.pdf
+    \endverb
+    \field{journaltitle}{Bulletin of the American Mathematical Society}
+    \field{year}{1938}
+  \endentry
+
+  \entry{MacLane71}{book}{}
+    \name{author}{1}{}{%
+      {{hash=MS}{%
+         family={MacLane},
+         familyi={M\bibinitperiod},
+         given={Saunders},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer New York}}%
+    }
+    \strng{namehash}{MS1}
+    \strng{fullhash}{MS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mac71}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{isbn}{978-0-387-98403-2}
+    \field{series}{Graduate {{Texts}} in {{Mathematics}}}
+    \field{title}{Categories for the {{Working Mathematician}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/D6RD25MP/Lane - 1998 - Catego
+    \verb ries for the Working Mathematician.pdf
+    \endverb
+    \field{year}{1971}
+  \endentry
+
   \entry{Manin80}{article}{}
     \name{author}{1}{}{%
       {{hash=MY}{%
@@ -4010,7 +4545,7 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/IN48T6QK/McClean et al. - 201
     \verb 6 - The theory of variational hybrid quantum-classical.pdf
     \endverb
-    \field{journaltitle}{New Journal of Physics}
+    \field{journaltitle}{New J. Phys.}
     \field{month}{02}
     \field{year}{2016}
   \endentry
@@ -4090,7 +4625,7 @@
     \verb 8 - Barren plateaus in quantum neural network training.pdf;/Users/ale
     \verb xis.toumi/WORK/Zotero/storage/KF8G6H4I/1803.html
     \endverb
-    \field{journaltitle}{Nature Communications}
+    \field{journaltitle}{Nat Commun}
     \field{eprinttype}{arxiv}
     \field{month}{12}
     \field{year}{2018}
@@ -4577,7 +5112,7 @@
     \verb 4 - A variational eigenvalue solver on a photonic quan.pdf;/Users/ale
     \verb xis.toumi/WORK/Zotero/storage/4MFJATU9/ncomms5213.html
     \endverb
-    \field{journaltitle}{Nature Communications}
+    \field{journaltitle}{Nat Commun}
     \field{annotation}{%
     Bandiera\_abtest: a Cc\_license\_type: cc\_y Cg\_type: Nature Research
   Journals Primary\_atype: Research Subject\_term: Applied physics;Quantum
@@ -4648,9 +5183,32 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/8CP4P37R/Pesah et al. - 2021
     \verb - Absence of Barren Plateaus in Quantum Convolutiona.pdf
     \endverb
-    \field{journaltitle}{Physical Review X}
+    \field{journaltitle}{Phys. Rev. X}
     \field{month}{10}
     \field{year}{2021}
+  \endentry
+
+  \entry{Poincare95}{book}{}
+    \name{author}{1}{}{%
+      {{hash=PH}{%
+         family={Poincar{\'e}},
+         familyi={P\bibinitperiod},
+         given={Henri},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Gauthier-Villars Paris, France}}%
+    }
+    \strng{namehash}{PH1}
+    \strng{fullhash}{PH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Poi95}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{title}{Analysis Situs}
+    \field{year}{1895}
   \endentry
 
   \entry{Post47}{article}{}
@@ -4769,9 +5327,41 @@
     \verb 2014 - Quantum Support Vector Machine for Big Data Classi.pdf;/Users/
     \verb alexis.toumi/WORK/Zotero/storage/G9UYVYRF/rebentrost2014.pdf.pdf
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{09}
     \field{year}{2014}
+  \endentry
+
+  \entry{RiehlVerity16}{article}{}
+    \name{author}{2}{}{%
+      {{hash=RE}{%
+         family={Riehl},
+         familyi={R\bibinitperiod},
+         given={Emily},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=VD}{%
+         family={Verity},
+         familyi={V\bibinitperiod},
+         given={Dominic},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{REVD1}
+    \strng{fullhash}{REVD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{RV16}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{eprint}
+    \verb 1608.05314
+    \endverb
+    \field{title}{Infinity Category Theory from Scratch}
+    \field{journaltitle}{arXiv preprint arXiv:1608.05314}
+    \field{eprinttype}{arxiv}
+    \field{year}{2016}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{RumelhartEtAl86}{article}{}
@@ -4839,6 +5429,60 @@
     }
     \field{month}{10}
     \field{year}{1986}
+  \endentry
+
+  \entry{Russell03}{book}{}
+    \name{author}{1}{}{%
+      {{hash=RB}{%
+         family={Russell},
+         familyi={R\bibinitperiod},
+         given={Bertrand},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Routledge}}%
+    }
+    \strng{namehash}{RB1}
+    \strng{fullhash}{RB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Rus03}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{The Principles of Mathematics}
+    \field{year}{1903}
+  \endentry
+
+  \entry{Ryle37}{article}{}
+    \name{author}{1}{}{%
+      {{hash=RG}{%
+         family={Ryle},
+         familyi={R\bibinitperiod},
+         given={G.},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{[Aristotelian Society, Wiley]}}%
+    }
+    \strng{namehash}{RG1}
+    \strng{fullhash}{RG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ryl37}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{issn}{0066-7374}
+    \field{pages}{189\bibrangedash 206}
+    \field{title}{Categories}
+    \field{volume}{38}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/QQ9KNU83/Ryle - 1937 - Catego
+    \verb ries.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the Aristotelian Society}
+    \field{year}{1937}
   \endentry
 
   \entry{SaltonEtAl75}{article}{}
@@ -5002,7 +5646,7 @@
     \verb - 2019 - Quantum machine learning in feature Hilbert spaces.pdf;/User
     \verb s/alexis.toumi/WORK/Zotero/storage/EETXFAIS/1803.html
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{eprinttype}{arxiv}
     \field{month}{02}
     \field{year}{2019}
@@ -5066,6 +5710,32 @@
     \field{journaltitle}{IEEE Transactions on Signal Processing}
     \field{month}{11}
     \field{year}{1997}
+  \endentry
+
+  \entry{Scott00}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=SPJ}{%
+         family={Scott},
+         familyi={S\bibinitperiod},
+         given={Phill\bibnamedelima J},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Elsevier}}%
+    }
+    \strng{namehash}{SPJ1}
+    \strng{fullhash}{SPJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Sco00}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Handbook of Algebra}
+    \field{pages}{3\bibrangedash 77}
+    \field{title}{Some Aspects of Categories in Computer Science}
+    \field{volume}{2}
+    \field{year}{2000}
   \endentry
 
   \entry{ShepherdBremner09}{article}{}
@@ -5281,7 +5951,7 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/PZ74KTS6/smolensky1987.pdf.pd
     \verb f
     \endverb
-    \field{journaltitle}{Artificial Intelligence Review}
+    \field{journaltitle}{Artif Intell Rev}
     \field{year}{1987}
   \endentry
 
@@ -5789,7 +6459,7 @@
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/EM34SBMH/wiebe2012.pdf.pdf
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{08}
     \field{year}{2012}
   \endentry
@@ -6274,7 +6944,7 @@
     \verb trong quantum computational advantage using a sup.pdf;/Users/alexis.t
     \verb oumi/WORK/Zotero/storage/KQKPKYGB/PhysRevLett.127.html
     \endverb
-    \field{journaltitle}{Physical Review Letters}
+    \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{10}
     \field{year}{2021}
   \endentry
