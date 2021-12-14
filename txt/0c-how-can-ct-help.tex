@@ -4,9 +4,8 @@
 \addcontentsline{toc}{section}{How can category theory help?}
 
 \justepigraph{
-A striking aspect of the notation is that it is pictorial rather than sequential or alphabetical. This made it difficult to print, which partly explains why no rigorous theory was developed.
-}{\textit{The Geometry of Tensor Calculus},\\
-Joyal and Street (1991)}
+ It has been suggested that the functor $\Phi$ may be used for catching lions: write the lion's name on a piece of paper and then apply $\Phi$, having first made sure that the paper is inside a cage.
+}{\textit{Categorial and Categorical Grammars}, Joachim Lambek (1988)}
 
 ``Every sufficiently good analogy is yearning to become a functor''~\cite{Baez06} and we will see that the analogy behind DisCoCat models is indeed a functor.
 Coecke et al.~\cite{CoeckeEtAl13} make a meta-analogy between their models of natural language and \emph{topological quantum field theories} (TQFTs).
@@ -45,21 +44,58 @@ A prototypical example is Poincaré's construction of the fundamental group of a
 Thus, the abstraction of category theory allowed to formalise the analogies between topology and algebra, proving results about one using methods from the other.
 It was then used as a tool for the foundation of algebraic geometry by the school of Grothendieck~\cite{GrothendieckDieudonne60}, which brought the analogy between geometric shapes and algebraic equations to a new level of abstraction and led to the development of \emph{topos theory}.
 
-The establishment of category theory as an independent branch of mathematics, and as an alternative foundation for mathematics, owes much to the work of Lawvere.
-His influential Ph.D. thesis~\cite{Lawvere63} introduced \emph{functorial semantics}, a framework for model theory where logical theories are categories and their models are functors.
-He then set out to give an axiomatisation of the category of sets~\cite{Lawvere64} and the category of categories~\cite{Lawvere66}.
-His definition of elementary topoi as cartesian closed categories subsumed the notion of Grothendieck topos and put an emphasis on the foundational concept of \emph{adjunction}~\cite{Lawvere69a}.
-``Adjoint functors arise everywhere'' then became the slogan of MacLane's classic textbook \emph{Categories for the working mathematician}~\cite{MacLane71}.
-In parallel, Lambek~\cite{Lambek68,Lambek69,Lambek72} extended the Curry-Howard correspondance between logic and computation to a form a holy trinity with category theory: proofs and programs are arrows, logical formulae and data types are objects in cartesian closed categories.
-The discovery of this three-fold connection resulted in a wide range of applications of category theory to theoretical computer science, see Scott~\cite{Scott00} for a survey.
+The establishment of category theory as an independent discipline and as a foundation for mathematics owes much to the work of Lawvere.
+His influential Ph.D. thesis~\cite{Lawvere63} on \emph{functorial semantics} set up a framework for model theory where logical theories are categories and their models are functors.
+He then undertook the axiomatisation of the category of sets~\cite{Lawvere64} and the category of categories~\cite{Lawvere66}.
+The resulting notion of elementary topos~\cite{Lawvere70a} subsumed Grothendieck's definition and emphasised the foundational concept of \emph{adjunction}~\cite{Lawvere69a,Lawvere70}.
+``Adjoint functors arise everywhere'' became the slogan of MacLane's classic textbook \emph{Categories for the working mathematician}~\cite{MacLane71}.
+Lambek~\cite{Lambek68,Lambek69,Lambek72} used the related notion of \emph{cartesian closed categories} to extend the Curry-Howard correspondance between logic and computation into a trinity with category theory: proofs and programs are arrows, logical formulae and data types are objects.
+The discovery of this three-fold connection resulted in a wide range of applications of category theory to theoretical computer science, surveyed in Scott~\cite{Scott00}.
 
-As the computer science community became a haven for applied category theorists, it should not come as a surprise that \emph{categorical quantum mechanics} (CQM) was first introduced by Abramsky and Coecke~\cite{AbramskyCoecke04,AbramskyCoecke08} in order to formalise quantum computation.
-In quantum theory as in formal logic, the notion of adjunction plays a central role: it gives an abstract definition of entanglement and a correctness proof of the teleportation protocol.
+This unification of mathematics, logic and computer science has been followed by an ongoing program of categorical foundations for physics, initiated by Lawvere's topos-theoretic treatment of classical dynamics~\cite{Lawvere79} and continuum physics~\cite{LawvereSchanuel86} with Schanuel.
+As we mentioned at the start of this section, the work of Atiyah~\cite{Atiyah88}, Baez and Dolan~\cite{BaezDolan95} on TQFTs showed categories and functors to be essential tools in the grand unification project of quantum gravity~\cite{Baez06}.
+This now quaternary analogy between physics, mathematics, logic and computation was popularised by Baez and Stay in their \emph{Rosetta Stone}~\cite{BaezStay09}.
+On more concrete grounds, this connection between category theory and quantum physics appeared in Selinger's proposal of a quantum programming language~\cite{Selinger04} and the development of a quantum lambda calculus~\cite{VanTonder04,SelingerValiron06,SelingerEtAl09}.
+The same insight blossomed in the school of \emph{categorical quantum mechanics} (CQM) led by Abramsky and Coecke~\cite{AbramskyCoecke04,AbramskyCoecke08}, where quantum processes are arrows in \emph{compact closed categories}.
+This approach culminated in the \emph{ZX calculus} of Coecke and Duncan~\cite{CoeckeDuncan08,CoeckeDuncan11}, a categorical axiomatisation which was proved complete for qubit quantum computing~\cite{JeandelEtAl18a,HadzihasanovicEtAl18}
+with applications including error correction \cite{ChancellorEtAl18,GidneyFowler19}, circuit optimisation~\cite{KissingerVanDeWetering20,DuncanEtAl20,DeBeaudrapEtAl20}, compilation \cite{CowtanEtAl20,DeGriendDuncan20} and extraction \cite{BackensEtAl20}.
 
-monoidal categories and String diagrams, Hotz, Penrose, Joyal and Street
+In quantum computing as well, adjunction is fundamental: it underlies the definition of entanglement and the proof of correctness for the \emph{teleportation protocol}.
+Back in 2004 when Coecke first presented this result at the McGill category theory seminar, Lambek immediately pointed out the analogy with his \emph{pregroup grammars}~\cite{Lambek99,Lambek01} where adjunction is the only grammatical rule\footnote
+{See \cite{Coecke19} for a first-hand account of this story and a praise of Jim Lambek.}.
+Half a century beforehand, Lambek~\cite{Lambek58,Lambek59,Lambek61} had started to unravel the analogy between the derivations in categorial grammars and proof trees in mathematical logic.
+He then extended this analogy in \emph{Categorial and categorical grammar}~\cite{Lambek88} where he showed that these grammatical derivations are in fact arrows in \emph{closed monoidal categories} and proposed to cast Montague semantics as a topos-valued functor.
+Later, he argued not ``that categories should play a role in linguistics, but rather that they already do''~\cite{Lambek99b}.
+Indeed, Hotz~\cite{Hotz66} had already proved that Chomsky's generative grammars were \emph{free monoidal categories}, although his original German article was never translated to English and remains confidential.
+The idea of using functors as semantics had appeared implicitly in Knuth~\cite{Knuth68a} in the context-free case and was made explicit by Benson~\cite{Benson70a} for unrestricted grammars.
+From this categorical formulation of linguistics, Lambek~\cite{Lambek10} first suggested the analogy between linguistics and physics which is the basis of this thesis: \emph{pregroup reductions as quantum processes}.
 
-pregroup diagrams and DisCoCat
+It is remarkable that Lambek could foresee QNLP without \emph{string diagrams}\footnote
+{String diagrams do not appear in any of Lambek's published work.
+Instead, he either uses lines of equations, proof trees or ``underlinks'' for pregroup adjunctions~\cite{Lambek08}.
+He admits ``not having had the patience to absorb'' the topological definition of Joyal-Street string diagrams~\cite{Lambek10}.
+}, probably the most powerful tool at the disposition of the applied category theorist.
+They first appeared in another confidential article from Hotz~\cite{Hotz65} as a formalisation of the diagrams commonly used in electronics.
+Penrose~\cite{Penrose71} then used the same notation as an informal shortcut for tedious tensor calculations, and later applied it to relativity theory with Rindler~\cite{PenroseRindler84}.
+Joyal and Street~\cite{JoyalStreet88,JoyalStreet91,JoyalStreet95} gave the first topological definition of string diagrams and characterised them as the arrows of free monoidal categories.
+At first a piece of mathematical folklore that was hand-drawn on blackboards and rarely included in publications, string diagrams were published at a much bigger scale with the advent of typesetting tools like \LaTeX and Ti\emph{k}Z.
+In Selinger's survey~\cite{Selinger10}, the hierarchy of categorical structures (symmetric, compact closed, etc.) was made to correspond with a hierarchy of graphical gadgets (swaps, wire bending, etc.).
+Prominent examples of  \emph{Picturing Quantum Processes}~\cite{CoeckeKissinger17} where Coecke and Kissinger introduce quantum theory with over a thousand diagrams.
+We cite a few of the growing list of applications:
+electronics~\cite{BaezFong15} and chemistry~\cite{BaezPollard17},
+control theory~\cite{BaezErbele14} and concurrency~\cite{BonchiEtAl14a},
+databases~\cite{BonchiEtAl18} and knowledge representation \cite{Patterson17},
+Bayesian inference~\cite{CoeckeSpekkens12,ChoJacobs19} and causality~\cite{KissingerUijlen19},
+cognition~\cite{BoltEtAl17} and game theory~\cite{GhaniEtAl18},
+functional programming \cite{Riley18} and machine learning~\cite{FongEtAl17}.
 
-Lambek on categories for linguistics
+If they are a great tool for writing scientific papers, string diagrams can also be a powerful data structure for developing software applications.
 
-Wrap up?
+quantomatic~\cite{KissingerZamdzhiev15} and PyZX~\cite{KissingerVanDeWetering19}
+
+Globular~\cite{BarEtAl18} and homotopy.io~\cite{ReutterVicary19}
+
+Catlab~\cite{PattersonEtAl21} and cartographer~\cite{SobocinskiEtAl19}
+
+String diagrams are the main data structure of our QNLP algorithms: we first construct diagrams for sentences, then translate these diagrams into quantum circuits and send them as instructions to a quantum computer.
+As none of the existing category theory software was flexible enough to interface a language parser with a quantum compiler, we had to implement our own: DisCoPy~\cite{DeFeliceEtAl20}.
