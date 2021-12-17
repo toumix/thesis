@@ -1,0 +1,48 @@
+%!TEX root = ../THESIS.tex
+
+\section*{Contributions}
+\addcontentsline{toc}{section}{Contributions}
+
+The first chapter is an extended version of the DisCoPy paper~\cite{FeliceEtAl20a}.
+It emerged from a dialectic teacher-student collaboration with Giovani de Felice: implementing our own category theory library was a way to teach him Python programming.
+Bob Coecke then added the capital letters to the name of DisCoPy.
+We\footnote
+{The ``we'' of this section refers to the author  alone.
+Although we believe that science is collaboration and that the notion of personal contribution is obsolete, it is in fact required by university regulations: ``Where some part of the thesis is not solely the work of the candidate or has been carried out in collaboration with one or more persons, the candidate shall submit a clear statement of the extent of his or her own contribution.''}
+list our contributions:
+\begin{itemize
+}
+\item We give an elementary definition of string diagrams for monoidal categories.
+Our construction decomposes the free monoidal category construction into three basic steps: 1) a layer monad on the category of monoidal signatures, 2) the free premonoidal category as a free category of layers and 3) the free monoidal category as a quotient by interchangers.
+To the best of our knowledge, this \emph{premonoidal approach} had been relegated to mathematical folklore: it was known by those who knew, yet it never appeared in print.
+\item We prove the equivalence between our elementary definition and the topological definition of Joyal and Street~\cite{JoyalStreet88}.
+One side of this equivalence underlies the drawing algorithm of DisCoPy, the other side is the basis of a prototype for an automatic diagram recognition algorithm.
+\item We describe our object-oriented implementation of monoidal category theory.
+The hierarchy of categorical structures (monoidal, closed, rigid, etc.) is encoded in a hierarchy of Python classes and an inheritance mechanism implements the free-forgetful adjunctions between them.
+\item We discuss the relationship between our premonoidal approach and the existing graph-based data structures for diagrams in symmetric monoidal categories.
+\end{itemize
+}
+The second chapter builds on \cite{MeichanetzidisEtAl20,CoeckeEtAl20,MeichanetzidisEtAl20a}
+
+\pagebreak
+\section*{Publications}
+\addcontentsline{toc}{section}{Publications}
+
+The material presented in this thesis builds on the following publications.
+\begin{itemize}[label={}]
+\item \enumcite{MeichanetzidisEtAl20a}\vspace{-10pt}
+\item \enumcite{FeliceEtAl20a}\vspace{-10pt}
+\item \enumcite{CoeckeEtAl20}\vspace{-10pt}
+\item \enumcite{MeichanetzidisEtAl20}\vspace{-10pt}
+\item \enumcite{ToumiEtAl21a}
+\end{itemize}
+During his DPhil, the author has also published the following articles.
+\begin{itemize}[label={}]
+\item \enumcite{FeliceEtAl19}\vspace{-10pt}
+\item \enumcite{FeliceEtAl20}\vspace{-10pt}
+\item \enumcite{ShieblerEtAl20}
+\item \enumcite{KartsaklisEtAl21}\vspace{-10pt}
+\item \enumcite{ToumiKoziell-Pipe21}
+\item \enumcite{CoeckeEtAl21}\vspace{-10pt}
+\item \enumcite{McPheatEtAl21}
+\end{itemize}

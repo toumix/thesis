@@ -1033,9 +1033,11 @@
          given={Hector},
          giveni={H\bibinitperiod},
       }}%
-      {{hash=dG}{%
-         family={{de Felice}},
-         familyi={d\bibinitperiod},
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
          given={Giovanni},
          giveni={G\bibinitperiod},
       }}%
@@ -1054,7 +1056,7 @@
     }
     \keyw{81P68,Quantum Physics}
     \strng{namehash}{BM+1}
-    \strng{fullhash}{BMMHdGLLvJ1}
+    \strng{fullhash}{BMMHFGdLLvJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{shorttitle}
     \field{labelalpha}{Bac+20}
@@ -1456,9 +1458,12 @@
     \field{title}{Neural {{Machine Translation}} by {{Jointly Learning}} to
   {{Align}} and {{Translate}}}
     \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q7JEXDIG/Bahdanau et al. - 20
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/E25STW9G/Bahdanau et al. - 20
     \verb 16 - Neural Machine Translation by Jointly Learning to .pdf;/Users/al
-    \verb exis.toumi/WORK/Zotero/storage/7BIDSQ9Z/1409.html
+    \verb exis.toumi/WORK/Zotero/storage/Q7JEXDIG/Bahdanau et al. - 2016 - Neur
+    \verb al Machine Translation by Jointly Learning to .pdf;/Users/alexis.toum
+    \verb i/WORK/Zotero/storage/7BIDSQ9Z/1409.html;/Users/alexis.toumi/WORK/Zot
+    \verb ero/storage/UWPYTPR8/1409.html
     \endverb
     \field{journaltitle}{arXiv:1409.0473 [cs, stat]}
     \field{eprinttype}{arxiv}
@@ -1583,46 +1588,22 @@
          giveni={J\bibinitperiod},
       }}%
     }
-    \keyw{Computer Science - Logic in Computer Science,Mathematics - Category
-  Theory}
     \strng{namehash}{BKKAVJ1}
     \strng{fullhash}{BKKAVJ1}
     \field{labelnamesource}{author}
-    \field{labeltitlesource}{shorttitle}
+    \field{labeltitlesource}{title}
     \field{labelalpha}{BKV18}
     \field{sortinit}{B}
     \field{sortinithash}{B}
-    \field{abstract}{%
-    This article introduces Globular, an online proof assistant for the
-  formalization and verification of proofs in higher-dimensional category
-  theory. The tool produces graphical visualizations of higher-dimensional
-  proofs, assists in their construction with a point-and- click interface, and
-  performs type checking to prevent incorrect rewrites. Hosted on the web, it
-  has a low barrier to use, and allows hyperlinking of formalized proofs
-  directly from research papers. It allows the formalization of proofs from
-  logic, topology and algebra which are not formalizable by other methods, and
-  we give several examples.%
-    }
     \verb{doi}
     \verb 10.23638/LMCS-14(1:8)2018
     \endverb
-    \verb{eprint}
-    \verb 1612.01093
-    \endverb
-    \field{issn}{1860-5974}
-    \field{pages}{Issue 1 ; 18605974}
-    \field{shorttitle}{Globular}
+    \field{number}{1}
     \field{title}{Globular: An Online Proof Assistant for Higher-Dimensional
   Rewriting}
-    \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/QP8DYIWV/Bar et al. - 2018 -
-    \verb Globular an online proof assistant for higher-dim.pdf;/Users/alexis.t
-    \verb oumi/WORK/Zotero/storage/YJIQ3PPE/1612.html
-    \endverb
-    \field{journaltitle}{Logical Methods in Computer Science ; Volume 14}
-    \field{eprinttype}{arxiv}
+    \field{volume}{14}
+    \field{journaltitle}{Log. Methods Comput. Sci.}
     \field{year}{2018}
-    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Bar-Hillel53}{article}{}
@@ -2247,6 +2228,78 @@
     \verb vestigation of the laws of thought.pdf
     \endverb
     \field{year}{1854}
+  \endentry
+
+  \entry{BradyTrimble00}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BG}{%
+         family={Brady},
+         familyi={B\bibinitperiod},
+         given={Geraldine},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=TT}{%
+         family={Trimble},
+         familyi={T\bibinitperiod},
+         given={Todd},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BGTT1}
+    \strng{fullhash}{BGTT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BT00}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1016/S0022-4049(98)00179-0
+    \endverb
+    \field{pages}{213\bibrangedash 239}
+    \field{title}{A Categorical Interpretation of {{C}}.{{S}}. {{Peirce}}'s
+  Propositional Logic {{Alpha}}}
+    \field{volume}{149}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/NT5UDU76/Brady and Trimble -
+    \verb 2000 - A categorical interpretation of C.S. Peirce's prop.pdf;/Users/
+    \verb alexis.toumi/WORK/Zotero/storage/YMJTSVYT/Brady and Trimble - 2000 -
+    \verb A categorical interpretation of C.S. Peirce's prop.pdf;/Users/alexis.
+    \verb toumi/WORK/Zotero/storage/PAK56I7V/S0022404998001790.html
+    \endverb
+    \field{journaltitle}{Journal of Pure and Applied Algebra - J PURE APPL ALG}
+    \field{month}{06}
+    \field{year}{2000}
+  \endentry
+
+  \entry{BradyTrimble98}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BG}{%
+         family={Brady},
+         familyi={B\bibinitperiod},
+         given={Geraldine},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=TTH}{%
+         family={Trimble},
+         familyi={T\bibinitperiod},
+         given={Todd\bibnamedelima H.},
+         giveni={T\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BGTTH1}
+    \strng{fullhash}{BGTTH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BT98}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{A {{String Diagram Calculus}} for {{Prediate Logic}} and
+  {{C}}. {{S}}. {{Peirce}}'s {{System Beta}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/A7JB92FA/Brady and Trimble -
+    \verb 1998 - A String Diagram Calculus for Prediate Logic and C.pdf
+    \endverb
+    \field{year}{1998}
   \endentry
 
   \entry{BrassardEtAl02}{article}{}
@@ -3301,9 +3354,11 @@
          given={Bob},
          giveni={B\bibinitperiod},
       }}%
-      {{hash=dG}{%
-         family={{de Felice}},
-         familyi={d\bibinitperiod},
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
          given={Giovanni},
          giveni={G\bibinitperiod},
       }}%
@@ -3322,43 +3377,18 @@
     }
     \keyw{Computer Science - Computation and Language,Quantum Physics}
     \strng{namehash}{CB+1}
-    \strng{fullhash}{CBdGMKTA1}
+    \strng{fullhash}{CBFGdMKTA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Coe+20}
     \field{sortinit}{C}
     \field{sortinithash}{C}
-    \field{abstract}{%
-    We provide conceptual and mathematical foundations for near-term quantum
-  natural language processing (QNLP), and do so in quantum computer scientist
-  friendly terms. We opted for an expository presentation style, and provide
-  references for supporting empirical evidence and formal statements concerning
-  mathematical generality. We recall how the quantum model for natural language
-  that we employ canonically combines linguistic meanings with rich linguistic
-  structure, most notably grammar. In particular, the fact that it takes a
-  quantum-like model to combine meaning and structure, establishes QNLP as
-  quantum-native, on par with simulation of quantum systems. Moreover, the now
-  leading Noisy Intermediate-Scale Quantum (NISQ) paradigm for encoding
-  classical data on quantum hardware, variational quantum circuits, makes NISQ
-  exceptionally QNLP-friendly: linguistic structure can be encoded as a free
-  lunch, in contrast to the apparently exponentially expensive classical
-  encoding of grammar. Quantum speed-up for QNLP tasks has already been
-  established in previous work with Will Zeng. Here we provide a broader range
-  of tasks which all enjoy the same advantage. Diagrammatic reasoning is at the
-  heart of QNLP. Firstly, the quantum model interprets language as quantum
-  processes via the diagrammatic formalism of categorical quantum mechanics.
-  Secondly, these diagrams are via ZX-calculus translated into quantum
-  circuits. Parameterisations of meanings then become the circuit variables to
-  be learned. Our encoding of linguistic structure within quantum circuits also
-  embodies a novel approach for establishing word-meanings that goes beyond the
-  current standards in mainstream AI, by placing linguistic structure at the
-  heart of Wittgenstein's meaning-is-context.%
-    }
     \verb{eprint}
     \verb 2012.03755
     \endverb
     \field{title}{Foundations for {{Near}}-{{Term Quantum Natural Language
   Processing}}}
+    \field{volume}{abs/2012.03755}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/T6W6LJ6N/Coecke et al. - 2020
     \verb  - Foundations for Near-Term Quantum Natural Language.pdf;/Users/alex
@@ -3370,9 +3400,62 @@
     \verb E98ZW/2012.html;/Users/alexis.toumi/WORK/Zotero/storage/N7NFBEB4/2012
     \verb .html
     \endverb
-    \field{journaltitle}{ArXiv e-prints}
+    \field{journaltitle}{CoRR}
     \field{eprinttype}{arxiv}
     \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{CoeckeEtAl21}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Quantum Physics}
+    \strng{namehash}{CB+1}
+    \strng{fullhash}{CBFGdMKTA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Coe+21}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 2107.06776
+    \endverb
+    \field{title}{How to Make Qubits Speak}
+    \field{volume}{abs/2107.06776}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/B7IRREDA/Coecke et al. - 2021
+    \verb  - How to make qubits speak.pdf;/Users/alexis.toumi/WORK/Zotero/stora
+    \verb ge/489NH4DA/2107.html
+    \endverb
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arxiv}
+    \field{year}{2021}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
@@ -3782,7 +3865,7 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
-  \entry{EilenbergMacLane42a}{article}{}
+  \entry{EilenbergMacLane42}{article}{}
     \name{author}{2}{}{%
       {{hash=ES}{%
          family={Eilenberg},
@@ -3824,7 +3907,7 @@
     \field{year}{1942}
   \endentry
 
-  \entry{EilenbergMacLane42b}{article}{}
+  \entry{EilenbergMacLane42a}{article}{}
     \name{author}{2}{}{%
       {{hash=ES}{%
          family={Eilenberg},
@@ -4033,6 +4116,191 @@
     \field{month}{08}
     \field{year}{2018}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{FeliceEtAl19}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Computer Science -
+  Databases,Computer Science - Logic in Computer Science,Mathematics - Category
+  Theory}
+    \strng{namehash}{FGdMKTA1}
+    \strng{fullhash}{FGdMKTA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FMT19}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{Proceedings Applied Category Theory 2019, {{ACT}} 2019,
+  University of Oxford, {{UK}}}
+    \verb{doi}
+    \verb 10.4204/EPTCS.323.6
+    \endverb
+    \field{series}{{{EPTCS}}}
+    \field{title}{Functorial Question Answering}
+    \field{volume}{323}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/QXS2RA8E/de Felice et al. - 2
+    \verb 020 - Functorial Question Answering.pdf;/Users/alexis.toumi/WORK/Zote
+    \verb ro/storage/CIQ7Z5AK/1905.html
+    \endverb
+    \field{year}{2019}
+  \endentry
+
+  \entry{FeliceEtAl20a}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{EPTCS}}%
+    }
+    \keyw{Mathematics - Category Theory}
+    \strng{namehash}{FGdTACB1}
+    \strng{fullhash}{FGdTACB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{FTC20}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    We introduce DisCoPy, an open source toolbox for computing with monoidal
+  categories. The library provides an intuitive syntax for defining string
+  diagrams and monoidal functors. Its modularity allows the efficient
+  implementation of computational experiments in the various applications of
+  category theory where diagrams have become a lingua franca. As an example, we
+  used DisCoPy to perform natural language processing on quantum hardware for
+  the first time.%
+    }
+    \field{booktitle}{Proceedings of the 3rd Annual International Applied
+  Category Theory Conference, {{ACT}}}
+    \verb{doi}
+    \verb 10.4204/EPTCS.333.13
+    \endverb
+    \field{shorttitle}{{{DisCoPy}}}
+    \field{title}{{{DisCoPy}}: Monoidal {{Categories}} in {{Python}}}
+    \field{volume}{333}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/QASGBJLB/de Felice et al. - 2
+    \verb 020 - DisCoPy Monoidal Categories in Python.pdf;/Users/alexis.toumi/W
+    \verb ORK/Zotero/storage/TULL7RVM/de Felice et al. - 2021 - DisCoPy Monoida
+    \verb l Categories in Python.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZF
+    \verb D7K224/de Felice et al. - 2021 - DisCoPy Monoidal Categories in Pytho
+    \verb n.pdf;/Users/alexis.toumi/WORK/Zotero/storage/AR69DYVP/2005.html;/Use
+    \verb rs/alexis.toumi/WORK/Zotero/storage/LFCGN3BA/2005.html;/Users/alexis.
+    \verb toumi/WORK/Zotero/storage/UCB8FUX9/2005.html
+    \endverb
+    \field{year}{2020}
+  \endentry
+
+  \entry{FeliceEtAl20}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LED}{%
+         family={Lavore},
+         familyi={L\bibinitperiod},
+         given={Elena\bibnamedelima Di},
+         giveni={E\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rom{\'a}n},
+         familyi={R\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \name{editor}{2}{}{%
+      {{hash=SDI}{%
+         family={Spivak},
+         familyi={S\bibinitperiod},
+         given={David\bibnamedelima I.},
+         giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+      {{hash=VJ}{%
+         family={Vicary},
+         familyi={V\bibinitperiod},
+         given={Jamie},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Computer Science -
+  Computer Science and Game Theory}
+    \strng{namehash}{FGd+1}
+    \strng{fullhash}{FGdLEDRMTA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fel+20}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{Proceedings of the 3rd {{Annual International Applied
+  Category Theory Conference}} 2020, {{ACT}} 2020, {{Cambridge}}, {{USA}},
+  6-10th {{July}} 2020}
+    \verb{doi}
+    \verb 10.4204/EPTCS.333.21
+    \endverb
+    \field{pages}{311\bibrangedash 321}
+    \field{series}{{{EPTCS}}}
+    \field{title}{Functorial {{Language Games}} for {{Question Answering}}}
+    \field{volume}{333}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/47WTHBKN/de Felice et al. - 2
+    \verb 021 - Functorial Language Games for Question Answering.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/UFTMZDW9/Felice et al. - 2020 - Functor
+    \verb ial Language Games for Question Answering.pdf;/Users/alexis.toumi/WOR
+    \verb K/Zotero/storage/C6WQC5FQ/2005.html
+    \endverb
+    \field{year}{2020}
   \endentry
 
   \entry{Feynman82}{article}{}
@@ -4500,6 +4768,33 @@
     \field{journaltitle}{Quantum}
     \field{month}{12}
     \field{year}{2019}
+  \endentry
+
+  \entry{Grassmann44}{book}{}
+    \name{author}{1}{}{%
+      {{hash=GH}{%
+         family={Grassmann},
+         familyi={G\bibinitperiod},
+         given={Hermann},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{O. Wigand}}%
+    }
+    \strng{namehash}{GH1}
+    \strng{fullhash}{GH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gra44}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Die Lineale {{Ausdehnungslehre}} Ein Neuer {{Zweig}} Der
+  {{Mathematik}}: Dargestellt Und Durch {{Anwendungen}} Auf Die \"Ubrigen
+  {{Zweige}} Der {{Mathematik}}, Wie Auch Auf Die {{Statik}}, {{Mechanik}}, Die
+  {{Lehre}} Vom {{Magnetismus}} Und Die {{Krystallonomie}} Erl\"autert}
+    \field{volume}{1}
+    \field{year}{1844}
   \endentry
 
   \entry{GravesEtAl13}{inproceedings}{}
@@ -5034,6 +5329,49 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{HaydonSobocinski20}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HN}{%
+         family={Haydon},
+         familyi={H\bibinitperiod},
+         given={Nathan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sobocinski},
+         familyi={S\bibinitperiod},
+         given={Pawel},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HNSP1}
+    \strng{fullhash}{HNSP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HS20}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Peirce's {$\beta$} variant of Existential Graphs (EGs) is a diagrammatic
+  formalism, equivalent in expressive power to classical first-order logic. We
+  show that the syntax of EGs can be presented as the arrows of a free
+  symmetric monoidal category. The advantages of this approach are (i) that the
+  associated string diagrams share the visual features of EGs while (ii)
+  enabling a rigorous distinction between ``free'' and ``bound'' variables.
+  Indeed, this diagrammatic language leads to a compositional relationship of
+  the syntax with the semantics of logic: we obtain models as
+  structure-preserving monoidal functors to the category of relations.%
+    }
+    \field{pages}{16}
+    \field{title}{Compositional {{Diagrammatic First}}-{{Order Logic}}}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/BW66SWTY/Haydon and Sobocinsk
+    \verb i - Compositional Diagrammatic First-Order Logic.pdf
+    \endverb
+    \field{year}{2020}
+  \endentry
+
   \entry{Hebb49}{book}{}
     \name{author}{1}{}{%
       {{hash=HDO}{%
@@ -5059,6 +5397,81 @@
     \verb zation_of_Behavior.pdf
     \endverb
     \field{year}{1949}
+  \endentry
+
+  \entry{HedgesLewis18}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HJ}{%
+         family={Hedges},
+         familyi={H\bibinitperiod},
+         given={Jules},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lewis},
+         familyi={L\bibinitperiod},
+         given={Martha},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Computer Science - Logic
+  in Computer Science}
+    \strng{namehash}{HJLM1}
+    \strng{fullhash}{HJLM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HL18}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    In categorical compositional semantics of natural language one studies
+  functors from a category of grammatical derivations (such as a Lambek
+  pregroup) to a semantic category (such as real vector spaces). We
+  compositionally build game-theoretic semantics of sentences by taking the
+  semantic category to be the category whose morphisms are open games. This
+  requires some modifications to the grammar category to compensate for the
+  failure of open games to form a compact closed category. We illustrate the
+  theory using simple examples of Wittgenstein's language-games.%
+    }
+    \verb{eprint}
+    \verb 1807.07828
+    \endverb
+    \field{title}{Towards Functorial Language-Games}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/KI3SCM8E/Hedges and Lewis - 2
+    \verb 018 - Towards functorial language-games.pdf;/Users/alexis.toumi/WORK/
+    \verb Zotero/storage/AGQH6UR7/1807.html
+    \endverb
+    \field{journaltitle}{arXiv:1807.07828 [cs]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs}
+    \field{month}{07}
+    \field{year}{2018}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Hegel12}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HGWF}{%
+         family={Hegel},
+         familyi={H\bibinitperiod},
+         given={Georg Wilhelm\bibnamedelima Friedrich},
+         giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim
+  F\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{F. Frommann}}%
+    }
+    \strng{namehash}{HGWF1}
+    \strng{fullhash}{HGWF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Heg12}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{title}{Wissenschaft Der Logik}
+    \field{year}{1812}
   \endentry
 
   \entry{Hilario97}{article}{}
@@ -5597,6 +6010,98 @@
     \verb Separating Disambiguation from Composition in Dist.pdf
     \endverb
     \field{year}{2013}
+  \endentry
+
+  \entry{KartsaklisEtAl21}{article}{}
+    \name{author}{10}{}{%
+      {{hash=KD}{%
+         family={Kartsaklis},
+         familyi={K\bibinitperiod},
+         given={Dimitri},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=FI}{%
+         family={Fan},
+         familyi={F\bibinitperiod},
+         given={Ian},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=YR}{%
+         family={Yeung},
+         familyi={Y\bibinitperiod},
+         given={Richie},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pearson},
+         familyi={P\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LR}{%
+         family={Lorenz},
+         familyi={L\bibinitperiod},
+         given={Robin},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Meichanetzidis},
+         familyi={M\bibinitperiod},
+         given={Konstantinos},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Clark},
+         familyi={C\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science -
+  Computation and Language,Quantum Physics}
+    \strng{namehash}{KD+1}
+    \strng{fullhash}{KDFIYRPALRTAFGdMKCSCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Kar+21}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 2110.04236
+    \endverb
+    \field{shorttitle}{Lambeq}
+    \field{title}{Lambeq: An {{Efficient High}}-{{Level Python Library}} for
+  {{Quantum NLP}}}
+    \field{volume}{abs/2110.04236}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8BUQSKZF/Kartsaklis et al. -
+    \verb 2021 - lambeq An Efficient High-Level Python Library for.pdf;/Users/a
+    \verb lexis.toumi/WORK/Zotero/storage/F5Z9BMDY/2110.html
+    \endverb
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arxiv}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{KerenidisPrakash16}{article}{}
@@ -6892,6 +7397,190 @@
     \field{year}{1979}
   \endentry
 
+  \entry{Lawvere89}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LFW6}
+    \strng{fullhash}{LFW6}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law89}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Proceedings of the First International Conference on
+  Algebraic Methodology and Software Technology, University of Iowa}
+    \field{pages}{51\bibrangedash 74}
+    \field{title}{Display of Graphics and Their Applications, as Exemplified by
+  2-Categories and the Hegelian ``Taco''}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/MUNZZRUT/1989-display-of-grap
+    \verb hics-and-their-applications-exemplifed-by-2-categories-and-the-hegeli
+    \verb an-taco.pdf
+    \endverb
+    \field{year}{1989}
+  \endentry
+
+  \entry{Lawvere91}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F.\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \name{editor}{3}{}{%
+      {{hash=CA}{%
+         family={Carboni},
+         familyi={C\bibinitperiod},
+         given={Aurelio},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PMC}{%
+         family={Pedicchio},
+         familyi={P\bibinitperiod},
+         given={Maria\bibnamedelima Cristina},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=RG}{%
+         family={Rosolini},
+         familyi={R\bibinitperiod},
+         given={Guiseppe},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Berlin Heidelberg}}%
+    }
+    \strng{namehash}{LFW7}
+    \strng{fullhash}{LFW7}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law91}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Category {{Theory}}}
+    \field{isbn}{978-3-540-54706-8 978-3-540-46435-8}
+    \field{pages}{1\bibrangedash 13}
+    \field{title}{Some Thoughts on the Future of Category Theory}
+    \field{volume}{1488}
+    \field{langid}{english}
+    \list{location}{1}{%
+      {{Berlin, Heidelberg}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/JQK2ZKBP/Lawvere - 1991 - Som
+    \verb e thoughts on the future of category theory.pdf
+    \endverb
+    \field{year}{1991}
+  \endentry
+
+  \entry{Lawvere92}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F.\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \name{editor}{3}{}{%
+      {{hash=EJ}{%
+         family={Echeverria},
+         familyi={E\bibinitperiod},
+         given={Javier},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=IA}{%
+         family={Ibarra},
+         familyi={I\bibinitperiod},
+         given={Andoni},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MT}{%
+         family={Mormann},
+         familyi={M\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{DE GRUYTER}}%
+    }
+    \strng{namehash}{LFW7}
+    \strng{fullhash}{LFW7}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law92}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{The {{Space}} of {{Mathematics}}}
+    \verb{doi}
+    \verb 10.1515/9783110870299.14
+    \endverb
+    \field{isbn}{978-3-11-087029-9}
+    \field{title}{Categories of {{Space}} and of {{Quantity}}}
+    \list{location}{1}{%
+      {{Berlin, Boston}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/F7DBDVZV/Lawvere - 1992 - Cat
+    \verb egories of Space and of Quantity.pdf
+    \endverb
+    \field{month}{01}
+    \field{year}{1992}
+  \endentry
+
+  \entry{Lawvere96}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LFW}{%
+         family={Lawvere},
+         familyi={L\bibinitperiod},
+         given={F.\bibnamedelima William},
+         giveni={F\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LFW7}
+    \strng{fullhash}{LFW7}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Law96}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    A significant fraction of dialectical philosophy can be modeled
+  mathematically through the use of "cylinders" (diagrams of shape A1) in a
+  category, wherein the two identical subobjects (united by the third map in
+  the diagram) are "opposite". In a bicategory, oppositeness can be very
+  effectively characterized in terms of adjointness, but even in an ordinary
+  category it may sometimes be given a useful definition. For example, an
+  effective basis for teaching calculus is a ringed category satisfying the
+  Hadamard-Marx property.The description in engineering mechanics of continuous
+  bodies that can undergo cracking is clarifiedby an example involving
+  lattices, raising a new questions about the foundations of topology.%
+    }
+    \verb{doi}
+    \verb 10.1007/BF00122250
+    \endverb
+    \field{issn}{0927-2852, 1572-9095}
+    \field{number}{2-3}
+    \field{pages}{167\bibrangedash 174}
+    \field{title}{Unity and Identity of Opposites in Calculus and Physics}
+    \field{volume}{4}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/ACZA5AQG/lawvere1996.pdf.pdf
+    \endverb
+    \field{journaltitle}{Appl Categor Struct}
+    \field{year}{1996}
+  \endentry
+
   \entry{LawvereSchanuel86}{book}{}
     \name{author}{2}{}{%
       {{hash=LFW}{%
@@ -7405,6 +8094,66 @@
     \field{year}{1943}
   \endentry
 
+  \entry{McPheatEtAl21}{article}{}
+    \name{author}{5}{}{%
+      {{hash=ML}{%
+         family={McPheat},
+         familyi={M\bibinitperiod},
+         given={Lachlan},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WG}{%
+         family={Wijnholds},
+         familyi={W\bibinitperiod},
+         given={Gijs},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Correia},
+         familyi={C\bibinitperiod},
+         given={Adriana},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science}
+    \strng{namehash}{ML+1}
+    \strng{fullhash}{MLWGSMCATA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{McP+21}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{eprint}
+    \verb 2110.10641
+    \endverb
+    \field{shorttitle}{Anaphora and {{Ellipsis}} in {{Lambek Calculus}} with a
+  {{Relevant Modality}}}
+    \field{title}{Anaphora and {{Ellipsis}} in {{Lambek Calculus}} with a
+  {{Relevant Modality}}: Syntax and {{Semantics}}}
+    \field{volume}{abs/2110.10641}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/RAZ3QYPQ/McPheat et al. - 202
+    \verb 1 - Anaphora and Ellipsis in Lambek Calculus with a Re.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/N68RPKHC/2110.html
+    \endverb
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arxiv}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{MeichanetzidisEtAl20}{article}{}
     \name{author}{4}{}{%
       {{hash=MK}{%
@@ -7419,9 +8168,11 @@
          given={Alexis},
          giveni={A\bibinitperiod},
       }}%
-      {{hash=dG}{%
-         family={{de Felice}},
-         familyi={d\bibinitperiod},
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
          given={Giovanni},
          giveni={G\bibinitperiod},
       }}%
@@ -7434,7 +8185,7 @@
     }
     \keyw{Computer Science - Computation and Language,Quantum Physics}
     \strng{namehash}{MK+1}
-    \strng{fullhash}{MKTAdGCB1}
+    \strng{fullhash}{MKTAFGdCB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Mei+20}
@@ -7498,9 +8249,11 @@
          given={Stefano},
          giveni={S\bibinitperiod},
       }}%
-      {{hash=DFG}{%
-         family={De\bibnamedelima Felice},
-         familyi={D\bibinitperiod\bibinitdelim F\bibinitperiod},
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
          given={Giovanni},
          giveni={G\bibinitperiod},
       }}%
@@ -7523,49 +8276,128 @@
          giveni={B\bibinitperiod},
       }}%
     }
+    \name{editor}{4}{}{%
+      {{hash=VB}{%
+         family={Valiron},
+         familyi={V\bibinitperiod},
+         given={Beno{\^i}t},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Mansfield},
+         familyi={M\bibinitperiod},
+         given={Shane},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AP}{%
+         family={Arrighi},
+         familyi={A\bibinitperiod},
+         given={Pablo},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=PP}{%
+         family={Panangaden},
+         familyi={P\bibinitperiod},
+         given={Prakash},
+         giveni={P\bibinitperiod},
+      }}%
+    }
     \keyw{Computer Science - Computation and Language,Quantum Physics}
     \strng{namehash}{MK+1}
-    \strng{fullhash}{MKGSDFGCNTACB1}
+    \strng{fullhash}{MKGSFGdCNTACB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Mei+20}
     \field{extraalpha}{2}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{abstract}{%
-    In this work, we describe a full-stack pipeline for natural language
-  processing on near-term quantum computers, aka QNLP. The language modelling
-  framework we employ is that of compositional distributional semantics
-  (DisCoCat), which extends and complements the compositional structure of
-  pregroup grammars. Within this model, the grammatical reduction of a sentence
-  is interpreted as a diagram, encoding a specific interaction of words
-  according to the grammar. It is this interaction which, together with a
-  specific choice of word embedding, realises the meaning (or "semantics") of a
-  sentence. Building on the formal quantum-like nature of such interactions, we
-  present a method for mapping DisCoCat diagrams to quantum circuits. Our
-  methodology is compatible both with NISQ devices and with established Quantum
-  Machine Learning techniques, paving the way to near-term applications of
-  quantum technology to natural language processing.%
-    }
-    \field{booktitle}{Quantum {{Physics}} and {{Logic}} ({{QPL}})}
+    \field{booktitle}{Proceedings 17th {{International Conference}} on
+  {{Quantum Physics}} and {{Logic}}, {{QPL}} 2020, {{Paris}}, {{France}},
+  {{June}} 2 - 6, 2020}
+    \verb{doi}
+    \verb 10.4204/EPTCS.340.11
+    \endverb
     \verb{eprint}
     \verb 2005.04147
     \endverb
+    \field{pages}{213\bibrangedash 229}
+    \field{series}{{{EPTCS}}}
     \field{title}{Quantum {{Natural Language Processing}} on {{Near}}-{{Term
   Quantum Computers}}}
+    \field{volume}{340}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/5FUF9JMF/Meichanetzidis et al
     \verb . - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Us
-    \verb ers/alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. -
+    \verb ers/alexis.toumi/WORK/Zotero/storage/HTSL632Z/Meichanetzidis et al. -
     \verb  2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users
-    \verb /alexis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 20
+    \verb /alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. - 20
     \verb 20 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/al
-    \verb exis.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi
-    \verb /WORK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zote
-    \verb ro/storage/NA5TLJV4/2005.html
+    \verb exis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 2020
+    \verb - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi/WO
+    \verb RK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zotero/
+    \verb storage/NA5TLJV4/2005.html
     \endverb
     \field{eprinttype}{arxiv}
     \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{MelliesZeilberger16}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MPA}{%
+         family={Melli{\`e}s},
+         familyi={M\bibinitperiod},
+         given={Paul-Andr{\'e}},
+         giveni={P\bibinitperiod-A\bibinitperiod},
+      }}%
+      {{hash=ZN}{%
+         family={Zeilberger},
+         familyi={Z\bibinitperiod},
+         given={Noam},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science,Mathematics - Category
+  Theory,Mathematics - Logic}
+    \strng{namehash}{MPAZN1}
+    \strng{fullhash}{MPAZN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{MZ16}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    Combining insights from the study of type refinement systems and of
+  monoidal closed chiralities, we show how to reconstruct Lawvere's
+  hyperdoctrine of presheaves using a full and faithful embedding into a
+  monoidal closed bifibration living now over the compact closed category of
+  small categories and distributors. Besides revealing dualities which are not
+  immediately apparent in the traditional presentation of the presheaf
+  hyperdoctrine, this reconstruction leads us to an axiomatic treatment of
+  directed equality predicates (modelled by hom presheaves), realizing a vision
+  initially set out by Lawvere (1970). It also leads to a simple calculus of
+  string diagrams (representing presheaves) that is highly reminiscent of C. S.
+  Peirce's existential graphs for predicate logic, refining an earlier
+  interpretation of existential graphs in terms of Boolean hyperdoctrines by
+  Brady and Trimble. Finally, we illustrate how this work extends to a
+  bifibrational setting a number of fundamental ideas of linear logic.%
+    }
+    \verb{eprint}
+    \verb 1601.06098
+    \endverb
+    \field{title}{A Bifibrational Reconstruction of {{Lawvere}}'s Presheaf
+  Hyperdoctrine}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/EQ5K47EB/Melliès and Zeilber
+    \verb ger - 2016 - A bifibrational reconstruction of Lawvere's preshe.pdf;/
+    \verb Users/alexis.toumi/WORK/Zotero/storage/S7X9HU84/1601.html
+    \endverb
+    \field{journaltitle}{arXiv:1601.06098 [cs, math]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs, math}
+    \field{month}{08}
+    \field{year}{2016}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
@@ -7956,6 +8788,39 @@
     \field{month}{10}
     \field{year}{2019}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Peirce06}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PCSS}{%
+         family={Peirce},
+         familyi={P\bibinitperiod},
+         given={Charles Santiago\bibnamedelima Sanders},
+         giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim
+  S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Oxford University Press}}%
+    }
+    \strng{namehash}{PCSS1}
+    \strng{fullhash}{PCSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Pei06}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{issn}{0026-9662}
+    \field{number}{4}
+    \field{pages}{492\bibrangedash 546}
+    \field{title}{Prolegomena to an Apology of Pragmaticism}
+    \field{volume}{16}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/E9I6WM6C/Peirce - 1906 - PROL
+    \verb EGOMENA TO AN APOLOGY FOR PRAGMATICISM.pdf
+    \endverb
+    \field{journaltitle}{The Monist}
+    \field{year}{1906}
   \endentry
 
   \entry{Pelletier01}{article}{}
@@ -8691,6 +9556,36 @@
     \field{year}{1975}
   \endentry
 
+  \entry{SchreiberEtAl21}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=SU}{%
+         family={Schreiber},
+         familyi={S\bibinitperiod},
+         given={Urs},
+         giveni={U\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Corfield},
+         familyi={C\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=n}{%
+         family={{nLab}},
+         familyi={n\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SUCDn1}
+    \strng{fullhash}{SUCDn1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{SCn21}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Science of {{Logic}}}
+    \field{year}{2021}
+  \endentry
+
   \entry{Schuld21}{article}{}
     \name{author}{1}{}{%
       {{hash=SM}{%
@@ -9090,6 +9985,54 @@
     \field{year}{2009}
   \endentry
 
+  \entry{ShieblerEtAl20}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SD}{%
+         family={Shiebler},
+         familyi={S\bibinitperiod},
+         given={Dan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sadrzadeh},
+         familyi={S\bibinitperiod},
+         given={Mehrnoosh},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Formal
+  Languages and Automata Theory,Computer Science - Logic in Computer Science}
+    \strng{namehash}{SDTASM1}
+    \strng{fullhash}{SDTASM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{STS20}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{eprint}
+    \verb 2001.02296
+    \endverb
+    \field{title}{Incremental {{Monoidal Grammars}}}
+    \field{volume}{abs/2001.02296}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/ID7EHQCL/Shiebler et al. - 20
+    \verb 20 - Incremental Monoidal Grammars.pdf;/Users/alexis.toumi/WORK/Zoter
+    \verb o/storage/XMAC8HDZ/Shiebler et al. - 2020 - Incremental Monoidal Gram
+    \verb mars.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LA37WBDA/2001.html;/
+    \verb Users/alexis.toumi/WORK/Zotero/storage/PIVXNRKN/2001.html
+    \endverb
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arxiv}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Shor96}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=SPW}{%
@@ -9120,7 +10063,7 @@
     \field{year}{1996}
   \endentry
 
-  \entry{Shor94a}{inproceedings}{}
+  \entry{Shor94}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=SP}{%
          family={Shor},
@@ -9198,6 +10141,80 @@
     \endverb
     \field{month}{11}
     \field{year}{1994}
+  \endentry
+
+  \entry{SivarajahEtAl20}{article}{}
+    \name{author}{6}{}{%
+      {{hash=SS}{%
+         family={Sivarajah},
+         familyi={S\bibinitperiod},
+         given={Seyon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Dilkes},
+         familyi={D\bibinitperiod},
+         given={Silas},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Cowtan},
+         familyi={C\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SW}{%
+         family={Simmons},
+         familyi={S\bibinitperiod},
+         given={Will},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=EA}{%
+         family={Edgington},
+         familyi={E\bibinitperiod},
+         given={Alec},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DR}{%
+         family={Duncan},
+         familyi={D\bibinitperiod},
+         given={Ross},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Quantum Physics}
+    \strng{namehash}{SS+1}
+    \strng{fullhash}{SSDSCASWEADR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Siv+20}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    We present t\$|\$ket\$\textbackslash rangle\$, a quantum software
+  development platform produced by Cambridge Quantum Computing Ltd. The heart
+  of t\$|\$ket\$\textbackslash rangle\$ is a language-agnostic optimising
+  compiler designed to generate code for a variety of NISQ devices, which has
+  several features designed to minimise the influence of device error. The
+  compiler has been extensively benchmarked and outperforms most competitors in
+  terms of circuit optimisation and qubit routing.%
+    }
+    \verb{eprint}
+    \verb 2003.10611
+    \endverb
+    \field{shorttitle}{T\$|\$ket\$\textbackslash rangle\$}
+    \field{title}{Tket : A {{Retargetable Compiler}} for {{NISQ Devices}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/LQEG256F/Sivarajah et al. - 2
+    \verb 020 - t$$ket$rangle$ A Retargetable Compiler for NIS.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/T7BL6X3D/2003.html
+    \endverb
+    \field{journaltitle}{arXiv:2003.10611 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{03}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{Smolensky87}{article}{}
@@ -9506,6 +10523,108 @@
     \field{title}{Probleme \"Uber {{Ver\"anderungen}} von {{Zeichenreihen}}
   Nach Gegebenen {{Regeln}}.}
     \field{year}{1914}
+  \endentry
+
+  \entry{ToumiKoziell-Pipe21}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={{Koziell-Pipe}},
+         familyi={K\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Mathematics - Category
+  Theory}
+    \strng{namehash}{TAKA1}
+    \strng{fullhash}{TAKA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{TK21}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{eprint}
+    \verb 2103.14411
+    \endverb
+    \field{title}{Functorial {{Language Models}}}
+    \field{volume}{abs/2103.14411}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UWAKC49T/Toumi and Koziell-Pi
+    \verb pe - 2021 - Functorial Language Models.pdf;/Users/alexis.toumi/WORK/Z
+    \verb otero/storage/EAKVT4PM/2103.html
+    \endverb
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arxiv}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{ToumiEtAl21a}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=YR}{%
+         family={Yeung},
+         familyi={Y\bibinitperiod},
+         given={Richie},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=dFG}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Felice},
+         familyi={F\bibinitperiod},
+         given={Giovanni},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \name{editor}{2}{}{%
+      {{hash=HC}{%
+         family={Heunen},
+         familyi={H\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Backens},
+         familyi={B\bibinitperiod},
+         given={Miriam},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TAYRFGd1}
+    \strng{fullhash}{TAYRFGd1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{TYF21}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{booktitle}{Proceedings 18th {{International Conference}} on
+  {{Quantum Physics}} and {{Logic}}, {{QPL}} 2021, {{Gdansk}}, {{Poland}}, and
+  Online, 7-11 {{June}} 2021}
+    \verb{doi}
+    \verb 10.4204/EPTCS.343.7
+    \endverb
+    \field{pages}{132\bibrangedash 144}
+    \field{series}{{{EPTCS}}}
+    \field{title}{Diagrammatic {{Differentiation}} for {{Quantum Machine
+  Learning}}}
+    \field{volume}{343}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/TMK73EE8/Toumi et al. - 2021
+    \verb - Diagrammatic Differentiation for Quantum Machine L.pdf
+    \endverb
+    \field{year}{2021}
   \endentry
 
   \entry{Turing50}{article}{}

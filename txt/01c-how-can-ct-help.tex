@@ -4,8 +4,8 @@
 \addcontentsline{toc}{section}{How can category theory help?}
 
 \justepigraph{
- It has been suggested that the functor $\Phi$ may be used for catching lions: write the lion's name on a piece of paper and then apply $\Phi$, having first made sure that the paper is inside a cage.
-}{\textit{Categorial and Categorical Grammars}, Joachim Lambek (1988)}
+I should still hope to create a kind of \emph{universal symbolistic} (\emph{spécieuse générale}) in which all truths of reason would be reduced to a kind of calculus.
+}{\emph{Letter to Nicolas Remond}, Leibniz (1714)}
 
 ``Every sufficiently good analogy is yearning to become a functor''~\cite{Baez06} and we will see that the analogy behind DisCoCat models is indeed a functor.
 Coecke et al.~\cite{CoeckeEtAl13} make a meta-analogy between their models of natural language and \emph{topological quantum field theories} (TQFTs).
@@ -34,7 +34,7 @@ In his \emph{Critique of Pure Reason}~\cite{Kant81}, Kant revisits Aristotle's s
 The idea that every object (whether in the world or in the mind) is an object of a certain type has then become foundational in mathematical logic and Russell's \emph{theory of types}~\cite{Russell03}.
 The same idea has also had a great influence in linguistics and especially in the \emph{categorial grammar} tradition initiated by Ajdukiewicz~\cite{Ajdukiewicz35} and Bar-Hillel~\cite{Bar-Hillel53,Bar-Hillel54}, where categories have now become synonymous with \emph{grammatical types} such as nouns, verbs, etc.
 
-Independently of their use in linguistics, Eilenberg and MacLane~\cite{EilenbergMacLane42a, EilenbergMacLane42b, EilenbergMacLane45} gave categories and functors their current mathematical definition.
+Independently of their use in linguistics, Eilenberg and MacLane~\cite{EilenbergMacLane42,EilenbergMacLane42a,EilenbergMacLane45} gave categories and functors their current mathematical definition.
 Inspired by Aristotle's categories of things and Kant's categories of thoughts, they defined categories as types of \emph{mathematical structures}: sets, groups, spaces, etc.
 Their great insight was to focus not on the content of the objects (elements, points, etc.) but on the composition of the \emph{arrows} between them: functions, homomorphisms, continuous maps, etc.
 Applying the same insight to categories themselves, what really matters are the arrows between them: \emph{functors}, maps from one category to another that preserve the form of arrows.\footnote
@@ -74,14 +74,14 @@ It is remarkable that Lambek could foresee QNLP without \emph{string diagrams}\f
 {String diagrams do not appear in any of Lambek's published work.
 Instead, he either uses lines of equations, proof trees or ``underlinks'' for pregroup adjunctions~\cite{Lambek08}.
 He admits ``not having had the patience to absorb'' the topological definition of Joyal-Street string diagrams~\cite{Lambek10}.
-}, probably the most powerful tool at the disposition of the applied category theorist.
+}, probably the most powerful tool in the hands of the applied category theorist.
 They first appeared in another confidential article from Hotz~\cite{Hotz65} as a formalisation of the diagrams commonly used in electronics.
 Penrose~\cite{Penrose71} then used the same notation as an informal shortcut for tedious tensor calculations, and later applied it to relativity theory with Rindler~\cite{PenroseRindler84}.
 Joyal and Street~\cite{JoyalStreet88,JoyalStreet91,JoyalStreet95} gave the first topological definition of string diagrams and characterised them as the arrows of free monoidal categories.
 At first a piece of mathematical folklore that was hand-drawn on blackboards and rarely included in publications, string diagrams were published at a much bigger scale with the advent of typesetting tools like \LaTeX and Ti\emph{k}Z.
-In Selinger's survey~\cite{Selinger10}, the hierarchy of categorical structures (symmetric, compact closed, etc.) was made to correspond with a hierarchy of graphical gadgets (swaps, wire bending, etc.).
-Prominent examples of  \emph{Picturing Quantum Processes}~\cite{CoeckeKissinger17} where Coecke and Kissinger introduce quantum theory with over a thousand diagrams.
-We cite a few of the growing list of applications:
+Selinger's survey~\cite{Selinger10}, makes the hierarchy of categorical structures (symmetric, compact closed, etc.) correspond to a hierarchy of graphical gadgets (swaps, wire bending, etc.).
+In \emph{Picturing Quantum Processes}~\cite{CoeckeKissinger17}, Coecke and Kissinger introduce quantum theory with over a thousand diagrams.
+And the list of applications keeps growing:
 electronics~\cite{BaezFong15} and chemistry~\cite{BaezPollard17},
 control theory~\cite{BaezErbele14} and concurrency~\cite{BonchiEtAl14a},
 databases~\cite{BonchiEtAl18} and knowledge representation \cite{Patterson17},
@@ -89,13 +89,24 @@ Bayesian inference~\cite{CoeckeSpekkens12,ChoJacobs19} and causality~\cite{Kissi
 cognition~\cite{BoltEtAl17} and game theory~\cite{GhaniEtAl18},
 functional programming \cite{Riley18} and machine learning~\cite{FongEtAl17}.
 
-If they are a great tool for writing scientific papers, string diagrams can also be a powerful data structure for developing software applications.
+If they are a great tool for writing scientific papers, string diagrams can also be a powerful data structure for developing software applications:
+quantomatic~\cite{KissingerZamdzhiev15} and its successor PyZX~\cite{KissingerVanDeWetering19} perform automatic rewriting of diagrams in the ZX calculus,
+globular~\cite{BarEtAl18} and its successor homotopy.io~\cite{ReutterVicary19} are proof assistants for higher category theory,
+cartographer~\cite{SobocinskiEtAl19} and catlab~\cite{PattersonEtAl21} implement diagrams in symmetric monoidal categories, which are also implicit in the circuit data structure of the t$|$ket$\rangle$ compiler~\cite{SivarajahEtAl20}.
+String diagrams are the main data structure of our QNLP algorithms: we first construct diagrams for sentences, apply a functor to translate them into quantum circuits and then send them as instructions to a quantum computer.
+As none of the existing category theory software was flexible enough, we had to implement our own: DisCoPy~\cite{FeliceEtAl20}, a Python library for computing with functors and diagrams in monoidal categories.
+DisCoPy then became the engine underlying lambeq~\cite{KartsaklisEtAl21}, a high-level library for experimental QNLP.
+Although its development was driven by the implementation of DisCoCat models on quantum computers, DisCoPy was designed as a general-purpose toolkit for applied category theory.
+It is freely available (as in free beer and in free speech) at:
 
-quantomatic~\cite{KissingerZamdzhiev15} and PyZX~\cite{KissingerVanDeWetering19}
+\url{https://github.com/oxford-quantum-group/discopy}
 
-Globular~\cite{BarEtAl18} and homotopy.io~\cite{ReutterVicary19}
-
-Catlab~\cite{PattersonEtAl21} and cartographer~\cite{SobocinskiEtAl19}
-
-String diagrams are the main data structure of our QNLP algorithms: we first construct diagrams for sentences, then translate these diagrams into quantum circuits and send them as instructions to a quantum computer.
-As none of the existing category theory software was flexible enough to interface a language parser with a quantum compiler, we had to implement our own: DisCoPy~\cite{DeFeliceEtAl20}.
+In conclusion, category theory can really be a \emph{theory of anything}: from algebraic geometry and quantum gravity to natural language processing.
+There is a striking analogy between category theory and string diagrams as a universal graphical language and the \emph{characteristica universalis} and \emph{calculus ratiocinator} dreamt by Leibniz three hundred years ago, a formal language and computational framework that would be able to express all of mathematics, science and philosophy.
+Indeed, not only can categories be tools for the working mathematicians and scientists, they can also be of help to the philosophers.
+In the footsteps of Grassmann's \emph{Ausdehnungslehre}~\cite{Grassmann44} and his project of an algebraic formalisation of Hegel, Lawvere~\cite{Lawvere89,Lawvere91,Lawvere92,Lawvere96} set out to formulate Hegelian dialectics in terms of adjunctions.
+This led to the ongoing effort of Schreiber, Corfield and their collaborators on the nLab~\cite{SchreiberEtAl21} to translate \emph{Science of Logic}~\cite{Hegel12} in terms of category theory.
+Not only can it accommodate the absolute idealism of Hegel, category theory can also deal with the pragmatism of Peirce~\cite{Peirce06},
+who developed first-order logic independently of Frege using what was later recognised as the first string diagrams~\cite{BradyTrimble98,BradyTrimble00,MelliesZeilberger16,HaydonSobocinski20}.
+String diagrams have also been used to model Wittgenstein's language games as functors from a grammar to a category of games~\cite{HedgesLewis18}.
+In recent work~\cite{FeliceEtAl20a}, we applied these functorial language games to question answering, going from philosophy to NLP via category theory.

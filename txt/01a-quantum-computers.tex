@@ -22,7 +22,7 @@ Deutsch and Jozsa~\cite{DeutschJozsa92} design the first quantum algorithm and p
 Simon~\cite{Simon94} improves on their result by designing a problem that a quantum computer can solve exponentially faster than any classical algorithm.
 Deutsch-Jozsa and Simon relied on oracles\footnote{An oracle is a black box that allows a Turing machine to solve a certain problem in one step.}
 and promises\footnote{The input is promised to satisfy a certain property, which may be hard to check.} and their problems have little practical use.
-However, they inspired Shor's algorithm~\cite{Shor94a} for prime factorisation and discrete logarithm. These two problems are believed to require exponential time for a classical computer and their hardness is at the basis of the public-key cryptography schemes currently used on the internet.
+However, they inspired Shor's algorithm~\cite{Shor94} for prime factorisation and discrete logarithm. These two problems are believed to require exponential time for a classical computer and their hardness is at the basis of the public-key cryptography schemes currently used on the internet.
 
 In 1997, Grover provides another application for quantum computers: ``searching for a needle in a haystack''~\cite{Grover97}.
 Formally, given a function $f : X \to \{0, 1\}$ and the promise that there is a unique $x \in X$ with $f(x) = 1$, Grover's algorithm finds $x$ in $O(\sqrt{|X|})$ steps, quadratically faster than the optimal $O(|X|)$ classical algorithm.

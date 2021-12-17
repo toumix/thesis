@@ -11,7 +11,9 @@
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
-\usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=5,doi=false,isbn=false]{biblatex}
+\usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=99,doi=true,isbn=false]{biblatex}
+
+\renewcommand*{\bibfont}{\raggedright\small}
 
 \usepackage[perpage]{footmisc}
 
@@ -21,9 +23,19 @@
 \newcommand{\justepigraph}[2]{
 \epigraph{\footnotesize \justifying #1}{#2}}
 
-\newcommand*{\bibtitle}{References}
-\renewcommand*{\bibfont}{\raggedright\small}
-
 \newcommand{\bra}[1]{\langle#1|}
 \newcommand{\ket}[1]{|#1\rangle}
 \newcommand{\braket}[2]{\langle#1|#2\rangle}
+
+% https://tex.stackexchange.com/questions/163774/biblatex-print-bibliography-for-a-single-entry-within-an-enumeration
+\DeclareBibliographyCategory{enumpapers}
+
+\newcommand{\enumcite}[1]{%
+  \nocite{#1}
+  \addtocategory{enumpapers}{#1}%
+  \defbibcheck{key#1}{
+    \iffieldequalstr{entrykey}{#1}
+      {}
+      {\skipentry}}%
+  \printbibliography[heading=none,check=key#1]%
+}
