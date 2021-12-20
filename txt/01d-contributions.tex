@@ -1,0 +1,68 @@
+%!TEX root = ../THESIS.tex
+
+\section*{Contributions}
+\addcontentsline{toc}{section}{Contributions}
+
+The first chapter is an extended version of the DisCoPy paper~\cite{FeliceEtAl20a}.
+It emerged from a dialectic teacher-student collaboration with Giovani de Felice: implementing our own category theory library was a way to teach him Python programming.
+Bob Coecke then added the capital letters to the name of DisCoPy.
+\begin
+{itemize}
+\item We\footnote
+{The ``we'' of this section refers to the author of this thesis.
+Although we believe that science is collaboration and that the notion of personal contribution is obsolete, it is in fact required by university regulations: ``Where some part of the thesis is not solely the work of the candidate or has been carried out in collaboration with one or more persons, the candidate shall submit a clear statement of the extent of his or her own contribution.''} give an elementary definition of string diagrams for monoidal categories.
+Our construction decomposes the free monoidal category construction into three basic steps: 1) a layer monad on the category of monoidal signatures, 2) the free premonoidal category as a free category of layers and 3) the free monoidal category as a quotient by interchangers.
+To the best of our knowledge, this \emph{premonoidal approach} had been relegated to mathematical folklore: it was known by those who knew, yet it never appeared in print.
+\item We prove the equivalence between our elementary definition and the topological definition of Joyal and Street~\cite{JoyalStreet88}.
+One side of this equivalence underlies the drawing algorithm of DisCoPy, the other side is the basis of a prototype for an automatic diagram recognition algorithm.
+\item We describe our object-oriented implementation of monoidal category theory.
+The hierarchy of categorical structures (monoidal, closed, rigid, etc.) is encoded in a hierarchy of Python classes and an inheritance mechanism implements the free-forgetful adjunctions between them.
+\item We discuss the relationship between our premonoidal approach and the existing graph-based data structures for diagrams in symmetric monoidal categories.
+\end
+{itemize}
+The second chapter deals with QNLP, building on \cite{MeichanetzidisEtAl20,CoeckeEtAl20,MeichanetzidisEtAl20a}.
+It was joint work with Bob Coecke, Giovanni de Felice and Konstantinos Meichanetzidis.
+Although we were working in the same office, Stefano Gogioso arrived at the same ideas independently with his collaborator Nicolò Chiappori.
+\begin
+{itemize}
+\item We define QNLP models as functors from grammar to quantum circuits and show that any DisCoCat model can be implemented in this way.
+\item We develop a rewriting strategy for the resulting circuits which reduces both the required number of qubits and the amount of post-selection.
+The underlying algorithm, called \emph{snake removal}, computes the normal form of diagrams in rigid monoidal categories.
+\item We introduce a hybrid classical-quantum algorithm to train QNLP models on a question-answering task.
+The underlying idea of \emph{functorial learning}, i.e. learning structure-preserving functors from diagram-like data, provides a theoretical framework for machine learning on structured data.
+\end
+{itemize}
+The third chapter introduces \emph{diagrammatic differentiation}, a graphical calculus for computing the gradients of parameterised diagrams which applies to the training of QNLP models but also to functorial learning in general.
+Most of the material has been published in joint work with Richie Yeung and Giovanni de Felice~\cite{ToumiEtAl21a}.
+\begin
+{itemize}
+\item We generalise the dual number construction from rings to monoidal categories. Dual diagrams are formal sums of a string diagram (the real part) and its derivative with respect to some parameter (the epsilon part).
+\item We introduce graphical gadgets called bubbles, which can encode arbitrary unary operators on monoidal categories.
+In particular, they encode differentiation of diagrams and allow to express the standard rules of calculus (linearity, product, chain) entirely in terms of diagrams.
+\item We study diagrammatic differentiation for the ZX calculus.
+In the pure case, this allows to compute the gradients of linear maps with respect to phase parameters.
+In the mixed classical-quantum case, this yields a definition of the parameter-shift rules used in quantum machine learning.
+\item We define the gradient of QNLP models and parameterised functors in general.
+\end{itemize}
+
+\section*{Publications}
+\addcontentsline{toc}{section}{Publications}
+
+The material presented in this thesis builds on the following publications.
+\begin{itemize}[label={}]
+\item \enumcite{MeichanetzidisEtAl20a}\vspace{-10pt}
+\item \enumcite{FeliceEtAl20a}\vspace{-10pt}
+\item \enumcite{CoeckeEtAl20}\vspace{-10pt}
+\item \enumcite{MeichanetzidisEtAl20}\vspace{-10pt}
+\item \enumcite{ToumiEtAl21a}
+\end{itemize}\vspace{10pt}
+During his DPhil, the author has also published the following articles.
+\begin{itemize}[label={}]
+\item \enumcite{FeliceEtAl19}\vspace{-10pt}
+\item \enumcite{FeliceEtAl20}\vspace{-10pt}
+\item \enumcite{ShieblerEtAl20}
+\item \enumcite{KartsaklisEtAl21}\vspace{-10pt}
+\item \enumcite{ToumiKoziell-Pipe21}
+\item \enumcite{CoeckeEtAl21}\vspace{-10pt}
+\item \enumcite{McPheatEtAl21}
+\end{itemize}

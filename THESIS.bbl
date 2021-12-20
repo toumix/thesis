@@ -1087,7 +1087,7 @@
     \verb 2003.01664
     \endverb
     \field{shorttitle}{There and Back Again}
-    \field{title}{There and Back Again: A Circuit Extraction Tale}
+    \field{title}{There and Back Again: {{A}} Circuit Extraction Tale}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/62GMX7U8/Backens et al. - 202
     \verb 0 - There and back again A circuit extraction tale.pdf;/Users/alexis.
@@ -1145,8 +1145,7 @@
     \endverb
     \field{isbn}{978-0-19-926969-3}
     \field{shorttitle}{Quantum {{Quandaries}}}
-    \field{title}{Quantum {{Quandaries}}: A {{Category}}-{{Theoretic
-  Perspective}}}
+    \field{title}{Quantum {{Quandaries}}: {{A Category-Theoretic Perspective}}}
     \field{langid}{english}
     \list{location}{1}{%
       {{Oxford}}%
@@ -1388,8 +1387,8 @@
     \verb 0903.0340
     \endverb
     \field{shorttitle}{Physics, {{Topology}}, {{Logic}} and {{Computation}}}
-    \field{title}{Physics, {{Topology}}, {{Logic}} and {{Computation}}: A
-  {{Rosetta Stone}}}
+    \field{title}{Physics, {{Topology}}, {{Logic}} and {{Computation}}: {{A
+  Rosetta Stone}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/VNU5X9SF/Baez and Stay - 2009
     \verb  - Physics, Topology, Logic and Computation A Rosett.pdf;/Users/alexi
@@ -1628,7 +1627,7 @@
     \field{issn}{00978507}
     \field{number}{1}
     \field{pages}{47}
-    \field{title}{A {{Quasi}}-{{Arithmetical Notation}} for {{Syntactic
+    \field{title}{A {{Quasi-Arithmetical Notation}} for {{Syntactic
   Description}}}
     \field{volume}{29}
     \field{langid}{english}
@@ -1766,7 +1765,7 @@
     \field{number}{5}
     \field{pages}{563\bibrangedash 591}
     \field{shorttitle}{The Computer as a Physical System}
-    \field{title}{The Computer as a Physical System: A Microscopic Quantum
+    \field{title}{The Computer as a Physical System: {{A}} Microscopic Quantum
   Mechanical {{Hamiltonian}} Model of Computers as Represented by {{Turing}}
   Machines}
     \field{volume}{22}
@@ -1883,7 +1882,7 @@
     \field{number}{2}
     \field{pages}{145\bibrangedash 160}
     \field{shorttitle}{Syntax and Semantics}
-    \field{title}{Syntax and Semantics: A Categorical View}
+    \field{title}{Syntax and Semantics: {{A}} Categorical View}
     \field{volume}{17}
     \field{langid}{english}
     \verb{file}
@@ -1978,9 +1977,9 @@
     \field{sortinithash}{B}
     \field{booktitle}{Proceedings of the 2013 {{Conference}} of the {{North
   American Chapter}} of the {{Association}} for {{Computational Linguistics}}:
-  Human {{Language Technologies}}}
+  {{Human Language Technologies}}}
     \field{pages}{847\bibrangedash 857}
-    \field{title}{A {{Quantum}}-{{Theoretic Approach}} to {{Distributional
+    \field{title}{A {{Quantum-Theoretic Approach}} to {{Distributional
   Semantics}}}
     \list{location}{1}{%
       {{Atlanta, Georgia}}%
@@ -2044,8 +2043,8 @@
     \verb{eprint}
     \verb 1703.08314
     \endverb
-    \field{title}{Interacting {{Conceptual Spaces I}} : Grammatical
-  {{Composition}} of {{Concepts}}}
+    \field{title}{Interacting {{Conceptual Spaces I}} : {{Grammatical
+  Composition}} of {{Concepts}}}
     \field{volume}{abs/1703.08314}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/5WQK297Q/Bolt et al. - 2017 -
@@ -2870,7 +2869,7 @@
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{booktitle}{Proceedings of the {{Second Symposium}} on {{Quantum
-  Interaction}} ({{QI}}-2008)}
+  Interaction}} ({{QI-2008}})}
     \field{pages}{133\bibrangedash 140}
     \field{title}{A {{Compositional Distributional Model}} of {{Meaning}}}
     \verb{file}
@@ -2974,7 +2973,7 @@
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{booktitle}{Quantum Interaction, Papers from the 2007 {{AAAI}} Spring
-  Symposium, Technical Report {{SS}}-07-08, Stanford, California, {{USA}},
+  Symposium, Technical Report {{SS-07-08}}, Stanford, California, {{USA}},
   March 26-28, 2007}
     \field{pages}{52\bibrangedash 55}
     \field{title}{Combining Symbolic and Distributional Models of Meaning}
@@ -3019,7 +3018,7 @@
     \verb{eprint}
     \verb 1302.0393
     \endverb
-    \field{title}{Lambek vs. {{Lambek}}: Functorial {{Vector Space Semantics}}
+    \field{title}{Lambek vs. {{Lambek}}: {{Functorial Vector Space Semantics}}
   and {{String Diagrams}} for {{Lambek Calculus}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/UTFLKRMN/Coecke et al. - 2013
@@ -3266,7 +3265,7 @@
     \endverb
     \field{isbn}{978-1-107-10422-8}
     \field{shorttitle}{Picturing {{Quantum Processes}}}
-    \field{title}{Picturing {{Quantum Processes}}: A {{First Course}} in
+    \field{title}{Picturing {{Quantum Processes}}: {{A First Course}} in
   {{Quantum Theory}} and {{Diagrammatic Reasoning}}}
     \list{location}{1}{%
       {{Cambridge}}%
@@ -3386,7 +3385,7 @@
     \verb{eprint}
     \verb 2012.03755
     \endverb
-    \field{title}{Foundations for {{Near}}-{{Term Quantum Natural Language
+    \field{title}{Foundations for {{Near-Term Quantum Natural Language
   Processing}}}
     \field{volume}{abs/2012.03755}
     \verb{file}
@@ -3572,7 +3571,7 @@
     \verb{eprint}
     \verb 2004.05164
     \endverb
-    \field{title}{Fast and Effective Techniques for {{T}}-Count Reduction via
+    \field{title}{Fast and Effective Techniques for {{T-count}} Reduction via
   Spider Nest Identities}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/SFKKJVB8/de Beaudrap et al. -
@@ -3772,8 +3771,8 @@
     \verb 1810.04805
     \endverb
     \field{shorttitle}{{{BERT}}}
-    \field{title}{{{BERT}}: Pre-Training of {{Deep Bidirectional Transformers}}
-  for {{Language Understanding}}}
+    \field{title}{{{BERT}}: {{Pre-training}} of {{Deep Bidirectional
+  Transformers}} for {{Language Understanding}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/9J2SMCK3/Devlin et al. - 2019
     \verb  - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/alexi
@@ -3851,7 +3850,7 @@
     \field{issn}{2521-327X}
     \field{pages}{279}
     \field{title}{Graph-Theoretic {{Simplification}} of {{Quantum Circuits}}
-  with the {{ZX}}-Calculus}
+  with the {{ZX-calculus}}}
     \field{volume}{4}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/P9JDI5FZ/Duncan et al. - 2020
@@ -4216,7 +4215,7 @@
     \verb 10.4204/EPTCS.333.13
     \endverb
     \field{shorttitle}{{{DisCoPy}}}
-    \field{title}{{{DisCoPy}}: Monoidal {{Categories}} in {{Python}}}
+    \field{title}{{{DisCoPy}}: {{Monoidal Categories}} in {{Python}}}
     \field{volume}{333}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/QASGBJLB/de Felice et al. - 2
@@ -4428,7 +4427,7 @@
     \verb{eprint}
     \verb arXiv:1711.10455
     \endverb
-    \field{title}{Backprop as {{Functor}}: A Compositional Perspective on
+    \field{title}{Backprop as {{Functor}}: {{A}} Compositional Perspective on
   Supervised Learning}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/Q3XNKV8M/Fong et al. - 2017 -
@@ -5111,7 +5110,7 @@
     \field{isbn}{978-1-4503-5583-4}
     \field{pages}{502\bibrangedash 511}
     \field{series}{{{LICS}} '18}
-    \field{title}{Two {{Complete Axiomatisations}} of {{Pure}}-State {{Qubit
+    \field{title}{Two {{Complete Axiomatisations}} of {{Pure-state Qubit
   Quantum Computing}}}
     \list{location}{1}{%
       {{New York, NY, USA}}%
@@ -5227,7 +5226,7 @@
     \field{labelalpha}{Hau89}
     \field{sortinit}{H}
     \field{sortinithash}{H}
-    \field{title}{Artificial Intelligence: The Very Idea}
+    \field{title}{Artificial Intelligence: {{The}} Very Idea}
     \field{year}{1989}
   \endentry
 
@@ -5363,7 +5362,7 @@
   structure-preserving monoidal functors to the category of relations.%
     }
     \field{pages}{16}
-    \field{title}{Compositional {{Diagrammatic First}}-{{Order Logic}}}
+    \field{title}{Compositional {{Diagrammatic First-Order Logic}}}
     \field{langid}{english}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/BW66SWTY/Haydon and Sobocinsk
@@ -5597,7 +5596,7 @@
     \verb 10.1162/neco.1997.9.8.1735
     \endverb
     \field{pages}{1735\bibrangedash 80}
-    \field{title}{Long {{Short}}-Term {{Memory}}}
+    \field{title}{Long {{Short-term Memory}}}
     \field{volume}{9}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/6AUXE4SX/Hochreiter and Schmi
@@ -5648,7 +5647,7 @@
   of the Compositional Distributional Model of Meaning and show statistical
   indications for a richer representation of words by density matrices.%
     }
-    \field{title}{Quantum {{Models}} for {{Word}}- {{Sense Disambiguation}}}
+    \field{title}{Quantum {{Models}} for {{Word- Sense Disambiguation}}}
     \field{langid}{english}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/UCPMV4IV/Hoffmann - 2021 - Qu
@@ -5809,7 +5808,7 @@
     \field{isbn}{978-1-4503-5583-4}
     \field{pages}{559\bibrangedash 568}
     \field{series}{{{LICS}} '18}
-    \field{title}{A {{Complete Axiomatisation}} of the {{ZX}}-{{Calculus}} for
+    \field{title}{A {{Complete Axiomatisation}} of the {{ZX-Calculus}} for
   {{Clifford}}+{{T Quantum Mechanics}}}
     \list{location}{1}{%
       {{New York, NY, USA}}%
@@ -6090,7 +6089,7 @@
     \verb 2110.04236
     \endverb
     \field{shorttitle}{Lambeq}
-    \field{title}{Lambeq: An {{Efficient High}}-{{Level Python Library}} for
+    \field{title}{Lambeq: {{An Efficient High-Level Python Library}} for
   {{Quantum NLP}}}
     \field{volume}{abs/2110.04236}
     \verb{file}
@@ -6272,7 +6271,7 @@
     \verb 1904.04735
     \endverb
     \field{shorttitle}{{{PyZX}}}
-    \field{title}{{{PyZX}}: Large {{Scale Automated Diagrammatic Reasoning}}}
+    \field{title}{{{PyZX}}: {{Large Scale Automated Diagrammatic Reasoning}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/M3X4IPXT/Kissinger and van de
     \verb  Wetering - 2019 - PyZX Large Scale Automated Diagrammatic Reasoning.
@@ -6340,7 +6339,7 @@
     \field{issn}{2469-9926, 2469-9934}
     \field{number}{2}
     \field{pages}{022406}
-    \field{title}{Reducing {{T}}-Count with the {{ZX}}-Calculus}
+    \field{title}{Reducing {{T-count}} with the {{ZX-calculus}}}
     \field{volume}{102}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/8L7GXBP7/Kissinger and van de
@@ -6408,7 +6407,7 @@
   overview of the core features and architecture and give a simple example
   project that computes normal forms for commutative bialgebras.%
     }
-    \field{booktitle}{Automated {{Deduction}} - {{CADE}}-25}
+    \field{booktitle}{Automated {{Deduction}} - {{CADE-25}}}
     \verb{eprint}
     \verb 1503.01034
     \endverb
@@ -6416,7 +6415,7 @@
     \field{pages}{326\bibrangedash 336}
     \field{series}{Lecture {{Notes}} in {{Computer Science}}}
     \field{shorttitle}{Quantomatic}
-    \field{title}{Quantomatic: A {{Proof Assistant}} for {{Diagrammatic
+    \field{title}{Quantomatic: {{A Proof Assistant}} for {{Diagrammatic
   Reasoning}}}
     \field{langid}{english}
     \verb{file}
@@ -6556,7 +6555,7 @@
     }
     \field{booktitle}{In {{Mathematical Systems Theory}}}
     \field{pages}{127\bibrangedash 145}
-    \field{title}{Semantics of {{Context}}-{{Free Languages}}}
+    \field{title}{Semantics of {{Context-Free Languages}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/25U79KI2/Knuth - 1968 - Seman
     \verb tics of Context-Free Languages.pdf;/Users/alexis.toumi/WORK/Zotero/st
@@ -6790,7 +6789,7 @@
     \field{number}{2}
     \field{pages}{83\bibrangedash 89}
     \field{title}{Contributions to a {{Mathematical Analysis}} of the {{English
-  Verb}}-Phrase}
+  Verb-phrase}}}
     \field{volume}{5}
     \field{langid}{english}
     \verb{file}
@@ -7137,7 +7136,7 @@
     \field{sortinithash}{L}
     \field{isbn}{978-88-7699-117-2}
     \field{series}{Open Access Publications}
-    \field{title}{From {{Word}} to {{Sentence}}: A {{Computational Algebraic
+    \field{title}{From {{Word}} to {{Sentence}}: {{A Computational Algebraic
   Approach}} to {{Grammar}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/WW37M4JD/Lambek - 2008 - From
@@ -7608,8 +7607,8 @@
     \field{sortinithash}{L}
     \field{number}{1174}
     \field{series}{Lecture {{Notes}} in {{Mathematics}}}
-    \field{title}{Categories in Continuum Physics: Lectures given at a Workshop
-  Held at {{SUNY}}, {{Buffalo}} 1982}
+    \field{title}{Categories in Continuum Physics: {{Lectures}} given at a
+  Workshop Held at {{SUNY}}, {{Buffalo}} 1982}
     \field{year}{1986}
   \endentry
 
@@ -7801,7 +7800,7 @@
     \verb 2102.12846
     \endverb
     \field{shorttitle}{{{QNLP}} in {{Practice}}}
-    \field{title}{{{QNLP}} in {{Practice}}: Running {{Compositional Models}} of
+    \field{title}{{{QNLP}} in {{Practice}}: {{Running Compositional Models}} of
   {{Meaning}} on a {{Quantum Computer}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/45BIXJVI/Lorenz et al. - 2021
@@ -8141,7 +8140,7 @@
     \field{shorttitle}{Anaphora and {{Ellipsis}} in {{Lambek Calculus}} with a
   {{Relevant Modality}}}
     \field{title}{Anaphora and {{Ellipsis}} in {{Lambek Calculus}} with a
-  {{Relevant Modality}}: Syntax and {{Semantics}}}
+  {{Relevant Modality}}: {{Syntax}} and {{Semantics}}}
     \field{volume}{abs/2110.10641}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/RAZ3QYPQ/McPheat et al. - 202
@@ -8219,7 +8218,7 @@
     \verb{eprint}
     \verb 2012.03756
     \endverb
-    \field{title}{Grammar-{{Aware Question}}-{{Answering}} on {{Quantum
+    \field{title}{Grammar-{{Aware Question-Answering}} on {{Quantum
   Computers}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/M8S86RYQ/Meichanetzidis et al
@@ -8322,7 +8321,7 @@
     \endverb
     \field{pages}{213\bibrangedash 229}
     \field{series}{{{EPTCS}}}
-    \field{title}{Quantum {{Natural Language Processing}} on {{Near}}-{{Term
+    \field{title}{Quantum {{Natural Language Processing}} on {{Near-Term
   Quantum Computers}}}
     \field{volume}{340}
     \verb{file}
@@ -8917,8 +8916,8 @@
     \endverb
     \field{isbn}{978-0-521-33707-6}
     \field{series}{Cambridge {{Monographs}} on {{Mathematical Physics}}}
-    \field{shorttitle}{Spinors and {{Space}}-{{Time}}}
-    \field{title}{Spinors and {{Space}}-{{Time}}: Volume 1: Two-{{Spinor
+    \field{shorttitle}{Spinors and {{Space-Time}}}
+    \field{title}{Spinors and {{Space-Time}}: {{Volume}} 1: {{Two-Spinor
   Calculus}} and {{Relativistic Fields}}}
     \field{volume}{1}
     \list{location}{1}{%
@@ -10203,7 +10202,7 @@
     \verb 2003.10611
     \endverb
     \field{shorttitle}{T\$|\$ket\$\textbackslash rangle\$}
-    \field{title}{Tket : A {{Retargetable Compiler}} for {{NISQ Devices}}}
+    \field{title}{Tket : {{A Retargetable Compiler}} for {{NISQ Devices}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/LQEG256F/Sivarajah et al. - 2
     \verb 020 - t$$ket$rangle$ A Retargetable Compiler for NIS.pdf;/Users/alexi
@@ -10418,7 +10417,8 @@
     \verb 10.4230/LIPIcs.CALCO.2019.20
     \endverb
     \field{pages}{20:1\bibrangedash 20:7}
-    \field{title}{{{CARTOGRAPHER}}: A Tool for String Diagrammatic Reasoning}
+    \field{title}{{{CARTOGRAPHER}}: {{A}} Tool for String Diagrammatic
+  Reasoning}
     \field{volume}{139}
     \field{year}{2019}
   \endentry
@@ -10706,7 +10706,7 @@
     \field{issn}{1076-9757}
     \field{pages}{141\bibrangedash 188}
     \field{shorttitle}{From {{Frequency}} to {{Meaning}}}
-    \field{title}{From {{Frequency}} to {{Meaning}}: Vector {{Space Models}} of
+    \field{title}{From {{Frequency}} to {{Meaning}}: {{Vector Space Models}} of
   {{Semantics}}}
     \field{volume}{37}
     \field{langid}{english}
@@ -11553,9 +11553,9 @@
     \endverb
     \field{pages}{1\bibrangedash 12}
     \field{shorttitle}{Closing the "{{Quantum Supremacy}}" {{Gap}}}
-    \field{title}{Closing the "{{Quantum Supremacy}}" {{Gap}}: Achieving
-  {{Real}}-{{Time Simulation}} of a {{Random Quantum Circuit Using}} a {{New
-  Sunway Supercomputer}}}
+    \field{title}{Closing the "{{Quantum Supremacy}}" {{Gap}}: {{Achieving
+  Real-Time Simulation}} of a {{Random Quantum Circuit Using}} a {{New Sunway
+  Supercomputer}}}
     \verb{file}
     \verb /Users/alexis.toumi/WORK/Zotero/storage/J3ZGN672/Yong et al. - 2021 -
     \verb  Closing the Quantum Supremacy Gap Achieving Rea.pdf;/Users/alexis.to
