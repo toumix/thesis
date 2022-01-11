@@ -1,0 +1,115 @@
+\begin{tikzpicture}[scale=1]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (-7.375, -4.625) {};
+		\node [style=none] (3) at (-6.725, -4.625) {$U(\theta)$};
+		\node [style=none] (10) at (-7.375, -5.125) {};
+		\node [style=none] (11) at (-6, -5.125) {};
+		\node [style=none] (12) at (-6, -4.125) {};
+		\node [style=none] (13) at (-7.375, -4.125) {};
+		\node [style=none] (19) at (-7.875, -4.625) {};
+		\node [style=none] (21) at (-6, -4.625) {};
+		\node [style=none] (25) at (-5.5, -4.625) {};
+		\node [style=none] (222) at (-4.75, -4.625) {$=$};
+		\node [style=none] (277) at (-6, -4.875) {};
+		\node [style=none] (278) at (-3.125, -3.7) {};
+		\node [style=none] (279) at (-2.325, -3.7) {};
+		\node [style=none] (280) at (-2.325, -5.375) {};
+		\node [style=none] (281) at (-1.825, -4.2) {};
+		\node [style=none] (282) at (-1.825, -4.925) {};
+		\node [style=none] (283) at (-3.625, -4.2) {};
+		\node [style=none] (284) at (-3.625, -5.375) {};
+		\node [style=none] (285) at (-3.25, -4.625) {};
+		\node [style=none] (286) at (-2.75, -4.625) {$H$};
+		\node [style=none] (287) at (-3.25, -5) {};
+		\node [style=none] (288) at (-2.25, -5) {};
+		\node [style=none] (289) at (-2.25, -4.25) {};
+		\node [style=none] (290) at (-3.25, -4.25) {};
+		\node [style=none] (291) at (-4, -4.625) {};
+		\node [style=none] (292) at (-2.25, -4.625) {};
+		\node [style=none] (293) at (-1.5, -4.625) {};
+		\node [style=none, font={\scriptsize}] (294) at (-3.35, -5.2) {$\exp$};
+		\node [style=none] (295) at (-2.25, -4.75) {};
+		\node [style=scalar] (297) at (-2.75, -4) {$i \theta$};
+		\node [style=none] (298) at (2, -4.625) {};
+		\node [style=none] (299) at (2.65, -4.625) {$H$};
+		\node [style=none] (300) at (2, -5.125) {};
+		\node [style=none] (301) at (3.375, -5.125) {};
+		\node [style=none] (302) at (3.375, -4.125) {};
+		\node [style=none] (303) at (2, -4.125) {};
+		\node [style=none] (304) at (1.5, -4.625) {};
+		\node [style=none] (305) at (3.375, -4.625) {};
+		\node [style=none] (306) at (3.875, -4.625) {};
+		\node [style=none] (307) at (4.625, -4.625) {$=$};
+		\node [style=none] (308) at (3.375, -4.875) {};
+		\node [style=none] (309) at (6.25, -3.7) {};
+		\node [style=none] (310) at (7.05, -3.7) {};
+		\node [style=none] (311) at (7.05, -5.375) {};
+		\node [style=none] (312) at (7.55, -4.2) {};
+		\node [style=none] (313) at (7.55, -4.925) {};
+		\node [style=none] (314) at (5.75, -4.2) {};
+		\node [style=none] (315) at (5.75, -5.375) {};
+		\node [style=none] (316) at (6.125, -4.625) {};
+		\node [style=none] (317) at (6.625, -4.625) {$U(\theta)$};
+		\node [style=none] (318) at (6.125, -5) {};
+		\node [style=none] (319) at (7.125, -5) {};
+		\node [style=none] (320) at (7.125, -4.25) {};
+		\node [style=none] (321) at (6.125, -4.25) {};
+		\node [style=none] (322) at (5.375, -4.625) {};
+		\node [style=none] (323) at (7.125, -4.625) {};
+		\node [style=none] (324) at (7.875, -4.625) {};
+		\node [style=none, font={\scriptsize}] (325) at (6.525, -5.2) {$[\theta \mapsto 0] \circ \partial$};
+		\node [style=none] (326) at (7.125, -4.75) {};
+		\node [style=scalar] (328) at (5.375, -4.25) {$-i$};
+		\node [style=none] (329) at (0, -4.5) {and};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boxedge] (13.center)
+			 to (10.center)
+			 to (11.center)
+			 to (277.center)
+			 to (12.center)
+			 to cycle;
+		\draw [style=thick] (19.center) to (1.center);
+		\draw [style=thick] (25.center) to (21.center);
+		\draw [style=thick] (282.center)
+			 to (281.center)
+			 to [bend right=45, looseness=1.25] (279.center)
+			 to (278.center)
+			 to [bend right=45, looseness=1.25] (283.center)
+			 to (284.center)
+			 to (280.center)
+			 to [bend right=45, looseness=1.50] cycle;
+		\draw [style=boxedge] (290.center)
+			 to (287.center)
+			 to (288.center)
+			 to (295.center)
+			 to (289.center)
+			 to cycle;
+		\draw [style=thick] (291.center) to (285.center);
+		\draw [style=thick] (293.center) to (292.center);
+		\draw [style=boxedge] (303.center)
+			 to (300.center)
+			 to (301.center)
+			 to (308.center)
+			 to (302.center)
+			 to cycle;
+		\draw [style=thick] (304.center) to (298.center);
+		\draw [style=thick] (306.center) to (305.center);
+		\draw [style=thick] (313.center)
+			 to (312.center)
+			 to [bend right=45, looseness=1.25] (310.center)
+			 to (309.center)
+			 to [bend right=45, looseness=1.25] (314.center)
+			 to (315.center)
+			 to (311.center)
+			 to [bend right=45, looseness=1.50] cycle;
+		\draw [style=boxedge] (321.center)
+			 to (318.center)
+			 to (319.center)
+			 to (326.center)
+			 to (320.center)
+			 to cycle;
+		\draw [style=thick] (322.center) to (316.center);
+		\draw [style=thick] (324.center) to (323.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

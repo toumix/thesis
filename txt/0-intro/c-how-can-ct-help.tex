@@ -1,4 +1,4 @@
-%!TEX root = ../THESIS.tex
+%!TEX root = ../../THESIS.tex
 
 \section*{How can category theory help?}
 \addcontentsline{toc}{section}{How can category theory help?}
@@ -93,7 +93,7 @@ If they are a great tool for writing scientific papers, string diagrams can also
 quantomatic~\cite{KissingerZamdzhiev15} and its successor PyZX~\cite{KissingerVanDeWetering19} perform automatic rewriting of diagrams in the ZX calculus,
 globular~\cite{BarEtAl18} and its successor homotopy.io~\cite{ReutterVicary19} are proof assistants for higher category theory,
 cartographer~\cite{SobocinskiEtAl19} and catlab~\cite{PattersonEtAl21} implement diagrams in symmetric monoidal categories, which are also implicit in the circuit data structure of the t$|$ket$\rangle$ compiler~\cite{SivarajahEtAl20}.
-String diagrams are the main data structure of our QNLP algorithms: we first construct diagrams for sentences, apply a functor to translate them into quantum circuits and then send them as instructions to a quantum computer.
+String diagrams are the main data structure of our QNLP algorithms: we translate the diagrams of sentences into diagrams of quantum circuits.
 As none of the existing category theory software was flexible enough, we had to implement our own: DisCoPy~\cite{FeliceEtAl20}, a Python library for computing with functors and diagrams in monoidal categories.
 DisCoPy then became the engine underlying lambeq~\cite{KartsaklisEtAl21}, a high-level library for experimental QNLP.
 Although its development was driven by the implementation of DisCoCat models on quantum computers, DisCoPy was designed as a general-purpose toolkit for applied category theory.

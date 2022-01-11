@@ -1,0 +1,42 @@
+\begin{tikzpicture}[scale=0.4, baseline={([yshift=-2ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 1.25) {};
+		\node [style=none] (1) at (0, 0.5) {};
+		\node [style=none] (2) at (0, -1.25) {};
+		\node [style=none] (8) at (3, 1.25) {};
+		\node [style=none] (9) at (3, 0.5) {};
+		\node [style=none] (10) at (3, -1.25) {};
+		\node [style={Z_med}] (11) at (1.5, 0) {};
+		\node [style=node] (12) at (0.25, -0.25) {$\vdots$};
+		\node [style=node] (13) at (2.75, -0.25) {$\vdots$};
+		\node [style={Z_long}] (14) at (1.5, 2) {$\alpha + \pi$};
+		\node [style=none] (15) at (-1.25, 1.25) {};
+		\node [style=none] (16) at (-1.25, 0.5) {};
+		\node [style=none] (17) at (-1.25, -1.25) {};
+		\node [style=scalar, font={\tiny}] (19) at (3.5, 2.25) {$\frac{\partial\alpha}{2}$};
+		\node [style=none] (20) at (4.25, 1.25) {};
+		\node [style=none] (21) at (4.25, 0.5) {};
+		\node [style=none] (22) at (4.25, -1.25) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (15.center)
+			 to (0.center)
+			 to [bend left] (11);
+		\draw (11)
+			 to [bend right=15] (1.center)
+			 to (16.center);
+		\draw (17.center)
+			 to (2.center)
+			 to [bend right] (11);
+		\draw (11)
+			 to [bend right] (10.center)
+			 to (22.center);
+		\draw (21.center)
+			 to (9.center)
+			 to [bend right=15] (11);
+		\draw (11)
+			 to [bend left] (8.center)
+			 to (20.center);
+		\draw (14) to (11);
+	\end{pgfonlayer}
+\end{tikzpicture}

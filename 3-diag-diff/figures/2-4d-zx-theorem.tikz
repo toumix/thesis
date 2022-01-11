@@ -1,0 +1,24 @@
+\begin{tikzpicture}[scale=0.4, baseline={([yshift=-1.9ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-0.5, 1.25) {};
+		\node [style=none] (1) at (-0.5, 0.5) {};
+		\node [style=none] (2) at (-0.5, -1.25) {};
+		\node [style=none] (8) at (3.5, 1.25) {};
+		\node [style=none] (9) at (3.5, 0.5) {};
+		\node [style=none] (10) at (3.5, -1.25) {};
+		\node [style={Z_long}] (11) at (1.5, 0) {$\alpha+\pi$};
+		\node [style=node] (12) at (-0.25, -0.25) {$\vdots$};
+		\node [style=node] (13) at (3.25, -0.25) {$\vdots$};
+		\node [style=none] (14) at (1, 0) {};
+		\node [style=none] (15) at (2, 0) {};
+		\node [style=scalar, font={\tiny}] (16) at (1.5, 1.75) {$\frac{\partial\alpha}{2}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [bend left] (0.center) to (11);
+		\draw [bend left] (11) to (2.center);
+		\draw [bend right] (11) to (10.center);
+		\draw [bend left] (11) to (8.center);
+		\draw [bend left] (1.center) to (14.center);
+		\draw [bend left] (15.center) to (9.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

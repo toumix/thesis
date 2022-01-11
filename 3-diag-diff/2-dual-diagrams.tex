@@ -1,0 +1,316 @@
+%!TEX root = main.tex
+
+\section{Dual diagrams}\label{2-dual-diagrams}
+
+Our main technical contribution is to generalise derivations from rigs to
+monoidal categories with sums. Applying this to free monoidal categories,
+where the arrows are string diagrams, we say a derivation is diagrammatic
+when it commutes with the interpretation of the diagrams. We take two
+different flavours of the ZX-calculus as our main examples.
+
+Let $(\mathbf{C}, \otimes, 1)$ be a monoidal category with sums, i.e.
+it has commutative monoids on each homset $(+) : \prod_{x,y}
+\mathbf{C}(x, y) \times \mathbf{C}(x, y) \to \mathbf{C}(x, y)$
+with unit $0 \in \prod_{x,y} \mathbf{C}(x, y)$
+such that composition and tensor distribute over the sum.
+Note that a one-object monoidal category with sums is simply a rig.
+Our motivating example is the category $\mathbf{Mat}_\S$ with natural numbers
+as objects and matrices valued in a commutative rig $\S$ as arrows, with matrix
+multiplication as composition, Kronecker product as tensor and entrywise sum.
+We define the category $\D[\mathbf{C}]$ by adjoining a scalar (i.e. an
+endomorphism of the monoidal unit) $\epsilon$ such that $\epsilon \otimes \epsilon = 0$\footnote{
+Note that in the case when $\mathbf{C}$ is not symmetric monoidal (or at least braided) the axiom $\epsilon \otimes f = f \otimes \epsilon$ is also needed.
+}.
+Concretely, the objects of $\D[\mathbf{C}]$ are the same as those of $\mathbf{C}$, the arrows
+are given by formal sums $f + f' \epsilon$ of parallel arrows $f, f' \in \mathbf{C}$.
+Composition and tensor are both given by the product rule:
+\begin{align}
+    (f + f' \epsilon) \ \then \ (g + g' \epsilon)
+    &\s = \s f \ \then \ g \s + \s (f' \then g \ + \ f \then g') \ \epsilon\\
+    (f + f' \epsilon) \tensor (g + g' \epsilon)
+    &\s = \s f \tensor g \s + \s (f' \tensor g \ + \ f \tensor g') \ \epsilon
+\end{align}
+
+We say that a unary operator on homsets $\partial : \coprod_{x,y}
+\mathbf{C}(x, y) \to \mathbf{C}(x, y)$ is a derivation whenever it satisfies the product rules for both composition
+$\partial (f \then g) = (\partial f) \then g + f \then (\partial g)$
+and tensor
+$\partial (f \tensor g) = (\partial f) \tensor g + f \tensor (\partial g)$.
+An equivalent condition is that the map $f \mapsto f + (\partial f) \epsilon$
+is a sum-preserving monoidal functor $\mathbf{C} \to \D[\mathbf{C}]$.
+Again, the correspondance between dual numbers and derivations works the other
+way around: given a sum-preserving monoidal functor
+$\partial : \mathbf{C} \to \D[\mathbf{C}]$ such that
+$\pi_0 \circ \partial = \id_{\mathbf{C}}$, projecting on the epsilon component
+gives a derivation $\pi_1 \circ \partial : \coprod_{x,y}
+\mathbf{C}(x, y) \to \mathbf{C}(x, y)$. The following propositions characterise
+the derivations on the category of matrices valued in a commutative rig $\S$.
+
+\begin{proposition}
+Dual matrices are matrices of dual numbers, i.e.
+$\D[\mathbf{Mat}_\S] \simeq \mathbf{Mat}_{\D[\S]}$.
+\end{proposition}
+
+\begin{proof}
+The isomorphism is given by
+$\big( \sum_{ij} f_{ij} \ket{j} \bra{i} \big)
+\ + \ \big( f'_{ij} \sum_{ij} \ket{j}  \bra{i} \big) \epsilon
+\s \longleftrightarrow \s
+\sum_{ij} (f_{ij} + f'_{ij} \epsilon) \ket{j} \bra{i}$.
+\end{proof}
+
+\begin{proposition}
+Derivations on $\mathbf{Mat}_\S$ are in one-to-one correspondance with
+derivations on $\S$.
+\end{proposition}
+
+\begin{proof}
+A derivation on $\mathbf{Mat}_\S$ is uniquely determined by its action on
+scalars in $\S$. Conversely, applying a derivation $\partial : \S \to \S$
+entrywise on matrices yields a derivation on $\mathbf{Mat}_\S$.
+\end{proof}
+
+Fix a monoidal signature $\Sigma$ with objects $\Sigma_0$ and boxes $\Sigma_1$.
+Let $\mathbf{C}_\Sigma$ be the free monoidal category it generates:
+the objects are types, i.e. lists of generating objects
+$t = t_1, \dots, t_n \in \Sigma_0^\star$, the arrows are
+string diagrams with boxes in $\Sigma_1$.
+Let $\mathbf{C}_\Sigma^+$ be the free monoidal category with sums:
+the objects are also given by types, the arrows are formal sums, i.e.
+bags\footnote{A bag of $X$, also called a multiset, is a function $X \to \N$.
+Addition of bags is done pointwise with unit the constant zero.},
+of string diagrams.
+We assume our diagrams are interpreted as matrices, i.e. we fix a sum-preserving
+monoidal functor $[\![-]\!]  : \mathbf{C}_\Sigma^+ \to \mathbf{Mat}_\S$
+for $\S$ a commutative rig with a derivation $\partial : \S \to \S$.
+Our main two examples are the standard ZX-calculus with smooth functions
+$\R^n \to \R$ as phases and the algebraic ZX-calculus over $\S$,
+introduced in \cite{Wang20}.
+
+Applying the dual number construction to $\mathbf{C}_\Sigma^+$,
+we get the category of dual diagrams $\D[\mathbf{C}_\Sigma^+]$ which is where
+diagrammatic differentiation happens.
+By the universal property of $\mathbf{C}_\Sigma^+$, every derivation
+$\partial : \mathbf{C}_\Sigma^+ \to \D[\mathbf{C}_\Sigma^+]$ is uniquely
+determined by its image on the generating boxes in $\Sigma_1$. Intuitively,
+if we're given the derivative for each box, we can compute the derivative
+for every sum of diagram using the product rule.
+We say that the interpretation $[\![-]\!] : \mathbf{C}_\Sigma^+ \to \mathbf{Mat}_\S$
+admits diagrammatic differentiation if there is a derivation $\partial$ on
+$\mathbf{C}_\Sigma^+$ such that
+$[\![-]\!] \circ \partial = \partial \circ [\![-]\!]$, i.e. the interpretation
+of the gradient $[\![\partial d]\!]$ coincides with the gradient of the
+interpretation $\partial [\![d]\!]$ for all sums of diagrams $d \in
+\mathbf{C}_\Sigma^+$. We depict the gradient $\partial d$ as a
+bubble surrounding the diagram $d$, we introduce bubbles formally in
+section~\ref{4-bubbles}.
+Once translated to string diagrams, the axioms for derivations on monoidal
+categories with sums become:
+$$\tikzfig{2-1-product-rule}$$
+
+\section{Differentiating ZX}\label{2b-differentiating-zx}
+
+This section applies the dual number construction to the diagrams of the ZX-calculus.
+
+\begin{definition}
+The diagrams of the ZX-calculus with smooth maps $\R^n \to \R$ as phases
+form a category $\mathbf{ZX}_n = \mathbf{C}_\Sigma$ where
+$\Sigma = \{ H : x \to x, \s \sigma : x^{\otimes 2} \to x^{\otimes 2} \}
++ \{ Z^{m, n}(\alpha) : x^{\otimes m} \to x^{\otimes n}
+\ \vert \ m, n \in \N, \alpha : \R^n \to \R \}$.
+$H$ is depicted as a yellow square, $\sigma$ as a swap and $Z^{m, n}(\alpha)$
+as a green spider.
+The interpretation $[\![-]\!]  : \mathbf{ZX}_n \to \mathbf{Mat}_\S$
+in matrices over $\S = \R^n \to \C$ is given by on objects by $[\![x]\!] = 2$
+and on arrows by $[\![H]\!] = \frac{1}{\sqrt{2}} \big(
+\ket{0}\bra{0} + \ket{0}\bra{1} + \ket{1}\bra{0} - \ket{1}\bra{1}\big)$,
+$[\![\sigma]\!] = \sum_{i,j \in \{ 0, 1 \}} \ket{j, i}\bra{i, j}$
+and $[\![Z^{m, n}(\alpha)]\!] =
+e^{-i \alpha / 2} \ket{0}^{\otimes n} \bra{0}^{\otimes m}
++ e^{i \alpha / 2} \ket{1}^{\otimes n} \bra{1}^{\otimes m}$.
+We write $\mathbf{ZX}_n^+$ for the category of formal sums of parametrised
+ZX diagrams.
+\end{definition}
+
+\begin{remark}
+Note that we've scaled the standard interpretation of the green spider by a global phase
+to match the usual definition of rotation gates in quantum circuits.
+\end{remark}
+
+\begin{remark}
+For $n = 0$ we get $\mathbf{ZX}_0 = \mathbf{ZX}$ the ZX-calculus
+with no parameters.
+By currying, any ZX diagram $d \in \mathbf{ZX}_n$ can be seen as a function
+$d : \R^n \to \text{Ar}(\mathbf{ZX})$ such that
+$[\![-]\!] \circ d : \R^n \to \mathbf{Mat}_\C$ is smooth.
+\end{remark}
+
+\begin{lemma}\label{lemma-scalars}
+A function $s : \R^n \to \C$ can be drawn as a scalar diagram in
+$\mathbf{ZX}_n$ if and only if it is bounded.
+\end{lemma}
+
+\begin{proof}
+Generalising \cite[P.~8.101]{CoeckeKissinger17} to parametrised scalars,
+if there is a $k \in \N$ with $\vert s(\theta) \vert \leq 2^k$ for all
+$\theta \in \R^n$ then there are parametrised
+phases $\alpha, \beta : \R^n \to \R$ such that
+
+\ctikzfig{2-2-bounded-lemma}
+
+In the other direction, take any scalar diagram $d$ in $\mathbf{ZX}_n$.
+Let $k$ be the number of spider in the diagram and $l$ the maximum number
+of legs. By decomposing each spider as a sum of two disconnected diagrams,
+we can write $d$ as a sum of $2^k$ diagrams. Each term of the sum is a product
+of at most $\frac{1}{2} \times k \times l$ bone-shaped scalars. Each bone is
+bounded by $2$, thus $[\![d]\!] : \R^n \to \C$ is bounded by $2^{k \times l}$.
+\end{proof}
+
+\begin{lemma}\label{lemma-rotations}
+In $\mathbf{ZX}_n$, we have
+$ \tikzfig{2-3a-lemma-rotation} = \tikzfig{2-3b-lemma-rotation} $
+for all affine phases $\alpha : \R^n \to \R$.
+\end{lemma}
+
+\begin{proof}
+$\partial [\![ Z(\alpha) ]\!]
+= \partial \big( e^{-i \alpha / 2} \ket{0}+ e^{i \alpha / 2} \ket{1}\big)
+= \frac{i\partial\alpha}{2}\big(-e^{-i \alpha / 2} \ket{0}
++ e^{i\alpha / 2} \ket{1}\big)
+= \frac{\partial\alpha}{2}\big(e^{-i\frac{\alpha+\pi}{2}} \ket{0}
++ e^{i\frac{\alpha+\pi}{2}} \ket{1}\big)$.\\
+$\alpha$ is affine so $\partial \alpha$ is constant, hence
+bounded and from lemma~\ref{lemma-scalars} we know it can be drawn
+in $\mathbf{ZX}_n$.
+\end{proof}
+
+\begin{theorem}\label{theorem-zx-diag-diff}
+The ZX-calculus with affine maps $\R^n \to \R$ as phases admits diagrammatic
+differentiation.
+\end{theorem}
+
+\begin{proof}
+The Hadamard $H$ and swap $\sigma$ have derivative zero.
+For the green spiders, we can extend lemma~\ref{lemma-rotations} from
+single qubit rotations to arbitrary many legs using spider fusion:
+$$\tikzfig{2-4a-zx-theorem}
+= \tikzfig{2-4b-zx-theorem}
+= \tikzfig{2-4c-zx-theorem}
+= \tikzfig{2-4d-zx-theorem}$$
+\end{proof}
+
+Note that there is no diagrammatic differentiation for the ZX-calculus with
+smooth maps as phases, even when restricted to bounded functions.
+Take for example $\alpha : \R \to \R$ with $\alpha(\theta) = \sin \theta^2$,
+it is smooth and bounded by $1$ but its derivative $\partial \alpha$ is
+unbounded.
+Thus, from lemma~\ref{lemma-scalars} we know it cannot be represented as a
+scalar diagram in $\mathbf{ZX}_1$: there can be no diagrammatic
+differentiation $\partial : \mathbf{ZX}_1 \to \D[\mathbf{ZX}_1]$.
+In such cases, we can always extend the signature by adjoining a new box
+for each derivative.
+
+\begin{proposition}
+For every interpretation $[\![-]\!] : \mathbf{C}_\Sigma^+ \to \mathbf{Mat}_\S$,
+there is an extended signature $\Sigma' \supset \Sigma$
+and interpretation $[\![-]\!] : \mathbf{C}_{\Sigma'}^+ \to \mathbf{Mat}_\S$
+such that $\mathbf{C}_{\Sigma'}^+$ admits digrammatic differentiation.
+\end{proposition}
+
+\begin{proof}
+Let $\Sigma' = \cup_{n \in \N} \Sigma^n$ where $\Sigma^0 = \Sigma$
+and $\Sigma^{n + 1} = \Sigma^n \cup \{ \partial f \ \vert \ f \in \Sigma^n \}$
+with $[\![\partial f]\!] = \partial [\![f]\!]$.
+\end{proof}
+
+The issue of being able to represent arbitrary scalars disappears if we work
+with the algebraic ZX-calculus instead. Furthermore, we can generalise
+from $\S = \R^n \to \C$ to any commutative rig.
+
+\begin{definition}
+The diagrams of the algebraic ZX-calculus over a commutative rig $\S$ form a
+category $\mathbf{ZX}_\S = \mathbf{C}_\Sigma$ where the signature $\Sigma$ is
+given in \cite[Table 2]{Wang20} and the interpretation
+is given in \cite[§6]{Wang20}.
+In particular, there is a green square $R_Z^{m, n}(a) \in \Sigma_1$ for each $a \in S$
+and $m, n \in \N$ with $[\![R_Z^{m, n}(a)]\!] =
+\ket{0}^{\otimes n} \bra{0}^{\otimes m}
++ a \ket{1}^{\otimes n} \bra{1}^{\otimes m}$.
+Let $\mathbf{ZX}_\S^+$ be the category of formal sums of algebraic ZX
+diagrams over $\S$.
+\end{definition}
+
+\begin{theorem}
+Diagrammatic derivations on $[\![-]\!] : \mathbf{ZX}_\S^+ \to \mathbf{Mat}_\S$
+are in one-to-one correspondance with rig derivations $\partial : \S \to \S$.
+\end{theorem}
+
+\begin{proof}
+Given a derivation $\partial$ on $\S$, we have
+$\partial [\![R_Z^{m, n}(a)]\!]
+= (\partial a) \ket{1}^{\otimes n} \bra{1}^{\otimes m}$
+and $\partial a$ can be represented by the scalar diagram
+$R_Z^{1, 0}(\partial a) \ket{1}$.
+In the other direction, a diagrammatic derivation $\partial$ on
+$\mathbf{ZX}_\S^+$ is uniquely determined by its action on scalars
+$R_Z^{1, 0}(a) \ket{1}$ for $a \in \S$.
+\end{proof}
+
+One application of diagrammatic differentiation is to solve
+differential equations between diagrams. As a first step,
+we apply Stone's theorem \cite{Stone32} on one-parameter unitary groups
+to the ZX-calculus.
+
+\begin{definition}
+A one-parameter unitary group is a unitary matrix $U : n \to n$
+in $\mathbf{Mat}_{\R \to \C}$ with $U(0) = \id_n$ and $U(\theta) U(\theta') = U(\theta + \theta')$
+for all $\theta, \theta' \in \R$. It is strongly continuous when
+$\lim_{\theta \to \theta_0} U(\theta) = U(\theta_0)$ for all $\theta_0 \in \R$.
+We say a one-parameter diagram $d : x^{\otimes n} \to x^{\otimes n}$
+is a unitary group if its interpretation $[\![d]\!]$ is.
+\end{definition}
+
+\begin{remark}
+The interpretation of diagrams with smooth maps as phases must be strongly continuous.
+\end{remark}
+
+\begin{theorem}[Stone]
+There is a one-to-one correspondance between strongly continuous one-parameter
+unitary groups $U : n \to n$ in $\mathbf{Mat}_{\R \to \C}$ and self-adjoint
+matrices $H : n \to n$ in $\mathbf{Mat}_{\C}$. The bijection is given
+explicitly by $U(\theta) = \exp(i \theta H)$ and $H = - i (\partial U)(0)$,
+translated in terms of diagrams with bubbles we get:
+\ctikzfig{2-5-stone-theorem}
+\end{theorem}
+
+\begin{corollary}
+A one-parameter diagram $d : x^{\otimes n} \to x^{\otimes n}$ in
+$\mathbf{ZX}_1$ is a unitary group if and only if there is a constant
+self-adjoint diagram
+$h : x^{\otimes n} \to x^{\otimes n}$ such that $\partial d = i h \then d$.
+\end{corollary}
+
+\begin{proof}
+Given the diagram for a unitary group $d$, we compute its diagrammatic
+differentiation $\partial d$ and get $h$ by pattern matching.
+Conversely given a self-adjoint $h$, the diagram $d = \exp(i \theta h)$
+is a unitary group.
+\end{proof}
+
+\begin{example}
+Let $d = R_z(\alpha) \otimes R_x(\alpha)$ for a smooth $\alpha : \R \to \R$,
+then the following implies $d(\theta) = \exp(i \theta h)$\linebreak
+$\tikzfig{2-6a-simple-example}
+= \tikzfig{2-6b-simple-example}
++ \tikzfig{2-6c-simple-example} \quad$
+for $h = - i \frac{\partial \alpha}{2}(Z \otimes I + I \otimes X)$.
+\end{example}
+
+\begin{example}
+Let $d = P(\alpha, ZX)$ be a Pauli gadget as defined in \cite[def.~4.1]{CowtanEtAl20a} then
+the following implies
+$d(\theta) = \exp(i \theta h)$ for $h = -i \frac{\partial \alpha}{2} Z \otimes X$.
+$\tikzfig{2-7a-pauli-gadget}
+= \tikzfig{2-7b-pauli-gadget}
+= \tikzfig{2-7c-pauli-gadget}$
+\end{example}

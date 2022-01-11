@@ -1,0 +1,46 @@
+%!TEX root = ms.tex
+
+String diagrams are a graphical calculus for monoidal categories, introduced independently by Hotz \cite{Hotz65} in computer science and Penrose \cite{Penrose71} in physics, then formalised by Joyal and Street \cite{JoyalStreet88, JoyalStreet91}.
+Graphical languages are surveyed in Selinger \cite{Selinger10},
+they have become a standard tool in applied category theory.
+We cite a few of the growing list of applications:
+computer science \cite{BrownHutton94, Abramsky96},
+quantum theory and the ZX-calculus \cite{Coecke05,AbramskyCoecke08,CoeckeDuncan08},
+networks and control theory \cite{BaezErbele14, BaezFong15, BaezPollard17}, concurrency \cite{BonchiEtAl14a},
+databases and
+knowledge representation \cite{Patterson17, BonchiEtAl18},
+Bayesian reasoning and causality \cite{CoeckeSpekkens12,ChoJacobs19,KissingerUijlen19},
+linguistics and cognition \cite{ClarkEtAl08,BoltEtAl17},
+functional programming \cite{Riley18},
+machine learning and
+game theory \cite{FongEtAl17, GhaniEtAl18}.
+In all these applications, string diagrams are the syntax and structure-preserving functors are used to compute their semantics in concrete categories.
+
+There are several existing proof assistants with graphical user interfaces for rewriting string diagrams in a more or less automated fashion:
+quantomatic \cite{KissingerZamdzhiev15} and PyZX \cite{KissingervandeWetering19} for the ZX-calculus,
+globular \cite{BarEtAl} and its successor homotopy.io \cite{ReutterVicary19} for higher categories,
+cartographer \cite{SobocinskiEtAl19} for symmetric monoidal categories.
+However, these are all stand-alone tools which use different task-specific encodings for diagrams, preventing interoperability between them and with the software ecosystems of application domains.
+
+DisCoPy (Distributional Compositional Python) is not yet-another rewriting tool, rather it is meant as a toolbox for compiling diagrams into code, be it for neural networks, tensor computation or quantum circuits.
+It provides an intuitive Python syntax for diagrams, allowing to visualise and reason about computation at a high level of abstraction.
+Monoidal functors allow to translate these diagrams into concrete computation, interfacing with optimised task-specific libraries.
+DisCoPy is an open source package, it is available with an extensive documentation and demonstration notebooks hosted at:
+
+\url{https://github.com/oxford-quantum-group/discopy}
+
+This paper describes the architecture of DisCoPy, focusing on the translation from abstract categorical definitions into their concrete implementation in Python.
+We assume some working knowledge of category theory and refer the reader to \cite{Lane98} and to \cite{Awodey06} for an introduction.
+Implementing a category in an object-oriented programming language amounts to defining a pair of classes for its objects and arrows, together with a pair of methods for identity and composition.
+When the category is free, composition is implemented by list concatenation and identity by the empty list.
+Concrete categories may then be defined by subclassing this free category and overriding identity and composition.
+These are expected to respect the usual associativity and unit axioms, however they cannot be formally checked in Python.
+
+Starting from free categories (section~\ref{1-cat}) as a base class, more structure can be added by subclassing and adding new methods.
+Quotient categories can be implemented by a method for computing normal forms.
+For instance, monoidal categories (section~\ref{2-monoidal}) subclass categories with an extra method for tensor product and one for interchanger normal form.
+For now, we implemented Cartesian and rigid monoidal categories (section~\ref{4-rigid}), as these provide a syntax for the concrete categories implemented in DisCoPy: Python functions (appendix~\ref{3-cartesian}) and numpy \cite{VanderWaltEtAl11} tensors (section~\ref{5-tensor}).
+The development of DisCoPy was first motivated by the implementation of natural language processing on quantum hardware.
+Hence, we implemented quantum circuits (section~\ref{6-circuit}) as a subclass of rigid monoidal categories with an extra method for evaluation as numpy tensors and interface with the t|ket$\rangle$ compiler \cite{SivarajahEtAl20}.
+
+We hope that this toolbox will prove to be of use to the applied category theory community, and plan on adding more categorical tools to it in the future.

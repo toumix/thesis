@@ -1894,6 +1894,146 @@
     \field{year}{1970}
   \endentry
 
+  \entry{BergholmEtAl20}{article}{}
+    \name{author}{15}{}{%
+      {{hash=BV}{%
+         family={Bergholm},
+         familyi={B\bibinitperiod},
+         given={Ville},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=IJ}{%
+         family={Izaac},
+         familyi={I\bibinitperiod},
+         given={Josh},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Schuld},
+         familyi={S\bibinitperiod},
+         given={Maria},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Gogolin},
+         familyi={G\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=AMS}{%
+         family={Alam},
+         familyi={A\bibinitperiod},
+         given={M.\bibnamedelima Sohaib},
+         giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Ahmed},
+         familyi={A\bibinitperiod},
+         given={Shahnawaz},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AJM}{%
+         family={Arrazola},
+         familyi={A\bibinitperiod},
+         given={Juan\bibnamedelima Miguel},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Blank},
+         familyi={B\bibinitperiod},
+         given={Carsten},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={Delgado},
+         familyi={D\bibinitperiod},
+         given={Alain},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=JS}{%
+         family={Jahangiri},
+         familyi={J\bibinitperiod},
+         given={Soran},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={McKiernan},
+         familyi={M\bibinitperiod},
+         given={Keri},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=MJJ}{%
+         family={Meyer},
+         familyi={M\bibinitperiod},
+         given={Johannes\bibnamedelima Jakob},
+         giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=NZ}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Zeyue},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Sz{\'a}va},
+         familyi={S\bibinitperiod},
+         given={Antal},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KN}{%
+         family={Killoran},
+         familyi={K\bibinitperiod},
+         given={Nathan},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Emerging Technologies,Computer Science - Machine
+  Learning,Physics - Computational Physics,Quantum Physics}
+    \strng{namehash}{BV+1}
+    \strng{fullhash}{BVIJSMGCAMSASAJMBCDAJSMKMJJNZSAKN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Ber+20}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    PennyLane is a Python 3 software framework for optimization and machine
+  learning of quantum and hybrid quantum-classical computations. The library
+  provides a unified architecture for near-term quantum computing devices,
+  supporting both qubit and continuous-variable paradigms. PennyLane's core
+  feature is the ability to compute gradients of variational quantum circuits
+  in a way that is compatible with classical techniques such as
+  backpropagation. PennyLane thus extends the automatic differentiation
+  algorithms common in optimization and machine learning to include quantum and
+  hybrid computations. A plugin system makes the framework compatible with any
+  gate-based quantum simulator or hardware. We provide plugins for Strawberry
+  Fields, Rigetti Forest, Qiskit, Cirq, and ProjectQ, allowing PennyLane
+  optimizations to be run on publicly accessible quantum devices provided by
+  Rigetti and IBM Q. On the classical front, PennyLane interfaces with
+  accelerated machine learning libraries such as TensorFlow, PyTorch, and
+  autograd. PennyLane can be used for the optimization of variational quantum
+  eigensolvers, quantum approximate optimization, quantum machine learning
+  models, and many other applications.%
+    }
+    \verb{eprint}
+    \verb 1811.04968
+    \endverb
+    \field{shorttitle}{{{PennyLane}}}
+    \field{title}{{{PennyLane}}: {{Automatic}} Differentiation of Hybrid
+  Quantum-Classical Computations}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/NP8RSGIR/Bergholm et al. - 20
+    \verb 20 - PennyLane Automatic differentiation of hybrid qua.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/FJKHZ5SU/1811.html
+    \endverb
+    \field{journaltitle}{arXiv:1811.04968 [physics, physics:quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{physics, physics:quant-ph}
+    \field{month}{02}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{BernsteinEtAl09}{book}{}
     \name{author}{3}{}{%
       {{hash=BDJ}{%
@@ -3513,6 +3653,44 @@
     \field{month}{08}
     \field{year}{2020}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Cross18}{article}{}
+    \name{author}{1}{}{%
+      {{hash=CA}{%
+         family={Cross},
+         familyi={C\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CA1}
+    \strng{fullhash}{CA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Cro18}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    The IBM Q experience is a cloud-based quantum computing system that was
+  made publicly available in the summer of 2016. Since then, more than 60,000
+  users across all seven continents have run over 1.7 million remote
+  experiments on IBM's superconducting transmon devices and online simulators.
+  Students and educators have successfully incorporated the IBM Q experience
+  into classroom and summer school curricula. Researchers have used the system
+  to investigate quantum computing, error correction, and validation techniques
+  and metrics. In this talk, I will discuss the most recent developments around
+  the IBM Q experience and QISKit open-source software for quantum computing.%
+    }
+    \field{pages}{L58.003}
+    \field{title}{The {{IBM Q}} Experience and {{QISKit}} Open-Source Quantum
+  Computing Software}
+    \field{volume}{2018}
+    \field{annotation}{%
+    ADS Bibcode: 2018APS..MARL58003C%
+    }
+    \field{month}{01}
+    \field{year}{2018}
   \endentry
 
   \entry{DeBeaudrapEtAl20}{article}{}
@@ -5660,6 +5838,37 @@
     \field{year}{2021}
   \endentry
 
+  \entry{HonnibalMontani17}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HM}{%
+         family={Honnibal},
+         familyi={H\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={Montani},
+         familyi={M\bibinitperiod},
+         given={Ines},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HMMI1}
+    \strng{fullhash}{HMMI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HM17}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{1}
+    \field{pages}{411\bibrangedash 420}
+    \field{title}{{{spaCy}} 2: {{Natural}} Language Understanding with
+  {{Bloom}} Embeddings, Convolutional Neural Networks and Incremental Parsing}
+    \field{volume}{7}
+    \field{journaltitle}{To appear}
+    \field{year}{2017}
+  \endentry
+
   \entry{Hotz65}{article}{}
     \name{author}{1}{}{%
       {{hash=HG}{%
@@ -7740,6 +7949,54 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{LoperBird02}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LE}{%
+         family={Loper},
+         familyi={L\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Bird},
+         familyi={B\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,D.2.6,I.2.7,J.5,K.3.2}
+    \strng{namehash}{LEBS1}
+    \strng{fullhash}{LEBS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{LB02}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    NLTK, the Natural Language Toolkit, is a suite of open source program
+  modules, tutorials and problem sets, providing ready-to-use computational
+  linguistics courseware. NLTK covers symbolic and statistical natural language
+  processing, and is interfaced to annotated corpora. Students augment and
+  replace existing components, learn structured programming by example, and
+  manipulate sophisticated models from the outset.%
+    }
+    \verb{eprint}
+    \verb cs/0205028
+    \endverb
+    \field{shorttitle}{{{NLTK}}}
+    \field{title}{{{NLTK}}: {{The Natural Language Toolkit}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/8LULFCQ2/Loper and Bird - 200
+    \verb 2 - NLTK The Natural Language Toolkit.pdf;/Users/alexis.toumi/WORK/Zo
+    \verb tero/storage/XTZLK8LR/0205028.html
+    \endverb
+    \field{journaltitle}{arXiv:cs/0205028}
+    \field{eprinttype}{arxiv}
+    \field{month}{05}
+    \field{year}{2002}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{LorenzEtAl21}{article}{}
     \name{author}{5}{}{%
       {{hash=LR}{%
@@ -7895,6 +8152,59 @@
     \field{volume}{128}
     \field{journaltitle}{Sovetskoye Radio, Moscow}
     \field{year}{1980}
+  \endentry
+
+  \entry{ManningEtAl14}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=MCD}{%
+         family={Manning},
+         familyi={M\bibinitperiod},
+         given={Christopher\bibnamedelima D},
+         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Surdeanu},
+         familyi={S\bibinitperiod},
+         given={Mihai},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Bauer},
+         familyi={B\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FJR}{%
+         family={Finkel},
+         familyi={F\bibinitperiod},
+         given={Jenny\bibnamedelima Rose},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Bethard},
+         familyi={B\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={McClosky},
+         familyi={M\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MCD+1}
+    \strng{fullhash}{MCDSMBJFJRBSMD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Man+14}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{Proceedings of 52nd Annual Meeting of the Association for
+  Computational Linguistics: System Demonstrations}
+    \field{pages}{55\bibrangedash 60}
+    \field{title}{The {{Stanford CoreNLP}} Natural Language Processing Toolkit}
+    \field{year}{2014}
   \endentry
 
   \entry{Markov47}{inproceedings}{}
@@ -8398,6 +8708,201 @@
     \field{month}{08}
     \field{year}{2016}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{MeurerEtAl17}{article}{}
+    \name{author}{27}{}{%
+      {{hash=MA}{%
+         family={Meurer},
+         familyi={M\bibinitperiod},
+         given={Aaron},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SCP}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Christopher\bibnamedelima P.},
+         giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Paprocki},
+         familyi={P\bibinitperiod},
+         given={Mateusz},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CO}{%
+         family={{\v C}ert{\'i}k},
+         familyi={{\v C}\bibinitperiod},
+         given={Ond{\v r}ej},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=KSB}{%
+         family={Kirpichev},
+         familyi={K\bibinitperiod},
+         given={Sergey\bibnamedelima B.},
+         giveni={S\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rocklin},
+         familyi={R\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Kumar},
+         familyi={K\bibinitperiod},
+         given={AMiT},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=IS}{%
+         family={Ivanov},
+         familyi={I\bibinitperiod},
+         given={Sergiu},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MJK}{%
+         family={Moore},
+         familyi={M\bibinitperiod},
+         given={Jason\bibnamedelima K.},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Singh},
+         familyi={S\bibinitperiod},
+         given={Sartaj},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=RT}{%
+         family={Rathnayake},
+         familyi={R\bibinitperiod},
+         given={Thilina},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=VS}{%
+         family={Vig},
+         familyi={V\bibinitperiod},
+         given={Sean},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GBE}{%
+         family={Granger},
+         familyi={G\bibinitperiod},
+         given={Brian\bibnamedelima E.},
+         giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=MRP}{%
+         family={Muller},
+         familyi={M\bibinitperiod},
+         given={Richard\bibnamedelima P.},
+         giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=BF}{%
+         family={Bonazzi},
+         familyi={B\bibinitperiod},
+         given={Francesco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=GH}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Harsh},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=VS}{%
+         family={Vats},
+         familyi={V\bibinitperiod},
+         given={Shivam},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=JF}{%
+         family={Johansson},
+         familyi={J\bibinitperiod},
+         given={Fredrik},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=PF}{%
+         family={Pedregosa},
+         familyi={P\bibinitperiod},
+         given={Fabian},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=CMJ}{%
+         family={Curry},
+         familyi={C\bibinitperiod},
+         given={Matthew\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=TAR}{%
+         family={Terrel},
+         familyi={T\bibinitperiod},
+         given={Andy\bibnamedelima R.},
+         giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Rou{\v c}ka},
+         familyi={R\bibinitperiod},
+         given={{\v S}t{\v e}p{\'a}n},
+         giveni={{\v S}\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Saboo},
+         familyi={S\bibinitperiod},
+         given={Ashutosh},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FI}{%
+         family={Fernando},
+         familyi={F\bibinitperiod},
+         given={Isuru},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Kulal},
+         familyi={K\bibinitperiod},
+         given={Sumith},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CR}{%
+         family={Cimrman},
+         familyi={C\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Scopatz},
+         familyi={S\bibinitperiod},
+         given={Anthony},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer algebra system,Python,Symbolics}
+    \strng{namehash}{MA+1}
+  \strng{fullhash}{MASCPPMCOKSBRMKAISMJKSSRTVSGBEMRPBFGHVSJFPFCMJTARRSSAFIKSCRSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Meu+17}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    SymPy is an open source computer algebra system written in pure Python. It
+  is built with a focus on extensibility and ease of use, through both
+  interactive and programmatic applications. These characteristics have led
+  SymPy to become a popular symbolic library for the scientific Python
+  ecosystem. This paper presents the architecture of SymPy, a description of
+  its features, and a discussion of select submodules. The supplementary
+  material provide additional examples and further outline details of the
+  architecture and features of SymPy.%
+    }
+    \verb{doi}
+    \verb 10.7717/peerj-cs.103
+    \endverb
+    \field{issn}{2376-5992}
+    \field{pages}{e103}
+    \field{title}{{{SymPy}}: Symbolic Computing in {{Python}}}
+    \field{volume}{3}
+    \field{journaltitle}{PeerJ Computer Science}
+    \field{month}{01}
+    \field{year}{2017}
   \endentry
 
   \entry{MirandaEtAl21}{article}{}

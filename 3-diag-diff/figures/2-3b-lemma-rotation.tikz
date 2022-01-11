@@ -1,0 +1,10 @@
+\begin{tikzpicture}[scale=0.4, baseline={([yshift=-0.5ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style={Z_long}] (11) at (1.775, 0) {$\alpha+\pi$};
+		\node [style=none] (16) at (4.025, 0) {};
+		\node [style=scalar, font={\tiny}] (20) at (-0.475, 0) {$\frac{\partial\alpha}{2}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (11) to (16.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

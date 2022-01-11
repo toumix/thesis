@@ -1,0 +1,21 @@
+%!TEX root = ../../THESIS.tex
+
+Python has become the programming language of choice for most applications in both natural language processing (e.g. Stanford NLP~\cite{ManningEtAl14}, NLTK~\cite{LoperBird02} and SpaCy~\cite{HonnibalMontani17}) and quantum computing (with development kits like Qiskit~\cite{Cross18} and PennyLane~\cite{BergholmEtAl20} and interfaces to compilers like pytket~\cite{SivarajahEtAl20}).
+Thus, it was the obvious choice of language for an implementation of QNLP.
+However, unlike functional programming languages like Haskell, Python has little support for category theory.
+Indeed, before the release of DisCoPy, the only existing Python framework for category theory was a module of SymPy~\cite{MeurerEtAl17} that can draw finite commutative diagrams.
+Hence, the first step in implementing QNLP was to develop our own framework for applied category theory in Python: DisCoPy.
+The main feature was the drawing of string diagrams (e.g. the grammatical structure of sentences) and the application of functors (e.g. to quantum circuits, either executed on quantum hardware or classically simulated).
+
+String diagrams have become the lingua franca of applied category theory.
+However, the definitions one can find in the literature usually fall into one of two extremes: either definitions by general abstract nonsense or definitions by example and appeal to intuition.
+On one side of the spectrum, the standard technical reference has become the \emph{Geometry of tensor calculus}~\cite{JoyalStreet91} where Joyal and Street define string diagrams as equivalence classes of labeled topological graphs embedded in the plane and then characterise them as the arrows of free monoidal categories.
+On the other, \emph{Picturing quantum processes}~\cite{CoeckeKissinger17} contains over a thousand string diagrams but their formal definition as well as any mention of category theory are relegated to mere appendices.
+
+This chapter contains a description of the DisCoPy package alongside an elementary list-based definition of string diagrams.
+The first section introduces categories and functors for the Python programmer, i.e. with no mathematical prerequisites.
+The second section introduces monoidal categories for the Python programmer, defining string diagrams from first principles.
+The third section gives the category theoretic foundations for our definition, which we call the premonoidal approach.
+The fourth section defines the drawing and reading algorithms for string diagrams, which arise as the two sides of the equivalence between the premonoidal and the topological definitions.
+The fifth section introduces monoidal categories with extra structure (rigid, biclosed, symmetric, cartesian, hypergraph) and the inheritence mechanism which implements this hierarchy of structure.
+The last section discusses the relationship between our list-based premonoidal approach and the exisiting graph-based definitions of diagrams in symmetric monoidal categories.

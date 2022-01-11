@@ -1,0 +1,76 @@
+%!TEX root = main.tex
+
+\begin{abstract}
+We introduce diagrammatic differentiation for tensor calculus by generalising the
+dual number construction from rigs to monoidal categories. Applying this to ZX
+diagrams, we show how to calculate diagrammatically the gradient of a linear map
+with respect to a phase parameter. For diagrams of parametrised quantum circuits,
+we get the well-known parameter-shift rule at the basis of many variational
+quantum algorithms. We then extend our method to the automatic
+differentation of hybrid classical-quantum circuits, using diagrams with bubbles
+to encode arbitrary non-linear operators. Moreover, diagrammatic differentiation
+comes with an open-source implementation in DisCoPy, the Python library for
+monoidal categories.
+Diagrammatic gradients of classical-quantum circuits can then be simplified
+using the PyZX library and executed on quantum hardware via the
+tket compiler. This opens the door to many practical applications
+harnessing both the structure of string diagrams and the computational power of
+quantum machine learning.
+\end{abstract}
+
+\section*{Introduction}
+
+String diagrams are a graphical language introduced by Penrose \cite{Penrose71}
+to manipulate tensor expressions: wires represent vector spaces, nodes represent
+multi-linear maps between them. In \cite{PenroseRindler84}, these diagrams are
+used to describe the geometry of space-time and an extra piece of notation is
+introduced: the covariant derivative is represented as a bubble around the tensor
+to be differentiated. Joyal and Street \cite{JoyalStreet88,JoyalStreet91}
+characterised string diagrams as the arrows of free monoidal categories, however
+their geometry of tensor calculus makes no mention of differential calculus, it
+only deals with composition and tensor.
+
+In categorical quantum mechanics \cite{AbramskyCoecke08} string diagrams
+are used to axiomatise quantum theory in terms of dagger compact-closed
+categories. This culminated in the ZX-calculus \cite{CoeckeDuncan08},
+a graphical language that provides a complete set of rules for qubit quantum
+computing \cite{JeandelEtAl18a,HadzihasanovicEtAl18}. ZX diagrams
+have recently been used for state-of-the-art quantum circuit optimisation
+\cite{KissingerVanDeWetering20,DuncanEtAl20,DeBeaudrapEtAl20}, compilation
+\cite{CowtanEtAl20,DeGriendDuncan20}, extraction \cite{BackensEtAl20} and error
+correction \cite{ChancellorEtAl18,GidneyFowler19}. In recent work, ZX diagrams
+have been used to study quantum machine learning \cite{Yeung20,ZhaoGao21} and
+its application to quantum natural language processing
+\cite{MeichanetzidisEtAl20a,CoeckeEtAl20}.
+
+In this work, we introduce diagrammatic differentiation: a graphical notation
+for manipulating tensor derivatives. On the theoretical side, we generalise
+the dual number construction (discussed in section~\ref{1-dual-numbers})
+from rigs to monoidal categories (section~\ref{2-dual-diagrams}). We then apply
+this construction to the category of ZX diagrams (section~\ref{2b-differentiating-zx})
+and of quantum circuits (section~\ref{3-dual-circuits}). In section~\ref{4-bubbles}
+we give a formal definition of diagrams with bubbles and their gradient with the
+chain rule. We use this to differentiate quantum circuits with neural
+networks as classical post-processing. The theory comes with an
+implementation in DisCoPy \cite{DeFeliceEtAl20}, the Python library for
+monoidal categories. The gradients of classical-quantum circuits can then
+be simplified using the PyZX library \cite{KissingerVanDeWetering19} and compiled
+on quantum hardware via the tket compiler \cite{SivarajahEtAl20}.
+
+\section*{Related work}
+
+The same bubble notation for vector calculus is proposed in \cite{KimEtAl20},
+but they have mainly pedagogical motivations and restrict themselves to the case
+of three-dimensional Euclidean space. To the best of our knowledge, our
+definition is the first formal account of string diagrams with bubbles for
+tensor derivatives.
+
+Differential categories \cite{BluteEtAl06} have been introduced to axiomatise
+the notion of derivative. More recently reverse derivative categories
+\cite{CockettEtAl19} generalised the notion of back-propagation, they have been
+proposed as a categorical foundation for gradient-based learning
+\cite{CruttwellEtAl21}. These frameworks all define the derivative
+of a morphism with respect to its domain. In our setup however, we define
+the derivative of parametrised morphism with respect to parameters that are
+in some sense external to the category. Investigating the relationship between
+these two definitions is left to future work.

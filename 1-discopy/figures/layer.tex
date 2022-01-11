@@ -1,0 +1,13 @@
+\begin{tikzpicture}[baseline=(O.base)]
+\node (O) at (0, 0.5) {};
+\node () at (0.25, 1) {$u$};
+\node () at (1.25, 1) {$s$};
+\node () at (2.25, 1) {$v$};
+\node () at (1.25, 0.0) {$t$};
+\draw [out=-90, in=90] (0, 1) to (0, 0);
+\draw [out=-90, in=90] (1, 1) to (1, 0.75);
+\draw [out=-90, in=90] (2, 1) to (2, 0);
+\draw [out=-90, in=90] (1.0, 0.25) to (1.0, 0);
+\draw (0.75, 0.25) -- (1.25, 0.25) -- (1.25, 0.75) -- (0.75, 0.75) -- (0.75, 0.25);
+\node () at (1.0, 0.5) {$f$};
+\end{tikzpicture}

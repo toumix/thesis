@@ -4,6 +4,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english,greek]{babel}
+\usepackage{breakurl}
 
 \usepackage{minted}
 \usemintedstyle{lovelace}
@@ -23,10 +24,6 @@
 \newcommand{\justepigraph}[2]{
 \epigraph{\footnotesize \justifying #1}{#2}}
 
-\newcommand{\bra}[1]{\langle#1|}
-\newcommand{\ket}[1]{|#1\rangle}
-\newcommand{\braket}[2]{\langle#1|#2\rangle}
-
 % https://tex.stackexchange.com/questions/163774/biblatex-print-bibliography-for-a-single-entry-within-an-enumeration
 \DeclareBibliographyCategory{enumpapers}
 
@@ -39,3 +36,10 @@
       {\skipentry}}%
   \printbibliography[heading=none,check=key#1]%
 }
+
+\usepackage{src/pythonhighlight}
+
+% \input{src/discopy-header.tex}
+% \input{src/diag-diff-header.tex}
+
+\input{src/macros}
