@@ -3,7 +3,7 @@
 Python has become the programming language of choice for most applications in both natural language processing (e.g. Stanford NLP~\cite{ManningEtAl14}, NLTK~\cite{LoperBird02} and SpaCy~\cite{HonnibalMontani17}) and quantum computing (with development kits like Qiskit~\cite{Cross18} and PennyLane~\cite{BergholmEtAl20} and interfaces to compilers like pytket~\cite{SivarajahEtAl20}).
 Thus, it was the obvious choice of language for an implementation of QNLP.
 However, unlike functional programming languages like Haskell, Python has little support for category theory.
-Indeed, before the release of DisCoPy, the only existing Python framework for category theory was a module of SymPy~\cite{MeurerEtAl17} that can draw finite commutative diagrams.
+Indeed, before the release of DisCoPy, the only existing Python framework for category theory was a module of SymPy~\cite{MeurerEtAl17} that can draw commutative diagrams in finite categories.
 Hence, the first step in implementing QNLP was to develop our own framework for applied category theory in Python: DisCoPy.
 The main feature was the drawing of string diagrams (e.g. the grammatical structure of sentences) and the application of functors (e.g. to quantum circuits, either executed on quantum hardware or classically simulated).
 

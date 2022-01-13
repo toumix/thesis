@@ -12,6 +12,9 @@
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
 \usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=99,doi=true,isbn=false]{biblatex}
 
 \renewcommand*{\bibfont}{\raggedright\small}
@@ -43,3 +46,12 @@
 % \input{src/diag-diff-header.tex}
 
 \input{src/macros}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{conjecture}[definition]{Conjecture}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{example}[definition]{Example}
+\newtheorem{remark}[definition]{Remark}

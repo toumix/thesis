@@ -2,6 +2,111 @@
 
 \section{Categories in Python}
 
+What are categories and how can they be useful to the Python programmer?
+This section will answer this question by taking the standard mathematical definitions and breaking them into \emph{data}, which can be translated into Python code, and \emph{axioms}, which cannot be formally verified in Python, but can be translated into test cases.
+The data for a category is given by a tuple $C = (C_0, C_1, \dom, \cod, \id, \then)$ where:
+\begin{itemize}
+\item $C_0$ and $C_1$ are classes of \emph{objects} and \emph{arrows} respectively,
+\item $\dom, \cod : C_1 \to C_0$ are functions called \emph{domain} and \emph{codomain}, we write $f : x \to y$ whenever $\dom(f) = x$ and $\cod(f) = y$ for $f \in C_1$ and $x, y \in C_0$,
+\item $\id : C_0 \to C_1$ is a function called \emph{identity},
+\item $\then : C_1 \times C_1 \to C_1$ is a partial function called \emph{composition}, denoted by $(\fcmp)$.
+\end{itemize}
+such that the following axioms hold:
+\begin{itemize}
+\item $\id(x) : x \to x$ for all objects $x \in C_0$,
+\item for all arrows $f, g \in C_1$, the composition $f \fcmp g$ is defined iff $\cod(f) = \dom(g)$, moreover we have $f \fcmp g : \dom(f) \to \cod(g)$,
+\item $\id(\dom(f)) \fcmp f = f = f \fcmp \id(\cod(f))$ for all arrows $f \in C_1$,
+\item $f \fcmp (g \fcmp h) = (f \fcmp g) \fcmp h$ whenever either side is defined for $f, g, h \in C_1$.
+\end{itemize}
+Note that we play with the overloaded meaning of the word \emph{class}: we use it to mean both a mathematical collection that need not be a set, and a Python class with its methods and attributes.
+Reading it in the latter sense, $\dom$ and $\cod$ are \emph{attributes} of the arrow class, $\then$ is a \emph{method}, $\id$ is a \emph{static method}.
+Thus, implementing a category in Python means nothing more than subclassing the  abstract classes \py{Ob} and \py{Arrow} of figure~\ref{fig:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+The data for a functor $F : C \to D$ is given by a pair of overloaded functions $F_0 : C_0 \to D_0$ and $F_1 : C_1 \to D_1$ such that:
+\begin{itemize}
+    \item $F(\dom(f)) = \dom(F(f))$ and $F(\cod(f)) = \cod(F(f))$ for all $f \in C_1$,
+    \item $F(\id(x)) = \id(F(x))$ and $F(f \fcmp g) = F(f) \fcmp F(g)$ for all $x \in C_0$ and $f, g \in C_1$.
+\end{itemize}
+Thus, implementing a functor in Python amounts to subclassing the \py{Functor} class of figure~\ref{fig:abstract classes} (and then checking that the axioms hold).
+
+\begin{figure}[h]
+\caption{Abstract Python classes for categories and functors.}
+\label{fig:abstract classes}
+\begin{python}
+class Ob:
+    ...
+
+class Arrow:
+    dom : Ob
+    cod : Ob
+
+    @staticmethod
+    def id(x : Ob) -> Arrow:
+        ...
+
+    def then(self, other : Arrow) -> Arrow:
+        ...
+
+class Functor:
+    @overload
+    def __call__(self, x : Ob) -> Ob:
+        ...
+
+    @overload
+    def __call__(self, f : Arrow) -> Arrow:
+        ...
+\end{python}
+\end{figure}
+
+\begin{example}
+We can define the category $\mathbf{Python}$ with objects the class of all Python types and arrows the class of all Python functions.
+Domain and codomain of may be extracted from type annotations.
+Identity may given by \py{lambda *xs: xs} and the composition by \py{lambda f, g: lambda *xs: f(*g(*xs)))}. (The star takes care of functions with multiple arguments.)
+However, equality of functions in Python is undecidable so there will be no way to check the axioms hold in general.
+We can define endofunctors $\mathbf{Python} \to \mathbf{Python}$ the same way they are defined in Haskell.
+For example, we can define a list functor which sends a type \py{t} to \py{List[t]} and a function \py{f} to \py{lambda *xs: map(f, xs)}.
+\end{example}
+
+\begin{example}
+When the class of objects and arrows are in fact sets, $C$ is called a \emph{small category}.
+For example, the category $\mathbf{FinSet}$ has the set of all finite sets as objects and the set of all functions between them as arrows.
+This time equality of functions between finite sets is decidable, so we can write unit tests that check that the axioms hold on specific examples.
+\end{example}
+
+\begin{example}
+When the class of objects and arrow are finite sets, we can draw the category as a finite graph with objects as vertices and arrows as edges, together with a list of equations between the paths.
+A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
+They play the same role in category theory as equations in set theory.
+For example, take the following commutative diagram in $\mathbf{Python}$:
+\[ \begin{tikzcd}
+\py{int}
+\ar{rrrrrr}{\py{lambda x: x * (x - 1) // 2}}
+\ar{rrrd}[']{\py{range}}
+& & & & & & \py{int} \\
+& & & \py{Iterable}
+\ar{urrr}[']{\py{sum}} & & &
+\end{tikzcd}
+\]
+\end{example}
+
+\begin{example}
+The category $\mathbf{Mat}_\S$ has natural numbers as objects and $n \times m$ matrices with values in $\S$ as arrows $n \to m$.
+The identity and composition are given by the identity matrix and matrix multiplication respectively.
+In order for matrix multiplication to be well-defined and for $\mathbf{Mat}_\S$ to be a category, the scalars $\S$ should have the structure of a \emph{rig} (a riNg without Negatives).
+When the scalars are complex numbers $\S = \C$, the category $\mathbf{Mat}_\C$ is equivalent to the category of finite dimensional vector spaces and linear maps.
+When the scalars are Booleans with disjunction and conjunction as addition and multiplication $\S = \B$, the category $\mathbf{Mat}_\B$ is equivalent to the category of finite sets and relations.
+There is a faithful functor (i.e. injective on arrows with the same domain and codomain) $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends finite sets to their cardinality and functions to their graph.
+\end{example}
+
+\begin{example}
+The category $\mathbf{Circ}$ has natural numbers as objects and $n$-qubit quantum circuits as arrows $n \to n$.
+There is a functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ which sends $n$ qubits to $2^n$ dimensions and evaluates each circuit to its unitary matrix.
+\end{example}
+
+\begin{example}
+Just about any class of mathematical structures as objects and their homomorphisms as arrows will yield a category.
+For example, the category $\mathbf{Set}$ of sets and functions, the category $\mathbf{Mon}$ of monoids and homomorphisms, the category $\mathbf{Cat}$ of small categories and functors, etc.
+\end{example}
+
 % A \emph{quiver}\footnote
 % {Quivers are directed multigraphs \emph{with an attitude}~\cite{zotero-3194} they are also synonymous with Selinger's simple signatures~\cite{Selinger10}.}
 % $\Sigma$ is a tuple $(\Sigma_0, \Sigma_1, \dom, \cod)$ where:
