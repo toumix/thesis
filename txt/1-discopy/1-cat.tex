@@ -13,7 +13,7 @@ The data for a category is given by a tuple $C = (C_0, C_1, \dom, \cod, \id, \th
 \end{itemize}
 Given two objects $x, y \in C_0$, the set\footnote
 {We will assume that this forms a set rather than a proper class, i.e. we will only work with \emph{locally small} categories.}
-$C(x, y) = \{f \in C_1 \vert \dom(f) = x \land \cod(f) = y \}$ is called a \emph{homset} and we write $f : x \to y$ whenever $f \in C(x, y)$.
+$C(x, y) = \{f \in C_1 \s \vert \s \dom(f), \cod(f) = x, y \}$ is called a \emph{homset} and we write $f : x \to y$ whenever $f \in C(x, y)$.
 We denote the composition $\then(f, g)$ by $f \fcmp g$, translated to \py{f >> g}  in Python.
 The axioms for the category $C$ are the following:
 \begin{itemize}
@@ -22,29 +22,30 @@ The axioms for the category $C$ are the following:
 \item $\id(\dom(f)) \fcmp f = f = f \fcmp \id(\cod(f))$ for all arrows $f \in C_1$,
 \item $f \fcmp (g \fcmp h) = (f \fcmp g) \fcmp h$ whenever either side is defined for $f, g, h \in C_1$.
 \end{itemize}
+
 Note that we play with the overloaded meaning of the word \emph{class}: we use it to mean both a mathematical collection that need not be a set, and a Python class with its methods and attributes.
 Reading it in the latter sense, $\dom$ and $\cod$ are \emph{attributes} of the arrow class, $\then$ is a \emph{method}, $\id$ is a \emph{static method}.
-Thus, implementing a category in Python means nothing more than subclassing the  abstract classes \py{Object} and \py{Arrow} of figure~\ref{fig:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+Thus, implementing a category in Python means nothing more than subclassing the  abstract classes \py{Object} and \py{Arrow} of listing~\ref{listing:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+
+\begin{python}\label{listing:abstract classes}
+{\normalfont Abstract classes for categories, functors and transformations.}
+
+Note that annotations with dependent types are not supported by any Python implementation yet.
+Since Python could not statically check that compositions are well-typed, DisCoPy has no type hints and raises an \py{AxiomError} at runtime instead.
+\inputpython{txt/1-discopy/abstract-classes.py}
+\end{python}
 
 The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
 \begin{itemize}
     \item $F(\dom(f)) = \dom(F(f))$ and $F(\cod(f)) = \cod(F(f))$ for all $f \in C_1$,
     \item $F(\id(x)) = \id(F(x))$ and $F(f \fcmp g) = F(f) \fcmp F(g)$ for all $x \in C_0$ and $f, g \in C_1$.
 \end{itemize}
-Thus, implementing a functor in Python amounts to subclassing the \py{Functor} class of figure~\ref{fig:abstract classes} (and then implementing software tests to check that the axioms hold).
+Thus, implementing a functor in Python amounts to subclassing the \py{Functor} class of listing~\ref{listing:abstract classes} (and then implementing software tests to check that the axioms hold).
 
 The data for a \emph{transformation} $\alpha : F \to G$ between two parallel functors $F, G : C \to D$ is given by a function from objects $x \in C_0$ to components $\alpha(x) : F(x) \to G(x)$ in $D$.
 A \emph{natural transformation} is one where $\alpha(x) \fcmp G(f) = F(f) \fcmp \alpha(y)$ for all arrows $f : x \to y$ in $C$.
-The \py{Transformation} class is given in figure~\ref{fig:abstract classes}, checking that a transformation is natural cannot be done formally in Python.
+The \py{Transformation} class is given in listing~\ref{listing:abstract classes}, checking that a transformation is natural cannot be done formally in Python.
 In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two sets $X$ and $Y$, for any two categories $C$ and $D$ there is a category $D^C$ with functors $C \to D$ as objects and natural transformations as arrows.
-
-\begin{figure}[h]
-\caption{Abstract Python classes for categories, functors and transformations.}
-\caption*{Note that annotations with dependent types are not supported by any Python implementation yet.
-As there was no hope to get Python to check that compositions are well-typed, DisCoPy has no type hints and raises an \py{AxiomError} at runtime instead.}
-\inputpython{txt/1-discopy/classes.py}{1}{999}
-\label{fig:abstract classes}
-\end{figure}
 
 \begin{example}\label{ex:python categories}
 We can define the category $\mathbf{Pyth}$ with objects the class of all Python types and arrows the class of all Python functions.
@@ -144,64 +145,107 @@ Thus, we have defined a functor $F : \mathbf{Sig} \to \mathbf{Cat}$, it remains 
 This is very similar to the monoid case: the unit sends a box in a signature to the path of just itself, the counit sends a path of arrows in a category to their composition.
 Equivalently, we have a natural isomorphism $\mathbf{Cat}(F(\Sigma), C) \simeq \mathbf{Sig}(\Sigma, U(C))$: to define a functor $F(\Sigma) \to C$ from a free category is the same as to define a morphism of signatures $\Sigma \to U(C)$.
 
-\begin{figure}[h!]
-\caption{Outline of the \py{discopy.cat} module.}
-\inputpython{txt/1-discopy/cat.py}{1}{999}
-\label{fig:cat.py}
-\end{figure}
-
 If lists are such fundamental data structures because they are free monoids, we argue that the arrows of free categories should be just as fundamental: they capture the basic notion of \emph{data pipelines}.
-Free categories are implemented in the most basic module of DisCoPy, \py{discopy.cat}, which is sketched in figure~\ref{fig:cat.py}.
+Free categories are implemented in the most basic module of DisCoPy, \py{discopy.cat}, which is sketched in listing~\ref{listing:cat.py}.
+
+\begin{python}~\label{listing:cat.py}
+{\normalfont Outline of the classes \py{Ob}, \py{Arrow} and \py{Box}.}
+\inputpython{txt/1-discopy/cat.py}
+\end{python}
+
 The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.boxes == [f]}.
 In order for the axiom \py{f >> Id(y) == f == Id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is set to be equal to the arrow with just itself as boxes.
-The \py{Functor} class has two mappings \py{ob} and \py{ar} as attributes, from objects to objects and from boxes to arrows respectively.
+The main subtlety in the implementation is the method \py{Arrow.upgrade} which for now is just the identity.
+When the user defines a subclass of \py{Arrow}, overriding the \py{upgrade} method allows the composition of objects in the subclass to remain within the subclass, without having to rewrite the methods for identity and composition.
+
+\begin{example}
+We can define \py{Circuit} as a subclass of \py{Arrow} with only the \py{upgrade} method overriden, and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
+Now we can compose gates together and the result will be an instance of \py{Circuit} not merely of \py{Arrow}.
+
+\begin{minted}{python}
+class Circuit(Arrow):
+    def upgrade(old):
+        return Circuit(old.dom, old.cod, old.boxes)
+
+class Gate(Circuit, Box):
+    def __init__(self, name: str, n_qubits: int):
+        Box.__init__(self, name, Ob(n_qubits), Ob(n_qubits))
+        Circuit.__init__(self, self.dom, self.cod, self.boxes)
+
+H, Z, X = Gate("H", 1), Gate("Z", 1), Gate("X", 1)
+assert isinstance(H >> Z >> X, Circuit)
+\end{minted}
+\end{example}
+
+The \py{Functor} class listed in \ref{listing:Functor} has two mappings \py{ob} and \py{ar} as attributes, from objects to objects and from boxes to arrows respectively.
 The domain of the functor is implicitly defined as the free category generated by the domain of the \py{ob} and \py{ar} mappings.
 The optional arguments \py{ob_factory} and \py{ar_factory} serve to define functors with arbitrary categories as codomain.
 At this point, their only use is for \py{ar_factory} to define identity arrows, otherwise the codomain of the functor is defined implicitly by the codomain of the \py{ob} and \py{ar} mappings.
 
+\begin{python}~\label{listing:Functor}
+{\normalfont Outline of the \py{Functor} class.}
+\begin{minted}{python}
+@dataclass
+class Functor:
+    ob: dict[Ob, Ob]
+    ar: dict[Box, Arrow]
+    ob_factory = Ob
+    ar_factory = Arrow
+
+    def __call__(self, other):
+        if isinstance(other, Ob):
+            return self.ob[other]
+        if isinstance(other, Arrow):
+            return ar_factory.id(self(other.dom)).then(
+                *self.ar[box] for box in other.boxes)
+        raise TypeError
+\end{minted}
+\end{python}
+
 \begin{example}
-A typical DisCoPy script starts by defining some objects and boxes:
-{\normalfont \begin{python}
+A typical DisCoPy script starts by defining objects and boxes:
+\begin{minted}{python}
 x, y, z = map(Ob, "xyz")
 f, g, h = Box('f', x, y), Box('g', y, z), Box('h', z, x)
-\end{python}}
+\end{minted}
 We can define a simple relabeling functor from the free category to itself:
-{\normalfont \begin{python}
+\begin{minted}{python}
 F = Functor(
     ob={x: y, y: z, z: x},
     ar={f: g, g: h, h: f})
 assert F(f >> g >> h)\
     == F(f) >> F(g) >> F(h)\
     == g >> h >> f
-\end{python}}
+\end{minted}
 We can interpret our arrows as Python functions using a \py{python.Functor}:
-{\normalfont \begin{python}
+\begin{minted}{python}
 G = python.Functor(
     ob={x: int, y: Iterable, z: int},
     ar={f: range, g: sum, h: lambda n: n * (n - 1) // 2})
 assert G(f >> g)(42) == G(h)(42) == 861
-\end{python}}
+\end{minted}
 We can interpret our arrows as matrices using a \py{tensor.Functor}:
-{\normalfont \begin{python}
+\begin{minted}{python}
 H = tensor.Functor(
     ob={x: 1, y: 2, z: 2},
     ar={f: [0, 1], g: [[0, 1], [1, 0]], h: [1, 0]})
 assert H(f >> g) == H(h) == [1, 0]
-\end{python}}
+\end{minted}
 Provided we implement the methods \py{Functor.id} and \py{Functor.then}, we can even build functors into $\mathbf{Cat}$, i.e. interpret arrows as functors:
-{\normalfont \begin{python}
+\begin{minted}{python}
 I = Functor(
     ob={x: Arrow, y: Arrow, z: Tensor},
-    ar={f: F, g: H})
+    ar={f: F, g: H}, ar_factory=Functor)
 assert I(f >> g)(h) == H(F(h)) == H(f) == [0, 1]
-\end{python}}
+\end{minted}
 \end{example}
 
 After free objects, another concept behind DisCoPy is that of a \emph{quotient object}.
 Again, let's start with the example of a monoid $M$.
-Suppose we're given a binary relation $R \sub M \times M$, then we can construct a quotient monoid $M / R$ with underlying set the equivalence classes of the smallest congruence $(\sim_R)$ generated by $R$, that is:
+Suppose we're given a binary relation $R \sub M \times M$, then we can construct a quotient monoid $M / R$ with underlying set the equivalence classes of the smallest congruence generated by $R$.
+That is, the smallest relation $(\sim_R) \sub M \times M$ such that:
 \begin{itemize}
 \item $x \sim_R y$ for all $(x, y) \in R$,
 \item $x \sim_R x$ and if $x \sim_R y$ and $y \sim_R z$ then $x \sim_R z$,
@@ -209,8 +253,10 @@ Suppose we're given a binary relation $R \sub M \times M$, then we can construct
 \end{itemize}
 The first point says that $R \sub (\sim_R)$.
 The second says that $(\sim_R)$ is an equivalence relation.
-The third says that $(\sim_R)$ is closed under products, it is equivalent to the substitution axiom: if $y \sim_R y'$ then $xyz \sim_R xy'z$ for all $x, z \in M$.
-Now there is a homomorphism $q : M \to M / R$ which sends monoid elements to their equivalence class with the following property: for any homomorphism $f : M \to N$ with $x \sim_R y$ implies $f(x) = F(y)$, there is a unique $f' : M / R \to N$ with $f = q \fcmp f'$.
+The third says that $(\sim_R)$ is closed under products, it is equivalent to the substitution axiom: if $x \sim_R y$ then $a x b \sim_R a y b$ for all $a, b \in M$.
+Explicitly, the congruence $(\sim_R)$ can be constructed in two steps: first, we define the rewriting relation $(\to_R) \sub M \times M$ where $a x b \to_R a y b$ for all $(x, y) \in R$ and $a, b \in M$.
+Second, we define $(\sim_R)$ as the \emph{symmetric, reflexive, transitive closure} of the rewriting relation, i.e. two elements $x, y \in M$ are equal in $M / R$ iff they are in the same connected component of the undirected graph induced by $(\to_R) \sub M \times M$.
+Now there is a homomorphism $q : M \to M / R$ which sends monoid elements to their equivalence class with the following property: for any homomorphism $f : M \to N$ with $x \sim_R y$ implies $f(x) = f(y)$, there is a unique $f' : M / R \to N$ with $f = q \fcmp f'$.
 Intuitively, a homomorphism from a quotient $M / R$ is nothing more than a homomorphism from $M$ which respects the axioms $R$.
 Up to isomorphism, we can construct any monoid $M$ as the quotient $X^\star / R$ of a free monoid $X^\star$: take $X = U(M)$ and $R = \{ (x y, z) \in X^\star \times X^\star \s \vert \s x \times y = z \in M \}$.
 
@@ -249,21 +295,21 @@ Thus, deciding equality of circuits reduces to solving circuit optimisation perf
 We conclude this section by discussing three extra pieces of implementation beyond the basics of category theory: dagger, sums and bubbles.
 A \emph{dagger} for a category $C$ can be thought of as a kind of time-reversal for arrows.
 More precisely, a dagger is a contravariant endofunctor $\dagger : C \to C^{op}$, i.e. from the category to its opposite with $\dom$ and $\cod$ swapped, which is the identity on objects and an involution, i.e. $(\dagger) \fcmp (\dagger) = \id_\C$.
-DisCoPy implements free $\dagger$-categories by adding an extra Boolean argument \py{_dagger} to boxes and a method \py{Arrow.dagger}, shortened to the postfix \py{[::-1]}, which reverses the order of boxes and flips that Boolean elementwise.
-A $\dagger$-functor is a functor between $\dagger$-categories which commutes with the dagger, they are implemented by adding a case to the code for functor application so that \py{F(box) = F(box[::-1])[::-1]} whenever \py{box._dagger} is true.
+DisCoPy implements free $\dagger$-categories by adding an attribute \py{_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix \py{[::-1]}, which reverses the order of boxes and negates \py{_dagger} elementwise.
+A $\dagger$-functor is a functor between $\dagger$-categories which commutes with the dagger, they are implemented by adding a case to the code for functor application to define \py{F(box) = F(box[::-1])[::-1]} whenever \py{box._dagger} is true.
 
 A category $C$ has \emph{sums}, or equivalently $C$ is \emph{enriched in monoids}, when it comes equipped with a monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
-In DisCoPy, free categories with sums are implemented by a class \py{Sum}, subclass of \py{Box} with a list of arrows \py{Sum.terms} as attribute.
+In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} initialised by an attribute \py{Sum.terms: list[Arrow]}.
 \py{Sum.then} is straightforward: the composition of a sum is the sum of the compositions of its terms.
 Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself.
-DisCoPy functors automatically respect sums, i.e. we have that $F(0) = 0$ and $F(f + g) == F(f) + F(g)$.
+DisCoPy functors automatically respect sums, i.e. we have that $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
 Thus, a formal sum of arrows can be interpreted as a concrete sum, e.g. of matrices.
 
 By a \emph{bubble} we mean an operator which takes an arrow in a category $C$ and puts it into a box.
 More formally, a bubble is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
-DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod : Ob} and an attribute \py{inside : Arrow}.
+DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod: Ob} and an attribute \py{inside: Arrow}.
 DisCoPy functors automatically respect bubbles, i.e. we have that $F(b(f)) = b(F(f))$ for all arrows $f$.
 Thus, we can interpret arrows with bubbles as arbitrary operations on the codomain of our interpretation functors.
-For example, we can define a negation bubble $\mathtt{not}$ on the category $\mathbf{Mat}_\B$ of Boolean matrices: it is the identity on objects and sends each matrix to its entrywise negation.
-The resulting syntax with bubbles is strictly more expressive than that of free categories alone: negation cannot be expressed as a composition, there is no matrix $n$ in $\mathbf{Mat}_\B$ such that $f \fcmp n = \mathtt{not}(f)$ for all matrices $f$.
+For example, we can define a negation bubble on the category $\mathbf{Mat}_\B$ of Boolean matrices: it is the identity on objects and sends each matrix $f$ to its entrywise negation $\bar{f}$.
+The resulting syntax with bubbles is strictly more expressive than that of free categories alone: negation cannot be expressed as a composition, there is no matrix $n$ in $\mathbf{Mat}_\B$ such that $f \fcmp n = \bar{f}$ for all matrices $f$.
 As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.

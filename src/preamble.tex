@@ -4,17 +4,32 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english,greek]{babel}
-\usepackage{breakurl}
+% \usepackage{breakurl}
+
+\usepackage{hyperref}
+
+\usepackage{amsthm}
+
+\usepackage{fontspec}
+\setmonofont{Menlo}[Scale=MatchLowercase]
+
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.25}
 
 \usepackage{minted}
 \usemintedstyle{lovelace}
+\setminted{frame=lines,fontseries=mono,fontsize=\footnotesize}
+\setmintedinline{fontsize=auto}
+\BeforeBeginEnvironment{minted}{\vspace{-16pt}}
+\AfterEndEnvironment{minted}{\vspace{-8pt}}
+
+\newcommand{\py}[1]{{\color{brown}\mintinline{python}{#1}}}
+
+\newcommand{\inputpython}[1]{
+{\vspace{-10pt} \footnotesize \inputminted[baselinestretch=1]{python}{#1}} \vspace{-10pt}}
 
 \usepackage{caption}
-
-\usepackage{setspace}
-
-\renewcommand{\baselinestretch}{1.25}
-
+\usepackage{subcaption}
 
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
@@ -23,7 +38,6 @@
 \usetikzlibrary{cd}
 
 \usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=99,doi=true,isbn=false]{biblatex}
-
 \renewcommand*{\bibfont}{\raggedright\small}
 
 \usepackage[perpage]{footmisc}
@@ -47,11 +61,6 @@
   \printbibliography[heading=none,check=key#1]%
 }
 
-\usepackage{src/pythonhighlight}
-
-% \input{src/discopy-header.tex}
-% \input{src/diag-diff-header.tex}
-
 \input{src/macros}
 
 \newtheorem{definition}{Definition}[section]
@@ -62,3 +71,4 @@
 \newtheorem{corollary}[definition]{Corollary}
 \newtheorem{example}[definition]{Example}
 \newtheorem{remark}[definition]{Remark}
+\newtheorem{python}[definition]{Listing}

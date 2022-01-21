@@ -1,25 +1,31 @@
 @dataclass
 class Ob:
-    name : Any
+    name: str
 
 @dataclass
 class Arrow:
-    dom : Ob
-    cod : Ob
-    boxes : List[Arrow]
+    dom: Ob
+    cod: Ob
+    boxes: list[Arrow]
 
     @staticmethod
-    def id(x : Ob) -> Arrow:
-        return Arrow(x, x, [])
+    def upgrade(old: Arrow) -> Arrow:
+        return old
 
-    def then(self, *others : Arrow) -> Arrow:
+    @staticmethod
+    def id(x: Ob) -> Arrow:
+        return self.upgrade(Arrow(x, x, []))
+
+    def then(self, *others: Arrow) -> Arrow:
         if not others: return self
-        return Arrow(
+        return self.upgrade(Arrow(
             self.dom, others[-1].cod, self.boxes + sum(
-                other.boxes for other in others, []))
+                [other.boxes for other in others], [])))
+
+    __rshift__ = then
 
 class Box(Arrow):
-    def __init__(self, name, dom, cod):
+    def __init__(self, name: str, dom: Ob, cod: Ob):
         self.name = name
         super().__init__(dom, cod, [self])
 
@@ -28,19 +34,4 @@ class Box(Arrow):
         if isinstance(other, Box):
             return (self.name, self.dom, self.cod)\
                 == (other.name, other.dom, other.cod)
-        return len(other.boxes) == 1 and self == other.boxes[0]
-
-@dataclass
-class Functor:
-    ob : Mapping[Ob, Ob]
-    ar : Mapping[Box, Arrow]
-    ob_factory = Ob
-    ar_factory = Arrow
-
-    def __call__(self, other):
-        if isinstance(other, Ob):
-            return self.ob[other]
-        if isinstance(other, Arrow):
-            return ar_factory.id(self.ob[other.dom]).then(
-                *self.ar[box] for box in other.boxes)
-        raise TypeError
+        return other.boxes == [self]

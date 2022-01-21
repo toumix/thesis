@@ -1,0 +1,5 @@
+{
+  "root" : "THESIS.tex",
+  "toolchain" : "%TEX %ARG %DOC",
+  "latex_ext": [".tikz", ".Rnw"]
+}

@@ -5,3 +5,249 @@
 In the previous section, we introduced the idea of arrows in free categories as formal data pipelines and functor application as their evaluation in concrete categories such as $\mathbf{Pyth}$, $\mathbf{Mat}$ or $\mathbf{Circ}$ where the computation happens.
 For now, our pipelines are rather basic because they are linear: we cannot express functions of multiple arguments, nor tensors of order higher than 2, nor circuits with multiple qubits in any explicit way.
 In this section, we move from the one-dimensional syntax of arrows in free categories to the two-dimensional syntax of \emph{string diagrams}, the arrows of free \emph{monoidal categories}.
+The data for a (strict\footnote
+{We will assume that our monoidal categories are strict, i.e. the axioms for monoids are equalities rather than natural isomorphisms subject to coherence conditions.}) monoidal category $C$ is that of a category together with:
+an object $1 \in C_0$ called the \emph{unit} and a pair of overloaded binary operations called the \emph{tensor} on objects $\otimes : C_0 \times C_0 \to C_0$ and on arrows $\otimes : C_1 \times C_1 \to C_1$, translated to \py{@} in Python.
+The axioms for monoidal categories are the following:
+\begin{itemize}
+\item $(C_0, \otimes, 1)$ and $(C_1, \otimes, \id(1))$ are monoids,
+\item the tensor defines a functor $\otimes : C \times C \to C$, i.e. the following \emph{interchange law} $(f \fcmp f') \otimes (g \fcmp g') = (f \otimes g) \fcmp (f' \otimes g')$ holds for all arrows $f, f', g, g' \in C_1$.
+\end{itemize}
+
+A functor $F : C \to D$ between monoidal categories $C$ and $D$ is (strict\footnote
+{We will assume that our monoidal functors are strict, i.e. $F(x \otimes y) = F(x) \otimes F(y)$ and $F(1) = 1$ are equalities rather than natural transformations.}) monoidal whenever it is also a monoid homomorphism on objects and arrows.
+Thus, monoidal categories themselves form a category $\mathbf{MonCat}$ with monoidal functors as arrows.
+A transformation $\alpha : F \to G$ between two monoidal functors $F, G : C \to D$ is monoidal itself when $\alpha(x \otimes y) = \alpha(x) \otimes \alpha(y)$ for all objects $x, y \in C$.
+
+\begin{example}
+The category $\mathbf{Pyth}$ is monoidal with unit \py{()} and \py{tuple[t1, t2]} as the tensor of types \py{t1} and \py{t2}.
+Given two functions \py{f} and \py{g}, we can define their tensor \py{f @ g = lambda x, y: f(x), g(y)}.
+
+There are two caveats however.
+First, $\mathbf{Pyth}$ is not strict monoidal: \py{(x, (y, z))} is not strictly equal to \py{((x, y), z)} but only naturally isomorphic, similarly for \py{((), x) != x != (x, ())}.
+These natural isomorphisms are subject to coherence conditions which make sure that all the ways to rebracket \py{(((x, y), z), w)} into \py{(x, (y, (z, w)))} are the same.
+In practice, this bureaucracy of parenthesis does not pose any problem: MacLane's coherence theorem~\cite[VII]{MacLane71} makes sure that every monoidal category is monoidally equivalent\footnote
+{An \emph{equivalence} of categories is an adjunction where the unit and counit are in fact natural isomorphisms.
+It is a \emph{monoidal equivalence} when they are also monoidal transformations.} to a strict one.
+In the case of $\mathbf{Pyth}$, there is an equivalent monoidal structure with flattened tuples instead: \py{(t1 @ t2)  @ t3 = t1 @ (t2 @ t3)  = tuple[t1, t2, t3]}.
+
+Second, the interchange law only holds for the subcategory of $\mathbf{Pyth}$ with \emph{pure functions} as arrows.
+Indeed, if the functions \py{f} and \py{g} are impure (e.g. they call \py{random} or \py{print}) then their tensor \py{f @ g} will depend on the order in which they are evaluated, i.e. \py{f @ Id >> Id @ g != Id @ g >> f @ Id}.
+As we will discuss in the next section, $\mathbf{Pyth}$ is in fact a \emph{premonoidal category}.
+\end{example}
+
+\begin{example}
+With some effort, we can also make $\mathbf{Pyth}$ monoidal with the \emph{tagged union} as tensor on objects and \py{typing.NoReturn} as unit.
+Given two types \py{t1, t2}, their tagged union \py{t1 + t2} is the union of the types \py{tuple[True, t1]} and \py{tuple[False, t2]}\footnote
+{What we really mean is \py{tuple[Literal[True], t1] | tuple[Literal[False], t2]}.}, i.e. a term \py{(b, x): t1 + t2} is a pair of a Boolean \py{b: bool} and a term \py{x: t1} if \py{b} else \py{x: t2}.
+Given two functions \py{f, g} we can define their tensor \py{f + g = lambda b, x: (b, f(x) if b else g(x))}.
+\end{example}
+
+\begin{example}
+Every monoid $M$ can also be seen as a discrete monoidal category, i.e. with only identity arrows.
+\end{example}
+
+\begin{example}
+The category $\mathbf{FinSet}$ is monoidal with the singleton $1$ as unit and Cartesian product as tensor.
+Again, this is not a strict monoidal category but it is equivalent to one: take the category with natural numbers $m, n \in \N$ as objects and functions $[m] \to [n]$ as arrows for $[n] = \{ 0, 1, \dots, n - 1 \}$.
+$\mathbf{FinSet}$ is also monoidal with the empty set $0$ as unit and disjoint union as tensor.
+\end{example}
+
+\begin{example}
+The category $\mathbf{Mat}_\S$ is monoidal with addition of natural numbers as tensor on objects and the \emph{direct sum} $f \oplus g = \big(\begin{smallmatrix}f & 0\\ 0 & g\end{smallmatrix}\big)$ as tensor on arrows.
+When the rig $\S$ is commutative, $\mathbf{Mat}_\S$ is also monoidal with multiplication of natural numbers as tensor on objects and the \emph{Kronecker product} as tensor on arrows.
+The inclusion functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ is monoidal in two ways: it sends disjoint unions to direct sums and Cartesian products to Kronecker products.
+\end{example}
+
+\begin{example}
+The category $\mathbf{Circ}$ is monoidal with addition of natural numbers as tensor on objects and \emph{parallel composition} of circuits as tensor on arrows.
+The evaluation functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ is monoidal: it sends the parallel composition of circuits to the Kronecker product of their unitary matrices.
+\end{example}
+
+Now, what does it mean to implement a monoidal category in Python?
+Again, nothing more than defining a pair of classes for objects and arrows with a \py{tensor} method that satisfies the axioms.
+Less trivially, we want to implement the arrows of \emph{free monoidal categories} which can then be interpreted in arbitrary monoidal categories via the application of monoidal functors: this is the content of the \py{discopy.monoidal} module.
+As in the case of free categories, free monoidal categories will be the image of a functor $F : \mathbf{MonSig} \to \mathbf{MonCat}$, the left adjoint to the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$ from monoidal categories to \emph{monoidal signatures}.
+A monoidal signature $\Sigma$ is a monoidal category without identity, composition or tensor: a pair of sets $\Sigma_0, \Sigma_1$ and a pair of functions $\dom, \cod : \Sigma_1 \to \Sigma_0^\star$ from boxes to lists of objects.
+A morphism of monoidal signatures $f : \Sigma \to \Gamma$ is a pair of functions $f : \Sigma_0 \to \Gamma_0$ and $f : \Sigma_1 \to \Gamma_1$ with $f \fcmp \dom = \dom \fcmp f^\star$ and $f \fcmp \cod = \cod \fcmp f^\star$.
+Thus, we have defined the category $\mathbf{MonSig}$ of monoidal signatures and their morphisms.
+In order to define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$, we will need the following technical lemma.
+
+\begin{definition}
+A monoidal category $C$ is \emph{foo} (free on objects) when its monoid of objects $(C_0, \otimes, 1)$ is a free monoid $C_0 = X^\star$ generated by some set of objects $X$.
+\end{definition}
+
+\begin{lemma}
+Every monoidal category is monoidally equivalent to a foo one.
+\end{lemma}
+
+\begin{proof}
+Given a monoidal category $C$, we construct $C'$ with objects $C_0^\star$ the free monoid over the objects of $C$ and $C'(x, y) = C(\epsilon_{C_0^\star}(x), \epsilon_{C_0^\star}(y))$ for $\epsilon_{C_0} : C_0^\star \to C_0$ the counit of the list adjunction.
+That is, an arrow $f : x \to y$ between two lists $x, y \in C_0^\star$ in $C'$ is an arrow $f : \epsilon_{C_0}(x) \to \epsilon_{C_0}(y)$ between their multiplication in $C$.
+From left to right, the monoidal equivalence $C \simeq C'$ sends every object $x \in C_0$ to its singleton list $x \in C_0^\star$ and every arrow to itself, from right to left it sends every list to its multiplication and every arrow to itself.
+\end{proof}
+
+This means we can take the data for a monoidal category $C$ to be the following:
+\begin{itemize}
+\item a class $C_0$ of \emph{generating objects} and a class $C_1$ of arrows,
+\item domain and codomain functions $\dom, \cod : C_1 \to C_0^\star$,
+\item a function $\id : C_0^\star \to C_1$ and a (partial) operation $\then : C_1 \times C_1 \to C_1$,
+\item an operation on arrows $\tensor : C_1 \times C_1 \to C_1$ with $\dom (f \otimes g) = \dom(f) \dom(g)$ and $\cod (f \otimes g) = \cod(f) \cod(g)$.
+\end{itemize}
+The axioms for the objects to be a monoid now come for free, we only need to require that tensor on arrows is a monoid with the interchange law.
+With this definition of (free-on-objects) monoidal category, we can define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$: it forgets the identity, composition and tensor on arrows, but not the tensor on objects which is free.
+
+\begin{example}
+Take a monoid $M$ seen as a discrete monoidal category, we get an equivalent monoidal category $M'$ with objects the free monoid $M^\star$ and an isomorphism $x_1 \dots x_n \to y_1 \dots y_m$ whenever $x_1 \times \dots \times x_n = y_1 \times \dots \times y_m$ in $M$.
+\end{example}
+
+\begin{example}
+In the cases of monoidal categories where the objects are the natural numbers with addition as tensor, such as $\mathbf{FinSet}$ with disjoint union, $\mathbf{Mat}_\S$ with direct sum or $\mathbf{Circ}$, the monoid of objects is already free: $(\N, +, 0)$ is the free monoid generated by the singleton set.
+These monoidal categories are also called \emph{PROs} (for PROduct categories).
+When the objects are generated by a more-than-one-element set they are called \emph{coloured PROs}, but a coloured PRO is precisely a foo monoidal category.
+\end{example}
+
+\begin{example}
+In the case of $\mathbf{Mat}_\S$ with Kronecker product as tensor, we can define an equivalent category $\mathbf{Tensor}_\S$ where the objects are lists of natural numbers and the arrows $f : x_1 \dots x_n \to y_1 \dots y_m$ are $(x_1 \times \dots \times x_n) \times (y_1 \times \dots \times y_m)$ matrices, i.e. tensors of order $m + n$.
+Note that we could define yet another equivalent category where the objects are lists of prime numbers instead.
+\end{example}
+
+Now how do we go on constructing the left adjoint $F : \mathbf{MonSig} \to \mathbf{MonCat}$?
+In the same way that lists in the free monoid $X^\star$ can be defined as equivalence classes of expressions built from generators in $X$, product and unit, we can construct the arrows of the free monoidal category $F(\Sigma)$ as equivalence classes of expressions built from boxes in $\Sigma_1$, identity, composition and tensor.
+In order to find good representatives for these equivalence classes, we will need the following technical lemma.
+
+\begin{definition}
+Given a monoidal signature $\Sigma$, we define a signature of \emph{layers} $L(\Sigma)$ with $\Sigma_0^\star$ as objects and triples $(x, f, y) \in \Sigma_0^\star \times \Sigma_1 \times \Sigma_0^\star$ as boxes with $\dom(x, f, y) = x \dom(f) y$ and $\cod(x, f, y) = x \cod(f) y$.
+Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, we get a morphism between their signatures of layers $L(f) : L(\Sigma) \to L(\Gamma)$.
+Thus, we have defined a functor $L : \mathbf{MonSig} \to \mathbf{Sig}$.
+\end{definition}
+
+\begin{lemma}
+Fix a monoidal signature $\Sigma$.
+Every well-typed expression built from boxes in $\Sigma_1$, identity of objects in $\Sigma_0^\star$, composition and tensor is equal to:
+$$
+\id(x) \s \text{for} \s x \in \Sigma_0^\star \quad \text{or} \quad
+\id(x_1) \otimes f_1 \otimes \id(y_1)
+\s \fcmp \s \dots \s \fcmp \s
+\id(x_n) \otimes f_n \otimes \id(y_n)$$
+for some list of layers $(x_1, f_1, y_1), \dots, (x_n, f_n, y_n) \in L(\Sigma)$.
+\end{lemma}
+
+\begin{proof}
+By induction on the structure of well-typed expressions.
+The only non-trivial case is for the tensor $f \otimes g$ of two expressions $f : x \to y$ and $g : z \to w$, where we need to apply the interchange law to push the tensor through the composition $f \otimes g = (f \fcmp \id(y)) \otimes (\id(z) \fcmp g) = f \otimes \id(z) \fcmp \id(y) \otimes g$.
+\end{proof}
+
+We now have all the ingredients to define the free monoidal category $F(\Sigma)$: it is a quotient $F(L(\Sigma)) / R$ of the free category generated by the signature of layers $L(\Sigma)$.
+Its objects, which we call \emph{types}, are lists in the free monoid $\Sigma_0^\star$.
+Its arrows, which we call \emph{diagrams}, are paths with lists in $\Sigma_0^\star$ as vertices and layers $(x, f : s \to t, y) \in L(\Sigma)$ as edges $x s y \to x t y$.
+The equality of diagrams is the smallest congruence generated by the \emph{interchanger relation}:
+$$
+(a, \ f, \ b z c) \s \fcmp \s (a y b, \ g, \ c)
+\quad \sim_R \quad
+(a x b, \ g, \ c) \s \fcmp \s (a, \ f, \ b w c)
+$$
+for all types $a, b, c \in \Sigma_0^\star$ and boxes $f : x \to y$ and $g : z \to w$.
+There remains only to define the tensor operation.
+First, we define the \emph{whiskering} $f \otimes \id(z)$ of a diagram $f$ by an object $z \in \Sigma_0^\star$ on the right: we tensor $z$ to the right-hand side of each layer of $f$, i.e. $f \otimes \id(z) = (x_1, f_1, y_1 z) \fcmp \dots \fcmp (x_n, f_n, y_n z)$.
+And symmetrically for the whiskering $\id(z) \otimes f$ on the left.
+Now we can define the tensor $f \otimes g$ of two diagrams $f : x \to y$ and $g : z \to w$ by applying the interchange law $f \otimes g = f \otimes \id(z) \fcmp \id(y) \otimes g$.
+
+Thus, we have defined a monoidal category $F(\Sigma)$.
+Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, we get a monoidal functor $F(f) : F(\Sigma) \to F(\Gamma)$ by relabeling: we have defined a functor $F : \mathbf{MonSig} \to \mathbf{MonCat}$.
+We now have to show that it is indeed the left adjoint of $U : \mathbf{MonCat} \to \mathbf{MonSig}$.
+This is very similar to the monoid case.
+The unit $\eta_\Sigma : \Sigma \to U(F(\Sigma))$ sends objects to themselves and boxes $f : x \to y \in \Sigma$ to diagrams $(1, f, 1) \in L(\Sigma)$, i.e. the layer with empty lists on both sides of $f$.
+The counit $\epsilon_C : F(U(C)) \to C$ is the functor which sends diagrams with boxes in $C$ to their evaluation, i.e. the formal composition and tensor of diagrams in $F(U(C))$ is sent to the concrete composition and tensor of arrows in $C$.
+
+\begin{python}\label{listing:Ty}
+{\normalfont Outline of the class \py{monoidal.Ty}.}
+\begin{minted}{python}
+class Ty(Ob):
+    def __init__(self, *objects: Ob | str):
+        self.objects = [x if isinstance(x, Ob) else Ob(x) for x in objects]
+        super().__init__(name="Ty({})".format(
+            ', '.join([x.name for x in self.objects])))
+
+    @staticmethod
+    def upgrade(old: Ob) -> Ty:
+        return old if isinstance(old, Ty) else Ty(old)
+
+    def tensor(self, *others: Ty) -> Ty:
+        if not all(isinstance(other, Ty) for other in others):
+            return NotImplemented  # This allows whiskering on the left.
+        return self.upgrade(Ty(*self.objects + sum(
+            [other.objects for other in others], [])))
+
+    __matmul__ = tensor
+\end{minted}
+\end{python}
+
+The implementation of the class \py{Ty} for types (i.e. lists of objects) is straightforward, it is sketched in listing~\ref{listing:Ty}.
+The only subtlety is in the static method \py{upgrade} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to override the \py{tensor} method.
+
+\begin{example}
+We can define a \py{Qubits} subclass and be sure that the tensor of qubits is still an instance of \py{Qubits}, not merely \py{Ty}.
+\begin{minted}[fontsize=\footnotesize]{python}
+class Qubits(Ty):
+    def __init__(self, n: int):
+        super().__init__(self, n * [Ob(1)])
+
+    def upgrade(old):
+        return Qubits(len(old))
+
+qubit = Qubits(1)
+assert qubit @ qubit == Qubits(2) and isinstance(qubit @ qubit, Qubits)
+\end{minted}
+\end{example}
+
+The implementation of \py{Layer} as a subclass of \py{cat.Box} is sketched in listing~\ref{listing:Layer}.
+It has methods \py{__matmul__} for whiskering on the right, \py{__rmatmul__} for whiskering on the left and \py{upgrade} for turning boxes into layers with empty types on the left and right.
+
+\begin{python}\label{listing:Layer}
+{\normalfont Outline of the class \py{monoidal.Layer}.}
+\begin{minted}[fontsize=\footnotesize]{python}
+class Layer(cat.Box):
+    def __init__(self, left: Ty, box: cat.Box, right: Ty):
+        self.left, self.box, self.right = left, box, right
+        name = "Layer({}, {}, {})".format(left, box, right)
+        dom, cod = left @ box.dom @ right, left @ box.cod @ right
+        super().__init__(name, dom, cod)
+
+    def __matmul__(self, other: Ty) -> Layer:
+        return Layer(self.left, self.box, self.right @ other)
+
+    def __rmatmul__(self, other: Ty) -> Layer:
+        return Layer(other @ self.left, self.box, self.right)
+
+    @staticmethod
+    def upgrade(old: cat.Box) -> Layer:
+        return old if isinstance(old, Layer) else Layer(Ty(), old, Ty())
+\end{minted}
+\end{python}
+
+Now we have all the ingredients to define \py{Diagram} as a subclass of \py{Arrow} with instances of \py{Layer} as boxes.
+The \py{tensor} method is defined in terms of left and right whiskering.
+
+Again, we have the \py{upgrade} method which takes an old \py{cat.Arrow} and turns it into a new object of type \py{Diagram}.
+This means we do not need to repeat the code for identity or composition which is already implemented by \py{cat.Arrow}.
+In turn, when the user defines a subclass of \py{Diagram} they only need to use the decorator \py{@Diagram.subclass} without repeating the code for identity, composition or tensor.
+
+\begin{python}
+{\normalfont Outline of the class \py{monoidal.Diagram}.}
+\inputpython{txt/1-discopy/diagram.py}
+\end{python}
+
+\begin{example}
+
+\end{example}
+
+\begin{python}
+{\normalfont Outline of the class \py{monoidal.Box}.}
+\inputpython{txt/1-discopy/box.py}
+\end{python}
+
+\begin{python}
+{\normalfont Outline of the class \py{monoidal.Functor}.}
+\inputpython{txt/1-discopy/functor.py}
+\end{python}
