@@ -3813,6 +3813,57 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{DelpeuchVicary18}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DA}{%
+         family={Delpeuch},
+         familyi={D\bibinitperiod},
+         given={Antonin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=VJ}{%
+         family={Vicary},
+         familyi={V\bibinitperiod},
+         given={Jamie},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science}
+    \strng{namehash}{DAVJ1}
+    \strng{fullhash}{DAVJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{DV18}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    In the graphical calculus of planar string diagrams, equality is generated
+  by exchange moves, which swap the heights of adjacent vertices. We show that
+  left- and right-handed exchanges each give strongly normalizing rewrite
+  strategies for connected string diagrams. We use this result to give a
+  linear-time solution to the equivalence problem in the connected case, and a
+  quadratic solution in the general case. We also giv a stronger proof of the
+  Joyal-Street coherence theorem, settling Selinger's conjecture on recumbent
+  isotopy.%
+    }
+    \verb{eprint}
+    \verb 1804.07832
+    \endverb
+    \field{title}{Normalization for Planar String Diagrams and a Quadratic
+  Equivalence Algorithm}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/WNNFLY7K/Delpeuch and Vicary
+    \verb - 2018 - Normalization for planar string diagrams and a qua.pdf;/User
+    \verb s/alexis.toumi/WORK/Zotero/storage/5FUZB6YJ/1804.html
+    \endverb
+    \field{journaltitle}{arXiv:1804.07832 [cs]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs}
+    \field{month}{04}
+    \field{year}{2018}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Deutsch85a}{article}{}
     \name{author}{1}{}{%
       {{hash=DD}{%

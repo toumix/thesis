@@ -32,7 +32,29 @@ Thus, implementing a category in Python means nothing more than subclassing the 
 
 Note that annotations with dependent types are not supported by any Python implementation yet.
 Since Python could not statically check that compositions are well-typed, DisCoPy has no type hints and raises an \py{AxiomError} at runtime instead.
-\inputpython{txt/1-discopy/abstract-classes.py}
+\begin{minted}{python}
+class Object: ...
+
+class Arrow:
+    dom: Object, cod: Object
+
+    @staticmethod
+    def id(x: Object) -> Arrow[x, x]: ...
+
+    def then(self, other: Arrow[self.cod, y]) -> Arrow[self.dom, y]: ...
+
+class Functor:
+    @overload
+    def __call__(self, x: Object) -> Object: ...
+
+    @overload
+    def __call__(self, f: Arrow[x, y]) -> Arrow[self(x), self(y)]: ...
+
+class Transformation:
+    dom: Functor, cod: Functor
+
+    def __call__(self, x: Object) -> Arrow[self.dom(x), self.cod(x)]: ...
+\end{minted}
 \end{python}
 
 The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
@@ -60,6 +82,32 @@ There is a natural transformation $\eta : \mathbf{Id} \to \mathbf{List}$ from th
 Its components send objects \py{x : t} of any type \py{t} to the singleton list \py{[x] : List[t]}.
 \end{example}
 
+\begin{python}
+{\normalfont Implementation of the category $\mathbf{Pyth}$ with \py{type} as objects and \py{Function} as arrows.}
+
+\begin{minted}{python}
+@dataclass
+class Function:
+    dom: type
+    cod: type
+    inside: Callable
+
+    @staticmethod
+    def id(x: type) -> Function:
+        return Function(x, x, lambda *xs: xs)
+
+    def then(self, other: Function) -> Function:
+        return Function(self.dom, other.cod, lambda *xs: other(*self(*xs)))
+
+    def __call__(self, *xs): return self.inside(*xs)
+
+f = Function(int, Iterable, range)
+g = Function(Iterable, int, sum)
+h = Function(int, int, lambda n: n * (n - 1) // 2)
+assert f.then(g)(42) == h(42) == 861
+\end{minted}
+\end{python}
+
 \begin{example}
 When the class of objects and arrows are in fact sets, $C$ is called a \emph{small category}.
 For example, the category $\mathbf{FinSet}$ has the set of all finite sets as objects and the set of all functions between them as arrows.
@@ -69,8 +117,7 @@ This time equality of functions between finite sets is decidable, so we can writ
 \begin{example}
 When the class of objects and arrow are finite sets, we can draw the category as a directed multigraphs with objects as vertices and arrows as edges, together with the list of equations between paths.
 A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
-They play the same role in category theory as equations in set theory.
-For example, take the following commutative diagram in $\mathbf{Pyth}$:
+For example, the following commutative diagram denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
 \[ \begin{tikzcd}
 \py{int}
 \ar{rrrrrr}{\py{lambda n: n * (n - 1) // 2}}
@@ -80,8 +127,7 @@ For example, take the following commutative diagram in $\mathbf{Pyth}$:
 \ar{urrr}[']{\py{sum}} & & &
 \end{tikzcd}
 \]
-It denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
-Thus, this commutative diagram is nothing more than the equation \py{sum(range(n)) = n * (n - 1) // 2}.
+Thus, this commutative diagram is the equation \py{sum(range(n)) = n * (n - 1) // 2}.
 When the finite category is bigger than a triangle, one commutative diagram can state a large number of equations, which can be read by \emph{diagram chasing}.
 \end{example}
 
@@ -93,6 +139,35 @@ The category $\mathbf{Mat}_\C$ is equivalent to the category of finite dimension
 When the scalars are Booleans with disjunction and conjunction as addition and multiplication, the category $\mathbf{Mat}_\B$ is equivalent to the category of finite sets and relations.
 There is a faithful functor (i.e. injective on arrows with the same domain and codomain) $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends finite sets to their cardinality and functions to their graph.
 \end{example}
+
+\begin{python}
+{\normalfont Implementation of $\mathbf{Mat}_\B$ with \py{int} as objects and \py{Matrix} as arrows.}
+
+\begin{minted}{python}
+@dataclass
+class Matrix:
+    dom: int
+    cod: int
+    inside: list[list[bool]]
+
+    @staticmethod
+    def id(x: int) -> Matrix:
+        return Matrix(x, x, [
+            [i == j for i in range(x)] for j in range(x)])
+
+    def then(self, other: Matrix) -> Matrix:
+        return Matrix(self.dom, other.cod, [[
+            any(self[i][j] and other[j][k] for j in range(other.dom))
+            for k in range(other.cod)] for i in range(self.dom)])
+
+    __getitem__ = lambda self, key: self.inside[key]
+
+f = Matrix(1, 2, [[0, 1]])
+g = Matrix(2, 2, [[0, 1], [1, 0]])
+h = Matrix(2, 1, [[1], [0]])
+assert f.then(g) == h
+\end{minted}
+\end{python}
 
 \begin{example}
 The category $\mathbf{Circ}$ has natural numbers as objects and $n$-qubit quantum circuits as arrows $n \to n$.
@@ -150,7 +225,47 @@ Free categories are implemented in the most basic module of DisCoPy, \py{discopy
 
 \begin{python}~\label{listing:cat.py}
 {\normalfont Outline of the classes \py{Ob}, \py{Arrow} and \py{Box}.}
-\inputpython{txt/1-discopy/cat.py}
+\begin{minted}{python}
+@dataclass
+class Ob:
+    name: str
+
+@dataclass
+class Arrow:
+    dom: Ob
+    cod: Ob
+    boxes: list[Arrow]
+
+    @staticmethod
+    def upgrade(old: Arrow) -> Arrow:
+        return old
+
+    @staticmethod
+    def id(x: Ob) -> Arrow:
+        return self.upgrade(Arrow(x, x, []))
+
+    def then(self, *others: Arrow) -> Arrow:
+        if not others: return self
+        for left, right in zip((self, ) + others, others):
+            assert left.cod == right.dom
+        return self.upgrade(Arrow(
+            self.dom, others[-1].cod, self.boxes + sum(
+                [other.boxes for other in others], [])))
+
+    __rshift__ = then
+
+class Box(Arrow):
+    def __init__(self, name: str, dom: Ob, cod: Ob):
+        self.name = name
+        super().__init__(dom, cod, [self])
+
+    def __eq__(self, other):
+        if not isinstance(other, Arrow): return False
+        if isinstance(other, Box):
+            return (self.name, self.dom, self.cod)\
+                == (other.name, other.dom, other.cod)
+        return other.boxes == [self]
+\end{minted}
 \end{python}
 
 The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
@@ -171,7 +286,7 @@ class Circuit(Arrow):
 
 class Gate(Circuit, Box):
     def __init__(self, name: str, n_qubits: int):
-        Box.__init__(self, name, Ob(n_qubits), Ob(n_qubits))
+        Box.__init__(self, name, Ob(str(n_qubits)), Ob(str(n_qubits)))
         Circuit.__init__(self, self.dom, self.cod, self.boxes)
 
 H, Z, X = Gate("H", 1), Gate("Z", 1), Gate("X", 1)
@@ -191,15 +306,16 @@ At this point, their only use is for \py{ar_factory} to define identity arrows, 
 class Functor:
     ob: dict[Ob, Ob]
     ar: dict[Box, Arrow]
-    ob_factory = Ob
-    ar_factory = Arrow
+    ob_factory, ar_factory = Ob, Arrow
 
     def __call__(self, other):
         if isinstance(other, Ob):
             return self.ob[other]
+        if isinstance(other, Box):
+            return self.ar[other]
         if isinstance(other, Arrow):
-            return ar_factory.id(self(other.dom)).then(
-                *self.ar[box] for box in other.boxes)
+            return self.ar_factory.id(self(other.dom)).then(
+                *self(box) for box in other.boxes)
         raise TypeError
 \end{minted}
 \end{python}
@@ -215,30 +331,30 @@ We can define a simple relabeling functor from the free category to itself:
 F = Functor(
     ob={x: y, y: z, z: x},
     ar={f: g, g: h, h: f})
-assert F(f >> g >> h)\
-    == F(f) >> F(g) >> F(h)\
-    == g >> h >> f
+assert F(f >> g >> h) == F(f) >> F(g) >> F(h) == g >> h >> f
 \end{minted}
-We can interpret our arrows as Python functions using a \py{python.Functor}:
+We can interpret our arrows as Python functions:
 \begin{minted}{python}
-G = python.Functor(
+G = Functor(
     ob={x: int, y: Iterable, z: int},
-    ar={f: range, g: sum, h: lambda n: n * (n - 1) // 2})
+    ar={f: range, g: sum, h: lambda n: n * (n - 1) // 2},
+    ob_factory=type, ar_factory=Function)
 assert G(f >> g)(42) == G(h)(42) == 861
 \end{minted}
-We can interpret our arrows as matrices using a \py{tensor.Functor}:
+We can interpret our arrows as matrices:
 \begin{minted}{python}
-H = tensor.Functor(
+H = Functor(
     ob={x: 1, y: 2, z: 2},
-    ar={f: [0, 1], g: [[0, 1], [1, 0]], h: [1, 0]})
-assert H(f >> g) == H(h) == [1, 0]
+    ar={f: [[0, 1]], g: [[0, 1], [1, 0]], h: [[1], [0]]},
+    ob_factory=int, ar_factory=Matrix)
+assert H(f >> g) == H(h)
 \end{minted}
 Provided we implement the methods \py{Functor.id} and \py{Functor.then}, we can even build functors into $\mathbf{Cat}$, i.e. interpret arrows as functors:
 \begin{minted}{python}
 I = Functor(
     ob={x: Arrow, y: Arrow, z: Tensor},
     ar={f: F, g: H}, ar_factory=Functor)
-assert I(f >> g)(h) == H(F(h)) == H(f) == [0, 1]
+assert I(f >> g)(h) == H(F(h)) == H(f)
 \end{minted}
 \end{example}
 
@@ -297,13 +413,15 @@ A \emph{dagger} for a category $C$ can be thought of as a kind of time-reversal 
 More precisely, a dagger is a contravariant endofunctor $\dagger : C \to C^{op}$, i.e. from the category to its opposite with $\dom$ and $\cod$ swapped, which is the identity on objects and an involution, i.e. $(\dagger) \fcmp (\dagger) = \id_\C$.
 DisCoPy implements free $\dagger$-categories by adding an attribute \py{_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix \py{[::-1]}, which reverses the order of boxes and negates \py{_dagger} elementwise.
 A $\dagger$-functor is a functor between $\dagger$-categories which commutes with the dagger, they are implemented by adding a case to the code for functor application to define \py{F(box) = F(box[::-1])[::-1]} whenever \py{box._dagger} is true.
+For example, the conjugate transpose defines a dagger on the category $\mathbf{Mat}_\S$, the adjoint defines a dagger on the category $\mathbf{Circ}$ and the evaluation $\mathbf{Circ} \to \mathbf{Mat}_\S$ is a $\dagger$-functor.
 
-A category $C$ has \emph{sums}, or equivalently $C$ is \emph{enriched in monoids}, when it comes equipped with a monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
-In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} initialised by an attribute \py{Sum.terms: list[Arrow]}.
-\py{Sum.then} is straightforward: the composition of a sum is the sum of the compositions of its terms.
-Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself.
-DisCoPy functors automatically respect sums, i.e. we have that $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
-Thus, a formal sum of arrows can be interpreted as a concrete sum, e.g. of matrices.
+A category $C$ has \emph{sums}, or equivalently $C$ is \emph{monoid-enriched}, when it comes equipped with a commutative monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
+A functor $F : C \to D$ between categories with sums is monoid-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
+For example, the category $\mathbf{Mat}_\S$ has sums given by elementwise addition of matrices.
+In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]}.
+The method \py{then} is straightforward: the composition of a sum is the sum of the compositions of its terms.
+Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself, we also want two sums to be equal when their list of terms are permutations of each other.
+DisCoPy functors are monoid-enriched, i.e. formal sum of arrows can be interpreted as a concrete sum of matrices.
 
 By a \emph{bubble} we mean an operator which takes an arrow in a category $C$ and puts it into a box.
 More formally, a bubble is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
