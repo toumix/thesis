@@ -88,22 +88,22 @@ Its components send objects \py{x : t} of any type \py{t} to the singleton list 
 \begin{minted}{python}
 @dataclass
 class Function:
+    inside: Callable
     dom: type
     cod: type
-    inside: Callable
 
     @staticmethod
     def id(x: type) -> Function:
-        return Function(x, x, lambda *xs: xs)
+        return Function(lambda *xs: xs, x, x)
 
     def then(self, other: Function) -> Function:
-        return Function(self.dom, other.cod, lambda *xs: other(*self(*xs)))
+        return Function(lambda *xs: other(*self(*xs)), self.dom, other.cod)
 
     def __call__(self, *xs): return self.inside(*xs)
 
-f = Function(int, Iterable, range)
-g = Function(Iterable, int, sum)
-h = Function(int, int, lambda n: n * (n - 1) // 2)
+f = Function(range, int, Iterable)
+g = Function(sum, Iterable, int)
+h = Function(lambda n: n * (n - 1) // 2, int, int)
 assert f.then(g)(42) == h(42) == 861
 \end{minted}
 \end{python}
@@ -141,30 +141,30 @@ There is a faithful functor (i.e. injective on arrows with the same domain and c
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Mat}_\B$ with \py{int} as objects and \py{Matrix} as arrows.}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix} as arrows.}
 
 \begin{minted}{python}
 @dataclass
 class Matrix:
+    inside: list[list[Number]]
     dom: int
     cod: int
-    inside: list[list[bool]]
 
     @staticmethod
     def id(x: int) -> Matrix:
-        return Matrix(x, x, [
-            [i == j for i in range(x)] for j in range(x)])
+        return Matrix([[i == j for i in range(x)] for j in range(x)], x, x)
 
     def then(self, other: Matrix) -> Matrix:
-        return Matrix(self.dom, other.cod, [[
-            any(self[i][j] and other[j][k] for j in range(other.dom))
-            for k in range(other.cod)] for i in range(self.dom)])
+        inside = [[
+            sum(self[i][j] * other[j][k] for j in range(other.dom))
+            for k in range(other.cod)] for i in range(self.dom)]
+        return Matrix(inside, self.dom, other.cod)
 
     __getitem__ = lambda self, key: self.inside[key]
 
-f = Matrix(1, 2, [[0, 1]])
-g = Matrix(2, 2, [[0, 1], [1, 0]])
-h = Matrix(2, 1, [[1], [0]])
+f = Matrix([[0, 1]], 2, 1)
+g = Matrix([[0, 1], [1, 0]], 2, 2)
+h = Matrix([[1], [0]], 2, 1)
 assert f.then(g) == h
 \end{minted}
 \end{python}
@@ -236,35 +236,34 @@ class Arrow:
     cod: Ob
     boxes: list[Arrow]
 
-    @staticmethod
-    def upgrade(old: Arrow) -> Arrow:
-        return old
+    @classmethod
+    def upgrade(cls, old: Arrow) -> Arrow:
+        if isinstance(old, cls): return old
+        return cls(old.dom, old.cod, old.boxes)
 
-    @staticmethod
-    def id(x: Ob) -> Arrow:
-        return self.upgrade(Arrow(x, x, []))
+    @classmethod
+    def id(cls, x: Ob) -> Arrow:
+        return cls.upgrade(Arrow(x, x, []))
 
     def then(self, *others: Arrow) -> Arrow:
-        if not others: return self
-        for left, right in zip((self, ) + others, others):
-            assert left.cod == right.dom
-        return self.upgrade(Arrow(
-            self.dom, others[-1].cod, self.boxes + sum(
-                [other.boxes for other in others], [])))
+        for f, g in zip((self, ) + others, others): assert f.cod == g.dom
+        dom, cod = self.dom, others[-1].cod if others else self.cod
+        boxes = self.boxes + sum([other.boxes for other in others], [])
+        return self.upgrade(Arrow(dom, cod, boxes))
 
     __rshift__ = then
 
 class Box(Arrow):
+    upgrade = Arrow.upgrade
+
     def __init__(self, name: str, dom: Ob, cod: Ob):
-        self.name = name
-        super().__init__(dom, cod, [self])
+        self.name = name; super().__init__(dom, cod, [self])
 
     def __eq__(self, other):
-        if not isinstance(other, Arrow): return False
         if isinstance(other, Box):
             return (self.name, self.dom, self.cod)\
                 == (other.name, other.dom, other.cod)
-        return other.boxes == [self]
+        return isinstance(other, Arrow) and other.boxes == [self]
 \end{minted}
 \end{python}
 
@@ -272,25 +271,27 @@ The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a s
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.boxes == [f]}.
 In order for the axiom \py{f >> Id(y) == f == Id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is set to be equal to the arrow with just itself as boxes.
-The main subtlety in the implementation is the method \py{Arrow.upgrade} which for now is just the identity.
-When the user defines a subclass of \py{Arrow}, overriding the \py{upgrade} method allows the composition of objects in the subclass to remain within the subclass, without having to rewrite the methods for identity and composition.
+The main subtlety in the implementation is the class method \py{upgrade} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
+This allows the composition of arrows in a subclass to remain within the subclass, without having to rewrite the method \py{then}.
+This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{upgrade} and return an arrow of the appropriate subclass.
+We also need to fix \py{Box.upgrade = Arrow.upgrade}, otherwise we would not be able to compose a box with a diagram.
 
 \begin{example}
-We can define \py{Circuit} as a subclass of \py{Arrow} with only the \py{upgrade} method overriden, and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
-Now we can compose gates together and the result will be an instance of \py{Circuit} not merely of \py{Arrow}.
+We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
 
 \begin{minted}{python}
-class Circuit(Arrow):
-    def upgrade(old):
-        return Circuit(old.dom, old.cod, old.boxes)
+class Circuit(Arrow): pass
 
 class Gate(Circuit, Box):
-    def __init__(self, name: str, n_qubits: int):
-        Box.__init__(self, name, Ob(str(n_qubits)), Ob(str(n_qubits)))
-        Circuit.__init__(self, self.dom, self.cod, self.boxes)
+    upgrade = Circuit.upgrade
 
-H, Z, X = Gate("H", 1), Gate("Z", 1), Gate("X", 1)
-assert isinstance(H >> Z >> X, Circuit)
+    def __init__(self, name: str, n_qubits: int):
+        dom, cod = Ob(str(n_qubits)), Ob(str(n_qubits))
+        Box.__init__(self, name, dom, cod)
+
+X, Y, Z, Id = Gate("X", 1), Gate("Y", 1), Gate("Z", 1), Circuit.id(Ob('1'))
+assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Id == X == Id >> X
+assert isinstance(Id, Circuit) and isinstance(X >> Y, Circuit)
 \end{minted}
 \end{example}
 
@@ -309,10 +310,12 @@ class Functor:
     ob_factory, ar_factory = Ob, Arrow
 
     def __call__(self, other):
-        if isinstance(other, Ob):
-            return self.ob[other]
+        if isinstance(other, Ob): return self.ob[other]
         if isinstance(other, Box):
-            return self.ar[other]
+            result = self.ar[other]  # This will allow some nice syntactic sugar.
+            if not isinstance(result, self.ar_factory):
+                result = self.ar_factory(result, self(other.dom), self(other.cod))
+            return result
         if isinstance(other, Arrow):
             return self.ar_factory.id(self(other.dom)).then(
                 *self(box) for box in other.boxes)
@@ -349,7 +352,7 @@ H = Functor(
     ob_factory=int, ar_factory=Matrix)
 assert H(f >> g) == H(h)
 \end{minted}
-Provided we implement the methods \py{Functor.id} and \py{Functor.then}, we can even build functors into $\mathbf{Cat}$, i.e. interpret arrows as functors:
+Provided we implement \py{dom}, \py{cod}, \py{id} and \py{then} for the \py{Functor} class, we can even build functors into $\mathbf{Cat}$, i.e. interpret arrows as functors:
 \begin{minted}{python}
 I = Functor(
     ob={x: Arrow, y: Arrow, z: Tensor},
@@ -400,8 +403,8 @@ Another method is to define a \emph{normal form} method which takes an arrow and
 Take the signature $\Sigma$ with one object $\Sigma_0 = \{ 1 \}$ and four arrows $\Sigma_1  = \{ Z, X, H, -1 \}$ for the Z, X and Hadamard gate and the global $(-1)$ phase.
 Let's define the relation $R$ induced by:
 \begin{itemize}
-    \item $H X = Z H$ and $Z X = (-1) X Z$,
-    \item $f f = 1$ and $f (-1) = (-1) f$ for all $f \in \Sigma_1$.
+    \item $H \fcmp X = Z \fcmp H$ and $Z \fcmp X = (-1) \fcmp X \fcmp Z$,
+    \item $f \fcmp f = \id(1)$ and $f \fcmp (-1) = (-1) \fcmp f$ for all $f \in \Sigma_1$.
 \end{itemize}
 The quotient $F(\Sigma) / R$ is a subcategory of the category $\mathbf{Circ}$ of quantum circuits, it is isomorphic to the quotient induced by the interpretation $\eval{-} : F(\Sigma) \to \mathbf{Mat}_\C$.
 Suppose we're given a functor $\mathtt{cost} : F(\Sigma) \to \R^+$, we can define the normal form of a circuit $f$ to be the representative of its equivalence class with the lowest cost.
@@ -411,23 +414,152 @@ Thus, deciding equality of circuits reduces to solving circuit optimisation perf
 We conclude this section by discussing three extra pieces of implementation beyond the basics of category theory: dagger, sums and bubbles.
 A \emph{dagger} for a category $C$ can be thought of as a kind of time-reversal for arrows.
 More precisely, a dagger is a contravariant endofunctor $\dagger : C \to C^{op}$, i.e. from the category to its opposite with $\dom$ and $\cod$ swapped, which is the identity on objects and an involution, i.e. $(\dagger) \fcmp (\dagger) = \id_\C$.
-DisCoPy implements free $\dagger$-categories by adding an attribute \py{_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix \py{[::-1]}, which reverses the order of boxes and negates \py{_dagger} elementwise.
-A $\dagger$-functor is a functor between $\dagger$-categories which commutes with the dagger, they are implemented by adding a case to the code for functor application to define \py{F(box) = F(box[::-1])[::-1]} whenever \py{box._dagger} is true.
+DisCoPy implements free $\dagger$-categories by adding an attribute \py{is_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix \py{[::-1]}, which reverses the order of boxes and negates \py{is_dagger} elementwise.
+A $\dagger$-functor is a functor between $\dagger$-categories which commutes with the dagger, they are implemented by adding a case to the code for functor application.
 For example, the conjugate transpose defines a dagger on the category $\mathbf{Mat}_\S$, the adjoint defines a dagger on the category $\mathbf{Circ}$ and the evaluation $\mathbf{Circ} \to \mathbf{Mat}_\S$ is a $\dagger$-functor.
 
-A category $C$ has \emph{sums}, or equivalently $C$ is \emph{monoid-enriched}, when it comes equipped with a commutative monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
-A functor $F : C \to D$ between categories with sums is monoid-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
+\begin{python}
+{\normalfont Implementation of free $\dagger$-categories and $\dagger$-functors.}
+
+\begin{minted}{python}
+class Arrow(cat.Arrow):
+    def dagger(self):
+        return Arrow(self.cod, self.dom, [box.dagger() for box in self.boxes[::-1]])
+
+class Box(Arrow, cat.Box):
+    upgrade = Arrow.upgrade
+
+    def __init__(self, name: str, dom: Ob, cod: Ob, is_dagger=False):
+        self.is_dagger = is_dagger; cat.Box.__init__(self, name, dom, cod)
+
+    def dagger(self):
+        return Box(self.name, self.cod, self.dom, not self.is_dagger)
+
+class Functor(cat.Functor):
+    def __call__(self, other):
+        if isinstance(other, Box) and other.is_dagger:
+            return self(other.dagger()).dagger()
+        return super().__call__(other)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
+
+\begin{minted}{python}
+Matrix.dagger = lambda self: Matrix(dom=self.cod, cod=self.dom, inside=[
+    [self[j][i].conjugate() for j in range(self.dom)] for i in range(self.cod)])
+
+Y = Gate('Y', 1)
+F = Functor(ob={Ob('1'): 2}, ar={Y: [[0, -1j], [1j, 0]]})
+assert F(Y >> Y.dagger()) == F(Id) == F(Y.dagger() >> Y)
+\end{minted}
+\end{example}
+
+A category $C$ has \emph{sums}, or equivalently $C$ is \emph{commutative-monoid-enriched}, when it comes equipped with a commutative monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
+A functor $F : C \to D$ between categories with sums is commutative-monoid-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
 For example, the category $\mathbf{Mat}_\S$ has sums given by elementwise addition of matrices.
 In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]}.
 The method \py{then} is straightforward: the composition of a sum is the sum of the compositions of its terms.
 Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself, we also want two sums to be equal when their list of terms are permutations of each other.
-DisCoPy functors are monoid-enriched, i.e. formal sum of arrows can be interpreted as a concrete sum of matrices.
+DisCoPy functors are commutative-monoid-enriched, i.e. formal sum of arrows can be interpreted as a concrete sum of matrices.
 
-By a \emph{bubble} we mean an operator which takes an arrow in a category $C$ and puts it into a box.
-More formally, a bubble is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
-DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod: Ob} and an attribute \py{inside: Arrow}.
+\begin{python}
+{\normalfont Implementation of free sum-enriched categories and functors.}
+
+\begin{minted}{python}
+class Arrow(cat.Arrow):
+    def __add__(self, other):
+        self, other = map(Sum.upgrade, (self, other))
+        return Sum(self.terms + other.terms, self.dom, self.cod)
+
+    def __eq__(self, other):
+        return other.terms == [self] if isinstance(other, Sum) else super().__eq__(other)
+
+    def then(self, other: Arrow) -> Arrow:
+        return Sum.upgrade(self).then(other) if isinstance(other, Sum) else super().then(other)
+
+    @staticmethod
+    def zero(dom: Ob, cod: Ob) -> Arrow: return Sum([], dom, cod)
+
+class Sum(Arrow, cat.Box):
+    def __init__(self, terms: list[Arrow], dom: Ob, cod: Ob):
+        assert all(f.dom == dom and f.cod == cod for f in terms)
+        self.terms, name = terms, "Sum({}, {}, [{}])".format(
+            dom, cod, ", ".join(map(str, terms)))
+        cat.Box.__init__(self, name, dom, cod)
+
+    def __eq__(self, other):
+        if isinstance(other, Sum):
+            return (self.dom, self.cod, sorted(self.terms))\
+                == (other.dom, other.cod, sorted(other.terms))
+        return self.terms == [other]
+
+    def upgrade(old: cat.Arrow) -> Sum:
+        return old if isinstance(old, Sum) else Sum([old], old.dom, old.cod)
+
+    def then(self, other):
+        terms = [f.then(g) for f in self.terms for g in Sum.upgrade(other).terms]
+        return Sum(terms, self.dom, other.cod)
+
+class Functor(cat.Functor):
+    def __call__(self, other):
+        if isinstance(other, Sum):
+            unit = self.ar_factory.zero(self(other.dom), self(other.cod))
+            return sum([self(f) for f in other.terms], unit)
+        return super().__call__(other)
+\end{minted}
+\end{python}
+
+By a \emph{bubble} we mean an operator which takes an arrow and puts it into a box.
+More formally, a bubble in a category $C$ is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
+DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod} and an attribute \py{inside: Arrow}.
 DisCoPy functors automatically respect bubbles, i.e. we have that $F(b(f)) = b(F(f))$ for all arrows $f$.
 Thus, we can interpret arrows with bubbles as arbitrary operations on the codomain of our interpretation functors.
 For example, we can define a negation bubble on the category $\mathbf{Mat}_\B$ of Boolean matrices: it is the identity on objects and sends each matrix $f$ to its entrywise negation $\bar{f}$.
 The resulting syntax with bubbles is strictly more expressive than that of free categories alone: negation cannot be expressed as a composition, there is no matrix $n$ in $\mathbf{Mat}_\B$ such that $f \fcmp n = \bar{f}$ for all matrices $f$.
 As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
+
+\begin{python}
+{\normalfont Implementation of free categories with bubbles and their functors.}
+
+\begin{minted}{python}
+class Bubble(Box):
+    def __init__(self, inside: Arrow, dom: Ob, cod: Ob):
+        self.inside, name = inside, "Bubble({}, {}, {})".format(dom, cod, inside)
+        super().__init__(name, dom, cod)
+
+Arrow.bubble = Bubble
+
+class Functor(cat.Functor):
+    def __call__(self, other):
+        if isinstance(other, Bubble):
+            return self.ar_factory.bubble(self(other.dom), self(other.cod))
+        return super().__call__(other)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can implement the formulae of propositional logic with boxes as propositions, composition as conjunction, sum as disjunction and bubble as negation.
+The evaluation of a formula in a model corresponds to the application of a sum-and-bubble-preserving functor into $\mathbf{Mat}_\B(1, 1)$.
+
+\begin{minted}{python}
+Matrix.__add__ = lambda self, other: Matrix(dom=self.dom, cod=self.cod, inside=[
+    [x + y for x, y in zip(u, v)] for u, v in zip(self.inside, other.inside)])
+Matrix.zero = lambda dom, cod: Matrix(dom=dom, cod=cod, inside=[
+    [0 for _ in range(cod)] for _ in range(dom)])
+Matrix.bubble = lambda self: Matrix(
+    self.dom, self.cod, [[not x for x in row] for row in self.inside])
+
+x = Ob('x')
+p, q = Box('p', x, x), Box('q', x, x)
+p_implies_q = q.bubble().then(p).bubble()
+not_p_or_q = p.bubble() + q
+
+for a in [0, 1]: for b in [0, 1]:
+    F = Functor(ob={x: 1}, ar={p: [[a]], q: [[b]]}, ar_factory=Matrix)
+    ev = lambda f: F(f)[0][0]  # This takes the scalar out of a 1x1 matrix.
+    assert ev(p_implies_q) == not (not ev(q) and ev(p))\
+        == ev(not_p_or_q) == not ev(p) or ev(q)
+\end{minted}
+\end{example}

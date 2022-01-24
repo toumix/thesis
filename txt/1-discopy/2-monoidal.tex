@@ -15,7 +15,7 @@ The axioms for monoidal categories are the following:
 \end{itemize}
 We will use the following terminology: an arrow $f : 1 \to x$ from the unit is called a \emph{state} of the object $x$, an arrow $f : x \to 1$ into the unit is called an \emph{effect} of $x$ and an arrow $a : 1 \to 1$ from the unit to itself is called a \emph{scalar}.
 The interchange law implies that the scalars form a commutative monoid, by the following Eckmann-Hilton argument:
-\begin{align}
+\begin{align*}
 a \fcmp b
 &\quad = \quad 1 \otimes a \s \fcmp \s b \otimes 1
 \quad = \quad (1 \fcmp b) \s \otimes \s (a \fcmp 1)
@@ -24,7 +24,7 @@ a \fcmp b
 &\quad = \quad (b \fcmp 1) \s \otimes \s (1 \fcmp a)
 \quad = \quad b \otimes 1 \s \fcmp \s 1 \otimes a
 \quad = \quad b \fcmp a
-\end{align}
+\end{align*}
 
 A functor $F : C \to D$ between monoidal categories $C$ and $D$ is (strict\footnote
 {We will assume that our monoidal functors are strict, i.e. $F(x \otimes y) = F(x) \otimes F(y)$ and $F(1) = 1$ are equalities rather than natural transformations.}) monoidal whenever it is also a monoid homomorphism on objects and arrows.
@@ -51,6 +51,16 @@ There is only one pure effect, i.e. a unique pure function \py{f : t -> ()} call
 If we take all impure functions into account, the scalars form a non-commutative monoid of side-effects.
 \end{example}
 
+\begin{python}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a monoidal category.}
+
+\begin{minted}{python}
+def tensor(self: Function, other: Function) -> Function:
+    dom, cod = tuple[self.dom, other.dom], tuple[self.cod, other.cod]
+    return Function(dom, cod, lambda x, y: (self(x), self(y)))
+\end{minted}
+\end{python}
+
 \begin{example}
 With some effort, we can also make $\mathbf{Pyth}$ monoidal with the \emph{tagged union} as tensor on objects and \py{typing.NoReturn} as unit.
 Given two types \py{t1, t2}, their tagged union \py{t1 + t2} is the union of the types \py{tuple[True, t1]} and \py{tuple[False, t2]}\footnote
@@ -74,6 +84,19 @@ The category $\mathbf{Mat}_\S$ is monoidal with addition of natural numbers as t
 When the rig $\S$ is commutative, $\mathbf{Mat}_\S$ is also monoidal with multiplication of natural numbers as tensor on objects and the \emph{Kronecker product} as tensor on arrows.
 The inclusion functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ is monoidal in two ways: it sends disjoint unions to direct sums and Cartesian products to Kronecker products.
 \end{example}
+
+\begin{python}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a monoidal category with Kronecker product as tensor.}
+
+\begin{minted}{python}
+def tensor(self: Matrix, other: Matrix) -> Matrix:
+    dom, cod = self.dom * other.dom, self.cod * other.cod
+    inside = [[self[i_dom][i_cod] * other[j_dom][j_cod]
+        for i_cod in range(self.cod) for j_cod in range(other.cod)]
+        for i_dom in range(self.dom) for j_dom in range(other.dom)]
+    return Matrix(inside, dom, cod)
+\end{minted}
+\end{python}
 
 \begin{example}
 The category $\mathbf{Circ}$ is monoidal with addition of natural numbers as tensor on objects and \emph{parallel composition} of circuits as tensor on arrows.
@@ -128,6 +151,35 @@ In the case of $\mathbf{Mat}_\S$ with Kronecker product as tensor, we can define
 Note that we could define yet another equivalent category where the objects are lists of prime numbers instead.
 \end{example}
 
+\begin{python}
+{\normalfont Implementation of $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$.}
+
+\begin{minted}{python}
+def product(x: list[int]) -> int: return reduce(lambda a, b: a * b, x, 1)
+
+@dataclass
+class Tensor:
+    inside: list[list[Number]]
+    dom: list[int]
+    cod: list[int]
+
+    def downgrade(self) -> Matrix:
+        return Matrix(self.inside, product(self.dom), product(self.cod))
+
+    @staticmethod
+    def id(x: list[int]) -> Tensor:
+        return Tensor(Matrix.id(product(x)).inside, x, x)
+
+    def then(self, other: Tensor) -> Tensor:
+        inside = self.downgrade().then(other.downgrade()).inside
+        return Tensor(inside, self.dom, other.cod)
+
+    def tensor(self, other: Tensor) -> Tensor:
+        inside = self.downgrade().tensor(other.downgrade()).inside
+        return Tensor(inside, self.dom + other.dom, self.cod + other.cod)
+\end{minted}
+\end{python}
+
 Now how do we go on constructing the left adjoint $F : \mathbf{MonSig} \to \mathbf{MonCat}$?
 In the same way that lists in the free monoid $X^\star$ can be defined as equivalence classes of expressions built from generators in $X$, product and unit, we can construct the arrows of the free monoidal category $F(\Sigma)$ as equivalence classes of expressions built from boxes in $\Sigma_1$, identity, composition and tensor.
 In order to find good representatives for these equivalence classes, we will need the following technical lemma.
@@ -175,7 +227,7 @@ For connected diagrams, i.e. when the Eckmann-Hilton argument does not apply, th
 
 Now that we have defined the equality of diagrams, there remains to define the tensor operation.
 First, we define the \emph{whiskering} $f \otimes z$ of a diagram $f$ by an object $z \in \Sigma_0^\star$ on the right: we tensor $z$ to the right-hand side of each layer $(x_i, f_i, y_i)$, i.e. $f \otimes z = (x_1, f_1, y_1 z) \fcmp \dots \fcmp (x_n, f_n, y_n z)$ and symmetrically for the whiskering $z \otimes f$ on the left.
-Now we can define the tensor $f \otimes g$ of two diagrams $f : x \to y$ and $g : z \to w$ in terms of whiskering $f \otimes g = f \otimes z \fcmp y \otimes g$.
+Now we can define the tensor $f \otimes g$ of two diagrams $f : x \to y$ and $g : z \to w$ in terms of whiskering $f \otimes g = f \otimes z \s \fcmp \s y \otimes g$.
 Note that we could have chosen to define $f \otimes g = x \otimes g \fcmp f \otimes w$, the two definitions are related by the interchanger.
 
 We can check that we have indeed defined a monoidal category $F(\Sigma)$.
@@ -194,9 +246,10 @@ class Ty(Ob):
         super().__init__(name="Ty({})".format(
             ', '.join([x.name for x in self.objects])))
 
-    @staticmethod
-    def upgrade(old: Ob) -> Ty:
-        return old if isinstance(old, Ty) else Ty(old)
+    @classmethod
+    def upgrade(cls, old: Ob) -> Ty:
+        if isinstance(old, cls): return old
+        return cls(*old.objects) if isinstance(old, Ty) else cls(old)
 
     def tensor(self, *others: Ty) -> Ty:
         if any(not isinstance(other, Ty) for other in others):
@@ -209,7 +262,7 @@ class Ty(Ob):
 \end{python}
 
 The implementation of the class \py{Ty} for types (i.e. lists of objects) is straightforward, it is sketched in listing~\ref{listing:Ty}.
-The only subtlety is in the static method \py{upgrade} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to override the \py{tensor} method.
+The only subtlety is in the method \py{upgrade} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to redefine the \py{tensor} method.
 
 \begin{example}
 We can define a \py{Qubits} subclass and be sure that the tensor of qubits is still an instance of \py{Qubits}, not merely \py{Ty}.
@@ -263,8 +316,7 @@ The \py{draw} method renders the diagram as an image, it implements the drawing 
 \begin{minted}{python}
 class Diagram(cat.Arrow):
     def __init__(self, dom: Ty, cod: Ty, layers: list[Layer]):
-        self.layers = layers
-        super().__init__(dom, cod, boxes=layers)
+        self.layers = layers; super().__init__(dom, cod, boxes=layers)
 
     def tensor(self, other: Diagram) -> Diagram:
         dom, cod = self.dom @ other.dom, self.cod @ other.cod
@@ -280,61 +332,58 @@ class Diagram(cat.Arrow):
 
     def draw(self, **params): ...
 
-    @staticmethod
-    def upgrade(old: cat.Arrow) -> Diagram:
-        if isinstance(old, Diagram): return old
+    @classmethod
+    def upgrade(cls, old: cat.Arrow) -> Diagram:
+        if isinstance(old, cls): return old
         layers = list(map(Layer.update, old.boxes))
         dom, cod = map(Ty.upgrade, (old.dom, old.cod))
-        return Diagram(dom, cod, layers)
-
-    @staticmethod
-    def subclass(ar_factory):
-        def upgrade(old: cat.Arrow) -> ar_factory:
-            if not isinstance(old, Diagram): old = Diagram.upgrade(old)
-            return ar_factory(old.dom, old.cod, old.layers)
-        ar_factory.upgrade = staticmethod(upgrade)
-        return ar_factory
+        return cls(dom, cod, layers)
 \end{minted}
 \end{python}
 
-Again, we have an \py{upgrade} method which takes an old \py{cat.Arrow} and turns it into a new object of type \py{Diagram}.
+Again, we have a class method \py{upgrade} which takes an old \py{cat.Arrow} and turns it into a new object of type \py{cls}, a given subclass of \py{Diagram}.
 This means we do not need to repeat the code for identity or composition which is already implemented by \py{cat.Arrow}.
-The \py{subclass} method adds an appropriate \py{upgrade} method to \py{ar_factory}, a given subclass of \py{Diagram}.
-When the user defines a subclass of \py{Diagram}, they only need to use the decorator \py{@Diagram.subclass} without having to repeat the code for identity, composition or tensor.
+In turn, when the user defines a subclass of \py{Diagram}, they do not need to repeat the code for identity, composition or tensor.
 
 \begin{example}
-We can define \py{Circuit} as a subclass of \py{Diagram} with only the \py{upgrade} method overriden, and \py{Gate} as a subclass of \py{Circuit} and \py{Box}.
+We can define \py{Circuit} as a subclass of \py{Diagram}. \py{Gate} and \py{Ket} are subclasses of \py{Circuit} and \py{Box}.
 Now we can compose and tensor gates together and the result will be an instance of \py{Circuit}.
 
 \begin{minted}{python}
-@Diagram.subclass
-class Circuit(Diagram): ...
+class Circuit(Diagram): pass
 
 class Gate(Circuit, Box):
     def __init__(self, name: str, n_qubits: int):
         Box.__init__(self, name, Qubits(n_qubits), Qubits(n_qubits))
-        Circuit.__init__(self, self.dom, self.cod, self.layers)
 
-H, CX, Id = Gate("H", 1), Gate("CX", 2), Circuit.id(Qubits(1))
-assert isinstance(H @ Id >> CX, Circuit)
+class Ket(Circuit, Box):
+    def __init__(self, bit: bool):
+        Box.__init__(self, "Ket({})".format(bit), Qubits(0), Qubits(1))
+
+Gate.upgrade = Ket.upgrade = Circuit.upgrade
+
+H, CX = Gate("H", n_qubits=1), Gate("CX", n_qubits=2)
+Id, sqrt2 = Circuit.id(Qubits(1)), Gate("sqrt(2)", n_qubits=0)
+assert isinstance(sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX, Circuit)
 \end{minted}
 \end{example}
 
 The implementation of \py{monoidal.Box} as a subclass of \py{Diagram} and \py{cat.Box} is relatively straightforward, we only need to make sure that a box is equal to the diagram of just itself.
+We also want the \py{upgrade} method of \py{Box} to be that of \py{Diagram}.
 
 \begin{python}
 {\normalfont Outline of the class \py{monoidal.Box}.}
 \begin{minted}[fontsize=\footnotesize]{python}
 class Box(Diagram, cat.Box):
+    upgrade = Diagram.upgrade
+
     def __init__(self, name: str, dom: Ty, cod: Ty):
         cat.Box.__init__(self, name, dom, cod)
         Diagram.__init__(self, dom, cod, [Layer.upgrade(self)])
 
     def __eq__(self, other):
-        if not isinstance(other, Diagram): return False
-        if isinstance(other, Box):
-            return cat.Box.__eq__(self, other)
-        return other.layers == [Layer.upgrade(self)]
+        if isinstance(other, Box): return cat.Box.__eq__(self, other)
+        return isinstance(other, Diagram) and other.layers == [Layer.upgrade(self)]
 \end{minted}
 \end{python}
 
@@ -355,3 +404,92 @@ class Functor(cat.Functor):
         return super().__call__(other)
 \end{minted}
 \end{python}
+
+\begin{example}
+We can simulate quantum circuits by applying a functor from \py{Circuit} to \py{Tensor}.
+\begin{minted}{python}
+Circuit.eval = Functor(
+    ob={Ob("qubit"): [2]},
+    ar={H: [[1 / sqrt(2), 1 / sqrt(2)],
+            [1 / sqrt(2), -1 / sqrt(2)]],
+        CX: [[1, 0, 0, 0],
+             [0, 1, 0, 0],
+             [0, 0, 0, 1],
+             [0, 0, 1, 0]],
+        Ket(0): [[0, 1]], Ket(1): [[1, 0]], sqrt2: [[sqrt(2)]]},
+    ar_factory=Tensor)
+
+circuit = sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX
+superposition =  Ket(0) @ Ket(0) + Ket(1) @ Ket(1)
+assert circuit.eval() == superposition.eval()
+\end{minted}
+\end{example}
+
+\begin{remark}
+DisCoPy uses a more compact encoding of diagrams than their list of layers.
+Indeed, a diagram is uniquely specified by a domain, a list of boxes and a list of \emph{offsets}, i.e. the length of the type to the left of each box.
+
+\begin{minted}{python}
+def encode(diagram: Diagram) -> tuple[Ty, list[tuple[Box, int]]]:
+    return diagram.dom, [(box, len(left)) for left, box, _ in diagram.layers]
+
+def decode(dom: Ty, boxes_and_offsets: list[tuple[Box, int]]) -> Diagram:
+    result = Diagram.id(dom)
+    for box, offset in boxes_and_offsets:
+        left, right = result.cod[:offset], result.cod[offset + len(box.dom):]
+        result >>= Diagram.id(left) @ box @ Diagram.id(right)
+    return result
+
+x, y, z = map(Ty, "xyz")
+f, g, h = Box('f', x, y), Box('g', y, z), Box('h', y @ z, x)
+enc = (x @ y, [(f, 0), (g, 1), (h, 0)])
+assert decode(enc) == f @ g >> h and encode(f @ g >> h) == enc
+\end{minted}
+\end{remark}
+
+As in the previous section, we introduce three extra pieces of implementation: dagger, sums and bubbles.
+A $\dagger$-monoidal category is a monoidal category with a $\dagger$ (i.e. an identity-on-objects involutive contravariant endofunctor) that is also a monoidal functor, a $\dagger$-monoidal functor is both a $\dagger$-functor and a monoidal functor.
+They are implemented by adding a \py{dagger} method to the \py{Layer} class.
+
+\begin{python}
+{\normalfont Implementation of free $\dagger$-monoidal categories.}
+
+\begin{minted}{python}
+def dagger(self: Layer) -> Layer:
+    return Layer(self.left, self.box.dagger(), self.right)
+\end{minted}
+\end{python}
+
+A monoidal category is commutative-monoid-enriched when it has sums that distribute over the tensor, i.e. $(f + f') \otimes (g + g') = f \otimes g + f \otimes g' + f' \otimes g + f' \otimes g'$
+and $f \otimes 0 = 0 = 0 \otimes f$.
+They are implemented by a method \py{Sum.tensor}.
+
+\begin{python}
+{\normalfont Implementation of free monoidal categories with sums.}
+
+\begin{minted}{python}
+def tensor(self: Sum, other: Sum) -> Sum:
+    dom, cod = self.dom @ other.dom, self.cod @ other.cod
+    return Sum([f @ g for f in self.terms for g in self.terms], dom, cod)
+\end{minted}
+\end{python}
+
+Bubbles for monoidal categories are the same as bubbles for categories, their implementation requires no extra work.
+As we mentioned in the previous section, bubbles do give us a strictly more expressive syntax however: they can encode operations on arrows that cannot be expressed in terms of composition or tensor.
+
+\begin{example}
+We can implement the formulae of first-order logic using Peirce's \emph{existential graphs} which happen to be the first examples of string diagrams~\cite{BradyTrimble98,BradyTrimble00,MelliesZeilberger16,HaydonSobocinski20} as well as the first definition of first-order logic.
+Bubbles, which Peirce calls \emph{cuts}, encode negation.
+The evaluation of a formula in a finite model corresponds to the application of a bubble-preserving functor into $\mathbf{Mat}_\B$.
+
+\begin{minted}{python}
+men, mortal = Box("men", x, y), Box("mortal", y, x)
+all_men_are_mortal = men.bubble().then(mortal).bubble()
+for a in [0, 1]: for b in [0, 1]: for c in [0, 1]: for d in [0, 1]:
+    ev = Functor(
+        ob={x: 1, y: 2},
+        ar={men: [[a, b]], mortal: [[c], [d]]}, ar_factory=Matrix)
+    assert ev(all_men_are_mortal) == all(
+        not ev(men)[0][i] or ev(mortal)[i][0] for i in range(ev(y)))
+\end{minted}
+\end{example}
