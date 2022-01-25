@@ -1,0 +1,89 @@
+%!TEX root = ../../THESIS.tex
+
+\section{Drawing and reading}
+
+The previous section defined diagrams as a data structure based on lists of layers, in this section we define \emph{pictures of diagrams}.
+Concretely, such a picture will be encoded in a computer memory as a bitmap, i.e. a matrix of colour values.
+Abstractly, we will define these pictures in terms of topological subsets of the Cartesian plane.
+We first recall the topological definition from Joyal's and Street's unpublished manuscript \emph{Planar diagrams and tensor algebra}~\cite{JoyalStreet88} and then discuss the equivalence between the two definitions.
+In one direction, the equivalence sends a \py{Diagram} object to its drawing.
+In the other direction, it reads the picture of a diagram and translates it into a \py{Diagram} object, i.e. its domain, codomain and list of layers.
+
+A \emph{topological graph}, also called 1-dimensional cell complex, is a tuple $(G, G_0, G_1)$ of a Hausdorff space $G$ and a pair of a closed subset $G_0 \sub G$ and a set of open subsets $G_1 \sub P(G)$ called \emph{nodes} and \emph{edges} respectively, such that:
+\begin{itemize}
+\item $G_0$ is discrete and $G - G_0 = \bigcup G_1$,
+\item each edge $e \in G_1$ is homeomorphic to an open interval and its boundary is contained in the nodes $\partial e \sub G_0$.
+\end{itemize}
+From a topological graph $G$, one can construct an undirected graph $U(G)$ in the usual sense by forgetting the space $G$, taking $G_0$ as nodes and edges $(x, y) \in G_0 \times G_0$ for each $e \in G_1$ with $\partial e = \{ x, y \}$.
+
+A \emph{planar graph} between two real numbers $a < b$ is a finite topological graph $G$ embedded in $\R \times [a, b]$.
+We define the domain $\dom(G) = G_0 \ \cap \ \R \times \{ a \}$, the codomain $\cod(G) = G_0 \ \cap \ \R \times \{ b \}$ as lists of nodes ordered by horizontal coordinates and the set $\boxes(G) = G_0 \ \cap \ \R \times (a, b)$.
+We require that:
+\begin{itemize}
+    \item $G \ \cap \ \R \times \{ a \} = \dom(G)$ and $G \ \cap \ \R \times \{ b \} = \cod(G)$, i.e. the graph touches the horizontal boundaries only at domain and codomain nodes,
+    \item every domain and codomain node $x \in G \ \cap \ \R \times \{ a, b \}$ is in the boundary of exactly one edge $e \in G_1$, i.e. edges can only meet at box nodes.
+\end{itemize}
+A planar graph is \emph{generic} when $p_1$ is injective on $G_0 \ - \ \R \times \{ a, b \}$, i.e. no two box nodes are at the same height.
+From a generic planar graph, we can get a list of boxes $\boxes(G) \in G_0^\star$ ordered by height.
+A planar graph is \emph{progressive} (also called \emph{recumbent} by Joyal and Street) when the projection on the vertical axis $p_1 : G \to [a, b]$ is injective on each edge $e \in G_1$, i.e. edges go from top to bottom and do not bend backwards.
+
+From a progressive planar graph $G$, one can construct a directed graph $U(G)$ by forgetting the space $G$, taking $G_0$ as nodes and edges $(x, y) \in G_0 \times G_0$ for each $e \in G_1$ with $\partial e = \{ x, y \}$ and $p_1(u) < p_1(v)$.
+We can also define the domain and the codomain of each box node $\dom, \cod : \boxes(G) \to G_1^\star$ with
+$\dom(x) = \{ e \in G_1 \ \vert \partial e = \{ x, y \}, p_1(x) < p_1(y) \}$ the edges coming in from the top and
+$\cod(x) = \{ e \in G_1 \ \vert \partial e = \{ x, y \}, p_1(x) > p_1(y) \}$ the edges going out to the bottom, these sets are linearly ordered as follows.
+Take some $\epsilon > 0$ such that the horizontal line at height $p_1(x) - \epsilon$ crosses each of the edges in the domain, then list $\dom(x) \in G_1^\star$ in order of horizontal coordinates of their intersection points, and symmetrically with $p_1 + \epsilon$ for the codomain $\cod(x) \in G_1^\star$.
+
+A \emph{labeling} of progressive planar graph $G$ by a monoidal signature $\Sigma$ is a pair of functions from edges to objects $\lambda_0 : G_1 \to \Sigma_0$ and from boxes to boxes $\lambda_1 : \boxes(G) \to \Sigma_1$ which commutes with the domain and codomain.
+From an lgpp (\emph{labeled generic progressive planar}) graph, one can construct a \py{Diagram}.
+
+\begin{python}
+{\normalfont Translation from labeled generic progressive planar graphs to \py{Diagram}.}
+\vspace{5pt}
+\hrule
+\vspace{-15pt}
+\begin{flalign*}
+\py{def} \s & \py{read(} \s G, \s \lambda_0 : G_1 \to \py{Ty}, \s \lambda_1 : \boxes(G) \to \py{Box} \s \py{) -> Diagram:}&&\\
+& \py{dom = [} \s \lambda_0(e) \in \Sigma_0 \s \py{for} \s x \in \dom(G) \s \py{for} \s e \in G_1 \s \py{if} \s x \in \partial e \s \py{]}&&\\
+& \py{boxes = [} \s \lambda_1(x) \in \Sigma_1 \s \py{for} \s x \in \boxes(G) \s \py{]}&&\\
+& \py{offsets = [len(} \s G_1 \ \cap \ \R \times \{ p_1(x) \} \s \py{) for} \s x \in \boxes(G) \s \py{]}&&\\
+& \py{return encode(dom, zip(boxes, offsets))} &&
+\vspace{-10pt}
+\end{flalign*}
+\hrule
+\end{python}
+
+In the other direction, there are many possible ways to draw a given \py{Diagram} as a lgpp graph, i.e. to embed its graph into the plane.
+Vicary and Delpeuch \cite{DelpeuchVicary18} give a linear-time algorithm to compute such an embedding with the following disadvantage: the drawing of a tensor $f \otimes g$ does not necessarily look like the horizontal juxtaposition of the drawings for $f$ and $g$.
+For example, if we tensor an identity with a scalar, the edge representing the identity will wiggle around the node representing the scalar.
+DisCoPy uses a quadratic-time drawing algorithm with the following design decision: edges should go as straight as possible.
+We first initialise the lgpp graph of the identity, i.e. the graph.
+For each layer, we make enough
+
+% \begin{python}
+% We can also translate the lgpp graph into a directed graph with positions and labels, then turn this graph into a \py{Diagram}.
+%
+% \begin{minted}{python}
+% def graph2diagram(
+%         graph: Graph, position: dict[Node, tuple[float, float]],
+%         l0: dict[tuple[Node, Node], Ty], l1: dict[Node, Ty]) -> Diagram:
+%     # This assumes that the domain nodes are at height -1.
+%     scan = [x for x in graph.nodes if position[x][1] == -1]
+%     dom = [l0[x, y] for x in scan for y in graph.neighbors(x)]
+%     boxes_and_offsets = []
+%     for box_node in [x for x in graph.nodes if x.kind == 'box']:
+%         dom_nodes = [x for x in graph.neighbors(box_node) if x.kind == 'dom']
+%         cod_nodes = [x for x in graph.neighbors(box_node) if x.kind == 'cod']
+%
+%         offset = len([x for x in scan if position[x][0] < position[box_node][0]])
+%         scan = scan[:offset] + cod_nodes + scan[offset + len(dom_nodes):]
+%         boxes_and_offsets.append((l1[box_node], offset))
+%     return encode(dom, boxes_and_offsets)
+% \end{minted}
+% \end{python}
+
+A deformation of planar graphs $G \sim G'$ is a continuous map $h : G \times [0, 1] \to [a, b] \times \R$ such that:
+\begin{itemize}
+\item $h(G, 0) = G$, $h(G, 1) = G'$ and $h(G, t)$ is a planar graph for all $t \in [0, 1]$,
+\item $x \in \boxes(G)$ implies $h(x, t) \in \boxes(h(G, t))$ for all $t \in [0, 1]$.
+\end{itemize}
+A deformation of planar graphs is progressive (generic) when $h(G, t)$ is progressive (generic) for all $t \in [0, 1]$.

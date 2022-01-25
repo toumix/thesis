@@ -115,7 +115,7 @@ This time equality of functions between finite sets is decidable, so we can writ
 \end{example}
 
 \begin{example}
-When the class of objects and arrow are finite sets, we can draw the category as a directed multigraphs with objects as vertices and arrows as edges, together with the list of equations between paths.
+When the class of objects and arrow are finite sets, we can draw the category as a directed multigraphs with objects as nodes and arrows as edges, together with the list of equations between paths.
 A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
 For example, the following commutative diagram denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
 \[ \begin{tikzcd}
@@ -213,7 +213,7 @@ The data for a signature is given by a tuple $\Sigma = (\Sigma_0, \Sigma_1, \dom
 A morphism of signatures $f : \Sigma \to \Gamma$ is a pair of overloaded functions $f : \Sigma_0 \to \Gamma_0$ and $f : \Sigma_1 \to \Gamma_1$ such that $f \fcmp \dom = \dom \fcmp f$ and $f \fcmp \cod = \cod \fcmp f$.
 Thus, signatures and their morphisms form a category $\mathbf{Sig}$ and there is a faithful functor $U : \mathbf{Cat} \to \mathbf{Sig}$ which sends a category to its underlying signature: it forgets the identity and composition.
 Signatures may be thought of as directed multigraphs \emph{with an attitude}~\cite{NLab}.
-Given a signature $\Sigma$, we can define a category $F(\Sigma)$ with vertices as objects and \emph{paths as arrows}.
+Given a signature $\Sigma$, we can define a category $F(\Sigma)$ with nodes as objects and \emph{paths as arrows}.
 More precisely, an arrow $f : x \to y$ is given by a length $n \in \N$ and a list $f_1, \dots, f_n \in \Sigma_1$ with $\dom(f_1) = x$, $\cod(f_n) = y$ and $\cod(f_i) = \dom(f_{i + 1})$ for all $i < n$.
 Given a morphism of signatures $f : \Sigma \to \Gamma$, we get a functor $F(f) : F(\Sigma) \to F(\Gamma)$ relabeling boxes in $\Sigma$ by boxes in $\Gamma$.
 Thus, we have defined a functor $F : \mathbf{Sig} \to \mathbf{Cat}$, it remains to show that it indeed forms an adjunction $F \dashv U$.
