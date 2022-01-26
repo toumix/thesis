@@ -517,6 +517,7 @@ assert circuit == sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX
 
 The underlying algorithm constructs a graph with nodes for each object of the domain and the codomain of each box, as well as of the whole diagram.
 There is an edge from a codomain node of a box (or a domain node of the whole diagram) to a domain node of a box (or a codomain node of the whole diagram) whenever the corresponding boxes are connected.
+There is also a node for each box and an edge from that box node to its domain and codomain nodes.
 First, we initialise the graph of the identity diagram and feed the objects of its codomain as input to the decorated function.
 When a box is applied to a list of nodes, it adds edges going into each object of its domain and returns nodes for each object of its codomain.
 Finally, the return value of the decorated function is taken as the codomain of the whole diagram.
@@ -525,29 +526,30 @@ Finally, the return value of the decorated function is taken as the codomain of 
 {\normalfont Translation from \py{Diagram} to \py{Graph}.}
 
 \begin{minted}{python}
-Node = namedtuple('Node', ['kind', 'i', 'j'])
+Node = namedtuple('Node', ['kind', 'label', 'i', 'j'])
 
 def diagram2graph(diagram: Diagram) -> Graph:
-    graph, scan = Graph(), [Node('dom', i, -1) for i in range(len(diagram.dom))]
+    graph = Graph()
+    scan = [Node('dom', x, i, -1) for i, x in enumerate(diagram.dom)]
     graph.add_edges(zip(scan, scan))
     for j, (left, box, _) in enumerate(diagram.layers):
-        dom_nodes = [Node('dom', i, j) for i in range(len(box.dom))]
-        cod_nodes = [Node('cod', i, j) for i in range(len(box.cod))]
+        box_node = Node('box', box, -1, j)
+        dom_nodes = [Node('dom', x, i, j) for i in enumerate(box.dom)]
+        cod_nodes = [Node('cod', x, i, j) for i in enumerate(box.cod)]
         graph.add_edges(zip(scan[len(left): len(left @ box.dom)], dom_nodes))
-        graph.add_edges(zip(dom_nodes, len(box.dom) * [Node('box', -1, j)]))
-        graph.add_edges(zip(len(box.cod) * [Node('box', -1, j)], cod_nodes))
+        graph.add_edges(zip(dom_nodes, len(box.dom) * [box_node]))
+        graph.add_edges(zip(len(box.cod) * [box_node], cod_nodes))
         scan = scan[len(left):] + cod_nodes + scan[len(left @ box.dom):]
     graph.add_edges(zip(scan, [
-        Node('cod', i, len(diagram)) for i in range(len(diagram.cod))]))
+        Node('cod', x, i, len(diagram)) for i, x in enumerate(diagram.cod)]))
     return graph
 \end{minted}
 \end{python}
 
 The \py{graph2diagram} algorithm which translates the resulting graph into a diagram will be covered in the next section.
 It will allow to automatically read \emph{pictures of diagrams} (i.e. matrices of pixels) and translate them into \py{Diagram} objects.
-Note that in order to construct a \py{monoidal.Diagram} we need to assume \emph{planar graphs}\footnote
-{i.e. the graph with extra edges from each box to its domain and codomain is planar.}
-as input.
+Note that in order to construct a \py{monoidal.Diagram} we need to assume \emph{plane graphs} as input, i.e. graphs with an embedding in the plane.
 We also need to assume that every codomain node is connected to exactly one domain node.
 In sections~\ref{section:extra structure} and \ref{section:related and future} we will discuss the case of diagrams induced by non-planar graphs, with potentially multiple edges between domain and codomain nodes.
-Listing~\ref{listing:diagram2graph} shows the implementation of the inverse translation \py{diagram2graph} which indeed outputs only planar graphs.
+Listing~\ref{listing:diagram2graph} shows the implementation of the inverse translation \py{diagram2graph}.
+This outputs only planar graphs, as we will show in the next section by constructing their embedding in the plane, i.e. their drawing.
