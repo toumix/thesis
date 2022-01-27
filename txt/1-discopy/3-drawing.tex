@@ -15,7 +15,7 @@ A \emph{topological graph}, also called 1-dimensional cell complex, is a tuple $
 \item each edge $e \in G_1$ is homeomorphic to an open interval and its boundary is contained in the nodes $\partial e \sub G_0$.
 \end{itemize}
 From a topological graph $G$, one can construct an undirected graph in the usual sense by forgetting the space $G$, taking $G_0$ as nodes and edges $(x, y) \in G_0 \times G_0$ for each $e \in G_1$ with $\partial e = \{ x, y \}$.
-A topological graph is finite (planar) if its undirected graph is finite (planar, i.e. there exists some embedding embedding of the graph in the plane).
+A topological graph is finite (planar) if its undirected graph is finite (planar, i.e. there is some embedding in the plane).
 
 A \emph{plane graph} between two real numbers $a < b$ is a finite, planar topological graph $G$ with an embedding in $\R \times [a, b]$.
 We define the domain $\dom(G) = G_0 \ \cap \ \R \times \{ a \}$, the codomain $\cod(G) = G_0 \ \cap \ \R \times \{ b \}$ as lists of nodes ordered by horizontal coordinates and the set $\boxes(G) = G_0 \ \cap \ \R \times (a, b)$.
@@ -95,34 +95,31 @@ The only exceptions are \emph{spider boxes} where we draw the box node (the head
 Spiders, cups and caps will be discussed, and drawn, in section~\ref{section:extra structure}.
 
 \begin{example}
-\begin{minted}{python}
-circuit = sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX
-circuit.draw(to_tikz=True)
-\end{minted}
-\end{example}
-
-\begin{example}
 The following spiral diagram is the cubic worst-case for interchanger normal form.
-It is also the quadratic worst-case for drawing, at each layer of the first half we need to update the position of every preceding layer in order to make space for the output.
+It is also the quadratic worst-case for drawing, at each layer of the first half we need to update the position of every preceding layer in order to make space for the output edges.
 
 \begin{minted}{python}
 x = Ty('x')
 f, g = Box('f', Ty(), x @ x), Box('g', x @ x, Ty())
 u, v = Box('u', Ty(), x), Box('v', x, Ty())
-x[0]._name =  "\\py{x}"
-for box in [f, g, u, v]: box._name = "\\py{" + box.name + "}"
 
-def spiral(n: int) -> Diagram:
-    diagram = u
+def spiral(length: int) -> Diagram:
+    diagram, n = u, length // 2 - 1
     for i in range(n): diagram >>= Id(x ** i) @ f @ Id(x ** (i + 1))
     diagram >>= Id(x ** n) @ v @ Id(x ** n)
     for i in range(n): diagram >>= Id(x ** (n - i - 1)) @ g @ Id(x ** (n - i - 1))
     return diagram
 
-spiral(3).draw(to_tikz=True, textpad=(0.2, 0.2), tikz_options="scale=1.666",
-               path="WORK/TEX/THESIS/img/spiral.tikz")
+for i in [1, 2, 3, 8]: spiral(8)[:i + 1].draw(to_tikz=True)
+spiral(8).normal_form().draw(to_tikz=True)
 \end{minted}
-\ctikzfig{img/spiral}
+\begin{center}
+\tikzfig{img/spiral/1},
+\tikzfig{img/spiral/2},
+\tikzfig{img/spiral/3}, ... \\
+\vspace{5pt}
+\tikzfig{img/spiral/8} $\quad \sim \quad$ \tikzfig{img/spiral/nf}
+\end{center}
 \end{example}
 
 Next, we define the inverse translation \py{graph2diagram}.
@@ -163,14 +160,14 @@ Moreover, the horizontal coordinates of the nodes in \py{scan} are strictly incr
 thus we get the desired \py{offsets == self.offsets + [len(left)]}.
 \end{proof}
 
-A deformation $f : G \to G'$ between two labeled plane graphs $G, G'$ is a continuous map $h : G \times [0, 1] \to \R \times \R$ such that:
+A \emph{deformation} $h : G \to G'$ between two labeled plane graphs $G, G'$ is a continuous map $h : G \times [0, 1] \to \R \times \R$ such that:
 \begin{itemize}
 \item $h(G, t)$ is a plane graph for all $t \in [0, 1]$, $h(G, 0) = G$ and $h(G, 1) = G'$,
 \item $x \in \boxes(G)$ implies $h(x, t) \in \boxes(h(G, t))$ for all $t \in [0, 1]$,
 \item $h(G, t) \fcmp \lambda = \lambda$ for all $t \in [0, 1]$, i.e. the labels are preserved throughout.
 \end{itemize}
 A deformation is progressive (generic) when $h(G, t)$ is progressive (generic) for all $t \in [0, 1]$.
-We write $G \sim G'$ when there exists some deformation $f : G \to G'$, this defines an equivalence relation.
+We write $G \sim G'$ when there exists some deformation $h : G \to G'$, this defines an equivalence relation.
 
 \begin{theorem}\label{theorem:g2d then d2g}
 For all lgpp graphs $G$, \py{Diagram.draw(graph2diagram(} $G$ \py{))} $\sim G$ up to generic progressive deformation.

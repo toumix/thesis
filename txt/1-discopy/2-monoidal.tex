@@ -258,6 +258,8 @@ class Ty(Ob):
             [other.objects for other in others], [])))
 
     __matmul__ = tensor
+    __getitem__ = lambda self, key: self.upgrade(Ty(*self.objects[key]))
+    __pow__ = lambda self, n: self.upgrade(Ty(*n * self.objects))
 \end{minted}
 \end{python}
 
@@ -485,7 +487,7 @@ The evaluation of a formula in a finite model corresponds to the application of 
 \begin{minted}{python}
 men, mortal = Box("men", x, y), Box("mortal", y, x)
 all_men_are_mortal = men.bubble().then(mortal).bubble()
-for a in [0, 1]: for b in [0, 1]: for c in [0, 1]: for d in [0, 1]:
+for a, b, c, d in itertools.product(*4 * [[0, 1]]):
     ev = Functor(
         ob={x: 1, y: 2},
         ar={men: [[a, b]], mortal: [[c], [d]]}, ar_factory=Matrix)

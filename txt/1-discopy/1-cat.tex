@@ -14,7 +14,7 @@ The data for a category is given by a tuple $C = (C_0, C_1, \dom, \cod, \id, \th
 Given two objects $x, y \in C_0$, the set\footnote
 {We will assume that this forms a set rather than a proper class, i.e. we will only work with \emph{locally small} categories.}
 $C(x, y) = \{f \in C_1 \s \vert \s \dom(f), \cod(f) = x, y \}$ is called a \emph{homset} and we write $f : x \to y$ whenever $f \in C(x, y)$.
-We denote the composition $\then(f, g)$ by $f \fcmp g$, translated to \py{f >> g}  in Python.
+We denote the composition $\then(f, g)$ by $f \fcmp g$, translated to \py{f >> g} or \py{g << f} in Python.
 The axioms for the category $C$ are the following:
 \begin{itemize}
 \item $\id(x) : x \to x$ for all objects $x \in C_0$,
@@ -141,14 +141,29 @@ There is a faithful functor (i.e. injective on arrows with the same domain and c
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix} as arrows.}
+{\normalfont Implementation of the Boolean semiring $\B$ with addition and multiplication defined as disjunction and conjunction.}
 
 \begin{minted}{python}
-@dataclass
+class B:
+    def __init__(self, inside: bool): self.inside = bool(inside)
+    __add__ = __radd__ = lambda self, other: B(self.inside or other)
+    __mul__ = __rmul__ = lambda self, other: B(self.inside and other)
+    __bool__ = lambda self: self.inside
+    __eq__ = lambda self, other: bool(self) == bool(other)
+    __repr__ = __str__ = lambda self: repr(int(self.inside))
+\end{minted}
+\end{python}
+
+\begin{python}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix} with entries in $\S = \py{dtype}$ as arrows.}
+
+\begin{minted}{python}
 class Matrix:
-    inside: list[list[Number]]
-    dom: int
-    cod: int
+    dtype = B
+
+    def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
+        self.dom, self.cod, self.inside = dom, cod, [
+            list(map(self.dtype, row)) for row in inside]
 
     @staticmethod
     def id(x: int) -> Matrix:
@@ -156,16 +171,13 @@ class Matrix:
 
     def then(self, other: Matrix) -> Matrix:
         inside = [[
-            sum(self[i][j] * other[j][k] for j in range(other.dom))
+            sum([self[i][j] * other[j][k] for j in range(other.dom)])
             for k in range(other.cod)] for i in range(self.dom)]
         return Matrix(inside, self.dom, other.cod)
 
     __getitem__ = lambda self, key: self.inside[key]
-
-f = Matrix([[0, 1]], 2, 1)
-g = Matrix([[0, 1], [1, 0]], 2, 2)
-h = Matrix([[1], [0]], 2, 1)
-assert f.then(g) == h
+    __repr__ = lambda self: "Matrix({}, {}, {})".format(
+        self.inside, self.dom, self.cod)
 \end{minted}
 \end{python}
 
@@ -229,6 +241,7 @@ Free categories are implemented in the most basic module of DisCoPy, \py{discopy
 @dataclass
 class Ob:
     name: str
+    __str__ = lambda self: self.name
 
 @dataclass
 class Arrow:
@@ -251,11 +264,12 @@ class Arrow:
         boxes = self.boxes + sum([other.boxes for other in others], [])
         return self.upgrade(Arrow(dom, cod, boxes))
 
-    __rshift__ = then
+    __rshift__, __lshift__ = then, lambda self, other: other.then(self)
+    __len__ = lambda self: len(self.boxes)
+    __str__ = lambda self: ' >> '.join(map(str, self.boxes))\
+        if self.boxes else '{}.id({})'.format(type(self).__name__, self.dom)
 
 class Box(Arrow):
-    upgrade = Arrow.upgrade
-
     def __init__(self, name: str, dom: Ob, cod: Ob):
         self.name = name; super().__init__(dom, cod, [self])
 
@@ -264,17 +278,21 @@ class Box(Arrow):
             return (self.name, self.dom, self.cod)\
                 == (other.name, other.dom, other.cod)
         return isinstance(other, Arrow) and other.boxes == [self]
+
+    upgrade = Arrow.upgrade
+    __str__ = lambda self: self.name
 \end{minted}
 \end{python}
 
 The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
+We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of each object and box is in scope.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.boxes == [f]}.
 In order for the axiom \py{f >> Id(y) == f == Id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is set to be equal to the arrow with just itself as boxes.
 The main subtlety in the implementation is the class method \py{upgrade} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
 This allows the composition of arrows in a subclass to remain within the subclass, without having to rewrite the method \py{then}.
 This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{upgrade} and return an arrow of the appropriate subclass.
-We also need to fix \py{Box.upgrade = Arrow.upgrade}, otherwise we would not be able to compose a box with a diagram.
+We also need to fix \py{Box.upgrade = Arrow.upgrade}, otherwise we would be able to compose a diagram then a box but not a box then a diagram.
 
 \begin{example}
 We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
@@ -424,7 +442,8 @@ For example, the conjugate transpose defines a dagger on the category $\mathbf{M
 \begin{minted}{python}
 class Arrow(cat.Arrow):
     def dagger(self):
-        return Arrow(self.cod, self.dom, [box.dagger() for box in self.boxes[::-1]])
+        return self.upgrade(Arrow(
+            self.cod, self.dom, [box.dagger() for box in self.boxes[::-1]]))
 
 class Box(Arrow, cat.Box):
     upgrade = Arrow.upgrade
@@ -443,16 +462,56 @@ class Functor(cat.Functor):
 \end{minted}
 \end{python}
 
+\begin{python}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a $\dagger$-category.}
+
+\begin{minted}{python}
+def transpose(self: Matrix) -> Matrix:
+    inside = [[self[j][i] for j in range(self.dom)] for i in range(self.cod)]
+    return Matrix(inside, self.cod, self.dom)
+
+def map(self: Matrix, func: Callable[[Number], Number]) -> Matrix:
+    inside = [list(map(func, row)) for row in self.inside]
+    return Matrix(inside, self.dom, self.cod)
+
+def dagger(self: Matrix) -> Matrix:
+    return self.transpose().map(lambda x: x.conjugate())
+\end{minted}
+\end{python}
+
+In order to implement the syntactic sugar \py{f[::-1] == f.dagger()}, we need to override the \py{__getitem__} method.
+In general, DisCoPy defines indexing \py{f[i]} and slicing \py{f[start:stop:step]} so that \py{f[key].boxes == f.boxes[key]} for any \py{key: int} and any \py{key: slice} with \py{key.step in (-1, 1, None)}.
+
+\begin{python}
+{\normalfont Outline of indexing and slicing for arrows.}
+
+\begin{minted}{python}
+def __getitem__(self: Arrow, key: int | slice) -> Arrow:
+    if isinstance(key, int): return self.upgrade(self.boxes[key])
+    if key.step not in (-1, 1, None): raise IndexError
+    if key.step == -1:
+        for i in (key.start, key.stop):
+            if i is not None and i < 0: raise NotImplementedError
+        return self[key.stop + 1:key.start + 1].dagger()
+    dom, cod = self[key.start].dom, self[key.stop].cod
+    return self.upgrade(Arrow(dom, cod, self.boxes[key]))
+\end{minted}
+\end{python}
+
+\begin{remark}
+Although the case of negative indices (i.e. counting backwards from the end of the list) is implemented in DisCoPy, its interactions with list reversal are too complex to fit in a thesis.
+\end{remark}
+
 \begin{example}
 We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
 
 \begin{minted}{python}
-Matrix.dagger = lambda self: Matrix(dom=self.cod, cod=self.dom, inside=[
-    [self[j][i].conjugate() for j in range(self.dom)] for i in range(self.cod)])
+F = Functor(
+    ob={Ob('1'): 2},
+    ar={Y: [[0, -1j],
+            [1j, 0]]})
 
-Y = Gate('Y', 1)
-F = Functor(ob={Ob('1'): 2}, ar={Y: [[0, -1j], [1j, 0]]})
-assert F(Y >> Y.dagger()) == F(Id) == F(Y.dagger() >> Y)
+assert F(Y >> Y[::-1]) == F(Id) == F(Y[::-1] >> Y)
 \end{minted}
 \end{example}
 
@@ -511,6 +570,20 @@ class Functor(cat.Functor):
 \end{minted}
 \end{python}
 
+\begin{python}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a category with sums.}
+
+\begin{minted}{python}
+def __add__(self: Matrix, other: Matrix) -> Matrix:
+    inside = [[x + y for x, y in zip(u, v)]
+              for u, v in zip(self.inside, other.inside)]
+    return Matrix(inside, self.dom, self.cod)
+
+def zero(dom: int, cod: int) -> Matrix:
+    return Matrix([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
+\end{minted}
+\end{python}
+
 By a \emph{bubble} we mean an operator which takes an arrow and puts it into a box.
 More formally, a bubble in a category $C$ is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
 DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod} and an attribute \py{inside: Arrow}.
@@ -518,6 +591,7 @@ DisCoPy functors automatically respect bubbles, i.e. we have that $F(b(f)) = b(F
 Thus, we can interpret arrows with bubbles as arbitrary operations on the codomain of our interpretation functors.
 For example, we can define a negation bubble on the category $\mathbf{Mat}_\B$ of Boolean matrices: it is the identity on objects and sends each matrix $f$ to its entrywise negation $\bar{f}$.
 The resulting syntax with bubbles is strictly more expressive than that of free categories alone: negation cannot be expressed as a composition, there is no matrix $n$ in $\mathbf{Mat}_\B$ such that $f \fcmp n = \bar{f}$ for all matrices $f$.
+This is the case for the element-wise application of any non-linear function, such as the rectified linear units (ReLU) used in neural networks.
 As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
 
 \begin{python}
@@ -525,8 +599,9 @@ As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of para
 
 \begin{minted}{python}
 class Bubble(Box):
-    def __init__(self, inside: Arrow, dom: Ob, cod: Ob):
-        self.inside, name = inside, "Bubble({}, {}, {})".format(dom, cod, inside)
+    def __init__(self, inside: Arrow, dom: Optional[Ob], cod: Optional[Ob]):
+        dom, cod = dom or self.dom, cod or self.cod
+        self.inside, name = inside, "Bubble({}, {}, {})".format(inside, dom, cod)
         super().__init__(name, dom, cod)
 
 Arrow.bubble = Bubble
@@ -540,25 +615,43 @@ class Functor(cat.Functor):
 \end{python}
 
 \begin{example}
-We can implement the formulae of propositional logic with boxes as propositions, composition as conjunction, sum as disjunction and bubble as negation.
+We can encode the architecture of a neural network as an arrow with sums and bubbles, encoding vector addition and non-linear activation function respectively.
+The evaluation of the neural network on some input vector for some parameters is given by the application of a sum-and-bubble-preserving functor into $\mathbf{Mat}_\R$.
+The hyper-parameters (i.e. the number of neurons at each layer) are given by the image of the functor on objects.
+
+\begin{minted}{python}
+Matrix.dtype, Matrix.bubble = float, lambda self: self.map(lambda x: max(x, 0))
+
+vector, bias = Box('vector', x, y), Box('bias', x, x)
+ones, weights = Box('ones', x, y), Box('weights', y, z)
+network = ((vector + (bias >> ones)) >> weights).bubble()
+
+F = Functor(
+    ob={x: 1, y: 4, z: 2},
+    ar={vector: [[1.2, -2.3, 3.4, -4.5]],
+        bias: [[-3.14]], ones: [[1, 1, 1, 1]]
+        weights: [[5.6, -6.7, 7.8, -8.9],
+                  [9.0, -0.1, 2.3, -3.4]]})
+
+assert F(network) == F(vector).map(lambda x: x + F(bias)[0][0])\
+                              .then(F(weights)).map(lambda x: max(0, x))
+\end{minted}
+\end{example}
+
+\begin{example}
+We can implement propositional logic with boxes as propositions, composition as conjunction, sum as disjunction and bubble as negation.
 The evaluation of a formula in a model corresponds to the application of a sum-and-bubble-preserving functor into $\mathbf{Mat}_\B(1, 1)$.
 
 \begin{minted}{python}
-Matrix.__add__ = lambda self, other: Matrix(dom=self.dom, cod=self.cod, inside=[
-    [x + y for x, y in zip(u, v)] for u, v in zip(self.inside, other.inside)])
-Matrix.zero = lambda dom, cod: Matrix(dom=dom, cod=cod, inside=[
-    [0 for _ in range(cod)] for _ in range(dom)])
-Matrix.bubble = lambda self: Matrix(
-    self.dom, self.cod, [[not x for x in row] for row in self.inside])
+Matrix.dtype, Matrix.bubble = B, lambda self: self.map(lambda x: not x)
 
-x = Ob('x')
 p, q = Box('p', x, x), Box('q', x, x)
 p_implies_q = q.bubble().then(p).bubble()
 not_p_or_q = p.bubble() + q
 
-for a in [0, 1]: for b in [0, 1]:
+for a, b in itertools.product([0, 1], [0, 1]):
     F = Functor(ob={x: 1}, ar={p: [[a]], q: [[b]]}, ar_factory=Matrix)
-    ev = lambda f: F(f)[0][0]  # This takes the scalar out of a 1x1 matrix.
+    ev = lambda f: F(f)[0][0]  # Take the scalar out of a 1x1 matrix.
     assert ev(p_implies_q) == not (not ev(q) and ev(p))\
         == ev(not_p_or_q) == not ev(p) or ev(q)
 \end{minted}
