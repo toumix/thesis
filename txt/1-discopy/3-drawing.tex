@@ -9,6 +9,8 @@ We first recall the topological definition from Joyal's and Street's unpublished
 In one direction, the isomorphism sends a \py{Diagram} object to its drawing.
 In the other direction, it reads the picture of a diagram and translates it into a \py{Diagram} object, i.e. its domain, codomain and list of layers.
 
+\subsection{Labeled generic progressive plane graphs}
+
 A \emph{topological graph}, also called 1-dimensional cell complex, is a tuple $(G, G_0, G_1)$ of a Hausdorff space $G$ and a pair of a closed subset $G_0 \sub G$ and a set of open subsets $G_1 \sub P(G)$ called \emph{nodes} and \emph{edges} respectively, such that:
 \begin{itemize}
 \item $G_0$ is discrete and $G - G_0 = \bigcup G_1$,
@@ -54,6 +56,8 @@ From an lgpp (\emph{labeled generic progressive plane}) graph, one can construct
 \hrule
 \end{python}
 
+\subsection{From diagrams to graphs and back}
+
 In the other direction, there are many possible ways to draw a given \py{Diagram} as a lgpp graph, i.e. to embed its graph into the plane.
 Vicary and Delpeuch \cite{DelpeuchVicary18} give a linear-time algorithm to compute such an embedding with the following disadvantage: the drawing of a tensor $f \otimes g$ does not necessarily look like the horizontal juxtaposition of the drawings for $f$ and $g$.
 For example, if we tensor an identity with a scalar, the edge representing the identity will wiggle around the node representing the scalar.
@@ -94,11 +98,11 @@ In this way, we do not need to draw the in- and out-going edges of the box node:
 The only exceptions are \emph{spider boxes} where we draw the box node (the head) and its outgoing edges (the legs of the spider) as well as \emph{cup and cap boxes} where we do not draw the box node at all, only its two outgoing edges which are drawn as Bézier curves to look like cups and caps respectively.
 Spiders, cups and caps will be discussed, and drawn, in section~\ref{section:extra structure}.
 
-\begin{example}
+\begin{example} TODO
 identity, box, composition, tensor and interchanger
 \end{example}
 
-\begin{example}
+\begin{example} TODO
 Eckmann-Hilton
 \end{example}
 
@@ -209,6 +213,8 @@ For the converse, a proof of \py{graph2diagram(} $G$ \py{) == graph2diagram(} $G
 DisCoPy can output these proofs as videos using \py{Diagram.normalize} to iterate through the rewriting steps and \py{Diagram.to_gif} to produce a \py{.gif} file.
 \end{proof}
 
+\subsection{A natural isomorphism}
+
 We have established an isomorphism between the class of lgpp graphs (up to progressive deformation) and the class of \py{Diagram} objects (up to interchanger).
 It remains to show that this actually forms an isomorphism of monoidal categories.
 That is for every monoidal signature $\Sigma$, there is a monoidal category $G(\Sigma)$ with objects $\Sigma_0^\star$ and arrows the equivalence classes of lgpp graphs with labels in $\Sigma$.
@@ -282,6 +288,16 @@ Given a morphism of monoidal signatures \py{f: SigMorph} we have the following t
     \end{tikzcd}
 \end{center}
 \end{proof}
+
+\subsection{Daggers, sums and bubbles}
+
+daggers and asymmetry
+
+drawing sums and equations
+
+drawing bubbles
+
+\subsection{Automatic diagram recognition}
 
 reading diagrams from bitmaps
 

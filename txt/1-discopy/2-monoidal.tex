@@ -1,6 +1,8 @@
 %!TEX root = ../../THESIS.tex
 
-\section{String diagrams}
+\section{Diagrams in Python}
+
+\subsection{Abstract monoidal categories}
 
 In the previous section, we introduced the idea of arrows in free categories as formal data pipelines and functor application as their evaluation in concrete categories such as $\mathbf{Pyth}$, $\mathbf{Mat}$ or $\mathbf{Circ}$ where the computation happens.
 For now, our pipelines are rather basic because they are linear: we cannot express functions of multiple arguments, nor tensors of order higher than 2, nor circuits with multiple qubits in any explicit way.
@@ -30,6 +32,8 @@ A functor $F : C \to D$ between monoidal categories $C$ and $D$ is (strict\footn
 {We will assume that our monoidal functors are strict, i.e. $F(x \otimes y) = F(x) \otimes F(y)$ and $F(1) = 1$ are equalities rather than natural transformations.}) monoidal whenever it is also a monoid homomorphism on objects and arrows.
 Thus, monoidal categories themselves form a category $\mathbf{MonCat}$ with monoidal functors as arrows.
 A transformation $\alpha : F \to G$ between two monoidal functors $F, G : C \to D$ is monoidal itself when $\alpha(x \otimes y) = \alpha(x) \otimes \alpha(y)$ for all objects $x, y \in C$.
+
+\subsection{Concrete monoidal categories}
 
 \begin{example}
 The category $\mathbf{Pyth}$ is monoidal with unit \py{()} and \py{tuple[t1, t2]} as the tensor of types \py{t1} and \py{t2}.
@@ -102,6 +106,8 @@ def tensor(self: Matrix, other: Matrix) -> Matrix:
 The category $\mathbf{Circ}$ is monoidal with addition of natural numbers as tensor on objects and \emph{parallel composition} of circuits as tensor on arrows.
 The evaluation functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ is monoidal: it sends the parallel composition of circuits to the Kronecker product of their unitary matrices.
 \end{example}
+
+\subsection{Free monoidal categories}
 
 Now, what does it mean to implement a monoidal category in Python?
 Again, nothing more than defining a pair of classes for objects and arrows with a \py{tensor} method that satisfies the axioms.
@@ -238,30 +244,6 @@ The unit $\eta_\Sigma : \Sigma \to U(F(\Sigma))$ sends objects to themselves and
 The counit $\epsilon_C : F(U(C)) \to C$ is the functor which sends diagrams with boxes in $C$ to their evaluation, i.e. the formal composition and tensor of diagrams in $F(U(C))$ is sent to the concrete composition and tensor of arrows in $C$.
 In the next section, we will show that this construction is in fact equivalent to the topological definition of diagrams as labeled graphs embedded in the plane.
 
-Once we have defined freeness, we need to define quotients.
-The quotient $C / R$ of a monoidal category $C$ by a binary relation $R \sub \coprod_{x, y \in C_0^\star} C(x, y) \times C(x, y)$ is the quotient category for the rewriting relation $\to_R$ where:
-$$u \fcmp \id(b) \otimes f \otimes \id(c) \fcmp v \quad
-\to_R u \fcmp \id(b) \otimes f \otimes \id(c) \fcmp v$$
-for all $b, c \in C_0^\star$, $u : a \to b x c$ and $f, g : x \to y \in R$.
-Intuitively, if we can equate $f$ and $g$ then we can equate them in any context, i.e. with any objects $b$ and $c$ tensored on the left and right and any arrows $u$ and $v$ composed above and below.
-A proof that two diagrams are equal in the quotient can itself be thought of as a diagram in three dimensions, i.e. the movie of a diagram being rewritten into another.
-These higher-dimensional diagrams will be mentioned in section~\ref{section:related and future}.
-Again, every monoidal category $C$ is isomorphic to the quotient of a free monoidal category $C = F(\Sigma) / R$: take $\Sigma = U(C)$ and the relation $R \sub F(U(C)) \times F(U(C))$ given by every binary composition and tensor.
-
-Why should computer scientists care about diagrams?
-One reason is that they are free data structures in the same sense that lists are free: they are a two-dimensional generalisation of lists.
-Another reason is that they allow an elegant definition of a Turing-complete problem: given a finite monoidal signature $\Sigma$ and a pair of lists $x, y \in \Sigma_0^\star$, decide whether there is a diagram $f : x \to y$ in $F(\Sigma)$.
-Indeed, the word problem for monoids (which is equivalent to the halting problem for Turing machines) reduces to the existence problem for diagrams: given the presentation $(X, R)$ of a monoid, take objects $\Sigma_0 = X$, arrows $\Sigma_1 = R \cup R^T$ the symmetric closure of the relation $R$ and $\dom, \cod : \Sigma_1 \injects X^\star \times X^\star \to X^\star$ the left and right hand-side of each related pair.
-For any pair $x, y \in X^\star$, we have that $x = y$ in the quotient monoid $M = X^\star / R$ if and only if there is a diagram $f : x \to y$ in $F(\Sigma)$.
-
-If we compose the two reductions together, we get a free monoidal category where the arrows are all the possible runs of a given Turing machine.
-Moreover, a monoidal functor from the category of one machine to another corresponds to a reduction between the problems they solve, the domain machine being simulated by the codomain.
-Thus, we could very well take finite monoidal signatures as our definition of machine and diagrams as our definition of computation: algorithmic complexity is given by the size of signatures, time and space complexity are given by the length and width\footnote
-{The width of a diagram is the maximum width of its layers, which is not preserved by interchangers.
-In the diagrams generated by Turing machines, we cannot apply interchangers anyway: there is one state connected to the box of every layer, the head of the machine.}
-of diagrams.
-The categories of complexity and the complexity of categories are not the subject of this thesis however, let's get back to Python programming.
-
 \begin{python}\label{listing:Ty}
 {\normalfont Outline of the class \py{monoidal.Ty}.}
 \begin{minted}{python}
@@ -381,14 +363,16 @@ class Gate(Circuit, Box):
         Box.__init__(self, name, Qubits(n_qubits), Qubits(n_qubits))
 
 class Ket(Circuit, Box):
-    def __init__(self, bit: bool):
-        Box.__init__(self, "Ket({})".format(bit), Qubits(0), Qubits(1))
+    def __init__(self, *bits: bool):
+        self.bits, dom, cod = bits, Qubits(0), Qubits(len(bits))
+        name = "Ket({})".format(', '.join(map(str, bits)))
+        Box.__init__(self, name, dom, cod)
 
 Gate.upgrade = Ket.upgrade = Circuit.upgrade
 
 H, CX = Gate("H", n_qubits=1), Gate("CX", n_qubits=2)
 Id, sqrt2 = Circuit.id(Qubits(1)), Gate("sqrt(2)", n_qubits=0)
-assert isinstance(sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX, Circuit)
+assert isinstance(sqrt2 @ Ket(0, 0) >> H @ Id >> CX, Circuit)
 \end{minted}
 \end{example}
 
@@ -445,12 +429,15 @@ class Eval(Functor):
        super().__init__(ob, ar, ob_factory=tuple[int], ar_factory=Tensor)
 
     def __call__(self, other):
-        return Matrix([[int(other.bit), int(not other.bit)]], 1, 2)\
-            if isinstance(other, Ket) else super().__call__(other)
+        if isinstance(other, Ket):
+            if not other.bits: return Tensor.id([])
+            head = Matrix([[other.bits[0], not other.bits[0]]], 1, 2)
+            return head @ self(Ket(*others[1:]))
+        return super().__call__(other)
 
 Circuit.eval = Eval()
-circuit = sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX
-superposition =  Ket(0) @ Ket(0) + Ket(1) @ Ket(1)
+circuit = sqrt2 @ Ket(0, 0) >> H @ Id >> CX
+superposition =  Ket(0, 0) + Ket(1, 1)
 assert circuit.eval() == superposition.eval()
 \end{minted}
 \end{example}
@@ -479,6 +466,34 @@ encoding = (x @ y, [(f, 0), (g, 1), (h, 0)])
 assert decode(encoding) == f @ g >> h and encode(f @ g >> h) == encoding
 \end{minted}
 \end{remark}
+
+\subsection{Quotient monoidal categories}
+
+Once we have defined freeness, we need to define quotients.
+The quotient $C / R$ of a monoidal category $C$ by a binary relation $R \sub \coprod_{x, y \in C_0^\star} C(x, y) \times C(x, y)$ is the quotient category for the rewriting relation $\to_R$ where:
+$$u \fcmp \id(b) \otimes f \otimes \id(c) \fcmp v \quad
+\to_R u \fcmp \id(b) \otimes f \otimes \id(c) \fcmp v$$
+for all $b, c \in C_0^\star$, $u : a \to b x c$ and $f, g : x \to y \in R$.
+Intuitively, if we can equate $f$ and $g$ then we can equate them in any context, i.e. with any objects $b$ and $c$ tensored on the left and right and any arrows $u$ and $v$ composed above and below.
+A proof that two diagrams are equal in the quotient can itself be thought of as a diagram in three dimensions, i.e. the movie of a diagram being rewritten into another.
+These higher-dimensional diagrams will be mentioned in section~\ref{section:related and future}.
+Again, every monoidal category $C$ is isomorphic to the quotient of a free monoidal category $C = F(\Sigma) / R$: take $\Sigma = U(C)$ and the relation $R \sub F(U(C)) \times F(U(C))$ given by every binary composition and tensor.
+
+Why should computer scientists care about diagrams?
+One reason is that they are free data structures in the same sense that lists are free: they are a two-dimensional generalisation of lists.
+Another reason is that they allow an elegant definition of a Turing-complete problem: given a finite monoidal signature $\Sigma$ and a pair of lists $x, y \in \Sigma_0^\star$, decide whether there is a diagram $f : x \to y$ in $F(\Sigma)$.
+Indeed, the word problem for monoids (which is equivalent to the halting problem for Turing machines) reduces to the existence problem for diagrams: given the presentation $(X, R)$ of a monoid, take objects $\Sigma_0 = X$, arrows $\Sigma_1 = R \cup R^T$ the symmetric closure of the relation $R$ and $\dom, \cod : \Sigma_1 \injects X^\star \times X^\star \to X^\star$ the left and right hand-side of each related pair.
+For any pair $x, y \in X^\star$, we have that $x = y$ in the quotient monoid $M = X^\star / R$ if and only if there is a diagram $f : x \to y$ in $F(\Sigma)$.
+
+If we compose the two reductions together, we get a free monoidal category where the arrows are all the possible runs of a given Turing machine.
+Moreover, a monoidal functor from the category of one machine to another corresponds to a reduction between the problems they solve, the domain machine being simulated by the codomain.
+Thus, we could very well take finite monoidal signatures as our definition of machine and diagrams as our definition of computation: algorithmic complexity is given by the size of signatures, time and space complexity are given by the length and width\footnote
+{The width of a diagram is the maximum width of its layers, which is not preserved by interchangers.
+In the diagrams generated by Turing machines, we cannot apply interchangers anyway: every box is connected to the next by the head of the machine.}
+of diagrams.
+The categories of complexity and the complexity of categories are not the subject of this thesis however, let's get back to Python programming.
+
+\subsection{Daggers, sums and bubbles}
 
 As in the previous section, we introduce three extra pieces of implementation: dagger, sums and bubbles.
 A $\dagger$-monoidal category is a monoidal category with a $\dagger$ (i.e. an identity-on-objects involutive contravariant endofunctor) that is also a monoidal functor, a $\dagger$-monoidal functor is both a $\dagger$-functor and a monoidal functor.
@@ -511,19 +526,52 @@ Bubbles for monoidal categories are the same as bubbles for categories, their im
 As we mentioned in the previous section, bubbles do give us a strictly more expressive syntax however: they can encode operations on arrows that cannot be expressed in terms of composition or tensor.
 
 \begin{example}
+We can implement the Born rule as a bubble on $\py{Circ}$ interpreted as element-wise squared amplitude.
+We can also implement any classical post-processing as a bubble.
+
+\begin{minted}{python}
+Bra = lambda *bits: Ket(*bits)[::-1]
+Born_rule = lambda x: abs(x) ** 2
+Circuit.measure = lambda self: self.bubble(name="squared_amplitude")
+Tensor.squared_amplitude = lambda self: self.map(Born_rule)
+
+assert (Ket(0) >> H >> Bra(0)).measure().eval()[0][0] == .5
+
+biased_ReLU = lambda x: max(0, 2 * x - 1)
+Circuit.post_process = lambda self: self.bubble(name="non_linearity")
+Tensor.non_linearity = lambda self: self.map(biased_ReLU)
+
+circuit = Ket(0, 0) >> H @ Id >> CX >> Bra(0, 0)
+post_processed_circuit = circuit.measure().post_process()
+assert post_processed_circuit.eval()[0][0]\
+    == biased_ReLU(Born_rule(circuit.eval()[0][0]))
+\end{minted}
+\end{example}
+
+\begin{example}
 We can implement the formulae of first-order logic using Peirce's \emph{existential graphs} which happen to be the first examples of string diagrams~\cite{BradyTrimble98,BradyTrimble00,MelliesZeilberger16,HaydonSobocinski20} as well as the first definition of first-order logic.
 Bubbles, which Peirce calls \emph{cuts}, encode negation.
 The evaluation of a formula in a finite model corresponds to the application of a bubble-preserving functor into $\mathbf{Mat}_\B$.
 
 \begin{minted}{python}
-men, mortal = Box("men", x, y), Box("mortal", y, x)
-all_men_are_mortal = men.bubble().then(mortal).bubble()
+class Formula(Diagram):
+    cut = lambda self: self.bubble(name="_not")
+
+    @staticmethod
+    def model(size, data: dict[Predicate, list[bool]]):
+        Functor(ob={Ty('x'): size},
+                ar={p: [data[p]] for p in data}, ar_factory=Matrix)
+
+class Predicate(Box, Formula):
+    def __init__(self, name): Box.__init__(self, name, Ty(), Ty('x'))
+
+men, mortal = map(Predicate, ("men", "mortal"))
+all_men_are_mortal = (men.cut() >> mortal.dagger()).cut()
+
 for a, b, c, d in itertools.product(*4 * [[0, 1]]):
-    ev = Functor(
-        ob={x: 1, y: 2},
-        ar={men: [[a, b]], mortal: [[c], [d]]}, ar_factory=Matrix)
-    assert ev(all_men_are_mortal) == all(
-        not ev(men)[0][i] or ev(mortal)[i][0] for i in range(ev(y)))
+    F = Formula.model(2, {men: [a, b], mortal: [c, d]})
+    assert F(all_men_are_mortal) == all(
+        not F(men)[i][0] or F(mortal)[i][0] for i in range(2))
 \end{minted}
 \end{example}
 
@@ -539,12 +587,14 @@ Given \py{dom: Ty}, \py{cod: Ty} and \py{boxes: list[Box]} as parameters, it add
 We can define quantum circuits as Python functions on qubits.
 
 \begin{minted}{python}
-@diagramize(dom=Qubits(2), cod=Qubits(2), boxes=[sqrt2, Ket, H, CX])
+kets0 = Ket(0, 0)
+
+@diagramize(dom=Qubits(2), cod=Qubits(2), boxes=[sqrt2, kets0, H, CX])
 def circuit():
-    sqrt2(); qubit0, qubit1 = Ket(0)(), Ket(0)()
+    sqrt2(); qubit0, qubit1 = kets0
     return CX(H(qubit0), qubit1)
 
-assert circuit == sqrt2 @ Ket(0) @ Ket(0) >> H @ Id >> CX
+assert circuit == sqrt2 @ kets0 >> H @ Id >> CX
 \end{minted}
 \end{example}
 

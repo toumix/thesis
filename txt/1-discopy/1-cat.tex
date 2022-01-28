@@ -2,6 +2,8 @@
 
 \section{Categories in Python}
 
+\subsection{Abstract categories}
+
 What are categories and how can they be useful to the Python programmer?
 This section will answer this question by taking the standard mathematical definitions and breaking them into \emph{data}, which can be translated into Python code, and \emph{axioms}, which cannot be formally verified in Python, but can be translated into test cases.
 The data for a category is given by a tuple $C = (C_0, C_1, \dom, \cod, \id, \then)$ where:
@@ -69,6 +71,8 @@ A \emph{natural transformation} is one where $\alpha(x) \fcmp G(f) = F(f) \fcmp 
 The \py{Transformation} class is given in listing~\ref{listing:abstract classes}, checking that a transformation is natural cannot be done formally in Python.
 In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two sets $X$ and $Y$, for any two categories $C$ and $D$ there is a category $D^C$ with functors $C \to D$ as objects and natural transformations as arrows.
 
+\subsection{Concrete categories}
+
 \begin{example}\label{ex:python categories}
 We can define the category $\mathbf{Pyth}$ with objects the class of all Python types and arrows the class of all Python functions.
 Domain and codomain of may be extracted from type annotations.
@@ -109,7 +113,7 @@ This time equality of functions between finite sets is decidable, so we can writ
 \end{example}
 
 \begin{example}
-When the class of objects and arrow are finite sets, we can draw the category as a directed multigraphs with objects as nodes and arrows as edges, together with the list of equations between paths.
+When the class of objects and arrow are finite sets, we can draw the category as a directed multigraph with objects as nodes and arrows as edges, together with the list of equations between paths.
 A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
 For example, the following commutative diagram denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
 \[ \begin{tikzcd}
@@ -135,7 +139,7 @@ There is a faithful functor (i.e. injective on arrows with the same domain and c
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of the Boolean semiring $\B$ with addition and multiplication defined as disjunction and conjunction.}
+{\normalfont Implementation of the Boolean rig $\B$ with addition and multiplication defined as disjunction and conjunction.}
 
 \begin{minted}{python}
 class B:
@@ -185,6 +189,7 @@ There is a functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ which sen
 \begin{example}
 A monoid is the same as a category with one object, i.e. every arrow (element) can be composed with (multiplied by) every other.
 A preorder, i.e. a set with a reflexive transitive relation, is the same as a category with at most one arrow $x \leq y$ between any two objects $x$ and $y$.
+Functors between monoids are the same as homomorphisms, functors between preorders are monotone functions.
 \end{example}
 
 \begin{example}
@@ -192,6 +197,8 @@ Just about any class of mathematical structures will be the objects of a categor
 For example, the category $\mathbf{Set}$ of sets and functions, the category $\mathbf{Mon}$ of monoids and homomorphisms, the category $\mathbf{Cat}$ of small categories and functors, etc.
 The faithful functor $U : \mathbf{Mon} \to \mathbf{Set}$ which sends monoids to their underlying set and homomorphisms to functions is called a \emph{forgetful functor}.
 \end{example}
+
+\subsection{Free categories}
 
 The main principles behind the implementation of DisCoPy follow from the concept of a \emph{free object}.
 Let's start from a simple example.
@@ -301,14 +308,16 @@ We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subcla
 \begin{minted}{python}
 class Circuit(Arrow): pass
 
-class Gate(Circuit, Box):
+class Gate(Box, Circuit):
     upgrade = Circuit.upgrade
 
     def __init__(self, name: str, n_qubits: int):
         dom, cod = Ob(str(n_qubits)), Ob(str(n_qubits))
         Box.__init__(self, name, dom, cod)
 
-X, Y, Z, Id = Gate("X", 1), Gate("Y", 1), Gate("Z", 1), Circuit.id(Ob('1'))
+Id = Circuit.id(Ob('1'))
+X, Y, Z, H = [Gate(name, n_qubits=1) for name in "XYZH"]
+
 assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Id == X == Id >> X
 assert isinstance(Id, Circuit) and isinstance(X >> Y, Circuit)
 \end{minted}
@@ -412,6 +421,8 @@ class Functor(cat.Functor):
 \end{minted}
 \end{remark}
 
+\subsection{Quotient categories}
+
 After free objects, another concept behind DisCoPy is that of a \emph{quotient object}.
 Again, let's start with the example of a monoid $M$.
 Suppose we're given a binary relation $R \sub M \times M$, then we can construct a quotient monoid $M / R$ with underlying set the equivalence classes of the smallest congruence generated by $R$.
@@ -450,7 +461,7 @@ Implementing a quotient category is nothing more than implementing a free catego
 One straightforward way is to define equality of arrows $f, g$ in a free category $F(\Sigma)$ to be the equality of their interpretation $\eval{f} = \eval{g}$ under a functor $\eval{-} : F(\Sigma) \to D$ into a concrete category $D$ where equality is decidable.
 Another method is to define a \emph{normal form} method which takes an arrow and returns the representative of its equivalence class, then identity of arrow is identity of their normal forms.
 
-\begin{example}
+\begin{example} \label{example:1-qubit-presentation}
 Take the signature $\Sigma$ with one object $\Sigma_0 = \{ 1 \}$ and four arrows $\Sigma_1  = \{ Z, X, H, -1 \}$ for the Z, X and Hadamard gate and the global $(-1)$ phase.
 Let's define the relation $R$ induced by:
 \begin{itemize}
@@ -462,7 +473,9 @@ Suppose we're given a functor $\mathtt{cost} : F(\Sigma) \to \R^+$, we can defin
 Thus, deciding equality of circuits reduces to solving circuit optimisation perfectly.
 \end{example}
 
-We conclude this section by discussing three extra pieces of implementation beyond the basics of category theory: dagger, sums and bubbles.
+\subsection{Daggers, sums and bubbles}
+
+We conclude this section by discussing three extra pieces of implementation beyond the basics of category theory: daggers, sums and bubbles.
 A \emph{dagger} for a category $C$ can be thought of as a kind of time-reversal for arrows.
 More precisely, a dagger is a contravariant endofunctor $\dagger : C \to C^{op}$, i.e. from the category to its opposite with $\dom$ and $\cod$ swapped, which is the identity on objects and an involution, i.e. $(\dagger) \fcmp (\dagger) = \id_\C$.
 A $\dagger$-functor is a functor between $\dagger$-categories that commutes with the dagger, thus we get a category $\dagger-\mathbf{Cat}$.
@@ -496,7 +509,7 @@ class Arrow(cat.Arrow):
         dom, cod = self[key.start].dom, self[key.stop].cod
         return self.upgrade(Arrow(dom, cod, self.boxes[key]))
 
-class Box(Arrow, cat.Box):
+class Box(cat.Box, Arrow):
     upgrade = Arrow.upgrade
 
     def __init__(self, name: str, dom: Ob, cod: Ob, is_dagger=False):
@@ -525,17 +538,32 @@ def map(self: Matrix, func: Callable[[Number], Number]) -> Matrix:
     inside = [list(map(func, row)) for row in self.inside]
     return Matrix(inside, self.dom, self.cod)
 
-def dagger(self: Matrix) -> Matrix:
-    return self.transpose().map(lambda x: x.conjugate())
+Matrix.transpose, Matrix.map = transpose, map
+Matrix.conjugate = lambda self: self.map(lambda x: x.conjugate())
+Matrix.dagger = lambda self: self.conjugate().transpose()
 \end{minted}
 \end{python}
 
 \begin{example}
-We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
+We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor and check the equations given in example~\ref{example:1-qubit-presentation}.
 
 \begin{minted}{python}
-F = Functor(ob={Ob('1'): 2}, ar={Y: [[0, -1j], [1j, 0]]})
-assert F(Y >> Y[::-1]) == F(Id) == F(Y[::-1] >> Y)
+Circuit.eval = Functor(
+    ob={Ob('1'): 2},
+    ar={X: [[0, 1], [1, 0]]
+        Y: [[0, -1j], [1j, 0]],
+        Z: [[1, 0], [0, -1]],
+        H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]]}
+    ob_factory=int, ar_factory=Matrix)
+
+assert (Z >> H).eval() == (H >> X).eval()
+assert (Z >> X).eval() == (X >> Z).eval().map(lambda x: -x)
+
+for gate in [H, Z, X]:
+    assert (gate >> gate).eval() == Id.eval()
+
+for gate in [X, Y, Z, H]:
+    assert (gate >> gate[::-1]).eval() == Id.eval() == (gate[::-1] >> gate).eval()
 \end{minted}
 \end{example}
 
@@ -543,14 +571,13 @@ A category $C$ has \emph{sums}, or equivalently $C$ is \emph{commutative-monoid-
 A functor $F : C \to D$ between categories with sums is commutative-monoid-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
 For example, the category $\mathbf{Mat}_\S$ has sums given by elementwise addition of matrices.
 A commutative-monoid-enriched category with one object is precisely a rig.
-Given a signature $\Sigma$, we construct the free category with sums $F^+(\Sigma)$ as follows.
-Take the free category $F(\Sigma)$, then take the free commutative monoid over each homset, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
+Given a signature $\Sigma$, we construct the free category with sums $F^+(\Sigma)$ by taking the free commutative monoid over each homset of $F(\Sigma)$, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
 
 In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]}.
 The method \py{then} is straightforward: the composition of a sum is the sum of the compositions of its terms.
 Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself.
 Checking equality of bags is the same as checking equality of lists sorted by any arbitrary ordering.
-DisCoPy functors are commutative-monoid-enriched, i.e. formal sum of arrows can be interpreted as a concrete sum of matrices.
+DisCoPy functors are commutative-monoid-enriched, i.e. a formal sum of arrows can be interpreted as a concrete sum of matrices.
 
 \begin{python}
 {\normalfont Implementation of free sum-enriched categories and functors.}
@@ -562,17 +589,19 @@ class Arrow(cat.Arrow):
         return Sum(self.terms + other.terms, self.dom, self.cod)
 
     def __eq__(self, other):
-        return other.terms == [self] if isinstance(other, Sum) else super().__eq__(other)
+        return other.terms == [self]\
+            if isinstance(other, Sum) else super().__eq__(other)
 
     def then(self, other: Arrow) -> Arrow:
-        return Sum.upgrade(self).then(other) if isinstance(other, Sum) else super().then(other)
+        return Sum.upgrade(self).then(other)\
+            if isinstance(other, Sum) else super().then(other)
 
     @staticmethod
     def zero(dom: Ob, cod: Ob) -> Arrow: return Sum([], dom, cod)
 
-    __lt__ = lambda self, other: hash(self) < hash(other)
+    __lt__ = lambda self, other: hash(self) < hash(other)  # An arbitrary order.
 
-class Sum(Arrow, cat.Box):
+class Sum(cat.Box, Arrow):
     def __init__(self, terms: list[Arrow], dom: Ob, cod: Ob):
         assert all(f.dom == dom and f.cod == cod for f in terms)
         self.terms, name = terms, "Sum({}, {}, [{}])".format(
@@ -615,18 +644,37 @@ def zero(dom: int, cod: int) -> Matrix:
 \end{minted}
 \end{python}
 
-By a \emph{bubble} we mean an operator which takes an arrow and puts it into a box.
-More formally, a bubble in a category $C$ is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
-The free category with bubbles $F^b(\Sigma)$ generated by a signature $\Sigma$ and a pair $b_\dom, b_\cod : C_0 \to C_0$ is given by the free category $F(\Sigma^b)$ generated by $(\Sigma^b)_0 = \Sigma_0$ and $(\Sigma^b)_1 = \bigcup_{n \in \N} b(\Sigma, n)$
-for $b(\Sigma, 0) = \Sigma$ and $b(\Sigma, n + 1) = \Sigma \cup \{ b(f) \ \vert \ f \in b(\Sigma, n) \}$.
+A \emph{bubble} on a (subcategory of a) category $C$ is a pair of unary operators $b_\dom, b_\cod : C_0 \to C_0$ on objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for (some) pairs of objects $x, y \in C_0$.
+Given a signature $\Sigma$ and a pair $b_\dom, b_\cod : C_0 \to C_0$, we construct the free category with bubbles $F(\Sigma^b)$ by induction on the maximum level $n$ of bubble nesting: take the signature $\Sigma^b = \bigcup_{n \in \N} \Sigma^b_n$
+for $\Sigma^b_0 = \Sigma$ and $\Sigma^b_{n + 1} = \Sigma + \{ b(f) \ \vert \ f \in F(\Sigma^b_n) \}$.
+That is, box in $\Sigma^b$ is a box in $\Sigma^b_{n}$ for some $n \in \N$.
+A box in $\Sigma^b_{n}$ is either a box in $\Sigma$ or an arrow $f : x \to y$ in $F(\Sigma^b_{n - 1})$ that we have put inside a bubble $b(f) : b_\dom(x) \to b_\cod(y)$.
 
-DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod} and an attribute \py{inside: Arrow}.
-DisCoPy functors automatically respect bubbles, i.e. we have that $F(b(f)) = b(F(f))$ for all arrows $f$.
-Thus, we can interpret arrows with bubbles as arbitrary operations on the codomain of our interpretation functors.
-For example, we can define a negation bubble on the category $\mathbf{Mat}_\B$ of Boolean matrices: it is the identity on objects and sends each matrix $f$ to its entrywise negation $\bar{f}$.
+\begin{example}
+A functor between two categories $C$ and $D$ can be seen as a bubble on their disjoint union $C + D$.
+Thus, we can define a bubble-preserving functor $F^b(C + D) \to C + D$ which interprets arrows with bubbles as functor application.
+These functor bubbles have also been called \emph{functorial boxes}~\cite{Mellies06}.
+\end{example}
 
-The resulting syntax with bubbles is strictly more expressive than that of free categories alone: negation cannot be expressed as a composition, there is no matrix $n$ in $\mathbf{Mat}_\B$ such that $f \fcmp n = \bar{f}$ for all matrices $f$.
-This is the case for the element-wise application of any non-linear function, such as the rectified linear units (ReLU) used in neural networks.
+\begin{example}
+An \emph{exponential rig} is a one-object category $\S$ with sums and a bubble $\exp : \S \to \S$ which is a homomorphism from sum to product, i.e. $\exp(a + b) = \exp(a) \exp(b)$ and $\exp(0) = 1$.
+Any rig $\S$ is an exponetial rig by taking $\exp(a) = 1$ for all $a \in \S$.
+Non-trivial examples include the complex numbers as well as the Boolean rig with negation.
+Thus, exponential rigs provide enough syntax to define the matrices of most quantum gates, as well as any propositional logic formula.
+\end{example}
+
+\begin{example}
+Matrix exponential is a bubble on the subcategory of square matrices, with the property that $\exp(f + g) = \exp(f) \fcmp \exp(g)$ whenever $f \fcmp g = g \fcmp f$.
+Also, any function $\S \to \S$ yields a bubble on $\mathbf{Mat}_\S$ given by element-wise application.
+For example, we can define a bubble on the category $\mathbf{Mat}_\B$ of Boolean matrices which sends each matrix $f$ to its entrywise negation $\bar{f}$.
+\end{example}
+
+DisCoPy implements free bubbles with \py{Bubble}, a subclass of \py{Box} which we attach to the arrow class with \py{Arrow.bubble = Bubble}.
+\py{Bubble} has attributes \py{inside: Arrow}, \py{dom: Ob} and \py{cod: Ob} as well as \py{name: str}.
+DisCoPy functors interpret bubbles with \py{name = "method"} as the application of \py{ar_factory.method}.
+The resulting syntax with bubbles is strictly more expressive than that of free categories alone.
+For example, element-wise negation cannot be expressed as a composition: there is no matrix $N : x \to x$ in $\mathbf{Mat}_\B$ such that $N \fcmp f = \bar{f}$ for all $f : x \to y$.
+This is also the case for the element-wise application of any non-linear function such as the rectified linear units (ReLU) used in machine learning.
 As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
 
 \begin{python}
@@ -634,9 +682,9 @@ As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of para
 
 \begin{minted}{python}
 class Bubble(Box):
-    def __init__(self, inside: Arrow, dom: Optional[Ob], cod: Optional[Ob]):
-        dom, cod = dom or self.dom, cod or self.cod
-        self.inside, name = inside, "Bubble({}, {}, {})".format(inside, dom, cod)
+    def __init__(self, inside: Arrow, dom=None, cod=None, name="bubble"):
+        self.inside, dom, cod = inside, dom or inside.dom, cod or inside.cod
+        name = "Bubble({}, {}, {}, {})".format(inside, dom, cod, name)
         super().__init__(name, dom, cod)
 
 Arrow.bubble = Bubble
@@ -644,7 +692,7 @@ Arrow.bubble = Bubble
 class Functor(cat.Functor):
     def __call__(self, other):
         if isinstance(other, Bubble):
-            return self.ar_factory.bubble(
+            return getattr(self.ar_factory, other.name)(
                 self(other.inside), self(other.dom), self(other.cod))
         return super().__call__(other)
 \end{minted}
@@ -656,11 +704,11 @@ The evaluation of the neural network on some input vector for some parameters is
 The hyper-parameters (i.e. the number of neurons at each layer) are given by the image of the functor on objects.
 
 \begin{minted}{python}
-Matrix.dtype, Matrix.bubble = float, lambda self: self.map(lambda x: max(x, 0))
+Matrix.dtype, Matrix.ReLU = float, lambda self, _, _: self.map(lambda x: max(x, 0))
 
 vector, bias = Box('vector', x, y), Box('bias', x, x)
 ones, weights = Box('ones', x, y), Box('weights', y, z)
-network = ((vector + (bias >> ones)) >> weights).bubble()
+network = ((vector + (bias >> ones)) >> weights).bubble(name="ReLU")
 
 F = Functor(
     ob={x: 1, y: 4, z: 2},
@@ -679,17 +727,27 @@ We can implement propositional logic with boxes as propositions, composition as 
 The evaluation of a formula in a model corresponds to the application of a sum-and-bubble-preserving functor into $\mathbf{Mat}_\B(1, 1)$.
 
 \begin{minted}{python}
-Matrix.dtype, Matrix.bubble = B, lambda self: self.map(lambda x: not x)
+Matrix.dtype, Matrix._not = B, lambda self, _, _: self.map(lambda x: not x)
 
-p, q = Box('p', x, x), Box('q', x, x)
-p_implies_q = q.bubble().then(p).bubble()
-not_p_or_q = p.bubble() + q
+class Formula(Arrow):
+    _not = lambda self: self.bubble(name="_not")
+
+    @staticmethod
+    def model(data: dict[Proposition, bool]):
+        return Functor(ob={Ob('1'): 1}, ar={p: [[data[p]]] for p in data},
+                       ar_factory=Matrix)
+
+class Proposition(Box, Formula):
+    def __init__(self, name): Box.__init__(self, name, Ob('1'), Ob('1'))
+
+p, q = map(Proposition, "pq")
+p_implies_q = (q._not() >> p)._not()
+not_p_or_q = p._not() + q
 
 for a, b in itertools.product([0, 1], [0, 1]):
-    F = Functor(ob={x: 1}, ar={p: [[a]], q: [[b]]}, ar_factory=Matrix)
-    ev = lambda f: F(f)[0][0]  # Take the scalar out of a 1x1 matrix.
-    assert ev(p_implies_q) == not (not ev(q) and ev(p))\
-        == ev(not_p_or_q) == not ev(p) or ev(q)
+    F = Formula.model({p: a, q: b})
+    assert F(p_implies_q) == not (not F(q) and F(p))\
+        == F(not_p_or_q) == not F(p) or F(q)
 \end{minted}
 \end{example}
 
