@@ -1,6 +1,6 @@
 \begin{tikzpicture}[baseline=(0.base), scale=1.666]
 \begin{pgfonlayer}{nodelayer}
-\node (0) at (0, 2.0) {};
+\node (0) at (0, 0) {};
 \node [] (1) at (6.0, 3.25) {};
 \node [] (2) at (6.0, 0) {};
 \node [style=none, fill=white, right] (3) at (6.2, 3.05) {\py{x}};

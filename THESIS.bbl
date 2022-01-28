@@ -2369,6 +2369,70 @@
     \field{year}{1854}
   \endentry
 
+  \entry{BorosEtAl19}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=BE}{%
+         family={Boros},
+         familyi={B\bibinitperiod},
+         given={Emanuela},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toumi},
+         familyi={T\bibinitperiod},
+         given={Alexis},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=RE}{%
+         family={Rouchet},
+         familyi={R\bibinitperiod},
+         given={Erwan},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=AB}{%
+         family={Abadie},
+         familyi={A\bibinitperiod},
+         given={Bastien},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Stutzmann},
+         familyi={S\bibinitperiod},
+         given={Dominique},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=KC}{%
+         family={Kermorvant},
+         familyi={K\bibinitperiod},
+         given={Christopher},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \keyw{Cultural differences,Feature extraction,Histograms,historical
+  documents,IIIF,Image classification,Image
+  recognition,Interoperability,Machine learning,Neural networks,Servers,Text
+  analysis}
+    \strng{namehash}{BE+1}
+    \strng{fullhash}{BETAREABSDKC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bor+19}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{International {{Conference}} on {{Document Analysis}} and
+  {{Recognition}}}
+    \verb{doi}
+    \verb 10.1109/ICDAR.2019.00126
+    \endverb
+    \field{issn}{2379-2140}
+    \field{title}{Automatic Page Classification in a Large Collection of
+  Manuscripts Based on the International Image Interoperability Framework}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/775HV8VV/8978196.html
+    \endverb
+    \field{year}{2019}
+  \endentry
+
   \entry{BradyTrimble00}{article}{}
     \name{author}{2}{}{%
       {{hash=BG}{%
@@ -5345,6 +5409,71 @@
       {{New York, NY, USA}}%
     }
     \field{year}{2018}
+  \endentry
+
+  \entry{HagbergEtAl08}{report}{}
+    \name{author}{3}{}{%
+      {{hash=HA}{%
+         family={Hagberg},
+         familyi={H\bibinitperiod},
+         given={Aric},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Swart},
+         familyi={S\bibinitperiod},
+         given={Pieter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SCD}{%
+         family={S\bibnamedelima Chult},
+         familyi={S\bibinitperiod\bibinitdelim C\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HASPSCD1}
+    \strng{fullhash}{HASPSCD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HSSC08}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    NetworkX is a Python language package for exploration and analysis of
+  networks and network algorithms. The core package provides data structures
+  for representing many types of networks, or graphs, including simple graphs,
+  directed graphs, and graphs with parallel edges and self loops. The nodes in
+  NetworkX graphs can be any (hashable) Python object and edges can contain
+  arbitrary data; this flexibility mades NetworkX ideal for representing
+  networks found in many different scientific fields. In addition to the basic
+  data structures many graph algorithms are implemented for calculating network
+  properties and structure measures: shortest paths, betweenness centrality,
+  clustering, and degree distribution and many more. NetworkX can read and
+  write various graph formats for eash exchange with existing data, and
+  provides generators for many classic graphs and popular graph models, such as
+  the Erdoes-Renyi, Small World, and Barabasi-Albert models, are included. The
+  ease-of-use and flexibility of the Python programming language together with
+  connection to the SciPy tools make NetworkX a powerful tool for scientific
+  computations. We discuss some of our recent work studying synchronization of
+  coupled oscillators to demonstrate how NetworkX enables research in the field
+  of computational networks.%
+    }
+    \field{number}{LA-UR-08-05495; LA-UR-08-5495}
+    \field{title}{Exploring Network Structure, Dynamics, and Function Using
+  Networkx}
+    \field{langid}{english}
+    \list{institution}{1}{%
+      {{Los Alamos National Lab. (LANL), Los Alamos, NM (United States)}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/7UQB3CK3/Hagberg et al. - 200
+    \verb 8 - Exploring network structure, dynamics, and functio.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/HMP7GWPP/960616.html
+    \endverb
+    \field{type}{techreport}
+    \field{month}{01}
+    \field{year}{2008}
   \endentry
 
   \entry{Harris54}{article}{}

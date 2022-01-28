@@ -77,7 +77,6 @@ However, equality of functions in Python is undecidable so there will be no way 
 
 Endofunctors $\mathbf{Pyth} \to \mathbf{Pyth}$ can be thought of as some kind of data containers.
 For example, we can define a $\mathbf{List}$ functor which sends a type \py{t} to \py{List[t]} and a function \py{f} to \py{lambda *xs: map(f, xs)}.
-
 There is a natural transformation $\eta : \mathbf{Id} \to \mathbf{List}$ from the obvious identity functor, implemented by the built-in function \py{id}.
 Its components send objects \py{x : t} of any type \py{t} to the singleton list \py{[x] : List[t]}.
 \end{example}
@@ -100,11 +99,6 @@ class Function:
         return Function(lambda *xs: other(*self(*xs)), self.dom, other.cod)
 
     def __call__(self, *xs): return self.inside(*xs)
-
-f = Function(range, int, Iterable)
-g = Function(sum, Iterable, int)
-h = Function(lambda n: n * (n - 1) // 2, int, int)
-assert f.then(g)(42) == h(42) == 861
 \end{minted}
 \end{python}
 
@@ -176,6 +170,8 @@ class Matrix:
         return Matrix(inside, self.dom, other.cod)
 
     __getitem__ = lambda self, key: self.inside[key]
+    __eq__ = lambda self, other: isinstance(other, Matrix) and (
+        self.inside, self.dom, self.cod) == (other.inside, other.dom, other.cod)
     __repr__ = lambda self: "Matrix({}, {}, {})".format(
         self.inside, self.dom, self.cod)
 \end{minted}
@@ -187,7 +183,12 @@ There is a functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ which sen
 \end{example}
 
 \begin{example}
-Just about any class of mathematical structures as objects and their homomorphisms as arrows will form a category.
+A monoid is the same as a category with one object, i.e. every arrow (element) can be composed with (multiplied by) every other.
+A preorder, i.e. a set with a reflexive transitive relation, is the same as a category with at most one arrow $x \leq y$ between any two objects $x$ and $y$.
+\end{example}
+
+\begin{example}
+Just about any class of mathematical structures will be the objects of a category with the transformations between them as arrows.
 For example, the category $\mathbf{Set}$ of sets and functions, the category $\mathbf{Mon}$ of monoids and homomorphisms, the category $\mathbf{Cat}$ of small categories and functors, etc.
 The faithful functor $U : \mathbf{Mon} \to \mathbf{Set}$ which sends monoids to their underlying set and homomorphisms to functions is called a \emph{forgetful functor}.
 \end{example}
@@ -368,7 +369,7 @@ H = Functor(
     ob={x: 1, y: 2, z: 2},
     ar={f: [[0, 1]], g: [[0, 1], [1, 0]], h: [[1], [0]]},
     ob_factory=int, ar_factory=Matrix)
-assert H(f >> g) == H(h)
+assert H(f >> g) == H(h).transpose()
 \end{minted}
 Provided we implement \py{dom}, \py{cod}, \py{id} and \py{then} for the \py{Functor} class, we can even build functors into $\mathbf{Cat}$, i.e. interpret arrows as functors:
 \begin{minted}{python}
@@ -378,6 +379,38 @@ I = Functor(
 assert I(f >> g)(h) == H(F(h)) == H(f)
 \end{minted}
 \end{example}
+
+\begin{remark}
+We have chosen to implement functors in terms of Python \py{dict} rather than functions mainly because the syntax looked better for small examples.
+However, nothing prevents us from making the most of Python's \emph{duck typing}: if it quacks like a \py{dict} and it has a \py{__getitem__} method like a \py{dict}, it must be a \py{dict}.
+Thus, we can define functors with domains that are not finitely generated, such as the identity functor on $\mathbf{Cat}$ or more concretely the evaluation functor for quantum gates parameterised by a continuous angle.
+The only downside is that we cannot print, save or export such an infinitely generated functor, we can only apply to objects and arrows.
+
+\begin{minted}{python}
+dictOrCallable = lambda x, y: dict[x, y] | Callable[[x], y]
+obData, arData = dictOrCallable(Ob, Ob), dictOrCallable(Box, Ar)
+
+@dataclass
+class Dict:
+    inside: Callable
+    __getitem__ = lambda self, key: self.inside[key]
+
+class Functor(cat.Functor):
+    def __init__(self, ob: obData, ar: arData, ob_factory=Ob, ar_factory=Arrow):
+        if isinstance(ob, Callable): ob = Dict(ob)
+        if isinstance(ar, Callable): ar = Dict(ar)
+        super().__init__(ob, ar, ob_factory, ar_factory)
+
+    id = lambda _: Functor(lambda x: x, lambda f: f)
+
+    def then(self: Functor, other: Functor) -> Functor:
+        ob, ar = ((lambda x: g[f[x]])
+                  if isinstance(f, Dict) or isinstance(g, Dict)
+                  else {x: g[f[x]] for x in f.keys()}
+                  for f, g in [(self.ob, other.ob), (self.ar, other.ar)])
+        return Functor(ob, ar, other.ob_factory, other.ar_factory)
+\end{minted}
+\end{remark}
 
 After free objects, another concept behind DisCoPy is that of a \emph{quotient object}.
 Again, let's start with the example of a monoid $M$.
@@ -432,18 +465,36 @@ Thus, deciding equality of circuits reduces to solving circuit optimisation perf
 We conclude this section by discussing three extra pieces of implementation beyond the basics of category theory: dagger, sums and bubbles.
 A \emph{dagger} for a category $C$ can be thought of as a kind of time-reversal for arrows.
 More precisely, a dagger is a contravariant endofunctor $\dagger : C \to C^{op}$, i.e. from the category to its opposite with $\dom$ and $\cod$ swapped, which is the identity on objects and an involution, i.e. $(\dagger) \fcmp (\dagger) = \id_\C$.
-DisCoPy implements free $\dagger$-categories by adding an attribute \py{is_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix \py{[::-1]}, which reverses the order of boxes and negates \py{is_dagger} elementwise.
-A $\dagger$-functor is a functor between $\dagger$-categories which commutes with the dagger, they are implemented by adding a case to the code for functor application.
+A $\dagger$-functor is a functor between $\dagger$-categories that commutes with the dagger, thus we get a category $\dagger-\mathbf{Cat}$.
 For example, the conjugate transpose defines a dagger on the category $\mathbf{Mat}_\S$, the adjoint defines a dagger on the category $\mathbf{Circ}$ and the evaluation $\mathbf{Circ} \to \mathbf{Mat}_\S$ is a $\dagger$-functor.
+The free $\dagger$-category is constructed as follows.
+Define the functor $\dagger : \mathbf{Sig} \to \mathbf{Sig}$ which sends a signature $\Sigma$ to $\dagger(\Sigma)$ with
+$\dagger(\Sigma)_0 = \Sigma_0$ and $\dagger(\Sigma)_1 = \{ -1, 1 \} \times \Sigma_1$ with $\dom(b, f) = \cod(f)$ if $b = -1$ else $\dom(f)$ and symmetrically for $\cod$.
+Then the free dagger category is the quotient category $F(\dagger(\Sigma)) / R$ for the congruence generated by $(1, f) \fcmp (-1, f) \to_R \id(\dom(f))$ and $(-1, f) \fcmp (1, f) \to_R \id(f.cod)$.
+
+DisCoPy implements free $\dagger$-categories by adding an attribute \py{is_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix operator \py{[::-1]}, which reverses the order of boxes and negates \py{is_dagger} elementwise.
+The normal form is computable in linear time but it has not been implemented yet.
+In order to implement the syntactic sugar \py{f[::-1] == f.dagger()}, we need to override the \py{__getitem__} method.
+In general, DisCoPy defines indexing \py{f[i]} and slicing \py{f[start:stop:step]} so that \py{f[key].boxes == f.boxes[key]} for any \py{key: int} and any \py{key: slice} with \py{key.step in (-1, 1, None)}.
+Although the case of negative indices (i.e. counting backwards from the end of the list) is implemented in DisCoPy, its interaction with list reversal is too complex to be listed here.
 
 \begin{python}
 {\normalfont Implementation of free $\dagger$-categories and $\dagger$-functors.}
-
 \begin{minted}{python}
 class Arrow(cat.Arrow):
     def dagger(self):
         return self.upgrade(Arrow(
             self.cod, self.dom, [box.dagger() for box in self.boxes[::-1]]))
+
+    def __getitem__(self, key: int | slice) -> Arrow:
+        if isinstance(key, int): return self.upgrade(self.boxes[key])
+        if key.step not in (-1, 1, None): raise IndexError
+        if key.step == -1:
+            for i in (key.start, key.stop):
+                if i is not None and i < 0: raise NotImplementedError
+            return self[key.stop + 1:key.start + 1].dagger()
+        dom, cod = self[key.start].dom, self[key.stop].cod
+        return self.upgrade(Arrow(dom, cod, self.boxes[key]))
 
 class Box(Arrow, cat.Box):
     upgrade = Arrow.upgrade
@@ -479,38 +530,11 @@ def dagger(self: Matrix) -> Matrix:
 \end{minted}
 \end{python}
 
-In order to implement the syntactic sugar \py{f[::-1] == f.dagger()}, we need to override the \py{__getitem__} method.
-In general, DisCoPy defines indexing \py{f[i]} and slicing \py{f[start:stop:step]} so that \py{f[key].boxes == f.boxes[key]} for any \py{key: int} and any \py{key: slice} with \py{key.step in (-1, 1, None)}.
-
-\begin{python}
-{\normalfont Outline of indexing and slicing for arrows.}
-
-\begin{minted}{python}
-def __getitem__(self: Arrow, key: int | slice) -> Arrow:
-    if isinstance(key, int): return self.upgrade(self.boxes[key])
-    if key.step not in (-1, 1, None): raise IndexError
-    if key.step == -1:
-        for i in (key.start, key.stop):
-            if i is not None and i < 0: raise NotImplementedError
-        return self[key.stop + 1:key.start + 1].dagger()
-    dom, cod = self[key.start].dom, self[key.stop].cod
-    return self.upgrade(Arrow(dom, cod, self.boxes[key]))
-\end{minted}
-\end{python}
-
-\begin{remark}
-Although the case of negative indices (i.e. counting backwards from the end of the list) is implemented in DisCoPy, its interactions with list reversal are too complex to fit in a thesis.
-\end{remark}
-
 \begin{example}
 We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
 
 \begin{minted}{python}
-F = Functor(
-    ob={Ob('1'): 2},
-    ar={Y: [[0, -1j],
-            [1j, 0]]})
-
+F = Functor(ob={Ob('1'): 2}, ar={Y: [[0, -1j], [1j, 0]]})
 assert F(Y >> Y[::-1]) == F(Id) == F(Y[::-1] >> Y)
 \end{minted}
 \end{example}
@@ -518,9 +542,14 @@ assert F(Y >> Y[::-1]) == F(Id) == F(Y[::-1] >> Y)
 A category $C$ has \emph{sums}, or equivalently $C$ is \emph{commutative-monoid-enriched}, when it comes equipped with a commutative monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
 A functor $F : C \to D$ between categories with sums is commutative-monoid-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
 For example, the category $\mathbf{Mat}_\S$ has sums given by elementwise addition of matrices.
+A commutative-monoid-enriched category with one object is precisely a rig.
+Given a signature $\Sigma$, we construct the free category with sums $F^+(\Sigma)$ as follows.
+Take the free category $F(\Sigma)$, then take the free commutative monoid over each homset, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
+
 In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]}.
 The method \py{then} is straightforward: the composition of a sum is the sum of the compositions of its terms.
-Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself, we also want two sums to be equal when their list of terms are permutations of each other.
+Defining equality requires some extra care however: we want an arrow to be equal to the sum of just itself.
+Checking equality of bags is the same as checking equality of lists sorted by any arbitrary ordering.
 DisCoPy functors are commutative-monoid-enriched, i.e. formal sum of arrows can be interpreted as a concrete sum of matrices.
 
 \begin{python}
@@ -540,6 +569,8 @@ class Arrow(cat.Arrow):
 
     @staticmethod
     def zero(dom: Ob, cod: Ob) -> Arrow: return Sum([], dom, cod)
+
+    __lt__ = lambda self, other: hash(self) < hash(other)
 
 class Sum(Arrow, cat.Box):
     def __init__(self, terms: list[Arrow], dom: Ob, cod: Ob):
@@ -586,10 +617,14 @@ def zero(dom: int, cod: int) -> Matrix:
 
 By a \emph{bubble} we mean an operator which takes an arrow and puts it into a box.
 More formally, a bubble in a category $C$ is a pair of functions $b_\dom, b_\cod : C_0 \to C_0$ between objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for each pair of objects $x, y \in C_0$.
+The free category with bubbles $F^b(\Sigma)$ generated by a signature $\Sigma$ and a pair $b_\dom, b_\cod : C_0 \to C_0$ is given by the free category $F(\Sigma^b)$ generated by $(\Sigma^b)_0 = \Sigma_0$ and $(\Sigma^b)_1 = \bigcup_{n \in \N} b(\Sigma, n)$
+for $b(\Sigma, 0) = \Sigma$ and $b(\Sigma, n + 1) = \Sigma \cup \{ b(f) \ \vert \ f \in b(\Sigma, n) \}$.
+
 DisCoPy implements the free category with bubbles via a \py{Bubble} class initialised by \py{dom, cod} and an attribute \py{inside: Arrow}.
 DisCoPy functors automatically respect bubbles, i.e. we have that $F(b(f)) = b(F(f))$ for all arrows $f$.
 Thus, we can interpret arrows with bubbles as arbitrary operations on the codomain of our interpretation functors.
 For example, we can define a negation bubble on the category $\mathbf{Mat}_\B$ of Boolean matrices: it is the identity on objects and sends each matrix $f$ to its entrywise negation $\bar{f}$.
+
 The resulting syntax with bubbles is strictly more expressive than that of free categories alone: negation cannot be expressed as a composition, there is no matrix $n$ in $\mathbf{Mat}_\B$ such that $f \fcmp n = \bar{f}$ for all matrices $f$.
 This is the case for the element-wise application of any non-linear function, such as the rectified linear units (ReLU) used in neural networks.
 As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
@@ -609,7 +644,8 @@ Arrow.bubble = Bubble
 class Functor(cat.Functor):
     def __call__(self, other):
         if isinstance(other, Bubble):
-            return self.ar_factory.bubble(self(other.dom), self(other.cod))
+            return self.ar_factory.bubble(
+                self(other.inside), self(other.dom), self(other.cod))
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -656,3 +692,9 @@ for a, b in itertools.product([0, 1], [0, 1]):
         == ev(not_p_or_q) == not ev(p) or ev(q)
 \end{minted}
 \end{example}
+
+\begin{remark}
+The constructions for dagger, sums and bubbles all commute with each other.
+Moreover, there is cube of faithful functors which embed free categories in free $\dagger$-categories with sums and bubbles.
+Thus, they are all implemented by default in the same class \py{Arrow}.
+\end{remark}

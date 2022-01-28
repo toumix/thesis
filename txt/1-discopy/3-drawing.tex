@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\section{Drawing and reading}
+\section{Drawing \& reading}
 
 The previous section defined diagrams as a data structure based on lists of layers, in this section we define \emph{pictures of diagrams}.
 Concretely, such a picture will be encoded in a computer memory as a bitmap, i.e. a matrix of colour values.
@@ -93,6 +93,14 @@ Instead, we draw them as boxes, i.e. a box node $x \in \boxes(G)$ is depicted as
 In this way, we do not need to draw the in- and out-going edges of the box node: they are hidden by the rectangle.
 The only exceptions are \emph{spider boxes} where we draw the box node (the head) and its outgoing edges (the legs of the spider) as well as \emph{cup and cap boxes} where we do not draw the box node at all, only its two outgoing edges which are drawn as Bézier curves to look like cups and caps respectively.
 Spiders, cups and caps will be discussed, and drawn, in section~\ref{section:extra structure}.
+
+\begin{example}
+identity, box, composition, tensor and interchanger
+\end{example}
+
+\begin{example}
+Eckmann-Hilton
+\end{example}
 
 \begin{example}
 The following spiral diagram is the cubic worst-case for interchanger normal form.
@@ -198,6 +206,7 @@ If $n = 1$, take \py{i: int} the index of the box for which the coincidence happ
 Given a deformation with $n + 1$ coincidences, we can cut it in two time slices with $1$ and $n$ coincidences respectively then apply the cases for $n = 1$ and the induction hypothesis.
 
 For the converse, a proof of \py{graph2diagram(} $G$ \py{) == graph2diagram(} $G'$ \py{)}, i.e. a sequence of $n$ interchangers, translates into a deformation with $n$ coincidences.
+DisCoPy can output these proofs as videos using \py{Diagram.normalize} to iterate through the rewriting steps and \py{Diagram.to_gif} to produce a \py{.gif} file.
 \end{proof}
 
 We have established an isomorphism between the class of lgpp graphs (up to progressive deformation) and the class of \py{Diagram} objects (up to interchanger).
@@ -210,21 +219,23 @@ The composition $G \fcmp G'$ is given by vertical juxtaposition and connecting t
 That is, $G \fcmp G' = s^+(G) \cup s^-(G') \cup E$ for $s^\pm(x) = \big( p_0(x), \frac{p_1(x) \pm (b - a)}{2} \big)$ and edges $s^+(\cod(G)_i) \to s^-(\dom(G')_i) \in E$ for each $i \leq \len(\cod(G)) = \len(\dom(G'))$.
 
 The deformations for the unitality axioms are straightforward: there is a deformation $G \fcmp \id(\cod(G)) \sim G \sim \id(\dom(G)) \fcmp G$ which contracts the edges of the identity graph, the unit of the tensor is the empty diagram so we have an equality $G \otimes \id(1) = G = \id(1) \otimes G$.
-The deformations for the associativity axioms are better described by the following hand-drawn diagrams from Joyal and Street.
+The deformations for the associativity axioms are better described by the hand-drawn diagrams of Joyal and Street in figure~\ref{fig:assoc}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.15]{img/tensor-assoc.png}
 \qquad \quad \includegraphics[scale=0.15]{img/compos-assoc.png}
 \caption{Deformations for the associativity of tensor and composition.}
+\label{fig:assoc}
 \end{figure}
 
-The interchange law holds on the nose, i.e. $(G \otimes G') \fcmp (H \otimes H') = (G \fcmp H) \otimes (G' \fcmp H')$, as witnessed by the following hand-drawn diagram which is the result of both sides.
+The interchange law holds on the nose, i.e. $(G \otimes G') \fcmp (H \otimes H') = (G \fcmp H) \otimes (G' \fcmp H')$, as witnessed by figure~\ref{fig:interchange}, the hand-drawn diagram which is the result of both sides.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.075]{img/interchange.png}
 \caption{The graph of the interchange law.}
+\label{fig:interchange}
 \end{figure}
 
 Thus, we have defined a monoidal category $G(\Sigma)$.
@@ -239,10 +250,9 @@ SigMorph = tuple[dict[Ob, Ob], dict[Box, Box]]
 
 def G(f: SigMorph) -> Callable[[Graph], Graph]:
     def G_of_f(graph: Graph) -> Graph:
-        def relabel(node):
-            if node.kind == 'box':
-                return Node('box', f[1][node.label], node.i, node.j)
-            return Node(node.kind, f[0][node.label], node.i, node.j)
+        relabel = lambda node: Node('box', f[1][node.label], node.i, node.j)\
+            if node.kind == 'box'\
+            else Node(node.kind, f[0][node.label], node.i, node.j)
         return Graph(map(relabel, graph.edges))
     return G_of_f
 \end{minted}
@@ -253,9 +263,9 @@ There is a natural isomorphism $F \simeq G$.
 \end{theorem}
 
 \begin{proof}
-From theorems~\ref{theorem:g2d then d2g} and \ref{theorem:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}.
-Now fix \py{F = lambda f: Functor(ob=f[0], ar=f[1])}.
-Given a morphism of monoidal signatures \py{f: SigMorph} we have two naturality squares:
+From theorems~\ref{theorem:g2d then d2g} and \ref{theorem:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}, up to deformation and interchanger respectively.
+Now define the image of $F$ on arrows \py{F = lambda f: Functor(ob=f[0], ar=f[1])}.
+Given a morphism of monoidal signatures \py{f: SigMorph} we have the following two naturality squares in $\mathbf{Pyth}$.
 \begin{center}
     \begin{tikzcd}
     \py{Diagram} \ar{r}{\py{d2g}} \ar{d}[']{\py{F(f)}} &
@@ -272,3 +282,7 @@ Given a morphism of monoidal signatures \py{f: SigMorph} we have two naturality 
     \end{tikzcd}
 \end{center}
 \end{proof}
+
+reading diagrams from bitmaps
+
+applications to automatic analysis of document layout \cite{BorosEtAl19}
