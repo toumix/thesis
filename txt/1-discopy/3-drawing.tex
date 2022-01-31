@@ -11,10 +11,10 @@ In the other direction, it reads the picture of a diagram and translates it into
 
 \subsection{Labeled generic progressive plane graphs}
 
-A \emph{topological graph}, also called 1-dimensional cell complex, is a tuple $(G, G_0, G_1)$ of a Hausdorff space $G$ and a pair of a closed subset $G_0 \sub G$ and a set of open subsets $G_1 \sub P(G)$ called \emph{nodes} and \emph{edges} respectively, such that:
+A \emph{topological graph}, also called 1-dimensional cell complex, is a tuple $(G, G_0, G_1)$ of a Hausdorff space $G$ and a pair of a closed subset $G_0 \sub G$ and a set of open subsets $G_1 \sub P(G)$ called \emph{nodes} and \emph{wires} respectively, such that:
 \begin{itemize}
 \item $G_0$ is discrete and $G - G_0 = \bigcup G_1$,
-\item each edge $e \in G_1$ is homeomorphic to an open interval and its boundary is contained in the nodes $\partial e \sub G_0$.
+\item each wire $e \in G_1$ is homeomorphic to an open interval and its boundary is contained in the nodes $\partial e \sub G_0$.
 \end{itemize}
 From a topological graph $G$, one can construct an undirected graph in the usual sense by forgetting the space $G$, taking $G_0$ as nodes and edges $(x, y) \in G_0 \times G_0$ for each $e \in G_1$ with $\partial e = \{ x, y \}$.
 A topological graph is finite (planar) if its undirected graph is finite (planar, i.e. there is some embedding in the plane).
@@ -24,23 +24,23 @@ We define the domain $\dom(G) = G_0 \ \cap \ \R \times \{ a \}$, the codomain $\
 We require that:
 \begin{itemize}
     \item $G \ \cap \ \R \times \{ a \} = \dom(G)$ and $G \ \cap \ \R \times \{ b \} = \cod(G)$, i.e. the graph touches the horizontal boundaries only at domain and codomain nodes,
-    \item every domain and codomain node $x \in G \ \cap \ \R \times \{ a, b \}$ is in the boundary of exactly one edge $e \in G_1$, i.e. edges can only meet at box nodes.
+    \item every domain and codomain node $x \in G \ \cap \ \R \times \{ a, b \}$ is in the boundary of exactly one wire $e \in G_1$, i.e. wires can only meet at box nodes.
 \end{itemize}
 A plane graph is \emph{generic} when the projection on the vertical axis $p_1 : \R \times \R \to \R$ is injective on $G_0 \ - \ \R \times \{ a, b \}$, i.e. no two box nodes are at the same height.
 From a generic plane graph, we can get a list $\boxes(G) \in G_0^\star$ ordered by height.
-A plane graph is \emph{progressive} (also called \emph{recumbent} by Joyal and Street) when $p_1$ is injective on each edge $e \in G_1$, i.e. edges go from top to bottom and do not bend backwards.
+A plane graph is \emph{progressive} (also called \emph{recumbent} by Joyal and Street) when $p_1$ is injective on each wire $e \in G_1$, i.e. wires go from top to bottom and do not bend backwards.
 
 From a progressive plane graph $G$, one can construct a directed graph by forgetting the space $G$, taking $G_0$ as nodes and edges $(x, y) \in G_0 \times G_0$ for each $e \in G_1$ with $\partial e = \{ x, y \}$ and $p_1(x) < p_1(y)$.
 We can also define the domain and the codomain of each box node $\dom, \cod : \boxes(G) \to G_1^\star$ with
-$\dom(x) = \{ e \in G_1 \ \vert \partial e = \{ x, y \}, p_1(x) < p_1(y) \}$ the edges coming in from the top and
-$\cod(x) = \{ e \in G_1 \ \vert \partial e = \{ x, y \}, p_1(x) > p_1(y) \}$ the edges going out to the bottom, these sets are linearly ordered as follows.
-Take some $\epsilon > 0$ such that the horizontal line at height $p_1(x) - \epsilon$ crosses each of the edges in the domain.
+$\dom(x) = \{ e \in G_1 \ \vert \partial e = \{ x, y \}, p_1(x) < p_1(y) \}$ the wires coming in from the top and
+$\cod(x) = \{ e \in G_1 \ \vert \partial e = \{ x, y \}, p_1(x) > p_1(y) \}$ the wires going out to the bottom, these sets are linearly ordered as follows.
+Take some $\epsilon > 0$ such that the horizontal line at height $p_1(x) - \epsilon$ crosses each of the wires in the domain.
 Then list $\dom(x) \in G_1^\star$ in order of horizontal coordinates of their intersection points, i.e. $e < e'$ if $p_0(y) < p_0(y')$ for the projection $p_0 : \R \times \R \to \R$ and $y^{(')} = e^{(')} \cap \{ p_1(x) - \epsilon \} \times \R$. Symmetrically we define the list of codomain nodes $\cod(x) \in G_1^\star$ with a horizontal line at $p_1 + \epsilon$.
 
-A \emph{labeling} of progressive plane graph $G$ by a monoidal signature $\Sigma$ is a pair of functions from edges to objects $\lambda : G_1 \to \Sigma_0$ and from boxes to boxes $\lambda : \boxes(G) \to \Sigma_1$ which commutes with the domain and codomain.
+A \emph{labeling} of progressive plane graph $G$ by a monoidal signature $\Sigma$ is a pair of functions from wires to objects $\lambda : G_1 \to \Sigma_0$ and from boxes to boxes $\lambda : \boxes(G) \to \Sigma_1$ which commutes with the domain and codomain.
 From an lgpp (\emph{labeled generic progressive plane}) graph, one can construct a \py{Diagram}.
 
-\begin{python}
+\begin{python}\label{listing:lgpp2diagram}
 {\normalfont Translation from labeled generic progressive plane graphs to \py{Diagram}.}
 \vspace{5pt}
 \hrule
@@ -56,13 +56,13 @@ From an lgpp (\emph{labeled generic progressive plane}) graph, one can construct
 \hrule
 \end{python}
 
-\subsection{From diagrams to graphs and back}
+\subsection{From diagrams to graphs...}
 
 In the other direction, there are many possible ways to draw a given \py{Diagram} as a lgpp graph, i.e. to embed its graph into the plane.
 Vicary and Delpeuch \cite{DelpeuchVicary18} give a linear-time algorithm to compute such an embedding with the following disadvantage: the drawing of a tensor $f \otimes g$ does not necessarily look like the horizontal juxtaposition of the drawings for $f$ and $g$.
-For example, if we tensor an identity with a scalar, the edge representing the identity will wiggle around the node representing the scalar.
-DisCoPy uses a quadratic-time drawing algorithm with the following design decision: we make every edge a straight line and as vertical as possible.
-We first initialise the lgpp graph of the identity with a constant spacing between each edge, then for each layer we update the embedding so that there is enough space for the output edges of the box before we add it to the graph.
+For example, if we tensor an identity with a scalar, the wire representing the identity will wiggle around the node representing the scalar.
+DisCoPy uses a quadratic-time drawing algorithm with the following design decision: we make every wire a straight line and as vertical as possible.
+We first initialise the lgpp graph of the identity with a constant spacing between each wire, then for each layer we update the embedding so that there is enough space for the output wires of the box before we add it to the graph.
 
 \begin{python}
 {\normalfont Outline of \py{Diagram.draw} from \py{Diagram} to \py{PlaneGraph}.}
@@ -89,26 +89,107 @@ def draw(self: Diagram) -> PlaneGraph:
     for i, x in enumerate(self.cod):
         position[Node('cod', x, i, len(self))] = (position[scan[i]][0], len(self))
     return graph, position
+
+Diagram.draw = draw
 \end{minted}
 \end{python}
 
 Note that when we draw the plane graph for a diagram, we do not usually draw the box nodes as points.
 Instead, we draw them as boxes, i.e. a box node $x \in \boxes(G)$ is depicted as the rectangle with corners $(l, p_1(x) \pm \epsilon)$ and $(r, p_1(x) \pm \epsilon)$ for $l, r \in \R$ the left- and right-most coordinate of its domain and codomain nodes.
-In this way, we do not need to draw the in- and out-going edges of the box node: they are hidden by the rectangle.
-The only exceptions are \emph{spider boxes} where we draw the box node (the head) and its outgoing edges (the legs of the spider) as well as \emph{cup and cap boxes} where we do not draw the box node at all, only its two outgoing edges which are drawn as Bézier curves to look like cups and caps respectively.
-Spiders, cups and caps will be discussed, and drawn, in section~\ref{section:extra structure}.
+In this way, we do not need to draw the in- and out-going wires of the box node: they are hidden by the rectangle.
+Exceptions include \emph{spider boxes} where we draw the box node (the head) and its outgoing wires (the legs of the spider) as well as \emph{swap, cup and cap boxes} where we do not draw the box node at all, only its outgoing wires which are drawn as Bézier curves to look like swaps, cups and caps respectively.
+These special boxes will be discussed, and drawn, in section~\ref{section:extra structure}.
 
-\begin{example} TODO
-identity, box, composition, tensor and interchanger
+\begin{example}
+{\normalfont Drawing of a box, an identity, a layer, a composition and a tensor.}
+
+\begin{minted}{python}
+a, b, c, x, y, z, w = map(Ty, "abcxyzw")
+Box('box', a @ b, x @ y @ z).draw()
+\end{minted}
+
+\ctikzfig{img/basics/box}
+
+\begin{minted}{python}
+Diagram.id(x @ y @ z).draw()
+\end{minted}
+
+\ctikzfig{img/basics/id}
+
+\begin{minted}{python}
+layer = a @ Box('f', x, y) @ b
+layer.draw()
+\end{minted}
+
+\ctikzfig{img/basics/layer}
+
+\begin{minted}{python}
+top, bottom = Box('top', a @ b, x @ y @ z), Box('bottom', x @ y @ z, c)
+(top >> bottom).draw()
+\end{minted}
+
+\ctikzfig{img/basics/composition}
+
+\begin{minted}{python}
+left, right = Box('left', a @ b, x @ y @ z), Box('right', x @ y @ z, c)
+(left @ right).draw()
+\end{minted}
+
+\ctikzfig{img/basics/tensor}
 \end{example}
 
-\begin{example} TODO
-Eckmann-Hilton
+\begin{example}
+{\normalfont Drawing of the interchanger in the general case.}
+
+\begin{minted}{python}
+f, g = Box('f', x, y), Box('g', z, w)
+(a @ f @ b @ g @ c).interchange(0).draw(); (a @ f @ b @ g @ c).draw()
+\end{minted}
+
+\begin{center}
+\tikzfig{img/basics/interchanger-left}
+$\quad \to_R \quad$ \tikzfig{img/basics/interchanger-right}
+\end{center}
+\end{example}
+
+\begin{example}
+{\normalfont Drawing of the interchangers for an effect then a state.}
+
+\begin{minted}{python}
+f, g = Box('f', x, Ty()), Box('g', Ty(), w)
+(f >> g).interchange(0).draw()
+(f >> g).draw()
+(f >> g).interchange(0, left=True).draw()
+\end{minted}
+
+\begin{center}
+\tikzfig{img/basics/state-effect-left}
+$\quad \to_R \quad$ \tikzfig{img/basics/state-effect}
+$\quad \to_R \quad$ \tikzfig{img/basics/state-effect-right}
+\end{center}
+\end{example}
+
+\begin{example}
+{\normalfont Drawing of the Eckmann-Hilton argument.}
+
+\begin{minted}{python}
+f, g = Box('f', Ty(), Ty()), Box('g', Ty(), Ty())
+(f @ g).draw()
+(f @ g).interchange(0).draw()
+(f @ g).interchange(0).interchange(0).draw()
+\end{minted}
+
+\begin{center}
+\tikzfig{img/basics/Eckmann-Hilton-left}
+$\quad \to_R \quad$ \tikzfig{img/basics/Eckmann-Hilton-right}
+$\quad \to_R \quad$ \tikzfig{img/basics/Eckmann-Hilton-left}
+$\quad \to_R \quad \dots$
+\end{center}
 \end{example}
 
 \begin{example}
 The following spiral diagram is the cubic worst-case for interchanger normal form.
-It is also the quadratic worst-case for drawing, at each layer of the first half we need to update the position of every preceding layer in order to make space for the output edges.
+It is also the quadratic worst-case for drawing, at each layer of the first half we need to update the position of every preceding layer in order to make space for the output wires.
 
 \begin{minted}{python}
 x = Ty('x')
@@ -122,8 +203,9 @@ def spiral(length: int) -> Diagram:
     for i in range(n): diagram >>= Id(x ** (n - i - 1)) @ g @ Id(x ** (n - i - 1))
     return diagram
 
-for i in [1, 2, 3, 8]: spiral(8)[:i + 1].draw(to_tikz=True)
-spiral(8).normal_form().draw(to_tikz=True)
+diagram = spiral(8)
+for i in [1, 2, 3]: diagram[:i + 1].draw()
+diagram.draw(); diagram.normal_form().draw()
 \end{minted}
 \begin{center}
 \tikzfig{img/spiral/1},
@@ -136,7 +218,7 @@ spiral(8).normal_form().draw(to_tikz=True)
 
 Next, we define the inverse translation \py{graph2diagram}.
 
-\begin{python}
+\begin{python}\label{listing:graph2diagram}
 {\normalfont Translation from \py{PlaneGraph} to \py{Diagram}.}
 
 \begin{minted}{python}
@@ -172,7 +254,10 @@ Moreover, the horizontal coordinates of the nodes in \py{scan} are strictly incr
 thus we get the desired \py{offsets == self.offsets + [len(left)]}.
 \end{proof}
 
-A \emph{deformation} $h : G \to G'$ between two labeled plane graphs $G, G'$ is a continuous map $h : G \times [0, 1] \to \R \times \R$ such that:
+\subsection{...and back!}
+
+From a labeled generic progressive plane graph, we get a unique diagram \emph{up to deformation}.
+A deformation $h : G \to G'$ between two labeled plane graphs $G, G'$ is a continuous map $h : G \times [0, 1] \to \R \times \R$ such that:
 \begin{itemize}
 \item $h(G, t)$ is a plane graph for all $t \in [0, 1]$, $h(G, 0) = G$ and $h(G, 1) = G'$,
 \item $x \in \boxes(G)$ implies $h(x, t) \in \boxes(h(G, t))$ for all $t \in [0, 1]$,
@@ -187,13 +272,13 @@ For all lgpp graphs $G$, \py{Diagram.draw(graph2diagram(} $G$ \py{))} $\sim G$ u
 
 \begin{proof}
 By induction on the length of $\boxes(G)$.
-If there are no boxes, $G$ is the graph of the identity and we can deform it so that each edge is vertical with constant spacing.
-If there is one box, $G$ is the graph of a layer and we can cut it in three vertical slices with the box node and its outgoing edges in the middle.
-We can apply the case of the identity to the left and right slices, for the middle slice we make the edges straight with a constant spacing between the domain and codomain.
+If there are no boxes, $G$ is the graph of the identity and we can deform it so that each wire is vertical with constant spacing.
+If there is one box, $G$ is the graph of a layer and we can cut it in three vertical slices with the box node and its outgoing wires in the middle.
+We can apply the case of the identity to the left and right slices, for the middle slice we make the wires straight with a constant spacing between the domain and codomain.
 Because $G$ is generic, we can cut a graph with $n > 2$ boxes in two horizontal slices between the last and the one-before-last box, then apply the case for layers and the induction hypothesis.
-To glue the two slices back together while keeping the edges straight, we need to make space for the edges going out of the box.
+To glue the two slices back together while keeping the wires straight, we need to make space for the wires going out of the box.
 
-This deformation is indeed progressive, i.e. we never bend edges we only make them straight.
+This deformation is indeed progressive, i.e. we never bend wires we only make them straight.
 It is also generic, i.e. we never move a box node past another.
 \end{proof}
 
@@ -219,18 +304,18 @@ We have established an isomorphism between the class of lgpp graphs (up to progr
 It remains to show that this actually forms an isomorphism of monoidal categories.
 That is for every monoidal signature $\Sigma$, there is a monoidal category $G(\Sigma)$ with objects $\Sigma_0^\star$ and arrows the equivalence classes of lgpp graphs with labels in $\Sigma$.
 The domain and codomain of an arrow is given by the labels of the domain and codomain of the graph.
-The identity $\id(x_1 \dots x_n)$ is the graph with edges $(i, a) \to (i, b)$ for $i \leq n$ and $a, b \in \R$ the horizontal boundaries.
+The identity $\id(x_1 \dots x_n)$ is the graph with wires $(i, a) \to (i, b)$ for $i \leq n$ and $a, b \in \R$ the horizontal boundaries.
 The tensor of two graphs $G$ and $G'$ is given by horizontal juxtaposition, i.e. take $w = \max(p_0(G)) + 1$ the right-most point of $G$ plus a margin and set $G \otimes G' = G \cup \{ (p_0(x) + w, p_1(x)) \ \vert \ x \in G' \}$.
 The composition $G \fcmp G'$ is given by vertical juxtaposition and connecting the codomain nodes of $G$ to the domain nodes of $G'$.
-That is, $G \fcmp G' = s^+(G) \cup s^-(G') \cup E$ for $s^\pm(x) = \big( p_0(x), \frac{p_1(x) \pm (b - a)}{2} \big)$ and edges $s^+(\cod(G)_i) \to s^-(\dom(G')_i) \in E$ for each $i \leq \len(\cod(G)) = \len(\dom(G'))$.
+That is, $G \fcmp G' = s^+(G) \cup s^-(G') \cup E$ for $s^\pm(x) = \big( p_0(x), \frac{p_1(x) \pm (b - a)}{2} \big)$ and wires $s^+(\cod(G)_i) \to s^-(\dom(G')_i) \in E$ for each $i \leq \len(\cod(G)) = \len(\dom(G'))$.
 
-The deformations for the unitality axioms are straightforward: there is a deformation $G \fcmp \id(\cod(G)) \sim G \sim \id(\dom(G)) \fcmp G$ which contracts the edges of the identity graph, the unit of the tensor is the empty diagram so we have an equality $G \otimes \id(1) = G = \id(1) \otimes G$.
+The deformations for the unitality axioms are straightforward: there is a deformation $G \fcmp \id(\cod(G)) \sim G \sim \id(\dom(G)) \fcmp G$ which contracts the wires of the identity graph, the unit of the tensor is the empty diagram so we have an equality $G \otimes \id(1) = G = \id(1) \otimes G$.
 The deformations for the associativity axioms are better described by the hand-drawn diagrams of Joyal and Street in figure~\ref{fig:assoc}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.15]{img/tensor-assoc.png}
-\qquad \quad \includegraphics[scale=0.15]{img/compos-assoc.png}
+\includegraphics[scale=0.2]{img/tensor-assoc.png}
+\qquad \quad \includegraphics[scale=0.2]{img/compos-assoc.png}
 \caption{Deformations for the associativity of tensor and composition.}
 \label{fig:assoc}
 \end{figure}
@@ -239,7 +324,7 @@ The interchange law holds on the nose, i.e. $(G \otimes G') \fcmp (H \otimes H')
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.075]{img/interchange.png}
+\includegraphics[scale=0.1]{img/interchange.png}
 \caption{The graph of the interchange law.}
 \label{fig:interchange}
 \end{figure}
@@ -249,7 +334,7 @@ Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, there is a func
 Hence, we have defined a functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
 
 \begin{python}\label{listing:G_of_f}
-{\normalfont Implementation of the functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$ on arrows.}
+{\normalfont Implementation of the functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$.}
 
 \begin{minted}{python}
 SigMorph = tuple[dict[Ob, Ob], dict[Box, Box]]
@@ -264,14 +349,14 @@ def G(f: SigMorph) -> Callable[[Graph], Graph]:
 \end{minted}
 \end{python}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:nat-iso}
 There is a natural isomorphism $F \simeq G$.
 \end{theorem}
 
 \begin{proof}
 From theorems~\ref{theorem:g2d then d2g} and \ref{theorem:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}, up to deformation and interchanger respectively.
 Now define the image of $F$ on arrows \py{F = lambda f: Functor(ob=f[0], ar=f[1])}.
-Given a morphism of monoidal signatures \py{f: SigMorph} we have the following two naturality squares in $\mathbf{Pyth}$.
+Given a morphism of monoidal signatures \py{f: SigMorph} we have the following two naturality squares.
 \begin{center}
     \begin{tikzcd}
     \py{Diagram} \ar{r}{\py{d2g}} \ar{d}[']{\py{F(f)}} &
@@ -291,14 +376,196 @@ Given a morphism of monoidal signatures \py{f: SigMorph} we have the following t
 
 \subsection{Daggers, sums and bubbles}
 
-daggers and asymmetry
+As in the previous sections, we now discuss the drawing of daggers, sums and bubbles.
+When we draw a diagram in the free $\dagger$-monoidal category, we add some asymmetry to the drawing of each box so that it looks like the vertical reflection of its dagger.
 
-drawing sums and equations
+\begin{example}
+{\normalfont Drawing of the axiom for unitaries.}
 
-drawing bubbles
+\begin{minted}{python}
+f, g = Box('f', x, y), Box('g', z, w)
+(f >> f[::-1]).draw(); Diagram.id(x).draw(); (f[::-1] >> f).draw(); Diagram.id(y).draw()
+\end{minted}
+
+\begin{center}
+\tikzfig{img/basics/unitaries-left} \hspace{100pt}
+\tikzfig{img/basics/unitaries-right}
+\end{center}
+\end{example}
+
+\begin{example}
+{\normalfont Drawing of the axiom for $\dagger$-monoidal categories.}
+
+\begin{minted}{python}
+f, g = Box('f', x, y), Box('g', z, w)
+(f @ g)[::-1].draw(); (f[::-1] @ g[::-1]).draw()
+assert (f @ g)[::-1].normal_form() == f[::-1] @ g[::-1]
+\end{minted}
+
+\begin{center}
+\tikzfig{img/basics/dagger-monoidal-left}
+$\quad \to_R \quad$ \tikzfig{img/basics/dagger-monoidal-right}
+\end{center}
+\end{example}
+
+When we draw a sum, we just draw each term with an addition symbol in between.
+More generally, \py{drawing.equation} allows to draw any list of diagrams and \py{drawing.Equation} allows to draw equations within equations.
+
+\begin{example}
+{\normalfont Drawing of a commutativity equation.}
+
+\begin{minted}{python}
+from discopy import drawing
+
+f, g, h = Box('f', x, y), Box('g', y, z), Box('h', x, z)
+drawing.equation(drawing.Equation(f >> g, h, symbol='$+$'),
+                 drawing.Equation(h, f >> g, symbol='$+$'))
+\end{minted}
+\ctikzfig{img/basics/equation}
+\end{example}
+
+\begin{example}
+{\normalfont Drawing a composition and tensor of sums.}
+
+\begin{minted}{python}
+f0, g0 = Box("f0", x, y), Box("g0", y, z)
+f1, g1 = Box("f1", x, y), Box("g1", y, z)
+((f0 + f1) >> (g0 + g1)).draw()
+\end{minted}
+\ctikzfig{img/basics/sums-composition}
+
+\begin{minted}{python}
+((f0 + f1) @ (g0 + g1)).draw()
+\end{minted}
+\ctikzfig{img/basics/sums-tensor}
+\end{example}
+
+The case of drawing bubbles is more interesting.
+One solution would be to draw the bubble as a rectangle like any other box, then draw the content of the bubble inside the rectangle.
+However, this would require some clever scaling so that the boxes of the diagram inside the bubble have the same size as the boxes outside, i.e. we would need to add more complexity to our drawing algorithm.
+The solution implemented in DisCoPy is to apply a faithful functor $\py{downgrade} : F(\Sigma^\beta) \to F(\Sigma \cup \mathtt{open}^\beta \cup \mathtt{close}^\beta)$ from the free monoidal category with bubbles $F(\Sigma^\beta)$ to the free monoidal category generated by the following signature.
+Take the objects $\mathtt{open}^\beta_0 = \mathtt{close}^\beta_0 = \Sigma_0 + \{ \bullet \}$ and boxes
+for opening $\mathtt{open}^\beta(x) : \beta_\dom(x) \to \bullet \otimes x \otimes \bullet$ and closing $\mathtt{close}^\beta(x) : \bullet \otimes x \otimes \bullet \to \beta_\cod(x)$ bubbles for each type $x \in \Sigma_0^\star$.
+Now define $\py{downgrade(f.bubble())} = \mathtt{open}^\beta(\py{f.dom}) \fcmp (\bullet \otimes \py{f} \otimes \bullet) \fcmp \mathtt{close}^\beta(\py{f.cod})$ for any diagram $\py{f}$ inside a bubble.
+That is, we draw a bubble as its opening, its inside with identity wires on both sides then its closing.
+The $\bullet$-labeled wires are drawn with Bézier curves so that the bubble looks a bit closer to a circle than a rectangle.
+In the case of bubbles that are length-preserving on objects, we also want to override the drawing of its opening and closing boxes so that the wires go straight through the bubble rather than meeting at the box node.
+
+\begin{example}
+{\normalfont Drawing of a bubbled diagram and a first-order logic formula.}
+
+\begin{minted}{python}
+f, g, h = Box('f', x, y), Box('g', y, z), Box('h', y @ z, x)
+(f @ g >> h).bubble(dom=a @ b, cod=c, name="$\\beta$").draw()
+
+men, mortal = Predicate('p'), Predicate('q')
+(men.cut() >> mortal.dagger()).cut().draw()
+\end{minted}
+
+\begin{center}
+\tikzfig{img/basics/bubble}
+\hspace{100pt}
+\tikzfig{img/basics/all-men-are-mortal}
+\end{center}
+\end{example}
 
 \subsection{Automatic diagram recognition}
 
-reading diagrams from bitmaps
+We conclude this section with an application of theorem~\ref{theorem:nat-iso} to \emph{automatic diagram recognition}: turning pictures of diagrams into diagrams.
+In listing~\ref{listing:lgpp2diagram}, we described an abstract reading algorithm which took lgpp graphs as input and returned diagrams.
+We make it a concrete algorithm by taking \emph{bitmaps} as input: grids of Boolean pixels describing a black-and-white picture.
+The algorithm \py{read} listed below takes as input a pair of bitmaps for the box nodes and the wires of the plane graph, it returns a \py{Diagram}.
+It is more general than the \py{graph2diagram} algorithm of listing~\ref{listing:lgpp2diagram} where we assumed that the embedding of the graph looked like the output of \py{Diagram.draw}. i.e. that edges are straight vertical lines.
+Indeed, our reading algorithm will accept \emph{any bitmaps} as input and always return a valid diagram, however bended the edges are.
+If the bitmaps indeed represent a progressive generic plane graph $G$, then we get \py{read(} $G$ \py{).draw()} $\sim G$ up to progressive generic deformation.
+If not, the output will still be a diagram but its drawing may not look anything like the input.
+
+\begin{python}
+{\normalfont Implementation of the reading algorithm of listing~\ref{listing:lgpp2diagram}.}
+
+\begin{minted}{python}
+from numpy import array, argmin
+from skimage.measure import regionprops, label
+
+connected_components = lambda img: regionprops(label(img))
+
+def read(box_pixels: array, wire_pixels: array) -> Diagram:
+    assert wire_pixels.shape == box_pixels.shape
+    length, width = box_pixels.shape
+    box_nodes, wires = map(connected_components, (box_pixels, wire_pixels))
+    critical_heights = array(
+        [0] + [int(node.centroid[0]) for node in box_nodes] + [length])
+    source, target = [], []
+    for wire, region in enumerate(wires):
+        top, bottom = (minmax(i for i, _ in region.coords) for minmax in (min, max))
+        source.append(argmin(abs(critical_heights - top)))
+        target.append(argmin(abs(critical_heights - bottom)))
+    print(list(zip(source, target)))
+    scan = [wire for wire, node in enumerate(source) if node == 0]
+    dom, boxes_and_offsets = Ty('x') ** len(scan), []
+    for depth, box_node in enumerate(box_nodes):
+        i, j = map(int, box_node.centroid)
+        input_wires = [wire for wire in scan if target[wire] == depth + 1]
+        output_wires = [wire for wire, node in enumerate(source) if node == depth + 1]
+        dom, cod = Ty('x') ** len(input_wires), Ty('x') ** len(output_wires)
+        box = Box('box_{}'.format(depth), dom, cod)
+        left_of_box = [wire for wire in scan if wire not in input_wires
+                       and dict(wires[wire].coords).get(i, width) < j]
+        offset = max(len(left_of_box), 0)
+        boxes_and_offsets.append((box, offset))
+        scan = scan[:offset] + output_wires + scan[offset + len(input_wires):]
+    return decode(dom, boxes_and_offsets)
+\end{minted}
+
+We use the \py{array} data structure of \py{numpy}~\cite{VanDerWaltEtAl11} for bitmaps.
+Connected components are computed with \py{scikit-image}~\cite{WaltEtAl14}, we make use of their default ordering by lexicographic order of their top-left pixel.
+\end{python}
+
+\begin{example}
+Suppose we start from the following picture, where the red pixels are boxes and the black pixels are wires:
+\begin{center}
+\includegraphics[scale=.5]{img/bitmap2diagram/start.png}
+\end{center}
+We compute the connected components of red and black bitmaps and count $\{ 1, \dots, 6 \}$ boxes and 8 wires:
+\begin{center}
+\includegraphics[scale=.5]{img/bitmap2diagram/boxes.png}
+\hspace{10pt}
+\includegraphics[scale=.5]{img/bitmap2diagram/wires.png}
+\end{center}
+$$
+0 \to 3, \s
+0 \to 1, \s
+1 \to 4, \s
+1 \to 6, \s
+2 \to 4, \s
+3 \to 6, \s
+3 \to 5 \s \text{and} \s
+6 \to 7
+$$
+for $0$ and $7$ the domain and codomain of the whole diagram respectively.
+
+From this, we can reconstruct the whole diagram by scanning top to bottom.
+
+\begin{minted}{python}
+diagram = x @ box_0\
+    >> x @ x @ box_1 @ x\
+    >> box_2 @ x @ x @ x\
+    >> x @ x @ box_3 @ x\
+    >> x @ box_4 @ x\
+    >> box_5
+
+diagram.draw(draw_box_labels=False, draw_type_labels=False)
+\end{minted}
+
+\begin{center}
+\includegraphics[scale=.5]{img/bitmap2diagram/finish.png}
+\end{center}
+\end{example}
+
+\begin{example}
+Suppose we start from the following picture.
+
+BROKEN
+\end{example}
 
 applications to automatic analysis of document layout \cite{BorosEtAl19}

@@ -16,7 +16,19 @@ The axioms for monoidal categories are the following:
 \item the tensor defines a functor $\otimes : C \times C \to C$, i.e. the following \emph{interchange law} $(f \fcmp f') \otimes (g \fcmp g') = (f \otimes g) \fcmp (f' \otimes g')$ holds for all arrows $f, f', g, g' \in C_1$.
 \end{itemize}
 We will use the following terminology: an arrow $f : 1 \to x$ from the unit is called a \emph{state} of the object $x$, an arrow $f : x \to 1$ into the unit is called an \emph{effect} of $x$ and an arrow $a : 1 \to 1$ from the unit to itself is called a \emph{scalar}.
-The interchange law implies that the scalars form a commutative monoid, by the following Eckmann-Hilton argument:
+
+A functor $F : C \to D$ between monoidal categories $C$ and $D$ is (strict\footnote
+{We will assume that our monoidal functors are strict, i.e. $F(x \otimes y) = F(x) \otimes F(y)$ and $F(1) = 1$ are equalities rather than natural transformations.}) monoidal whenever it is also a monoid homomorphism on objects and arrows.
+Thus, monoidal categories themselves form a category $\mathbf{MonCat}$ with monoidal functors as arrows.
+A transformation $\alpha : F \to G$ between two monoidal functors $F, G : C \to D$ is monoidal itself when $\alpha(x \otimes y) = \alpha(x) \otimes \alpha(y)$ for all objects $x, y \in C$.
+
+\begin{example}
+Every monoid $M$ can also be seen as a discrete monoidal category, i.e. with only identity arrows.
+\end{example}
+
+\begin{example}
+A monoidal category with one object is a commutative monoid.
+Indeed in any monoidal category, the interchange law implies that scalars form a commutative monoid, by the following Eckmann-Hilton argument:
 \begin{align*}
 a \fcmp b
 &\quad = \quad 1 \otimes a \s \fcmp \s b \otimes 1
@@ -27,11 +39,25 @@ a \fcmp b
 \quad = \quad b \otimes 1 \s \fcmp \s 1 \otimes a
 \quad = \quad b \fcmp a
 \end{align*}
+\end{example}
 
-A functor $F : C \to D$ between monoidal categories $C$ and $D$ is (strict\footnote
-{We will assume that our monoidal functors are strict, i.e. $F(x \otimes y) = F(x) \otimes F(y)$ and $F(1) = 1$ are equalities rather than natural transformations.}) monoidal whenever it is also a monoid homomorphism on objects and arrows.
-Thus, monoidal categories themselves form a category $\mathbf{MonCat}$ with monoidal functors as arrows.
-A transformation $\alpha : F \to G$ between two monoidal functors $F, G : C \to D$ is monoidal itself when $\alpha(x \otimes y) = \alpha(x) \otimes \alpha(y)$ for all objects $x, y \in C$.
+\begin{example}
+A monoidal category with at most one arrow between any two objects is called a \emph{preordered monoid}.
+The functoriality axiom implies that the preorder is in fact a pre-congruence, i.e. $a \leq b$ and $c \leq d$ implies $a \times c \leq b \times d$.
+Given the presentation of a monoid $(X, R)$ with $R \sub X^\star \times X^\star$, we can construct a preordered monoid with $(\leq_R) = \bigcup_{n \in \N} R^n \sub X^\star \times X^\star$ the (non-symmetric) reflexive transitive closure of $R$.
+Thus, the problem of deciding whether $x \leq_\R y$ given two lists $x, y \in X^\star$ and a presentation $(X, R)$ is a generalisation of the word problem for monoids.
+\end{example}
+
+\begin{example}
+The category $\mathbf{FinSet}$ is monoidal with the singleton $1$ as unit and Cartesian product as tensor.
+Again, this is not a strict monoidal category but it is equivalent to one: take the category with natural numbers $m, n \in \N$ as objects and functions $[m] \to [n]$ as arrows for $[n] = \{ 0, 1, \dots, n - 1 \}$.
+The states can be identified with elements and discarding is the only effect.
+$\mathbf{FinSet}$ is also monoidal with the empty set $0$ as unit and disjoint union as tensor.
+\end{example}
+
+\begin{example}
+For any category $C$, there is a monoidal category $C^C$ where the objects are enfodunctors with composition as tensor and the arrows are natural transformations $\alpha : F \to F'$, $\beta : G \to G'$ with vertical composition $(\alpha \otimes \beta)(x) : G(F(x)) \to G'(F'(x))$ as tensor.
+\end{example}
 
 \subsection{Concrete monoidal categories}
 
@@ -56,7 +82,7 @@ If we take all impure functions into account, the scalars form a non-commutative
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Pyth}$ as a monoidal category.}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a (non-strict pre)monoidal category.}
 
 \begin{minted}{python}
 def tensor(self: Function, other: Function) -> Function:
@@ -70,17 +96,6 @@ With some effort, we can also make $\mathbf{Pyth}$ monoidal with the \emph{tagge
 Given two types \py{t1, t2}, their tagged union \py{t1 + t2} is the union of the types \py{tuple[True, t1]} and \py{tuple[False, t2]}\footnote
 {What we really mean is \py{tuple[Literal[True], t1] | tuple[Literal[False], t2]}.}, i.e. a term \py{(b, x): t1 + t2} is a pair of a Boolean \py{b: bool} and a term \py{x: t1} if \py{b} else \py{x: t2}.
 Given two functions \py{f, g} we can define their tensor \py{f + g = lambda b, x: (b, f(x) if b else g(x))}.
-\end{example}
-
-\begin{example}
-Every monoid $M$ can also be seen as a discrete monoidal category, i.e. with only identity arrows.
-\end{example}
-
-\begin{example}
-The category $\mathbf{FinSet}$ is monoidal with the singleton $1$ as unit and Cartesian product as tensor.
-Again, this is not a strict monoidal category but it is equivalent to one: take the category with natural numbers $m, n \in \N$ as objects and functions $[m] \to [n]$ as arrows for $[n] = \{ 0, 1, \dots, n - 1 \}$.
-The states can be identified with elements and discarding is the only effect.
-$\mathbf{FinSet}$ is also monoidal with the empty set $0$ as unit and disjoint union as tensor.
 \end{example}
 
 \begin{example}
@@ -98,7 +113,7 @@ def tensor(self: Matrix, other: Matrix) -> Matrix:
     inside = [[self[i_dom][i_cod] * other[j_dom][j_cod]
         for i_cod in range(self.cod) for j_cod in range(other.cod)]
         for i_dom in range(self.dom) for j_dom in range(other.dom)]
-    return Matrix(inside, dom, cod)
+    return type(self)(inside, dom, cod)
 \end{minted}
 \end{python}
 
@@ -149,8 +164,27 @@ Take a monoid $M$ seen as a discrete monoidal category, we get an equivalent mon
 \begin{example}
 In the cases of monoidal categories where the objects are the natural numbers with addition as tensor, such as $\mathbf{FinSet}$ with disjoint union, $\mathbf{Mat}_\S$ with direct sum or $\mathbf{Circ}$, the monoid of objects is already free: $(\N, +, 0)$ is the free monoid generated by the singleton set.
 These monoidal categories are also called \emph{PROs} (for PROduct categories).
-When the objects are generated by a more-than-one-element set they are called \emph{coloured PROs}, but a coloured PRO is precisely a foo monoidal category.
+When the objects are generated by a more-than-one-element set they are called \emph{coloured PROs}, but a coloured PRO is precisely a foo-monoidal category.
+For example, we can take all the Python types as colours and define $\mathbf{Pyth}$ as a foo-monoidal category.
 \end{example}
+
+\begin{python}
+{\normalfont Implementation of the foo-monoidal category $\mathbf{Pyth}$ with \py{list[type]} as objects and \py{Function} as arrows.}
+
+\begin{minted}{python}
+untuple = lambda *xs: xs[0] if len(xs) == 1 else xs
+
+class Function(cat.Function):
+    dom: list[type]
+    cod: list[type]
+
+    def tensor(self, other: Tensor) -> Tensor:
+        def inside(*xs):
+            left, right = xs[:len(self.dom)], xs[len(self.dom):]
+            return untuple(*(tuple(self(left)) + tuple(other(right))))
+        return Function(inside, self.dom + other.dom, self.cod + other.cod)
+\end{minted}
+\end{python}
 
 \begin{example}
 In the case of $\mathbf{Mat}_\S$ with Kronecker product as tensor, we can define an equivalent category $\mathbf{Tensor}_\S$ where the objects are lists of natural numbers and the arrows $f : x_1 \dots x_n \to y_1 \dots y_m$ are $(x_1 \times \dots \times x_n) \times (y_1 \times \dots \times y_m)$ matrices, i.e. tensors of order $m + n$.
@@ -158,31 +192,30 @@ Note that we could define yet another equivalent category where the objects are 
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$.}
+{\normalfont Implementation of the foo-monoidal category $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$ with \py{list[int]} as objects and \py{Tensor[dtype]} as arrows.}
 
 \begin{minted}{python}
-def product(x: list[int]) -> int: return reduce(lambda a, b: a * b, x, 1)
+from functools import reduce as foldl
+product = lambda x: foldl(lambda a, b: a * b, b, 1)
 
-@dataclass
-class Tensor:
-    inside: list[list[Number]]
+class Tensor(Matrix):
     dom: list[int]
     cod: list[int]
 
     def downgrade(self) -> Matrix:
-        return Matrix(self.inside, product(self.dom), product(self.cod))
+        return Matrix[self.dtype](self.inside, product(self.dom), product(self.cod))
 
-    @staticmethod
-    def id(x: list[int]) -> Tensor:
-        return Tensor(Matrix.id(product(x)).inside, x, x)
+    @classmethod
+    def id(cls, x: list[int]) -> Tensor:
+        return cls(Matrix.id(product(x)).inside, x, x)
 
     def then(self, other: Tensor) -> Tensor:
         inside = self.downgrade().then(other.downgrade()).inside
-        return Tensor(inside, self.dom, other.cod)
+        return type(self)(inside, self.dom, other.cod)
 
     def tensor(self, other: Tensor) -> Tensor:
         inside = self.downgrade().tensor(other.downgrade()).inside
-        return Tensor(inside, self.dom + other.dom, self.cod + other.cod)
+        return type(self)(inside, self.dom + other.dom, self.cod + other.cod)
 \end{minted}
 \end{python}
 
@@ -248,25 +281,24 @@ In the next section, we will show that this construction is in fact equivalent t
 {\normalfont Outline of the class \py{monoidal.Ty}.}
 \begin{minted}{python}
 class Ty(Ob):
-    def __init__(self, *objects: Ob | str):
+    def __init__(self, objects: list[Ob | str]):
         self.objects = [x if isinstance(x, Ob) else Ob(x) for x in objects]
-        super().__init__(name="Ty({})".format(
-            ', '.join([x.name for x in self.objects])))
+        super().__init__("{}".format(' @ '.join([x.name for x in self.objects])))
 
     @classmethod
     def upgrade(cls, old: Ob) -> Ty:
         if isinstance(old, cls): return old
-        return cls(*old.objects) if isinstance(old, Ty) else cls(old)
+        return cls(old.objects) if isinstance(old, Ty) else cls(old)
 
     def tensor(self, *others: Ty) -> Ty:
         if any(not isinstance(other, Ty) for other in others):
-            return NotImplemented  # This allows whiskering on the left.
-        return self.upgrade(Ty(*self.objects + sum(
-            [other.objects for other in others], [])))
+            return NotImplemented  # This will allow whiskering on the left.
+        return self.upgrade(Ty(
+            self.objects + sum([other.objects for other in others], [])))
 
     __matmul__ = tensor
-    __getitem__ = lambda self, key: self.upgrade(Ty(*self.objects[key]))
-    __pow__ = lambda self, n: self.upgrade(Ty(*n * self.objects))
+    __getitem__ = lambda self, key: self.upgrade(Ty([self.objects[key]]))
+    __pow__ = lambda self, n: self.upgrade(Ty(n * self.objects))
 \end{minted}
 \end{python}
 
@@ -278,7 +310,7 @@ We can define a \py{Qubits} subclass and be sure that the tensor of qubits is st
 \begin{minted}[fontsize=\footnotesize]{python}
 class Qubits(Ty):
     def __init__(self, n: int):
-        super().__init__(self, n * [Ob("qubit")])
+        super().__init__(self, n * [Ob('1')])
 
     def upgrade(old):
         return Qubits(len(old.boxes))
@@ -314,7 +346,7 @@ class Layer(cat.Box):
 \end{python}
 
 Now we have all the ingredients to define \py{Diagram} as a subclass of \py{Arrow} with instances of \py{Layer} as boxes.
-The \py{tensor} method is defined in terms of left and right whiskering.
+The \py{tensor} method accepts is defined in terms of left and right whiskering, it also accepts \py{Ty} as.
 The \py{interchange} method takes an integer \py{i < len(self.layers)} and returns the diagram with layers \py{i} and \py{i + 1} interchanged, or raises an \py{AxiomError} if their boxes are connected.
 It also takes an optional argument \py{left: bool} which allows to choose between left and right interchangers.
 The \py{normal_form} method applies \py{interchange} until it reaches a normal form, or raises \py{NotImplementedError} if the diagram is disconnected.
@@ -334,7 +366,8 @@ class Diagram(cat.Arrow):
         dom, cod = map(Ty.upgrade, (old.dom, old.cod))
         return cls(dom, cod, layers)
 
-    def tensor(self, other: Diagram) -> Diagram:
+    def tensor(self, other: Diagram | Ty) -> Diagram:
+        if isinstance(other, Ty): other = self.id(other)
         dom, cod = self.dom @ other.dom, self.cod @ other.cod
         layers = [layer @ other.dom for layer in self.layers]
         layers += [self.cod @ layer for layer in other.layers]
@@ -343,7 +376,8 @@ class Diagram(cat.Arrow):
     def interchange(self, i: int, left=False) -> Diagram: ...
     def normal_form(self, left=False) -> Diagram: ...
     def draw(self, **params): ...
-    __matmul__ = tensor
+    __matmul__, __rmatmul__ = tensor, lambda self, other:\
+        other @ self if isinstance(other, Diagram) else self.id(other) @ self
 \end{minted}
 \end{python}
 
@@ -404,13 +438,17 @@ It overrides the \py{__call__} method to define the image of types and layers, a
 class Functor(cat.Functor):
     def __call__(self, other):
         if isinstance(other, Ty):
-            return self.ob_factory.tensor(
-                *[self(x) for x in other.objects])
+            return self.ob_factory([self(x) for x in other.objects])
+        if isinstance(other, Ob):
+            return self.ob[other] if other in self.ob else self.ob[Ty(other)]
         if isinstance(other, Layer):
             left, box, right = other
-            return self(left) @ self(box) @ self(right)
+            id_left, id_right = map(other.id, (left, right))
+            return self(id_left) @ self(box) @ self(id_right)
         return super().__call__(other)
 \end{minted}
+
+Note that the domain the dictionary \py{ob} can be either an \py{Ob} or a \py{Ty} of length $1$.
 \end{python}
 
 \begin{example}
@@ -418,7 +456,7 @@ We can simulate quantum circuits by applying a functor from \py{Circuit} to \py{
 \begin{minted}{python}
 class Eval(Functor):
     def __init__(self):
-        ob = {Ob("qubit"): [2]}
+        ob = {Ob('1'): 2}
         ar = {H: [[1 / sqrt(2), 1 / sqrt(2)],
                   [1 / sqrt(2), -1 / sqrt(2)]],
               CX: [[1, 0, 0, 0],
@@ -426,18 +464,18 @@ class Eval(Functor):
                    [0, 0, 0, 1],
                    [0, 0, 1, 0]],
               sqrt2: [[sqrt(2)]]}
-       super().__init__(ob, ar, ob_factory=tuple[int], ar_factory=Tensor)
+       super().__init__(ob, ar, ob_factory=tuple[int], ar_factory=Tensor[complex])
 
     def __call__(self, other):
         if isinstance(other, Ket):
             if not other.bits: return Tensor.id([])
-            head = Matrix([[other.bits[0], not other.bits[0]]], 1, 2)
-            return head @ self(Ket(*others[1:]))
+            state = Tensor[complex]([[other.bits[0], not other.bits[0]]], [], [2])
+            return state @ self(Ket(*others[1:]))
         return super().__call__(other)
 
 Circuit.eval = Eval()
 circuit = sqrt2 @ Ket(0, 0) >> H @ Id >> CX
-superposition =  Ket(0, 0) + Ket(1, 1)
+superposition = Ket(0, 0) + Ket(1, 1)
 assert circuit.eval() == superposition.eval()
 \end{minted}
 \end{example}
@@ -482,10 +520,12 @@ Again, every monoidal category $C$ is isomorphic to the quotient of a free monoi
 Why should computer scientists care about diagrams?
 One reason is that they are free data structures in the same sense that lists are free: they are a two-dimensional generalisation of lists.
 Another reason is that they allow an elegant definition of a Turing-complete problem: given a finite monoidal signature $\Sigma$ and a pair of lists $x, y \in \Sigma_0^\star$, decide whether there is a diagram $f : x \to y$ in $F(\Sigma)$.
-Indeed, the word problem for monoids (which is equivalent to the halting problem for Turing machines) reduces to the existence problem for diagrams: given the presentation $(X, R)$ of a monoid, take objects $\Sigma_0 = X$, arrows $\Sigma_1 = R \cup R^T$ the symmetric closure of the relation $R$ and $\dom, \cod : \Sigma_1 \injects X^\star \times X^\star \to X^\star$ the left and right hand-side of each related pair.
-For any pair $x, y \in X^\star$, we have that $x = y$ in the quotient monoid $M = X^\star / R$ if and only if there is a diagram $f : x \to y$ in $F(\Sigma)$.
+Indeed, the word problem for monoids (which is equivalent to the halting problem for Turing machines) reduces to the existence problem for diagrams: given the presentation of a monoid $X^\star / R$,
+take objects $\Sigma_0 = X$ and boxes $\Sigma_1 = R$ with $\dom, \cod : \Sigma_1 \injects X^\star \times X^\star \to X^\star$ the left and right hand-side of each related pair.
+For any pair $x, y \in X^\star$, we have that $x \leq_R y$ if and only if there is a diagram $f : x \to y$ in $F(\Sigma)$: the preordered monoid generated by the relation $R$ is the preorder collapse of the free monoidal category $F(\Sigma)$.
+While monoid presentations define \emph{decision problems} (i.e. with a Boolean output), free monoidal categories naturally define \emph{function problems}: given a pair of types, output a diagram.
 
-If we compose the two reductions together, we get a free monoidal category where the arrows are all the possible runs of a given Turing machine.
+If we compose the two reductions together, we get a free monoidal category where diagrams are the possible runs of a given Turing machine.
 Moreover, a monoidal functor from the category of one machine to another corresponds to a reduction between the problems they solve, the domain machine being simulated by the codomain.
 Thus, we could very well take finite monoidal signatures as our definition of machine and diagrams as our definition of computation: algorithmic complexity is given by the size of signatures, time and space complexity are given by the length and width\footnote
 {The width of a diagram is the maximum width of its layers, which is not preserved by interchangers.
@@ -495,7 +535,7 @@ The categories of complexity and the complexity of categories are not the subjec
 
 \subsection{Daggers, sums and bubbles}
 
-As in the previous section, we introduce three extra pieces of implementation: dagger, sums and bubbles.
+As in the previous section, we introduce three extra pieces of implementation: daggers, sums and bubbles.
 A $\dagger$-monoidal category is a monoidal category with a $\dagger$ (i.e. an identity-on-objects involutive contravariant endofunctor) that is also a monoidal functor, a $\dagger$-monoidal functor is both a $\dagger$-functor and a monoidal functor.
 They are implemented by adding a \py{dagger} method to the \py{Layer} class.
 
@@ -524,6 +564,12 @@ def tensor(self: Sum, other: Sum) -> Sum:
 
 Bubbles for monoidal categories are the same as bubbles for categories, their implementation requires no extra work.
 As we mentioned in the previous section, bubbles do give us a strictly more expressive syntax however: they can encode operations on arrows that cannot be expressed in terms of composition or tensor.
+
+\begin{example}
+As in example~\ref{example:endofunctor-bubbles}, any monoidal endofunctor $\beta : C \to C$ also defines a bubble on the monoidal category $C$, we can define a bubble-preserving functor $F(U(C)^\beta) \to C$ which interprets bubbled diagrams as functor application.
+However, the disjoint union $C + D$ of two monoidal categories does not yield a well-defined monoidal category: we cannot tensor arrows of $C$ with those of $D$.
+Thus, the case of monoidal functors $C \to D$ requires diagrams with different colours (for the inside and the outside of the bubble) which we will mention in section~\ref{section:extra structure}.
+\end{example}
 
 \begin{example}
 We can implement the Born rule as a bubble on $\py{Circ}$ interpreted as element-wise squared amplitude.
@@ -557,19 +603,19 @@ The evaluation of a formula in a finite model corresponds to the application of 
 class Formula(Diagram):
     cut = lambda self: self.bubble(name="_not")
 
-    @staticmethod
-    def model(size, data: dict[Predicate, list[bool]]):
-        Functor(ob={Ty('x'): size},
-                ar={p: [data[p]] for p in data}, ar_factory=Matrix)
-
 class Predicate(Box, Formula):
     def __init__(self, name): Box.__init__(self, name, Ty(), Ty('x'))
+
+def model(size, data: dict[Predicate, list[bool]]):
+    Functor(ob={Ty('x'): size},
+            ar={p: [data[p]] for p in data},
+            ob_factory=list[int], ar_factory=Tensor[B])
 
 men, mortal = map(Predicate, ("men", "mortal"))
 all_men_are_mortal = (men.cut() >> mortal.dagger()).cut()
 
 for a, b, c, d in itertools.product(*4 * [[0, 1]]):
-    F = Formula.model(2, {men: [a, b], mortal: [c, d]})
+    F = model(size=2, {men: [a, b], mortal: [c, d]})
     assert F(all_men_are_mortal) == all(
         not F(men)[i][0] or F(mortal)[i][0] for i in range(2))
 \end{minted}
@@ -611,6 +657,8 @@ Finally, the return value of the decorated function is taken as the codomain of 
 We use the graph data structure from \py{networkx}~\cite{HagbergEtAl08}.
 
 \begin{minted}{python}
+from networkx import Graph
+
 Node = namedtuple('Node', ['kind', 'label', 'i', 'j'])
 
 def diagram2graph(diagram: Diagram) -> Graph:

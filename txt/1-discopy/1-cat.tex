@@ -32,13 +32,12 @@ Thus, implementing a category in Python means nothing more than subclassing the 
 \begin{python}\label{listing:abstract classes}
 {\normalfont Abstract classes for categories, functors and transformations.}
 
-Note that annotations with dependent types are not supported by any Python implementation yet.
-Since Python could not statically check that compositions are well-typed, DisCoPy has no type hints and raises an \py{AxiomError} at runtime instead.
 \begin{minted}{python}
 class Object: ...
 
 class Arrow:
-    dom: Object, cod: Object
+    dom: Object
+    cod: Object
 
     @staticmethod
     def id(x: Object) -> Arrow[x, x]: ...
@@ -53,10 +52,14 @@ class Functor:
     def __call__(self, f: Arrow[x, y]) -> Arrow[self(x), self(y)]: ...
 
 class Transformation:
-    dom: Functor, cod: Functor
+    dom: Functor
+    cod: Functor
 
     def __call__(self, x: Object) -> Arrow[self.dom(x), self.cod(x)]: ...
 \end{minted}
+
+Note that annotations with dependent types are not supported by any Python implementation yet.
+We include them to make the thesis clearer although they do not appear in the DisCoPy code.
 \end{python}
 
 The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
@@ -70,6 +73,31 @@ The data for a \emph{transformation} $\alpha : F \to G$ between two parallel fun
 A \emph{natural transformation} is one where $\alpha(x) \fcmp G(f) = F(f) \fcmp \alpha(y)$ for all arrows $f : x \to y$ in $C$.
 The \py{Transformation} class is given in listing~\ref{listing:abstract classes}, checking that a transformation is natural cannot be done formally in Python.
 In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two sets $X$ and $Y$, for any two categories $C$ and $D$ there is a category $D^C$ with functors $C \to D$ as objects and natural transformations as arrows.
+
+\begin{example}
+When the class of objects and arrows are in fact sets, $C$ is called a \emph{small category}.
+For example, the category $\mathbf{FinSet}$ has the set of all finite sets as objects and the set of all functions between them as arrows.
+This time equality of functions between finite sets is decidable, so we can write unit tests that check that the axioms hold on specific examples.
+\end{example}
+
+\begin{example}
+When the class of objects and arrow are finite sets, we can draw the category as a directed multigraph with objects as nodes and arrows as edges, together with the list of equations between paths.
+A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
+One commutative diagram can state a large number of equations, which can be read by \emph{diagram chasing}.
+\end{example}
+
+\begin{example}
+A monoid is the same as a category with one object, i.e. every arrow (element) can be composed with (multiplied by) every other.
+A preorder, i.e. a set with a reflexive transitive relation, is the same as a category with at most one arrow $x \leq y$ between any two objects $x$ and $y$.
+Functors between monoids are the same as homomorphisms, functors between preorders are monotone functions.
+\end{example}
+
+\begin{example}
+Just about any class of mathematical structures will be the objects of a category with the transformations between them as arrows: the category $\mathbf{Set}$ of sets and functions, the category $\mathbf{Mon}$ of monoids and homomorphisms, the category $\mathbf{Preord}$ of preorders and monotone functions, the category $\mathbf{Cat}$ of small categories and functors, etc.
+There are embedding (i.e. injective on objects and arrows) functors from $\mathbf{Mon}$ and $\mathbf{Preord}$ to $\mathbf{Cat}$, i.e. preorders and monoids form a subcategory of $\mathbf{Cat}$.
+There is a functor from $\mathbf{Cat}$ to $\mathbf{Preord}$ called the preorder collapse which sends a category $C$ to the preorder given by $x \leq y$ iff there is an arrow $f \in C(x, y)$, i.e. we forget the difference between parallel arrows.
+There is a faithful (i.e. injective on homsets) functor $U : \mathbf{Mon} \to \mathbf{Set}$ called the \emph{forgetful functor} which sends monoids to their underlying set and homomorphisms to functions.
+\end{example}
 
 \subsection{Concrete categories}
 
@@ -100,22 +128,16 @@ class Function:
         return Function(lambda *xs: xs, x, x)
 
     def then(self, other: Function) -> Function:
-        return Function(lambda *xs: other(*self(*xs)), self.dom, other.cod)
+        inside = lambda *xs: other(*tuple(self(*xs)))
+        return Function(inside, self.dom, other.cod)
 
     def __call__(self, *xs): return self.inside(*xs)
 \end{minted}
 \end{python}
 
 \begin{example}
-When the class of objects and arrows are in fact sets, $C$ is called a \emph{small category}.
-For example, the category $\mathbf{FinSet}$ has the set of all finite sets as objects and the set of all functions between them as arrows.
-This time equality of functions between finite sets is decidable, so we can write unit tests that check that the axioms hold on specific examples.
-\end{example}
-
-\begin{example}
-When the class of objects and arrow are finite sets, we can draw the category as a directed multigraph with objects as nodes and arrows as edges, together with the list of equations between paths.
-A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
-For example, the following commutative diagram denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
+The following commutative diagram denotes a functor\footnote
+{TODO: refactor} $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
 \[ \begin{tikzcd}
 \py{int}
 \ar{rrrrrr}{\py{lambda n: n * (n - 1) // 2}}
@@ -125,8 +147,7 @@ For example, the following commutative diagram denotes a functor $3 \to \mathbf{
 \ar{urrr}[']{\py{sum}} & & &
 \end{tikzcd}
 \]
-Thus, this commutative diagram is the equation \py{sum(range(n)) = n * (n - 1) // 2}.
-When the finite category is bigger than a triangle, one commutative diagram can state a large number of equations, which can be read by \emph{diagram chasing}.
+It is read as the equation \py{sum(range(n)) = n * (n - 1) // 2}.
 \end{example}
 
 \begin{example}
@@ -135,11 +156,11 @@ The identity and composition are given by the identity matrix and matrix multipl
 In order for matrix multiplication to be well-defined and for $\mathbf{Mat}_\S$ to be a category, the scalars $\S$ should have at least the structure of a \emph{rig} (a riNg without Negatives): a pair of monoids $(\S, +, 0)$ and $(\S, \times, 1)$ with the first one commutative and the second a homomorphism for the first, i.e. $a \times 0 = 0 = 0 \times a$ and $(a + b) \times (c + d) = a c + a d + b c + b d$.
 The category $\mathbf{Mat}_\C$ is equivalent to the category of finite dimensional vector spaces and linear maps.
 When the scalars are Booleans with disjunction and conjunction as addition and multiplication, the category $\mathbf{Mat}_\B$ is equivalent to the category of finite sets and relations.
-There is a faithful functor (i.e. injective on arrows with the same domain and codomain) $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends finite sets to their cardinality and functions to their graph.
+There is a faithful functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends finite sets to their cardinality and functions to their graph.
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of the Boolean rig $\B$ with addition and multiplication defined as disjunction and conjunction.}
+{\normalfont Implementation of the Boolean rig $\B$.}
 
 \begin{minted}{python}
 class B:
@@ -150,52 +171,52 @@ class B:
     __eq__ = lambda self, other: bool(self) == bool(other)
     __repr__ = __str__ = lambda self: repr(int(self.inside))
 \end{minted}
+
+\py{B} is like the built-in \py{bool} but with addition and multiplication defined as disjunction and conjunction.
 \end{python}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix} with entries in $\S = \py{dtype}$ as arrows.}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix[dtype]} as arrows.}
 
 \begin{minted}{python}
 class Matrix:
     dtype = B
 
+    @classmethod
+    def __class_getitem__(cls, dtype):
+        class C(cls): pass
+        C.dtype, C.__name__ = dtype, "Matrix[{}]".format(dtype.__name__)
+        return C
+
     def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
         self.dom, self.cod, self.inside = dom, cod, [
             list(map(self.dtype, row)) for row in inside]
 
-    @staticmethod
-    def id(x: int) -> Matrix:
-        return Matrix([[i == j for i in range(x)] for j in range(x)], x, x)
+    @classmethod
+    def id(cls, x: int) -> Matrix:
+        return cls([[i == j for i in range(x)] for j in range(x)], x, x)
 
     def then(self, other: Matrix) -> Matrix:
         inside = [[
             sum([self[i][j] * other[j][k] for j in range(other.dom)])
             for k in range(other.cod)] for i in range(self.dom)]
-        return Matrix(inside, self.dom, other.cod)
+        return type(self)(inside, self.dom, other.cod)
 
-    __getitem__ = lambda self, key: self.inside[key]
     __eq__ = lambda self, other: isinstance(other, Matrix) and (
         self.inside, self.dom, self.cod) == (other.inside, other.dom, other.cod)
-    __repr__ = lambda self: "Matrix({}, {}, {})".format(
-        self.inside, self.dom, self.cod)
+    __repr__ = lambda self: "{}({}, {}, {})".format(
+        type(self).__name__, self.inside, self.dom, self.cod)
+    __getitem__ = lambda self, key: self.inside[key]
 \end{minted}
+
+Subscriptable types such as \py{list[list[int]]} and the \py{__class_getitem__} method are a new feature of Python \py{>=3.10}.
+By default, we fix \py{Matrix = Matrix[B]}, we can get real or complex matrices with \py{Matrix[float]} or \py{Matrix[complex]}.
+Note that this implementation is not meant to be efficient, rather it helps in making the thesis self-contained.
 \end{python}
 
 \begin{example}
 The category $\mathbf{Circ}$ has natural numbers as objects and $n$-qubit quantum circuits as arrows $n \to n$.
 There is a functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ which sends $n$ qubits to $2^n$ dimensions and evaluates each circuit to its unitary matrix.
-\end{example}
-
-\begin{example}
-A monoid is the same as a category with one object, i.e. every arrow (element) can be composed with (multiplied by) every other.
-A preorder, i.e. a set with a reflexive transitive relation, is the same as a category with at most one arrow $x \leq y$ between any two objects $x$ and $y$.
-Functors between monoids are the same as homomorphisms, functors between preorders are monotone functions.
-\end{example}
-
-\begin{example}
-Just about any class of mathematical structures will be the objects of a category with the transformations between them as arrows.
-For example, the category $\mathbf{Set}$ of sets and functions, the category $\mathbf{Mon}$ of monoids and homomorphisms, the category $\mathbf{Cat}$ of small categories and functors, etc.
-The faithful functor $U : \mathbf{Mon} \to \mathbf{Set}$ which sends monoids to their underlying set and homomorphisms to functions is called a \emph{forgetful functor}.
 \end{example}
 
 \subsection{Free categories}
@@ -532,11 +553,11 @@ class Functor(cat.Functor):
 \begin{minted}{python}
 def transpose(self: Matrix) -> Matrix:
     inside = [[self[j][i] for j in range(self.dom)] for i in range(self.cod)]
-    return Matrix(inside, self.cod, self.dom)
+    return type(self)(inside, self.cod, self.dom)
 
 def map(self: Matrix, func: Callable[[Number], Number]) -> Matrix:
     inside = [list(map(func, row)) for row in self.inside]
-    return Matrix(inside, self.dom, self.cod)
+    return type(self)(inside, self.dom, self.cod)
 
 Matrix.transpose, Matrix.map = transpose, map
 Matrix.conjugate = lambda self: self.map(lambda x: x.conjugate())
@@ -554,7 +575,7 @@ Circuit.eval = Functor(
         Y: [[0, -1j], [1j, 0]],
         Z: [[1, 0], [0, -1]],
         H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]]}
-    ob_factory=int, ar_factory=Matrix)
+    ob_factory=int, ar_factory=Matrix[complex])
 
 assert (Z >> H).eval() == (H >> X).eval()
 assert (Z >> X).eval() == (X >> Z).eval().map(lambda x: -x)
@@ -637,22 +658,23 @@ class Functor(cat.Functor):
 def __add__(self: Matrix, other: Matrix) -> Matrix:
     inside = [[x + y for x, y in zip(u, v)]
               for u, v in zip(self.inside, other.inside)]
-    return Matrix(inside, self.dom, self.cod)
+    return type(self)(inside, self.dom, self.cod)
 
-def zero(dom: int, cod: int) -> Matrix:
-    return Matrix([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
+@classmethod
+def zero(cls, dom: int, cod: int) -> Matrix:
+    return Matrix[cls.dtype]([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
 \end{minted}
 \end{python}
 
-A \emph{bubble} on a (subcategory of a) category $C$ is a pair of unary operators $b_\dom, b_\cod : C_0 \to C_0$ on objects and a unary operator between homsets $b : C(x, y) \to C(b_\dom(x), b_\cod(y))$ for (some) pairs of objects $x, y \in C_0$.
-Given a signature $\Sigma$ and a pair $b_\dom, b_\cod : C_0 \to C_0$, we construct the free category with bubbles $F(\Sigma^b)$ by induction on the maximum level $n$ of bubble nesting: take the signature $\Sigma^b = \bigcup_{n \in \N} \Sigma^b_n$
-for $\Sigma^b_0 = \Sigma$ and $\Sigma^b_{n + 1} = \Sigma + \{ b(f) \ \vert \ f \in F(\Sigma^b_n) \}$.
-That is, box in $\Sigma^b$ is a box in $\Sigma^b_{n}$ for some $n \in \N$.
-A box in $\Sigma^b_{n}$ is either a box in $\Sigma$ or an arrow $f : x \to y$ in $F(\Sigma^b_{n - 1})$ that we have put inside a bubble $b(f) : b_\dom(x) \to b_\cod(y)$.
+A \emph{bubble} on a (subcategory of a) category $C$ is a pair of unary operators $\beta_\dom, \beta_\cod : C_0 \to C_0$ on objects and a unary operator between homsets $\beta : C(x, y) \to C(\beta_\dom(x), \beta_\cod(y))$ for (some) pairs of objects $x, y \in C_0$.
+Given a signature $\Sigma$ and a pair $\beta_\dom, \beta_\cod : C_0 \to C_0$, we construct the free category with bubbles $F(\Sigma^\beta)$ by induction on the maximum level $n$ of bubble nesting: take the signature $\Sigma^\beta = \bigcup_{n \in \N} \Sigma^\beta_n$
+for $\Sigma^\beta_0 = \Sigma$ and $\Sigma^\beta_{n + 1} = \Sigma + \{ \beta(f) \ \vert \ f \in F(\Sigma^\beta_n) \}$.
+That is, box in $\Sigma^\beta$ is a box in $\Sigma^\beta_{n}$ for some $n \in \N$.
+A box in $\Sigma^\beta_{n}$ is either a box in $\Sigma$ or an arrow $f : x \to y$ in $F(\Sigma^\beta_{n - 1})$ that we have put inside a bubble $\beta(f) : \beta_\dom(x) \to \beta_\cod(y)$.
 
-\begin{example}
-A functor between two categories $C$ and $D$ can be seen as a bubble on their disjoint union $C + D$.
-Thus, we can define a bubble-preserving functor $F^b(C + D) \to C + D$ which interprets arrows with bubbles as functor application.
+\begin{example}\label{example:endofunctor-bubbles}
+Any endofunctor $\beta : C \to C$ also defines a bubble, thus we can define a bubble-preserving functor $F(U(C)^\beta) \to C$ which interprets bubbles as functor application.
+Any functor between two categories $C$ and $D$ defines a bubble on their disjoint union $C + D$ (i.e. with objects $C_0 + D_0$ and arrows $C_1 + D_1$).
 These functor bubbles have also been called \emph{functorial boxes}~\cite{Mellies06}.
 \end{example}
 
@@ -704,7 +726,7 @@ The evaluation of the neural network on some input vector for some parameters is
 The hyper-parameters (i.e. the number of neurons at each layer) are given by the image of the functor on objects.
 
 \begin{minted}{python}
-Matrix.dtype, Matrix.ReLU = float, lambda self, _, _: self.map(lambda x: max(x, 0))
+Matrix.ReLU = lambda self, _, _: self.map(lambda x: max(x, 0))
 
 vector, bias = Box('vector', x, y), Box('bias', x, x)
 ones, weights = Box('ones', x, y), Box('weights', y, z)
@@ -715,7 +737,8 @@ F = Functor(
     ar={vector: [[1.2, -2.3, 3.4, -4.5]],
         bias: [[-3.14]], ones: [[1, 1, 1, 1]]
         weights: [[5.6, -6.7, 7.8, -8.9],
-                  [9.0, -0.1, 2.3, -3.4]]})
+                  [9.0, -0.1, 2.3, -3.4]]},
+    ar_factory=Matrix[float])
 
 assert F(network) == F(vector).map(lambda x: x + F(bias)[0][0])\
                               .then(F(weights)).map(lambda x: max(0, x))
@@ -732,13 +755,12 @@ Matrix.dtype, Matrix._not = B, lambda self, _, _: self.map(lambda x: not x)
 class Formula(Arrow):
     _not = lambda self: self.bubble(name="_not")
 
-    @staticmethod
-    def model(data: dict[Proposition, bool]):
-        return Functor(ob={Ob('1'): 1}, ar={p: [[data[p]]] for p in data},
-                       ar_factory=Matrix)
-
 class Proposition(Box, Formula):
     def __init__(self, name): Box.__init__(self, name, Ob('1'), Ob('1'))
+
+def model(data: dict[Proposition, bool]):
+    return Functor(ob={Ob('1'): 1}, ar={p: [[data[p]]] for p in data},
+                   ar_factory=Matrix[B])
 
 p, q = map(Proposition, "pq")
 p_implies_q = (q._not() >> p)._not()
