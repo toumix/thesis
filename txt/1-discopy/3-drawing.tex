@@ -187,7 +187,7 @@ $\quad \to_R \quad \dots$
 \end{center}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:spiral}
 The following spiral diagram is the cubic worst-case for interchanger normal form.
 It is also the quadratic worst-case for drawing, at each layer of the first half we need to update the position of every preceding layer in order to make space for the output wires.
 
@@ -481,91 +481,134 @@ If the bitmaps indeed represent a progressive generic plane graph $G$, then we g
 If not, the output will still be a diagram but its drawing may not look anything like the input.
 
 \begin{python}
-{\normalfont Implementation of the reading algorithm of listing~\ref{listing:lgpp2diagram}.}
+{\normalfont Implementation of the abstract reading algorithm of listing~\ref{listing:lgpp2diagram}.}
 
 \begin{minted}{python}
 from numpy import array, argmin
 from skimage.measure import regionprops, label
 
-connected_components = lambda img: regionprops(label(img))
-
 def read(box_pixels: array, wire_pixels: array) -> Diagram:
-    assert wire_pixels.shape == box_pixels.shape
-    length, width = box_pixels.shape
+    connected_components = lambda img: regionprops(label(img))
     box_nodes, wires = map(connected_components, (box_pixels, wire_pixels))
-    critical_heights = array(
-        [0] + [int(node.centroid[0]) for node in box_nodes] + [length])
-    source, target = [], []
+    source, target, length, width = [], [], len(box_pixels), len(box_pixels[0])
+    critical_heights = [0] + [int(node.centroid[0]) for node in box_nodes] + [length]
     for wire, region in enumerate(wires):
         top, bottom = (minmax(i for i, _ in region.coords) for minmax in (min, max))
-        source.append(argmin(abs(critical_heights - top)))
-        target.append(argmin(abs(critical_heights - bottom)))
-    print(list(zip(source, target)))
+        source.append(argmin(abs(array(critical_heights) - top)))
+        target.append(argmin(abs(array(critical_heights) - bottom)))
     scan = [wire for wire, node in enumerate(source) if node == 0]
     dom, boxes_and_offsets = Ty('x') ** len(scan), []
     for depth, box_node in enumerate(box_nodes):
-        i, j = map(int, box_node.centroid)
         input_wires = [wire for wire in scan if target[wire] == depth + 1]
         output_wires = [wire for wire, node in enumerate(source) if node == depth + 1]
         dom, cod = Ty('x') ** len(input_wires), Ty('x') ** len(output_wires)
-        box = Box('box_{}'.format(depth), dom, cod)
+        box = Box('box_{}_{}'.format(len(dom), len(cod)), dom, cod)
+        height, left = map(int, box_node.centroid)
         left_of_box = [wire for wire in scan if wire not in input_wires
-                       and dict(wires[wire].coords).get(i, width) < j]
+                       and dict(wires[wire].coords).get(height, width) < left]
         offset = max(len(left_of_box), 0)
         boxes_and_offsets.append((box, offset))
         scan = scan[:offset] + output_wires + scan[offset + len(input_wires):]
     return decode(dom, boxes_and_offsets)
 \end{minted}
-
-We use the \py{array} data structure of \py{numpy}~\cite{VanDerWaltEtAl11} for bitmaps.
-Connected components are computed with \py{scikit-image}~\cite{WaltEtAl14}, we make use of their default ordering by lexicographic order of their top-left pixel.
 \end{python}
 
+We use the \py{array} data structure of NumPy~\cite{VanDerWaltEtAl11} for bitmaps.
+We compute the connected components of box and wire pixels with Scikit-Image~\cite{WaltEtAl14}, using their default ordering by lexicographic order of top-left pixel.
+We then define a list of critical heights: the top of the picture, the height of the centroid of each box component, then the bottom of the picture.
+For each wire component, we define its source and target as the closest critical height to its top-most and bottom-most pixel.
+We define the domain of the diagram as the list of wires with the domain as source.
+We then scan through the picture top to bottom, keeping a list \py{scan} of the open wires at each height.
+For each box, we find its input wires in this list and define the offset as the number of wires left of the box node that are not inputs, then we update \py{scan} with the output wires.
+We get an encoding \py{dom, boxes_and_offsets} which yields a valid diagram by construction.
+
 \begin{example}
-Suppose we start from the following picture, where the red pixels are boxes and the black pixels are wires:
+Suppose we take the following picture of a diagram as input, where the red pixels are boxes and the black pixels are wires:
 \begin{center}
-\includegraphics[scale=.5]{img/bitmap2diagram/start.png}
+\includegraphics[scale=.2]{img/bitmap2diagram/start.png}
 \end{center}
-We compute the connected components of red and black bitmaps and count $\{ 1, \dots, 6 \}$ boxes and 8 wires:
-\begin{center}
-\includegraphics[scale=.5]{img/bitmap2diagram/boxes.png}
-\hspace{10pt}
-\includegraphics[scale=.5]{img/bitmap2diagram/wires.png}
-\end{center}
+We count $\{ 1, \dots, 6 \}$ boxes and 8 wires
 $$
-0 \to 3, \s
+\{ 0 \to 3, \s
 0 \to 1, \s
 1 \to 4, \s
 1 \to 6, \s
 2 \to 4, \s
 3 \to 6, \s
-3 \to 5 \s \text{and} \s
-6 \to 7
+3 \to 5, \s
+6 \to 7 \}
 $$
 for $0$ and $7$ the domain and codomain of the whole diagram respectively.
-
-From this, we can reconstruct the whole diagram by scanning top to bottom.
-
-\begin{minted}{python}
-diagram = x @ box_0\
-    >> x @ x @ box_1 @ x\
-    >> box_2 @ x @ x @ x\
-    >> x @ x @ box_3 @ x\
-    >> x @ box_4 @ x\
-    >> box_5
-
-diagram.draw(draw_box_labels=False, draw_type_labels=False)
-\end{minted}
-
 \begin{center}
-\includegraphics[scale=.5]{img/bitmap2diagram/finish.png}
+\includegraphics[scale=.2]{img/bitmap2diagram/boxes.png}
+\hspace{10pt}
+\includegraphics[scale=.2]{img/bitmap2diagram/wires.png}
 \end{center}
+
+From this, we reconstruct the following diagram by scanning top to bottom:
+
+\ctikzfig{img/bitmap2diagram/finish}
+
+which is indeed equal to the input picture, up to generic progressive deformation.
 \end{example}
 
 \begin{example}
-Suppose we start from the following picture.
+Suppose we start from the following pastiche of Kandinsky's \emph{Punkt und linie zu fläche} (point and line on the plane):
 
-BROKEN
+\begin{center}
+\includegraphics[scale=.4]{img/punkt-und-linie/start.png}
+\end{center}
+We count $\{ 1, \dots, 9 \}$ boxes and 7 wires
+$$\{
+0 \to 3, \s
+1 \to 3, \s
+2 \to 4, \s
+4 \to 8, \s
+4 \to 9, \s
+6 \to 10, \s
+6 \to 10 \}
+$$
+for $0$ and $10$ the domain and codomain of the whole diagram respectively.
+\begin{center}
+\includegraphics[scale=.2]{img/punkt-und-linie/boxes.png}
+\hspace{10pt}
+\includegraphics[scale=.2]{img/punkt-und-linie/wires.png}
+\end{center}
+
+From this, we reconstruct the following diagram by scanning top to bottom:
+
+\ctikzfig{img/punkt-und-linie/finish}
+
+which looks nothing like the input because Kandinsky's abstract paintings are not generic progressive plane graphs.
 \end{example}
 
-applications to automatic analysis of document layout \cite{BorosEtAl19}
+What could be the applications of such a reading algorithm?
+Of course, real-world pictures do not come in clean red and black bitmaps.
+We need some more computer vision to label each pixel as belonging either to a box, a wire or the background.
+This can be achieved by training a convolutional neural network on a large number of example pictures, each annotated with their red and black bitmaps.
+Once we have trained the machine to classify whether pixels belong to a box or wire, we can also train it to output the label of each pixel, i.e. the label of the box or wire it belongs to.
+With enough training data, we could automatically turn pictures of Bob's blackboard into circuits that we can execute on a quantum computer.
+Less trivially, this could be applied to \emph{document layout analysis}:
+from the picture of say, a hand-drawn calendar from the middle ages, we could train our recognition algorithm to output a diagram that encodes the structure of the calendar.
+In previous work~\cite{BorosEtAl19}, we trained convolutional neural networks to extract lines of text in medieval manuscripts, but we had to exclude calendars from our analysis due to the complexity of their layouts.
+Our diagram recognition machines would enhance the automated analysis of such hand-drawn documents with structured layouts.
+
+Our simple algorithm is robust to any deformation of lgpp graph, but there is much room for improvement.
+The easiest assumption to remove is genericity, i.e. boxes need not be at distinct heights.
+Non-generic progressive plane graphs, i.e. with potentially horizontal wires between boxes at the same height, have been characterised as the arrows of free \emph{double categories}.
+Delpeuch~\cite{Delpeuch20} shows how they can be encoded as lgpp graphs with an extra label on each wire for whether it is horizontal or vertical.
+We can also remove the progressive assumption, i.e. wires can bend backwards.
+We have two options: either a) we write a geometric algorithm than can find the endpoints of any bended wire, or b) we train another neural network to detect each point of non-progressivity, i.e. the cups and caps where the vertical derivative of a wire changes sign.
+Such non-progressive plane graphs can be encoded as lgpp graphs with \emph{cups and caps boxes}, they are the arrows of free \emph{pivotal categories} which we discuss in section~\ref{subsection:rigid}.
+
+Next, we can get rid of the planarity assumption: the projection of the topological graph onto the plane need not be an embedding, i.e. wires can cross.
+We can improve our reading algorithm in a similar way: either a) some geometric algorithm or b) some black-box neural network that can detect the points of non-planarity, i.e. the intersection of wires.
+Such non-planar progressive graphs can be encoded as lgpp graphs with \emph{swap boxes}, they are the arrows of free \emph{symmetric monoidal categories} which we discuss in section~\ref{subsection:symmetric}.
+Non-planar non-progressive graphs, i.e. where wires can bend and swap, are the arrows of free \emph{compact closed categories}, which play the starring role in categorical quantum mechanics.
+
+Finally, we can even remove the graph assumption: wires need not be homeomorphic to an open interval.
+We merely require that they are one-dimensional open subsets of the plane, i.e. wires can split and merge.
+We do not even need to assume that their boundary is in the nodes of the graph, i.e. wires can start or end anywhere in the plane.
+Again, we can improve our reading algorithm by encoding such hypergraphs (i.e. where wires can have any number of sources and targets) as lgpp graphs with \emph{spider boxes} for the splits, merges, starts and ends of each wire.
+Labeled hypergraphs are the arrows of free \emph{hypergraph categories}, which we discuss in section~\ref{subsection:hypergraph}.
+In section~\ref{section:related and future}, we discuss the relationship between this definition of hypergraph diagrams as (equivalence classes of) planar diagrams with swap and spider boxes and the more traditional graph-based definition.

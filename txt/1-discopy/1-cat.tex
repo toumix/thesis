@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\section{Categories in Python}
+\section{Categories in Python} \label{section:cat}
 
 \subsection{Abstract categories}
 
@@ -317,11 +317,11 @@ The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a s
 We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of each object and box is in scope.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.boxes == [f]}.
-In order for the axiom \py{f >> Id(y) == f == Id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is set to be equal to the arrow with just itself as boxes.
+For the axiom \py{f >> id(y) == f == id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is equal to the arrow with just itself as boxes.
 The main subtlety in the implementation is the class method \py{upgrade} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
 This allows the composition of arrows in a subclass to remain within the subclass, without having to rewrite the method \py{then}.
 This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{upgrade} and return an arrow of the appropriate subclass.
-We also need to fix \py{Box.upgrade = Arrow.upgrade}, otherwise we would be able to compose a diagram then a box but not a box then a diagram.
+We also need to fix \py{Box.upgrade = Arrow.upgrade}: when we compose a box then an arrow, we want to return a new arrow object, not a box.
 
 \begin{example}
 We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
@@ -566,8 +566,7 @@ Matrix.dagger = lambda self: self.conjugate().transpose()
 \end{python}
 
 \begin{example}
-We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor and check the equations given in example~\ref{example:1-qubit-presentation}.
-
+We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
 \begin{minted}{python}
 Circuit.eval = Functor(
     ob={Ob('1'): 2},
@@ -576,15 +575,17 @@ Circuit.eval = Functor(
         Z: [[1, 0], [0, -1]],
         H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]]}
     ob_factory=int, ar_factory=Matrix[complex])
-
+\end{minted}
+We can check that every circuit is \emph{unitary}, i.e. its dagger is also its inverse.
+\begin{minted}{python}
+for c in [Id, X, Y, Z, H, X >> Y >> Z >> H]:
+    assert (c >> c[::-1]).eval() == Id.eval() == (c[::-1] >> c).eval()
+\end{minted}
+We can check the equations given in the presentation of example~\ref{example:1-qubit-presentation}.
+\begin{minted}{python}
 assert (Z >> H).eval() == (H >> X).eval()
 assert (Z >> X).eval() == (X >> Z).eval().map(lambda x: -x)
-
-for gate in [H, Z, X]:
-    assert (gate >> gate).eval() == Id.eval()
-
-for gate in [X, Y, Z, H]:
-    assert (gate >> gate[::-1]).eval() == Id.eval() == (gate[::-1] >> gate).eval()
+for gate in [H, Z, X]: assert (gate >> gate).eval() == Id.eval()
 \end{minted}
 \end{example}
 

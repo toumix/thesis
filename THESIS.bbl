@@ -17,71 +17,54 @@
 \endgroup
 
 \datalist[entry]{nyt/global//global/global}
-  \entry{BorosEtAl19}{inproceedings}{}
-    \name{author}{6}{}{%
-      {{hash=BE}{%
-         family={Boros},
-         familyi={B\bibinitperiod},
-         given={Emanuela},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=TA}{%
-         family={Toumi},
-         familyi={T\bibinitperiod},
-         given={Alexis},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=RE}{%
-         family={Rouchet},
-         familyi={R\bibinitperiod},
-         given={Erwan},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=AB}{%
-         family={Abadie},
+  \entry{AbramskyCoecke08}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AS}{%
+         family={Abramsky},
          familyi={A\bibinitperiod},
-         given={Bastien},
+         given={Samson},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
          giveni={B\bibinitperiod},
       }}%
-      {{hash=SD}{%
-         family={Stutzmann},
-         familyi={S\bibinitperiod},
-         given={Dominique},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=KC}{%
-         family={Kermorvant},
-         familyi={K\bibinitperiod},
-         given={Christopher},
-         giveni={C\bibinitperiod},
-      }}%
     }
-    \keyw{Cultural differences,Feature extraction,Histograms,historical
-  documents,IIIF,Image classification,Image
-  recognition,Interoperability,Machine learning,Neural networks,Servers,Text
-  analysis}
-    \strng{namehash}{BE+1}
-    \strng{fullhash}{BETAREABSDKC1}
+    \keyw{Mathematics - Category Theory,Mathematics - Logic,Quantum Physics}
+    \strng{namehash}{ASCB1}
+    \strng{fullhash}{ASCB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelalpha}{Bor+19}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{booktitle}{International {{Conference}} on {{Document Analysis}} and
-  {{Recognition}}}
-    \verb{doi}
-    \verb 10.1109/ICDAR.2019.00126
+    \field{labelalpha}{AC08}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    This invited chapter in the Handbook of Quantum Logic and Quantum
+  Structures consists of two parts: 1. A substantially updated version of
+  quant-ph/0402130 by the same authors, which initiated the area of categorical
+  quantum mechanics, but had not yet been published in full length; 2. An
+  overview of the progress which has been made since then in this area.%
+    }
+    \verb{eprint}
+    \verb 0808.1023
     \endverb
-    \field{issn}{2379-2140}
-    \field{title}{Automatic Page Classification in a Large Collection of
-  Manuscripts Based on the International Image Interoperability Framework}
+    \field{title}{Categorical Quantum Mechanics}
     \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/775HV8VV/8978196.html
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/NAZCI32D/Abramsky and Coecke
+    \verb - 2008 - Categorical quantum mechanics.pdf;/Users/alexis.toumi/WORK/Z
+    \verb otero/storage/2JH64VTC/0808.html
     \endverb
-    \field{year}{2019}
+    \field{journaltitle}{arXiv:0808.1023 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{08}
+    \field{year}{2008}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
-  \entry{DelpeuchVicary18}{article}{}
+  \entry{DelpeuchVicary21}{article}{}
     \name{author}{2}{}{%
       {{hash=DA}{%
          family={Delpeuch},
@@ -96,39 +79,86 @@
          giveni={J\bibinitperiod},
       }}%
     }
-    \keyw{Computer Science - Logic in Computer Science}
+    \keyw{03D40; 18M30; 18N20,Mathematics - Category Theory}
     \strng{namehash}{DAVJ1}
     \strng{fullhash}{DAVJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelalpha}{DV18}
+    \field{labelalpha}{DV21}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \field{abstract}{%
-    In the graphical calculus of planar string diagrams, equality is generated
-  by exchange moves, which swap the heights of adjacent vertices. We show that
-  left- and right-handed exchanges each give strongly normalizing rewrite
-  strategies for connected string diagrams. We use this result to give a
-  linear-time solution to the equivalence problem in the connected case, and a
-  quadratic solution in the general case. We also giv a stronger proof of the
-  Joyal-Street coherence theorem, settling Selinger's conjecture on recumbent
-  isotopy.%
+    We show that the word problem for braided monoidal categories is at least
+  as hard as the unknotting problem. As a corollary, so is the word problem for
+  tricategories. We conjecture that the word problem for tricategories is
+  decidable.%
     }
     \verb{eprint}
-    \verb 1804.07832
+    \verb 2105.04237
     \endverb
-    \field{title}{Normalization for Planar String Diagrams and a Quadratic
-  Equivalence Algorithm}
+    \field{title}{The Word Problem for Braided Monoidal Categories Is
+  Unknot-Hard}
     \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/WNNFLY7K/Delpeuch and Vicary
-    \verb - 2018 - Normalization for planar string diagrams and a qua.pdf;/User
-    \verb s/alexis.toumi/WORK/Zotero/storage/5FUZB6YJ/1804.html
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/PSGDFHRH/Delpeuch and Vicary
+    \verb - 2021 - The word problem for braided monoidal categories i.pdf;/User
+    \verb s/alexis.toumi/WORK/Zotero/storage/K95CJ3J8/2105.html
     \endverb
-    \field{journaltitle}{arXiv:1804.07832 [cs]}
+    \field{journaltitle}{arXiv:2105.04237 [math]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{math}
+    \field{month}{05}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{DunnVicary19}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DL}{%
+         family={Dunn},
+         familyi={D\bibinitperiod},
+         given={Lawrence},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=VJ}{%
+         family={Vicary},
+         familyi={V\bibinitperiod},
+         given={Jamie},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science}
+    \strng{namehash}{DLVJ1}
+    \strng{fullhash}{DLVJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{DV19}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    We prove coherence theorems for Frobenius pseudomonoids and snakeorators in
+  monoidal bicategories. As a consequence we obtain a 3d notation for proofs in
+  nonsymmetric multiplicative linear logic, with a geometrical notion of
+  equivalence, and without the need for a global correctness criterion or
+  thinning links. We argue that traditional proof nets are the 2d projections
+  of these 3d diagrams.%
+    }
+    \verb{doi}
+    \verb 10.23638/LMCS-15(3:5)2019
+    \endverb
+    \verb{eprint}
+    \verb 1601.05372
+    \endverb
+    \field{title}{Coherence for {{Frobenius}} Pseudomonoids and the Geometry of
+  Linear Proofs}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/YN5JFS95/Dunn and Vicary - Co
+    \verb herence for Frobenius pseudomonoids and the geom.pdf;/Users/alexis.to
+    \verb umi/WORK/Zotero/storage/UFCQVVGU/1601.html
+    \endverb
+    \field{journaltitle}{arXiv:1601.05372 [cs]}
     \field{eprinttype}{arxiv}
     \field{eprintclass}{cs}
-    \field{month}{04}
-    \field{year}{2018}
+    \field{year}{2019}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
@@ -164,159 +194,106 @@
     \field{year}{1988}
   \endentry
 
-  \entry{VanDerWaltEtAl11}{article}{}
-    \name{author}{3}{}{%
-      {{hash=vS}{%
-         family={{van der Walt}},
-         familyi={v\bibinitperiod},
-         given={Stefan},
-         giveni={S\bibinitperiod},
+  \entry{Lambek99}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=LJ}{%
+         family={Lambek},
+         familyi={L\bibinitperiod},
+         given={Joachim},
+         giveni={J\bibinitperiod},
       }}%
-      {{hash=CSC}{%
-         family={Colbert},
-         familyi={C\bibinitperiod},
-         given={S.\bibnamedelima Chris},
-         giveni={S\bibinitperiod\bibinitdelim C\bibinitperiod},
+    }
+    \name{editor}{3}{}{%
+      {{hash=LA}{%
+         family={Lecomte},
+         familyi={L\bibinitperiod},
+         given={Alain},
+         giveni={A\bibinitperiod},
       }}%
-      {{hash=VG}{%
-         family={Varoquaux},
-         familyi={V\bibinitperiod},
-         given={Gael},
+      {{hash=F}{%
+         family={{Fran\c{c}ois Lamarche}},
+         familyi={F\bibinitperiod},
+      }}%
+      {{hash=PG}{%
+         family={Perrier},
+         familyi={P\bibinitperiod},
+         given={Guy},
          giveni={G\bibinitperiod},
       }}%
     }
-    \keyw{Arrays,Computational efficiency,data structures,Finite element
-  methods,high level language,high level languages,mathematics
-  computing,numerical analysis,Numerical analysis,numerical
-  computation,numerical computations,numerical data,NumPy,numpy
-  array,Performance evaluation,programming libraries,Python,Python programming
-  language,Resource management,scientific programming,Vector quantization}
-    \strng{namehash}{vSCSCVG1}
-    \strng{fullhash}{vSCSCVG1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{shorttitle}
-    \field{labelalpha}{vCV11}
-    \field{sortinit}{V}
-    \field{sortinithash}{V}
-    \field{abstract}{%
-    In the Python world, NumPy arrays are the standard representation for
-  numerical data and enable efficient implementation of numerical computations
-  in a high-level language. As this effort shows, NumPy performance can be
-  improved through three techniques: vectorizing calculations, avoiding copying
-  data in memory, and minimizing operation counts.%
+    \list{publisher}{1}{%
+      {{Springer Berlin Heidelberg}}%
     }
-    \verb{doi}
-    \verb 10.1109/MCSE.2011.37
-    \endverb
-    \field{issn}{1558-366X}
-    \field{number}{2}
-    \field{pages}{22\bibrangedash 30}
-    \field{shorttitle}{The {{NumPy Array}}}
-    \field{title}{The {{NumPy Array}}: {{A Structure}} for {{Efficient
-  Numerical Computation}}}
-    \field{volume}{13}
+    \strng{namehash}{LJ1}
+    \strng{fullhash}{LJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lam99}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    A protogroup is an ordered monoid in which each element a has both a left
+  proto-inverse a such that a a {$\leq$}1 and a right proto-inverse a r such
+  that aa r {$\leq$}1. We explore the assignment of elements of a free
+  protogroup to English words as an aid for checking which strings of words are
+  well-formed sentences, though ultimately we may have to relax the requirement
+  of freeness. By a pregroup we mean a protogroup which also satisfies 1
+  {$\leq$}aa and 1 {$\leq$}a r a, rendering a a left adjoint and a r a right
+  adjoint of a. A pregroup is precisely a poset model of classical
+  non-commutative linear logic in which the tensor product coincides with it
+  dual. This last condition is crucial to our treatment of passives and
+  Wh-questions, which exploits the fact that a {$\neq$}a in general. Free
+  pregroups may be used to recognize the same sentences as free protogroups.%
+    }
+    \field{booktitle}{Logical {{Aspects}} of {{Computational Linguistics}}}
+    \field{isbn}{978-3-540-48975-7}
+    \field{pages}{1\bibrangedash 27}
+    \field{title}{Type {{Grammar Revisited}}}
+    \list{location}{1}{%
+      {{Berlin, Heidelberg}}%
+    }
     \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/CRTCGGNW/van der Walt et al.
-    \verb - 2011 - The NumPy Array A Structure for Efficient Numeric.pdf;/Users
-    \verb /alexis.toumi/WORK/Zotero/storage/ARPJJCME/5725236.html
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/AHTBSTHT/Lambek - 1999 - Type
+    \verb  Grammar Revisited.pdf
     \endverb
-    \field{journaltitle}{Computing in Science Engineering}
-    \field{month}{03}
-    \field{year}{2011}
+    \field{year}{1999}
   \endentry
 
-  \entry{WaltEtAl14}{article}{}
-    \name{author}{8}{}{%
-      {{hash=vdWS}{%
-         prefix={van\bibnamedelima der},
-         prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod},
-         family={Walt},
-         familyi={W\bibinitperiod},
-         given={St{\'e}fan},
-         giveni={S\bibinitperiod},
+  \entry{PrellerLambek07}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PA}{%
+         family={Preller},
+         familyi={P\bibinitperiod},
+         given={Anne},
+         giveni={A\bibinitperiod},
       }}%
-      {{hash=SJL}{%
-         family={Sch{\"o}nberger},
-         familyi={S\bibinitperiod},
-         given={Johannes\bibnamedelima L.},
-         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
-      }}%
-      {{hash=NJ}{%
-         family={{Nunez-Iglesias}},
-         familyi={N\bibinitperiod},
-         given={Juan},
+      {{hash=LJ}{%
+         family={Lambek},
+         familyi={L\bibinitperiod},
+         given={Joachim},
          giveni={J\bibinitperiod},
       }}%
-      {{hash=BF}{%
-         family={Boulogne},
-         familyi={B\bibinitperiod},
-         given={Fran{\c c}ois},
-         giveni={F\bibinitperiod},
-      }}%
-      {{hash=WJD}{%
-         family={Warner},
-         familyi={W\bibinitperiod},
-         given={Joshua\bibnamedelima D.},
-         giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=YN}{%
-         family={Yager},
-         familyi={Y\bibinitperiod},
-         given={Neil},
-         giveni={N\bibinitperiod},
-      }}%
-      {{hash=GE}{%
-         family={Gouillart},
-         familyi={G\bibinitperiod},
-         given={Emmanuelle},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=YT}{%
-         family={Yu},
-         familyi={Y\bibinitperiod},
-         given={Tony},
-         giveni={T\bibinitperiod},
-      }}%
     }
-    \list{publisher}{1}{%
-      {{PeerJ Inc.}}%
-    }
-    \strng{namehash}{WSvd+1}
-    \strng{fullhash}{WSvdSJLNJBFWJDYNGEYT1}
+    \strng{namehash}{PALJ1}
+    \strng{fullhash}{PALJ1}
     \field{labelnamesource}{author}
-    \field{labeltitlesource}{shorttitle}
-    \field{labelalpha}{Wal+14}
-    \field{sortinit}{W}
-    \field{sortinithash}{W}
-    \field{abstract}{%
-    scikit-image is an image processing library that implements algorithms and
-  utilities for use in research, education and industry applications. It is
-  released under the liberal Modified BSD open source license, provides a
-  well-documented API in the Python programming language, and is developed by
-  an active, international team of collaborators. In this paper we highlight
-  the advantages of open source to achieve the goals of the scikit-image
-  library, and we showcase several real-world image processing applications
-  that use scikit-image. More information can be found on the project homepage,
-  http://scikit-image.org.%
-    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{PL07}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
     \verb{doi}
-    \verb 10.7717/peerj.453
+    \verb 10.1017/S0960129506005901
     \endverb
-    \field{issn}{2167-8359}
-    \field{pages}{e453}
-    \field{shorttitle}{Scikit-Image}
-    \field{title}{Scikit-Image: Image Processing in {{Python}}}
-    \field{volume}{2}
-    \field{langid}{english}
+    \field{number}{2}
+    \field{pages}{309\bibrangedash 340}
+    \field{title}{Free Compact 2-Categories}
+    \field{volume}{17}
     \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/788ZHGV5/vanderwalt2014.pdf.p
-    \verb df;/Users/alexis.toumi/WORK/Zotero/storage/NKV3C7LK/Walt et al. - 201
-    \verb 4 - scikit-image image processing in Python.pdf;/Users/alexis.toumi/W
-    \verb ORK/Zotero/storage/CL4PCKN9/453.html
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/Q5TPTR7D/Preller and Lambek -
+    \verb  2007 - Free compact 2-categories.pdf
     \endverb
-    \field{journaltitle}{PeerJ}
-    \field{month}{06}
-    \field{year}{2014}
+    \field{journaltitle}{Mathematical Structures in Computer Science}
+    \field{year}{2007}
   \endentry
 \enddatalist
 \endinput

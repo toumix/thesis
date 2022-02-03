@@ -1,0 +1,30 @@
+\begin{tikzpicture}[baseline=(0.base), scale=2]
+\begin{pgfonlayer}{nodelayer}
+\node (0) at (0, 1.0) {};
+\node [] (1) at (2.0, 2.0) {};
+\node [] (2) at (2.0, 0.75) {};
+\node [style=none, fill=white, right] (3) at (2.2, 2.0) {$x$};
+\node [] (4) at (0.5, 1.5) {};
+\node [] (5) at (0.0, 1.25) {};
+\node [] (6) at (1.0, 1.25) {};
+\node [] (7) at (0.0, 0.0) {};
+\node [style=none, fill=white, right] (8) at (0.2, 1.05) {$x$};
+\node [] (9) at (1.0, 0.75) {};
+\node [style=none, fill=white, right] (10) at (1.2, 1.05) {$x^l$};
+\node [] (11) at (1.5, 0.5) {};
+\node [style=none, fill=white] (12) at (3.2, 1.0) {$=$};
+\node [] (13) at (4.2, 2.0) {};
+\node [] (14) at (4.2, 0.0) {};
+\node [style=none, fill=white, right] (15) at (4.4, 2.0) {$x$};
+\end{pgfonlayer}
+\begin{pgfonlayer}{edgelayer}
+\draw [in=90, out=-90] (1.center) to (2.center);
+\draw [in=90, out=180, looseness=0.9391] (4.center) to (5.center);
+\draw [in=90, out=0, looseness=0.9391] (4.center) to (6.center);
+\draw [in=90, out=-90] (5.center) to (7.center);
+\draw [in=90, out=-90] (6.center) to (9.center);
+\draw [in=180, out=-90, looseness=0.9391] (9.center) to (11.center);
+\draw [in=0, out=-90, looseness=0.9391] (2.center) to (11.center);
+\draw [in=90, out=-90] (13.center) to (14.center);
+\end{pgfonlayer}
+\end{tikzpicture}

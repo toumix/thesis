@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\section{Diagrams in Python}
+\section{Diagrams in Python} \label{section:monoidal}
 
 \subsection{Abstract monoidal categories}
 
@@ -55,7 +55,7 @@ The states can be identified with elements and discarding is the only effect.
 $\mathbf{FinSet}$ is also monoidal with the empty set $0$ as unit and disjoint union as tensor.
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:endofunctors are monoidal}
 For any category $C$, there is a monoidal category $C^C$ where the objects are enfodunctors with composition as tensor and the arrows are natural transformations $\alpha : F \to F'$, $\beta : G \to G'$ with vertical composition $(\alpha \otimes \beta)(x) : G(F(x)) \to G'(F'(x))$ as tensor.
 \end{example}
 
@@ -261,9 +261,16 @@ For the composition of two scalars $a : 1 \to 1$ and $b : 1 \to 1$, we can apply
 Delpeuch and Vicary~\cite{DelpeuchVicary18} give a quadratic solution to the word problem for free monoidal categories, i.e. deciding when two diagrams are equal.
 
 \begin{theorem}[\cite{DelpeuchVicary18}]
+\label{theorem:monoidal-normal-form}
 The equality of diagrams is decidable in linear time in the connected case, and quadratic in the general case.
 The right interchanger is confluent and for connected diagrams, i.e. when the Eckmann-Hilton argument does not apply, it reaches a normal form in a cubic number of steps.
 \end{theorem}
+
+\begin{proof}
+The linear-time algorithm for the connected case works by reduction to isomorphism of planar maps.
+In the general case, computing the tree of connected components of the diagram takes quadratic time.
+The cubic worst-case for normal forms is given in example~\ref{example:spiral}.
+\end{proof}
 
 We have defined the equality of diagrams, there remains to define the tensor operation.
 First, we define the \emph{whiskering} $f \otimes z$ of a diagram $f$ by an object $z \in \Sigma_0^\star$ on the right: we tensor $z$ to the right-hand side of each layer $(x_i, f_i, y_i)$, i.e. $f \otimes z = (x_1, f_1, y_1 z) \fcmp \dots \fcmp (x_n, f_n, y_n z)$ and symmetrically for the whiskering $z \otimes f$ on the left.
@@ -281,8 +288,8 @@ In the next section, we will show that this construction is in fact equivalent t
 {\normalfont Outline of the class \py{monoidal.Ty}.}
 \begin{minted}{python}
 class Ty(Ob):
-    def __init__(self, objects: list[Ob | str]):
-        self.objects = [x if isinstance(x, Ob) else Ob(x) for x in objects]
+    def __init__(self, objects: list[Ob | str] = None):
+        self.objects = [x if isinstance(x, Ob) else Ob(x) for x in objects or []]
         super().__init__("{}".format(' @ '.join([x.name for x in self.objects])))
 
     @classmethod
@@ -299,6 +306,7 @@ class Ty(Ob):
     __matmul__ = tensor
     __getitem__ = lambda self, key: self.upgrade(Ty([self.objects[key]]))
     __pow__ = lambda self, n: self.upgrade(Ty(n * self.objects))
+    __len__ = lambda self: len(self.objects)
 \end{minted}
 \end{python}
 
@@ -654,7 +662,7 @@ Finally, the return value of the decorated function is taken as the codomain of 
 \begin{python}\label{listing:diagram2graph}
 {\normalfont Translation from \py{Diagram} to \py{Graph}.}
 
-We use the graph data structure from \py{networkx}~\cite{HagbergEtAl08}.
+We use the graph data structure from NetworkX~\cite{HagbergEtAl08}.
 
 \begin{minted}{python}
 from networkx import Graph
