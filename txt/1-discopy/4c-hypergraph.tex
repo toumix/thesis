@@ -1,0 +1,35 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Hypergraph categories \& wire splitting} \label{subsection:hypergraph}
+
+With compact closed and tortile categories, we have removed both the progressivity and the planarity assumptions: wires can bend and cross.
+We now remove the assumption that diagrams are graphs, i.e. wires can split and merge, they need not be homeomorphic to an open interval.
+
+A \emph{hypergraph category} is a symmetric category equipped with a (non-natural) transformation $\spider_{a, b}(x) : x^a \to x^b$ for every pair of natural numbers $a, b \in \N$, such that the following axioms hold:
+\begin{itemize}
+\item spider fusion $\spider_{a, c + 1}(x) \otimes x^b \ \fcmp \ x^c \otimes \spider_{1 + c, d}(x)
+\s = \s \spider_{a + b, c + d}$,
+\item (co)commutativity $\spider_{a + b, c + d}(x) \ \fcmp \ S(x^c, x^d)
+\s = \s \spider_{a + b, c + d}(x) \s = \s
+S(x^a, x^b) \ \fcmp \ \spider_{a + b, c + d}(x)$,
+\item coherence $\spider_{a, b}(1) = \id(1)$ and $\spider_{1, 2}(x \otimes y) \s = \s \spider_{1, 2}(x) \otimes \spider_{1, 2}(y) \ \fcmp \ x \otimes S(x, y) \otimes y$.
+\end{itemize}
+A hypergraph functor is a symmetric functor $F : C \to D$ between hypergraph categories such that $F \fcmp \spider_{a, b} = \spider_{a, b} \fcmp F$, thus we get a category $\mathbf{HypCat}$.
+A $\dagger$-hypergraph category is both a $\dagger$-symmetric category and a hypergraph category such that $\dagger \fcmp \spider_{m,n} = \spider_{n, m} \fcmp \dagger$.
+A $\dagger$-hypergraph functor is both a hypergraph functor and a dagger functor.
+
+The spiders owe their name to their arachnomorphic drawing, for example $\spider_{2, 6}$ is drawn as a node (the head) and its wires (the eight legs of the spider, two of them menacing us):
+\ctikzfig{img/hypergraph/spider}
+Once we draw the diagrams, spider fusion says that if two spider touch, they fuse.
+\ctikzfig{img/hypergraph/spider-fusion}
+The (co)commutativity axioms say that we can swap the legs of spiders.
+% \ctikzfig{img/hypergraph/co-commutativity}
+
+Finally, the coherence axioms give us an inductive definition of spiders for composite types: the spiders of the unit are the identity, the spiders of a tensor $x \otimes y$ are given by tensoring the spiders for $x$ and $y$ then swapping their legs to match the types.
+The first coherence axiom would be drawn as the equality of two empty diagrams, we can draw the second with non-free-on-objects diagrams, i.e. with explicit equality boxes.
+% \ctikzfig{img/hypergraph/coherence}
+
+Thus, we can take the data for a free-on-objects hypergraph category $C$ to be that of a foo-monoidal category together with a function $\spider_{a, b} : C_0 \to C_1$.
+Once we fix the spiders for generating objects, the spiders for any type (i.e. list of objects) is fixed.
+
+WTF

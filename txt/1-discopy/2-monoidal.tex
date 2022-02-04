@@ -444,11 +444,15 @@ It overrides the \py{__call__} method to define the image of types and layers, a
 {\normalfont Outline of the class \py{monoidal.Functor}.}
 \begin{minted}{python}
 class Functor(cat.Functor):
+    ob_factory, ar_factory = Ty, Diagram
+
     def __call__(self, other):
         if isinstance(other, Ty):
-            return self.ob_factory([self(x) for x in other.objects])
+            return self.ob_factory(sum([self(x) for x in other.objects], []))
         if isinstance(other, Ob):
-            return self.ob[other] if other in self.ob else self.ob[Ty(other)]
+            result = self.ob[other] if other in self.ob else self.ob[Ty(other)]
+            if isinstance(result, self.ob_factory): return result
+            return self.ob_factory([result])  # Allows some nice syntactic sugar.
         if isinstance(other, Layer):
             left, box, right = other
             id_left, id_right = map(other.id, (left, right))

@@ -361,10 +361,10 @@ class Functor:
     def __call__(self, other):
         if isinstance(other, Ob): return self.ob[other]
         if isinstance(other, Box):
-            result = self.ar[other]  # This will allow some nice syntactic sugar.
-            if not isinstance(result, self.ar_factory):
-                result = self.ar_factory(result, self(other.dom), self(other.cod))
-            return result
+            result = self.ar[other]
+            if isinstance(result, self.ar_factory): return result
+            # This allows some nice syntactic sugar.
+            return self.ar_factory(result, self(other.dom), self(other.cod))
         if isinstance(other, Arrow):
             return self.ar_factory.id(self(other.dom)).then(
                 *self(box) for box in other.boxes)

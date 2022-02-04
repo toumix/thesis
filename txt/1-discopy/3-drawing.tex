@@ -56,7 +56,7 @@ From an lgpp (\emph{labeled generic progressive plane}) graph, one can construct
 \hrule
 \end{python}
 
-\subsection{From diagrams to graphs...}
+\subsection{From diagrams to graphs and back}
 
 In the other direction, there are many possible ways to draw a given \py{Diagram} as a lgpp graph, i.e. to embed its graph into the plane.
 Vicary and Delpeuch \cite{DelpeuchVicary18} give a linear-time algorithm to compute such an embedding with the following disadvantage: the drawing of a tensor $f \otimes g$ does not necessarily look like the horizontal juxtaposition of the drawings for $f$ and $g$.
@@ -253,8 +253,6 @@ Indeed, we have:
 Moreover, the horizontal coordinates of the nodes in \py{scan} are strictly increasing,
 thus we get the desired \py{offsets == self.offsets + [len(left)]}.
 \end{proof}
-
-\subsection{...and back!}
 
 From a labeled generic progressive plane graph, we get a unique diagram \emph{up to deformation}.
 A deformation $h : G \to G'$ between two labeled plane graphs $G, G'$ is a continuous map $h : G \times [0, 1] \to \R \times \R$ such that:
@@ -597,7 +595,7 @@ Our simple algorithm is robust to any deformation of lgpp graph, but there is mu
 The easiest assumption to remove is genericity, i.e. boxes need not be at distinct heights.
 Non-generic progressive plane graphs, i.e. with potentially horizontal wires between boxes at the same height, have been characterised as the arrows of free \emph{double categories}.
 Delpeuch~\cite{Delpeuch20} shows how they can be encoded as lgpp graphs with an extra label on each wire for whether it is horizontal or vertical.
-We can also remove the progressive assumption, i.e. wires can bend backwards.
+We can also remove the progressivity assumption, i.e. wires can bend backwards.
 We have two options: either a) we write a geometric algorithm than can find the endpoints of any bended wire, or b) we train another neural network to detect each point of non-progressivity, i.e. the cups and caps where the vertical derivative of a wire changes sign.
 Such non-progressive plane graphs can be encoded as lgpp graphs with \emph{cups and caps boxes}, they are the arrows of free \emph{pivotal categories} which we discuss in section~\ref{subsection:rigid}.
 
