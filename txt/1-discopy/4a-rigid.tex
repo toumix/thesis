@@ -6,15 +6,11 @@ In sections~\ref{section:cat} and \ref{section:monoidal} we discussed the fundam
 The definition of left and right adjoints in terms of unit and counit natural transformations makes sense in $\mathbf{Cat}$, but it can be translated in the context of any monoidal category $C$.
 An object $x^l \in C_0$ is the left adjoint of $x \in C_0$ whenever there are two arrows $\ttcup(x) : x^l \otimes x \to 1$ and $\ttcap(x) : 1 \to x \otimes x^l$ (also called counit and unit) such that:
 \begin{itemize}
-\item $\ttcap(x) \otimes x \s \fcmp \s x \otimes \ttcup(x) \quad = \quad \id(x)$,
-\item $x^l \otimes \ttcap(x) \s \fcmp \s \ttcup(x) \otimes x^l \quad = \quad \id(x^l)$
+\item $\ttcap(x) \otimes x \ \fcmp \ x \otimes \ttcup(x) \s = \s \id(x)$,
+\ctikzfig{img/rigid/snake-left}
+\item $x^l \otimes \ttcap(x) \ \fcmp \ \ttcup(x) \otimes x^l \s = \s \id(x^l)$.
+\ctikzfig{img/rigid/snake-right}
 \end{itemize}
-These are called the \emph{snake equations} because they are drawn as follows.
-\begin{center}
-\tikzfig{img/rigid/snake-left}
-\hspace{10pt} and \hspace{10pt}
-\tikzfig{img/rigid/snake-right}
-\end{center}
 This is equivalent to the condition that the functor $x^l \otimes - : C \to C$ is the left adjoint of $x \otimes - : C \to C$.
 Symmetrically, $x^r \in C_0$ is the right-adjoint of $x \in C_0$ if $x$ is its left adjoint.
 We say that $C$ is \emph{rigid} (also called \emph{autonomous}) if every object has a left and right adjoint.
@@ -25,12 +21,17 @@ From this definition we can deduce a number of properties:
     \item left and right adjoints cancel, i.e. $(x^l)^r \simeq x \simeq (x^r)^l$,
 \end{itemize}
 We say that $C$ is strictly rigid whenever these isomorphisms are in fact equalities, again one can show that any rigid category is monoidally equivalent to a strict one.
-One can also show that cups and caps compose by nesting, i.e.
+One can also show that cups and caps compose by nesting:
 \begin{itemize}
-    \item $\ttcup(x \otimes y) = y^l \otimes \ttcup(x) \otimes y \s \fcmp \s \ttcup(y)$,
-    \item $\ttcap(x \otimes y) = \ttcap(x) \s \fcmp \s x \otimes \ttcap(y) \otimes x^l$,
-    \item and $\ttcup(1) = \ttcap(1) = \id(1)$.
+\item $\ttcup(x \otimes y) \quad = \quad y^l \otimes \ttcup(x) \otimes y \s \fcmp \s \ttcup(y)$,
+\ctikzfig{img/rigid/nesting-cups}
+\item $\ttcap(x \otimes y) \quad = \quad \ttcap(x) \s \fcmp \s x \otimes \ttcap(y) \otimes x^l$,
+\ctikzfig{img/rigid/nesting-caps}
+\item and $\ttcup(1) \quad = \quad \ttcap(1) \quad = \quad \id(1)$.
 \end{itemize}
+The first two equations are drawn as diagrams in a non-foo monoidal category, i.e. with wire for composite types and explicit boxes for equality.
+The last two equations would be drawn as the equality of three empty diagrams.
+This can be taken as an inductive definition, once we have defined the cups and caps for generating objects, we have defined them for all types.
 Thus, we can take the data for a (strictly) rigid category $C$ to be that of a free-on-objects monoidal category together with:
 \begin{itemize}
     \item a pair of unary operators $(-)^l, (-)^r : C_0 \to C_0$ on generating objects,
@@ -38,7 +39,6 @@ Thus, we can take the data for a (strictly) rigid category $C$ to be that of a f
 \end{itemize}
 Diagrams in rigid categories are more flexible than monoidal categories: we can bend wires.
 They owe their name to the fact that they are less flexible than \emph{pivotal categories}.
-
 For any rigid category $C$, there are two contravariant endofunctors, called the left and right \emph{transpose} respectively.
 They send objects to their left and right adjoints, and each arrow $f : x \to y$ to
 \begin{center}
@@ -54,17 +54,17 @@ When this is the case, $C$ is called $\dagger$-pivotal.
 \begin{example}
 Recall from example~\ref{example:endofunctors are monoidal} that for any category $C$, the category $C^C$ of endofunctors and natural transformations is monoidal.
 Its subcategory with endofunctors that have both left and right adjoints is rigid.
+Its subcategory with endofunctors that have equal left and right adjoints is pivotal.
 \end{example}
 
 \begin{example}
-The foo-monoidal category $\mathbf{Tensor}_\S$ (with lists of natural numbers as objects and tensors as arrows) is $\dagger$-pivotal.
-Left and right adjoints are given by list reversal, cups and caps by the Kronecker delta $\ttcup(n)(i, j) = \ttcap(n)(i, j) = 1$ if $i = j$ else $0$.
+$\mathbf{Tensor}_\S$ is $\dagger$-pivotal with left and right adjoints given by list reversal, cups and caps by the Kronecker delta $\ttcup(n)(i, j) = \ttcap(n)(i, j) = 1$ if $i = j$ else $0$.
 Note that for tensors of order greater than 2, the \emph{diagrammatic transpose} defined in this way differs from the usual \emph{algebraic transpose}: the former reverses list order while the latter is the identity on objects.
 \end{example}
 
 \begin{example}
-The foo-monoidal category $\mathbf{Circ}$ is $\dagger$-pivotal with the preparation of the Bell state as cap and the post-selected Bell measurement as cup (both are scaled by $\sqrt{2}$).
-The snake equations yield a proof of correctness for the (post-selected) quantum teleportation protocol: this is the first result of categorical quantum mechanics~\cite{AbramskyCoecke08}.
+$\mathbf{Circ}$ is $\dagger$-pivotal with the preparation of the Bell state as cap and the post-selected Bell measurement as cup (both are scaled by $\sqrt{2}$).
+The snake equations yield a proof of correctness for the (post-selected) quantum teleportation protocol.
 \end{example}
 
 \begin{example}
@@ -110,8 +110,8 @@ class Ob(cat.Ob):
         return old if isinstance(old, cls) else cls(str(old), z=0)
 
 class Ty(monoidal.Ty, Ob):
-    def __init__(self, objects: list[Ob | str] = None):
-        monoidal.Ty.__init__(self, objects=map(Ob.upgrade, objects or []))
+    def __init__(self, objects=[]):
+        monoidal.Ty.__init__(self, objects=map(Ob.upgrade, objects))
 
     l = property(lambda self: self.upgrade(Ty(*[x.l for x in self.objects[::-1]])))
     r = property(lambda self: self.upgrade(Ty(*[x.r for x in self.objects[::-1]])))
@@ -119,7 +119,7 @@ class Ty(monoidal.Ty, Ob):
 \end{python}
 
 \begin{example}
-We can check that \py{Ty} satisfies the axioms for objects in strictly rigid categories.
+We can check the axioms for objects in rigid categories hold on the nose.
 
 \begin{minted}{python}
 x, y = Ty('x'), Ty('y')
@@ -134,28 +134,15 @@ Thanks to the \py{upgrade} method, we do not need to override the \py{tensor} me
 In turn, subclasses of \py{rigid.Ty} will not need to override \py{l} and \py{r}.
 Similarly, the \py{rigid.Diagram} class is a subclass of \py{monoidal.Diagram}, thanks to the \py{upgrade} we do not need to reimplement the identity, composition or tensor.
 \py{rigid.Box} is a subclass of \py{monoidal.Box} and \py{rigid.Diagram}, with \py{Box.upgrade = Diagram.upgrade}.
-We need to be careful with the order of inheritance however, diagram equality is defined in terms of box equality, so if we had \py{Box.__eq__ = Diagram.__eq__} then checking equality would enter an infinite loop.
-\py{Cup} (\py{Cap}) is a subclass of \py{Box} initialised by a pair of types of length one \py{x} and \py{y} such that \py{x == y.l} (\py{x.l == y}, respectively).
-They are attached to the diagram class with \py{Diagram.cup, Diagram.cap = Cup, Cap}.
-The class methods \py{cups} and \py{caps} construct cups and caps for arbitrary types by repeated calls to \py{cup} and \py{cap}.
-Thus, when we define a subclass of \py{Diagram}, we only need to define \py{cup} and \py{cap} on generating objects and \py{cups} and \py{caps} will be defined for all types by induction.
+\py{Cup} (\py{Cap}) is a subclass of \py{Box} initialised by a pair of types \py{x, y} such that \py{len(x) == len(y) == 1} \py{x == y.l} (\py{x.l == y}, respectively).
+The class methods \py{cups} and \py{caps} construct diagrams of nested cups and caps by induction, with \py{Cup} and \py{Cap} as a base case.
 
 \begin{python}
 {\normalfont Implementation of the arrows of free rigid categories.}
 
 \begin{minted}{python}
 class Diagram(monoidal.Diagram):
-    @classmethod
-    def cups(cls, x, y):
-        if len(x) == 0: return cls.id(Ty())
-        if len(x) == 1: return cls.cup(x, y)
-        return self.id(x[0]) @ cls.cups(x[1:], y[:-1]) @ self.id(y[-1])\
-            >> cls.cup(x[0], y[-1])
-
-    @classmethod
-    def caps(cls, x, y): ...  # Symmetric to cups.
-
-    def transpose(self, left=True):
+    def transpose(self, left=True) -> Diagram:
         if left: ... # Symmetric to the right case.
         return self.caps(self.dom.r, self.dom) @ self.id(self.cod.r)\
             >> self.id(self.dom.r) @ self @ self.id(self.cod.r)\
@@ -165,16 +152,26 @@ class Box(monoidal.Box, Diagram):
     upgrade = Diagram.upgrade
 
 class Cup(Box):
-    def __init__(self, x, y):
+    def __init__(self, x: Ty, y: Ty):
         assert len(x) == 1 and x == y.l
         super().__init__("Cup({}, {})".format(x, y), x @ y, Ty())
 
 class Cap(Box):
-    def __init__(self, x, y):
+    def __init__(self, x: Ty, y: Ty):
         assert len(x) == 1 and x.l == y
         super().__init__("Cap({}, {})".format(x, y), Ty(), x @ y)
 
-Diagram.cup, Diagram.cap = Cup, Cap
+def nesting(box_factory):
+    @classmethod
+    def method(cls, x: Ty, y: Ty) -> Diagram:
+        if len(x) == 0: return cls.id(Ty())
+        if len(x) == 1: return box_factory(x, y)
+        head = box_factory(x[0], y[-1])
+        if head.dom:  # We are nesting cups.
+            return x[0] @ method(x[1:], y[:-1]) @ y[-1] >> head
+        return head >> x[0] @ method(x[1:], y[:-1]) @ y[-1]
+
+Diagram.cups, Diagram.caps = nesting(Cup), nesting(Cap)
 \end{minted}
 \end{python}
 
@@ -215,16 +212,25 @@ Diagram.normal_form = lambda self:\
 We can check that the snake equations hold up to normal form.
 
 \begin{minted}{python}
-left_snake = Cap(x, x.l) @ x >> x @ Cup(x.l, x)
-right_snake = x.l @ Cap(x, x.l) >> Cup(x.l, x) @ x.l
+t = x @ y
 
-assert left_snake.normal_form() == Diagram.id(x)\
-    and right_snake.normal_form() == Diagram.id(x.l)
+left_snake = Diagram.id(t.l).transpose(left=False)
+right_snake = Diagram.id(t).transpose(left=True)
+
+assert left_snake.normal_form() == Diagram.id(t)\
+    and right_snake.normal_form() == Diagram.id(t.l)
+
+drawing.equation(
+    drawing.Equation(left_snake, Diagram.id(t)),
+    drawing.Equation(right_snake, Diagram.id(t.l)),
+    symbol='and', space=2, draw_type_labels=False)
 \end{minted}
+
+\ctikzfig{img/rigid/double-snake-equation}
 \end{example}
 
 \begin{example}
-We can check that left and right transpose cancel.
+We can check that left and right transpose cancel up to normal form.
 
 \begin{minted}{python}
 f = Box('f', x, y)
@@ -247,8 +253,8 @@ class Qubits(monoidal.Qubits, Ty):
     l = r = property(lambda self: self)
 
 class Circuit(monoidal.Circuit, Diagram):
-    cup = lambda _, _: sqrt2 @ Ket(0, 0) >> H @ Id
-    cap = lambda x, y: Circuit.cap(x, y).dagger()
+    cups = nesting(lambda _, _: sqrt2 @ Ket(0, 0) >> H @ Id)
+    caps = lambda x, y: Circuit.cups(x, y).dagger()
 \end{minted}
 \end{python}
 
@@ -269,26 +275,26 @@ assert (two_qubit_Bell_state @ Id @ Id >> Id @ Id @ two_qubit_Bell_effect).eval(
 The image on types and on objects \py{x} with \py{x.z == 0} remains unchanged.
 The image on objects \py{x} with \py{x.z < 0} is defined by \py{F(x) = F(x.r).l} and symmetrically for \py{x.z > 0}.
 Indeed, when defining a strict rigid functor we only need to define the image of basic types, the image of their iterated adjoints is completely determined.
-The only problem arises when \py{ob_factory} does not have \py{l} and \py{r} attributes, such as the implementation of $\mathbf{Tensor}_\S$ with \py{list[int]} as objects.
+The only problem arises when the objects in the codomain do not have \py{l} and \py{r} attributes, such as the implementation of $\mathbf{Tensor}_\S$ with \py{list[int]} as objects.
 In this case, we assume that the left and right adjoints are given by list reversal.
 
 \begin{python}
 {\normalfont Implementation of strict rigid functors.}
 \begin{minted}{python}
 class Functor(monoidal.Functor):
-    ob_factory, ar_factory = Ty, Diagram
+    dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):
         if isinstance(other, Ty) or isinstance(other, Ob) and other.z == 0:
             return super().__call__(other)
         if isinstance(other, Ob):
-            if not hasattr(self.ob_factory, 'l' if other.z < 0 else 'r'):
+            if not hasattr(self.cod.ob, 'l' if other.z < 0 else 'r'):
                 return self(Ob(other.name, z=0))[::-1]
             return self(other.r).l if other.z < 0 else self(other.l).r
         if isinstance(other, Cup):
-            return self.ar_factory.cups(self(other.dom[:1]), self(other.dom[1:]))
+            return self.cod.ar.cups(self(other.dom[:1]), self(other.dom[1:]))
         if isinstance(other, Cap):
-            return self.ar_factory.caps(self(other.dom[:1]), self(other.dom[1:]))
+            return self.cod.ar.caps(self(other.dom[:1]), self(other.dom[1:]))
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -307,7 +313,7 @@ We can check that $\mathbf{Tensor}_\S$ is indeed pivotal.
 \begin{minted}{python}
 F = Functor(
     ob={x: 2, y: 3}, ar={f: [[1, 2, 3], [4, 5, 6]]}
-    ob_factory=list[int], ar_factory=Tensor[int])
+    cod=Category(list[int], Tensor[int]))
 
 assert F(left_snake) == F(Diagram.id(x)) == F(right_snake)
 assert F(f.transpose(left=True)) == F(f).transpose() == F(f.transpose(left=False))
@@ -319,10 +325,13 @@ assert F(f @ f).transpose() != F((f @ f).transpose())
 
 Free pivotal categories are defined in a similar way to free rigid categories, with the two-element field $\Z / 2 \Z$ instead of the integers $\Z$, i.e. simple types with adjunction numbers of the same parity are equal.
 Given a pivotal signature $\Sigma$ with objects of the form $\Sigma_0 \times (\Z / 2 \Z)$, the free pivotal category is the quotient $F^p(\Sigma) = F^r(\Sigma) / R$ of the free rigid category by the relation $R$ equating the left and right transpose of the identity for each type.
+While the diagrams of free rigid categories can have snakes, those of free pivotal categories can have circles: we can compose $\cap(x) : 1 \to x^l \otimes x$ then $\cup(x^l) : x^l \otimes (x^l)^l = x^l \otimes x$ to form a scalar diagram called the \emph{dimension} of the system $x$.
+
+To the best of our knowledge, the word problem for pivotal categories is still open.
 When defining the normal form of pivotal diagrams, we would need to make a choice between the diagrams for left or right transpose of a box.
 Another solution is to add a new box $f^T : y^r \to x^r$ for the transpose of every box $f : x \to y$ in the signature, and set it as the normal form of both diagrams.
 We can add some asymmetry to the drawing of the box $f$, and draw $f^T$ as its 180° degree rotation.
-If the category also has a dagger, we get a four-fold symmetry on each box: itself, its dagger, its transpose and its dagger-transpose (also called its conjugate).
+If the category also has a dagger, we get a four-fold symmetry: the box, its dagger, its transpose and its dagger-transpose (also called its conjugate).
 This is still being developed by the DisCoPy community.
 
 \begin{python}
@@ -333,8 +342,8 @@ class Ob(rigid.Ob):
     l = r = property(lambda self: self.upgrade(Ob(self.name, (self.z + 1) % 2)))
 
 class Ty(rigid.Ty, Ob):
-    def __init__(self, objects: list[Ob | str] = None):
-        monoidal.Ty.__init__(self, objects=map(Ob.upgrade, objects or []))
+    def __init__(self, objects=[]):
+        rigid.Ty.__init__(self, objects=map(Ob.upgrade, objects))
 
 class Diagram(rigid.Diagram): pass
 
@@ -349,9 +358,9 @@ class Cap(rigid.Cap, Box):
     def dagger(self):
         return Cup(self.cod[0], self.cod[1])
 
-Diagram.cup, Diagram.cap = Cup, Cap
+Diagram.cups, Diagram.caps = nesting(Cup), nesting(Cap)
 
 class Functor(rigid.Functor):
-    ob_factory, ar_factory = Ty, Diagram
+    dom = cod = Category(Ty, Diagram)
 \end{minted}
 \end{python}

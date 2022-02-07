@@ -3,31 +3,60 @@
 \subsection{Hypergraph categories \& wire splitting} \label{subsection:hypergraph}
 
 With compact closed and tortile categories, we have removed both the progressivity and the planarity assumptions: wires can bend and cross.
-We now remove the assumption that diagrams are graphs, i.e. wires can split and merge, they need not be homeomorphic to an open interval.
+With \emph{hypergraph categories} now remove the assumption that diagrams are graphs, i.e. wires can split and merge, they need not be homeomorphic to an open interval.
 
-A \emph{hypergraph category} is a symmetric category equipped with a (non-natural) transformation $\spider_{a, b}(x) : x^a \to x^b$ for every pair of natural numbers $a, b \in \N$, such that the following axioms hold:
+The data for a hypergraph category is that of a symmetric category together with a \emph{spider} (non-natural) transformation $\spider_{a, b}(x) : x^a \to x^b$ for every pair of natural numbers $a, b \in \N$.
+Spiders owe their name to their arachnomorphic drawing, for example $\spider_{2, 6}$ is drawn as a node (the head) and its wires (the eight legs of the spider, two of them menacing us):
+\ctikzfig{img/hypergraph/spider}
+The axioms for hypergraph categories are the following \emph{spider fusion} and \emph{(co)-commutativity} equations:
 \begin{itemize}
-\item spider fusion $\spider_{a, c + 1}(x) \otimes x^b \ \fcmp \ x^c \otimes \spider_{1 + c, d}(x)
+\item $\spider_{a, c + n}(x) \otimes x^b \ \fcmp \ x^c \otimes \spider_{n + c, d}(x)
 \s = \s \spider_{a + b, c + d}$,
-\item (co)commutativity $\spider_{a + b, c + d}(x) \ \fcmp \ S(x^c, x^d)
+\ctikzfig{img/hypergraph/spider-fusion}
+\item $\spider_{a + b, c + d}(x) \ \fcmp \ S(x^c, x^d)
 \s = \s \spider_{a + b, c + d}(x) \s = \s
-S(x^a, x^b) \ \fcmp \ \spider_{a + b, c + d}(x)$,
-\item coherence $\spider_{a, b}(1) = \id(1)$ and $\spider_{1, 2}(x \otimes y) \s = \s \spider_{1, 2}(x) \otimes \spider_{1, 2}(y) \ \fcmp \ x \otimes S(x, y) \otimes y$.
+S(x^a, x^b) \ \fcmp \ \spider_{a + b, c + d}(x)$.
+\ctikzfig{img/hypergraph/co-commutativity}
 \end{itemize}
-A hypergraph functor is a symmetric functor $F : C \to D$ between hypergraph categories such that $F \fcmp \spider_{a, b} = \spider_{a, b} \fcmp F$, thus we get a category $\mathbf{HypCat}$.
-A $\dagger$-hypergraph category is both a $\dagger$-symmetric category and a hypergraph category such that $\dagger \fcmp \spider_{m,n} = \spider_{n, m} \fcmp \dagger$.
+From these axioms, we can deduce the following properties:
+\begin{itemize}
+\item $m = \spider_{1, 2}(x)$ and $u = \spider_{1, 0}(x)$ form a commutative monoid,
+\ctikzfig{img/hypergraph/monoid}
+\item $c = \spider_{2, 1}(x)$ and $d = \spider_{0, 1}(x)$ form a cocommutative comonoid,
+\ctikzfig{img/hypergraph/comonoid}
+\item the Frobenius law $m \otimes x \fcmp x \otimes c \s = \s c \fcmp m \s = \s x \otimes m \fcmp c \otimes x$ and the special law $m \fcmp c = \id(x)$ hold.
+\ctikzfig{img/hypergraph/special-frobenius}
+\end{itemize}
+In fact, these are equivalent axioms to the previous ones: spiders are the same as \emph{special commutative Frobenius algebras}.
+Indeed, given a commutative monoid $m : x \otimes x \to x, \s e : 1 \to x$ and a cocommutative comonoid $c : x \to x \otimes x, \s d : x \to 1$, we can construct $\spider_{a, b}(x) : x^a \to x^b$ by induction on the number of legs $a, b \in \N$.
+\begin{itemize}
+\item $\spider_{0, 0}(x) = e \fcmp d$, $\spider_{0, 1}(x) = e$ and $\spider_{1, 0}(x) = d$
+\item $\spider_{1, 1}(x) = \id(x)$
+\end{itemize}
+
+We need to require the following \emph{coherence} equations:
+\begin{itemize}
+\item $\spider_{a, b}(1) = \id(1)$, which may be drawn as the equality of empty diagrams,
+\item $\spider_{1, 0}(x \otimes y) \s = \s \spider_{1, 0}(x) \otimes \spider_{1, 0}(y)$,
+\ctikzfig{img/hypergraph/coherence-unit}
+\item $\spider_{1, 2}(x \otimes y) \s = \s \spider_{1, 2}(x) \otimes \spider_{1, 2}(y) \ \fcmp \ x \otimes S(x, y) \otimes y$.
+\ctikzfig{img/hypergraph/coherence-product}
+\end{itemize}
+Again, we can take the coherence equations as an inductive definition: the spider of a tensor is the tensor of the spiders, with the order of legs
+A hypergraph functor is a symmetric functor $F : C \to D$ between hypergraph categories such that $F \fcmp \spider_{a, b} = \spider_{a, b} \fcmp F$.
+Thus we get a category $\mathbf{HypCat}$ with a forgetful functor $U : \mathbf{HypCat} \to \mathbf{MonSig}$.
+Its left adjoint $F^H : \mathbf{MonSig} \to \mathbf{HypCat}$ is defined as the free symmetric category $F^S(\Sigma^H)$ over
+
+A $\dagger$-hypergraph category is both a $\dagger$-symmetric category and a hypergraph category such that the dagger is also a hypergraph functor.
 A $\dagger$-hypergraph functor is both a hypergraph functor and a dagger functor.
 
-The spiders owe their name to their arachnomorphic drawing, for example $\spider_{2, 6}$ is drawn as a node (the head) and its wires (the eight legs of the spider, two of them menacing us):
-\ctikzfig{img/hypergraph/spider}
-Once we draw the diagrams, spider fusion says that if two spider touch, they fuse.
-\ctikzfig{img/hypergraph/spider-fusion}
+
 The (co)commutativity axioms say that we can swap the legs of spiders.
-% \ctikzfig{img/hypergraph/co-commutativity}
+
 
 Finally, the coherence axioms give us an inductive definition of spiders for composite types: the spiders of the unit are the identity, the spiders of a tensor $x \otimes y$ are given by tensoring the spiders for $x$ and $y$ then swapping their legs to match the types.
 The first coherence axiom would be drawn as the equality of two empty diagrams, we can draw the second with non-free-on-objects diagrams, i.e. with explicit equality boxes.
-% \ctikzfig{img/hypergraph/coherence}
+
 
 Thus, we can take the data for a free-on-objects hypergraph category $C$ to be that of a foo-monoidal category together with a function $\spider_{a, b} : C_0 \to C_1$.
 Once we fix the spiders for generating objects, the spiders for any type (i.e. list of objects) is fixed.

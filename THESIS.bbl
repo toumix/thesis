@@ -5484,54 +5484,6 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
-  \entry{GuiraudMalbos12}{article}{}
-    \name{author}{2}{}{%
-      {{hash=GY}{%
-         family={Guiraud},
-         familyi={G\bibinitperiod},
-         given={Yves},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=MP}{%
-         family={Malbos},
-         familyi={M\bibinitperiod},
-         given={Philippe},
-         giveni={P\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{GYMP1}
-    \strng{fullhash}{GYMP1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{GM12}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
-    \field{abstract}{%
-    We introduce homotopical methods based on rewriting on higher-dimensional
-  categories to prove coherence results in categories with an algebraic
-  structure. We express the coherence problem for (symmetric) monoidal
-  categories as an asphericity problem for a track category and we use
-  rewriting methods on polygraphs to solve it. The setting is extended to more
-  general coherence problems, seen as 3-dimensional word problems in a track
-  category, including the case of braided monoidal categories.%
-    }
-    \verb{doi}
-    \verb 10.1017/S096012951100065X
-    \endverb
-    \field{issn}{0960-1295, 1469-8072}
-    \field{number}{6}
-    \field{pages}{931\bibrangedash 969}
-    \field{title}{Coherence in Monoidal Track Categories}
-    \field{volume}{22}
-    \field{langid}{english}
-    \verb{file}
-    \verb /Users/alexis.toumi/WORK/Zotero/storage/VMJ9UAQ5/guiraud2012.pdf.pdf
-    \endverb
-    \field{journaltitle}{Math. Struct. Comp. Sci.}
-    \field{month}{12}
-    \field{year}{2012}
-  \endentry
-
   \entry{HadzihasanovicEtAl18}{inproceedings}{}
     \name{author}{3}{}{%
       {{hash=HA}{%
@@ -7170,6 +7122,31 @@
     \verb orage/2DLDVMMX/download.html
     \endverb
     \field{year}{1968}
+  \endentry
+
+  \entry{Lackenby15}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LM}{%
+         family={Lackenby},
+         familyi={L\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{JSTOR}}%
+    }
+    \strng{namehash}{LM1}
+    \strng{fullhash}{LM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lac15}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{pages}{491\bibrangedash 564}
+    \field{title}{A Polynomial Upper Bound on {{Reidemeister}} Moves}
+    \field{journaltitle}{Annals of Mathematics}
+    \field{year}{2015}
   \endentry
 
   \entry{LallyFodor11}{article}{}
