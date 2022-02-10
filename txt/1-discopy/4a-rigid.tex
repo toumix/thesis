@@ -23,14 +23,13 @@ From this definition we can deduce a number of properties:
 We say that $C$ is strictly rigid whenever these isomorphisms are in fact equalities, again one can show that any rigid category is monoidally equivalent to a strict one.
 One can also show that cups and caps compose by nesting:
 \begin{itemize}
-\item $\ttcup(x \otimes y) \quad = \quad y^l \otimes \ttcup(x) \otimes y \s \fcmp \s \ttcup(y)$,
+\item $\ttcup(x \otimes y) \s = \s y^l \otimes \ttcup(x) \otimes y \ \fcmp \ \ttcup(y)$,
 \ctikzfig{img/rigid/nesting-cups}
-\item $\ttcap(x \otimes y) \quad = \quad \ttcap(x) \s \fcmp \s x \otimes \ttcap(y) \otimes x^l$,
+\item $\ttcap(x \otimes y) \s = \s \ttcap(x) \ \fcmp \ x \otimes \ttcap(y) \otimes x^l$,
 \ctikzfig{img/rigid/nesting-caps}
-\item and $\ttcup(1) \quad = \quad \ttcap(1) \quad = \quad \id(1)$.
+\item $\ttcup(1) \s = \s \ttcap(1) \s = \s \id(1)$, drawn as the equality of three empty diagrams.
 \end{itemize}
-The first two equations are drawn as diagrams in a non-foo monoidal category, i.e. with wire for composite types and explicit boxes for equality.
-The last two equations would be drawn as the equality of three empty diagrams.
+The first two equations are drawn as diagrams in a non-foo monoidal category, i.e. with wires for composite types and explicit boxes for equality.
 This can be taken as an inductive definition, once we have defined the cups and caps for generating objects, we have defined them for all types.
 Thus, we can take the data for a (strictly) rigid category $C$ to be that of a free-on-objects monoidal category together with:
 \begin{itemize}
@@ -46,10 +45,11 @@ They send objects to their left and right adjoints, and each arrow $f : x \to y$
 \hspace{50pt} and \hspace{50pt}
 \tikzfig{img/rigid/transpose-right}
 \end{center}
-When these two functors are naturally isomorphic, $C$ is called \emph{pivotal}: we can rotate diagrams by 360 degrees.
-We say $C$ is strictly piotal when left and right transpose are equal.
+A rigid category $C$ is called \emph{pivotal} when it has a monoidal natural isomorphism $x^l \sim x^r$ for each object $x$, which implies that the left and right transpose coincide: we can rotate diagrams by 360 degrees.
+We say $C$ is strictly piotal when this isomorphism is an equality.
 This is the case for any rigid category $C$ with a dagger structure: the dagger of the cup (cap) for an object $x$ is the cap (cup) of its left-adjoint $x^l$.
 When this is the case, $C$ is called $\dagger$-pivotal.
+We say $C$ is strictly piotal when left and right transpose are equal.
 
 \begin{example}
 Recall from example~\ref{example:endofunctors are monoidal} that for any category $C$, the category $C^C$ of endofunctors and natural transformations is monoidal.
@@ -161,12 +161,12 @@ class Cap(Box):
         assert len(x) == 1 and x.l == y
         super().__init__("Cap({}, {})".format(x, y), Ty(), x @ y)
 
-def nesting(box_factory):
+def nesting(factory):
     @classmethod
     def method(cls, x: Ty, y: Ty) -> Diagram:
         if len(x) == 0: return cls.id(Ty())
-        if len(x) == 1: return box_factory(x, y)
-        head = box_factory(x[0], y[-1])
+        if len(x) == 1: return factory(x, y)
+        head = factory(x[0], y[-1])
         if head.dom:  # We are nesting cups.
             return x[0] @ method(x[1:], y[:-1]) @ y[-1] >> head
         return head >> x[0] @ method(x[1:], y[:-1]) @ y[-1]
@@ -324,14 +324,16 @@ assert F(f @ f).transpose() != F((f @ f).transpose())
 \end{example}
 
 Free pivotal categories are defined in a similar way to free rigid categories, with the two-element field $\Z / 2 \Z$ instead of the integers $\Z$, i.e. simple types with adjunction numbers of the same parity are equal.
-Given a pivotal signature $\Sigma$ with objects of the form $\Sigma_0 \times (\Z / 2 \Z)$, the free pivotal category is the quotient $F^p(\Sigma) = F^r(\Sigma) / R$ of the free rigid category by the relation $R$ equating the left and right transpose of the identity for each type.
-While the diagrams of free rigid categories can have snakes, those of free pivotal categories can have circles: we can compose $\cap(x) : 1 \to x^l \otimes x$ then $\cup(x^l) : x^l \otimes (x^l)^l = x^l \otimes x$ to form a scalar diagram called the \emph{dimension} of the system $x$.
+In this case, we usually write $x^l = x^r = x^\star$ with $(x^\star)^\star = x$.
+Given a pivotal signature $\Sigma$ with objects of the form $\Sigma_0 \times (\Z / 2 \Z)$, the free pivotal category is the quotient $F^p(\Sigma) = F^r(\Sigma) / R$ of the free rigid category by the relation $R$ equating the left and right transpose of the identity for each generating object.
+While the diagrams of free rigid categories can have snakes, those of free pivotal categories can have circles: we can compose $\ttcap(x) : 1 \to x^l \otimes x$ then $\ttcup(x^\star) : x^l \otimes x \to 1$ to form a scalar diagram called the \emph{dimension} of the system $x$.
+We also draw the wires with an orientation: the wire for $x$ is labeled with an arrow going down, the one for $x^\star$ with an arrow going up.
 
 To the best of our knowledge, the word problem for pivotal categories is still open.
 When defining the normal form of pivotal diagrams, we would need to make a choice between the diagrams for left or right transpose of a box.
-Another solution is to add a new box $f^T : y^r \to x^r$ for the transpose of every box $f : x \to y$ in the signature, and set it as the normal form of both diagrams.
+Another solution is to add a new box $f^T : y^\star \to x^\star$ for the transpose of every box $f : x \to y$ in the signature, and set it as the normal form of both diagrams.
 We can add some asymmetry to the drawing of the box $f$, and draw $f^T$ as its 180° degree rotation.
-If the category also has a dagger, we get a four-fold symmetry: the box, its dagger, its transpose and its dagger-transpose (also called its conjugate).
+If the category is also $\dagger$-pivotal, we get a four-fold symmetry: the box, its dagger, its transpose and its dagger-transpose (also called its conjugate).
 This is still being developed by the DisCoPy community.
 
 \begin{python}

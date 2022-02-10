@@ -211,6 +211,8 @@ class Tensor(Matrix):
     def tensor(self, other: Tensor) -> Tensor:
         inside = self.downgrade().tensor(other.downgrade()).inside
         return type(self)(inside, self.dom + other.dom, self.cod + other.cod)
+
+    __repr__ = lambda self: super().__repr__().replace("Matrix", "Tensor")
 \end{minted}
 \end{python}
 
@@ -357,7 +359,6 @@ Now we have all the ingredients to define \py{Diagram} as a subclass of \py{Arro
 The \py{tensor} method is defined in terms of left and right whiskering of layers.
 The \py{interchange} method takes an integer \py{i < len(self.layers)} and returns the diagram with boxes \py{i} and \py{i + 1} interchanged, or raises an \py{AssertionError} if they are connected.
 It also takes an optional argument \py{left: bool} which allows to choose between left and right in case we're interchanging an effect then a state.
-The optional \py{down: bool} allows to interchange \py{i - 1} and \py{i} instead. Although for now it is redundant, we will override it in a meaningful way in section~\ref{subsection:symmetric}.
 
 The \py{normal_form} method applies \py{interchange} until it reaches a normal form, or raises \py{NotImplementedError} if the diagram is disconnected.
 The \py{draw} method renders the diagram as an image, it implements the drawing algorithm discussed in the next section.
@@ -383,7 +384,7 @@ class Diagram(cat.Arrow):
         layers += [self.cod @ layer for layer in other.layers]
         return self.upgrade(Diagram(dom, cod, layers))
 
-    def interchange(self, i: int, left=False, down=True) -> Diagram: ...
+    def interchange(self, i: int, left=False) -> Diagram: ...
     def normal_form(self, left=False) -> Diagram: ...
     def draw(self, **params): ...
 
@@ -434,8 +435,9 @@ class Ket(Circuit, Box):
 
 Gate.upgrade = Ket.upgrade = Circuit.upgrade
 
-H, CX = Gate("H", n_qubits=1), Gate("CX", n_qubits=2)
-Id, sqrt2 = Circuit.id(qubit), Gate("sqrt(2)", n_qubits=0)
+Id = Circuit.id(qubit)
+X, Y, Z, H = [Gate(name, n_qubits=1) for name in "XYZH"]
+CX, sqrt2 = Gate("CX", n_qubits=2), Gate("sqrt(2)", n_qubits=0)
 assert isinstance(sqrt2 @ Ket(0, 0) >> H @ Id >> CX, Circuit)
 \end{minted}
 \end{example}
@@ -471,7 +473,8 @@ We can simulate quantum circuits by applying a functor from \py{Circuit} to \py{
 class Eval(Functor):
     def __init__(self):
         ob = {Ob('1'): 2}
-        ar = {H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]],
+        ar = {X: [[0, 1], [1, 0]], Y: [[0, -1j], [1j, 0]], Z: [[1, 0], [0, -1]],
+              H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]],
               CX: [[i == j for j in [0, 1, 2, 3]] for i in [0, 1, 3, 2]],
               sqrt2: [[sqrt(2)]]}
        super().__init__(ob, ar, cod=Category(tuple[int], Tensor[complex]))
@@ -517,7 +520,9 @@ assert decode(encoding) == f @ g >> h and encode(f @ g >> h) == encoding
 \subsection{Quotient monoidal categories}
 
 Once we have defined freeness, we need to define quotients.
-The quotient $C / R$ of a monoidal category $C$ by a binary relation $R \sub \coprod_{x, y \in C_0^\star} C(x, y) \times C(x, y)$ is the quotient category for the rewriting relation $\to_R$ where:
+The quotient $C / R$ of a monoidal category $C$ by a binary relation $R \sub \coprod_{x, y \in C_0^\star} C(x, y) \times C(x, y)$ has the same objects $C_0$ and arrows equivalence classes of arrows in $C_1$ under the smallest \emph{monoidal congruence} containing $R$.
+A congruence $(\sim_R)$ is monoidal when $f \sim_R f'$ and $g \sim_R g'$ implies $f \otimes g \sim f' \otimes g'$.
+Explicitly, we can construct $C / R$ as the quotient category for the rewriting relation $\to_R$ where:
 $$u \s \fcmp \s b \otimes f \otimes c \s \fcmp \s v \quad
 \to_R \quad u \s \fcmp \s b \otimes g \otimes c \s \fcmp \s v$$
 for all $(f, g) \in R$, $u : a \to b \otimes \dom(f) \otimes c$ and $v : b \otimes \cod(f) \otimes c \to d$.
@@ -526,8 +531,46 @@ A proof that two diagrams are equal in the quotient can itself be thought of as 
 These higher-dimensional diagrams will be mentioned in section~\ref{section:related and future}.
 Again, every monoidal category $C$ is isomorphic to the quotient of a free monoidal category $C = F(\Sigma) / R$: take $\Sigma = U(C)$ and the relation $R \sub F(U(C)) \times F(U(C))$ given by every binary composition and tensor.
 
-Why should computer scientists care about diagrams?
-One reason is that they are free data structures in the same sense that lists are free: they are a two-dimensional generalisation of lists.
+The word problem for categories reduces to that of monoidal categories, indeed the signature of a category can be seen as a monoidal signature where boxes all have domain and codomain of length one.
+Thus, deciding equality of diagrams in arbitrary quotient monoidal categories is just as undecidable.
+The implementation of a quotient is nothing more than a subclass of \py{Diagram} with an equality method that respects the axioms of a monoidal congruence.
+The easy way is to define equality of diagrams to be equality of their evaluation by a monoidal functor into a category where equality is decidable.
+The hard way is to define a \py{normal_form} method which sends every diagram to a chosen representative of its equivalence class.
+DisCoPy provides some basic tools to define such a normal form: \emph{pattern matching} and \emph{substitution}.
+
+\begin{python}
+{\normalfont Implementation of diagram pattern matching and substitution.}
+
+\begin{minted}{python}
+@dataclass
+class Match:
+    top: Diagram
+    bottom: Diagram
+    left: Ty
+    right: Ty
+
+    def subs(self, target):
+        return self.top >> self.left @ target @ self.right >> self.bottom
+
+def match(self: Diagram, pattern: Diagram) -> Iterator[Match]:
+    for i, layer in enumerate(self.layers + [self.id(self.cod)]):
+        for j in range(len(layer.dom) + 1):
+            match = Match(
+                top=self[:i], bottom=self[i + len(pattern):],
+                left=self[i].dom[:j], right=self[i].dom[j + len(pattern.dom):])
+            if self == match.subs(pattem): yield match
+\end{minted}
+\end{python}
+
+Now implementing a quotient reduces to implementing a \emph{rewriting strategy}, i.e. a function which inputs diagrams and returns either a choice of match or \py{StopIteration}, then proving that it is \emph{confluent} (i.e. the order in which we pick matches does not matter) and \emph{terminating} (i.e. there are no infinite sequences of rewrites).
+Our simple pattern matching routine can be extended in several ways.
+First, it can only find matches on the nose: we could apply interchangers to the diagram until we find a match (with the cubic-time complexity that this implies).
+Second, it can only find and substitute one match at a time: we could iterate through lists of compatible matches and implement their simultaneous substitution.
+Third, instead of looking for \py{pattern} as a subdiagram of \py{self} directly, we could iterate through the functors \py{F} such that \py{F(pattern)} is a subdiagram.
+This would allow to implement infinite families of equations such as those between quantum gates parameterised by continuous phases.
+
+Why should computer scientists care about such diagram rewriting?
+One reason is that diagrams are free data structures in the same sense that lists are free: they are a two-dimensional generalisation of lists.
 Another reason is that they allow an elegant definition of a Turing-complete problem: given a finite monoidal signature $\Sigma$ and a pair of lists $x, y \in \Sigma_0^\star$, decide whether there is a diagram $f : x \to y$ in $F(\Sigma)$.
 Indeed, the word problem for monoids (which is equivalent to the halting problem for Turing machines) reduces to the existence problem for diagrams: given the presentation of a monoid $X^\star / R$,
 take objects $\Sigma_0 = X$ and boxes $\Sigma_1 = R$ with $\dom, \cod : \Sigma_1 \injects X^\star \times X^\star \to X^\star$ the left and right hand-side of each related pair.
@@ -543,6 +586,26 @@ of diagrams.
 Now if two-dimensional diagrams encode computations on one-dimensional lists, we can think of three-dimensional diagrams either as computations on two-dimensional data, or as higher-order computations.
 For example, the optimisation steps of a (classical or quantum) compiler can be thought of as a three-dimensional diagram, with (classical or quantum) circuits as domain and codomain.
 
+\begin{example}
+We can simplify quantum circuits using pattern matching.
+
+\begin{minted}{python}
+def simplify(circuit, rules):
+    for source, target in rules:
+        for match in circuit.match(source):
+            return simplify(match.subs(target), rules)
+    return circuit
+
+rules = [(Ket(b) >> X, Ket(not b))
+         for b in [0, 1]] + [
+         (Ket(b0) @ Ket(b1) >> CX, Ket(b0) @ Ket(not b1 if b0 else b1))
+         for b0 in [0, 1] for b1 in [0, 1]]
+circuit = Ket(0) @ Ket(0) >> X @ Id >> CX >> Id @ X
+
+assert simplify(circuit, rules) == Ket(1) @ Ket(0)
+\end{minted}
+\end{example}
+
 \subsection{Daggers, sums and bubbles}
 
 As in the previous section, we introduce three extra pieces of implementation: daggers, sums and bubbles.
@@ -553,27 +616,49 @@ They are implemented by adding a \py{dagger} method to the \py{Layer} class.
 {\normalfont Implementation of free $\dagger$-monoidal categories.}
 
 \begin{minted}{python}
-def dagger(self: Layer) -> Layer:
-    return Layer(self.left, self.box.dagger(), self.right)
+class Layer:
+    ...
+    def dagger(self) -> Layer:
+        return Layer(self.left, self.box.dagger(), self.right)
 \end{minted}
 \end{python}
 
-A monoidal category is commutative-monoid-enriched when it has sums that distribute over the tensor, i.e. $(f + f') \otimes (g + g') = f \otimes g + f \otimes g' + f' \otimes g + f' \otimes g'$
+A monoidal category is commutative-monoid-enriched when it has sums that distribute over the tensor, i.e.
+$(f + f') \otimes (g + g') = f \otimes g + f \otimes g' + f' \otimes g + f' \otimes g'$
 and $f \otimes 0 = 0 = 0 \otimes f$.
-They are implemented by a method \py{Sum.tensor}.
+They are implemented by a adding method a \py{tensor} method to \py{Sum}, as well as overriding \py{Diagram.tensor} so that \py{f @ (g + h) == Sum.upgrade(f) @ (g + h)} for all diagrams \py{f}.
 
 \begin{python}
 {\normalfont Implementation of free monoidal categories with sums.}
 
 \begin{minted}{python}
-def tensor(self: Sum, other: Sum) -> Sum:
-    dom, cod = self.dom @ other.dom, self.cod @ other.cod
-    return Sum([f @ g for f in self.terms for g in self.terms], dom, cod)
+class Diagram:
+    ...
+    def tensor(self, other):
+        return Sum.upgrade(self).tensor(other)\
+            if isinstance(other, Sum) else super().tensor(other)
+
+class Sum(cat.Sum, Box):
+    def tensor(self: Sum, other: Sum) -> Sum:
+        terms = [f @ g for f in self.terms for g in self.upgrade(other).terms]
+        return Sum(terms, self.dom @ other.dom, self.cod @ other.cod)
+
+Diagram.sum = Sum
 \end{minted}
 \end{python}
 
 Bubbles for monoidal categories are the same as bubbles for categories, their implementation requires no extra work.
 As we mentioned in the previous section, bubbles do give us a strictly more expressive syntax however: they can encode operations on arrows that cannot be expressed in terms of composition or tensor.
+
+\begin{python}
+{\normalfont Implementation of free monoidal categories with bubbles.}
+
+\begin{minted}{python}
+class Bubble(cat.Bubble, Box): pass
+
+Diagram.bubble = Bubble
+\end{minted}
+\end{python}
 
 \begin{example}
 As in example~\ref{example:endofunctor-bubbles}, any monoidal endofunctor $\beta : C \to C$ also defines a bubble on the monoidal category $C$, we can define a bubble-preserving functor $F(U(C)^\beta) \to C$ which interprets bubbled diagrams as functor application.
@@ -607,6 +692,8 @@ assert post_processed_circuit.eval()[0][0]\
 \begin{example}
 We can implement the formulae of first-order logic using Peirce's \emph{existential graphs}.
 They are the first historical examples of string diagrams as well as the first definition of first-order logic~\cite{BradyTrimble98,BradyTrimble00,MelliesZeilberger16,HaydonSobocinski20}.
+Predicates of arity $n$ are boxes with a codomain of length $n$, if there are more than one generating objects we get a many-sorted logic.
+The wires of the diagram correspond to variables, open wires in the domain and codomain are free variables, the others are existentially quantified.
 Bubbles, which Peirce calls \emph{cuts}, encode negation.
 The evaluation of a formula in a finite model corresponds to the application of a bubble-preserving functor into $\mathbf{Mat}_\B$.
 
@@ -621,7 +708,7 @@ def model(size, data: dict[Predicate, list[bool]]):
     Functor(ob={Ty('x'): size},
             ar={p: [data[p]] for p in data},
             dom=Category(Ty, Formula),
-            cod=Category(list[int], Tensor[B]))
+            cod=Category(list[int], Tensor[bool]))
 
 men, mortal = map(Predicate, ("men", "mortal"))
 all_men_are_mortal = (men.cut() >> mortal.dagger()).cut()
@@ -631,6 +718,9 @@ for a, b, c, d in itertools.product(*4 * [[0, 1]]):
     assert F(all_men_are_mortal) == all(
         not F(men)[i][0] or F(mortal)[i][0] for i in range(2))
 \end{minted}
+
+Note that for now our syntax is somehow limited: we can only write formulae where each variable appears at most twice, once for the source and target of its wire.
+In section~\ref{subsection:hypergraph} we will introduce the diagrammatic syntax for arbitrary formulae.
 \end{example}
 
 We get to the end of this section and the reader may have noticed that we have not drawn a single diagram yet: drawing will be the topic of the next section.

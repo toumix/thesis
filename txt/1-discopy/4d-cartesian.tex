@@ -1,0 +1,35 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Cartesian closed categories}
+
+With hypergraph diagrams, we have enough syntax to discuss quantum protocols and first-order logic.
+However, the spiders of hypergraph categories are of no use if we want to interpret our diagrams as (pure) Python functions.
+Indeed, $\mathbf{Pyth}$ has the property that every function $f : x \to y \otimes z$ into a composite system $y \otimes z$ is in fact a tensor product $f = f_0 \otimes f_1$ of two separate functions $f_0 : x \to y$ and $f_1 : x \to z$.
+If a Python type $x$ had caps (let alone spiders) then we could break them in two with the consequence that the identity function on $x$ is constant, i.e. $x$ is trivial~\cite[?]{CoeckeKissinger17}.
+Moreover, there is only one (pure) effect of every type, discarding it.
+Thus if a Python type $x$ had cups then we could break them apart as well with the same consequence: only the trivial Python type can have spiders.
+A similar argument destroys our hopes for time reversal in Python: if we had a dagger on $\mathbf{Pyth}$, every function would be equal to every other.
+
+Now if we go back to the intuition of diagrams as pipelines and their wires as carrying data, not all might be lost about spiders.
+Indeed, it makes sense to split a data-carrying wire: it means we are copying information.
+Closing a data-carrying wire is the counit of the copying comonoid, it means we are deleting information.
+In this context, the special condition would translate as follows: if we copy some data then merge the two copies back together, then we haven't done anything.
+In order for the spider fusion equations to hold, we would need the monoid to take any two inputs and assert that they are equal or abort the computation otherwise, i.e. we would need side effects.
+Even more weirdly, we would need the unit of the monoid to be equal to anything else.
+
+Rather than complaining that classical computing is weird because we cannot coherently merge data back together, we should embrace this as a feature, not a bug: in Python we can copy and discard data (at least assuming that we have enough RAM and that the garbage collector is doing its job).
+This means we can still keep the comonoid half of our spiders, forget that they are spiders and come to realise that they are in fact \emph{natural comonoids}.
+Indeed, the functions \py{copy = lambda *xs: xs + xs} and \py{delete = lambda *xs: ()} define a pair of natural transformations $x \to x \otimes x$ and $x \to 1$ in $\mathbf{Pyth}$:
+\begin{itemize}
+    \item \py{copy(f(xs)) == f(copy(xs)[:n]), f(copy(xs)[n:])}
+    \item \py{delete(f(xs)) == delete(xs)}
+\end{itemize}
+for all pure functions \py{f} and inputs \py{xs} with \py{n = len(xs)}.
+
+A \emph{cartesian category} is a symmetric category with coherent, natural commutative comonoids, a cartesian category that is also a PROP is called a \emph{Lawvere theory}~\cite{Lawvere63}.
+Lawvere theories were introduced as a high-level language for \emph{universal algebra}: take the boxes $x^n \to x$ to be the primitive $n$-ary operations of your language (e.g. for rigs we have unary boxes for $0$ and $1$, binary boxes for $+$ and $\times$) then the diagrams in the free Lawvere theory are all the terms of your language.
+We can write down any universally quantified axiom as a relation between diagrams and the cartesian functors (i.e. the symmetric functors that respects comonoids) from the resulting quotient to the category of sets are \emph{algebras}, i.e. sets equipped with operations that satisfy the axioms.
+The natural transformations between models are precisely the homomorphisms between the algebras, i.e. the functions that commute with the operations.
+If we add colours back in and allow many generating objects, we can define many-sorted theories such as that of modules, with a ring acting on a group.
+If we take every pair of objects $(x, y) \in C_0 \times C_0$ as colour and a box $(x, y) \otimes (y, z) \to (x, z)$ for every possible composition, then we can even define the Lawvere theory of categories with $C_0$ as objects.
+Thus, a category can also be seen as a functor from this Lawvere theory to sets, a functor can also be seen as a natural transformation between such functors.
