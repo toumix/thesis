@@ -134,6 +134,7 @@ Thanks to the \py{upgrade} method, we do not need to override the \py{tensor} me
 In turn, subclasses of \py{rigid.Ty} will not need to override \py{l} and \py{r}.
 Similarly, the \py{rigid.Diagram} class is a subclass of \py{monoidal.Diagram}, thanks to the \py{upgrade} we do not need to reimplement the identity, composition or tensor.
 \py{rigid.Box} is a subclass of \py{monoidal.Box} and \py{rigid.Diagram}, with \py{Box.upgrade = Diagram.upgrade}.
+We need to be careful with the order of inheritance however, diagram equality is defined in terms of box equality, so if we had \py{Box.__eq__ = Diagram.__eq__} then checking equality would enter an infinite loop.
 \py{Cup} (\py{Cap}) is a subclass of \py{Box} initialised by a pair of types \py{x, y} such that \py{len(x) == len(y) == 1} \py{x == y.l} (\py{x.l == y}, respectively).
 The class methods \py{cups} and \py{caps} construct diagrams of nested cups and caps by induction, with \py{Cup} and \py{Cap} as a base case.
 
@@ -253,7 +254,7 @@ class Qubits(monoidal.Qubits, Ty):
     l = r = property(lambda self: self)
 
 class Circuit(monoidal.Circuit, Diagram):
-    cups = nesting(lambda _, _: sqrt2 @ Ket(0, 0) >> H @ Id)
+    cups = nesting(lambda _, _: sqrt2 @ Ket(0, 0) >> H @ qubit)
     caps = lambda x, y: Circuit.cups(x, y).dagger()
 \end{minted}
 \end{python}
@@ -262,12 +263,12 @@ class Circuit(monoidal.Circuit, Diagram):
 We can verify the teleportation protocol for two qubits.
 
 \begin{minted}{python}
-two_qubit_Bell_state = Circuit.caps(Qubits(2))
-two_qubit_Bell_effect = Circuit.cups(Qubits(2))
+two_qubit_Bell_state = Circuit.caps(qubit ** 2)
+two_qubit_Bell_effect = Circuit.cups(qubit ** 2)
 
-assert (two_qubit_Bell_state @ Id @ Id >> Id @ Id @ two_qubit_Bell_effect).eval()\
-    == (Id @ Id).eval()\
-    == (Id @ Id @ two_qubit_Bell_state >> two_qubit_Bell_effect @ Id @ Id).eval()
+assert (two_qubit_Bell_state @ qubit ** 2 >> qubit ** 2 @ two_qubit_Bell_effect).eval()\
+    == (qubit ** 2).eval()\
+    == (qubit ** 2 @ two_qubit_Bell_state >> two_qubit_Bell_effect @ qubit ** 2).eval()
 \end{minted}
 \end{example}
 

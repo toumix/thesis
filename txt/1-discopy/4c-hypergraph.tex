@@ -18,13 +18,13 @@ Once drawn, the spider fusion equation has the intuitive graphical meaning that 
 From spider fusion, we can deduce the following properties:
 \begin{itemize}
 \item $\merge(x) = \spider_{0, 2, 1}(x)$ and $\unit(x) = \spider_{0, 0, 1}(x)$ form a commutative monoid,
-% \ctikzfig{img/hypergraph/monoid}
+TODO DRAW % \ctikzfig{img/hypergraph/monoid}
 \item $\ttsplit(x) = \spider_{0, 1, 2}(x)$ and $\counit(x) = \spider_{0, 1, 0}(x)$ form a cocommutative comonoid,
-% \ctikzfig{img/hypergraph/comonoid}
+TODO DRAW % \ctikzfig{img/hypergraph/comonoid}
 \item $\ttsplit(x) \fcmp \merge(x) = \id(x)$, called the \emph{special} condition,
-% \ctikzfig{img/hypergraph/special}
+TODO DRAW % \ctikzfig{img/hypergraph/special}
 \item $\merge(x) \otimes x \fcmp x \otimes \ttsplit(x) \s = \s x \otimes \merge(x) \fcmp \ttsplit(x) \otimes x$, called the \emph{Frobenius law}.
-% \ctikzfig{img/hypergraph/frobenius}
+TODO DRAW % \ctikzfig{img/hypergraph/frobenius}
 \end{itemize}
 In fact, when the phases are trivial $\Phi = \{ 0 \}$ these four axioms are sufficient to deduce spider fusion, spiders are also called \emph{special Frobenius algebras}.
 Indeed, given a commutative monoid $\merge(x) : x \otimes x \to x, \s \unit(x) : 1 \to x$ and a cocommutative comonoid $\ttsplit(x) : x \to x \otimes x, \s \counit(x) : x \to 1$ subject to the Frobenius law, we can construct $\spider_{a, b}(x) : x^a \to x^b$ by induction on the number of legs.
@@ -32,16 +32,16 @@ The base case is given by the special condition $\spider_{1, 1}(x) = \id(x)$.
 Then we define spiders with $a \in \N$ input legs for $a \neq 1$:
 \begin{itemize}
 \item $\spider_{0, b}(x) \s = \s \unit(x) \fcmp \spider_{1, b}(x)$,
-% \ctikzfig{img/hypergraph/induction-base}
+TODO DRAW % \ctikzfig{img/hypergraph/induction-base}
 \item $\spider_{a + 2, b}(x) \s = \s \merge(x) \otimes x^a \ \fcmp \ \spider_{a + 1, b}(x)$,
-% \ctikzfig{img/hypergraph/induction-step}
+TODO DRAW % \ctikzfig{img/hypergraph/induction-step}
 \end{itemize}
 Finally we define spiders with one input leg by induction on the output legs $b \in \N$:
 \begin{itemize}
 \item $\spider_{1, 0}(x) \s = \s \counit(x)$,
-% \ctikzfig{img/hypergraph/induction-base-one-legged}
+TODO DRAW % \ctikzfig{img/hypergraph/induction-base-one-legged}
 \item $\spider_{1, b + 2}(x) \s = \s \spider_{1, b + 1}(x) \ \fcmp \ \ttsplit(x) \otimes x^b$.
-% \ctikzfig{img/hypergraph/induction-step-one-legged}
+TODO DRAW % \ctikzfig{img/hypergraph/induction-step-one-legged}
 \end{itemize}
 One can show that this satisfies the spider fusion law, again by induction on the legs~\cite[Lemma 5.20]{HeunenVicary19a}.
 In this way, we can construct an infinite family of spiders from just the four boxes $\merge(x), \unit(x), \ttsplit(x), \counit(x)$ and a finite set of equations.
@@ -49,15 +49,15 @@ A spider is nothing more than a big product followed by a big co-product.
 As for the phases, we can recover them from a family of \emph{phase shifts} $\{ \shift_\phi(x) : x \to x \}_{\phi \in \Phi}$ such that:
 \begin{itemize}
 \item $\shift_-(x)$ is a monoid homomorphism $\Phi \to C(x, x)$, i.e. $\shift_0(x) = \id(x)$ and $\shift_{\phi}(x) \fcmp \shift_{\phi'} = \shift_{\phi + \phi'}(x)$,
-% \ctikzfig{img/hypergraph/phase-homomorphism}
+TODO DRAW % \ctikzfig{img/hypergraph/phase-homomorphism}
 \item $\shift_\phi(x) \otimes x \ \fcmp \ \merge(x)
 \ = \ \merge(x) \fcmp \shift_\phi(x)
 \ = \ x \otimes \shift_\phi(x) \ \fcmp \ \merge(x)$,
-% \ctikzfig{img/hypergraph/phase-commute-product}
+TODO DRAW % \ctikzfig{img/hypergraph/phase-commute-product}
 \item $\ttsplit(x) \ \fcmp \ \shift_\phi(x) \otimes x
 \ = \ \shift_\phi(x) \fcmp \ttsplit(x)
 \ = \ x \otimes \ttsplit(x) \ \fcmp \ \shift_\phi(x)$.
-% \ctikzfig{img/hypergraph/phase-commute-coproduct}
+TODO DRAW % \ctikzfig{img/hypergraph/phase-commute-coproduct}
 \end{itemize}
 We can then define $\spider_{\phi, a, b}(x) = \spider_{a, 1}(x) \fcmp \shift_\phi(x) \fcmp \spider_{1, b}(x)$ and check that indeed, spiders fuse up to addition of their phase.
 Thus when the monoid is finite, we get a finite number of boxes and equations, i.e. a finite presentation of the spiders.
@@ -72,8 +72,10 @@ Thus, a category with (not-necessarily special) spiders on every object is autom
 \begin{example}
 In any pivotal category, there is a (non-special) Frobenius algebra for every object of the form $x^\star \otimes x$ given by:
 \begin{itemize}
-    \item $\merge(x^\star \otimes x) = x^\star \otimes \ttcup(x^\star) \otimes x$ and $\unit(x) = \ttcup(x)$,
-    \item $\ttsplit(x^\star \otimes x) = x^\star \otimes \ttcap(x) \otimes x$ and $\counit(x) = \ttcap(x^\star)$.
+\item $\merge(x^\star \otimes x) = x^\star \otimes \ttcup(x^\star) \otimes x$ and $\unit(x) = \ttcup(x)$,
+TODO DRAW
+\item $\ttsplit(x^\star \otimes x) = x^\star \otimes \ttcap(x) \otimes x$ and $\counit(x) = \ttcap(x^\star)$.
+TODO DRAW
 \end{itemize}
 Due to the drawing of its comonoid, it is also called the \emph{pair of pants} algebra.
 The special condition requires the dimension of the system $x$ to be the unit, i.e. the circle is equal to the empty diagram.
@@ -103,7 +105,7 @@ Indeed, we can represent any spider with $\phi_0 \neq 1$ as a spider with $\phi_
 When $\S = \C$ and $n = 2$, we usually take the monoid of phases to be the unit circle and write it in terms of addition of angles.
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:circuit-spider}
 In the category $\mathbf{Circ}$ of quantum circuits, if we allow post-selected measurements then we can construct spiders with the unit circle as phases.
 The spiders with no inputs legs are called the (generalised) GHZ states:
 $$
@@ -195,19 +197,17 @@ class Spider(Box):
 def coherence(factory):
     @classmethod
     def method(cls, a: int, b: int, x: Ty, phase=None) -> Diagram:
-        if len(x) == 0:
-            assert phase is None
-            return cls.id(x)
+        if len(x) == 0 and phase is None: return cls.id(x)
+        if len(x) == 1: return factory(a, b, x, phase)
         if phase is not None:  # Coherence for phase shifters.
-            shift = factory(1, 1, x, phase)
+            shift = cls.tensor(*[factory(1, 1, obj, phase) for obj in x])
             return method(cls, a, 1, x) >> shift >> method(cls, 1, b, x)
         if (a, b) in [(1, 0), (0, 1)]: # Coherence for (co)units.
-            return cls.tensor([factory(1, 1, obj) for obj in x])
+            return cls.tensor(*[factory(a, b, obj) for obj in x])
         if (co, a, b) == [(True, 1, 2), (False, 2, 1)]:  # Coherence for (co)products.
-            if len(x) == 1: return factory(a, b, x)
-            co_product = factory(a, b, x[0]) @ method(cls, a, b, x[1:])
+            product_or_co = factory(a, b, x[0]) @ method(cls, a, b, x[1:])
             braid = x[0] @ cls.braid(x[0], x[1:]) @ x[1:]
-            return co_product >> braid if co else braid >> co_product
+            return product_or_co >> braid if co else braid >> product_or_co
         if a == 1:  # We can now assume b > 2.
             return method(cls, 1, b - 1, x) >> method(cls, 1, 2, x) @ (x ** (b - 2))
         if b == 1:  # We can now assume a > 2.
@@ -226,7 +226,7 @@ class Functor(braided.Functor):
 \end{python}
 
 \begin{example}
-FOL formula as a diagram model as a functor
+TODO FOL formula as a diagram model as a functor
 \end{example}
 
 The equality of hypergraph diagrams reduces to hypergraph isomorphism, it will be discussed in section~\ref{section:related and future}.

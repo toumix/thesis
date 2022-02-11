@@ -27,10 +27,11 @@ The axioms for the category $C$ are the following:
 
 Note that we play with the overloaded meaning of the word \emph{class}: we use it to mean both a mathematical collection that need not be a set, and a Python class with its methods and attributes.
 Reading it in the latter sense, $\dom$ and $\cod$ are \emph{attributes} of the arrow class, $\then$ is a \emph{method}, $\id$ is a \emph{static method}.
-Thus, implementing a category in Python means nothing more than subclassing the  abstract classes \py{Object} and \py{Arrow} of listing~\ref{listing:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+Thus, implementing a category in Python means nothing more than subclassing the abstract classes \py{Object} and \py{Arrow} of listing~\ref{listing:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+The \py{Category} class is nothing more than a named tuple with two attributes \py{ob} and \py{ar} for its object and arrow class respectively.
 
 \begin{python}\label{listing:abstract classes}
-{\normalfont Abstract classes for categories, functors and transformations.}
+{\normalfont Abstract classes for objects, arrows, categories, functors and transformations.}
 
 \begin{minted}{python}
 class Object: ...
@@ -44,24 +45,33 @@ class Arrow:
 
     def then(self, other: Arrow[self.cod, y]) -> Arrow[self.dom, y]: ...
 
+@dataclass
+class Category:
+    ob: type = Object
+    ar: type = Arrow
+
 class Functor:
-    dom = cod = Object, Arrow
+    dom: Category
+    cod: Category
 
     @overload
-    def __call__(self, x: Object) -> Object: ...
+    def __call__(self, x: self.dom.ob) -> self.cod.ob: ...
 
     @overload
-    def __call__(self, f: Arrow[x, y]) -> Arrow[self(x), self(y)]: ...
+    def __call__(self, f: self.dom.ar[x, y]) -> self.cod.ar[self(x), self(y)]: ...
 
 class Transformation:
-    dom: Functor
-    cod: Functor
+    C: Category
+    D: Category
+    dom: Functor[C, D]
+    cod: Functor[C, D]
 
-    def __call__(self, x: Object) -> Arrow[self.dom(x), self.cod(x)]: ...
+    def __call__(self, x: C.ob) -> D.ar[self.dom(x), self.cod(x)]: ...
 \end{minted}
 
 Note that annotations with dependent types are not supported by any Python implementation yet.
-We include them to make the thesis clearer although they do not appear in the DisCoPy code.
+We include them here to make the thesis clearer although they do not appear in the DisCoPy code.
+Since Python cannot statically check that arrow composition is well-typed, the best we can do is raise an \py{AxiomError} at runtime.
 \end{python}
 
 The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
@@ -129,11 +139,15 @@ class Function:
     def id(x: type) -> Function:
         return Function(lambda *xs: xs, x, x)
 
-    def then(self, other: Function) -> Function:
+    def then(self, other: Function | type) -> Function:
+        if not isinstance(other, Function): return self.then(self.id(other))
         inside = lambda *xs: other(*tuple(self(*xs)))
         return Function(inside, self.dom, other.cod)
 
     def __call__(self, *xs): return self.inside(*xs)
+
+    __lshift__, __rshift__ = then, lambda self, other:\
+        other.then(self) if isinstance(other, Function) else self.id(other).then(self)
 \end{minted}
 \end{python}
 
@@ -170,12 +184,11 @@ class Matrix:
     @classmethod
     def __class_getitem__(cls, dtype):
         class C(cls): pass
-        C.dtype, C.__name__ = dtype, "Matrix[{}]".format(dtype.__name__)
-        return C
+        C.dtype = dtype; return C
 
     def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
         self.dom, self.cod, self.inside = dom, cod, [
-            list(map(self.dtype, row)) for row in inside]
+            [cast(self.dtype, val) for val in row] for row in inside]
 
     @classmethod
     def id(cls, x: int) -> Matrix:
@@ -192,6 +205,8 @@ class Matrix:
     __repr__ = lambda self: "Matrix[{}]({}, {}, {})".format(
         self.dtype.__name__, self.inside, self.dom, self.cod)
     __getitem__ = lambda self, key: self.inside[key]
+    __lshift__, __rshift__ = then, lambda self, other:\
+        other.then(self) if isinstance(other, Matrix) else self.id(other).then(self)
 \end{minted}
 
 Subscriptable types such as \py{list[list[int]]} and the \py{__class_getitem__} method are a new feature of Python \py{>=3.10}.
@@ -275,6 +290,8 @@ class Arrow:
         return cls.upgrade(Arrow(x, x, []))
 
     def then(self, *others: Arrow) -> Arrow:
+        others = [  # This allows nice syntactic sugar for the identity.
+            other if isinstance(other, Arrow) else self.id(other) for other in others]
         for f, g in zip((self, ) + others, others): assert f.cod == g.dom
         dom, cod = self.dom, others[-1].cod if others else self.cod
         boxes = self.boxes + sum([other.boxes for other in others], [])
@@ -327,11 +344,10 @@ class Gate(Box, Circuit):
         dom, cod = Ob(str(n_qubits)), Ob(str(n_qubits))
         Box.__init__(self, name, dom, cod)
 
-Id = Circuit.id(Ob('1'))
 X, Y, Z, H = [Gate(name, n_qubits=1) for name in "XYZH"]
 
-assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Id == X == Id >> X
-assert isinstance(Id, Circuit) and isinstance(X >> Y, Circuit)
+assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Ob('1') == X == Ob('1') >> X
+assert isinstance(Circuit.id(Ob('1')), Circuit) and isinstance(X >> Y, Circuit)
 \end{minted}
 \end{example}
 
@@ -350,8 +366,6 @@ The only downside is that we cannot print, save or check equality for such funct
 {\normalfont Implementation of $\mathbf{Cat}$ with \py{Category} as objects and \py{Functor} as arrows.}
 
 \begin{minted}{python}
-Category = namedtuple("Category", ["ob", "ar"])
-
 class DictOrCallable:
     def __class_getitem__(_, source, target):
         return dict[source, target] | Callable[[source], target]
@@ -365,10 +379,10 @@ class Dict:
 class Functor:
     ob: dictOrCallable[Ob, Ob]
     ar: dictOrCallable[Box, Ar]
-    dom: Category
-    cod: Category
+    dom: Category = Category(Ob, Arrow)
+    cod: Category = Category(Ob, Arrow)
 
-    def __init__(self, ob, ar, dom=Category(Ob, Arrow), cod=Category(Ob, Arrow)):
+    def __init__(self, ob, ar, dom, cod):
         ob, ar = (d if hasattr(d, "__getitem__") else Dict(d) for d in (ob, ar))
         self.ob, self.ar, self.dom, self.cod = ob, ar, dom, cod
 
@@ -377,7 +391,7 @@ class Functor:
         if isinstance(other, Box):
             result = self.ar[other]
             if isinstance(result, self.cod.ar): return result
-            # This allows some nice syntactic sugar.
+            # This allows some nice syntactic sugar for the ar mapping.
             return self.cod.ar(result, self(other.dom), self(other.cod))
         if isinstance(other, Arrow):
             return self.cod.ar.id(self(other.dom)).then(
@@ -581,14 +595,14 @@ Circuit.eval = Functor(
 \end{minted}
 We can check that every circuit is \emph{unitary}, i.e. its dagger is also its inverse.
 \begin{minted}{python}
-for c in [Id, X, Y, Z, H, X >> Y >> Z >> H]:
-    assert (c >> c[::-1]).eval() == Id.eval() == (c[::-1] >> c).eval()
+for c in [X, Y, Z, H, X >> Y >> Z >> H]:
+    assert (c >> c[::-1]).eval() == Matrix.id(2) == (c[::-1] >> c).eval()
 \end{minted}
 We can check the equations given in the presentation of example~\ref{example:1-qubit-presentation}.
 \begin{minted}{python}
 assert (Z >> H).eval() == (H >> X).eval()
 assert (Z >> X).eval() == (X >> Z).eval().map(lambda x: -x)
-for gate in [H, Z, X]: assert (gate >> gate).eval() == Id.eval()
+for gate in [H, Z, X]: assert (gate >> gate).eval() == Matrix.id(2)
 \end{minted}
 \end{example}
 
@@ -664,14 +678,16 @@ class Functor(cat.Functor):
 {\normalfont Implementation of $\mathbf{Mat}_\S$ as a category with sums.}
 
 \begin{minted}{python}
-def __add__(self: Matrix, other: Matrix) -> Matrix:
-    inside = [[x + y for x, y in zip(u, v)]
-              for u, v in zip(self.inside, other.inside)]
-    return type(self)(inside, self.dom, self.cod)
+class Matrix:
+    ...
+    def __add__(self: Matrix, other: Matrix) -> Matrix:
+        inside = [[x + y for x, y in zip(u, v)]
+                  for u, v in zip(self.inside, other.inside)]
+        return type(self)(inside, self.dom, self.cod)
 
-@classmethod
-def zero(cls, dom: int, cod: int) -> Matrix:
-    return Matrix[cls.dtype]([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
+    @classmethod
+    def zero(cls, dom: int, cod: int) -> Matrix:
+        return Matrix[cls.dtype]([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
 \end{minted}
 \end{python}
 
