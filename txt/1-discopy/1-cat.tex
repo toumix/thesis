@@ -27,27 +27,26 @@ The axioms for the category $C$ are the following:
 
 Note that we play with the overloaded meaning of the word \emph{class}: we use it to mean both a mathematical collection that need not be a set, and a Python class with its methods and attributes.
 Reading it in the latter sense, $\dom$ and $\cod$ are \emph{attributes} of the arrow class, $\then$ is a \emph{method}, $\id$ is a \emph{static method}.
-Thus, implementing a category in Python means nothing more than subclassing the abstract classes \py{Object} and \py{Arrow} of listing~\ref{listing:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+Thus, implementing a category in Python means nothing more than subclassing the abstract classes \py{Ob} and \py{Arrow} of listing~\ref{listing:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
 The \py{Category} class is nothing more than a named tuple with two attributes \py{ob} and \py{ar} for its object and arrow class respectively.
 
 \begin{python}\label{listing:abstract classes}
-{\normalfont Abstract classes for objects, arrows, categories, functors and transformations.}
+{\normalfont Abstract classes for categories, functors and transformations.}
 
 \begin{minted}{python}
-class Object: ...
+class Ob: ...
 
 class Arrow:
     dom: Object
     cod: Object
 
     @staticmethod
-    def id(x: Object) -> Arrow[x, x]: ...
-
+    def id(x: Ob) -> Arrow[x, x]: ...
     def then(self, other: Arrow[self.cod, y]) -> Arrow[self.dom, y]: ...
 
 @dataclass
 class Category:
-    ob: type = Object
+    ob: type = Ob
     ar: type = Arrow
 
 class Functor:
@@ -129,8 +128,24 @@ Its components send objects \py{x : t} of any type \py{t} to the singleton list 
 {\normalfont Implementation of the category $\mathbf{Pyth}$ with \py{type} as objects and \py{Function} as arrows.}
 
 \begin{minted}{python}
+class Composable:
+    """ Allows syntactic sugar self >> other and self << other. """
+    def cast(self, other):
+        return other if isinstance(other, Composable) else self.id(other)
+
+    __rshift__ = __rlshift__ = lambda self, other: self.then(self.cast(other))
+    __lshift__ = __lrshift__ = lambda self, other: self.cast(other).then(self)
+
+def inductive(method):
+    """ Allows to apply a binary method to an arbitrary number of arguments. """
+    def result(self, *others):
+        if not others: return self
+        if len(others) == 1: return method(self, others[0])
+        if len(others) > 1: return method(method(self, others[0]), *others[1:])
+    return result
+
 @dataclass
-class Function:
+class Function(Composable):
     inside: Callable
     dom: type
     cod: type
@@ -139,15 +154,12 @@ class Function:
     def id(x: type) -> Function:
         return Function(lambda *xs: xs, x, x)
 
-    def then(self, other: Function | type) -> Function:
-        if not isinstance(other, Function): return self.then(self.id(other))
+    @inductive
+    def then(self, other: Function) -> Function:
         inside = lambda *xs: other(*tuple(self(*xs)))
         return Function(inside, self.dom, other.cod)
 
     def __call__(self, *xs): return self.inside(*xs)
-
-    __lshift__, __rshift__ = then, lambda self, other:\
-        other.then(self) if isinstance(other, Function) else self.id(other).then(self)
 \end{minted}
 \end{python}
 
@@ -178,35 +190,33 @@ There is a faithful functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends fi
 {\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix[dtype]} as arrows.}
 
 \begin{minted}{python}
-class Matrix:
+@dataclass
+class Matrix(Composable):
     dtype = int
 
-    @classmethod
+    dom: int
+    cod: int
+    inside: list[list[dtype]]
+
     def __class_getitem__(cls, dtype):
         class C(cls): pass
         C.dtype = dtype; return C
 
     def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
-        self.dom, self.cod, self.inside = dom, cod, [
-            [cast(self.dtype, val) for val in row] for row in inside]
+        self.dom, self.cod = dom, cod
+        self.inside = [list(map(self.dtype, row)) for row in inside]
 
     @classmethod
     def id(cls, x: int) -> Matrix:
         return cls([[i == j for i in range(x)] for j in range(x)], x, x)
 
+    @inductive
     def then(self, other: Matrix) -> Matrix:
-        inside = [[
-            sum([self[i][j] * other[j][k] for j in range(other.dom)])
-            for k in range(other.cod)] for i in range(self.dom)]
+        inside = [[sum([self[i][j] * other[j][k] for j in range(other.dom)])
+                   for k in range(other.cod)] for i in range(self.dom)]
         return type(self)(inside, self.dom, other.cod)
 
-    __eq__ = lambda self, other: isinstance(other, Matrix) and (
-        self.inside, self.dom, self.cod) == (other.inside, other.dom, other.cod)
-    __repr__ = lambda self: "Matrix[{}]({}, {}, {})".format(
-        self.dtype.__name__, self.inside, self.dom, self.cod)
     __getitem__ = lambda self, key: self.inside[key]
-    __lshift__, __rshift__ = then, lambda self, other:\
-        other.then(self) if isinstance(other, Matrix) else self.id(other).then(self)
 \end{minted}
 
 Subscriptable types such as \py{list[list[int]]} and the \py{__class_getitem__} method are a new feature of Python \py{>=3.10}.
@@ -275,32 +285,29 @@ class Ob:
     __str__ = lambda self: self.name
 
 @dataclass
-class Arrow:
+class Arrow(Composable):
+    inside: list[Arrow]
     dom: Ob
     cod: Ob
-    boxes: list[Arrow]
 
     @classmethod
     def upgrade(cls, old: Arrow) -> Arrow:
         if isinstance(old, cls): return old
-        return cls(old.dom, old.cod, old.boxes)
+        return cls(old.inside, old.dom, old.cod)
 
     @classmethod
     def id(cls, x: Ob) -> Arrow:
-        return cls.upgrade(Arrow(x, x, []))
+        return cls.upgrade(Arrow([], x, x))
 
     def then(self, *others: Arrow) -> Arrow:
-        others = [  # This allows nice syntactic sugar for the identity.
-            other if isinstance(other, Arrow) else self.id(other) for other in others]
         for f, g in zip((self, ) + others, others): assert f.cod == g.dom
         dom, cod = self.dom, others[-1].cod if others else self.cod
-        boxes = self.boxes + sum([other.boxes for other in others], [])
-        return self.upgrade(Arrow(dom, cod, boxes))
+        inside = self.inside + sum([other.inside for other in others], [])
+        return self.upgrade(Arrow(inside, dom, cod))
 
-    __rshift__, __lshift__ = then, lambda self, other: other.then(self)
-    __len__ = lambda self: len(self.boxes)
-    __str__ = lambda self: ' >> '.join(map(str, self.boxes))\
-        if self.boxes else '{}.id({})'.format(type(self).__name__, self.dom)
+    __len__ = lambda self: len(self.inside)
+    __str__ = lambda self: ' >> '.join(map(str, self.inside))\
+        if self.inside else '{}.id({})'.format(type(self).__name__, self.dom)
 
 @dataclass
 class Box(Arrow):
@@ -308,13 +315,13 @@ class Box(Arrow):
 
     def __init__(self, name: str, dom: Ob, cod: Ob):
         self.name = name
-        super().__init__(dom, cod, [self])
+        super().__init__([self], dom, cod)
 
     def __eq__(self, other):
         if isinstance(other, Box):
             return (self.name, self.dom, self.cod)\
                 == (other.name, other.dom, other.cod)
-        return isinstance(other, Arrow) and other.boxes == [self]
+        return isinstance(other, Arrow) and other.inside == [self]
 
     __str__ = lambda self: self.name
     __hash__ = lambda self: hash(repr(self))
@@ -324,7 +331,7 @@ class Box(Arrow):
 The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
 We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of each object and box is in scope.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
-The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.boxes == [f]}.
+The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.inside == [f]}.
 For the axiom \py{f >> id(y) == f == id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is equal to the arrow with just itself as boxes.
 The main subtlety in the implementation is the class method \py{upgrade} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
 This allows the composition of arrows in a subclass to remain within the subclass, without having to rewrite the method \py{then}.
@@ -371,19 +378,19 @@ class DictOrCallable:
         return dict[source, target] | Callable[[source], target]
 
 @dataclass
-class Dict:
+class FakeDict:
     inside: Callable
     __getitem__ = lambda self, key: self.inside(key)
 
 @dataclass
-class Functor:
+class Functor(Composable):
     ob: dictOrCallable[Ob, Ob]
     ar: dictOrCallable[Box, Ar]
     dom: Category = Category(Ob, Arrow)
     cod: Category = Category(Ob, Arrow)
 
     def __init__(self, ob, ar, dom, cod):
-        ob, ar = (d if hasattr(d, "__getitem__") else Dict(d) for d in (ob, ar))
+        ob, ar = (d if hasattr(d, "__getitem__") else FakeDict(d) for d in (ob, ar))
         self.ob, self.ar, self.dom, self.cod = ob, ar, dom, cod
 
     def __call__(self, other: Ob | Arrow) -> Ob | Arrow:
@@ -394,14 +401,15 @@ class Functor:
             # This allows some nice syntactic sugar for the ar mapping.
             return self.cod.ar(result, self(other.dom), self(other.cod))
         if isinstance(other, Arrow):
-            return self.cod.ar.id(self(other.dom)).then(
-                *self(box) for box in other.boxes)
+            base_case = self.cod.ar.id(self(other.dom))
+            return base_case.then(*self(box) for box in other.inside)
         raise TypeError
 
     @classmethod
     def id(cls, x: Category) -> Functor:
         return cls(lambda obj: obj, lambda box: box, dom=x, cod=x)
 
+    @inductive
     def then(self: Functor, other: Functor) -> Functor:
         assert self.cod == other.dom
         ob, ar = (
@@ -522,7 +530,7 @@ Thus, when $\S$ is a commutative rig such as the Boolean, $\mathbf{Mat}_\S$ is a
 DisCoPy implements free $\dagger$-categories by adding an attribute \py{is_dagger: bool} to boxes and a method \py{Arrow.dagger}, shortened to the postfix operator \py{[::-1]}, which reverses the order of boxes and negates \py{is_dagger} elementwise.
 The normal form is computable in linear time but it has not been implemented yet.
 In order to implement the syntactic sugar \py{f[::-1] == f.dagger()}, we need to override the \py{__getitem__} method.
-In general, DisCoPy defines indexing \py{f[i]} and slicing \py{f[start:stop:step]} so that \py{f[key].boxes == f.boxes[key]} for any \py{key: int} and any \py{key: slice} with \py{key.step in (-1, 1, None)}.
+In general, DisCoPy defines indexing \py{f[i]} and slicing \py{f[start:stop:step]} so that \py{f[key].inside == f.inside[key]} for any \py{key: int} and any \py{key: slice} with \py{key.step in (-1, 1, None)}.
 Although the case of negative indices (i.e. counting backwards from the end of the list) is implemented in DisCoPy, its interaction with list reversal is too complex to be listed here.
 
 \begin{python}
@@ -531,10 +539,10 @@ Although the case of negative indices (i.e. counting backwards from the end of t
 class Arrow(cat.Arrow):
     def dagger(self):
         return self.upgrade(Arrow(
-            self.cod, self.dom, [box.dagger() for box in self.boxes[::-1]]))
+            self.cod, self.dom, [box.dagger() for box in self.inside[::-1]]))
 
     def __getitem__(self, key: int | slice) -> Arrow:
-        if isinstance(key, int): return self.upgrade(self.boxes[key])
+        if isinstance(key, int): return self.upgrade(self.inside[key])
         if key.step not in (-1, 1, None): raise IndexError
         if key.step == -1:
             for i in (key.start, key.stop):
@@ -543,7 +551,7 @@ class Arrow(cat.Arrow):
                 None if i is None else i + 1 for i in (key.stop, key.start))
             return self[start:stop].dagger()
         dom, cod = self[key.start].dom, self[key.stop].cod
-        return self.upgrade(Arrow(dom, cod, self.boxes[key]))
+        return self.upgrade(Arrow(dom, cod, self.inside[key]))
 
 class Box(cat.Box, Arrow):
     upgrade = Arrow.upgrade
@@ -623,21 +631,18 @@ DisCoPy functors are commutative-monoid-enriched, i.e. a formal sum of arrows ca
 
 \begin{minted}{python}
 class Arrow(cat.Arrow):
-    def __add__(self, other):
-        terms = [self.sum.upgrade(f).terms for f in (self, other)]
-        return self.sum(terms, self.dom, self.cod)
-
     def __eq__(self, other):
-        return other.terms == [self]\
-            if isinstance(other, Sum) else super().__eq__(other)
+        return other.terms == [self] if isinstance(other, Sum)\
+            else super().__eq__(other)
 
     def then(self, other: Arrow) -> Arrow:
-        return self.sum.upgrade(self).then(other)\
-            if isinstance(other, Sum) else super().then(other)
+        return self.sum.upgrade(self).then(other) if isinstance(other, Sum)\
+            else super().then(other)
 
     @staticmethod
     def zero(dom: Ob, cod: Ob) -> Arrow: return Sum([], dom, cod)
 
+    __add__ = lambda self, other: self.sum.upgrade(self) + other
     __lt__ = lambda self, other: hash(self) < hash(other)  # An arbitrary order.
 
 class Sum(cat.Box, Arrow):
@@ -653,10 +658,15 @@ class Sum(cat.Box, Arrow):
                 == (other.dom, other.cod, sorted(other.terms))
         return self.terms == [other]
 
+    def __add__(self, other):
+        if not isinstance(other, Sum): return self + self.upgrade(other)
+        return Sum(self.terms + other.terms, self.dom, self.cod)
+
     @classmethod
     def upgrade(cls, old: cat.Arrow) -> Sum:
         return old if isinstance(old, cls) else cls([old], old.dom, old.cod)
 
+    @inductive
     def then(self, other):
         terms = [f.then(g) for f in self.terms for g in self.upgrade(other).terms]
         return type(self)(terms, self.dom, other.cod)
