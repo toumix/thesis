@@ -239,7 +239,7 @@ class Tensor(Tensorable):
         return Matrix[self.dtype](self.inside, product(self.dom), product(self.cod))
 
     @classmethod
-    def id(cls, x: list[int]) -> Tensor:
+    def id(cls, x: list[int] = []) -> Tensor:
         return cls(Matrix.id(product(x)).inside, x, x)
 
     @inductive
@@ -328,7 +328,7 @@ class Ty(Ob):
 
     def __init__(self, objects=[]):
         self.objects = [x if isinstance(x, Ob) else Ob(x) for x in objects]
-        name = ' @ '.join([x.name for x in self.objects]) if objects else "Ty()"
+        name = ' @ '.join(map(str, objects)) if objects else "Ty()"
         super().__init__(name)
 
     @classmethod

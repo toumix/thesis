@@ -2,10 +2,113 @@
 
 \section{A premonoidal approach} \label{section:premonoidal}
 
-\subsection{Abstract premonoidal categories}
+In the previous section, we have seen that cartesian closed categories give us enough syntax to interpret (simply typed) lambda terms.
+Thus, we can execute the diagrams in a free cartesian closed category as functions by applying a functor into $\mathbf{Set}$ or $\mathbf{Pyth}$, we can also interpret them as functors by applying a functor into $\mathbf{Cat}$ with the cartesian product as tensor.
+Now if we remove the cartesian assumption, the diagrams of free closed categories give us a programming language with higher-order functions where we cannot copy, discard or even swap data: the (non-commutative) \emph{linear lambda calculus}.
+With a more restricted language, we get a broader range of possible interpretations.
+For example, there can be only one cartesian closed structure on $\mathbf{Cat}$ (because any other would be naturally isomorphic) but are there any other monoidal closed structures?
+Foltz, Lair and Kelly~\cite{FoltzEtAl80} answer the question with the positive: $\mathbf{Cat}$ has exactly two closed structures: the usual cartesian closed structure with the exponential $D^C$ given by the category of functors $C \to D$ and natural transformations, and a second one where the exponential $C \Rightarrow D$ is given by the category of functors $C \to D$ and \emph{transformations}, with no naturality requirement.
 
-\subsection{Concrete premonoidal categories}
+The corresponding tensor product on $\mathbf{Cat}$, i.e. the left-adjoint $C \Box - \dashv C \Rightarrow -$, is called the \emph{funny tensor product}, maybe because mathematicians thought it was funny not to require naturality.
+More explicitly, the funny tensor $C \Box D$ can be described as the push-out of $C \times D_0 \leftarrow C_0 \times D_0 \to C_0 \times D$ where $C_0, D_0$ are the discrete categories of objects, or equivalently as a quotient of the coproduct $(C \times D_0 + C_0 \times D) / R$ where the relations are given by $(0, \id(x), y) = (1, x, \id(y))$.
+Even more explicitly, the objects of $C \Box D$ are given by the cartesian product $C_0 \times D_0$, the arrows are alternating compositions $(0, f_1, y_1) \fcmp (1, x_2, g_2) \fcmp \dots \fcmp (0, f_{n - 1}, y_{n -1}) \fcmp (1, x_n, g_n)$ of arrows in one category paired with an object of the other.
+When the two categories are in fact monoids, the funny tensor is called the \emph{free product} because it sends free monoids to free monoids, i.e. $X^\star \Box Y^\star = (X + Y)^\star$.
+This is also true for free categories, i.e. $F(\Sigma) \Box F(\Sigma') = F(\Sigma \times \Sigma'_0 \cup \Sigma_0 \times \Sigma)$, so maybe $\Box$ should be called free rather than funny.
+While a functor on a cartesian product $F : C \times D \to E$ can be seen as a functor of two arguments that is functorial in both simultaneously, i.e. $F(f \fcmp f', g \fcmp f') = F(f, g) \fcmp F(f', g')$, a functor on a funny product $F : C \Box D \to E$ is functorial separately in its $C$ and $D$ arguments, i.e. $F(0, f \fcmp f', y) = F(0, f, y) \fcmp F(0, f', y)$ and $F(1, x, g \fcmp g') = F(1, x, g) \fcmp F(1, x, g')$.
 
-\subsection{Free premonoidal categories}
+Now recall that a (strict) monoidal category $C$ is a monoid in $(\mathbf{Cat}, \times)$, i.e. the tensor is a functor on a cartesian product $\otimes : C \times C \to C$.
+In a similar way, we define a (strict) \emph{premonoidal category} as a monoid in $(\mathbf{Cat}, \Box)$, i.e. a category $C$ with an associative, unital functor on the funny product $\boxtimes : C \Box C \to C$.
+A (strict) \emph{premonoidal functor} is a functor that commutes with $\boxtimes$, i.e. $F(f \boxtimes g) = F(f) \boxtimes F(g)$, thus we get a category $\mathbf{PreMonCat}$.
+Similarly a \emph{premonoidal transformation} is a transformation $\alpha : F \to G$ between two premonoidal functors such that $\alpha(x \boxtimes y) = \alpha(x) \boxtimes \alpha(y)$.
+As for monoidal categories, we can show that every premonoidal category is premonoidally equivalent to a foo one, i.e. where the monoid of objects is free, thus we get a forgetful functor $U : \mathbf{PreMonCat} \to \mathbf{MonSig}$.
+The image of $\boxtimes$ on objects may be given by concatenation, its image on arrows is called \emph{whiskering}, it is denoted by $\boxtimes(0, f, x) = f \boxtimes x$ and $\boxtimes(1, x, f) = x \boxtimes f$.
+As we have seen in section~\ref{section:monoidal}, from whiskering we can define a (biased) tensor product on arrows $f \boxtimes g = f \boxtimes \dom(g) \fcmp \cod(f) \boxtimes g$ and conversely, we can define whiskering as tensoring with identity arrows.
 
-\subsection{The state construction}
+Thus, we can take the data for a premonoidal category $C$ to be the same as that of a foo-monoidal category and the only axioms to be those for $(C_1, \boxtimes, \id(1))$ being a monoid.
+That is, a premonoidal category is almost a monoidal category, only the interchange law does not necessarily hold.
+Every monoidal category (functor) is also a premonoidal category (functor), hence we have an inclusion functor $\mathbf{MonCat} \injects \mathbf{PreMonCat}$.
+An arrow of a premonoidal category $C$ is called \emph{central} if it interchanges with every other arrow, a transformation is called central if every component is central.
+Every identity is central and composition preserves centrality, thus we can define the \emph{center} $Z(C)$ as the subcategory of central arrows and show that $Z : \mathbf{PreMonCat} \to \mathbf{MonCat}$ is in fact the right adjoint of the inclusion.
+A \emph{symmetric premonoidal category} is a premonoidal category with a central natural isomorphism $S : x \boxtimes y \to y \boxtimes x$ such that the hexagon equations hold and $S(x, 1) = \id(x) = S(1, x)$.
+Again, we get an inclusion functor from symmetric monoidal categories to symmetric premonoidal, and its right adjoint given by the center.
+
+\begin{example}
+A premonoidal category with one object is just a set with two monoid structures.
+They do not satisfy the interchange law so the Eckmann-Hilton argument does not apply, the two monoids need not coincide nor be commutative.
+In this case, the notion of center coincides with the usual notion of center of a monoid, i.e. the submonoid of elements that commute with everything else.
+Indeed, the monoidal center of a one-object premonoidal is the intersection of the centers of its two monoid structures.
+\end{example}
+
+\begin{example}
+For any small category $C$, the category $C \Rightarrow C$ of endofunctors $C \to C$ with (not-necessarily-natural) transformations as arrows is a premonoidal category.
+\end{example}
+
+\begin{example}
+The category of matrices $\mathbf{Mat}_\S$ with entries in a rig $\S$ with the Kronecker product as tensor is a premonoidal category, it is monoidal precisely when $\S$ is commutative.
+\end{example}
+
+\begin{example}
+The category $\mathbf{Pyth}$ with \py{list[type]} as objects and \py{Function} as arrows is premonoidal with \py{tuple} as tensor.
+Every pure function is in the center $Z(\mathbf{Pyth})$, but the converse is not necessarily true: take the side effect $f : x \to 1$ which increments a private, internal counter every time it is called.
+It is impure, but not enough that we can observe it by parallel composition, i.e. although it does not commute with copy and discard, it can still be interchanged with any other function.
+In other words, it is in the monoidal center, but not the cartesian center (i.e. the subcategory of comonoid homomorphisms).
+\end{example}
+
+These last two examples can be seen as special cases of a more general pattern: they are \emph{Kleisli categories} for a \emph{strong monad}.
+Infamously, a monad is just a monoid $T : C \to C, \mu : T \fcmp T \to T$, $\eta : 1 \to T$ in the category $C^C$ of endofunctors with natural transformations as arrows.
+Its Kleisli category $K(T)$ has the same objects as $C$ and arrows given by $K(T)(x, y) = C(x, T(y))$, with the identity given by the unit $\id_K(x) = \eta(x)$ and composition given by post-composition with the multiplication, i.e. $f \fcmp_K g = f \fcmp T(g) \fcmp \mu(z)$ for $f : x \to T(y)$ and $g : y \to T(z)$.
+Now if $C$ happens to be a monoidal category, we can ask for $T$ to be a monoidal functor, but we also want the multiplication and unit of the monad to play well with the monoidal structure.
+We could ask for a \emph{monoidal monad} where $\mu$ and $\eta$ are monoidal transformations, i.e. for the monad to be a monoid in the category of monoidal endofunctors and monoidal natural transformations and show that the Kleisli category $K(T)$ inherits a monoidal structure.
+More generally, we can ask only for a (bi)\emph{strong monad}, equipped with two natural transformations $\sigma(a, b) : a \otimes T(b) \to T(a \otimes b)$ and $\tau(a, b) : T(a) \otimes b \to T(a \otimes b)$ called \emph{strength} and \emph{co-strength} such that:
+\begin{itemize}
+\item $\sigma(1, a) = \id(T(a))$, i.e. strengthening with the unit does nothing,
+\item $\sigma(a \otimes b, c) = a \otimes \sigma(b, c) \fcmp \sigma(a, b \otimes c)$, i.e. strengthening with a tensor $a \otimes b$ is the same as strengthening with $b$ then with $a$,
+\item $\eta(a, b) = a \otimes \eta(b) \fcmp t(a, b)$, i.e. strengthening commutes with the monad unit,
+\item $a \otimes \mu(b) \fcmp \sigma(a, b) = \sigma(a, T(b)) \fcmp T(\sigma(a, b)) \fcmp \mu(a \otimes b)$, i.e. strengthening commutes with the monad multiplication,
+\end{itemize}
+and symmetrically for $\tau$ (when $C$ is symmetric monoidal we can define co-strength from strength and swaps).
+This is sufficient for the Kleisli category $K(T)$ to inherit a premonoidal structure, it is monoidal precisely when the monad is commutative, i.e. the two arrows from $T(x) \otimes T(y)$ to $T(x \otimes y)$ are equal.
+
+\begin{example}
+Take the category $C = \mathbf{FinSet}$ and the \emph{distribution monad} $T(X) = \S^X$ for a rig $\S$ with the image on arrows given by \emph{pushforward} $T(f : X \to Y)(p : X \to \S) : y \mapsto \sum_{x \in f^{-1}(y)} p(x)$, the multiplication and unit induced by the rig multiplication and unit.
+Its Kleisli category is precisely the category $\mathbf{Mat}_S$ of matrices, i.e. functions $m : Y \to \S^X \simeq X \times Y \to \S$.
+One can show this is a strong monad, and it is commutative precisely when the rig is commutative.
+\end{example}
+
+\begin{example}
+Take any closed symmetric category $C$ and the \emph{state monad} $T(x) = s^{s \otimes x}$ for some object $s$, an arrow $f : x \to y$ in the Kleisli category $K(T)$ is given by an arrow $f : s \otimes x \to s \otimes y$ in $C$ (up to uncurrying).
+One can show that $T$ is strong and thus $K(T)$ is premonoidal.
+When $C = \mathbf{Set}$ the state monad is a non-commutative as it gets: $T$ is commutative if and only if $s$ is trivial.
+Whiskering an arrow $f : s \otimes x \to s \otimes y$ by an object $z$ on the left is given by pre- and post-composition with swaps $z \boxtimes f = S(s, z) \otimes x \ \fcmp \ z \otimes f \ \fcmp \ S(z, s) \otimes y$, whiskering on the right is easier $f \boxtimes z = f \otimes z$.
+\end{example}
+
+Premonoidal categories were introduced by Power and Robinson~\cite{PowerRobinson97} as a way to model programming languages with side effects.
+Jeffrey~\cite{Jeffrey97} then gave the first definition of free premonoidal categories, his construction formalises the intuition that non-central arrows are to be thought as arrows with side effects.
+The \emph{state construction} takes as input a symmetric monoidal category $C$ and an object $s$, and builds a symmetric premonoidal category $\mathbf{St}(C, s)$ with the same objects as $C$, arrows given by $\mathbf{St}(C, s)(x, y) = C(s \otimes x, s \otimes y)$ and whiskering defined as in the state monad.
+Intuitively, an arrow in $\mathbf{St}(C, s)$ is an arrow in $C$ which also updates a global state encoded in the object $s$, which we can draw as an extra wire passing through every box of the diagram, preventing them from being interchanged.
+More formally, given a monoidal signature $\Sigma$ we can construct the free symmetric premonoidal category $F^{SP}(\Sigma) = \mathbf{St}(F^S(\Sigma + \{ s \}), s)$ as the state construction over the free symmetric category with an extra object.
+We can generalise this to (non-symmetric) free premonoidal categories but we still need symmetry at least for the extra object, i.e. natural isomorphisms $S(s, x) : s \otimes x \to x \otimes s$ for each object $x$, subject to hexagon and unit equations.
+
+We call this definition of the free premonoidal category as a state construction over a free monoidal category with an extra swappable object the \emph{monoidal approach} to premonoidal categories.
+In what we call the \emph{premonoidal approach} to monoidal categories, definitions go the other way around with free premonoidal categories as the fundamental notion and free monoidal categories as an interesting quotient.
+Indeed, we have been using the arrows of free premonoidal categories all along: they are string diagrams, defined as lists of layers without quotienting by interchanger.
+Equivalently, they are labeled generic progressive plane graphs up to generic deformation, i.e. with at most one box node at each height.
+While in the monoidal approach, string diagrams are defined as non-planar graphs and the ordering of boxes is materalised by extra wires connecting the boxes in sequence, in the premonoidal approach we take this ordering as data: boxes are in a list.
+This comes with an immediate advantage: equality of premonoidal diagrams can be defined in terms of equality of lists, hence it is decidable in linear time whereas equality of monoidal diagrams has quadratic complexity and equality of symmetric diagrams could be as hard as graph isomorphism.
+
+In order to compare the two approaches, we need to say a few words about how string diagrams for symmetric categories are usually implemented.
+Recall from sections~\ref{subsection:symmetric} and \ref{subsection:hypergraph} that equality of diagrams in symmetric and hypergraph categories reduce to graph and hypergraph isomorphisms respectively.
+This can be made explicit by implementing these diagrams as graphs and hypergraphs rather than lists of layers with explicit boxes for swaps and spiders.
+Given a monoidal signature $\Sigma$, a \emph{hypergraph diagram} (also called hypergraphs with \emph{ports}) $f$ is given by:
+\begin{itemize}
+\item its domain and codomain $\dom(f), \cod(f) \in \Sigma_0^\star$,
+\item a list of boxes $\boxes(f) \in \Sigma_1^\star$ from which we define $\mathtt{ports}(f) = \coprod \big\{ \dom(g) + \cod(g) \ \vert g \in \{ f \} + \boxes(f) \big\}$,
+\item a number of \emph{spiders} $\mathtt{spiders}(f) = n \in \N$ together with their list of types $\mathtt{spider_types}(f) \in \Sigma_0^{n}$,
+\item a set of \emph{wires} $\mathtt{wires}(f) : \mathtt{ports}(f) \to \mathtt{spiders}(f)$.
+\end{itemize}
+The tensor of two hypergraph diagrams is given by concatenating their domain, codomain, boxes and spiders, composition is defined in terms of \emph{pushouts}.
+Given $f : x \to y$ and $g : y \to x$ we have a \emph{span} of functions $\mathtt{spiders}(f) \leftarrow y \rightarrow \mathtt{spiders}(g)$ induced by the wires from the codomain of $f$ and the domain of $g$.
+We define $\mathtt{spiders}(f \fcmp g)$ as the size of the quotient set $(\mathtt{spiders}(f) + \mathtt{spiders}(g)) / R$ under the relation given by $\mathtt{wires}(f)(0, 0, i) = \mathtt{wires}(g)(0, 1, i)$ for all $i \leq \vert y \vert$.
+Concretely, this quotient can be computed as the connected components of an undirected graph with $\mathtt{spiders}(f) + \mathtt{spiders}(g)$ vertices.
+The identity diagram $\id(x)$ has $\mathtt{spiders}(f) = \vert x \vert$ and wires given by the two injections $\vert x \vert + \vert x \vert \to \mathtt{spiders}(f)$.
+The category thus defined is in fact isomorphic to the free hypergraph category defined in section~\ref{subsection:hypergraph} in terms of special commutative Frobenius algebras~\cite[Theorem 3.3]{BonchiEtAl16}.

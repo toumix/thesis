@@ -169,6 +169,7 @@ for braid in [Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.S
 {\normalfont Implementation of $\mathbf{Pyth}$ and $\mathbf{Tensor}_\S$ as symmetric categories.}
 
 \begin{minted}{python}
+@staticmethod
 def function_swap(x: list[type], y: list[type]) -> Function:
     def inside(*xs):
         assert len(xs) == len(x + y)
@@ -184,7 +185,7 @@ def tensor_swap(cls, x: list[int], y: list[int]) -> Tensor:
         for i1 in range(product(x)) for j1 in range(product(y))]
     return cls(inside, dom=x + y, cod=y + x)
 
-Tensor.swap = Tensor.braid = tensor_swaps
+Tensor.swap = Tensor.braid = tensor_swap
 \end{minted}
 \end{python}
 

@@ -1,15 +1,262 @@
 %!TEX root = ../../THESIS.tex
 
-Cartesian monoid implies bialgebra, bialgebra and Frobenius imply trivial
+\subsection{Closed categories} \label{subsection:closed}
 
-$\mathbf{Pyth}$ cannot be be rigid but it does share a common structure with rigid categories: both are \emph{biclosed categories}...
+As we have seen in sections~\ref{subsection:hypergraph} and \ref{subsection:cartesian}, cartesian categories like $\mathbf{Pyth}$ and hypergraph categories like $\mathbf{Tensor}$ are two orthogonal extensions of monoidal categories.
+The former have natural comonoids on each object, the latter have spiders on each object, an object that has both is necessarily trivial.
+Nevertheless, the category $\mathbf{Pyth}$ does share a common structure with rigid categories beyond being monoidal: both are \emph{closed} monoidal categories.
+A monoidal category $C$ is left-closed if for every object $x \in C_0$, the functor $x \otimes - : C \to C$ has a right adjoint $x / - : C \to C$ called \emph{$x$ over $-$}.
+Symmetrically, $C$ is right-closed if the functor $- \otimes x : C \to C$ has a right adjoint $- \backslash x : C \to C$ called \emph{$-$ under $x$}.
+A \emph{closed (monoidal) category} is one that is closed on the left and the right.
+For example, a rigid category is a closed category where the over and under types have the form $x / y = x^r \otimes y$ and $y / x = y \otimes x^l$.
+When the category is symmetric, over and under types coincide, they are called \emph{exponentials} $x / y = y \backslash x = y^x$.
 
-A category is \emph{cartesian closed} when it is both cartesian and biclosed.
+\begin{example}
+A discrete monoidal category (i.e. a monoid) is closed if and only if it is a group.
+A closed preordered monoid (i.e. a closed category with at most one arrow between any two objects) is also called a \emph{residuated monoid}~\cite{Coecke13}, their application to NLP will be discussed in section~\ref{section:NLP}.
+\end{example}
 
-Listing: \py{closed}
+As the name suggests, a \emph{cartesian closed category} is a cartesian category that is also closed.
+Examples of cartesian closed categories include $\mathbf{Set}$ with the exponential $Y^X$ given by the set of functions from $X$ to $Y$ and $\mathbf{Cat}$ with $D^C$ the category of functors from $C$ to $D$ with natural transformations as arrows.
+The category $\mathbf{Pyth}$ with \py{list[type]} as objects and pure functions between tuples as arrows is also cartesian closed, the exponential of two lists of types \py{x, y} is given by \py{Callable[x, tuple[y]]}.
+The natural isomorphism $\Lambda : \mathbf{Pyth}(x \times y, z) \to \mathbf{Pyth}(y, z^x)$ is called \emph{currying}, after the founding father of functional programming Haskell Curry.
+A function of two arguments $x \times y \to z$ is the same as a one-argument higher-order function $y \to z^x$.
+Taking the equivalent definition of adjunctions, the unit $\eta_y : y \to (y \times x)^x$ is given by concatenation, i.e. \py{lambda *ys: lambda *xs: ys + xs}, while the counit $\epsilon_y : y^x \times x \to x$ is given by evaluation, i.e. \py{lambda f, *xs: f(*xs)}.
+In fact, we can take the data for a cartesian closed category to be that of a cartesian category $C$ together with:
+\begin{itemize}
+\item an operation $\exp : C_0^\star \times C_0^\star \to C_0$ sending every pair of types to a generating object,
+\item an operation $\mathtt{ev} : C_0^\star \times C_0^\star \to C_1$ sending every pair of types $x, y$ to an arrow $\mathtt{ev}(x, y) : \exp(y, x) \times x \to y$,
+\item an operation $\Lambda_n : C_1 \to C_1$ for each $n \in \N$, sending every arrow $f : x \times y \to z$ with $x$ of length $n$ to an arrow $\Lambda_n(f) : y \to \exp(z, x)$.
+\end{itemize}
+We can take the axioms to be those of cartesian categories together with $\Lambda_n(f \times x \ \fcmp \ \mathtt{ev}(z, x)) = f$ for all $f : y \to \exp(z, x)$.
+Intuitively, if we take a higher-order function, evaluate it then abstract away the result, we get back to where you started, i.e. $\Lambda_n^{-1}(f) = f \times x \ \fcmp \ \mathtt{ev}(z, x)$.
 
-Listing: closed structure on \py{rigid.Diagram}
+\begin{python}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian closed category.}
 
-Listing: $\mathbf{Pyth}$ as a cartesian closed category
+\begin{minted}{python}
+def exp(base: list[type], exponent: list[type]) -> list[type]:
+    return [Callable[list(exponent), tuple[tuple(base)]]]
 
-Example: preordered monoids that are also biclosed categories, categorial grammars and Montague semantics, see section~\ref{section:NLP}.
+class Function:
+    ...
+    def curry(self, n=1, left=True) -> Function:
+        inside = lambda *xs: lambda *ys: self(*(ys + xs) if left else (xs + ys))
+        dom, cod = (self.dom[n:], exp(self.cod, self.dom[:n])) if left\
+            else (self.dom[:len(self.dom) - n], exp(self.cod, self.dom[len(diagram) - n:]))
+        return Function(inside, dom, cod)
+
+    @staticmethod
+    def ev(base: list[type], exponent: list[type], left=True) -> Function:
+        inside = (lambda *xs: xs[-1](*xs[:-1])) if left else (lambda f, *xs: f(*xs))
+        dom, cod = (exponent + exp(base, exponent), base) if left\
+            else (exp(base, exponent) + exponent, base)
+        return Function(inside, dom, cod)
+
+    def uncurry(self, left=True) -> Function:
+        if len(self.cod) != 1 or not self.cod[0]._name == "Callable": return self
+        *exponent, output = self.cod[0].__args__
+        base = output.__args__ if is_tuple(output) else [output]
+        return exponent @ self >> Function.ev(base, exponent) if left\
+            else self @ exponent >> Function.ev(base, exponent, left=False)
+
+    under, over = staticmethod(exp), staticmethod(lambda x, y: exp(y, x))
+\end{minted}
+\end{python}
+
+\begin{example}
+We can check the axioms for cartesian closed categories hold in $\mathbf{Pyth}$.
+
+\begin{minted}{python}
+x, y, z = map(list, (complex, bool, float))
+f = Function(dom=y, cod=exp(z, x), inside=lambda b: lambda a: abs(a) ** 2 if b else 0)
+
+assert (x @ f >> Function.ev(z, x)).curry()(True)(1j) == f(True)(1j)\
+    == (f @ x >> Function.ev(z, x, left=False)).curry(left=False)(True)(1j)
+\end{minted}
+\end{example}
+
+A (strict) cartesian closed functor is a cartesian functor $F$ which respects the exponential, i.e. $F(y^x) = F(y)^{F(x)}$.
+Thus, we get a category $\mathbf{CCCat}$ of cartesian closed categories and functors, with a forgetful functor $U : \mathbf{CCCat} \to \mathbf{MonSig}$.
+Its left adjoint $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$ can be constructed in two steps.
+First, we define a \emph{closed signature} as a monoidal signature $\Sigma$ with a pair of binary operators $(- / -), \ (- \backslash -) : \Sigma_0^\star \times \Sigma_0^\star \to \Sigma_0$, i.e. for every pair of types $x, y \in \Sigma_0^\star$ there are two generating objects $x / y, \ y \backslash x \in \Sigma_0$.
+Morphisms of closed signatures are defined in the obvious way, thus we get a category $\mathbf{CSig}$ with two forgetful functors $U : \mathbf{CCCat} \to \mathbf{CSig}$ and $U : \mathbf{CSig} \to \mathbf{MonSig}$.
+Its left-adjoint $F^C : \mathbf{MonSig} \to \mathbf{CSig}$ sends a monoidal signature to the union of itself with extra objects for the over and under slashes, it can be defined by induction on the number of nested slashes.
+Now we can define the left adjoint $F : \mathbf{CSig} \to \mathbf{CCCat}$ as a quotient of the free cartesian category with boxes for evaluations, bubbles for currying (i.e. by induction on the number of nested curryings) and relations given by the axioms for natural isomorphisms.
+Composing the two adjunctions we get $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$.
+
+Diagrams in free cartesian closed categories can also be seen as terms of the \emph{simply typed lambda calculus} (up to $\beta\eta$-equivalence) or as proofs in \emph{minimal logic} (the fragment of propositional logic with only conjunction and implication).
+This is called the \emph{Curry-Howard-Lambek correspondance}, see Abramsky and Tzevelekos~\cite{AbramskyTzevelekos10} for an introduction.
+The problem of deciding the $\beta\eta$-equivalence of a given pair of simply typed lambda terms (or equivalently the equivalence of two minimal logic formulae) is decidable~\cite{Tait67} but not elementary recursive~\cite{Statman79}, i.e. its time complexity is not bounded by any tower of exponentials.
+As such, the word problem for free cartesian closed categories is as intractable as it gets.
+If we remove the copying and discarding, the word problem for free symmetric closed categories is decidable in linear time~\cite{Voreadou77}.
+The algorithm is based on a variant of Gentzen's cut-elimination theorem for a \emph{substructural logic}, one where the \emph{weakening} and \emph{contraction} rules are omitted, i.e. we cannot discard or copy assumptions.
+To the best of our knowledge, the case of (non-symmetric) closed monoidal categories is still open.
+We conjecture it can be solved with a variant of cut-elimination for a \emph{non-commutative logic} omitting the \emph{exchange} rule, i.e. we cannot swap assumptions.
+
+DisCoPy implements the types of the closed diagrams with a subclass \py{Exp} of \py{Ty} for exponentials.
+\py{Over} and \py{Under} are two subclasses of \py{Exp}, shortened to \py{x >> y} and \py{y << x}, and attached to the \py{Diagram} class as two static methods \py{over} and \py{under}.
+We need to initalise the type \py{self: Exp} with some list of objects, our only choice is \py{self.object=[self]}.
+Thus, we need to override the equality and printing methods so that we don't fall into infinite recursion.
+We also need to override the \py{upgrade} method so that the unit law is satisfied, i.e. \py{self @ Ty() == self == Ty() @ self}.
+
+\begin{python}
+{\normalfont Implementation of the types in free closed categories.}
+
+\begin{minted}{python}
+class Ty(monoidal.Ty):
+    @classmethod
+    def upgrade(cls, old: monoidal.Ty) -> Ty:
+        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(*old.objects)
+
+    def __pow__(self, other):
+        return Exp(self, other) if isinstance(other, Ty) else super().__pow__(other)
+
+class Exp(Ty):
+    upgrade = Ty.upgrade
+
+    def __init__(self, base, exponent):
+        self.base, self.exponent = base, exponent
+        super().__init__(objects=[self])
+
+    def __eq__(self, other):
+        return isinstance(other, type(self))\
+            and (self.base, self.exponent) == (other.base, other.exponent)
+
+    __str__ = lambda self: "({}) ** ({})".format(self.base, self.exponent)
+
+class Under(Exp):
+    __str__ = lambda self: "({} << {})".format(self.base, self.exponent)
+
+class Over(Exp):
+    __str__ = lambda self: "({} >> {})".format(self.exponent, self.base)
+
+Ty.__lshift__, Ty.__rshift__ = Under, lambda self, other: Over(other, self)
+Diagram.over, Diagram.under = map(staticmethod, (Over, Under))
+\end{minted}
+\end{python}
+
+Closed diagrams are implemented with two subclasses of \py{Box} for currying and evaluation, which are attached to the \py{Diagram} class as two static methods \py{curry} and \py{ev}.
+We shorten \py{Diagram.ev(base, exponent, left)} to \py{Ev(exponent >> base)} if \py{left} else \py{Ev(base << exponent)}.
+Closed functors map \py{Exp} types to the \py{over} and \py{under} methods of their codomain, similarly for \py{Curry} and \py{Uncurry} boxes.
+
+
+\begin{python}
+{\normalfont Implementation of free closed categories and functors.}
+
+\begin{minted}{python}
+class Ev(Box):
+    def __init__(self, inside: Exp):
+        self.base, self.exponent, self.left\
+            = inside.base, inside.exponent, isinstance(inside, Over)
+        dom, cod = self.exponent @ inside, self.base if self.left\
+            else inside @ self.exponent, self.base
+        super().__init__("Ev" + str(exp), dom, cod)
+
+class Curry(Box):
+    def __init__(self, inside: Diagram, n=1, left=True):
+        self.inside, self.n, self.left = inside, n, left
+        name = "Curry({}, {}, {})".format(diagram, n, left)
+        dom, cod = (inside.dom[n:], inside.dom[:n] >> inside.cod) if left\
+            else (inside.dom[:len(inside.dom) - n],
+                  inside.cod << inside.dom[len(inside.dom) - n:])
+        super().__init__(name, dom, cod)
+
+def uncurry(self: Diagram, left=True) -> Diagram:
+    if not isinstance(self.cod, (Over if left else Under)): return self
+    base, exponent = self.cod.base, self.cod.exponent
+    return exponent @ self >> Ev(exponent >> base) if left\
+        else self @ exponent >> Ev(base << exponent)
+
+@staticmethod
+def ev(base: Ty, exponent: Ty, left=True) -> Ev:
+    return Ev(exponent >> base if left else base << exponent)
+
+Diagram.curry, Diagram.uncurry, Diagram.ev = Curry, uncurry, ev
+
+class Functor(monoidal.Functor):
+    dom = cod = Category(Ty, Diagram)
+
+    def __call__(self, other):
+        if isinstance(other, Over):
+            return self.cod.ar.over(self(other.exponent), self(other.base))
+        if isinstance(other, Under):
+            return self.cod.ar.over(self(other.base), self(other.exponent))
+        if isinstance(other, Curry):
+            return self.cod.ar.curry(
+                self(other.inside), len(self(other.cod.exponent)), other.left)
+        if isinstance(other, Ev):
+            return self.cod.ar.ev(self(other.base), self(other.exponent), other.left)
+        return super().__call__(other)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can check that the axioms hold by applying functors into $\mathbf{Pyth}$.
+
+\begin{minted}{python}
+x, y, z = map(Ty, "xyz")
+f, g = Box('f', y, z << x), Box('f', y, z >> x)
+
+F = Functor(
+    ob={x: complex, y: bool, z: float},
+    ar={f: lambda b: lambda a: abs(a) ** 2 if b else 0,
+        g: lambda b: lambda a: a + 1j if b else -1j}
+    cod=Category(list[type], Function))
+
+assert F((f @ x >> Ev(z << x)).curry(left=False))(True)(1j) == F(f)(True)(1j)
+assert F((x @ g >> Ev(z >> x)).curry())(True)(1.2) == F(g)(True)(1j)
+\end{minted}
+\end{example}
+
+Understanding the relationship between closed and rigid categories will also explain how we draw closed diagrams, using the bubble notation introduced by Baez and Stay~\cite[Section~2.6]{BaezStay09}.
+Indeed, in a free rigid category the exponentials are given as a tensor of a type and an adjoint, thus we can draw them as two wires side by side.
+On the other hand, the exponentials of a free closed category are defined as generating objects, they ought to be drawn as one wire but we can decide to draw them as two, inseparable wires.
+This constraint can be materialised by a \emph{clasp} that binds the two wires together.
+Similarly, in free rigid categories we can draw evaluation and currying as diagrams with cups and caps while in a free closed category they are defined as generating boxes, which ought to be drawn as black boxes.
+We can decide to draw them the same way as in a rigid category, with a bubble surrounding them to prohibit illicit rewrites.
+Once drawn in this way, the equations for currying become a special case of the snake equations, although in general closed categories do not have boxes for cups and caps.
+
+\begin{python}
+{\normalfont Implementation of free rigid categories as closed categories.}
+
+\begin{minted}{python}
+rigid.Ty.__lshift__ = lambda self, other: self @ other.l
+rigid.Ty.__rshift__ = lambda self, other: self.r @ other
+rigid.Diagram.under = staticmethod(lambda base, exponent: base << exponent)
+rigid.Diagram.over = staticmethod(lambda base, exponent: exponent >> base)
+
+@classmethod
+def ev(cls, base: rigid.Ty, exponent: rigid.Ty, left=True) -> rigid.Diagram:
+    return cls.cups(exponent, exponent.l) @ cls.id(base) if left\
+        else cls.id(base) @ cls.cups(exponent.r, exponent)
+
+def curry(self: rigid.Diagram, n=1, left=True) -> rigid.Diagram:
+    base, exponent = (self.dom[n:], self.dom[:n]) if left\
+        else (self.dom[len(self.dom) - n:], self.dom[:len(self.dom) - n])
+    return self.caps(exponent.r, exponent) @ base >> exponent.r @ self if left\
+        else base @ self.caps(exponent, exponent.l) >> self @ @ exponent.l
+
+Diagram.ev, Diagram.curry = ev, curry
+\end{minted}
+\end{python}
+
+\begin{example}
+We can draw cartesian diagrams by applying a functor to a rigid category with bubbled evaluation and currying.
+
+\begin{minted}{python}
+class CartesianDrawing(rigid.Diagram):
+    ev = staticmethod(
+        lambda base, exponent, left=True: rigid.Diagram.ev(base, exponent, left).bubble())
+    curry = lambda self, n=1, left=True: rigid.Diagram.curry(self, n, left).bubble()
+
+Draw = Functor(lambda x: x, lambda f: f, cod=Category(rigid.Ty, CartesianDrawing))
+
+Diagram.draw = lambda self, **params: Draw(self).draw(**params)
+
+drawing.equation((f @ x >> Ev(z << x)).curry(left=False), f)
+drawing.equation((x @ g >> Ev(z >> x)).curry(), g)
+\end{minted}
+
+TODO DRAW
+\end{example}

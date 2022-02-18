@@ -249,6 +249,65 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{AbramskyTzevelekos10}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AS}{%
+         family={Abramsky},
+         familyi={A\bibinitperiod},
+         given={Samson},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=TN}{%
+         family={Tzevelekos},
+         familyi={T\bibinitperiod},
+         given={Nikos},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science,Mathematics - Category
+  Theory}
+    \strng{namehash}{ASTN1}
+    \strng{fullhash}{ASTN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{AT10}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    The aim of these notes is to provide a succinct, accessible introduction to
+  some of the basic ideas of category theory and categorical logic. The notes
+  are based on a lecture course given at Oxford over the past few years. They
+  contain numerous exercises, and hopefully will prove useful for self-study by
+  those seeking a first introduction to the subject, with fairly minimal
+  prerequisites. The coverage is by no means comprehensive, but should provide
+  a good basis for further study; a guide to further reading is included. The
+  main prerequisite is a basic familiarity with the elements of discrete
+  mathematics: sets, relations and functions. An Appendix contains a summary of
+  what we will need, and it may be useful to review this first. In addition,
+  some prior exposure to abstract algebra - vector spaces and linear maps, or
+  groups and group homomorphisms - would be helpful.%
+    }
+    \verb{doi}
+    \verb 10.1007/978-3-642-12821-9_1
+    \endverb
+    \verb{eprint}
+    \verb 1102.1313
+    \endverb
+    \field{pages}{3\bibrangedash 94}
+    \field{title}{Introduction to {{Categories}} and {{Categorical Logic}}}
+    \field{volume}{813}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/T3QNMKFJ/Abramsky and Tzevele
+    \verb kos - 2010 - Introduction to Categories and Categorical Logic.pdf;/Us
+    \verb ers/alexis.toumi/WORK/Zotero/storage/GI7BRUNT/1102.html
+    \endverb
+    \field{journaltitle}{arXiv:1102.1313 [cs, math]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs, math}
+    \field{year}{2010}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{AharonovBen-Or08}{article}{}
     \name{author}{2}{}{%
       {{hash=AD}{%
@@ -3266,6 +3325,51 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{Coecke13}{article}{}
+    \name{author}{1}{}{%
+      {{hash=CB}{%
+         family={Coecke},
+         familyi={C\bibinitperiod},
+         given={Bob},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Mathematics - Category
+  Theory,Quantum Physics}
+    \strng{namehash}{CB1}
+    \strng{fullhash}{CB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Coe13}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    We survey some basic mathematical structures, which arguably are more
+  primitive than the structures taught at school. These structures are orders,
+  with or without composition, and (symmetric) monoidal categories. We list
+  several `real life' incarnations of each of these. This paper also serves as
+  an introduction to these structures and their current and potentially future
+  uses in linguistics, physics and knowledge representation.%
+    }
+    \verb{eprint}
+    \verb 1307.4038
+    \endverb
+    \field{shorttitle}{An Alternative {{Gospel}} of Structure}
+    \field{title}{An Alternative {{Gospel}} of Structure: Order, Composition,
+  Processes}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/WYJD8GR5/Coecke - 2013 - An a
+    \verb lternative Gospel of structure order, composi.pdf;/Users/alexis.toumi
+    \verb /WORK/Zotero/storage/LSLA8LLH/1307.html
+    \endverb
+    \field{journaltitle}{arXiv:1307.4038 [quant-ph]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{quant-ph}
+    \field{month}{07}
+    \field{year}{2013}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Coecke19}{article}{}
     \name{author}{1}{}{%
       {{hash=CB}{%
@@ -4967,6 +5071,50 @@
     \field{year}{1957}
   \endentry
 
+  \entry{FoltzEtAl80}{article}{}
+    \name{author}{3}{}{%
+      {{hash=FF}{%
+         family={Foltz},
+         familyi={F\bibinitperiod},
+         given={Fran{\c c}ois},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lair},
+         familyi={L\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=KG}{%
+         family={Kelly},
+         familyi={K\bibinitperiod},
+         given={GM},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{North-Holland}}%
+    }
+    \strng{namehash}{FFLCKG1}
+    \strng{fullhash}{FFLCKG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FLK80}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{number}{2}
+    \field{pages}{171\bibrangedash 177}
+    \field{title}{Algebraic Categories with Few Monoidal Biclosed Structures or
+  None}
+    \field{volume}{17}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/AXII2CEJ/Foltz et al. - 1980
+    \verb - Algebraic categories with few monoidal biclosed st.pdf
+    \endverb
+    \field{journaltitle}{Journal of Pure and Applied Algebra}
+    \field{year}{1980}
+  \endentry
+
   \entry{FongEtAl17}{article}{}
     \name{author}{3}{}{%
       {{hash=FB}{%
@@ -6581,6 +6729,30 @@
     \verb 8 - A Complete Axiomatisation of the ZX-Calculus for C.pdf
     \endverb
     \field{year}{2018}
+  \endentry
+
+  \entry{Jeffrey97}{article}{}
+    \name{author}{1}{}{%
+      {{hash=JA}{%
+         family={Jeffrey},
+         familyi={J\bibinitperiod},
+         given={Alan},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JA1}
+    \strng{fullhash}{JA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Jef97}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{Premonoidal Categories and a Graphical View of Programs}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/MGUWKMTY/paper.ps
+    \endverb
+    \field{journaltitle}{Preprint, Dec}
+    \field{year}{1997}
   \endentry
 
   \entry{JoyalStreet88}{article}{}
@@ -10382,6 +10554,56 @@
     \field{year}{1947}
   \endentry
 
+  \entry{PowerRobinson97}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PJ}{%
+         family={Power},
+         familyi={P\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RE}{%
+         family={Robinson},
+         familyi={R\bibinitperiod},
+         given={Edmund},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PJRE1}
+    \strng{fullhash}{PJRE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{PR97}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{abstract}{%
+    We introduce the notions of premonoidal category and premonoidal functor,
+  and show how these can be used in the denotational semantics of programming
+  languages. We characterize the semantic definitions of Eugenio Moggi's monads
+  as notions of computation, exhibit a representation theorem for our
+  premonoidal setting in terms of monads, and give a fibrational setting for
+  the structure.%
+    }
+    \verb{doi}
+    \verb 10.1017/S0960129597002375
+    \endverb
+    \field{issn}{1469-8072, 0960-1295}
+    \field{number}{5}
+    \field{pages}{453\bibrangedash 468}
+    \field{title}{Premonoidal Categories and Notions of Computation}
+    \field{volume}{7}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/BFQ8YAZB/Power and Robinson -
+    \verb  1997 - Premonoidal categories and notions of computation.pdf;/Users/
+    \verb alexis.toumi/WORK/Zotero/storage/6I48YS7U/54C062AA3C990322C50595D5533
+    \verb B2BB4.html
+    \endverb
+    \field{journaltitle}{Mathematical Structures in Computer Science}
+    \field{month}{10}
+    \field{year}{1997}
+  \endentry
+
   \entry{PrellerLambek07}{article}{}
     \name{author}{2}{}{%
       {{hash=PA}{%
@@ -11765,6 +11987,37 @@
     \field{year}{2019}
   \endentry
 
+  \entry{Statman79}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SR}{%
+         family={Statman},
+         familyi={S\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Elsevier}}%
+    }
+    \strng{namehash}{SR1}
+    \strng{fullhash}{SR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Sta79}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{1}
+    \field{pages}{73\bibrangedash 81}
+    \field{title}{The Typed {$\lambda$}-Calculus Is Not Elementary Recursive}
+    \field{volume}{9}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/4GNLSFPE/Statman - THE TYPED
+    \verb A-CALCULUS IS NOT ELEMENTARY RECURSIVE.pdf
+    \endverb
+    \field{journaltitle}{Theoretical Computer Science}
+    \field{year}{1979}
+  \endentry
+
   \entry{SutskeverEtAl11}{inproceedings}{}
     \name{author}{3}{}{%
       {{hash=SI}{%
@@ -11841,6 +12094,34 @@
     \verb 014 - Sequence to Sequence Learning with Neural Networks.pdf
     \endverb
     \field{year}{2014}
+  \endentry
+
+  \entry{Tait67}{article}{}
+    \name{author}{1}{}{%
+      {{hash=TWW}{%
+         family={Tait},
+         familyi={T\bibinitperiod},
+         given={William\bibnamedelima W},
+         giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Cambridge University Press}}%
+    }
+    \strng{namehash}{TWW1}
+    \strng{fullhash}{TWW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Tai67}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{number}{2}
+    \field{pages}{198\bibrangedash 212}
+    \field{title}{Intensional Interpretations of Functionals of Finite Type
+  {{I}}}
+    \field{volume}{32}
+    \field{journaltitle}{The journal of symbolic logic}
+    \field{year}{1967}
   \endentry
 
   \entry{Thue14}{book}{}

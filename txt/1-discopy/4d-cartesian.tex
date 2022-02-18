@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\subsection{Products, coproducts, biproducts}
+\subsection{Products \& coproducts} \label{subsection:cartesian}
 
 With hypergraph diagrams, we have enough syntax to discuss quantum protocols and first-order logic.
 However, the spiders of hypergraph categories are of no use if we want to interpret our diagrams as (pure) Python functions with \py{tuple} as tensor.
@@ -67,24 +67,29 @@ Cartesian functors take \py{Copy} boxes of its domain to the \py{copy} method of
 {\normalfont Implementation of free (co)cartesian categories and functors.}
 
 \begin{minted}{python}
-class Diagram(symmetric.Diagram):
+class Copyable:
     @classmethod
-    def copy(cls, x: Ty, n: int, is_dagger=False) -> Diagram:
+    def discard(cls, x: Ty, is_dagger=False) -> Copyable:
+        return cls.copy(x, 0, is_dagger)
+
+    @classmethod
+    def merge(cls, x: Ty, n=2, is_dagger=False) -> Copyable:
+        return cls.copy(x, n, not is_dagger)
+
+class Diagram(Copyable, symmetric.Diagram):
+    @classmethod
+    def copy(cls, x: Ty, n=2, is_dagger=False) -> Diagram:
         def factory(a, b, y):
             assert b == 1 if is_dagger else a == 1
             return Copy(a, y)[::-1] if is_dagger else Copy(b, x)
         a, b = (n, 1) if is_dagger else (1, n)
         return coherence(factory)(cls, a, b, x)
 
-    @classmethod
-    def merge(cls, x: Ty, n: int, is_dagger=False) -> Diagram:
-        return cls.copy(x, n, not is_dagger)
-
 class Box(symmetric.Box, Diagram):
     upgrade = Diagram.upgrade
 
 class Copy(Box):
-    def __init__(self, x: Ty, n: int, is_dagger=False):
+    def __init__(self, x: Ty, n: int = 2, is_dagger=False):
         assert len(x) == 1
         name = "Copy({}, {}){}".format(x, n, "[::-1]" if is_dagger else "")
         dom, cod = (x ** n, x) if is_dagger else (x, x ** n)
@@ -105,6 +110,33 @@ class Functor(symmetric.Functor):
         return super().__call__(other)
 \end{minted}
 \end{python}
+
+\begin{example}
+In a cartesian category, every monoid is automatically a \emph{bialgebra}, i.e. the monoid is a comonoid homomorphism or equivalently, the comonoid is a homomorphism for the monoid.
+When furthermore the monoid has an inverse, then it is automatically a \emph{Hopf algebra}, the generalisation of groups to arbitrary monoidal categories.
+
+\begin{minted}{python}
+x = Ty('x')
+add, minus, zero = Box('+', x @ x, x), Box('-', x, x), Box('0', Ty(), x)
+
+drawing.equation(add >> Diagram.copy(x), Diagram.copy(x @ x) >> add @ add)
+drawing.equation(zero >> Diagram.copy(x), zero @ zero)
+drawing.equation(add >> Diagram.discard(x), Diagram.discard(x) @ Diagram.discard(x))
+drawing.equation(zero >> Diagram.discard(x), Diagram.id(Ty()))
+drawing.equation(  # TODO DRAW
+    copy >> minus @ x >> add, Diagram.discard(x) >> zero, copy >> x @ minus >> add)
+\end{minted}
+
+A Hopf algebra which is also a Frobenius algebra is necessarily trivial, i.e. isomorphic to the unit.
+
+\begin{minted}{python}
+drawing.equation(  # TODO DRAW
+    Diagram.id(x),
+    x @ zero >> x @ copy >> add @ x >> Diagram.discard(x) @ x,
+    x @ zero @ zero >> Diagram.discard(x @ x) @ x,
+    Diagram.discard(x) >> zero)
+\end{minted}
+\end{example}
 
 A cartesian category that is also a PROP is called a \emph{Lawvere theory}~\cite{Lawvere63}, they were first introduced as a high-level language for \emph{universal algebra}. take the boxes $x^n \to x$ to be the primitive $n$-ary operations of your language (e.g. for rigs we have unary boxes for $0$ and $1$, binary boxes for $+$ and $\times$) then the diagrams in the free Lawvere theory are all the terms of your language.
 We can write down any universally quantified axiom as a relation between diagrams and the cartesian functors from the resulting quotient to $\mathbf{Set}$ are \emph{algebras}, i.e. sets equipped with operations that satisfy the axioms.
@@ -138,7 +170,7 @@ class Dict(Composable, Tensorable):
         self.inside, self.dom, self.cod = inside, dom, cod
 
     @staticmethod
-    def id(x: int): return Dict({i: i for i in range(x)}, x, x)
+    def id(x: int = 0): return Dict({i: i for i in range(x)}, x, x)
 
     @inductive
     def then(self, other: Dict) -> Dict:
@@ -158,29 +190,16 @@ class Dict(Composable, Tensorable):
 \end{python}
 
 \begin{example}
-We can check equality of cocartesian diagrams with one generating object and no boxes.
+We can check equality of cartesian diagrams with one generating object and no boxes.
 
 \begin{minted}{python}
 x = Ty('x')
-F = Functor({x: 1}, {}, cod=Category(int, Dict))
+copy, discard, swap = Diagram.copy(x), Diagram.discard(x), Diagram.swap(x, x)
+F = lambda f: Functor({x: 1}, {}, cod=Category(int, Dict))(f.dagger())
 
-unitality = [Diagram.merge(x, 0) @ x >> Diagram.merge(x, 2),
-             x @ Diagram.merge(x, 0) >> Diagram.merge(x, 2)]
-assert F(unitality[0]) == F(Diagram.id(x)) == F(unitality[1])
-
-associativity = [Diagram.merge(x, 2) @ x >> Diagram.merge(x, 2),
-                 x @ Diagram.merge(x, 2) >> Diagram.merge(x, 2)]
-assert F(associativity[0]) == F(Diagram.merge(x, 3)) == F(associativity[1])
-
-commutativity = [Diagram.swap(x, x) >> Diagram.merge(x, 2), Diagram.merge(x, 2)]
-assert F(commutativity[0]) == F(commutativity[1])
-
-f = Diagram.swap(x, x) >> Diagram.merge(x, 2)
-
-naturality_left = [x @ f >> Diagram.swap(x, f.cod), Diagram.swap(x, f.dom) >> f @ x]
-naturality_right = [f @ x >> Diagram.swap(f.cod, x), Diagram.swap(f.dom, x) >> x @ f]
-assert F(naturality_left[0]) == F(naturality_left[1])
-assert F(naturality_right[0]) == F(naturality_right[1])
+assert F(copy >> discard @ x) == F(Diagram.id(x)) == F(copy >> x @ discard)
+assert F(copy >> copy @ x) == F(Diagram.copy(x, 3)) == F(copy >> x @ copy)
+assert F(copy >> swap) == F(copy)
 \end{minted}
 \end{example}
 
@@ -290,6 +309,8 @@ assert F(network)(42, -43) == max(0, sum([42 * 0, -43 * 1, 42 * 2, -43 * 3, -1])
 We could implement a neural network that can operate on different kinds of data (e.g. discrete versus continuous) using a cocartesian diagram instead.
 \end{example}
 
+\subsection{Biproducts}
+
 A category has \emph{biproducts} if the cartesian and cocartesian structures coincide,
 a $\dagger$-category has \emph{$\dagger$-biproducts} when furthermore the monoid is the dagger of the comonoid.
 This is the case in the $\dagger$-category $\mathbf{Mat}_\S$ with direct sum $\oplus$ as tensor.
@@ -342,7 +363,9 @@ If $C$ is also a monoidal category, then $\mathbf{Mat}_C$ is a rig category with
 DisCoPy implements free $\dagger$-biproduct completion as a subclass of \py{Matrix[Diagram]} with \py{list[Ty]} as objects and addition given by the formal sum of diagrams.
 We use Python's duck typing to lift the code for composition, tensor and direct sum from \py{int} to \py{list[Ty]}.
 We also use a \py{contextmanager} to temporarily replace the multiplication of two \py{Diagram} entries.
+Again, we override equality so that diagrams are equal to the matrix of just themselves.
 The implementation of biproduct-preserving functors requires some work: given a matrix of diagrams, we construct its image as the sum of the images of its entries, pre- and post-composed by the basis row and column vectors.
+The \py{basis} subroutine constructs basis vectors for an arbitrary class using only its methods \py{id}, \py{zero}, \py{copy} and \py{direct_sum}.
 
 \begin{python}
 {\normalfont Implementation of free $\dagger$-biproduct completion.}
@@ -402,8 +425,12 @@ class Biproduct(Matrix):
     __or__ = lambda self, other: self.direct_sum(self.upgrade(other))
     __eq__ = lambda self, other: Matrix.__eq__(self, self.upgrade(other))
 
-Diagram.__or__ = lambda self, other: self.biproduct.upgrade(self) | other
-Diagram.direct_sum = inductive(Diagram.__or__)
+for method in ("self", "other"):
+    setattr(Diagram, method, inductive(
+        lambda self, other: getattr(self.biproduct.upgrade(self), method)(other)
+        if isinstance(other, Biproduct) else getattr(monoidal.Diagram, method)(other)))
+Diagram.direct_sum = lambda self, *others: self.biproduct.upgrade(self).direct_sum(*other)
+Diagram.__or__ = Diagram.direct_sum
 Diagram.__eq__ = lambda self, other:\
     other.inside = [[self]] if isinstance(other, Biproduct)\
     else monoidal.Diagram.__eq__(self, other)
@@ -430,24 +457,19 @@ class Functor(monoidal.Functor):
 \end{python}
 
 \begin{example}
-We can implement conditional expressions \py{lambda x, b, y:} \py{f(x) if b else g(y)} as a biproduct
-from \py{x @ bit @ y} to \py{[z, w]}.
+We can define the object \py{bit} as the list of two empty types, with \py{true} and \py{false} the two basis states
+then we can implement conditional expressions as biproducts.
 
 \begin{minted}{python}
 bit = 2 * [Ty()]
-true, false = [basis(Diagram, bit, i) for i in [0, 1]]
+true = Biproduct.copy(Ty(), 2) >> Diagram.id(Ty()) | Diagram.zero(Ty(), Ty())
+false = Biproduct.copy(Ty(), 2) >> Diagram.zero(Ty(), Ty()) | Diagram.id(Ty())
 
-x, y, z, w = map(Ty, "xyzw")
-f, g = Box('f', x, z), Box('g', y, w)
-conditional = f @ Diagram.discard(y) | Diagram.discard(x) @ g
+x, y = Ty('x'), Ty('y')
+f, g = Box('f', x, y), Box('g', x, y)
+conditional = f | g >> Biproduct.merge(y, 2)
 
-F = Functor(
-    ob={x: int, y: complex, z: bool, w: float},
-    ar={f: lambda x: n > 42, g: lambda z: z.real},
-    cod=Category(list[type], Function))
-
-F(true @ x @ y >> conditional)(43, 1-1j) == (0, F(f)(43))
-F(false @ x @ y >> conditional)(43, 1-1j) == (1, F(g)(1-1j))
+assert true @ x >> conditional == f and false @ x >> conditional == g
 \end{minted}
 \end{example}
 
@@ -460,7 +482,11 @@ The squared amplitude of the evaluation of these scalars give us the measurement
 control = Biproduct([[Ket(0)], [Ket(1)]], bit, [qubit])
 measure = Biproduct([[Bra(0), Bra(1)]], [qubit], bit)
 
-assert (control >> H >> measure).eval().inside\
+F = Functor(
+    ob={qubit: 2}, ar=lambda f: f.eval(),
+    cod=Category(list[int], Tensor[complex]))
+
+assert F(control >> H >> measure).inside\
     == [[(Ket(i) >> H >> Bra(j)).eval() for j in [0, 1]] for i in [0, 1]]
 \end{minted}
 \end{example}
@@ -469,6 +495,5 @@ As we mentioned at the end of section~\ref{section:monoidal}, DisCoPy uses a \em
 It is straightforward to extend the \py{diagramize} method to cartesian diagrams, so that they can be defined using the standard syntax for Python functions, where we can use arguments any number of times in any order.
 Extending it to cocartesian diagrams so that they can be defined using the standard Python syntax for conditionals will likely be more challenging.
 Given enough engineering, it would be possible to turn any pure Python function into a diagram, however this will require more structure than just (co)cartesian categories.
-Higher-order functions are arrows in \emph{closed categories} which are the topic of the next section.
 Functions with side effects can be seen as arrows in \emph{premonoidal categories} which are the topic of section~\ref{section:premonoidal}.
-Recursive functions are arrows in \emph{traced categories} will be mentioned in section~\ref{section:related and future}.
+Higher-order functions are arrows in \emph{closed categories} which are the topic of the next section while recursive functions are arrows in \emph{traced categories}, they will be mentioned in section~\ref{section:related and future}.

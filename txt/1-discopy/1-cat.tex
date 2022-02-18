@@ -133,7 +133,7 @@ class Composable:
     def cast(self, other):
         return other if isinstance(other, Composable) else self.id(other)
 
-    __rshift__ = __rlshift__ = lambda self, other: self.then(self.cast(other))
+    __rshift__ = __llshift__ = lambda self, other: self.then(self.cast(other))
     __lshift__ = __lrshift__ = lambda self, other: self.cast(other).then(self)
 
 def inductive(method):
@@ -572,6 +572,18 @@ class Functor(cat.Functor):
 \end{minted}
 \end{python}
 
+\begin{example}
+We can show the dagger is indeed a contravariant endofunctor.
+
+\begin{minted}{python}
+x, y, z = map(Ty, "xyz")
+f, g = Box('f', x, y), Box('g', y, z)
+
+assert Diagram.id(x)[::-1] == Diagram.id(x)
+assert (f >> g)[::-1] == g[::-1] >> f[::-1]
+\end{minted}
+\end{example}
+
 \begin{python}
 {\normalfont Implementation of $\mathbf{Mat}_\S$ as a $\dagger$-category.}
 
@@ -592,6 +604,7 @@ Matrix.dagger = lambda self: self.conjugate().transpose()
 
 \begin{example}
 We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
+
 \begin{minted}{python}
 Circuit.eval = Functor(
     ob={Ob('1'): 2},
@@ -601,12 +614,16 @@ Circuit.eval = Functor(
         H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]]}
     cod=Category(int, Matrix[complex]))
 \end{minted}
+
 We can check that every circuit is \emph{unitary}, i.e. its dagger is also its inverse.
+
 \begin{minted}{python}
 for c in [X, Y, Z, H, X >> Y >> Z >> H]:
     assert (c >> c[::-1]).eval() == Matrix.id(2) == (c[::-1] >> c).eval()
 \end{minted}
+
 We can check the equations given in the presentation of example~\ref{example:1-qubit-presentation}.
+
 \begin{minted}{python}
 assert (Z >> H).eval() == (H >> X).eval()
 assert (Z >> X).eval() == (X >> Z).eval().map(lambda x: -x)
