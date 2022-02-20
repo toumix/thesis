@@ -16,6 +16,8 @@ When the two categories are in fact monoids, the funny tensor is called the \emp
 This is also true for free categories, i.e. $F(\Sigma) \Box F(\Sigma') = F(\Sigma \times \Sigma'_0 \cup \Sigma_0 \times \Sigma)$, so maybe $\Box$ should be called free rather than funny.
 While a functor on a cartesian product $F : C \times D \to E$ can be seen as a functor of two arguments that is functorial in both simultaneously, i.e. $F(f \fcmp f', g \fcmp f') = F(f, g) \fcmp F(f', g')$, a functor on a funny product $F : C \Box D \to E$ is functorial separately in its $C$ and $D$ arguments, i.e. $F(0, f \fcmp f', y) = F(0, f, y) \fcmp F(0, f', y)$ and $F(1, x, g \fcmp g') = F(1, x, g) \fcmp F(1, x, g')$.
 
+\subsection{Premonoidal diagrams}
+
 Now recall that a (strict) monoidal category $C$ is a monoid in $(\mathbf{Cat}, \times)$, i.e. the tensor is a functor on a cartesian product $\otimes : C \times C \to C$.
 In a similar way, we define a (strict) \emph{premonoidal category} as a monoid in $(\mathbf{Cat}, \Box)$, i.e. a category $C$ with an associative, unital functor on the funny product $\boxtimes : C \Box C \to C$.
 A (strict) \emph{premonoidal functor} is a functor that commutes with $\boxtimes$, i.e. $F(f \boxtimes g) = F(f) \boxtimes F(g)$, thus we get a category $\mathbf{PreMonCat}$.
@@ -40,7 +42,7 @@ Indeed, the monoidal center of a one-object premonoidal is the intersection of t
 \end{example}
 
 \begin{example}
-For any small category $C$, the category $C \Rightarrow C$ of endofunctors $C \to C$ with (not-necessarily-natural) transformations as arrows is a premonoidal category.
+For any small category $C$, the category $C \Rightarrow C$ of endofunctors $C \to C$ with (not-necessarily-natural) transformations as arrows is premonoidal.
 \end{example}
 
 \begin{example}
@@ -54,20 +56,14 @@ It is impure, but not enough that we can observe it by parallel composition, i.e
 In other words, it is in the monoidal center, but not the cartesian center (i.e. the subcategory of comonoid homomorphisms).
 \end{example}
 
-These last two examples can be seen as special cases of a more general pattern: they are \emph{Kleisli categories} for a \emph{strong monad}.
+Premonoidal categories were introduced by Power and Robinson~\cite{PowerRobinson97} as a way to model programming languages with side effects, reformulating an earlier framework of Moggi~\cite{Moggi91} which captured notions of computation as \emph{monads}.
+Our last two examples can be seen as special cases of a more general pattern: they are \emph{Kleisli categories} for a \emph{strong monad}.
 Infamously, a monad is just a monoid $T : C \to C, \mu : T \fcmp T \to T$, $\eta : 1 \to T$ in the category $C^C$ of endofunctors with natural transformations as arrows.
 Its Kleisli category $K(T)$ has the same objects as $C$ and arrows given by $K(T)(x, y) = C(x, T(y))$, with the identity given by the unit $\id_K(x) = \eta(x)$ and composition given by post-composition with the multiplication, i.e. $f \fcmp_K g = f \fcmp T(g) \fcmp \mu(z)$ for $f : x \to T(y)$ and $g : y \to T(z)$.
 Now if $C$ happens to be a monoidal category, we can ask for $T$ to be a monoidal functor, but we also want the multiplication and unit of the monad to play well with the monoidal structure.
 We could ask for a \emph{monoidal monad} where $\mu$ and $\eta$ are monoidal transformations, i.e. for the monad to be a monoid in the category of monoidal endofunctors and monoidal natural transformations and show that the Kleisli category $K(T)$ inherits a monoidal structure.
-More generally, we can ask only for a (bi)\emph{strong monad}, equipped with two natural transformations $\sigma(a, b) : a \otimes T(b) \to T(a \otimes b)$ and $\tau(a, b) : T(a) \otimes b \to T(a \otimes b)$ called \emph{strength} and \emph{co-strength} such that:
-\begin{itemize}
-\item $\sigma(1, a) = \id(T(a))$, i.e. strengthening with the unit does nothing,
-\item $\sigma(a \otimes b, c) = a \otimes \sigma(b, c) \fcmp \sigma(a, b \otimes c)$, i.e. strengthening with a tensor $a \otimes b$ is the same as strengthening with $b$ then with $a$,
-\item $\eta(a, b) = a \otimes \eta(b) \fcmp t(a, b)$, i.e. strengthening commutes with the monad unit,
-\item $a \otimes \mu(b) \fcmp \sigma(a, b) = \sigma(a, T(b)) \fcmp T(\sigma(a, b)) \fcmp \mu(a \otimes b)$, i.e. strengthening commutes with the monad multiplication,
-\end{itemize}
-and symmetrically for $\tau$ (when $C$ is symmetric monoidal we can define co-strength from strength and swaps).
-This is sufficient for the Kleisli category $K(T)$ to inherit a premonoidal structure, it is monoidal precisely when the monad is commutative, i.e. the two arrows from $T(x) \otimes T(y)$ to $T(x \otimes y)$ are equal.
+More generally, we can ask only for a (bi)\emph{strong monad}, equipped with two natural transformations $\sigma(a, b) : a \otimes T(b) \to T(a \otimes b)$ and $\tau(a, b) : T(a) \otimes b \to T(a \otimes b)$ subject to sufficient conditions for the Kleisli category $K(T)$ to inherit a premonoidal structure.
+It is monoidal precisely when the monad is commutative, i.e. the two arrows from $T(x) \otimes T(y)$ to $T(x \otimes y)$ are equal.
 
 \begin{example}
 Take the category $C = \mathbf{FinSet}$ and the \emph{distribution monad} $T(X) = \S^X$ for a rig $\S$ with the image on arrows given by \emph{pushforward} $T(f : X \to Y)(p : X \to \S) : y \mapsto \sum_{x \in f^{-1}(y)} p(x)$, the multiplication and unit induced by the rig multiplication and unit.
@@ -82,7 +78,6 @@ When $C = \mathbf{Set}$ the state monad is a non-commutative as it gets: $T$ is 
 Whiskering an arrow $f : s \otimes x \to s \otimes y$ by an object $z$ on the left is given by pre- and post-composition with swaps $z \boxtimes f = S(s, z) \otimes x \ \fcmp \ z \otimes f \ \fcmp \ S(z, s) \otimes y$, whiskering on the right is easier $f \boxtimes z = f \otimes z$.
 \end{example}
 
-Premonoidal categories were introduced by Power and Robinson~\cite{PowerRobinson97} as a way to model programming languages with side effects.
 Jeffrey~\cite{Jeffrey97} then gave the first definition of free premonoidal categories, his construction formalises the intuition that non-central arrows are to be thought as arrows with side effects.
 The \emph{state construction} takes as input a symmetric monoidal category $C$ and an object $s$, and builds a symmetric premonoidal category $\mathbf{St}(C, s)$ with the same objects as $C$, arrows given by $\mathbf{St}(C, s)(x, y) = C(s \otimes x, s \otimes y)$ and whiskering defined as in the state monad.
 Intuitively, an arrow in $\mathbf{St}(C, s)$ is an arrow in $C$ which also updates a global state encoded in the object $s$, which we can draw as an extra wire passing through every box of the diagram, preventing them from being interchanged.
@@ -95,20 +90,241 @@ Indeed, we have been using the arrows of free premonoidal categories all along: 
 Equivalently, they are labeled generic progressive plane graphs up to generic deformation, i.e. with at most one box node at each height.
 While in the monoidal approach, string diagrams are defined as non-planar graphs and the ordering of boxes is materalised by extra wires connecting the boxes in sequence, in the premonoidal approach we take this ordering as data: boxes are in a list.
 This comes with an immediate advantage: equality of premonoidal diagrams can be defined in terms of equality of lists, hence it is decidable in linear time whereas equality of monoidal diagrams has quadratic complexity and equality of symmetric diagrams could be as hard as graph isomorphism.
+Another advantage of representing string diagrams with lists rather than graphs is that the code for functor application, i.e. the interpretation of diagrams, is a simple \py{for} loop rather than an elaborate graph algorithm, it requires no choices.
+Similarly, the algorithm for drawing premonoidal diagrams requires almost no choices, the order of wires and boxes is fixed, we can only choose their shape and the spacing between them.
+On the other hand, drawing graphs requires complex heuristics and graphical interfaces in order to get satisfying results.
 
-In order to compare the two approaches, we need to say a few words about how string diagrams for symmetric categories are usually implemented.
+\subsection{Hypergraph diagrams}
+
+In order to compare the two approaches, we need to say a few words about how string diagrams for symmetric categories are implemented.
 Recall from sections~\ref{subsection:symmetric} and \ref{subsection:hypergraph} that equality of diagrams in symmetric and hypergraph categories reduce to graph and hypergraph isomorphisms respectively.
 This can be made explicit by implementing these diagrams as graphs and hypergraphs rather than lists of layers with explicit boxes for swaps and spiders.
 Given a monoidal signature $\Sigma$, a \emph{hypergraph diagram} (also called hypergraphs with \emph{ports}) $f$ is given by:
 \begin{itemize}
 \item its domain and codomain $\dom(f), \cod(f) \in \Sigma_0^\star$,
-\item a list of boxes $\boxes(f) \in \Sigma_1^\star$ from which we define $\mathtt{ports}(f) = \coprod \big\{ \dom(g) + \cod(g) \ \vert g \in \{ f \} + \boxes(f) \big\}$,
-\item a number of \emph{spiders} $\mathtt{spiders}(f) = n \in \N$ together with their list of types $\mathtt{spider_types}(f) \in \Sigma_0^{n}$,
+\item a list of boxes $\boxes(f) \in \Sigma_1^\star$ from which we define:
+\begin{itemize}
+    \item $\mathtt{input\_ports}(f) = \cod(f) + \coprod_i \dom(f_i)$,
+    \item $\mathtt{output\_ports}(f) = \dom(f) + \coprod_i \cod(f_i)$,
+    \item and $\mathtt{ports}(f) = \mathtt{input\_ports}(f) + \mathtt{output\_ports}(f)$
+\end{itemize}
+\item a number of \emph{spiders} $\mathtt{spiders}(f) = n \in \N$ together with their list of types $\mathtt{spider\_types}(f) \in \Sigma_0^{n}$,
 \item a set of \emph{wires} $\mathtt{wires}(f) : \mathtt{ports}(f) \to \mathtt{spiders}(f)$.
 \end{itemize}
-The tensor of two hypergraph diagrams is given by concatenating their domain, codomain, boxes and spiders, composition is defined in terms of \emph{pushouts}.
+The tensor of two hypergraph diagrams is given by concatenating their domain, codomain, boxes and spiders.
+The composition is defined in terms of \emph{pushouts}.
 Given $f : x \to y$ and $g : y \to x$ we have a \emph{span} of functions $\mathtt{spiders}(f) \leftarrow y \rightarrow \mathtt{spiders}(g)$ induced by the wires from the codomain of $f$ and the domain of $g$.
-We define $\mathtt{spiders}(f \fcmp g)$ as the size of the quotient set $(\mathtt{spiders}(f) + \mathtt{spiders}(g)) / R$ under the relation given by $\mathtt{wires}(f)(0, 0, i) = \mathtt{wires}(g)(0, 1, i)$ for all $i \leq \vert y \vert$.
-Concretely, this quotient can be computed as the connected components of an undirected graph with $\mathtt{spiders}(f) + \mathtt{spiders}(g)$ vertices.
+We define $\mathtt{spiders}(f \fcmp g)$ as the size of the quotient set $(\mathtt{spiders}(f) + \mathtt{spiders}(g)) / R$ under the relation given by $\mathtt{wires}(f)(1, 0, i) = \mathtt{wires}(g)(0, 0, i)$ for all $i \leq \vert y \vert$.
+Concretely, this can be computed as the connected components of an undirected graph with $\mathtt{spiders}(f) + \mathtt{spiders}(g)$ vertices.
 The identity diagram $\id(x)$ has $\mathtt{spiders}(f) = \vert x \vert$ and wires given by the two injections $\vert x \vert + \vert x \vert \to \mathtt{spiders}(f)$.
-The category thus defined is in fact isomorphic to the free hypergraph category defined in section~\ref{subsection:hypergraph} in terms of special commutative Frobenius algebras~\cite[Theorem 3.3]{BonchiEtAl16}.
+Now we can define a notion of interchanger which takes a hypergraph diagram $f$ and some index $i < \vert \boxes(f) \vert$ and returns the diagram with boxes $i$ and $i + 1$ interchanged, i.e. with the wires relabeled appropriately.
+While the interchanger of monoidal diagrams is ill-defined when the boxes are connected, that of hypergraph diagrams is always defined.
+The category $\mathbf{Hyp}(\Sigma)$ with equivalence classes of hypergraph diagrams is in fact isomorphic to the free hypergraph category $F^H(\Sigma)$ which we defined in section~\ref{subsection:hypergraph} in terms of special commutative Frobenius algebras~\cite[Theorem 3.3]{BonchiEtAl16}.
+The data structure for hypergraph diagrams has swaps and spiders built-in: they are hypergraph diagrams with no boxes.
+
+We say a hypergraph diagram is \emph{bijective} when each spider to be connected to either zero or two ports, so that they define a bijection $\mathtt{ports}(f) \to \mathtt{ports}(f)$.
+The resulting subcategory is isomorphic to the free compact-closed category defined in section~\ref{subsection:rigid} in terms of cups and caps.
+Spiders connected to zero ports correspond to dimension scalars, i.e. circles composed of a cap then a cup.
+A hypergraph diagram is \emph{monogamous} when each spider is connected to exactly one input port and one output port, so that they define a bijection $\mathtt{output\_ports}(f) \to \mathtt{input\_ports}(f)$.
+The subcategory of monogamous hypergraph diagrams is the free \emph{traced symmetric category}\footnote
+{We have not been able to find a proof of this statement nor of the compact-closed case in the literature, they are a straightforward generalisation of \cite[Theorem 3.3]{BonchiEtAl16}.}, i.e. the free symmetric monoidal category $C$ with a family of functions $\mathtt{trace}_x(a, b) : C(a \otimes x, b \otimes x) \to C(a, b)$ subject to axioms that formalise the intuition that we can trace a morphism $f : a \otimes x \to b \otimes x$ by connecting its input and output $x$-wires in a loop~\cite{JoyalEtAl96}.
+Every compact closed category has a trace given by cups and caps, traced monoidal categories allow to express recursion and fixed points more generally in non-rigid categories.
+Indeed in the case of a cartesian category such as $\mathbf{Pyth}$, the trace can equivalently be given in terms of \emph{fixed point operators} $\mathtt{fix}_x : C(a \times x, x) \to C(a, x)$~\cite[Proposition~6.8]{Selinger10}.
+Dually, in a cocartesian category the trace can be defined in terms \emph{iteration operators} $\mathtt{iter}_x : C(x, a + x) \to C(x, a)$.
+When the category has biproducts, it is sufficient to define a \emph{repetition operator} $\mathtt{repeat}_x : C(x, x) \to C(x, x)$.
+In the category of finite sets and relations $\mathbf{Mat}_\B$, this coincides with the usual notion of reflexive transitive closure.
+
+\begin{python}
+{\normalfont Implementation of the trace for compact-closed categories.}
+
+\begin{minted}{python}
+class Diagram:
+    ...
+    def trace(self, n=-1):
+        assert self.dom[n:] == self.cod[n:]
+        return self.dom[:n] @ self.caps(self.dom[n:], self.dom[n:].r)\
+            >> self @ self.dom[:n].r\
+            >> self.cod[:n] @ self.cups(self.cod[n:], self.cod[n:].r)
+\end{minted}
+\end{python}
+
+\begin{python}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a traced cartesian category.}
+
+\begin{minted}{python}
+class Function:
+    ...
+    def iter(self, n=-1):
+        n = n if n >= 0 else len(self.cod) + n
+        assert self.is_additive and self.cod[n:] == self.dom
+        dom, cod = self.dom, self.cod[:n]
+        def inside(x):
+            i, y = self.inside(x)
+            return y if i < n else inside(y)
+        return Function(inside, dom, cod)
+
+    def fix(self, n=-1):
+        assert not self.is_additive and self.dom[n:] == self.cod
+        dom, cod = self.dom[:n], self.cod
+        def inside(*xs, ys=None):
+            result = self.inside(*xs + (ys or []))
+            return ys if result == ys else inside(*xs, ys=result)
+        return Function(inside, dom, cod)
+
+    def trace(self, n=-1):
+        assert self.dom[n:] == self.cod[n:]
+        if self.is_additive: ...  # Symmetric to the multiplicative case.
+        fixed = (self >> Function.discard(self.cod[:n]) @ self.cod[n:]).fix()
+        return Function.copy(self.dom[:n])\
+            >> self.dom[:n] @ fixed >> self >> Function.discard(self.cod[n:])
+\end{minted}
+\end{python}
+
+\begin{example}
+We can compute the golden ratio as a fixed point.
+Note that in order to find a fixed point we need a default value to start from.
+
+\begin{minted}{python}
+phi = Function(lambda x=1: 1 + 1 / x, [int], [int]).fix()
+assert phi() == (1 + sqrt(5)) / 2
+\end{minted}
+
+We can define \py{even} as a recursive function.
+
+\begin{minted}{python}
+inside = lambda n: (0, n == 0) if n < 2 else (1, n - 2)
+even = Function.additive(inside, dom=[int], cod=[bool, int]).iter()
+assert even(42)
+\end{minted}
+\end{example}
+
+\begin{python}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a traced biproduct category.}
+
+\begin{minted}{python}
+class Matrix:
+    ...
+    def repeat(self):
+        assert self.dtype is bool and self.dom == self.cod
+        return sum(Matrix.id(self.dom).then(*n * [self]) for n in range(self.dom + 1))
+
+    def trace(self, n=-1):
+        assert self.dtype is bool
+        n = n if n >= 0 else len(self.cod) + n
+        A, B, C, D = (row >> self >> column
+                      for row in [self.id(self.dom - n) @ self.unit(n),
+                                  self.unit(self.dom - n) @ self.id(n)],
+                      for column in [self.id(self.cod - n) @ self.discard(n),
+                                     self.discard(self.cod - n) @ self.id(n)])
+        return A + (B >> D.repeat() >> C)
+\end{minted}
+\end{python}
+
+A hypergraph diagram is \emph{progressive} when it is monogamous and furthermore when the output port of box $i$ is connected to the input port of box $j$ we have $i < j$.
+An equivalent condition is that the underlying hypergraph obtained by forgetting the ports is \emph{acyclic} and the order of boxes witnesses that acyclicity.
+An interchanger between boxes $i$ and $i + 1$ is progressive when the two boxes are not connected, i.e. progressive interchangers preserve progressivity.
+The resulting category of progressive hypergraph diagrams up to progressive interchangers is isomorphic to the free symmetric category defined in section~\ref{subsection:symmetric} in terms of braidings~\cite[Theorem~3.12]{BonchiEtAl16}.
+If we remove the interchanger quotient, we get premonoidal versions of free hypergraph, compact closed, traced and symmetric categories.
+Traced preonoidal categories were introduced by Benton and Hyland~\cite{BentonHyland03} in order to model recursion in the presence of side-effects.
+To the best of our knowledge, no one has ever considered premonoidal compact closed categories: the snake equations still hold but we cannot yank the snakes away if there are obstructions, i.e. the snake removal algorithm of section~\ref{section:monoidal} does not apply.
+
+\subsection{Hypergraph versus premonoidal}
+
+At every level of this symmetric-traced-compact-hypergraph hierarchy, premonoidal diagrams have the same linear-time algorithm for deciding equality, the data structure for hypergraph diagrams faithfully encode the premonoidal axioms without needing to compute any quotient: normal form becomes identity.
+Now suppose we want to compute the interpretation of such a hypergraph diagram in a category given only access to its methods for identity, composition, tensor, swaps and spiders.
+This requires to compute the isomorphism $\mathbf{Hyp}(\Sigma) \to F^H(\Sigma)$, i.e. we want to describe the given hypergraph diagram as a chosen representative in its equivalence class of premonoidal diagrams with explicit boxes for swaps and spiders.
+The inverse isomorphism $F^H(\Sigma) \to \mathbf{Hyp}(\Sigma)$ is computed by applying a premonoidal functor (i.e. a \py{for} loop on a list of layers) sending swap and spider boxes to hypergraph diagrams with no boxes.
+
+This isomorphism is implemented in the \py{hypergraph} module of DisCoPy which is outlined below.
+The composition method calls a \py{pushout} subroutine which takes as input the numbers of spiders on the left and right, the wires from some common boundary ports to the left and right spiders, and returns the two injections into their pushout.
+The three properties for bijective, monogamous and progressive diagrams implement the subcategory of compact closed, traced and symmetric diagrams respectively.
+The three corresponding methods take a diagram and add explicit boxes for spiders, cups and caps so that \py{f.make_bijective().is_bijective} for all \py{f: Diagram} and similarly for monogamous and progressive.
+The \py{downgrade} method calls \py{make_progressive} to construct a \py{rigid.Diagram} with explicit boxes for swaps and spiders.
+The \py{upgrade} applies a \py{rigid.Functor} so that \py{upgrade(f.downgrade()) == f} on the nose for any \py{f: Diagram} and \py{upgrade(f).downgrade()} is equal to any \py{f: rigid.Diagram} up to the special commutative Frobenius axioms.
+The \py{draw} method uses a randomised force-based layout algorithm for graphs to compute an embedding from the hypergraph diagram to the plane where wires do not cross too much.
+This is still an experimental feature and the results of \py{f.draw()} usually look much worse than the drawing of \py{f.downgrade().draw()} using the deterministic algorithm of section~\ref{section:drawing}.
+
+\begin{python}
+{\normalfont Outline of the \py{discopy.hypergraph} module.}
+
+\begin{minted}{python}
+def pushout(
+    left_spiders: int, right_spiders: int, left_wires: list[int], right_wires: list[int]
+    ) -> tuple[dict[int, int], dict[int, int]]: ...
+
+@dataclass
+class Diagram(Composable, Tensorable):
+    dom: Ty
+    cod: Ty
+    boxes: list[Diagram]
+    wires: list[int]
+    spider_types: list[Ty]
+
+    @staticmethod
+    def id(x: Ty) -> Diagram: ...
+    def then(self, *others: Diagram) -> Diagram: ...
+    def tensor(self, *others: Diagram) -> Diagram: ...
+    def interchange(self, i: int) -> Diagram: ...
+
+    swap: Callable[[Ty, Ty], Diagram] = staticmethod(...)
+    spiders: Callable[[int, int, Ty], Diagram] = staticmethod(...)
+
+    is_bijective: bool = property(...)
+    is_monogamous: bool = property(...)
+    is_progressive: bool = property(...)
+
+    def make_bijective(self) -> Diagram: ...
+    def make_monogamous(self) -> Diagram: ...
+    def make_progressive(self) -> Diagram: ...
+
+    def downgrade(self) -> rigid.Diagram: ...
+
+    upgrade = staticmethod(rigid.Functor(
+        ob=lambda x: Ty(x[0]),
+        ar=lambda box: Box(box.name, box.dom, box.cod),
+        cod=Category(Ty, Diagram)))
+
+    def draw(self, **params): ...
+
+class Box(Diagram):
+    def __init__(self, name: str, dom: Ty, cod: Ty):
+        boxes, spider_types, wires = [self], list(map(Ty, dom @ cod)), ...
+        self.name = name; super().__init__(dom, cod, boxes, wires, spider_types)
+
+    __eq__ = lambda self, other: cat.Box.__eq__(self, other)\
+            if isinstance(other, Box) else super().__eq__(other)
+\end{minted}
+\end{python}
+
+In some cases however, we can compute the interpretation of hypergraph diagrams without having to downgrade them back to premonoidal diagrams.
+This is the case for \emph{tensor networks}, i.e. hypergraph diagrams interpreted in the category $\mathbf{Tensor}_\S$.
+Indeed, rather than applying premonoidal functors into our naive \py{Matrix} class, DisCoPy can translate hypergraph diagrams as input to \emph{tensor contraction} algorithms such as the Einstein summation of NumPy~\cite{VanDerWaltEtAl11} combined with the just-in-time compilation of JAX~\cite{BradburyEtAl20}, or the specialised TensorNetwork library~\cite{RobertsEtAl19}.
+Another example is that of quantum circuits: they are inherently symmetric diagrams.
+Indeed, the data structure for circuits in a quantum compiler such as t$\vert$ket$\rangle$~\cite{SivarajahEtAl20} is secretly some premonoidal symmetric category: objects are lists of qubit (and bit) identifiers, arrows (i.e. circuits) are lists of operations.
+When circuits are encoded as premonoidal diagrams as we have done in example~\ref{example:circuit-diagrams}, qubits are forced into a line because their wires are ordered from left to right, thus applying gates to non-adjacent qubits is encoded in terms of swap boxes.
+When we apply a premonoidal functor to the category of t$\vert$ket$\rangle$ circuits, those swap boxes are not interpreted as the physical operation of applying three CNOT gates, but as the logical operation of relabeling our qubit identifiers.
+It is then the job of the compiler to map these symmetric diagrams (where every qubit can talk to every other) onto the architecture of the machine and potentially introduce physical swaps when a logical gate applies to physical qubits that are not adjacent.
+
+The main advantage of representing diagrams as hypergraphs rather than lists is that we can use graph rewriting algorithms to implement quotient categories.
+Indeed, the \emph{double push-out} (DPO) rewriting of Ehrig et al.~\cite{EhrigEtAl73} allows to pattern match the left-hand side of an axiom in a hypergraph diagram and then compute the substitution with the right-hand side~\cite{BonchiEtAl20}.
+This can be extended to the case of symmetric diagrams where we do not have arrows for the spiders, by adding a convexity condition to pattern matching~\cite{BonchiEtAl16}.
+DPO rewriting has been the basis of tools such as Quantomatic and its successor PyZX~\cite{KissingerVanDeWetering19}~\cite{KissingerZamdzhiev15} for automated diagrammatic reasoning, it is also at the core of circuit optimisation in the t$\vert$ket$\rangle$ compiler.
+DisCoPy implements back and forth translations from diagrams to both PyZX and t$\vert$ket$\rangle$, thus we can use their rewriting engines to implement quotient categories, i.e. to define normal forms.
+
+However, the hypergraph approach breaks down in the case of non-symmetric monoidal categories.
+Indeed, the monoidal functor from the free monoidal category to the free symmetric category is not faithful, for example it sends two nested circles and two circles side by side to the same hypergraph diagram.
+We conjecture that the category of planar\footnote
+{A hypergraph diagram is planar when we can embed it in the plane, or equivalently it is the image of a swap-free premonoidal diagram.} progressive hypergraph diagrams is the free \emph{spacial category}, i.e. one with $s \otimes x = x \otimes s$ for all scalars $s : 1 \to 1$ and objects $x$.
+Translated in terms of the topological definition of string diagrams, this would correspond to taking labeled progressive plane graphs up to deformation of three-dimensional space rather than up to deformation of the plane~\cite[Conjecture~3.4]{Selinger10}.
+When presented as quotients of free monoidal categories, spacial categories require an infinite family of axioms indexed by all possible scalar diagrams: in the absence of symmetry we cannot decompose the equation $(f \fcmp g) \otimes x = x \otimes (f \fcmp g)$ for a state $f : 1 \to y$ followed by an effect $g : y \to 1$ in terms of two smaller equations about $f$ and $g$ passing through the wire $x$.
+That every braided monoidal category is spacial follows from the naturality of the braiding, we do not know of any natural example of non-free non-braided spacial category.
+
+Thus, DisCoPy's planar premonoidal approach to string diagrams allows to define diagrams in non-symmetric categories that cannot be defined as hypergraphs.
+Although the concrete examples of categories we have discussed so far (functions, matrices, circuits) are all symmetric, planarity is essential if we are to model grammatical structure in terms of string diagrams as we will in section~\ref{section:NLP}.
+Indeed, the left to right order of wires in a planar diagram encode the chronological order of words in a sentence, allowing arbitrary swaps would make grammaticality permutation-invariant: if a sentence is grammatical, then so would be any random shuffling of it.
+More impotantly, planarity in grammar has been given a cognitive explanation.
+In order to minimise the computational resources needed by the brain, human languages tend to minimise the distance between words that are syntactically connected~\cite{FutrellEtAl15} and the minimisation of swaps comes as a side-effect~\cite{Cancho06}.
+It can also be given a complexity-theoretic explanation: planar grammatical structures such as Chomsky's syntax trees, Lambek's pregroup diagrams or Gaifman's dependency trees (which we introduce in section~\ref{section:NLP}) are all \emph{context-free}, they have the same expressive power as \emph{push-down automaton}.
+In languages such as Dutch and Swiss German, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way.
+Yeung and Kartsaklis~\cite{YeungKartsaklis21} showed that if we reorder the words, the diagrams for these cross-serial dependencies can always be rewritten in a planar way using naturality.
+They then used DisCoPy to encode every sentence of Alice in Wonderland as a diagram, ready to be translated into a circuit and sent to a quantum computer.

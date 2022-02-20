@@ -452,7 +452,7 @@ class Box(cat.Box, Diagram):
 \end{minted}
 \end{python}
 
-\begin{example}
+\begin{example}\label{example:circuit-diagrams}
 We can define \py{Circuit} as a subclass of \py{Diagram}. \py{Gate} and \py{Ket} are subclasses of \py{Circuit} and \py{Box}.
 Now we can compose and tensor gates together and the result will be an instance of \py{Circuit}.
 
@@ -567,7 +567,7 @@ $$u \s \fcmp \s b \otimes f \otimes c \s \fcmp \s v \quad
 for all $(f, g) \in R$, $u : a \to b \otimes \dom(f) \otimes c$ and $v : b \otimes \cod(f) \otimes c \to d$.
 Intuitively, if we can equate $f$ and $g$ then we can equate them in any context, i.e. with any objects $b$ and $c$ tensored on the left and right and any arrows $u$ and $v$ composed above and below.
 A proof that two diagrams are equal in the quotient can itself be thought of as a diagram in three dimensions, i.e. the movie of a diagram being rewritten into another.
-These higher-dimensional diagrams will be mentioned in section~\ref{section:related and future}.
+These higher-dimensional diagrams will be mentioned in section~\ref{section:summary-and-future}.
 Again, every monoidal category $C$ is isomorphic to the quotient of a free monoidal category $C = F(\Sigma) / R$: take $\Sigma = U(C)$ and the relation $R \sub F(U(C)) \times F(U(C))$ given by every binary composition and tensor.
 
 The word problem for categories reduces to that of monoidal categories, indeed the signature of a category can be seen as a monoidal signature where boxes all have domain and codomain of length one.
@@ -829,5 +829,5 @@ Note that in order to construct a \py{monoidal.Diagram} we need to assume \emph{
 This means the \py{diagramize} method cannot accept functions which swap the order of variables such as \py{lambda x, y: y, x}.
 We also need to assume that every codomain node is connected to exactly one domain node.
 In terms of Python functions, this means we have to use every variable exactly once.
-In sections~\ref{section:extra structure} and \ref{section:related and future} we will discuss the case of diagrams induced by non-planar graphs, with potentially multiple edges between domain and codomain nodes.
+In section~\ref{section:extra structure} we will discuss the case of diagrams induced by non-planar graphs, with potentially multiple edges between domain and codomain nodes.
 Listing~\ref{listing:diagram2graph} shows the implementation of the inverse translation \py{diagram2graph} which outputs only planar graphs as we will show in the next section by constructing their embedding in the plane, i.e. their drawing.

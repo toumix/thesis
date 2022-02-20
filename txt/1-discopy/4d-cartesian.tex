@@ -76,6 +76,9 @@ class Copyable:
     def merge(cls, x: Ty, n=2, is_dagger=False) -> Copyable:
         return cls.copy(x, n, not is_dagger)
 
+    @classmethod
+    def unit(cls, x: Ty): return cls.discard(x, is_dagger=True)
+
 class Diagram(Copyable, symmetric.Diagram):
     @classmethod
     def copy(cls, x: Ty, n=2, is_dagger=False) -> Diagram:
@@ -260,22 +263,23 @@ class Function(monoidal.Function):
     def tagged_union(self, other: Function) -> Function:
         if not self.is_additive: return self.make_additive().tagged_union(other)
         if not other.is_additive: return self.tagged_union(other.make_additive())
-        dom, cod = self.dom + other.dom, self.cod + other.cod
         inside = self.inside if len(self.dom) == 1 and len(other.dom) == 0\
             else other.inside if len(self.dom) == 0 and len(other.dom) == 1\
             else lambda i, x: self(i, x) if i < len(self.dom) else other(i - len(self.dom), x)
+        dom, cod = self.dom + other.dom, self.cod + other.cod
         return Function(inside, dom, cod)
 
     @staticmethod
     def copy(x: list[type], n: int, is_dagger=False):
-        if n == 1: return Function.additive.id(x) if is_dagger else Function.id(x)
-        dom, cod = (x ** n, x) if is_dagger else (x, x ** n)
-        inside = (lambda _, x: x) if is_dagger else (lambda *xs: return n * xs)
-        return (Function.additive if is_dagger else Function)(inside, dom, cod)
+        if is_dagger: return Function.merge(x, n)
+        if n == 1: return Function.id(x)
+        return Function(lambda *xs: n * xs, dom=x, cod=x ** n)
 
     @staticmethod
     def merge(x: list[type], n: int, is_dagger=False):
-        return Function.copy(x, n, not is_dagger)
+        if is_dagger: return Function.copy(x, n)
+        if n == 1: return Function.additive.id(x)
+        return Function.additive(lambda _, xs: xs, dom=x ** n, cod=x)
 
     @inductive
     def tensor(self, other: Function) -> Function:
@@ -320,6 +324,7 @@ This is the case in the $\dagger$-category $\mathbf{Mat}_\S$ with direct sum $\o
 and $\mathbf{Tensor}_\S$ as a rig category with direct sum and Kronecker product.}
 
 \begin{minted}{python}
+@Copyable
 class Matrix:
     ...
     @classmethod
@@ -495,5 +500,5 @@ As we mentioned at the end of section~\ref{section:monoidal}, DisCoPy uses a \em
 It is straightforward to extend the \py{diagramize} method to cartesian diagrams, so that they can be defined using the standard syntax for Python functions, where we can use arguments any number of times in any order.
 Extending it to cocartesian diagrams so that they can be defined using the standard Python syntax for conditionals will likely be more challenging.
 Given enough engineering, it would be possible to turn any pure Python function into a diagram, however this will require more structure than just (co)cartesian categories.
-Functions with side effects can be seen as arrows in \emph{premonoidal categories} which are the topic of section~\ref{section:premonoidal}.
-Higher-order functions are arrows in \emph{closed categories} which are the topic of the next section while recursive functions are arrows in \emph{traced categories}, they will be mentioned in section~\ref{section:related and future}.
+Functions with side effects can be seen as arrows in \emph{premonoidal categories} which are the topic of section~\ref{section:premonoidal}, while recursive functions are arrows in \emph{traced categories}, both will be discussed in section~\ref{section:premonoidal}.
+Higher-order functions are modeled as arrows in \emph{closed categories}, the topic of the next section.

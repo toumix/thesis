@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\section{Drawing \& reading}
+    \section{Drawing \& reading} \label{section:drawing}
 
 The previous section defined diagrams as a data structure based on lists of layers, in this section we define \emph{pictures of diagrams}.
 Concretely, such a picture will be encoded in a computer memory as a bitmap, i.e. a matrix of colour values.
@@ -609,4 +609,4 @@ We merely require that they are one-dimensional open subsets of the plane, i.e. 
 We do not even need to assume that their boundary is in the nodes of the graph, i.e. wires can start or end anywhere in the plane.
 Again, we can improve our reading algorithm by encoding such hypergraphs (i.e. where wires can have any number of sources and targets) as lgpp graphs with \emph{spider boxes} for the splits, merges, starts and ends of each wire.
 Labeled hypergraphs are the arrows of free \emph{hypergraph categories}, which we discuss in section~\ref{subsection:hypergraph}.
-In section~\ref{section:related and future}, we discuss the relationship between this definition of hypergraph diagrams as (equivalence classes of) planar diagrams with swap and spider boxes and the more traditional graph-based definition.
+In section~\ref{section:premonoidal}, we discuss the relationship between this definition of hypergraph diagrams as (equivalence classes of) planar diagrams with swap and spider boxes and the more traditional graph-based definition.

@@ -1984,6 +1984,54 @@
     \field{year}{1970}
   \endentry
 
+  \entry{BentonHyland03}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BN}{%
+         family={Benton},
+         familyi={B\bibinitperiod},
+         given={Nick},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hyland},
+         familyi={H\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BNHM1}
+    \strng{fullhash}{BNHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BH03}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Motivated by some examples from functional programming, we propose a
+  generalization of the notion of trace to symmetric premonoidal categories and
+  of Conway operators to Freyd categories. We show that in a Freyd category,
+  these notions are equivalent, generalizing a well-known theorem relating
+  traces and Conway operators in Cartesian categories.%
+    }
+    \verb{doi}
+    \verb 10.1051/ita:2003020
+    \endverb
+    \field{issn}{0988-3754, 1290-385X}
+    \field{number}{4}
+    \field{pages}{273\bibrangedash 299}
+    \field{title}{Traced {{Premonoidal Categories}}}
+    \field{volume}{37}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/HHICZAJ7/Benton and Hyland -
+    \verb 2003 - Traced Premonoidal Categories.pdf;/Users/alexis.toumi/WORK/Zot
+    \verb ero/storage/KY5GP38P/benton2003.pdf.pdf
+    \endverb
+    \field{journaltitle}{RAIRO-Theor. Inf. Appl.}
+    \field{month}{10}
+    \field{year}{2003}
+  \endentry
+
   \entry{BergholmEtAl20}{article}{}
     \name{author}{15}{}{%
       {{hash=BV}{%
@@ -2428,6 +2476,171 @@
     \field{year}{2014}
   \endentry
 
+  \entry{BonchiEtAl16}{article}{}
+    \name{author}{5}{}{%
+      {{hash=BF}{%
+         family={Bonchi},
+         familyi={B\bibinitperiod},
+         given={Filippo},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=GF}{%
+         family={Gadducci},
+         familyi={G\bibinitperiod},
+         given={Fabio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Kissinger},
+         familyi={K\bibinitperiod},
+         given={Aleks},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sobocinski},
+         familyi={S\bibinitperiod},
+         given={Pawel},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=ZF}{%
+         family={Zanasi},
+         familyi={Z\bibinitperiod},
+         given={Fabio},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science,Mathematics - Category
+  Theory}
+    \strng{namehash}{BF+1}
+    \strng{fullhash}{BFGFKASPZF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bon+16}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    String diagrams are a powerful and intuitive graphical syntax for terms of
+  symmetric monoidal categories (SMCs). They find many applications in computer
+  science and are becoming increasingly relevant in other fields such as
+  physics and control theory. An important role in many such approaches is
+  played by equational theories of diagrams, typically oriented and applied as
+  rewrite rules. This paper lays a comprehensive foundation of this form of
+  rewriting. We interpret diagrams combinatorially as typed hypergraphs and
+  establish the precise correspondence between diagram rewriting modulo the
+  laws of SMCs on the one hand and double pushout (DPO) rewriting of
+  hypergraphs, subject to a soundness condition called convexity, on the other.
+  This result rests on a more general characterisation theorem in which we show
+  that typed hypergraph DPO rewriting amounts to diagram rewriting modulo the
+  laws of SMCs with a chosen special Frobenius structure. We illustrate our
+  approach with a proof of termination for the theory of non-commutative
+  bimonoids.%
+    }
+    \verb{doi}
+    \verb 10.1145/2933575.2935316
+    \endverb
+    \verb{eprint}
+    \verb 1602.06771
+    \endverb
+    \field{pages}{710\bibrangedash 719}
+    \field{title}{Rewriting modulo Symmetric Monoidal Structure}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/5IFYEY4P/Bonchi et al. - 2016
+    \verb  - Rewriting modulo symmetric monoidal structure.pdf;/Users/alexis.to
+    \verb umi/WORK/Zotero/storage/SKR52WW2/1602.html
+    \endverb
+    \field{journaltitle}{Proceedings of the 31st Annual ACM/IEEE Symposium on
+  Logic in Computer Science - LICS '16}
+    \field{eprinttype}{arxiv}
+    \field{year}{2016}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{BonchiEtAl20}{article}{}
+    \name{author}{5}{}{%
+      {{hash=BF}{%
+         family={Bonchi},
+         familyi={B\bibinitperiod},
+         given={Filippo},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=GF}{%
+         family={Gadducci},
+         familyi={G\bibinitperiod},
+         given={Fabio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Kissinger},
+         familyi={K\bibinitperiod},
+         given={Aleks},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sobocinski},
+         familyi={S\bibinitperiod},
+         given={Pawel},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=ZF}{%
+         family={Zanasi},
+         familyi={Z\bibinitperiod},
+         given={Fabio},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Logic in Computer Science,Mathematics - Category
+  Theory}
+    \strng{namehash}{BF+1}
+    \strng{fullhash}{BFGFKASPZF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Bon+20}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    String diagrams are a powerful and intuitive graphical syntax, originated
+  in the study of symmetric monoidal categories. In the last few years, they
+  have found application in the modelling of various computational structures,
+  in fields as diverse as Computer Science, Physics, Control Theory,
+  Linguistics, and Biology. In many such proposals, the transformations of the
+  described systems are modelled as rewrite rules of diagrams. These
+  developments demand a mathematical foundation for string diagram rewriting:
+  whereas rewrite theory for terms is well-understood, the two-dimensional
+  nature of string diagrams poses additional challenges. This work systematises
+  and expands a series of recent conference papers laying down such foundation.
+  As first step, we focus on the case of rewrite systems for string
+  diagrammatic theories which feature a Frobenius algebra. This situation
+  ubiquitously appear in various approaches: for instance, in the algebraic
+  semantics of linear dynamical systems, Frobenius structures model the wiring
+  of circuits; in categorical quantum mechanics, they model interacting quantum
+  observables. Our work introduces a combinatorial interpretation of string
+  diagram rewriting modulo Frobenius structures, in terms of double-pushout
+  hypergraph rewriting. Furthermore, we prove this interpretation to be sound
+  and complete. In the last part, we also see that the approach can be
+  generalised to model rewriting modulo multiple Frobenius structures. As a
+  proof of concept, we show how to derive from these results a termination
+  strategy for Interacting Bialgebras, an important rewrite theory in the study
+  of quantum circuits and signal flow graphs.%
+    }
+    \verb{eprint}
+    \verb 2012.01847
+    \endverb
+    \field{shorttitle}{String {{Diagram Rewrite Theory I}}}
+    \field{title}{String {{Diagram Rewrite Theory I}}: {{Rewriting}} with
+  {{Frobenius Structure}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/W4GY4SGG/Bonchi et al. - 2020
+    \verb  - String Diagram Rewrite Theory I Rewriting with Fr.pdf;/Users/alexi
+    \verb s.toumi/WORK/Zotero/storage/66AM2NND/2012.html
+    \endverb
+    \field{journaltitle}{arXiv:2012.01847 [cs, math]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs, math}
+    \field{month}{12}
+    \field{year}{2020}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
   \entry{Boole54}{book}{}
     \name{author}{1}{}{%
       {{hash=BG}{%
@@ -2521,6 +2734,66 @@
     \verb /Users/alexis.toumi/WORK/Zotero/storage/775HV8VV/8978196.html
     \endverb
     \field{year}{2019}
+  \endentry
+
+  \entry{BradburyEtAl20}{article}{}
+    \name{author}{7}{}{%
+      {{hash=BJ}{%
+         family={Bradbury},
+         familyi={B\bibinitperiod},
+         given={James},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FR}{%
+         family={Frostig},
+         familyi={F\bibinitperiod},
+         given={Roy},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=HP}{%
+         family={Hawkins},
+         familyi={H\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=JMJ}{%
+         family={Johnson},
+         familyi={J\bibinitperiod},
+         given={Matthew\bibnamedelima James},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Leary},
+         familyi={L\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={Maclaurin},
+         familyi={M\bibinitperiod},
+         given={Dougal},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={{Wanderman-Milne}},
+         familyi={W\bibinitperiod},
+         given={Skye},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BJ+3}
+    \strng{fullhash}{BJFRHPJMJLCMDWS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bra+20}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{pages}{16}
+    \field{title}{{{JAX}}: Composable Transformations of {{Python}}+ {{NumPy}}
+  Programs, 2018}
+    \field{volume}{4}
+    \field{journaltitle}{URL http://github. com/google/jax}
+    \field{year}{2020}
   \endentry
 
   \entry{BradyTrimble00}{article}{}
@@ -2679,6 +2952,41 @@
     \field{eprinttype}{arxiv}
     \field{year}{2002}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{Cancho06}{article}{}
+    \name{author}{1}{}{%
+      {{hash=iCRF}{%
+         prefix={i},
+         prefixi={i},
+         family={Cancho},
+         familyi={C\bibinitperiod},
+         given={R.\bibnamedelima Ferrer},
+         giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CRFi1}
+    \strng{fullhash}{CRFi1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Can06}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{doi}
+    \verb 10.1209/epl/i2006-10406-0
+    \endverb
+    \field{issn}{0295-5075, 1286-4854}
+    \field{number}{6}
+    \field{pages}{1228\bibrangedash 1235}
+    \field{title}{Why Do Syntactic Links Not Cross?}
+    \field{volume}{76}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/87I96MV7/Cancho - 2006 - Why
+    \verb do syntactic links not cross.pdf
+    \endverb
+    \field{journaltitle}{Europhysics Letters (EPL)}
+    \field{month}{12}
+    \field{year}{2006}
   \endentry
 
   \entry{Carnap37}{book}{}
@@ -4541,6 +4849,65 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{EhrigEtAl73}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=EH}{%
+         family={Ehrig},
+         familyi={E\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pfender},
+         familyi={P\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SHJ}{%
+         family={Schneider},
+         familyi={S\bibinitperiod},
+         given={H.\bibnamedelima J.},
+         giveni={H\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \keyw{Labeling,Pattern recognition,Pregnancy,Production}
+    \strng{namehash}{EHPMSHJ1}
+    \strng{fullhash}{EHPMSHJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{EPS73}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{abstract}{%
+    The paper presents an algebraic theory of graph-grammars using
+  homomorphisms and pushout-constructions to specify embeddings and direct
+  derivations constructively. We consider the case of arbitrary directed graphs
+  permitting loops and parallel edges. The gluing of two arbitrary labeled
+  graphs (push-out) is defined allowing a strictly symmetric definition of
+  direct derivations and the embedding of derivations into a common frame. A
+  two-dimensional hierarchy of graph-grammars is given including the classical
+  case of Chomsky-grammars and several other graphgrammar constructions as
+  special types. The use of well-known categorical constructions and results
+  allows simplification of the proofs and pregnant formulation of concepts like
+  "parallel composition" and "translation of grammars".%
+    }
+    \field{booktitle}{14th {{Annual Symposium}} on {{Switching}} and {{Automata
+  Theory}} (Swat 1973)}
+    \verb{doi}
+    \verb 10.1109/SWAT.1973.11
+    \endverb
+    \field{issn}{0272-4847}
+    \field{pages}{167\bibrangedash 180}
+    \field{shorttitle}{Graph-Grammars}
+    \field{title}{Graph-Grammars: {{An}} Algebraic Approach}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/86WTZUXZ/ehrig1973.pdf.pdf;/U
+    \verb sers/alexis.toumi/WORK/Zotero/storage/EA8DC9DN/4569741.html
+    \endverb
+    \field{month}{10}
+    \field{year}{1973}
+  \endentry
+
   \entry{EilenbergMacLane42}{article}{}
     \name{author}{2}{}{%
       {{hash=ES}{%
@@ -5223,6 +5590,75 @@
     \field{title}{The Foundations of Arithmetic}
     \field{journaltitle}{JL Austin. New York: Philosophical Library}
     \field{year}{1884}
+  \endentry
+
+  \entry{FutrellEtAl15}{article}{}
+    \name{author}{3}{}{%
+      {{hash=FR}{%
+         family={Futrell},
+         familyi={F\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Mahowald},
+         familyi={M\bibinitperiod},
+         given={Kyle},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GE}{%
+         family={Gibson},
+         familyi={G\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FRMKGE1}
+    \strng{fullhash}{FRMKGE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FMG15}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    Explaining the variation between human languages and the constraints on
+  that variation is a core goal of linguistics. In the last 20 y, it has been
+  claimed that many striking universals of cross-linguistic variation follow
+  from a hypothetical principle that dependency length\textemdash the distance
+  between syntactically related words in a sentence\textemdash is minimized.
+  Various models of human sentence production and comprehension predict that
+  long dependencies are difficult or inefficient to process; minimizing
+  dependency length thus enables effective communication without incurring
+  processing difficulty. However, despite widespread application of this idea
+  in theoretical, empirical, and practical work, there is not yet large-scale
+  evidence that dependency length is actually minimized in real utterances
+  across many languages; previous work has focused either on a small number of
+  languages or on limited kinds of data about each language. Here, using parsed
+  corpora of 37 diverse languages, we show that overall dependency lengths for
+  all languages are shorter than conservative random baselines. The results
+  strongly suggest that dependency length minimization is a universal
+  quantitative property of human languages and support explanations of
+  linguistic variation in terms of general properties of human information
+  processing.%
+    }
+    \verb{doi}
+    \verb 10.1073/pnas.1502134112
+    \endverb
+    \field{issn}{0027-8424, 1091-6490}
+    \field{number}{33}
+    \field{pages}{10336\bibrangedash 10341}
+    \field{title}{Large-Scale Evidence of Dependency Length Minimization in 37
+  Languages}
+    \field{volume}{112}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/B6TWF98C/Futrell et al. - 201
+    \verb 5 - Large-scale evidence of dependency length minimiza.pdf;/Users/ale
+    \verb xis.toumi/WORK/Zotero/storage/LJJKPME5/futrell2015.pdf.pdf
+    \endverb
+    \field{journaltitle}{Proc Natl Acad Sci USA}
+    \field{month}{08}
+    \field{year}{2015}
   \endentry
 
   \entry{GhaniEtAl18}{article}{}
@@ -6861,6 +7297,59 @@
     \field{journaltitle}{Unpublished draft, available from Ross Street's
   website}
     \field{year}{1995}
+  \endentry
+
+  \entry{JoyalEtAl96}{article}{}
+    \name{author}{3}{}{%
+      {{hash=JA}{%
+         family={Joyal},
+         familyi={J\bibinitperiod},
+         given={Andr{\'e}},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Street},
+         familyi={S\bibinitperiod},
+         given={Ross},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=VD}{%
+         family={Verity},
+         familyi={V\bibinitperiod},
+         given={Dominic},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JASRVD1}
+    \strng{fullhash}{JASRVD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{JSV96}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{abstract}{%
+    Traced monoidal categories are introduced, a structure theorem is proved
+  for them, and an example is provided where the structure theorem has
+  application.%
+    }
+    \verb{doi}
+    \verb 10.1017/S0305004100074338
+    \endverb
+    \field{issn}{1469-8064, 0305-0041}
+    \field{number}{3}
+    \field{pages}{447\bibrangedash 468}
+    \field{title}{Traced Monoidal Categories}
+    \field{volume}{119}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/R8GA897F/Mathematiques - 2007
+    \verb  - Traced Monoidal Categories.pdf;/Users/alexis.toumi/WORK/Zotero/sto
+    \verb rage/UDGK6J2E/2BE85628D269D9FABAB41B6364E117C8.html
+    \endverb
+    \field{journaltitle}{Mathematical Proceedings of the Cambridge
+  Philosophical Society}
+    \field{month}{04}
+    \field{year}{1996}
   \endentry
 
   \entry{Kant81}{book}{}
@@ -9862,6 +10351,33 @@
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
+  \entry{Moggi91}{article}{}
+    \name{author}{1}{}{%
+      {{hash=ME}{%
+         family={Moggi},
+         familyi={M\bibinitperiod},
+         given={Eugenio},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Elsevier}}%
+    }
+    \strng{namehash}{ME1}
+    \strng{fullhash}{ME1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mog91}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{1}
+    \field{pages}{55\bibrangedash 92}
+    \field{title}{Notions of Computation and Monads}
+    \field{volume}{93}
+    \field{journaltitle}{Information and computation}
+    \field{year}{1991}
+  \endentry
+
   \entry{Montague70}{incollection}{}
     \name{author}{1}{}{%
       {{hash=MR}{%
@@ -10891,6 +11407,101 @@
     \field{eprintclass}{math}
     \field{month}{09}
     \field{year}{2018}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
+  \endentry
+
+  \entry{RobertsEtAl19}{article}{}
+    \name{author}{9}{}{%
+      {{hash=RC}{%
+         family={Roberts},
+         familyi={R\bibinitperiod},
+         given={Chase},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Milsted},
+         familyi={M\bibinitperiod},
+         given={Ashley},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Ganahl},
+         familyi={G\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zalcman},
+         familyi={Z\bibinitperiod},
+         given={Adam},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FB}{%
+         family={Fontaine},
+         familyi={F\bibinitperiod},
+         given={Bruce},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zou},
+         familyi={Z\bibinitperiod},
+         given={Yijian},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Hidary},
+         familyi={H\bibinitperiod},
+         given={Jack},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=VG}{%
+         family={Vidal},
+         familyi={V\bibinitperiod},
+         given={Guifre},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Leichenauer},
+         familyi={L\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning,Condensed Matter - Strongly
+  Correlated Electrons,High Energy Physics - Theory,Physics - Computational
+  Physics,Statistics - Machine Learning}
+    \strng{namehash}{RC+1}
+    \strng{fullhash}{RCMAGMZAFBZYHJVGLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Rob+19}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{abstract}{%
+    TensorNetwork is an open source library for implementing tensor network
+  algorithms. Tensor networks are sparse data structures originally designed
+  for simulating quantum many-body physics, but are currently also applied in a
+  number of other research areas, including machine learning. We demonstrate
+  the use of the API with applications both physics and machine learning, with
+  details appearing in companion papers.%
+    }
+    \verb{eprint}
+    \verb 1905.01330
+    \endverb
+    \field{shorttitle}{{{TensorNetwork}}}
+    \field{title}{{{TensorNetwork}}: {{A Library}} for {{Physics}} and
+  {{Machine Learning}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/AZT58PQI/Roberts et al. - 201
+    \verb 9 - TensorNetwork A Library for Physics and Machine L.pdf;/Users/alex
+    \verb is.toumi/WORK/Zotero/storage/4ATDEGJJ/1905.html
+    \endverb
+    \field{journaltitle}{arXiv:1905.01330 [cond-mat, physics:hep-th,
+  physics:physics, stat]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cond-mat, physics:hep-th, physics:physics, stat}
+    \field{month}{05}
+    \field{year}{2019}
     \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
@@ -13204,6 +13815,63 @@
     \field{journaltitle}{Phys. Rev. Lett.}
     \field{month}{10}
     \field{year}{2021}
+  \endentry
+
+  \entry{YeungKartsaklis21}{article}{}
+    \name{author}{2}{}{%
+      {{hash=YR}{%
+         family={Yeung},
+         familyi={Y\bibinitperiod},
+         given={Richie},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kartsaklis},
+         familyi={K\bibinitperiod},
+         given={Dimitri},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Computation and Language,Mathematics - Category
+  Theory}
+    \strng{namehash}{YRKD1}
+    \strng{fullhash}{YRKD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{YK21}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{abstract}{%
+    While the DisCoCat model (Coecke et al., 2010) has been proved a valuable
+  tool for studying compositional aspects of language at the level of
+  semantics, its strong dependency on pregroup grammars poses important
+  restrictions: first, it prevents large-scale experimentation due to the
+  absence of a pregroup parser; and second, it limits the expressibility of the
+  model to context-free grammars. In this paper we solve these problems by
+  reformulating DisCoCat as a passage from Combinatory Categorial Grammar (CCG)
+  to a category of semantics. We start by showing that standard categorial
+  grammars can be expressed as a biclosed category, where all rules emerge as
+  currying/uncurrying the identity; we then proceed to model
+  permutation-inducing rules by exploiting the symmetry of the compact closed
+  category encoding the word meaning. We provide a proof of concept for our
+  method, converting "Alice in Wonderland" into DisCoCat form, a corpus that we
+  make available to the community.%
+    }
+    \verb{eprint}
+    \verb 2105.07720
+    \endverb
+    \field{title}{A {{CCG-Based Version}} of the {{DisCoCat Framework}}}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/EDPKSNDC/Yeung and Kartsaklis
+    \verb  - 2021 - A CCG-Based Version of the DisCoCat Framework.pdf;/Users/al
+    \verb exis.toumi/WORK/Zotero/storage/8FBEWG8M/2105.html
+    \endverb
+    \field{journaltitle}{arXiv:2105.07720 [cs, math]}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{cs, math}
+    \field{month}{05}
+    \field{year}{2021}
+    \warn{\item Can't use 'eprinttype' + 'archiveprefix'}
   \endentry
 
   \entry{YongEtAl21}{article}{}
