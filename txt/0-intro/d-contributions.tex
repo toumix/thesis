@@ -15,28 +15,29 @@ Although we believe that science is collaboration and that the notion of persona
 give an introduction to elementary category theory for the Python programmer which is at the same time an introduction to object-oriented programming for the applied category theorist.
 This includes an implementation of:
 \begin{itemize}
-    \item the category $\mathbf{Pyth}$ with Python types as objects and functions as arrows~\ref{listing:Function},
-    \item the category $\mathbf{Mat}_\S$ with natural numbers as objects and matrices with entries in a rig $\S$ as arrows~\ref{listing:matrix},
-    \item free categories~\ref{listing:cat.py} with quantum circuits as example~\ref{example:Circuit},
-    \item the category $\mathbf{Cat}$ with categories as objects and functors as arrows~\ref{listing:Functor},
-    \item quotient categories~\ref{subsection:quotient-categories},
-    \item categories with a dagger structure (i.e. an identity-on-objects contravariant involutive endofunctor)~\ref{subsection:dagger-sums-bubbles},
-    \item categories with sums (i.e. enrichment in commutative monoids) and bubbles (i.e. arbitrary unary operators on homsets) with the example of neural networks~\ref{example:neural-net} and propositional logic~\ref{example:propositional-logic}.
+    \item the category $\mathbf{Pyth}$ with Python types as objects and functions as arrows (listing~\ref{listing:Function}),
+    \item the category $\mathbf{Mat}_\S$ with natural numbers as objects and matrices with entries in a rig $\S$ as arrows (listing~\ref{listing:matrix}),
+    \item free categories (listing~\ref{listing:cat.py}) with quantum circuits as example (\ref{example:Circuit}),
+    \item the category $\mathbf{Cat}$ with categories as objects and functors as arrows (listing~\ref{listing:Functor}),
+    \item quotient categories (section~\ref{subsection:quotient-categories}),
+    \item categories with a dagger structure, i.e. an identity-on-objects contravariant involutive endofunctor (section~\ref{subsection:dagger-sums-bubbles}),
+    \item categories with sums, i.e. enriched in commutative monoids, and bubbles, i.e. arbitrary unary operators on homsets, with the example of neural networks (\ref{example:neural-net}) and propositional logic (\ref{example:propositional-logic}).
 \end{itemize}
 
 \item We give an elementary definition of string diagrams for monoidal categories.
 Our construction decomposes the free monoidal category construction into three basic steps: 1) a layer endofunctor on the category of monoidal signatures, 2) the free premonoidal category as a free category of layers and 3) the free monoidal category as a quotient by interchangers.
 To the best of our knowledge, this \emph{premonoidal approach} had been relegated to mathematical folklore: it was known by those who knew it, yet it never appeared in print.
-The monoidal categories we implement are all strict and furthermore they are \emph{free on objects} (foo), lemma~\ref{lemma:foo-monoidal} shows that every monoidal category is monoidally equivalent to a foo one, this includes:
+The monoidal categories we implement are all strict and furthermore they are \emph{free on objects} (foo), lemma~\ref{lemma:foo-monoidal} shows that every monoidal category is monoidally equivalent to a foo one.
+This includes:
 \begin{itemize}
-    \item $\mathbf{Pyth}$ with lists of types as objects and tupling as tensor~\ref{listing:monoidal.Function},
-    \item $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$ with lists of natural numbers as objects and Kronecker product as tensor~\ref{listing:tensor},
-    \item free monoidal categories~\ref{listing:monoidal.Diagram} with quantum circuits as example~\ref{example:circuit-diagrams},
-    \item quotient monoidal categories~\ref{subsection:quotient-monoidal} with quantum circuit optimisation as example~\ref{example:simplify-circuits},
-    \item monoidal categories with daggers, sums and bubbles~\ref{subsection:monoidal-daggers-sums-bubbles} with the example of post-processed quantum circuits~\ref{example:postprocessed-circuit} and first-order logic à la Peirce~\ref{example:monoidal-formula}.
+    \item $\mathbf{Pyth}$ with lists of types as objects and tupling as tensor (listing~\ref{listing:monoidal.Function}),
+    \item $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$ with lists of natural numbers as objects and Kronecker product as tensor (listing~\ref{listing:tensor}),
+    \item free monoidal categories (listing~\ref{listing:monoidal.Diagram}) with quantum circuits as example (\ref{example:circuit-diagrams}),
+    \item quotient monoidal categories (listing~\ref{subsection:quotient-monoidal}) with quantum circuit optimisation as example (\ref{example:simplify-circuits}),
+    \item monoidal categories with daggers, sums and bubbles (section~\ref{subsection:monoidal-daggers-sums-bubbles}) with the example of post-processed quantum circuits (\ref{example:postprocessed-circuit}) and first-order logic à la Peirce (\ref{example:monoidal-formula}).
 \end{itemize}
 DisCoPy uses a \emph{point-free} or \emph{tacit programming} style where diagrams are described only by composition and tensor.
-We discuss how to go from tacit to explicit programming, defining diagrams using the standard syntax for Python functions~\ref{subsection:tacit-to-explicit}.
+We discuss how to go from tacit to explicit programming, defining diagrams using the standard syntax for Python functions (section~\ref{subsection:tacit-to-explicit}).
 
 \item We prove the equivalence between our elementary definition of diagrams in terms of list of layers and the topological definition in terms of \emph{labeled generic progressive plane graphs}.
 One side of this equivalence underlies the drawing algorithm of DisCoPy, the other side is the basis of a prototype for an automatic diagram recognition algorithm.
@@ -46,24 +47,24 @@ We then discuss how to extend this to non-generic, non-progressive, non-planar, 
 The hierarchy of categorical structures (monoidal, closed, rigid, etc.) is encoded in a hierarchy of Python classes and an inheritance mechanism implements the free-forgetful adjunctions between them.
 This includes an implementation of:
 \begin{itemize}
-\item free rigid categories, where we introduce the \emph{snake removal} algorithm to compute normal forms~\ref{subsection:rigid},
-\item the syntax for diagrams in free braided, symmetric, tortile and compact-closed categories~\ref{subsection:symmetric},
-\item the syntax for diagrams in free hypergraph categories, i.e. with coherent special commutative Frobenius algebras on each object~\ref{subsection:hypergraph},
-\item the syntax for diagrams in free cartesian and cocartesian diagrams, with $\mathbf{Pyth}$ as an example of a \emph{rig category} with two monoidal structures~\ref{subsection:cartesian},
-\item the free biproduct completion as the category of matrices with arrows as entries~\ref{subsection:biproducts}, taking quantum measurements as example~\ref{example:biproduct-measurement},
-\item the syntax for diagrams in closed monoidal categories~\ref{subsection:closed} with currying of functions in $\mathbf{Pyth}$ as example~\ref{example:closed-function}.
+\item free rigid categories, for which we introduce the \emph{snake removal} algorithm to compute normal forms (section~\ref{subsection:rigid}),
+\item the syntax for diagrams in free braided, symmetric, tortile and compact-closed categories (section~\ref{subsection:symmetric}),
+\item the syntax for diagrams in free hypergraph categories, i.e. with coherent special commutative Frobenius algebras on each object (section~\ref{subsection:hypergraph}),
+\item the syntax for diagrams in free cartesian and cocartesian diagrams (section~\ref{subsection:cartesian}) with $\mathbf{Pyth}$ as an example of a \emph{rig category} with two monoidal structures (listing~\ref{listing:python-co-cartesian}),
+\item the free biproduct completion as the category of matrices with arrows as entries (section~\ref{subsection:biproducts}), taking quantum measurements as example (\ref{example:biproduct-measurement}),
+\item the syntax for diagrams in closed monoidal categories (section~\ref{subsection:closed}) with currying of functions in $\mathbf{Pyth}$ as example (\ref{example:closed-function}).
 \end{itemize}
 
 \item We discuss the relationship between our premonoidal approach and the existing graph-based data structures for diagrams in symmetric monoidal categories.
 This includes:
 \begin{itemize}
-\item a comparison between our definition of \emph{premonoidal diagrams} as lists of layers and the free premonoidal category as a state construction over a monoidal category~\ref{subsection:state-construction},
-\item a definition of \emph{hypergraph diagrams}, i.e. the arrows of free hypergraph categories, and the subcategories of compact, traced and symmetric diagrams~\ref{subsection:hypergraph-diagrams},
-\item an implementation of $\mathbf{Pyth}$ as a traced cartesian and cocartesian category~\ref{listing:traced-python} and $\mathbf{Mat}_\B \simeq \mathbf{FinRel}$ as a traced biproduct category~\ref{listing:traced-matrix},
-\item an implementation of hypergraph diagrams and its comparison with premonoidal diagrams~\ref{subsection:hypergraph-vs-premonoidal},
-\item an implementation of free sesquicategories (i.e. 2-categories without interchangers) with \emph{coloured diagrams} as 2-cells~\ref{listing:free-sesquicategory}
-\item an implementation of $\mathbf{Cat}$ as a sesquicategory with (not-necessarily-natural) transformations as 2-cells~\ref{listing:Transformation},
-\item an implementation of free monoidal 2-categories with diagrams as 1-cells and rewrites as 2-cells~\ref{listing:free-monoidal-2-category}.
+\item a comparison between our definition of \emph{premonoidal diagrams} as lists of layers and the free premonoidal category as a state construction over a monoidal category (section~\ref{subsection:state-construction}),
+\item a definition of \emph{hypergraph diagrams}, i.e. the arrows of free hypergraph categories, and the subcategories of compact, traced and symmetric diagrams (section~\ref{subsection:hypergraph-diagrams}),
+\item an implementation of $\mathbf{Pyth}$ as a traced cartesian and cocartesian category (listing~\ref{listing:traced-python}) and $\mathbf{Mat}_\B \simeq \mathbf{FinRel}$ as a traced biproduct category (listing~\ref{listing:traced-matrix}),
+\item an implementation of hypergraph diagrams and its comparison with premonoidal diagrams (section~\ref{subsection:hypergraph-vs-premonoidal}),
+\item an implementation of free sesquicategories (i.e. 2-categories without interchangers) with \emph{coloured diagrams} as 2-cells (listing~\ref{listing:free-sesquicategory}),
+\item an implementation of $\mathbf{Cat}$ as a sesquicategory with (not-necessarily-natural) transformations as 2-cells (listing~\ref{listing:Transformation}),
+\item an implementation of free monoidal 2-categories with diagrams as 1-cells and rewrites as 2-cells (listing~\ref{listing:free-monoidal-2-category}).
 \end{itemize}
 \end{enumerate}
 
@@ -79,7 +80,7 @@ The underlying algorithm, called \emph{snake removal}, computes the normal form 
 The underlying idea of \emph{functorial learning}, i.e. learning structure-preserving functors from diagram-like data, provides a theoretical framework for machine learning on structured data.
 \end
 {itemize}
-The third chapter introduces \emph{diagrammatic differentiation}, a graphical calculus for computing the gradients of parameterised diagrams which applies to the training of QNLP models but also to functorial learning in general.
+The last section introduces \emph{diagrammatic differentiation}, a graphical calculus for computing the gradients of parameterised diagrams which applies to the training of QNLP models but also to functorial learning in general.
 Most of the material has been published in joint work with Richie Yeung and Giovanni de Felice~\cite{ToumiEtAl21a}.
 \begin
 {itemize}
@@ -89,7 +90,7 @@ In particular, they encode differentiation of diagrams and allow to express the 
 \item We study diagrammatic differentiation for the ZX calculus.
 In the pure case, this allows to compute the gradients of linear maps with respect to phase parameters.
 In the mixed classical-quantum case, this yields a definition of the parameter-shift rules used in quantum machine learning.
-\item We define the gradient of QNLP models and parameterised functors in general.
+\item We define the gradient of QNLP models and any parameterised functor.
 \end{itemize}
 
 \section*{Publications}
@@ -101,16 +102,59 @@ The material presented in this thesis builds on the following publications.
 \item \enumcite{FeliceEtAl20a}\vspace{-10pt}
 \item \enumcite{CoeckeEtAl20}\vspace{-10pt}
 \item \enumcite{MeichanetzidisEtAl20}\vspace{-10pt}
+\item \enumcite{KartsaklisEtAl21}\vspace{-10pt}
 \item \enumcite{ToumiEtAl21a}
 \end{itemize}\vspace{10pt}
 During his DPhil, the author has also published the following articles.
 \begin{itemize}[label={}]
-\item \enumcite{BorosEtAl19}
+\item \enumcite{BorosEtAl19}\vspace{-10pt}
 \item \enumcite{FeliceEtAl19}\vspace{-10pt}
 \item \enumcite{FeliceEtAl20}\vspace{-10pt}
-\item \enumcite{ShieblerEtAl20}
-\item \enumcite{KartsaklisEtAl21}\vspace{-10pt}
-\item \enumcite{ToumiKoziell-Pipe21}
+\item \enumcite{ShieblerEtAl20}\vspace{5pt}
+\item \enumcite{ToumiKoziell-Pipe21}\vspace{5pt}
 \item \enumcite{CoeckeEtAl21}\vspace{-10pt}
-\item \enumcite{McPheatEtAl21}
+\item \enumcite{McPheatEtAl21}\vspace{-10pt}
+\end{itemize}
+
+\section*{Outreach}
+\addcontentsline{toc}{section}{Outreach}
+
+The content of this thesis has also been the subject of science popularisation aimed at a wide audience.
+
+\begin{itemize}
+\item A blog post summarising our first experiment and two podcasts with long discussions on the topic.
+\end{itemize}
+\begin{itemize}[label={}]
+\item \enumcite{CoeckeEtAl20b}\vspace{-10pt}
+\item \enumcite{FuturatiPodcast21}\vspace{-10pt}
+\item \enumcite{MachineLearningStreetTalk21}\vspace{-10pt}
+\end{itemize}
+
+\begin{itemize}
+\item A hackathon where students implemented QNLP experiments with DisCoPy.
+\end{itemize}
+\begin{itemize}[label={}]
+\item \enumcite{Molina21}\vspace{-10pt}
+\end{itemize}
+
+\begin{itemize}
+\item A presentation at an educational event for programmers and data scientists.
+\end{itemize}
+\begin{itemize}[label={}]
+\item \enumcite{20a}
+\end{itemize} \pagebreak
+
+\begin{itemize}
+\item A press release explaining QNLP in plain English.
+\end{itemize}
+\begin{itemize}[label={}]
+\item \enumcite{20b}\vspace{-10pt}
+\end{itemize}
+
+\begin{itemize}
+\item Press releases introducing lambeq~\cite{KartsaklisEtAl21} to a business audience.
+\end{itemize}
+\begin{itemize}[label={}]
+\item \enumcite{21}\vspace{-10pt}
+\item \enumcite{Smith-Goodson21}\vspace{-10pt}
 \end{itemize}

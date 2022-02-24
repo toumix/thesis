@@ -240,7 +240,7 @@ Hence, we need to add an optional argument \py{is_additive: bool} which tells us
 In order to keep the syntax simple, we keep the notation \py{f @ g} for \py{tuple} and override the vertical line symbol \py{f | g} to denote the \py{tagged_union}.
 We use the same syntax for the direct sum of two tensors.
 
-\begin{python}
+\begin{python}\label{listing:python-co-cartesian}
 {\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian category with \py{tuple} and a cocartesian category with \py{tagged_union}.}
 
 \begin{minted}{python}

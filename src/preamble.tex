@@ -7,6 +7,55 @@
 % \usepackage{breakurl}
 
 \usepackage{hyperref}
+%WTF https://myjian.wordpress.com/2014/01/17/note-break-long-urls-with-xelatex/
+\renewcommand{\UrlBreaks}{\do\/\do\-\do\_\do\.\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}
+
+
+\usepackage[
+    style=alphabetic,
+    sorting=nyt,
+    backend=biber,
+    maxbibnames=99,
+    doi=true,
+    isbn=false,
+    url=true
+]{biblatex}
+\renewcommand*{\bibfont}{\raggedright\small}
+
+% print url if no doi
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite]{
+      \step[fieldsource=doi, final]
+      \step[fieldset=url, null]
+      \step[fieldset=urldate, null]
+      \step[fieldset=eprint, null]
+    }
+  }
+}
+% print url if no arXiv
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite]{
+      \step[fieldsource=eprint, final]
+      \step[fieldset=url, null]
+      \step[fieldset=urldate, null]
+    }
+  }
+}
+
+% https://tex.stackexchange.com/questions/163774/biblatex-print-bibliography-for-a-single-entry-within-an-enumeration
+\DeclareBibliographyCategory{enumpapers}
+
+\newcommand{\enumcite}[1]{%
+  \nocite{#1}
+  \addtocategory{enumpapers}{#1}%
+  \defbibcheck{key#1}{
+    \iffieldequalstr{entrykey}{#1}
+      {}
+      {\skipentry}}%
+  \printbibliography[heading=none,check=key#1]%
+}
 
 \usepackage{amsthm, amssymb, amsmath}
 
@@ -39,9 +88,6 @@
 \usepackage{src/tikzit}
 \input{src/qcs.tikzstyles}
 
-\usepackage[style=alphabetic,sorting=nyt,backend=bibtex,maxbibnames=99,doi=true,isbn=false]{biblatex}
-\renewcommand*{\bibfont}{\raggedright\small}
-
 \usepackage[perpage]{footmisc}
 
 \usepackage{ragged2e}
@@ -50,18 +96,6 @@
 \newcommand{\justepigraph}[2]{
 \epigraph{\footnotesize \justifying #1}{#2}}
 
-% https://tex.stackexchange.com/questions/163774/biblatex-print-bibliography-for-a-single-entry-within-an-enumeration
-\DeclareBibliographyCategory{enumpapers}
-
-\newcommand{\enumcite}[1]{%
-  \nocite{#1}
-  \addtocategory{enumpapers}{#1}%
-  \defbibcheck{key#1}{
-    \iffieldequalstr{entrykey}{#1}
-      {}
-      {\skipentry}}%
-  \printbibliography[heading=none,check=key#1]%
-}
 
 \input{src/macros}
 
