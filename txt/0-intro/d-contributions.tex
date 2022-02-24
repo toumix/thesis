@@ -6,23 +6,70 @@
 The first chapter is an extended version of the DisCoPy paper~\cite{FeliceEtAl20a}.
 It emerged from a dialectic teacher-student collaboration with Giovani de Felice: implementing our own category theory library was a way to teach him Python programming.
 Bob Coecke then added the capital letters to the name of DisCoPy.
-\begin
-{itemize}
+We list the contributions of each section.
+
+\begin{enumerate}
 \item We\footnote
 {The ``we'' of this section refers to the author of this thesis.
-Although we believe that science is collaboration and that the notion of personal contribution is obsolete, it is in fact required by university regulations: ``Where some part of the thesis is not solely the work of the candidate or has been carried out in collaboration with one or more persons, the candidate shall submit a clear statement of the extent of his or her own contribution.''} give an elementary definition of string diagrams for monoidal categories.
-Our construction decomposes the free monoidal category construction into three basic steps: 1) a layer monad on the category of monoidal signatures, 2) the free premonoidal category as a free category of layers and 3) the free monoidal category as a quotient by interchangers.
+Although we believe that science is collaboration and that the notion of personal contribution is obsolete, it is in fact required by university regulations: ``Where some part of the thesis is not solely the work of the candidate or has been carried out in collaboration with one or more persons, the candidate shall submit a clear statement of the extent of his or her own contribution.''}
+give an introduction to elementary category theory for the Python programmer which is at the same time an introduction to object-oriented programming for the applied category theorist.
+This includes an implementation of:
+\begin{itemize}
+    \item the category $\mathbf{Pyth}$ with Python types as objects and functions as arrows~\ref{listing:Function},
+    \item the category $\mathbf{Mat}_\S$ with natural numbers as objects and matrices with entries in a rig $\S$ as arrows~\ref{listing:matrix},
+    \item free categories~\ref{listing:cat.py} with quantum circuits as example~\ref{example:Circuit},
+    \item the category $\mathbf{Cat}$ with categories as objects and functors as arrows~\ref{listing:Functor},
+    \item quotient categories~\ref{subsection:quotient-categories},
+    \item categories with a dagger structure (i.e. an identity-on-objects contravariant involutive endofunctor)~\ref{subsection:dagger-sums-bubbles},
+    \item categories with sums (i.e. enrichment in commutative monoids) and bubbles (i.e. arbitrary unary operators on homsets) with the example of neural networks~\ref{example:neural-net} and propositional logic~\ref{example:propositional-logic}.
+\end{itemize}
+
+\item We give an elementary definition of string diagrams for monoidal categories.
+Our construction decomposes the free monoidal category construction into three basic steps: 1) a layer endofunctor on the category of monoidal signatures, 2) the free premonoidal category as a free category of layers and 3) the free monoidal category as a quotient by interchangers.
 To the best of our knowledge, this \emph{premonoidal approach} had been relegated to mathematical folklore: it was known by those who knew it, yet it never appeared in print.
-\item We prove the equivalence between our elementary definition and the topological definition of Joyal and Street~\cite{JoyalStreet88}.
+The monoidal categories we implement are all strict and furthermore they are \emph{free on objects} (foo), lemma~\ref{lemma:foo-monoidal} shows that every monoidal category is monoidally equivalent to a foo one, this includes:
+\begin{itemize}
+    \item $\mathbf{Pyth}$ with lists of types as objects and tupling as tensor~\ref{listing:monoidal.Function},
+    \item $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$ with lists of natural numbers as objects and Kronecker product as tensor~\ref{listing:tensor},
+    \item free monoidal categories~\ref{listing:monoidal.Diagram} with quantum circuits as example~\ref{example:circuit-diagrams},
+    \item quotient monoidal categories~\ref{subsection:quotient-monoidal} with quantum circuit optimisation as example~\ref{example:simplify-circuits},
+    \item monoidal categories with daggers, sums and bubbles~\ref{subsection:monoidal-daggers-sums-bubbles} with the example of post-processed quantum circuits~\ref{example:postprocessed-circuit} and first-order logic à la Peirce~\ref{example:monoidal-formula}.
+\end{itemize}
+DisCoPy uses a \emph{point-free} or \emph{tacit programming} style where diagrams are described only by composition and tensor.
+We discuss how to go from tacit to explicit programming, defining diagrams using the standard syntax for Python functions~\ref{subsection:tacit-to-explicit}.
+
+\item We prove the equivalence between our elementary definition of diagrams in terms of list of layers and the topological definition in terms of \emph{labeled generic progressive plane graphs}.
 One side of this equivalence underlies the drawing algorithm of DisCoPy, the other side is the basis of a prototype for an automatic diagram recognition algorithm.
-\item We describe our object-oriented implementation of monoidal category theory.
+We then discuss how to extend this to non-generic, non-progressive, non-planar, non-graph-like diagrams, which opens the door to the next section.
+
+\item We describe our object-oriented implementation of monoidal categories with extra structure.
 The hierarchy of categorical structures (monoidal, closed, rigid, etc.) is encoded in a hierarchy of Python classes and an inheritance mechanism implements the free-forgetful adjunctions between them.
+This includes an implementation of:
+\begin{itemize}
+\item free rigid categories, where we introduce the \emph{snake removal} algorithm to compute normal forms~\ref{subsection:rigid},
+\item the syntax for diagrams in free braided, symmetric, tortile and compact-closed categories~\ref{subsection:symmetric},
+\item the syntax for diagrams in free hypergraph categories, i.e. with coherent special commutative Frobenius algebras on each object~\ref{subsection:hypergraph},
+\item the syntax for diagrams in free cartesian and cocartesian diagrams, with $\mathbf{Pyth}$ as an example of a \emph{rig category} with two monoidal structures~\ref{subsection:cartesian},
+\item the free biproduct completion as the category of matrices with arrows as entries~\ref{subsection:biproducts}, taking quantum measurements as example~\ref{example:biproduct-measurement},
+\item the syntax for diagrams in closed monoidal categories~\ref{subsection:closed} with currying of functions in $\mathbf{Pyth}$ as example~\ref{example:closed-function}.
+\end{itemize}
+
 \item We discuss the relationship between our premonoidal approach and the existing graph-based data structures for diagrams in symmetric monoidal categories.
-\end
-{itemize}
+This includes:
+\begin{itemize}
+\item a comparison between our definition of \emph{premonoidal diagrams} as lists of layers and the free premonoidal category as a state construction over a monoidal category~\ref{subsection:state-construction},
+\item a definition of \emph{hypergraph diagrams}, i.e. the arrows of free hypergraph categories, and the subcategories of compact, traced and symmetric diagrams~\ref{subsection:hypergraph-diagrams},
+\item an implementation of $\mathbf{Pyth}$ as a traced cartesian and cocartesian category~\ref{listing:traced-python} and $\mathbf{Mat}_\B \simeq \mathbf{FinRel}$ as a traced biproduct category~\ref{listing:traced-matrix},
+\item an implementation of hypergraph diagrams and its comparison with premonoidal diagrams~\ref{subsection:hypergraph-vs-premonoidal},
+\item an implementation of free sesquicategories (i.e. 2-categories without interchangers) with \emph{coloured diagrams} as 2-cells~\ref{listing:free-sesquicategory}
+\item an implementation of $\mathbf{Cat}$ as a sesquicategory with (not-necessarily-natural) transformations as 2-cells~\ref{listing:Transformation},
+\item an implementation of free monoidal 2-categories with diagrams as 1-cells and rewrites as 2-cells~\ref{listing:free-monoidal-2-category}.
+\end{itemize}
+\end{enumerate}
+
 The second chapter deals with QNLP, building on \cite{MeichanetzidisEtAl20,CoeckeEtAl20,MeichanetzidisEtAl20a}.
 It was joint work with Bob Coecke, Giovanni de Felice and Konstantinos Meichanetzidis.
-Although we were working in the same office, Stefano Gogioso arrived at the same ideas independently with his collaborator Nicolò Chiappori.
+Although we shared a common office, Stefano Gogioso arrived at the same ideas independently with his collaborator Nicolò Chiappori.
 \begin
 {itemize}
 \item We define QNLP models as functors from grammar to quantum circuits and show that any DisCoCat model can be implemented in this way.

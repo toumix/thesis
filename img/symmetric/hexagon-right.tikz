@@ -30,8 +30,8 @@
 \node [style=none, fill=white, right] (27) at (1.7, 0.04999999999999999) {$x$};
 \node [] (28) at (2.5, 0.0) {};
 \node [style=none, fill=white, right] (29) at (2.7, 0.04999999999999999) {$y$};
-\node [circle, fill=white, scale=0.577] (30) at (0.5, 2.5) {$=$};
-\node [circle, fill=white, scale=0.577] (30) at (2.0, 0.5) {$=$};
+\node [circle, fill=white, scale=0.577] (30) at (0.5, 2.5) {$\otimes$};
+\node [circle, fill=white, scale=0.577] (30) at (2.0, 0.5) {$\otimes$};
 \node [style=none, fill=white] (30) at (3.7, 1.5) {=};
 \node [] (31) at (4.7, 3.0) {};
 \node [] (32) at (4.7, 1.0) {};

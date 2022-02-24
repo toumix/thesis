@@ -124,17 +124,18 @@ There is a natural transformation $\eta : \mathbf{Id} \to \mathbf{List}$ from th
 Its components send objects \py{x : t} of any type \py{t} to the singleton list \py{[x] : List[t]}.
 \end{example}
 
-\begin{python}
+\begin{python}\label{listing:Function}
 {\normalfont Implementation of the category $\mathbf{Pyth}$ with \py{type} as objects and \py{Function} as arrows.}
 
 \begin{minted}{python}
 class Composable:
-    """ Allows syntactic sugar self >> other and self << other. """
+    """ Allows syntactic sugar self >> other and self << other and n * self. """
     def cast(self, other):
         return other if isinstance(other, Composable) else self.id(other)
 
     __rshift__ = __llshift__ = lambda self, other: self.then(self.cast(other))
     __lshift__ = __lrshift__ = lambda self, other: self.cast(other).then(self)
+    __rmul__ = lambda self, n: self.id(self.dom).then(*n * [self])
 
 def inductive(method):
     """ Allows to apply a binary method to an arbitrary number of arguments. """
@@ -186,7 +187,7 @@ When the scalars are Booleans with disjunction and conjunction as addition and m
 There is a faithful functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends finite sets to their cardinality and functions to their graph.
 \end{example}
 
-\begin{python}
+\begin{python}\label{listing:matrix}
 {\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix[dtype]} as arrows.}
 
 \begin{minted}{python}
@@ -216,7 +217,15 @@ class Matrix(Composable):
                    for k in range(other.cod)] for i in range(self.dom)]
         return type(self)(inside, self.dom, other.cod)
 
-    __getitem__ = lambda self, key: self.inside[key]
+    def __getitem__(self, key: int) -> Matrix:
+        if self.dom == 1: return Matrix([[self.inside[0][key]]], 1, 1)
+        return Matrix([self.inside[key]], 1, self.cod)
+
+    for attr in ("__bool__", "__int__", "__float__", "__complex__"):
+        def method(self):  # Downcasting a 1 by 1 Matrix to a scalar.
+            assert self.dom == self.cod == 1
+            return getattr(self[0][0], attr)()
+        setattr(Matrix, attr, method)
 \end{minted}
 
 Subscriptable types such as \py{list[list[int]]} and the \py{__class_getitem__} method are a new feature of Python \py{>=3.10}.
@@ -230,7 +239,7 @@ The category $\mathbf{Circ}$ has natural numbers as objects and $n$-qubit quantu
 There is a functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ which sends $n$ qubits to $2^n$ dimensions and evaluates each circuit to its unitary matrix.
 \end{example}
 
-\subsection{Free categories}
+\subsection{Free categories}\label{subsection:free-categories}
 
 The main principles behind the implementation of DisCoPy follow from the concept of a \emph{free object}.
 Let's start from a simple example.
@@ -292,8 +301,7 @@ class Arrow(Composable):
 
     @classmethod
     def upgrade(cls, old: Arrow) -> Arrow:
-        if isinstance(old, cls): return old
-        return cls(old.inside, old.dom, old.cod)
+        if old if isinstance(old, cls) else cls(old.inside, old.dom, old.cod)
 
     @classmethod
     def id(cls, x: Ob) -> Arrow:
@@ -338,7 +346,7 @@ This allows the composition of arrows in a subclass to remain within the subclas
 This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{upgrade} and return an arrow of the appropriate subclass.
 We also need to fix \py{Box.upgrade = Arrow.upgrade}: when we compose a box then an arrow, we want to return a new arrow object, not a box.
 
-\begin{example}
+\begin{example}\label{example:Circuit}
 We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
 
 \begin{minted}{python}
@@ -458,7 +466,7 @@ assert I(f >> g)(h) == H(F(h)) == H(f)
 \end{minted}
 \end{example}
 
-\subsection{Quotient categories}
+\subsection{Quotient categories}\label{subsection:quotient-categories}
 
 After free objects, another concept behind DisCoPy is that of a \emph{quotient object}.
 Again, let's start with the example of a monoid $M$.
@@ -510,7 +518,7 @@ Suppose we're given a functor $\mathtt{cost} : F(\Sigma) \to \R^+$, we can defin
 Thus, deciding equality of circuits reduces to solving circuit optimisation perfectly.
 \end{example}
 
-\subsection{Daggers, sums and bubbles}
+\subsection{Daggers, sums and bubbles}\label{subsection:dagger-sums-bubbles}
 
 We conclude this section by discussing three extra pieces of implementation beyond the basics of category theory: daggers, sums and bubbles.
 A \emph{dagger} for a category $C$ can be thought of as a kind of time-reversal for arrows.
@@ -714,7 +722,7 @@ class Matrix:
 
     @classmethod
     def zero(cls, dom: int, cod: int) -> Matrix:
-        return Matrix[cls.dtype]([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
+        return cls([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
 \end{minted}
 \end{python}
 
@@ -761,24 +769,29 @@ class Bubble(Box):
         name = "Bubble({}, {}, {}, {})".format(inside, dom, cod, name)
         super().__init__(name, dom, cod)
 
+    @property
+    def is_id_on_objects(self) -> bool:
+        return (self.dom, self.cod) == (self.inside.dom, self.inside.cod)
+
 Arrow.bubble = Bubble
 
 class Functor(cat.Functor):
     def __call__(self, other):
         if isinstance(other, Bubble):
-            return getattr(self.cod.ar, other.name)(
-                self(other.inside), self(other.dom), self(other.cod))
+            method = getattr(self.cod.ar, other.name)
+            return method(self(other.inside)) if other.is_id_on_objects\
+                else method(self(other.inside), self(other.dom), self(other.cod))
         return super().__call__(other)
 \end{minted}
 \end{python}
 
-\begin{example}
+\begin{example}\label{example:neural-net}
 We can encode the architecture of a neural network as an arrow with sums and bubbles, encoding vector addition and non-linear activation function respectively.
 The evaluation of the neural network on some input vector for some parameters is given by the application of a sum-and-bubble-preserving functor into $\mathbf{Mat}_\R$.
 The hyper-parameters (i.e. the number of neurons at each layer) are given by the image of the functor on objects.
 
 \begin{minted}{python}
-Matrix.ReLU = lambda self, _, _: self.map(lambda x: max(x, 0))
+Matrix.ReLU = lambda self: self.map(lambda x: max(x, 0))
 
 vector, bias = Box('vector', x, y), Box('bias', x, x)
 ones, weights = Box('ones', x, y), Box('weights', y, z)
@@ -792,17 +805,17 @@ F = Functor(
                   [9.0, -0.1, 2.3, -3.4]]},
     cod=Category(int, Matrix[float]))
 
-assert F(network) == F(vector).map(lambda x: x + F(bias)[0][0])\
+assert F(network) == F(vector).map(lambda x: x + F(bias))\
                               .then(F(weights)).map(lambda x: max(0, x))
 \end{minted}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:propositional-logic}
 We can implement propositional logic with boxes as propositions, composition as conjunction, sum as disjunction and bubble as negation.
 The evaluation of a formula in a model corresponds to the application of a sum-and-bubble-preserving functor into $\mathbf{Mat}_\B(1, 1)$.
 
 \begin{minted}{python}
-Matrix._not = lambda self, _, _: self.map(lambda x: not x)
+Matrix._not = lambda self: self.map(lambda x: not x)
 
 class Formula(Arrow):
     _not = lambda self: self.bubble(name="_not")
@@ -811,17 +824,15 @@ class Proposition(Box, Formula):
     def __init__(self, name): Box.__init__(self, name, Ob('x'), Ob('x'))
 
 def model(data: dict[Proposition, bool]):
-    return Functor(ob={Ob('x'): 1},
-                   ar={p: [[data[p]]] for p in data},
-                   dom=Category(Ob, Formula),
-                   cod=Category(int, Matrix[bool]))
+    return Functor(ob={Ob('x'): 1}, ar={p: [[data[p]]] for p in data},
+                   dom=Category(Ob, Formula), cod=Category(int, Matrix[bool]))
 
 p, q = map(Proposition, "pq")
 p_implies_q = (q._not() >> p)._not()
 not_p_or_q = p._not() + q
 
 for a, b in itertools.product([0, 1], [0, 1]):
-    F = Formula.model({p: a, q: b})
+    F = model({p: a, q: b})
     assert F(p_implies_q) == not (not F(q) and F(p))\
         == F(not_p_or_q) == not F(p) or F(q)
 \end{minted}

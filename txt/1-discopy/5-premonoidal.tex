@@ -16,7 +16,7 @@ When the two categories are in fact monoids, the funny tensor is called the \emp
 This is also true for free categories, i.e. $F(\Sigma) \Box F(\Sigma') = F(\Sigma \times \Sigma'_0 \cup \Sigma_0 \times \Sigma)$, so maybe $\Box$ should be called free rather than funny.
 While a functor on a cartesian product $F : C \times D \to E$ can be seen as a functor of two arguments that is functorial in both simultaneously, i.e. $F(f \fcmp f', g \fcmp f') = F(f, g) \fcmp F(f', g')$, a functor on a funny product $F : C \Box D \to E$ is functorial separately in its $C$ and $D$ arguments, i.e. $F(0, f \fcmp f', y) = F(0, f, y) \fcmp F(0, f', y)$ and $F(1, x, g \fcmp g') = F(1, x, g) \fcmp F(1, x, g')$.
 
-\subsection{Premonoidal diagrams}
+\subsection{Premonoidal categories \& state constructions}\label{subsection:state-construction}
 
 Now recall that a (strict) monoidal category $C$ is a monoid in $(\mathbf{Cat}, \times)$, i.e. the tensor is a functor on a cartesian product $\otimes : C \times C \to C$.
 In a similar way, we define a (strict) \emph{premonoidal category} as a monoid in $(\mathbf{Cat}, \Box)$, i.e. a category $C$ with an associative, unital functor on the funny product $\boxtimes : C \Box C \to C$.
@@ -94,7 +94,7 @@ Another advantage of representing string diagrams with lists rather than graphs 
 Similarly, the algorithm for drawing premonoidal diagrams requires almost no choices, the order of wires and boxes is fixed, we can only choose their shape and the spacing between them.
 On the other hand, drawing graphs requires complex heuristics and graphical interfaces in order to get satisfying results.
 
-\subsection{Hypergraph diagrams}
+\subsection{Hypergraph, compact, traced, symmetric}\label{subsection:hypergraph-diagrams}
 
 In order to compare the two approaches, we need to say a few words about how string diagrams for symmetric categories are implemented.
 Recall from sections~\ref{subsection:symmetric} and \ref{subsection:hypergraph} that equality of diagrams in symmetric and hypergraph categories reduce to graph and hypergraph isomorphisms respectively.
@@ -113,9 +113,8 @@ Given a monoidal signature $\Sigma$, a \emph{hypergraph diagram} (also called hy
 \end{itemize}
 The tensor of two hypergraph diagrams is given by concatenating their domain, codomain, boxes and spiders.
 The composition is defined in terms of \emph{pushouts}.
-Given $f : x \to y$ and $g : y \to x$ we have a \emph{span} of functions $\mathtt{spiders}(f) \leftarrow y \rightarrow \mathtt{spiders}(g)$ induced by the wires from the codomain of $f$ and the domain of $g$.
-We define $\mathtt{spiders}(f \fcmp g)$ as the size of the quotient set $(\mathtt{spiders}(f) + \mathtt{spiders}(g)) / R$ under the relation given by $\mathtt{wires}(f)(1, 0, i) = \mathtt{wires}(g)(0, 0, i)$ for all $i \leq \vert y \vert$.
-Concretely, this can be computed as the connected components of an undirected graph with $\mathtt{spiders}(f) + \mathtt{spiders}(g)$ vertices.
+Given $f : x \to y$ and $g : y \to x$ we have a \emph{span} of functions $\mathtt{spiders}(f) \leftarrow y \rightarrow \mathtt{spiders}(g)$ induced by the wires from the codomain of $f$ and the domain of $g$, we define $\mathtt{spiders}(f \fcmp g)$ as the size of the quotient set $(\mathtt{spiders}(f) + \mathtt{spiders}(g)) / R$ under the relation given by the codomain wires of $f$ and the domain wires of $g$.
+Concretely, this is computed as the reflexive transitive closure of the binary relation on $\mathtt{spiders}(f) + \mathtt{spiders}(g)$.
 The identity diagram $\id(x)$ has $\mathtt{spiders}(f) = \vert x \vert$ and wires given by the two injections $\vert x \vert + \vert x \vert \to \mathtt{spiders}(f)$.
 Now we can define a notion of interchanger which takes a hypergraph diagram $f$ and some index $i < \vert \boxes(f) \vert$ and returns the diagram with boxes $i$ and $i + 1$ interchanged, i.e. with the wires relabeled appropriately.
 While the interchanger of monoidal diagrams is ill-defined when the boxes are connected, that of hypergraph diagrams is always defined.
@@ -131,52 +130,87 @@ The subcategory of monogamous hypergraph diagrams is the free \emph{traced symme
 Every compact closed category has a trace given by cups and caps, traced monoidal categories allow to express recursion and fixed points more generally in non-rigid categories.
 Indeed in the case of a cartesian category such as $\mathbf{Pyth}$, the trace can equivalently be given in terms of \emph{fixed point operators} $\mathtt{fix}_x : C(a \times x, x) \to C(a, x)$~\cite[Proposition~6.8]{Selinger10}.
 Dually, in a cocartesian category the trace can be defined in terms \emph{iteration operators} $\mathtt{iter}_x : C(x, a + x) \to C(x, a)$.
-When the category has biproducts, it is sufficient to define a \emph{repetition operator} $\mathtt{repeat}_x : C(x, x) \to C(x, x)$.
-In the category of finite sets and relations $\mathbf{Mat}_\B$, this coincides with the usual notion of reflexive transitive closure.
+When the category has biproducts, it is sufficient to define a \emph{repetition operator} $\mathtt{repeat}_x : C(x, x) \to C(x, x)$~\cite[Proposition~6.11]{Selinger10}.
+In the category of finite sets and relations $\mathbf{Mat}_\B$ with the direct sum as tensor, this coincides with the usual notion of reflexive transitive closure~\cite[Proposition~6.3]{JoyalEtAl96}.
 
 \begin{python}
-{\normalfont Implementation of the trace for compact-closed categories.}
+{\normalfont Implementation of the syntax for free traced categories.}
 
 \begin{minted}{python}
-class Diagram:
-    ...
-    def trace(self, n=-1):
-        assert self.dom[n:] == self.cod[n:]
-        return self.dom[:n] @ self.caps(self.dom[n:], self.dom[n:].r)\
-            >> self @ self.dom[:n].r\
-            >> self.cod[:n] @ self.cups(self.cod[n:], self.cod[n:].r)
+class Trace(Box):
+    def __init__(self, inside: Diagram, n=1):
+        assert inside.dom[-n:] == inside.cod[-n:]
+        self.inside, name = inside, "Trace({}, {})".format(inside, n)
+        super().__init__(name, inside.dom[:-n], inside.cod[:-n])
+
+class Diagram(monoidal.Diagram):
+    trace = Trace
+
+class Functor(monoidal.Functor):
+    dom = cod = Category(Ty, Diagram)
+
+    def __call__(self, other):
+        if isinstance(other, Trace):
+            n = len(self(other.inside.dom)) - len(self(other.dom))
+            return self.cod.ar.trace(self(other.inside), n)
+        return super().__call__(other)
 \end{minted}
 \end{python}
 
-\begin{python}
+\begin{example}
+We can draw traced diagrams by applying a traced functor into compact-closed categories with bubbles.
+
+\begin{minted}{python}
+def compact_trace(self, n=1):
+    assert self.dom[-n:] == self.cod[-n:]
+    return self.dom[:-n] @ self.caps(self.dom[-n:], self.dom[-n:].r)\
+        >> self @ self.dom[:n].r\
+        >> self.cod[:-n] @ self.cups(self.cod[-n:], self.cod[-n:].r)
+
+compact.Diagram.trace = compact_trace
+
+class TracedDrawing(compact.Diagram):
+    trace = lambda self, n: compact_trace(self, n).bubble()
+
+Draw = Functor(lambda x: x, lambda f: f, cod=Category(Ty, TracedDrawing))
+Diagram.draw = lambda self, **params: Draw(self).draw(**params)
+
+a, b, x = map(Ty, "abx")
+Box('f', a @ x, b @ x).draw()
+\end{minted}
+\ctikzfig{img/closed/trace}
+\end{example}
+
+\begin{python}\label{listing:traced-python}
 {\normalfont Implementation of $\mathbf{Pyth}$ as a traced cartesian category.}
 
 \begin{minted}{python}
 class Function:
     ...
-    def iter(self, n=-1):
-        n = n if n >= 0 else len(self.cod) + n
-        assert self.is_additive and self.cod[n:] == self.dom
-        dom, cod = self.dom, self.cod[:n]
+    def iter(self, n=1):
+        assert self.is_additive and self.cod[-n:] == self.dom
+        dom, cod = self.dom, self.cod[:-n]
         def inside(x):
             i, y = self.inside(x)
-            return y if i < n else inside(y)
+            return y if i < len(self.cod) - n else inside(y)
         return Function(inside, dom, cod)
 
-    def fix(self, n=-1):
-        assert not self.is_additive and self.dom[n:] == self.cod
-        dom, cod = self.dom[:n], self.cod
+    def fix(self, n=1):
+        assert not self.is_additive and self.dom[-n:] == self.cod
+        dom, cod = self.dom[:-n], self.cod
         def inside(*xs, ys=None):
             result = self.inside(*xs + (ys or []))
             return ys if result == ys else inside(*xs, ys=result)
         return Function(inside, dom, cod)
 
-    def trace(self, n=-1):
-        assert self.dom[n:] == self.cod[n:]
-        if self.is_additive: ...  # Symmetric to the multiplicative case.
-        fixed = (self >> Function.discard(self.cod[:n]) @ self.cod[n:]).fix()
-        return Function.copy(self.dom[:n])\
-            >> self.dom[:n] @ fixed >> self >> Function.discard(self.cod[n:])
+    def trace(self, n=1):
+        assert self.dom[-n:] == self.cod[-n:]
+        dom, cod, traced = self.dom[:-n], self.cod[:-n], self.dom[-n:]
+        if self.is_additive:
+            iterated = (self.unit(cod) @ traced >> self).iter()
+            return dom @ self.unit(traced) >> self >> cod @ iterated >> self.merge(cod)
+        fixed = (self >> self.discard(cod) @ traced).fix()
+        return self.copy(dom) >> dom @ fixed >> self >> cod @ self.discard(traced)
 \end{minted}
 \end{python}
 
@@ -198,7 +232,7 @@ assert even(42)
 \end{minted}
 \end{example}
 
-\begin{python}
+\begin{python}\label{listing:traced-matrix}
 {\normalfont Implementation of $\mathbf{Mat}_\S$ as a traced biproduct category.}
 
 \begin{minted}{python}
@@ -208,9 +242,8 @@ class Matrix:
         assert self.dtype is bool and self.dom == self.cod
         return sum(Matrix.id(self.dom).then(*n * [self]) for n in range(self.dom + 1))
 
-    def trace(self, n=-1):
+    def trace(self, n=1):
         assert self.dtype is bool
-        n = n if n >= 0 else len(self.cod) + n
         A, B, C, D = (row >> self >> column
                       for row in [self.id(self.dom - n) @ self.unit(n),
                                   self.unit(self.dom - n) @ self.id(n)],
@@ -228,7 +261,7 @@ If we remove the interchanger quotient, we get premonoidal versions of free hype
 Traced preonoidal categories were introduced by Benton and Hyland~\cite{BentonHyland03} in order to model recursion in the presence of side-effects.
 To the best of our knowledge, no one has ever considered premonoidal compact closed categories: the snake equations still hold but we cannot yank the snakes away if there are obstructions, i.e. the snake removal algorithm of section~\ref{section:monoidal} does not apply.
 
-\subsection{Hypergraph versus premonoidal}
+\subsection{Hypergraph versus premonoidal diagrams}\label{subsection:hypergraph-vs-premonoidal}
 
 At every level of this symmetric-traced-compact-hypergraph hierarchy, premonoidal diagrams have the same linear-time algorithm for deciding equality, the data structure for hypergraph diagrams faithfully encode the premonoidal axioms without needing to compute any quotient: normal form becomes identity.
 Now suppose we want to compute the interpretation of such a hypergraph diagram in a category given only access to its methods for identity, composition, tensor, swaps and spiders.
@@ -239,17 +272,16 @@ This isomorphism is implemented in the \py{hypergraph} module of DisCoPy which i
 The composition method calls a \py{pushout} subroutine which takes as input the numbers of spiders on the left and right, the wires from some common boundary ports to the left and right spiders, and returns the two injections into their pushout.
 The three properties for bijective, monogamous and progressive diagrams implement the subcategory of compact closed, traced and symmetric diagrams respectively.
 The three corresponding methods take a diagram and add explicit boxes for spiders, cups and caps so that \py{f.make_bijective().is_bijective} for all \py{f: Diagram} and similarly for monogamous and progressive.
-The \py{downgrade} method calls \py{make_progressive} to construct a \py{rigid.Diagram} with explicit boxes for swaps and spiders.
-The \py{upgrade} applies a \py{rigid.Functor} so that \py{upgrade(f.downgrade()) == f} on the nose for any \py{f: Diagram} and \py{upgrade(f).downgrade()} is equal to any \py{f: rigid.Diagram} up to the special commutative Frobenius axioms.
+The \py{downgrade} method calls \py{make_progressive} to construct a \py{compact.Diagram} with explicit boxes for swaps and spiders.
+The \py{upgrade} applies a \py{compact.Functor} so that \py{upgrade(f.downgrade()) == f} on the nose for any \py{f: Diagram} and \py{upgrade(f).downgrade()} is equal to any \py{f: compact.Diagram} up to the special commutative Frobenius axioms.
 The \py{draw} method uses a randomised force-based layout algorithm for graphs to compute an embedding from the hypergraph diagram to the plane where wires do not cross too much.
 This is still an experimental feature and the results of \py{f.draw()} usually look much worse than the drawing of \py{f.downgrade().draw()} using the deterministic algorithm of section~\ref{section:drawing}.
 
-\begin{python}
+\begin{python}\label{listing:discopy-hypergraph}
 {\normalfont Outline of the \py{discopy.hypergraph} module.}
 
 \begin{minted}{python}
-def pushout(
-    left_spiders: int, right_spiders: int, left_wires: list[int], right_wires: list[int]
+def pushout(left: int, right: int, left_wires: list[int], right_wires: list[int]
     ) -> tuple[dict[int, int], dict[int, int]]: ...
 
 @dataclass
@@ -277,9 +309,9 @@ class Diagram(Composable, Tensorable):
     def make_monogamous(self) -> Diagram: ...
     def make_progressive(self) -> Diagram: ...
 
-    def downgrade(self) -> rigid.Diagram: ...
+    def downgrade(self) -> compact.Diagram: ...
 
-    upgrade = staticmethod(rigid.Functor(
+    upgrade = staticmethod(compact.Functor(
         ob=lambda x: Ty(x[0]),
         ar=lambda box: Box(box.name, box.dom, box.cod),
         cod=Category(Ty, Diagram)))
@@ -306,8 +338,9 @@ When we apply a premonoidal functor to the category of t$\vert$ket$\rangle$ circ
 It is then the job of the compiler to map these symmetric diagrams (where every qubit can talk to every other) onto the architecture of the machine and potentially introduce physical swaps when a logical gate applies to physical qubits that are not adjacent.
 
 The main advantage of representing diagrams as hypergraphs rather than lists is that we can use graph rewriting algorithms to implement quotient categories.
-Indeed, the \emph{double push-out} (DPO) rewriting of Ehrig et al.~\cite{EhrigEtAl73} allows to pattern match the left-hand side of an axiom in a hypergraph diagram and then compute the substitution with the right-hand side~\cite{BonchiEtAl20}.
-This can be extended to the case of symmetric diagrams where we do not have arrows for the spiders, by adding a convexity condition to pattern matching~\cite{BonchiEtAl16}.
+Indeed, the \emph{double push-out} (DPO) rewriting of Ehrig et al.~\cite{EhrigEtAl73} can be extended from graphs to hypergraph diagrams so that we can match the left-hand side of an axiom in a hypergraph diagram and then compute the substitution with the right-hand side~\cite{BonchiEtAl20}.
+Abstractly, DPO rewriting takes two hypegraph diagrams \py{self} and \py{pattern} and iterates through all possible \py{match} (i.e. pairs of diagrams for top and bottom and pairs of types for left and right as defined in section~\ref{subsection:quotient-monoidal}) such that \py{match.subs(pattern)} is equal to \py{self} up to interchanger.
+This can be extended to the case of symmetric diagrams by implementing a Boolean property \py{match.is_convex} that makes sure that pattern matching does not introduce spiders~\cite{BonchiEtAl16}.
 DPO rewriting has been the basis of tools such as Quantomatic and its successor PyZX~\cite{KissingerVanDeWetering19}~\cite{KissingerZamdzhiev15} for automated diagrammatic reasoning, it is also at the core of circuit optimisation in the t$\vert$ket$\rangle$ compiler.
 DisCoPy implements back and forth translations from diagrams to both PyZX and t$\vert$ket$\rangle$, thus we can use their rewriting engines to implement quotient categories, i.e. to define normal forms.
 
@@ -318,6 +351,7 @@ We conjecture that the category of planar\footnote
 Translated in terms of the topological definition of string diagrams, this would correspond to taking labeled progressive plane graphs up to deformation of three-dimensional space rather than up to deformation of the plane~\cite[Conjecture~3.4]{Selinger10}.
 When presented as quotients of free monoidal categories, spacial categories require an infinite family of axioms indexed by all possible scalar diagrams: in the absence of symmetry we cannot decompose the equation $(f \fcmp g) \otimes x = x \otimes (f \fcmp g)$ for a state $f : 1 \to y$ followed by an effect $g : y \to 1$ in terms of two smaller equations about $f$ and $g$ passing through the wire $x$.
 That every braided monoidal category is spacial follows from the naturality of the braiding, we do not know of any natural example of non-free non-braided spacial category.
+Moreover, it is an open question whether we can extend DPO rewriting to the case of spacial monoidal categories, i.e. whether there is an efficiently checkable condition that ensures that pattern matching does not introduce swaps.
 
 Thus, DisCoPy's planar premonoidal approach to string diagrams allows to define diagrams in non-symmetric categories that cannot be defined as hypergraphs.
 Although the concrete examples of categories we have discussed so far (functions, matrices, circuits) are all symmetric, planarity is essential if we are to model grammatical structure in terms of string diagrams as we will in section~\ref{section:NLP}.
@@ -325,6 +359,214 @@ Indeed, the left to right order of wires in a planar diagram encode the chronolo
 More impotantly, planarity in grammar has been given a cognitive explanation.
 In order to minimise the computational resources needed by the brain, human languages tend to minimise the distance between words that are syntactically connected~\cite{FutrellEtAl15} and the minimisation of swaps comes as a side-effect~\cite{Cancho06}.
 It can also be given a complexity-theoretic explanation: planar grammatical structures such as Chomsky's syntax trees, Lambek's pregroup diagrams or Gaifman's dependency trees (which we introduce in section~\ref{section:NLP}) are all \emph{context-free}, they have the same expressive power as \emph{push-down automaton}.
-In languages such as Dutch and Swiss German, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way.
-Yeung and Kartsaklis~\cite{YeungKartsaklis21} showed that if we reorder the words, the diagrams for these cross-serial dependencies can always be rewritten in a planar way using naturality.
+In languages such as Dutch and Swiss German, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way that makes them \emph{mildly context-sensitive}~\cite{Weir88}.
+Yeung and Kartsaklis~\cite{YeungKartsaklis21} showed that up to word reordering, the diagrams for these cross-serial dependencies can always be rewritten in a planar way using naturality.
 They then used DisCoPy to encode every sentence of Alice in Wonderland as a diagram, ready to be translated into a circuit and sent to a quantum computer.
+
+\subsection{Towards higher-dimensional diagrams}\label{subsection:towards-higher}
+
+The premonoidal approach is also well-suited to be generalised from two-dimensional diagrams to arbitrary dimensions.
+The first step would be to add some colours to our diagrams, generalising them from monoidal categories to (strict) \emph{2-categories}, or equivalently from premonoidal categories to \emph{sesquicategories}.
+The data for a sesquicategory $C$ is given by:
+\begin{itemize}
+    \item the data for a category $(C_0, C_1, \dom_0, \cod_0, \fcmp_0, \id_0)$ where the objects $C_0$ and arrows $C_1$ are called the class of $\emph{0- and 1-cells}$,
+    \item a class $C_2$ of \emph{2-cells},
+    \item domain and codomain $\dom_1, \cod_1 : C_2 \to C_1$,
+    \item an identity $\id_1 : C_1 \to C_2$ and a partial composition $(\fcmp_1) : C_2 \times C_2 \to C_1$.
+\end{itemize}
+such that the following holds
+\begin{itemize}
+    \item $C(x, y) = \{ f \in C_2 \ \vert f : x \to y \}$ is a category for every pair of 1-cells $x, y \in C_1$,
+    \item composition of 1-cells is a functor $(\fcmp)_0 : C(x, y) \Box C(y, z) \to C(x, z)$ for $\Box$ the funny tensor product on $\mathbf{Cat}$.
+\end{itemize}
+The axioms for 2-categories are the same but now composition is a bifunctor $\fcmp_1 : C(x, y) \times C(y, z) \to C(x, z)$ on a cartesian product.
+Every bifunctor is also functorial in its two arguments separately thus every 2-category is also a sesquicategory.
+The canonical example of a (2-category) sesquicategory is $\mathbf{Cat}$ with categories as 0-cells, functors as 1-cells and (natural) transformations as 2-cells.
+Every monoidal (premonoidal) category is a 2-category (sesquicategory) with one 0-cell.
+A 2-functor $F : C \to D$ between two 2-categories is given by three functions $\{ F_i : C_i \to D_i \}_{0 \leq i \leq 2}$ such that $(F_0, F_1) : (C_0, C_1) \to (D_0, D_1)$ and $(F_1, F_2) : C(x, y) \to D(F_1(x), F_1(y))$ are functors for all $x, y \in C_1$.
+
+Free sesquicategories are defined in the same way as free premonoidal categories (i.e. as lists of layers) except that now every type comes itself with a domain and codomain, represented as the background colours on the left and right of the wire.
+Thus we need a \emph{2-signature} $\Sigma = (\Sigma_0, \Sigma_1, \Sigma_2, \dom, \cod)$ where
+\begin{itemize}
+    \item $\Sigma_0$ is a set of colours,
+    \item $\Sigma_1$ is a set of objects with colours as domain and codomain,
+    \item $\Sigma_2$ is a set of boxes with domain and codomain in the free category $F(\Sigma_0, \Sigma_1)$, i.e. lists of generating objects with composable colours.
+\end{itemize}
+We also need to require the \emph{globular conditions} $\dom(\dom(f)) = \dom(\cod(f))$ and $\cod(\dom(f)) = \cod(\cod(f))$ that ensure that the top-left (top-right) colour is the same as the bottom-left (bottom-right, respectively).
+Intuitively, the only changes in background colour happen at the wires, labeled by a generating object with the appropriate domain and codomain.
+The free 2-category $F^{2C}(\Sigma)$ can then be described by its set of \emph{0-cells} $\Sigma_0$ (the colours), its category of \emph{1-cells} $F(\Sigma_0, \Sigma_1)$ (the types) and a category for every pair of 1-cells: the category of coloured diagrams up to interchanger.
+The implementation is straightforward: we just need to make \py{Ty} a subclass of both \py{monoidal.Ty} (so that it can be used as domain and codomain for diagrams) and \py{Arrow} (so that it can have a domain and codomain itself).
+
+\begin{python}\label{listing:free-sesquicategory}
+{\normalfont Implementation of the free sesquicategory with \py{Colour} as 0-cells, \py{Ty} as 1-cells and \py{Diagram} as 2-cells.}
+
+\begin{minted}{python}
+class Colour(cat.Ob):
+    def __init__(self, name="white"):
+        super().__init__(name)
+
+class Ty(cat.Arrow, monoidal.Ty):
+    def __init__(self, inside: cat.Arrow | str, dom=Colour(), cod=Colour()):
+        inside = inside if isinstance(inside, Arrow) else cat.Box(inside, dom, cod)
+        Arrow.__init__(self, inside.inside, inside.dom, inside.cod)
+
+    @classmethod
+    def upgrade(cls, old: Arrow | monoidal.Ty) -> Ty:
+        return old if isinstance(old, cls) else cls(
+            old.objects if isinstance(old, monoidal.Ty) else old)
+
+    tensor = Arrow.then
+
+class Layer(monoidal.Layer): pass
+
+class Diagram(monoidal.Diagram): pass
+
+class Box(monoidal.Box, Diagram):
+    def __init__(self, name: str, dom: Ty, cod: Ty):
+        assert (dom.dom, dom.cod) == (cod.dom, cod.cod)
+        monoidal.Box.__init__(self, name, dom, cod)
+
+@dataclass
+class TwoCategory(Category):
+    colours: type
+
+@dataclass
+class TwoFunctor(monoidal.Functor):
+    colours: dict[Ob, Ob]
+
+    dom = cod = TwoCategory(colours=Colour, ob=Ty, ar=Diagram)
+
+    def __call__(self, other):
+        if isinstance(other, (Diagram, Layer)): return super().__call__(other)
+        dom, cod = (Category(C.colours, C.ob) for C in [self.dom, self.cod])
+        return cat.Functor(ob=self.colours, ar=self.ob, dom=dom, cod=cod)(other)
+\end{minted}
+\end{python}
+
+\begin{python}\label{listing:Transformation}
+{\normalfont Implementation of $\mathbf{Cat}$ as a sesquicategory with transformations as 2-cells.}
+
+\begin{minted}{python}
+class Transformation(Composable, Tensorable):
+    def __init__(self, inside: Callable, dom: Functor, cod: Functor):
+        assert (dom.dom, dom.cod) == (cod.dom, cod.cod)
+        self.inside, self.dom, self.cod = inside, dom, cod
+
+    @staticmethod
+    def id(F: Functor):
+        return Transformation(lambda x: F.cod.ar.id(x), dom=F, cod=F)
+
+    def then(self, other: Transformation) -> Transformation:
+        assert self.cod == other.dom
+        return Transformation(lambda x: other(self(x)), self.dom, other.cod)
+
+    def tensor(self, other: Transformation | Functor) -> Transformation:
+        if isinstance(other, Transformation): return self @ other.dom >> self.cod @ other
+        return Transformation(
+            lambda x: other(self(x)), self.dom >> other, self.cod >> other)
+
+    def __rmatmul__(self, other: Functor) -> Transformation:
+        return Transformation(
+            lambda x: self(other(x)), other >> self.dom, other >> self.cod)
+
+    def __call__(self, other: Ty):
+        inside, dom, cod = self.inside(other), self.dom(other), self.cod(other)
+        return inside if isinstance(inside, self.cod.ar)\
+            else self.cod.ar(inside, dom, cod)
+
+Cat = TwoCategory(colours=Category, ob=Functor, ar=Transformation)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can interpret colours as categories, types as functors and diagrams as transformations.
+
+\begin{minted}{python}
+a = Colour('a')
+x = Ty('x', dom=a, cod=a)
+f, g = Box('f', Ty.id(a), x), Box('g', x @ x, x)
+
+Pyth = Category(list[type], Function)
+List = Functor(
+    ob=lambda xs: [list[xs]], ar=lambda f: lambda xs: map(f, xs), dom=Pyth, cod=Pyth)
+Unit = Transformation(lambda _: lambda x: [x], dom=Functor.id(Pyth), cod=List)
+Mult = Transformation(lambda _: lambda xs: sum(xs, []), dom=List >> List, cod=List)
+
+F = TwoFunctor(colours={a: Pyth}, ob={x: List}, ar: {f: Unit, g: Mult}, cod=Cat)
+assert F(f)(int)(42) == [42] and F(g)(int)([[1], [2], [3]]) == [1, 2, 3]
+assert F(f @ x >> g)(int)([1, 2, 3]) == [1, 2, 3]
+\end{minted}
+\end{example}
+
+We have already discussed another way to construct a 2-categories: taking types as 0-cells, diagrams as 1-cells and rewrites as 2-cells, in fact this gives a \emph{monoidal 2-category}.
+A monoidal 2-signature $\Sigma$ is a 2-signature where the objects in $\Sigma_1$ have lists of colours $\Sigma_0^\star$ as domain and codomain and the boxes in $\Sigma_2$ have domain and codomain in the free premonoidal category $F^P(\Sigma_0, \Sigma_1)$.
+Thus, a box $r : f \to g$ in a monoidal 2-signature may be seen as a rewrite rule with parallel diagrams $f : x \to y$ and $g : x \to y$ as domain and codomain.
+It generates a free monoidal 2-category $F^{M2C}(\Sigma)$ with types $\Sigma_0^\star$ as 0-cells, diagrams $F^P(\Sigma_0, \Sigma_1)$ as 1-cells and rewrites as 2-cells.
+We can construct $F^{M2C}(\Sigma)$ explicitly by generalising layers to \emph{slices} with not only types on the left and right but also diagrams on the top and bottom, i.e. a rewrite rule together with a match.
+Monoidal 2-categories have too much data and axioms for us to list here, we will only outline their implementation.
+\py{Rule} is a subclass of \py{Box} with diagrams as domain and codomain, \py{Slice} is a box made of a rule inside a match with methods for left and right whiskering as well as pre- and post-composition.
+\py{Rewrite} is a subclass of \py{Diagram} with \py{Slice} as layers, it inherits its vertical composition (i.e. two rewrites applied in sequence) from the diagram class as well as its tensor product (i.e. two rewrites applied in parallel on the tensor of two diagrams).
+The horizontal composition (i.e. two rewrites applied in parallel on the composition of two diagrams) is given by an optional argument to \py{then} which temporarily replaces left and right whiskering by pre- and post-composition before calling \py{Diagram.tensor}.
+
+\begin{python}\label{listing:free-monoidal-2-category}
+{\normalfont Outline of the implementation of the free monoidal 2-category.}
+
+\begin{minted}{python}
+class Rule(Box):
+    def __init__(self, name: str, dom: Diagram, cod: diagram):
+        super().__init__(name, dom, cod)
+
+class Slice(Box):
+    def __init__(self, rule: Rule, match: Match):
+        dom, cod = match.subs(rule.dom), matchs.subs(rule.cod)
+        super().__init__("Slice({}, {})".format(rule, match), dom, cod)
+
+    __matmul__ = lambda self, other: Slice(self.rule, self.match @ other)
+    __rmatmul__ = lambda self, other: Slice(self.rule, other @ self.match)
+    __lshift__ = __rrshift__ = lambda self, other: Slice(self.rule, self.match >> other)
+    __rshift__ = __rlshift__ = lambda self, other: Slice(self.rule, other >> self.match)
+
+Match.__matmul__ = lambda self, other: Match(
+    self.top @ other.dom, self.bottom @ other, self.left, self.right @ other.dom)
+Match.__rmatmul__ = lambda self, other: Match(
+    other @ self.top, other.cod @ self.bottom, other.cod @ self.left, self.right)
+Match.__lshift__ = Match.__rrshift__ = lambda self, other: Match(
+    self.top, self.bottom >> other, self.left, self.right)
+Match.__rshift__ = Match.__rlshift__ = lambda self, other: Match(
+    other >> self.top, self.bottom, self.left, self.right)
+
+class Rewrite(Diagram):
+    def __init__(self, slices: list[Slice], dom: Ty | Diagram, cod: Ty | Diagram):
+        dom, cod = (x if isinstance(x, Diagram) else Diagram.id(x) for x in (dom, cod))
+        super().__init__(slices, dom, cod)
+
+    def then(self, other, horizontal=False):
+        if not horizontal: return super().then(other)
+        tmp = Slice.__matmul__, Slice.__rmatmul__
+        Slice.__matmul__, Slice.__rmatmul__ = Slice.__lshift__, Slice.__rshift__
+        result = super().tensor(other)
+        Slice.__matmul__, Slice.__rmatmul__ = tmp
+        return result
+\end{minted}
+\end{python}
+
+Note that when the monoidal 2-signature $\Sigma$ is in fact a simple 2-signature, i.e. every box $f \in \Sigma_1$ has domain and codomain of length one, the definition of a rewrite coincides with the definition of coloured diagram.
+Indeed we can relabel everything one level down: the types are colours, the boxes are types and the rules are boxes: a coloured diagram can be seen as a rewrite of one dimensional diagrams, i.e. lists of types with composable colours.
+Symmetrically, the rewriting of an $n$-dimensional diagram can itself be seen as an $n + 1$ diagram.
+If we compose the two constructions together, we get a monoidal 3-category of coloured diagram rewriting, which in turn can be seen as a 4-category with a single 0-cell.
+What could be the use of a four-dimensional diagram?
+For example, the free 4-category with a single 0-, 1- and 2-cell is the same as the free symmetric category (once we relabel everything three levels down).
+Indeed, the swaps are given by the interchange law and the 4d space in which the diagrams live allows wires to cross and every knot to be untied: every diagram interpreted in $\mathbf{Pyth}$ or $\mathbf{Mat}_\S$ is secretly four-dimensional.
+The proof assistant Globular~\cite{BarEtAl18} allows to construct such 4d diagrams using a graphical interface for drawing slices and projections in two dimensions.
+In fact, the drawing algorithm presented in section~\ref{section:drawing} was also reverse engineered from that of Globular.
+
+Its successor homotopy.io~\cite{ReutterVicary19} went from four to arbitrary dimensions based on a data structure for diagrams in free n-sesquicategories~\cite{BarVicary17}.
+Interfacing DisCoPy with homotopy.io is in the backlog of features yet to be implemented, so that the user can define diagrams by drag-and-dropping boxes then interpret them in arbitrary n-categories.
+One of the new feature of homotopy.io compared to its predecessor is the possibility of drawing non-generic diagrams, i.e. with more than one box on the same layer.
+This amounts to taking the free category over $L^+(\Sigma) = (\Sigma_0 + \Sigma_1)^\star \simeq \Sigma_0^\star \Box \Sigma_1^\star$ rather than $L(\Sigma) = \Sigma_0^\star \times \Sigma_1 \times \Sigma_0^\star$.
+This is also in DisCoPy's backlog, implementing the syntax is straightforward but then it requires to extend the algorithms for functors, drawing, normal forms, etc.
+Layers with arbitrarily many boxes also allow to define the \emph{depth} of an arrow in any quotient of a free premonoidal category as the minimum number of layers in its equivalence class of diagrams.
+As we mentioned in section~\ref{subsection:quotient-monoidal}, premonoidal diagrams also have a well-defined notion of \emph{width} (the maximum number of parallel wires) which we can extend in the same way to define the width of any quotient.
+This makes diagrams a foundational data structure for computational complexity theory: a signature can be seen as both a machine and a language, a diagram as both code and data.
+In the other direction, this also allows to borrow results from complexity theory to characterise the computational resources required in solving problems about diagrams.
+This will be needed in the next chapter when we will look at NLP problems through the lens of diagrams.

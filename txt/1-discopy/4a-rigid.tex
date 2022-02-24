@@ -29,7 +29,7 @@ One can also show that cups and caps compose by nesting:
 \ctikzfig{img/rigid/nesting-caps}
 \item $\ttcup(1) \s = \s \ttcap(1) \s = \s \id(1)$, drawn as the equality of three empty diagrams.
 \end{itemize}
-The first two equations are drawn as diagrams in a non-foo monoidal category, i.e. with wires for composite types and explicit boxes for equality.
+The first two equations are drawn as diagrams in a non-foo monoidal category, i.e. with wires for composite types and explicit boxes for tensor.
 This can be taken as an inductive definition, once we have defined the cups and caps for generating objects, we have defined them for all types.
 Thus, we can take the data for a (strictly) rigid category $C$ to be that of a free-on-objects monoidal category together with:
 \begin{itemize}
@@ -110,11 +110,11 @@ class Ob(cat.Ob):
         return old if isinstance(old, cls) else cls(str(old), z=0)
 
 class Ty(monoidal.Ty, Ob):
-    def __init__(self, objects=[]):
-        monoidal.Ty.__init__(self, objects=map(Ob.upgrade, objects))
+    def __init__(self, inside=[]):
+        monoidal.Ty.__init__(self, inside=map(Ob.upgrade, inside))
 
-    l = property(lambda self: self.upgrade(Ty(*[x.l for x in self.objects[::-1]])))
-    r = property(lambda self: self.upgrade(Ty(*[x.r for x in self.objects[::-1]])))
+    l = property(lambda self: self.upgrade(Ty(*[x.l for x in self.inside[::-1]])))
+    r = property(lambda self: self.upgrade(Ty(*[x.r for x in self.inside[::-1]])))
 \end{minted}
 \end{python}
 
@@ -345,8 +345,8 @@ class Ob(rigid.Ob):
     l = r = property(lambda self: self.upgrade(Ob(self.name, (self.z + 1) % 2)))
 
 class Ty(rigid.Ty, Ob):
-    def __init__(self, objects=[]):
-        rigid.Ty.__init__(self, objects=map(Ob.upgrade, objects))
+    def __init__(self, inside=[]):
+        rigid.Ty.__init__(self, inside=map(Ob.upgrade, inside))
 
 class Diagram(rigid.Diagram): pass
 

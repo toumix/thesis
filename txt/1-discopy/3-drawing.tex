@@ -63,6 +63,8 @@ Vicary and Delpeuch \cite{DelpeuchVicary18} give a linear-time algorithm to comp
 For example, if we tensor an identity with a scalar, the wire representing the identity will wiggle around the node representing the scalar.
 DisCoPy uses a quadratic-time drawing algorithm with the following design decision: we make every wire a straight line and as vertical as possible.
 We first initialise the lgpp graph of the identity with a constant spacing between each wire, then for each layer we update the embedding so that there is enough space for the output wires of the box before we add it to the graph.
+The resulting plane graph is then either plotted on the screen using Matplotlib~\cite{Hunter07} or translated to TikZ~\cite{Tantau13} code that can be integrated to a \LaTeX document.
+All the diagrams in this thesis were drawn using DisCoPy together with TikZiT\footnote{\url{https://tikzit.github.io/index.html}} for manual editing.
 
 \begin{python}
 {\normalfont Outline of \py{Diagram.draw} from \py{Diagram} to \py{PlaneGraph}.}
@@ -78,7 +80,7 @@ def draw(self: Diagram) -> PlaneGraph:
     box_nodes = [Node('box', box, -1, j) for j, box in enumerate(self.boxes)]
     dom_nodes = scan = [Node('dom', x, i, -1) for i, x in enumerate(self.dom)]
     position = {node: (i, -1) for i, node in enumerate(dom_nodes)}
-    for j, (left, box, _) in enumerate(self.layers):
+    for j, (left, box, _) in enumerate(self.inside):
         box_node, left_of_box = Node('box', box, -1, j), make_space(scan, box, offset)
         position[box_node] = (left_of_box + max(len(box.dom), len(box.cod)) / 2, j)
         for kind, epsilon in (('dom', -.1), ('cod', .1)):
@@ -212,7 +214,8 @@ diagram.draw(); diagram.normal_form().draw()
 \tikzfig{img/spiral/2},
 \tikzfig{img/spiral/3}, ... \\
 \vspace{5pt}
-\tikzfig{img/spiral/8} $\quad \sim \quad$ \tikzfig{img/spiral/nf}
+\tikzfig{img/spiral/8} $\quad \sim \quad$\footnote
+{See \url{https://github.com/oxford-quantum-group/discopy/blob/main/docs/_static/imgs/spiral.gif} for a proof.} \tikzfig{img/spiral/nf}
 \end{center}
 \end{example}
 
@@ -242,8 +245,8 @@ def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
 \end{theorem}
 
 \begin{proof}
-By induction on \py{n = len(self.layers)}.
-If \py{not len(self.layers)} we get that \py{dom == self.dom} and \py{boxes == offsets == []}.
+By induction on \py{n = len(self)}.
+If \py{len(self) == 0} we get that \py{dom == self.dom} and \py{boxes == offsets == []}.
 If the theorem holds for \py{self}, it holds for \py{self >> Layer(left, box, right)}.
 Indeed, we have:
 \begin{itemize}
@@ -455,16 +458,14 @@ In the case of bubbles that are length-preserving on objects, we also want to ov
 \begin{minted}{python}
 f, g, h = Box('f', x, y), Box('g', y, z), Box('h', y @ z, x)
 (f @ g >> h).bubble(dom=a @ b, cod=c, name="$\\beta$").draw()
-
-men, mortal = Predicate('p'), Predicate('q')
-(men.cut() >> mortal.dagger()).cut().draw()
 \end{minted}
-
-\begin{center}
-\tikzfig{img/basics/bubble}
-\hspace{100pt}
-\tikzfig{img/basics/all-men-are-mortal}
-\end{center}
+\ctikzfig{img/basics/bubble}
+\begin{minted}{python}
+god = Predicate("G", x)
+formula = god >> (Formula.id(x).cut() >> god.dagger()).cut()
+formula.draw()
+\end{minted}
+\ctikzfig{img/basics/there-is-but-one-god}
 \end{example}
 
 \subsection{Automatic diagram recognition}

@@ -1,0 +1,57 @@
+%!TEX root = ../../THESIS.tex
+
+\section{Summary \& future work} \label{section:summary-and-future}
+
+This chapter gave a comprehensive overview of DisCoPy and the mathematics behind its design principles: we take the definitions of category theory (as strictly and freely as possible) and translate them into a Pythonic syntax.
+Figure~\ref{fig:summary} summarises the different modules and their inheritance hierarchy, implementing a subset of the hierarchy of graphical languages surveyed by Selinger~\cite{Selinger10}.
+We hope it may be useful both as an introduction to monoidal categories for the Python programmer, and an introduction to Python programming for the applied category theorist.
+
+\begin{figure}[H]% https://q.uiver.app/?q=WzAsMTcsWzEsMCwiXFxweXtjYXR9XjEiXSxbMSwxLCJcXHB5e21vbm9pZGFsfV4yIl0sWzAsMiwiXFxweXtjbG9zZWR9Il0sWzIsMiwiXFxweXtzcGFjaWFsfV4zIl0sWzIsMywiXFxweXticmFpZGVkfSJdLFsyLDQsIlxccHl7c3ltbWV0cmljfV4zIl0sWzAsMywiXFxweXtyaWdpZH1eMiJdLFswLDQsIlxccHl7cGl2b3RhbH0iXSxbMCw1LCJcXHB5e3RvcnRpbGV9Il0sWzAsNiwiXFxweXtjb21wYWN0fV4zIl0sWzAsNywiXFxweXtoeXBlcmdyYXBofV4zIl0sWzIsNSwiXFxweXtjYXJ0ZXNpYW59Il0sWzEsNiwiXFxweXt0cmFjZWR9XjMiXSxbMSw4LCJcXHB5e2JpcHJvZHVjdHN9XjEiXSxbMCw4LCJcXHB5e3RlbnNvcn0iXSxbMSw3LCJcXHB5e21hdHJpeH0iXSxbMiw3LCJcXHB5e3B5dGhvbn0iXSxbMCwxXSxbMSwyXSxbMSwzXSxbMiw2XSxbMyw0XSxbNiw3XSxbMTUsMTRdLFsxNSwxM10sWzcsOF0sWzgsOV0sWzksMTBdLFsxMCwxNF0sWzQsNV0sWzUsMTFdLFs1LDEyXSxbMTIsOV0sWzExLDE2XSxbMTEsMTVdLFsxMiwxNV0sWzIsMTZdXQ==
+\begin{tikzcd}
+	& {\py{cat}^{\ref{section:cat}}} \\
+	& {\py{monoidal}^{\ref{section:monoidal}}} \\
+	{\py{closed}^{\ref{subsection:closed}}} && {\py{spacial}^{\ref{subsection:hypergraph-vs-premonoidal}}} \\
+	{\py{rigid}^{\ref{subsection:rigid}}} && {\py{braided}^{\ref{subsection:symmetric}}} \\
+	{\py{pivotal}^{\ref{subsection:rigid}}} && {\py{symmetric}^{\ref{subsection:symmetric}, \ref{subsection:hypergraph-diagrams}}} \\
+	{\py{tortile}^{\ref{subsection:symmetric}}} && {\py{cartesian}^{\ref{subsection:cartesian}}} \\
+	{\py{compact}^{\ref{subsection:symmetric}, \ref{subsection:hypergraph-diagrams}}} & {\py{traced}^{\ref{subsection:hypergraph-diagrams}}} \\
+	{\py{hypergraph}^{\ref{subsection:hypergraph}, \ref{subsection:hypergraph-diagrams}}} & {\py{matrix}} & {\py{python}} \\
+	{\py{tensor}} & {\py{biproducts}^{\ref{subsection:biproducts}}}
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-2, to=3-1]
+	\arrow[from=2-2, to=3-3]
+	\arrow[from=3-1, to=4-1]
+	\arrow[from=3-3, to=4-3]
+	\arrow[from=4-1, to=5-1]
+	\arrow[from=8-2, to=9-1]
+	\arrow[from=8-2, to=9-2]
+	\arrow[from=5-1, to=6-1]
+	\arrow[from=6-1, to=7-1]
+	\arrow[from=7-1, to=8-1]
+	\arrow[from=8-1, to=9-1]
+	\arrow[from=4-3, to=5-3]
+	\arrow[from=5-3, to=6-3]
+	\arrow[from=5-3, to=7-2]
+	\arrow[from=7-2, to=7-1]
+	\arrow[from=6-3, to=8-3]
+	\arrow[from=6-3, to=8-2]
+	\arrow[from=7-2, to=8-2]
+	\arrow[from=3-1, to=8-3]
+    \arrow[from=4-3, to=6-1]
+\end{tikzcd}
+\caption{DisCoPy's modules and the sections where they are discussed.}
+\label{fig:summary}
+\end{figure}
+
+We list but a few of the many potential directions for further developments.
+
+\begin{itemize}
+\item DisCoPy was implemented only with correctness in mind, thus there is much room for improving performance.
+For now, this has not been quite necessary since the diagrams we manipulate are exponentially smaller than the computation they represent.
+If we want to implement any serious rewriting efficiently, we will need to port the core algorithms to a lower-level language such as Rust~\cite{KlabnikNichols19} and wrap them with Python bindings.
+This strategy has improved the time performance of PyZX by over four thousand on a small benchmark consisting of the fusion of one million spiders\footnote{\url{https://github.com/quantomatic/quizx}}.
+%
+% \item Markov categories, probabilistic computation, causality.
+%
+% \item Teleological categories, open games, learners and optics
+\end{itemize}

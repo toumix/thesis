@@ -1695,6 +1695,57 @@
     \field{year}{2018}
   \endentry
 
+  \entry{BarVicary17}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=BK}{%
+         family={Bar},
+         familyi={B\bibinitperiod},
+         given={Krzysztof},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=VJ}{%
+         family={Vicary},
+         familyi={V\bibinitperiod},
+         given={Jamie},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Complexity theory,Computational modeling,Computer science,Data
+  structures,Generators,Mathematical model}
+    \strng{namehash}{BKVJ1}
+    \strng{fullhash}{BKVJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BV17}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    We present new data structures for quasistrict higher categories, in which
+  associativity and unit laws hold strictly. Our approach has low axiomatic
+  complexity compared to traditional algebraic approaches, and gives a
+  practical method for performing calculations in quasistrict 4-categories. It
+  is amenable to computer implementation, and we exploit this to give a
+  machine-verified algebraic proof that every adjunction of 1-cells in a
+  quasistrict 4-category can be promoted to a coherent adjunction satisfying
+  the butterfly equations.%
+    }
+    \field{booktitle}{2017 32nd {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}}
+  in {{Computer Science}} ({{LICS}})}
+    \verb{doi}
+    \verb 10.1109/LICS.2017.8005147
+    \endverb
+    \field{pages}{1\bibrangedash 12}
+    \field{title}{Data Structures for Quasistrict Higher Categories}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/CCJ3A63J/Bar and Vicary - 201
+    \verb 7 - Data structures for quasistrict higher categories.pdf;/Users/alex
+    \verb is.toumi/WORK/Zotero/storage/D57IGZUT/bar2017.pdf.pdf;/Users/alexis.t
+    \verb oumi/WORK/Zotero/storage/B9JBHKMD/8005147.html
+    \endverb
+    \field{month}{06}
+    \field{year}{2017}
+  \endentry
+
   \entry{Bar-Hillel53}{article}{}
     \name{author}{1}{}{%
       {{hash=BY}{%
@@ -7072,6 +7123,33 @@
     \field{year}{1966}
   \endentry
 
+  \entry{Hunter07}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HJD}{%
+         family={Hunter},
+         familyi={H\bibinitperiod},
+         given={John\bibnamedelima D},
+         giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{IEEE Computer Society}}%
+    }
+    \strng{namehash}{HJD1}
+    \strng{fullhash}{HJD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hun07}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{03}
+    \field{pages}{90\bibrangedash 95}
+    \field{title}{Matplotlib: {{A 2D}} Graphics Environment}
+    \field{volume}{9}
+    \field{journaltitle}{Computing in science \& engineering}
+    \field{year}{2007}
+  \endentry
+
   \entry{Hutchins04}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=HWJ}{%
@@ -7935,6 +8013,35 @@
     \field{journaltitle}{Annals of Physics}
     \field{month}{01}
     \field{year}{2003}
+  \endentry
+
+  \entry{KlabnikNichols19}{book}{}
+    \name{author}{2}{}{%
+      {{hash=KS}{%
+         family={Klabnik},
+         familyi={K\bibinitperiod},
+         given={Steve},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=NC}{%
+         family={Nichols},
+         familyi={N\bibinitperiod},
+         given={Carol},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{No Starch Press}}%
+    }
+    \strng{namehash}{KSNC1}
+    \strng{fullhash}{KSNC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{KN19}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{The Rust Programming Language (Covers Rust 2018)}
+    \field{year}{2019}
   \endentry
 
   \entry{Knuth68a}{inproceedings}{}
@@ -12735,6 +12842,78 @@
     \field{year}{1967}
   \endentry
 
+  \entry{Tantau13}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=TT}{%
+         family={Tantau},
+         familyi={T\bibinitperiod},
+         given={Till},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \name{editor}{2}{}{%
+      {{hash=DW}{%
+         family={Didimo},
+         familyi={D\bibinitperiod},
+         given={Walter},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Patrignani},
+         familyi={P\bibinitperiod},
+         given={Maurizio},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer}}%
+    }
+    \keyw{Actual Algorithm,Graph Drawing,Graph Transformation,Input
+  Graph,Message Sequence Chart}
+    \strng{namehash}{TT1}
+    \strng{fullhash}{TT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Tan13}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{abstract}{%
+    At the heart of every good graph drawing algorithm lies an efficient
+  procedure for assigning canvas positions to a graph's nodes and the bend
+  points of its edges. However, every real-world implementation of such an
+  algorithm must address numerous problems that have little to do with the
+  actual algorithm, like handling input and output formats, formatting node
+  texts, and styling nodes and edges. We present a new framework, implemented
+  in the Lua programming language and integrated into the TikZ graphics
+  description language, that aims at simplifying the implementation of graph
+  drawing algorithms. Implementers using the framework can focus on the core
+  algorithmic ideas and will automatically profit from the framework's pre- and
+  post-processing steps as well as from the extensive capabilities of the TikZ
+  graphics language and the \textbackslash TeX\textbackslash
+  TeX\{\textbackslash hbox\{\textbackslash TeX\}\} typesetting engine.
+  Algorithms already implemented using the framework include the
+  Reingold-Tilford tree drawing algorithm, a modular version of Sugiyama's
+  layered algorithm, and several force-based multilevel algorithms.%
+    }
+    \field{booktitle}{Graph {{Drawing}}}
+    \verb{doi}
+    \verb 10.1007/978-3-642-36763-2_46
+    \endverb
+    \field{isbn}{978-3-642-36763-2}
+    \field{pages}{517\bibrangedash 528}
+    \field{series}{Lecture {{Notes}} in {{Computer Science}}}
+    \field{title}{Graph {{Drawing}} in {{TikZ}}}
+    \field{langid}{english}
+    \list{location}{1}{%
+      {{Berlin, Heidelberg}}%
+    }
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/XVSSNPLS/Tantau - 2013 - Grap
+    \verb h Drawing in TikZ.pdf
+    \endverb
+    \field{year}{2013}
+  \endentry
+
   \entry{Thue14}{book}{}
     \name{author}{1}{}{%
       {{hash=TA}{%
@@ -13166,6 +13345,43 @@
     \field{year}{2021}
   \endentry
 
+  \entry{Voreadou77}{book}{}
+    \name{author}{1}{}{%
+      {{hash=VR}{%
+         family={Voreadou},
+         familyi={V\bibinitperiod},
+         given={Rodiani},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{American Mathematical Society}}%
+    }
+    \strng{namehash}{VR1}
+    \strng{fullhash}{VR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Vor77}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{abstract}{%
+    Advancing research. Creating connections.%
+    }
+    \verb{doi}
+    \verb 10.1090/memo/0182
+    \endverb
+    \field{isbn}{978-0-8218-2182-4 978-0-8218-5943-8 978-1-4704-0865-7}
+    \field{issn}{0065-9266, 1947-6221}
+    \field{series}{Memoirs of the {{American Mathematical Society}}}
+    \field{title}{Coherence and Non-Commutative Diagrams in Closed Categories}
+    \field{volume}{9}
+    \field{langid}{english}
+    \verb{file}
+    \verb /Users/alexis.toumi/WORK/Zotero/storage/UYUA2RWF/0182.html
+    \endverb
+    \field{year}{1977}
+  \endentry
+
   \entry{WaltEtAl14}{article}{}
     \name{author}{8}{}{%
       {{hash=vdWS}{%
@@ -13285,6 +13501,36 @@
     \field{volume}{14}
     \field{journaltitle}{Machine translation of languages}
     \field{year}{1955}
+  \endentry
+
+  \entry{Weir88}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=WDJ}{%
+         family={Weir},
+         familyi={W\bibinitperiod},
+         given={David\bibnamedelima Jeremy},
+         giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WDJ1}
+    \strng{fullhash}{WDJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Wei88}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{Characterizing Mildly Context-Sensitive Grammar Formalisms}
+    \list{location}{1}{%
+      {{Philadelphia, PA, USA}}%
+    }
+    \list{institution}{1}{%
+      {University of Pennsylvania}%
+    }
+    \field{type}{phdthesis}
+    \field{annotation}{%
+    AAI8908403%
+    }
+    \field{year}{1988}
   \endentry
 
   \entry{WiebeEtAl12}{article}{}

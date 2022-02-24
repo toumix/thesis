@@ -68,9 +68,9 @@ The optional argument \py{left: bool} allows to choose between left and right na
 \begin{minted}{python}
 class Diagram(monoidal.Diagram):
     def simplify(self):
-        for i, (x, f, _), (y, g, _) in enumerate(zip(self.layers, self.layers[1:])):
+        for i, (x, f, _), (y, g, _) in enumerate(zip(self.inside, self.inside[1:])):
             if x == y and isinstance(f, Braid) and f == g[::-1]:
-                layers = self.layers[:i] + self.layers[i + 2:]
+                layers = self.inside[:i] + self.inside[i + 2:]
                 return simplify(self.upgrade(Diagram(self.dom, self.cod, layers)))
         return self
 
@@ -108,7 +108,7 @@ Diagram.braid, Diagram.swap = hexagon(Braid), hexagon(Swap)
 
 def naturality(self: Diagram, i: int, left=True, down=True, braid=None):
     braid = braid or self.braid
-    layer, box = self.layers[i], self.layers[i].box
+    layer, box = self.inside[i], self.inside[i].box
     def pattern(left, down):
         if left and down: return layer.left[-1] @ box >> braid(layer.left[-1], box.cod)
         if down: return box @ layer.right[0] >> braid(box.cod, layer.right[0])

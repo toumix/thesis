@@ -7,77 +7,87 @@ With \emph{hypergraph categories} we remove the assumption that diagrams are gra
 A hypergraph category is a symmetric category with \emph{coherent special commutative spiders}, let's spell out what this means.
 
 An object $x$ in a monoidal category $C$ has \emph{spiders} with \emph{phases} in a monoid $(\Phi, +, 0)$ if it comes equipped with a family of arrows $\spider_{\phi, a, b}(x) : x^a \to x^b$ for every phase $\phi \in \Phi$ and pair of natural numbers $a, b \in \N$, such that the following \emph{spider fusion} equation holds for all $a, b, c, d, n \in \N$.
-$$\spider_{\phi, a, c + n}(x) \otimes x^b
-\ \fcmp \ x^c \otimes \spider_{\phi', n + c, d}(x)
+$$\spider_{\phi, a, c + n + 1}(x) \otimes x^b
+\ \fcmp \ x^c \otimes \spider_{\phi', c + n + 1, d}(x)
 \s = \s \spider_{\phi + \phi', a + b, c + d}(x)$$
 We also require that our spiders satisfy the \emph{special} condition $\spider_{0, 1, 1}(x) = \id(x)$.
-Spiders owe their name to their arachnomorphic drawing, for example $\spider_{\phi, 2, 6}$ is drawn as a node (the head) and its wires (the eight legs of the spider, two of them menacing us):
+Spiders owe their name to their arachnomorphic drawing, for example $\spider_{\phi, 2, 6}$ is drawn as a node (the head, labeled by its phase when it's non-zero) and its wires (the eight legs of the spider, two of them menacing us):
 \ctikzfig{img/hypergraph/spider}
-Once drawn, the spider fusion equation has the intuitive graphical meaning that if two spiders touch, they fuse and add up their phase.
+Once drawn, the spider fusion equation has the intuitive graphical meaning that if one or more legs of two spiders touch, they fuse and add up their phase.
 \ctikzfig{img/hypergraph/spider-fusion}
 From spider fusion, we can deduce the following properties:
 \begin{itemize}
-\item $\merge(x) = \spider_{0, 2, 1}(x)$ and $\unit(x) = \spider_{0, 0, 1}(x)$ form a commutative monoid,
-TODO DRAW % \ctikzfig{img/hypergraph/monoid}
-\item $\ttsplit(x) = \spider_{0, 1, 2}(x)$ and $\counit(x) = \spider_{0, 1, 0}(x)$ form a cocommutative comonoid,
-TODO DRAW % \ctikzfig{img/hypergraph/comonoid}
+\item $\merge(x) = \spider_{0, 2, 1}(x)$ and $\unit(x) = \spider_{0, 0, 1}(x)$ form a monoid,
+\begin{center}
+\tikzfig{img/hypergraph/assoc}
+\hfill
+\tikzfig{img/hypergraph/unit}
+\end{center}
+\item $\ttsplit(x) = \spider_{0, 1, 2}(x)$ and $\counit(x) = \spider_{0, 1, 0}(x)$ form a comonoid,
+\begin{center}
+\tikzfig{img/hypergraph/coassoc}
+\hfill
+\tikzfig{img/hypergraph/counit}
+\end{center}
 \item $\ttsplit(x) \fcmp \merge(x) = \id(x)$, called the \emph{special} condition,
-TODO DRAW % \ctikzfig{img/hypergraph/special}
+\ctikzfig{img/hypergraph/special}
 \item $\merge(x) \otimes x \fcmp x \otimes \ttsplit(x) \s = \s x \otimes \merge(x) \fcmp \ttsplit(x) \otimes x$, called the \emph{Frobenius law}.
-TODO DRAW % \ctikzfig{img/hypergraph/frobenius}
+\ctikzfig{img/hypergraph/frobenius}
 \end{itemize}
 In fact, when the phases are trivial $\Phi = \{ 0 \}$ these four axioms are sufficient to deduce spider fusion, spiders are also called \emph{special Frobenius algebras}.
-Indeed, given a commutative monoid $\merge(x) : x \otimes x \to x, \s \unit(x) : 1 \to x$ and a cocommutative comonoid $\ttsplit(x) : x \to x \otimes x, \s \counit(x) : x \to 1$ subject to the Frobenius law, we can construct $\spider_{a, b}(x) : x^a \to x^b$ by induction on the number of legs.
+Indeed, given a monoid $\merge(x) : x \otimes x \to x, \s \unit(x) : 1 \to x$ and a comonoid $\ttsplit(x) : x \to x \otimes x, \s \counit(x) : x \to 1$ subject to the Frobenius law, we can construct $\spider_{a, b}(x) : x^a \to x^b$ by induction on the number of legs.
 The base case is given by the special condition $\spider_{1, 1}(x) = \id(x)$.
 Then we define spiders with $a \in \N$ input legs for $a \neq 1$:
 \begin{itemize}
 \item $\spider_{0, b}(x) \s = \s \unit(x) \fcmp \spider_{1, b}(x)$,
-TODO DRAW % \ctikzfig{img/hypergraph/induction-base}
 \item $\spider_{a + 2, b}(x) \s = \s \merge(x) \otimes x^a \ \fcmp \ \spider_{a + 1, b}(x)$,
-TODO DRAW % \ctikzfig{img/hypergraph/induction-step}
 \end{itemize}
+\begin{center}
+\tikzfig{img/hypergraph/induction-base}
+\hfill
+\tikzfig{img/hypergraph/induction-step}
+\end{center}
 Finally we define spiders with one input leg by induction on the output legs $b \in \N$:
 \begin{itemize}
 \item $\spider_{1, 0}(x) \s = \s \counit(x)$,
-TODO DRAW % \ctikzfig{img/hypergraph/induction-base-one-legged}
 \item $\spider_{1, b + 2}(x) \s = \s \spider_{1, b + 1}(x) \ \fcmp \ \ttsplit(x) \otimes x^b$.
-TODO DRAW % \ctikzfig{img/hypergraph/induction-step-one-legged}
+\ctikzfig{img/hypergraph/induction-step-one-legged}
 \end{itemize}
 One can show that this satisfies the spider fusion law, again by induction on the legs~\cite[Lemma 5.20]{HeunenVicary19a}.
-In this way, we can construct an infinite family of spiders from just the four boxes $\merge(x), \unit(x), \ttsplit(x), \counit(x)$ and a finite set of equations.
-A spider is nothing more than a big product followed by a big co-product.
+In this way, we can construct an infinite family of spiders from just the four boxes $\merge(x), \unit(x), \ttsplit(x), \counit(x)$ and a finite set of equations: a spider is nothing more than a big multiplication followed by a big co-multiplication.
 As for the phases, we can recover them from a family of \emph{phase shifts} $\{ \shift_\phi(x) : x \to x \}_{\phi \in \Phi}$ such that:
 \begin{itemize}
 \item $\shift_-(x)$ is a monoid homomorphism $\Phi \to C(x, x)$, i.e. $\shift_0(x) = \id(x)$ and $\shift_{\phi}(x) \fcmp \shift_{\phi'} = \shift_{\phi + \phi'}(x)$,
-TODO DRAW % \ctikzfig{img/hypergraph/phase-homomorphism}
-\item $\shift_\phi(x) \otimes x \ \fcmp \ \merge(x)
+\ctikzfig{img/hypergraph/phase-hom}
+\item phase shifts commute with the product, $\shift_\phi(x) \otimes x \ \fcmp \ \merge(x)
 \ = \ \merge(x) \fcmp \shift_\phi(x)
 \ = \ x \otimes \shift_\phi(x) \ \fcmp \ \merge(x)$,
-TODO DRAW % \ctikzfig{img/hypergraph/phase-commute-product}
-\item $\ttsplit(x) \ \fcmp \ \shift_\phi(x) \otimes x
+\ctikzfig{img/hypergraph/phase-commute-product}
+\item phase shifts commute with the coproduct, $\ttsplit(x) \ \fcmp \ \shift_\phi(x) \otimes x
 \ = \ \shift_\phi(x) \fcmp \ttsplit(x)
 \ = \ x \otimes \ttsplit(x) \ \fcmp \ \shift_\phi(x)$.
-TODO DRAW % \ctikzfig{img/hypergraph/phase-commute-coproduct}
+\ctikzfig{img/hypergraph/phase-commute-coproduct}
 \end{itemize}
 We can then define $\spider_{\phi, a, b}(x) = \spider_{a, 1}(x) \fcmp \shift_\phi(x) \fcmp \spider_{1, b}(x)$ and check that indeed, spiders fuse up to addition of their phase.
 Thus when the monoid is finite, we get a finite number of boxes and equations, i.e. a finite presentation of the spiders.
 In fact instead of taking it as data, we could have equivalently defined the monoid of phases $\Phi$ as the set of endomorphisms $x \to x$ that satisfy the last two conditions.
 
 \begin{remark}
-Given any (non-special) Frobenius algebra on an object $x$, we can show that $x$ is its own left and right adjoint.
+Given any Frobenius algebra on an object $x$, we can show that $x$ is its own left and right adjoint.
 Indeed, take $\ttcup(x) = \unit(x) \fcmp \ttsplit(x)$ and $\ttcap(x) = \merge(x) \fcmp \counit(x)$, then the Frobenius law and the (co)unit law of the (co)monoid implies the snake equations.
 Thus, a category with (not-necessarily special) spiders on every object is automatically a pivotal category.
+
+\ctikzfig{img/hypergraph/spider-implies-snake}
 \end{remark}
 
 \begin{example}
-In any pivotal category, there is a (non-special) Frobenius algebra for every object of the form $x^\star \otimes x$ given by:
+In any pivotal category, there is a Frobenius algebra for every object of the form $x^\star \otimes x$ given by:
 \begin{itemize}
-\item $\merge(x^\star \otimes x) = x^\star \otimes \ttcup(x^\star) \otimes x$ and $\unit(x) = \ttcup(x)$,
-TODO DRAW
-\item $\ttsplit(x^\star \otimes x) = x^\star \otimes \ttcap(x) \otimes x$ and $\counit(x) = \ttcap(x^\star)$.
-TODO DRAW
+\item $\merge(x^\star \otimes x) = x^\star \otimes \ttcup(x^\star) \otimes x$ and $\unit(x) = \ttcap(x)$,
+\item $\ttsplit(x^\star \otimes x) = x^\star \otimes \ttcap(x) \otimes x$ and $\counit(x) = \ttcup(x^\star)$.
 \end{itemize}
-Due to the drawing of its comonoid, it is also called the \emph{pair of pants} algebra.
+\ctikzfig{img/hypergraph/pair-of-pants}
+Due to the drawing of its comonoid, this is called the \emph{pair of pants} algebra.
 The special condition requires the dimension of the system $x$ to be the unit, i.e. the circle is equal to the empty diagram.
 Non-special Frobenius algebras can still be drawn as spiders, they satisfy a modifed version of spider fusion where we keep track of the number of circles, i.e. the number of splits followed by a merge.
 We can extend our inductive definition so that all the circles are in between the product and coproduct, see~\cite[Theorem 5.21]{HeunenVicary19a}.
@@ -122,10 +132,14 @@ Indeed, it is equivalent to the category of \emph{planar thick tangles}~\cite{La
 Intuitively, planar thick tangles can be thought of as planar wires with a width, i.e. that we can draw with pens or pixels.
 The inductive definition of spiders in terms of monoids and comonoids has the topological interpretation that any wire can be deformed so that all its singular points (i.e. where the wire crosses itself) are binary splits and merges.
 The special condition has the non-topological consequence that we can contract the holes in the wires, splitting a wire then merging it back does nothing.
+
 If the monoidal category $C$ is braided, we can remove the planarity assumption and define \emph{commutative spiders} as those where the monoid and comonoid are commutative, i.e.
-$$\spider_{\phi, a + b, c + d}(x) \ \fcmp \ B(x^c, x^d)
-\s = \s \spider_{\phi, a + b, c + d}(x) \s = \s
-B(x^a, x^b) \ \fcmp \ \spider_{\phi, a + b, c + d}(x)$$
+\begin{align*}
+\spider_{\phi, a + b, c + d}(x) \ \fcmp \ B(x^c, x^d)
+\s &= \s \spider_{\phi, a + b, c + d}(x) \\
+\s &= \s
+B(x^a, x^b) \ \fcmp \ \spider_{\phi, a + b, c + d}(x)
+\end{align*}
 \ctikzfig{img/hypergraph/co-commutativity}
 Together with spider fusion, this implies that the monoid of phases is also commutative.
 The PROB of commutative Frobenius algebras (without the special condition), i.e. diagrams with only spiders and braids, defines a notion of ``well-behaved'' 1d subspaces of 3d space, up to continuous deformation.
@@ -133,7 +147,7 @@ When the category is furthermore symmetric, the PROP of commutative spiders defi
 It is equivalent to the category of two-dimensional \emph{cobordisms}~\cite{Abrams96}, i.e. oriented 2d manifolds with a disjoint union of circles as boundary.
 Intuitively, a 2d cobordism can be thought of as a (non-planar) wire with a width, i.e. one that we can draw.
 
-If $C$ is braided, we can also give an inductive definition of spiders for tensors.
+When $C$ is braided, we can also give an inductive definition of spiders for tensors.
 Indeed, given the spiders for $x$ and $y$ we can construct the following comonoid:
 \begin{itemize}
 \item $\spider_{1, 0}(x \otimes y) \s = \s \spider_{1, 0}(x) \otimes \spider_{1, 0}(y)$,
@@ -141,7 +155,7 @@ Indeed, given the spiders for $x$ and $y$ we can construct the following comonoi
 \item $\spider_{1, 2}(x \otimes y) \s = \s \spider_{1, 2}(x) \otimes \spider_{1, 2}(y) \ \fcmp \ x \otimes S(x, y) \otimes y$
 \ctikzfig{img/hypergraph/coherence-product}
 \end{itemize}
-and a construct a monoid in a symmetric way, then show that they satisfy the spider fusion equations for $x \otimes y$.
+and construct a monoid in a symmetric way, then show that they satisfy the spider fusion equations for $x \otimes y$.
 We can also show that the identity of the unit defines a family of spiders, i.e. $\spider_{a, b}(1) = \id(1)$.
 If we take them as axioms rather than definitions, these are called the \emph{coherence conditions} for spiders.
 
@@ -215,6 +229,8 @@ def coherence(factory):
         return method(cls, a, 1, x) >> method(cls, 1, b, x)
 
 Diagram.spiders = coherence(Spider)
+Diagram.cups = nesting(lambda x, _: Spider(0, 2, x))
+Diagram.caps = nesting(lambda x, _: Spider(2, 0, x))
 
 class Functor(braided.Functor):
     def __call__(self, other):
@@ -226,10 +242,50 @@ class Functor(braided.Functor):
 \end{python}
 
 \begin{example}
-TODO FOL formula as a diagram model as a functor
+We can now extend example~\ref{example:monoida-formula} to arbitrary formulae of first-order logic.
+Every variable that appears exactly twice is encoded as a wire (possibly with cups and caps), every variable that appears $n \neq 2$ is encoded as an $n$-legged spider.
+For example, the formula $\forall c \ \forall o \ O(c, o) \land R(c) \land C(c) \implies U(c, o)$ (interpreted as ``every object of a rigid cartesian category is also its unit'') can be encoded as a diagram with a wire for $o$ and a four-legged spider for $c$.
+
+\begin{minted}{python}
+class Formula(Diagram):
+    cut = lambda self: self.bubble(name="_not")
+
+class Predicate(Box, Formula):
+    def __init__(self, name, dom): Box.__init__(self, name, Ty(), dom)
+
+def model(size: dict[Ty, int], data: dict[Predicate, list[bool]]):
+    return Functor(ob=size, ar={p: [data[p]] for p in data},
+                   dom=Category(Ty, Formula), cod=Category(list[int], Tensor[bool]))
+
+objects, categories = Ty('o'), Ty('c')
+has_object, has_unit = [Predicate(name, categories @ objects) for name in "OU"]
+is_rigid, is_cartesian = [Predicate(name, categories) for name in "RC"]
+
+rigid_cartesian_implies_trivial = (
+    has_object >> Formula.spiders(1, 3, categories) @ objects
+    >> (is_rigid @ is_cartesian @ has_unit.cut()).dagger()).cut()
+
+size = {objects: 2, categories: 2}
+predicate_values = itertools.product(*size[categories] * [[0, 1]])
+relation_values = itertools.product(*size[categories] * size[o  bjects] * [[0, 1]])
+
+for O, U, R, C in itertools.product(2 * [predicate_values] + 2 * [relation_values]):
+    F = model(size, {has_object: O, has_unit: U, is_rigid: R, is_cartesian: C})
+    is_rigid_cartesian_and_has_object = lambda i, j:\
+        F(has_object)[i, j] and F(is_rigid)[i] and F(is_cartesian)[i]
+    assert F(rigid_cartesian_implies_trivial) == all(
+        not is_rigid_cartesian_and_has_object(i, j) or F(has_unit)[i, j]
+        for i in range(size[categories]) for j in range(size[objects]))
+
+rigid_cartesian_implies_trivial.draw()
+\end{minted}
+
+\ctikzfig{img/hypergraph/rigid-cartesian-implies-trivial}
 \end{example}
 
 The equality of hypergraph diagrams reduces to hypergraph isomorphism, it will be discussed in section~\ref{section:related and future}.
 The equality of non-commutative spiders is not implemented yet, spider fusion would be a natural extension of the snake removal algorithm for rigid diagrams: we find pairs fusable spiders then apply interchangers to make them adjacent.
 The possible obstructions are more serious for spiders than for cups and caps however, for example consider the diagram $\spider_{0, 3}(x) \ \fcmp \ x \otimes f \otimes g \ \fcmp \ \spider_{3, 0}(x)$.
 The two three-legged spiders want to fuse but the boxes $f$ and $g$ stand on the way, the best we can do is to bend their output wires with two cups and get a four-legged spider $\spider_{0, 4}(x) \ \fcmp \ x \otimes f \otimes g \otimes x \ \fcmp \ \ttcup(x) \otimes \ttcup(x)$.
+
+\ctikzfig{img/hypergraph/obstruction}

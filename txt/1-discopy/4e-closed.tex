@@ -31,7 +31,7 @@ In fact, we can take the data for a cartesian closed category to be that of a ca
 We can take the axioms to be those of cartesian categories together with $\Lambda_n(f \times x \ \fcmp \ \mathtt{ev}(z, x)) = f$ for all $f : y \to \exp(z, x)$.
 Intuitively, if we take a higher-order function, evaluate it then abstract away the result, we get back to where you started, i.e. $\Lambda_n^{-1}(f) = f \times x \ \fcmp \ \mathtt{ev}(z, x)$.
 
-\begin{python}
+\begin{python}\label{example:closed-function}
 {\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian closed category.}
 
 \begin{minted}{python}
@@ -96,7 +96,7 @@ We conjecture it can be solved with a variant of cut-elimination for a \emph{non
 
 DisCoPy implements the types of the closed diagrams with a subclass \py{Exp} of \py{Ty} for exponentials.
 \py{Over} and \py{Under} are two subclasses of \py{Exp}, shortened to \py{x >> y} and \py{y << x}, and attached to the \py{Diagram} class as two static methods \py{over} and \py{under}.
-We need to initalise the type \py{self: Exp} with some list of objects, our only choice is \py{self.object=[self]}.
+We need to initalise the type \py{self: Exp} with some list of objects, our only choice is \py{self.inside=[self]}.
 Thus, we need to override the equality and printing methods so that we don't fall into infinite recursion.
 We also need to override the \py{upgrade} method so that the unit law is satisfied, i.e. \py{self @ Ty() == self == Ty() @ self}.
 
@@ -107,7 +107,7 @@ We also need to override the \py{upgrade} method so that the unit law is satisfi
 class Ty(monoidal.Ty):
     @classmethod
     def upgrade(cls, old: monoidal.Ty) -> Ty:
-        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(*old.objects)
+        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(*old.inside)
 
     def __pow__(self, other):
         return Exp(self, other) if isinstance(other, Ty) else super().__pow__(other)
@@ -117,7 +117,7 @@ class Exp(Ty):
 
     def __init__(self, base, exponent):
         self.base, self.exponent = base, exponent
-        super().__init__(objects=[self])
+        super().__init__(inside=[self])
 
     def __eq__(self, other):
         return isinstance(other, type(self))\
@@ -196,7 +196,7 @@ We can check that the axioms hold by applying functors into $\mathbf{Pyth}$.
 
 \begin{minted}{python}
 x, y, z = map(Ty, "xyz")
-f, g = Box('f', y, z << x), Box('f', y, z >> x)
+f, g = Box('f', y, z << x), Box('g', y, z >> x)
 
 F = Functor(
     ob={x: complex, y: bool, z: float},
@@ -242,21 +242,24 @@ Diagram.ev, Diagram.curry = ev, curry
 \end{python}
 
 \begin{example}
-We can draw cartesian diagrams by applying a functor to a rigid category with bubbled evaluation and currying.
+We can draw closed diagrams by applying a functor to a rigid category with bubbled evaluation and currying.
 
 \begin{minted}{python}
-class CartesianDrawing(rigid.Diagram):
+class ClosedDrawing(rigid.Diagram):
     ev = staticmethod(
         lambda base, exponent, left=True: rigid.Diagram.ev(base, exponent, left).bubble())
     curry = lambda self, n=1, left=True: rigid.Diagram.curry(self, n, left).bubble()
 
-Draw = Functor(lambda x: x, lambda f: f, cod=Category(rigid.Ty, CartesianDrawing))
-
+Draw = Functor(lambda x: x, lambda f: f, cod=Category(rigid.Ty, ClosedDrawing))
 Diagram.draw = lambda self, **params: Draw(self).draw(**params)
 
 drawing.equation((f @ x >> Ev(z << x)).curry(left=False), f)
 drawing.equation((x @ g >> Ev(z >> x)).curry(), g)
 \end{minted}
 
-TODO DRAW
+\begin{center}
+\tikzfig{img/closed/left-curry}
+\hfill
+\tikzfig{img/closed/right-curry}
+\end{center}
 \end{example}

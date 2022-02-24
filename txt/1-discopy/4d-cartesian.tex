@@ -18,13 +18,16 @@ In order for the spider fusion equations to hold, we would need the monoid to ta
 Even more weirdly, we would need the unit of the monoid to be equal to anything else.
 
 Rather than complaining that classical computing is weird because we cannot coherently merge data back together, we should embrace this as a feature, not a bug: in Python we can copy and discard data (at least assuming that we have enough RAM and that the garbage collector is doing its job).
-This means we can still keep the comonoid half of our spiders, forget that they are spiders and come to realise that they are in fact \emph{natural comonoids}.
+This means we can still keep the comonoid half of our spiders, forget that they are spiders and come to realise that they are in fact \emph{natural comonoids}, i.e. every function is a comonoid homomorphism.
 Indeed, the functions \py{copy = lambda *xs: xs + xs} and \py{delete = lambda *xs: ()} define a pair of natural transformations $x \to x \otimes x$ and $x \to 1$ in $\mathbf{Pyth}$:
 \begin{itemize}
     \item \py{copy(f(xs)) == f(copy(xs)[:n]), f(copy(xs)[n:])}
     \item \py{delete(f(xs)) == delete(xs)}
 \end{itemize}
 for all pure functions \py{f} and inputs \py{xs} with \py{n = len(xs)}.
+Once drawn as a diagram, the naturality equations for comonoids allows us to either copy or delete boxes by passing them through either the coproduct or the counit.
+
+\ctikzfig{img/cartesian/naturality}
 
 A \emph{cartesian category} is a symmetric category with coherent, natural commutative comonoids.
 The category $\mathbf{Pyth}$ is an example of cartesian category, as well as the categories $\mathbf{Set}$, $\mathbf{Mon}$, $\mathbf{Cat}$, $\mathbf{MonCat}$, etc.
@@ -121,24 +124,41 @@ When furthermore the monoid has an inverse, then it is automatically a \emph{Hop
 \begin{minted}{python}
 x = Ty('x')
 add, minus, zero = Box('+', x @ x, x), Box('-', x, x), Box('0', Ty(), x)
+copy, discard = Diagram.copy(x), Diagram.discard(x)
 
-drawing.equation(add >> Diagram.copy(x), Diagram.copy(x @ x) >> add @ add)
-drawing.equation(zero >> Diagram.copy(x), zero @ zero)
-drawing.equation(add >> Diagram.discard(x), Diagram.discard(x) @ Diagram.discard(x))
-drawing.equation(zero >> Diagram.discard(x), Diagram.id(Ty()))
-drawing.equation(  # TODO DRAW
-    copy >> minus @ x >> add, Diagram.discard(x) >> zero, copy >> x @ minus >> add)
+drawing.equation(add >> copy, copy @ copy >> x @ Braid(x, x) @ x >> add @ add)
+drawing.equation(zero >> copy, zero @ zero)
 \end{minted}
+\begin{center}
+\tikzfig{img/cartesian/add-hom-coproduct}
+\hfill
+\tikzfig{img/cartesian/zero-hom-coproduct}
+\end{center}
+\begin{minted}{python}
+drawing.equation(add >> discard, discard @ discard)
+drawing.equation(zero >> discard, Diagram.id(Ty()))
+\end{minted}
+\begin{center}
+\tikzfig{img/cartesian/add-hom-counit}
+\hfill
+\tikzfig{img/cartesian/zero-hom-counit}
+\end{center}
+\begin{minted}{python}
+drawing.equation(copy >> minus @ x >> add, discard >> zero, copy >> x @ minus >> add)
+\end{minted}
+\ctikzfig{img/cartesian/hopf}
 
-A Hopf algebra which is also a Frobenius algebra is necessarily trivial, i.e. isomorphic to the unit.
+A bialgebra which is also a Frobenius algebra is necessarily trivial, i.e. isomorphic to the unit.
 
 \begin{minted}{python}
-drawing.equation(  # TODO DRAW
+drawing.equation(
     Diagram.id(x),
-    x @ zero >> x @ copy >> add @ x >> Diagram.discard(x) @ x,
-    x @ zero @ zero >> Diagram.discard(x @ x) @ x,
-    Diagram.discard(x) >> zero)
+    x @ zero >> x @ copy >> add @ x >> discard @ x,
+    x @ zero @ zero >> discard @ discard @ x,
+    discard >> zero)
 \end{minted}
+
+\ctikzfig{img/cartesian/bialgebra-frobenius-implies-trivial}
 \end{example}
 
 A cartesian category that is also a PROP is called a \emph{Lawvere theory}~\cite{Lawvere63}, they were first introduced as a high-level language for \emph{universal algebra}. take the boxes $x^n \to x$ to be the primitive $n$-ary operations of your language (e.g. for rigs we have unary boxes for $0$ and $1$, binary boxes for $+$ and $\times$) then the diagrams in the free Lawvere theory are all the terms of your language.
@@ -299,12 +319,11 @@ weights = [Box('w{}{}'.format(i, j), x, x) for i in range(2) for j in range(2)]
 bias = Box('b', Ty(), x)
 
 network = Diagram.copy(x @ x, 2) >> Diagram.tensor(*weights) @ bias >> add(x, 5) >> ReLU(x)
-network.draw()  # TODO
 
 F = Functor(ob={x: int}, ar={
     add(x, 5): lambda *xs: sum(xs),
     ReLU(x): lambda x: max(0, x),
-    bias=lambda: -1, **dict(zip(weights, [0, 1, 2, 3]))},
+    bias: lambda: -1, **dict(zip(weights, [0, 1, 2, 3]))},
     cod=Category(list[type], Function))
 
 assert F(network)(42, -43) == max(0, sum([42 * 0, -43 * 1, 42 * 2, -43 * 3, -1]))
@@ -313,7 +332,7 @@ assert F(network)(42, -43) == max(0, sum([42 * 0, -43 * 1, 42 * 2, -43 * 3, -1])
 We could implement a neural network that can operate on different kinds of data (e.g. discrete versus continuous) using a cocartesian diagram instead.
 \end{example}
 
-\subsection{Biproducts}
+\subsection{Biproducts}\label{subsection:biproducts}
 
 A category has \emph{biproducts} if the cartesian and cocartesian structures coincide,
 a $\dagger$-category has \emph{$\dagger$-biproducts} when furthermore the monoid is the dagger of the comonoid.
@@ -478,7 +497,7 @@ assert true @ x >> conditional == f and false @ x >> conditional == g
 \end{minted}
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:biproduct-measurement}
 We can implement classical control as a biproduct of two quantum states and measurement as a biproduct of two quantum effects.
 When we compose classical control with measurement, we get a matrix where the entries are scalar diagrams.
 The squared amplitude of the evaluation of these scalars give us the measurement probabilities for each classical choice of state.
