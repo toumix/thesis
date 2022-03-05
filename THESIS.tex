@@ -1,3 +1,4 @@
+\documentclass[a4paper,twoside]{ociamthesis}
 \input{src/preamble}
 
 \title{Category Theory for Quantum\\Natural Language Processing}
@@ -7,12 +8,10 @@
 \addbibresource{THESIS.bib}
 
 \begin{document}
-\begin{romanpages} \maketitle
+
+\maketitle
 \input{txt/0-intro/0-abstract}
-% \flushbottom
 \tableofcontents
-% % The Roman pages, like the Roman Empire, must come to its inevitable close.
-\end{romanpages}
 
 \input{txt/0-intro/0-intro}
 \input{txt/0-intro/a-quantum-computers}
@@ -33,26 +32,24 @@
 \input{txt/1-discopy/5-premonoidal}
 \input{txt/1-discopy/6-summary-future}
 
-\chapter{Quantum natural language processing} \label{chapter-2:qnlp}
+\input{txt/2-qnlp/0-intro}
+\input{txt/2-qnlp/1-nlp}
+\input{txt/2-qnlp/1a-context-free}
+\input{txt/2-qnlp/1b-categorial}
 
-\section{Natural language processing with DisCoPy}\label{section:NLP}
-\section{Classical-quantum processes with DisCoPy}
-\section{QNLP models}
-\section{Learning functors}
+% \section{Classical-quantum processes with DisCoPy}
+% \section{QNLP models}
+% \section{Learning functors}
+%
+% \section{Diagrammatic differentiation} \label{chapter-3:diag-diff}
+% \subsection{Dual numbers}
+% \subsection{Dual diagrams}
+% \subsection{Dual circuits}
+% \subsection{Gradients \& bubbles}
+%
+% \section{Future work}
 
-\section{Diagrammatic differentiation} \label{chapter-3:diag-diff}
-
-\subsection{Dual numbers}
-\subsection{Dual diagrams}
-\subsection{Dual circuits}
-\subsection{Gradients \& bubbles}
-
-\section{Future work}
-
-
+\renewcommand*\MakeUppercase[1]{#1}%
 \setlength{\baselineskip}{0pt} % JEM: Single-space References
-
-{\renewcommand*\MakeUppercase[1]{#1}%
-\printbibliography[heading=bibintoc,title=References]}
-
+\printbibliography[heading=bibintoc,title=References]
 \end{document}

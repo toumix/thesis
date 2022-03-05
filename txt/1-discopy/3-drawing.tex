@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-    \section{Drawing \& reading} \label{section:drawing}
+\section{Drawing \& reading} \label{section:drawing}
 
 The previous section defined diagrams as a data structure based on lists of layers, in this section we define \emph{pictures of diagrams}.
 Concretely, such a picture will be encoded in a computer memory as a bitmap, i.e. a matrix of colour values.
@@ -64,7 +64,7 @@ For example, if we tensor an identity with a scalar, the wire representing the i
 DisCoPy uses a quadratic-time drawing algorithm with the following design decision: we make every wire a straight line and as vertical as possible.
 We first initialise the lgpp graph of the identity with a constant spacing between each wire, then for each layer we update the embedding so that there is enough space for the output wires of the box before we add it to the graph.
 The resulting plane graph is then either plotted on the screen using Matplotlib~\cite{Hunter07} or translated to TikZ~\cite{Tantau13} code that can be integrated to a \LaTeX document.
-All the diagrams in this thesis were drawn using DisCoPy together with TikZiT\footnote{\url{https://tikzit.github.io/index.html}} for manual editing.
+All the diagrams in this thesis were drawn using DisCoPy together with TikZiT\footnote{\url{https://tikzit.github.io}} for manual editing.
 
 \begin{python}
 {\normalfont Outline of \py{Diagram.draw} from \py{Diagram} to \py{PlaneGraph}.}
@@ -208,15 +208,19 @@ def spiral(length: int) -> Diagram:
 diagram = spiral(8)
 for i in [1, 2, 3]: diagram[:i + 1].draw()
 diagram.draw(); diagram.normal_form().draw()
+Diagram.to_gif(*diagram.normalize())
 \end{minted}
 \begin{center}
 \tikzfig{img/spiral/1},
 \tikzfig{img/spiral/2},
 \tikzfig{img/spiral/3}, ... \\
 \vspace{5pt}
-\tikzfig{img/spiral/8} $\quad \sim \quad$\footnote
-{See \url{https://github.com/oxford-quantum-group/discopy/blob/main/docs/_static/imgs/spiral.gif} for a proof.} \tikzfig{img/spiral/nf}
+\tikzfig{img/spiral/8} $\quad \sim \quad$
+\tikzfig{img/spiral/nf}
 \end{center}
+
+The interchangers between these two diagrams can be downloaded as a \py{.gif}\footnote
+{\href{https://github.com/oxford-quantum-group/discopy/blob/f364ce218890d87fda4aa5c1f4f770f07c7b4f25/docs/_static/imgs/spiral.gif}{\nolinkurl{https://github.com/oxford-quantum-group/discopy/.../docs/_static/imgs/spiral.gif}}} video.
 \end{example}
 
 Next, we define the inverse translation \py{graph2diagram}.

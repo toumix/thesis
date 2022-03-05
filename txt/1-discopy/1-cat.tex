@@ -480,7 +480,7 @@ That is, the smallest relation $(\sim_R) \sub M \times M$ such that:
 The first point says that $R \sub (\sim_R)$.
 The second says that $(\sim_R)$ is an equivalence relation.
 The third says that $(\sim_R)$ is closed under products, it is equivalent to the substitution axiom: if $x \sim_R y$ then $a x b \sim_R a y b$ for all $a, b \in M$.
-Explicitly, the congruence $(\sim_R)$ can be constructed in two steps: first, we define the rewriting relation $(\to_R) \sub M \times M$ where $a x b \to_R a y b$ for all $(x, y) \in R$ and $a, b \in M$.
+Explicitly, the congruence $(\sim_R)$ can be constructed in two steps: first, we define the \emph{rewriting relation} $(\to_R) \sub M \times M$ where $a x b \to_R a y b$ for all $(x, y) \in R$ and $a, b \in M$.
 Second, we define $(\sim_R)$ as the \emph{symmetric, reflexive, transitive closure} of the rewriting relation, i.e. two elements $x, y \in M$ are equal in $M / R$ iff they are in the same connected component of the undirected graph induced by $(\to_R) \sub M \times M$.
 Now there is a homomorphism $q : M \to M / R$ which sends monoid elements to their equivalence class with the following property: for any homomorphism $f : M \to N$ with $x \sim_R y$ implies $f(x) = f(y)$, there is a unique $f' : M / R \to N$ with $f = q \fcmp f'$.
 Intuitively, a homomorphism from a quotient $M / R$ is nothing more than a homomorphism from $M$ which respects the axioms $R$.

@@ -5,7 +5,7 @@
 With hypergraph diagrams, we have enough syntax to discuss quantum protocols and first-order logic.
 However, the spiders of hypergraph categories are of no use if we want to interpret our diagrams as (pure) Python functions with \py{tuple} as tensor.
 Indeed, $\mathbf{Pyth}$ has the property that every function $f : x \to y \otimes z$ into a composite system $y \otimes z$ is in fact a tensor product $f = f_0 \otimes f_1$ of two separate functions $f_0 : x \to y$ and $f_1 : x \to z$.
-If a Python type $x$ had caps (let alone spiders) then we could break them in two with the consequence that the identity function on $x$ is constant, i.e. $x$ is trivial~\cite[?]{CoeckeKissinger17}.
+If a Python type $x$ had caps (let alone spiders) then we could break them in two with the consequence that the identity function on $x$ is constant, i.e. $x$ is trivial~\cite[Proposition~4.76]{CoeckeKissinger17}.
 Moreover, there is only one (pure) effect of every type, discarding it.
 Thus if a Python type $x$ had cups then we could break them apart as well with the same consequence: only the trivial Python type can have spiders.
 A similar argument destroys our hopes for time reversal in Python: if we had a monoidal dagger on $\mathbf{Pyth}$, every state would be equal to every other.

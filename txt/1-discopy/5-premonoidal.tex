@@ -127,7 +127,7 @@ Spiders connected to zero ports correspond to dimension scalars, i.e. circles co
 A hypergraph diagram is \emph{monogamous} when each spider is connected to exactly one input port and one output port, so that they define a bijection $\mathtt{output\_ports}(f) \to \mathtt{input\_ports}(f)$.
 The subcategory of monogamous hypergraph diagrams is the free \emph{traced symmetric category}\footnote
 {We have not been able to find a proof of this statement nor of the compact-closed case in the literature, they are a straightforward generalisation of \cite[Theorem 3.3]{BonchiEtAl16}.}, i.e. the free symmetric monoidal category $C$ with a family of functions $\mathtt{trace}_x(a, b) : C(a \otimes x, b \otimes x) \to C(a, b)$ subject to axioms that formalise the intuition that we can trace a morphism $f : a \otimes x \to b \otimes x$ by connecting its input and output $x$-wires in a loop~\cite{JoyalEtAl96}.
-Every compact closed category has a trace given by cups and caps, traced monoidal categories allow to express recursion and fixed points more generally in non-rigid categories.
+Every compact closed category has a trace given by cups and caps, traced symmetric categories allow to express recursion and fixed points more generally in non-rigid categories.
 Indeed in the case of a cartesian category such as $\mathbf{Pyth}$, the trace can equivalently be given in terms of \emph{fixed point operators} $\mathtt{fix}_x : C(a \times x, x) \to C(a, x)$~\cite[Proposition~6.8]{Selinger10}.
 Dually, in a cocartesian category the trace can be defined in terms \emph{iteration operators} $\mathtt{iter}_x : C(x, a + x) \to C(x, a)$.
 When the category has biproducts, it is sufficient to define a \emph{repetition operator} $\mathtt{repeat}_x : C(x, x) \to C(x, x)$~\cite[Proposition~6.11]{Selinger10}.
@@ -359,7 +359,7 @@ Indeed, the left to right order of wires in a planar diagram encode the chronolo
 More impotantly, planarity in grammar has been given a cognitive explanation.
 In order to minimise the computational resources needed by the brain, human languages tend to minimise the distance between words that are syntactically connected~\cite{FutrellEtAl15} and the minimisation of swaps comes as a side-effect~\cite{Cancho06}.
 It can also be given a complexity-theoretic explanation: planar grammatical structures such as Chomsky's syntax trees, Lambek's pregroup diagrams or Gaifman's dependency trees (which we introduce in section~\ref{section:NLP}) are all \emph{context-free}, they have the same expressive power as \emph{push-down automaton}.
-In languages such as Dutch and Swiss German, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way that makes them \emph{mildly context-sensitive}~\cite{Weir88}.
+In languages such as Dutch and Swiss German, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way that makes them \emph{mildly context-sensitive}~\cite{Stabler04}.
 Yeung and Kartsaklis~\cite{YeungKartsaklis21} showed that up to word reordering, the diagrams for these cross-serial dependencies can always be rewritten in a planar way using naturality.
 They then used DisCoPy to encode every sentence of Alice in Wonderland as a diagram, ready to be translated into a circuit and sent to a quantum computer.
 
@@ -498,22 +498,21 @@ assert F(f @ x >> g)(int)([1, 2, 3]) == [1, 2, 3]
 \end{minted}
 \end{example}
 
-We have already discussed another way to construct a 2-categories: taking types as 0-cells, diagrams as 1-cells and rewrites as 2-cells, in fact this gives a \emph{monoidal 2-category}.
+We have already discussed another way to construct a 2-categories: taking types as 0-cells, diagrams as 1-cells and rewrites as 2-cells, in fact this gives a \emph{premonoidal sesquicategory}.
 A monoidal 2-signature $\Sigma$ is a 2-signature where the objects in $\Sigma_1$ have lists of colours $\Sigma_0^\star$ as domain and codomain and the boxes in $\Sigma_2$ have domain and codomain in the free premonoidal category $F^P(\Sigma_0, \Sigma_1)$.
 Thus, a box $r : f \to g$ in a monoidal 2-signature may be seen as a rewrite rule with parallel diagrams $f : x \to y$ and $g : x \to y$ as domain and codomain.
-It generates a free monoidal 2-category $F^{M2C}(\Sigma)$ with types $\Sigma_0^\star$ as 0-cells, diagrams $F^P(\Sigma_0, \Sigma_1)$ as 1-cells and rewrites as 2-cells.
-We can construct $F^{M2C}(\Sigma)$ explicitly by generalising layers to \emph{slices} with not only types on the left and right but also diagrams on the top and bottom, i.e. a rewrite rule together with a match.
-Monoidal 2-categories have too much data and axioms for us to list here, we will only outline their implementation.
+It generates a free premonoidal sesquicategory with types $\Sigma_0^\star$ as 0-cells, diagrams $F^P(\Sigma_0, \Sigma_1)$ as 1-cells and rewrites as 2-cells.
+We can construct it explicitly by generalising layers to \emph{slices} with not only types on the left and right but also diagrams on the top and bottom, i.e. a rewrite rule together with a match.
 \py{Rule} is a subclass of \py{Box} with diagrams as domain and codomain, \py{Slice} is a box made of a rule inside a match with methods for left and right whiskering as well as pre- and post-composition.
 \py{Rewrite} is a subclass of \py{Diagram} with \py{Slice} as layers, it inherits its vertical composition (i.e. two rewrites applied in sequence) from the diagram class as well as its tensor product (i.e. two rewrites applied in parallel on the tensor of two diagrams).
 The horizontal composition (i.e. two rewrites applied in parallel on the composition of two diagrams) is given by an optional argument to \py{then} which temporarily replaces left and right whiskering by pre- and post-composition before calling \py{Diagram.tensor}.
 
 \begin{python}\label{listing:free-monoidal-2-category}
-{\normalfont Outline of the implementation of the free monoidal 2-category.}
+{\normalfont Outline of the implementation of free premonoidal sesquicategories.}
 
 \begin{minted}{python}
 class Rule(Box):
-    def __init__(self, name: str, dom: Diagram, cod: diagram):
+    def __init__(self, name: str, dom: Diagram, cod: Diagram):
         super().__init__(name, dom, cod)
 
 class Slice(Box):
@@ -552,19 +551,22 @@ class Rewrite(Diagram):
 
 Note that when the monoidal 2-signature $\Sigma$ is in fact a simple 2-signature, i.e. every box $f \in \Sigma_1$ has domain and codomain of length one, the definition of a rewrite coincides with the definition of coloured diagram.
 Indeed we can relabel everything one level down: the types are colours, the boxes are types and the rules are boxes: a coloured diagram can be seen as a rewrite of one dimensional diagrams, i.e. lists of types with composable colours.
-Symmetrically, the rewriting of an $n$-dimensional diagram can itself be seen as an $n + 1$ diagram.
-If we compose the two constructions together, we get a monoidal 3-category of coloured diagram rewriting, which in turn can be seen as a 4-category with a single 0-cell.
-What could be the use of a four-dimensional diagram?
-For example, the free 4-category with a single 0-, 1- and 2-cell is the same as the free symmetric category (once we relabel everything three levels down).
+Symmetrically, rewriting an 2-dimensional diagram can itself be seen as a 3-dimensional diagram.
+If we compose the two constructions (colours and rewrites) together, we get the free 3-sesquicategory with rewrites of coloured diagrams as 3-cells.
+We can keep on going with \emph{modifications} of rewrites, i.e. 4-dimensional diagrams, by generalising layers one step further with not only a pair of types (left and right) and a pair of diagrams (top and bottom) but also a pair of rewrites (before and after).
+What could be the use of a such four-dimensional diagram?
+For example, a free 4-category with a single 0-, 1- and 2-cell is the same as a free symmetric category (once we relabel everything three levels down).
 Indeed, the swaps are given by the interchange law and the 4d space in which the diagrams live allows wires to cross and every knot to be untied: every diagram interpreted in $\mathbf{Pyth}$ or $\mathbf{Mat}_\S$ is secretly four-dimensional.
-The proof assistant Globular~\cite{BarEtAl18} allows to construct such 4d diagrams using a graphical interface for drawing slices and projections in two dimensions.
-In fact, the drawing algorithm presented in section~\ref{section:drawing} was also reverse engineered from that of Globular.
+One dimension lower, a free 3-category with a single 0- and 1-cell is the same as a free braided category, this is only the tip of the \emph{periodic table} of k-tuply monoidal n-categories~\cite[Section~2.5]{BaezStay09}.
 
+The proof assistant Globular~\cite{BarEtAl18} allows to construct 4-dimensional diagrams using a graphical interface for drawing slices and projections in two dimensions.
+In fact, the drawing algorithm presented in section~\ref{section:drawing} was reverse engineered from that of Globular.
 Its successor homotopy.io~\cite{ReutterVicary19} went from four to arbitrary dimensions based on a data structure for diagrams in free n-sesquicategories~\cite{BarVicary17}.
 Interfacing DisCoPy with homotopy.io is in the backlog of features yet to be implemented, so that the user can define diagrams by drag-and-dropping boxes then interpret them in arbitrary n-categories.
 One of the new feature of homotopy.io compared to its predecessor is the possibility of drawing non-generic diagrams, i.e. with more than one box on the same layer.
 This amounts to taking the free category over $L^+(\Sigma) = (\Sigma_0 + \Sigma_1)^\star \simeq \Sigma_0^\star \Box \Sigma_1^\star$ rather than $L(\Sigma) = \Sigma_0^\star \times \Sigma_1 \times \Sigma_0^\star$.
 This is also in DisCoPy's backlog, implementing the syntax is straightforward but then it requires to extend the algorithms for functors, drawing, normal forms, etc.
+
 Layers with arbitrarily many boxes also allow to define the \emph{depth} of an arrow in any quotient of a free premonoidal category as the minimum number of layers in its equivalence class of diagrams.
 As we mentioned in section~\ref{subsection:quotient-monoidal}, premonoidal diagrams also have a well-defined notion of \emph{width} (the maximum number of parallel wires) which we can extend in the same way to define the width of any quotient.
 This makes diagrams a foundational data structure for computational complexity theory: a signature can be seen as both a machine and a language, a diagram as both code and data.

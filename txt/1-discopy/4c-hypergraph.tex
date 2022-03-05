@@ -242,7 +242,7 @@ class Functor(braided.Functor):
 \end{python}
 
 \begin{example}
-We can now extend example~\ref{example:monoida-formula} to arbitrary formulae of first-order logic.
+We can now extend example~\ref{example:monoidal-formula} to arbitrary formulae of first-order logic.
 Every variable that appears exactly twice is encoded as a wire (possibly with cups and caps), every variable that appears $n \neq 2$ is encoded as an $n$-legged spider.
 For example, the formula $\forall c \ \forall o \ O(c, o) \land R(c) \land C(c) \implies U(c, o)$ (interpreted as ``every object of a rigid cartesian category is also its unit'') can be encoded as a diagram with a wire for $o$ and a four-legged spider for $c$.
 
@@ -283,7 +283,7 @@ rigid_cartesian_implies_trivial.draw()
 \ctikzfig{img/hypergraph/rigid-cartesian-implies-trivial}
 \end{example}
 
-The equality of hypergraph diagrams reduces to hypergraph isomorphism, it will be discussed in section~\ref{section:related and future}.
+The equality of hypergraph diagrams reduces to hypergraph isomorphism, it will be discussed in section~\ref{subsection:hypergraph-diagrams}.
 The equality of non-commutative spiders is not implemented yet, spider fusion would be a natural extension of the snake removal algorithm for rigid diagrams: we find pairs fusable spiders then apply interchangers to make them adjacent.
 The possible obstructions are more serious for spiders than for cups and caps however, for example consider the diagram $\spider_{0, 3}(x) \ \fcmp \ x \otimes f \otimes g \ \fcmp \ \spider_{3, 0}(x)$.
 The two three-legged spiders want to fuse but the boxes $f$ and $g$ stand on the way, the best we can do is to bend their output wires with two cups and get a four-legged spider $\spider_{0, 4}(x) \ \fcmp \ x \otimes f \otimes g \otimes x \ \fcmp \ \ttcup(x) \otimes \ttcup(x)$.

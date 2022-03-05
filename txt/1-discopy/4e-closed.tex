@@ -11,9 +11,16 @@ A \emph{closed (monoidal) category} is one that is closed on the left and the ri
 For example, a rigid category is a closed category where the over and under types have the form $x / y = x^r \otimes y$ and $y / x = y \otimes x^l$.
 When the category is symmetric, over and under types coincide, they are called \emph{exponentials} $x / y = y \backslash x = y^x$.
 
-\begin{example}
+\begin{example}\label{example:residuated-monoids}
 A discrete monoidal category (i.e. a monoid) is closed if and only if it is a group.
 A closed preordered monoid (i.e. a closed category with at most one arrow between any two objects) is also called a \emph{residuated monoid}~\cite{Coecke13}, their application to NLP will be discussed in section~\ref{section:NLP}.
+The powerset of any monoid $M$ can be given the structure of a residuated monoid where:
+\begin{itemize}
+    \item $X \otimes Y = \{ x y \in M \ \vert \ x \in X \land y \in Y \}$,
+    \item $(X / Y) = \{ z \in M \ \vert \ \forall y \in Y \cdot z y \in X \}$,
+    \item $(X \backslash Y) = \{ z \in M \ \vert \ \forall x \in X \cdot x z \in Y \}$.
+\end{itemize}
+for all subsets $X, Y \sub M$.
 \end{example}
 
 As the name suggests, a \emph{cartesian closed category} is a cartesian category that is also closed.
@@ -79,10 +86,11 @@ assert (x @ f >> Function.ev(z, x)).curry()(True)(1j) == f(True)(1j)\
 A (strict) cartesian closed functor is a cartesian functor $F$ which respects the exponential, i.e. $F(y^x) = F(y)^{F(x)}$.
 Thus, we get a category $\mathbf{CCCat}$ of cartesian closed categories and functors, with a forgetful functor $U : \mathbf{CCCat} \to \mathbf{MonSig}$.
 Its left adjoint $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$ can be constructed in two steps.
-First, we define a \emph{closed signature} as a monoidal signature $\Sigma$ with a pair of binary operators $(- / -), \ (- \backslash -) : \Sigma_0^\star \times \Sigma_0^\star \to \Sigma_0$, i.e. for every pair of types $x, y \in \Sigma_0^\star$ there are two generating objects $x / y, \ y \backslash x \in \Sigma_0$.
-Morphisms of closed signatures are defined in the obvious way, thus we get a category $\mathbf{CSig}$ with two forgetful functors $U : \mathbf{CCCat} \to \mathbf{CSig}$ and $U : \mathbf{CSig} \to \mathbf{MonSig}$.
-Its left-adjoint $F^C : \mathbf{MonSig} \to \mathbf{CSig}$ sends a monoidal signature to the union of itself with extra objects for the over and under slashes, it can be defined by induction on the number of nested slashes.
-Now we can define the left adjoint $F : \mathbf{CSig} \to \mathbf{CCCat}$ as a quotient of the free cartesian category with boxes for evaluations, bubbles for currying (i.e. by induction on the number of nested curryings) and relations given by the axioms for natural isomorphisms.
+First, we define a \emph{closed signature} as a signature $\Sigma$ with a pair of binary operators $(- / -), \ (- \backslash -) : \Sigma_0 \times \Sigma_0 \to \Sigma_0$, i.e. for every pair $x, y \in \Sigma_0$ there are two generating objects $x / y, \ y \backslash x \in \Sigma_0$.
+A closed monoidal signature is both a monoidal signature (i.e. its generating objects are a free monoid) and a closed signature.
+Morphisms of closed monoidal signatures are defined in the obvious way, thus we get a category $\mathbf{CMonSig}$ with two forgetful functors $U : \mathbf{CCCat} \to \mathbf{CMonSig}$ and $U : \mathbf{CMonSig} \to \mathbf{MonSig}$.
+The left-adjoint $F^C : \mathbf{MonSig} \to \mathbf{CMonSig}$ takes a monoidal signature and freely adds extra objects for the over and under slashes, it can be defined by induction on the number of nested slashes.
+Now we can define the left adjoint $F : \mathbf{CMonSig} \to \mathbf{CCCat}$ as a quotient of the free cartesian category with boxes for evaluations, bubbles for currying (i.e. by induction on the number of nested curryings) and relations given by the axioms for natural isomorphisms.
 Composing the two adjunctions we get $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$.
 
 Diagrams in free cartesian closed categories can also be seen as terms of the \emph{simply typed lambda calculus} (up to $\beta\eta$-equivalence) or as proofs in \emph{minimal logic} (the fragment of propositional logic with only conjunction and implication).
@@ -145,6 +153,19 @@ Closed functors map \py{Exp} types to the \py{over} and \py{under} methods of th
 {\normalfont Implementation of free closed categories and functors.}
 
 \begin{minted}{python}
+class Diagram(monoidal.Diagram):
+    curry = lambda self, n=1, left=True: Curry(self, n, left)
+
+    @staticmethod
+    def ev(base: Ty, exponent: Ty, left=True) -> Ev:
+        return Ev(exponent >> base if left else base << exponent)
+
+    def uncurry(self: Diagram, left=True) -> Diagram:
+        if not isinstance(self.cod, (Over if left else Under)): return self
+        base, exponent = self.cod.base, self.cod.exponent
+        return exponent @ self >> Ev(exponent >> base) if left\
+            else self @ exponent >> Ev(base << exponent)
+
 class Ev(Box):
     def __init__(self, inside: Exp):
         self.base, self.exponent, self.left\
@@ -162,18 +183,6 @@ class Curry(Box):
                   inside.cod << inside.dom[len(inside.dom) - n:])
         super().__init__(name, dom, cod)
 
-def uncurry(self: Diagram, left=True) -> Diagram:
-    if not isinstance(self.cod, (Over if left else Under)): return self
-    base, exponent = self.cod.base, self.cod.exponent
-    return exponent @ self >> Ev(exponent >> base) if left\
-        else self @ exponent >> Ev(base << exponent)
-
-@staticmethod
-def ev(base: Ty, exponent: Ty, left=True) -> Ev:
-    return Ev(exponent >> base if left else base << exponent)
-
-Diagram.curry, Diagram.uncurry, Diagram.ev = Curry, uncurry, ev
-
 class Functor(monoidal.Functor):
     dom = cod = Category(Ty, Diagram)
 
@@ -181,7 +190,7 @@ class Functor(monoidal.Functor):
         if isinstance(other, Over):
             return self.cod.ar.over(self(other.exponent), self(other.base))
         if isinstance(other, Under):
-            return self.cod.ar.over(self(other.base), self(other.exponent))
+            return self.cod.ar.under(self(other.base), self(other.exponent))
         if isinstance(other, Curry):
             return self.cod.ar.curry(
                 self(other.inside), len(self(other.cod.exponent)), other.left)
