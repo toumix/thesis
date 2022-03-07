@@ -68,15 +68,17 @@ The snake equations yield a proof of correctness for the (post-selected) quantum
 \end{example}
 
 \begin{example}\label{example:pregroups}
-A rigid category which is also a preordered monoid (i.e. with at most one arrow between any two objects) is called a (quasi\footnote
+A discrete rigid category is a group: if the cups and caps are identities then they define an inverse for the tensor.
+A rigid preordered monoid (i.e. a rigid category with at most one arrow between any two objects) is called a (quasi\footnote
 {In his original definition~\cite{Lambek99}, Lambek also requires that pregroups are \emph{partial orders}, i.e. preorders with antisymmetry $x \leq y$ and $y \leq x$ implies $x = y$.
 This implies that pregroups are strictly rigid, but also that they cannot be free on objects: $\ttcup(x) \otimes \id(x) : x \otimes x^l \otimes x \to x$ and $\id(x) \otimes \ttcap(x) : x \to x \otimes x^l \otimes x$ together would imply $x = x \otimes x^l \otimes x$.
 }) \emph{pregroup}, their application to NLP will be discussed in section~\ref{section:NLP}.
-A commutative pregroup is a (preordered) group: left and right adjoints coincide with the multiplicative inverse.
+A commutative pregroup is a (preordered) abelian group: left and right adjoints coincide with the multiplicative inverse.
 
 Natural examples of non-free non-commutative pregroups are hard to come by.
-One exception is the monoid of \emph{monotone unbounded integer functions} with composition as multiplication and pointwise order.
+One exception is the monoid of \emph{monotone unbounded functions} $\Z \to \Z$ with composition as multiplication and pointwise order.
 The left adjoint of $f : \Z \to \Z$ is defined such that $f^l(m)$ is the minimum $n \in \Z$ with $m \leq f(n)$ and symmetrically $f^r(m)$ is the maximum $n \in \N$ with $f(n) \leq m$.
+Extending Cayley's theorem from groups to pregroups, Buszkowski~\cite[Proposition~2]{Buszkowski01} proved that every pregroup $G$ is in fact isomorphic to a subpregroup (i.e. a monoidal subcategory) of monotone functions $G \to G$.
 \end{example}
 
 Any monoidal functor $F : C \to D$ between two rigid categories $C$ and $D$ preserves left and right adjoints up to isomorphism, we say it is strict when it preserves them up to equality.
@@ -190,7 +192,7 @@ Finding a snake takes quadratic time (for each cap we need to follow the wire at
 Thus, we can compute normal forms for diagrams in free rigid categories in cubic time.
 We conjecture that we can in fact solve the word problem (i.e. deciding whether two diagrams are equal) in quadratic time using the same reduction to planar map isomorphism as in theorem~\ref{theorem:monoidal-normal-form}.
 
-\begin{python}
+\begin{python}\label{listing:snake-removal}
 {\normalfont Outline of the snake removal algorithm.}
 
 \begin{minted}{python}

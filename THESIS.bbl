@@ -2789,6 +2789,37 @@
       \endverb
       \keyw{Quantum Physics}
     \endentry
+    \entry{Buszkowski01}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9d780c4f988468a9ac421e25d31491c5}{%
+           family={Buszkowski},
+           familyi={B\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9d780c4f988468a9ac421e25d31491c5}
+      \strng{fullhash}{9d780c4f988468a9ac421e25d31491c5}
+      \strng{bibnamehash}{9d780c4f988468a9ac421e25d31491c5}
+      \strng{authorbibnamehash}{9d780c4f988468a9ac421e25d31491c5}
+      \strng{authornamehash}{9d780c4f988468a9ac421e25d31491c5}
+      \strng{authorfullhash}{9d780c4f988468a9ac421e25d31491c5}
+      \field{labelalpha}{Bus01}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Logical Aspects of Computational Linguistics}
+      \field{number}{2099}
+      \field{title}{Lambek Grammars Based on Pregroups}
+      \field{volume}{LNAI}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{pages}{95\bibrangedash 109}
+      \range{pages}{15}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/JYW4KKKD/Buszkowski - 2001 - Lambek Grammars Based on Pregroups.pdf
+      \endverb
+    \endentry
     \entry{HPC21}{article}{}
       \field{labelalpha}{21}
       \field{sortinit}{C}
@@ -5498,6 +5529,31 @@
       \verb https://www.youtube.com/watch?v=5YZG96t8SLQ
       \endverb
     \endentry
+    \entry{Gentzen35}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2e5b9df4ca83f294927feb14983d943d}{%
+           family={Gentzen},
+           familyi={G\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2e5b9df4ca83f294927feb14983d943d}
+      \strng{fullhash}{2e5b9df4ca83f294927feb14983d943d}
+      \strng{bibnamehash}{2e5b9df4ca83f294927feb14983d943d}
+      \strng{authorbibnamehash}{2e5b9df4ca83f294927feb14983d943d}
+      \strng{authornamehash}{2e5b9df4ca83f294927feb14983d943d}
+      \strng{authorfullhash}{2e5b9df4ca83f294927feb14983d943d}
+      \field{labelalpha}{Gen35}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematische zeitschrift}
+      \field{title}{Untersuchungen Über Das Logische Schließen. {{I}}.}
+      \field{volume}{35}
+      \field{year}{1935}
+      \field{dateera}{ce}
+    \endentry
     \entry{GhaniEtAl18}{online}{}
       \name{author}{4}{}{%
         {{hash=b5218dee7dae4467575a433614e4d6f4}{%
@@ -6611,6 +6667,38 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/IQIBFF4I/Hilario - An overview of strategies for neurosymbolic integr.pdf
       \endverb
+    \endentry
+    \entry{HilbertAckerman28}{article}{}
+      \name{author}{2}{}{%
+        {{hash=a90edfe4f8771c84ef54f396e472f7be}{%
+           family={Hilbert},
+           familyi={H\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod}}}%
+        {{hash=639531be3e18b36bf5a4aa5e49356ce8}{%
+           family={Ackerman},
+           familyi={A\bibinitperiod},
+           given={W},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{dc56d3902b2fd2255681fd4e9f5dc702}
+      \strng{fullhash}{dc56d3902b2fd2255681fd4e9f5dc702}
+      \strng{bibnamehash}{dc56d3902b2fd2255681fd4e9f5dc702}
+      \strng{authorbibnamehash}{dc56d3902b2fd2255681fd4e9f5dc702}
+      \strng{authornamehash}{dc56d3902b2fd2255681fd4e9f5dc702}
+      \strng{authorfullhash}{dc56d3902b2fd2255681fd4e9f5dc702}
+      \field{labelalpha}{HA28}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Julius Springer, Berlin}
+      \field{title}{Theoretische Logik}
+      \field{year}{1928}
+      \field{dateera}{ce}
     \endentry
     \entry{Hochreiter98}{article}{}
       \name{author}{1}{}{%
@@ -10233,6 +10321,33 @@
       \verb https://ncatlab.org/nlab/show/concept+with+an+attitude
       \endverb
     \endentry
+    \entry{Oehrle04}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1d3243ffe272c40d37b94ddd43858378}{%
+           family={Oehrle},
+           familyi={O\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{1d3243ffe272c40d37b94ddd43858378}
+      \strng{fullhash}{1d3243ffe272c40d37b94ddd43858378}
+      \strng{bibnamehash}{1d3243ffe272c40d37b94ddd43858378}
+      \strng{authorbibnamehash}{1d3243ffe272c40d37b94ddd43858378}
+      \strng{authornamehash}{1d3243ffe272c40d37b94ddd43858378}
+      \strng{authorfullhash}{1d3243ffe272c40d37b94ddd43858378}
+      \field{labelalpha}{Oeh04}
+      \field{sortinit}{O}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of Categorial Grammars 2004}
+      \field{month}{1}
+      \field{title}{A Parsing Algorithm for Pregroup Grammars}
+      \field{year}{2004}
+      \field{dateera}{ce}
+      \field{pages}{59\bibrangedash 75}
+      \range{pages}{17}
+    \endentry
     \entry{Parikh61}{article}{}
       \name{author}{1}{}{%
         {{hash=6ae5cfc6214807844fabda497c3897d0}{%
@@ -10898,6 +11013,44 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/BFQ8YAZB/Power and Robinson - 1997 - Premonoidal categories and notions of computation.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6I48YS7U/54C062AA3C990322C50595D5533B2BB4.html
       \endverb
     \endentry
+    \entry{Preller07a}{article}{}
+      \name{author}{1}{}{%
+        {{hash=632e96663c86cb2ef8f8f12aacfa42f9}{%
+           family={Preller},
+           familyi={P\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{fullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{bibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorbibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authornamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorfullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \field{labelalpha}{Pre07}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{[Pregroup grammars have a cubic recognition algorithm. Here, we define a correct and complete recognition and parsing algorithm and give sufficient conditions for the algorithm to run in linear time. These conditions are satisfied by a large class of pregroup grammars, including grammars that handle coordinate structures and distant constituents.]}
+      \field{eprinttype}{jstor}
+      \field{issn}{0039-3215}
+      \field{journaltitle}{Studia Logica: An International Journal for Symbolic Logic}
+      \field{number}{2/3}
+      \field{title}{Linear {{Processing}} with {{Pregroups}}}
+      \field{volume}{87}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{pages}{171\bibrangedash 197}
+      \range{pages}{27}
+      \verb{eprint}
+      \verb 40210807
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/DG6KLL2G/Preller - 2007 - Linear Processing with Pregroups.pdf
+      \endverb
+    \endentry
     \entry{Preller07}{article}{}
       \name{author}{1}{}{%
         {{hash=632e96663c86cb2ef8f8f12aacfa42f9}{%
@@ -10915,6 +11068,7 @@
       \field{labelalpha}{Pre07}
       \field{sortinit}{P}
       \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extraalpha}{2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Logic, Language and Information}
@@ -11214,6 +11368,55 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/34U5XK7I/Riley - 2018 - Categories of Optics.pdf;/Users/alexis.toumi/WORK/Zotero/storage/PW5ETB3Q/1809.html
       \endverb
       \keyw{Mathematics - Category Theory}
+    \endentry
+    \entry{Rizzo21}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=8b6e0392ea50fecd6781e8e476ccf5ea}{%
+           family={Rizzo},
+           familyi={R\bibinitperiod},
+           given={Irene},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Groningen, The Netherlands}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{8b6e0392ea50fecd6781e8e476ccf5ea}
+      \strng{fullhash}{8b6e0392ea50fecd6781e8e476ccf5ea}
+      \strng{bibnamehash}{8b6e0392ea50fecd6781e8e476ccf5ea}
+      \strng{authorbibnamehash}{8b6e0392ea50fecd6781e8e476ccf5ea}
+      \strng{authornamehash}{8b6e0392ea50fecd6781e8e476ccf5ea}
+      \strng{authorfullhash}{8b6e0392ea50fecd6781e8e476ccf5ea}
+      \field{labelalpha}{Riz21}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We define a linear pregroup parser, by applying some key modifications to the minimal parser defined in (Preller, 2007). These include handling words as separate blocks, and thus respecting their syntactic role in the sentence. We prove correctness of our algorithm with respect to parsing sentences in a subclass of pregroup grammars. The algorithm was specifically designed for a seamless implementation in Python. This facilitates its integration within the DisCopy module for QNLP and vastly increases the applicability of pregroup grammars to parsing real-world text data.}
+      \field{booktitle}{Proceedings of the 2021 {{Workshop}} on {{Semantic Spaces}} at the {{Intersection}} of {{NLP}}, {{Physics}}, and {{Cognitive Science}} ({{SemSpace}})}
+      \field{eventtitle}{{{IWCS-SemSpace}} 2021}
+      \field{month}{6}
+      \field{shorttitle}{{{LinPP}}}
+      \field{title}{{{LinPP}}: A {{Python-friendly}} Algorithm for {{Linear Pregroup Parsing}}}
+      \field{urlday}{5}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{12\bibrangedash 19}
+      \range{pages}{8}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/IH7WJJVI/Rizzo - 2021 - LinPP a Python-friendly algorithm for Linear Preg.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/2021.semspace-1.2
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2021.semspace-1.2
+      \endverb
     \endentry
     \entry{RobertsEtAl19}{online}{}
       \name{author}{9}{}{%
@@ -14913,6 +15116,7 @@
       \keyw{Quantum computation,Quantum information,Quantum physics,Superconducting quantum computing,Superconducting qubit}
     \endentry
   \enddatalist
+  \missing{Church36}
 \endrefsection
 \endinput
 

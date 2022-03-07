@@ -301,7 +301,7 @@ class Arrow(Composable):
 
     @classmethod
     def upgrade(cls, old: Arrow) -> Arrow:
-        if old if isinstance(old, cls) else cls(old.inside, old.dom, old.cod)
+        return old if isinstance(old, cls) else cls(old.inside, old.dom, old.cod)
 
     @classmethod
     def id(cls, x: Ob) -> Arrow:
