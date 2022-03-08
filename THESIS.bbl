@@ -3579,6 +3579,90 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/93PZM6F8/Clader et al. - 2013 - Preconditioned Quantum Linear System Algorithm.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DAVRPYS6/clader2013.pdf.pdf
       \endverb
     \endentry
+    \entry{ClarkEtAl06}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=4759ee9f34affe6e8ca1d8c18e9f2de7}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=12928ebe43c7dd4b488b9ae080a8ba82}{%
+           family={Florêncio},
+           familyi={F\bibinitperiod},
+           given={Christophe\bibnamedelima Costa},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=e2a3d0e19d16321bbefea294d95a6eb8}{%
+           family={Watkins},
+           familyi={W\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=a222f7c1ac3001cf0c3387a66160b166}{%
+           family={Sérayet},
+           familyi={S\bibinitperiod},
+           given={Mariette},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=bff59803d2a1c2ae4c6f3c8dbaa823e3}{%
+           family={Sakakibara},
+           familyi={S\bibinitperiod},
+           given={Yasubumi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0f9f7256bb233dc40e82b740c99d1aa7}{%
+           family={Kobayashi},
+           familyi={K\bibinitperiod},
+           given={Satoshi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=029af15a29a294de9607c33dd74af71d}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Kengo},
+           giveni={K\bibinitperiod}}}%
+        {{hash=255b30fc6e3f734afe22abf070b79b44}{%
+           family={Nishino},
+           familyi={N\bibinitperiod},
+           given={Tetsuro},
+           giveni={T\bibinitperiod}}}%
+        {{hash=75dface36e581485df6983f3ba54b652}{%
+           family={Tomita},
+           familyi={T\bibinitperiod},
+           given={Etsuji},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{ccbdd29d764b5c4d915f77926c667675}
+      \strng{fullhash}{b1989a89f3b5dd60a75a69a1b6bf7d76}
+      \strng{bibnamehash}{b1989a89f3b5dd60a75a69a1b6bf7d76}
+      \strng{authorbibnamehash}{b1989a89f3b5dd60a75a69a1b6bf7d76}
+      \strng{authornamehash}{ccbdd29d764b5c4d915f77926c667675}
+      \strng{authorfullhash}{b1989a89f3b5dd60a75a69a1b6bf7d76}
+      \strng{editorbibnamehash}{2ae6428babee03100409de955e276992}
+      \strng{editornamehash}{d315104dd2e9629a343292540256ed51}
+      \strng{editorfullhash}{2ae6428babee03100409de955e276992}
+      \field{labelalpha}{Cla+06}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Strings can be mapped into Hilbert spaces using feature maps such as the Parikh map. Languages can then be defined as the pre-image of hyperplanes in the feature space, rather than using grammars or automata. These are the planar languages. In this paper we show that using techniques from kernel-based learning, we can represent and effi-ciently learn, from positive data alone, various linguistically interesting context-sensitive languages. In particular we show that the cross-serial dependencies in Swiss German, that established the non-context-freeness of natural language, are learnable using a standard kernel. We demon-strate the polynomial-time identifiability in the limit of these classes, and discuss some language theoretic properties of these classes, and their re-lationship to the choice of kernel/feature map.}
+      \field{booktitle}{Grammatical {{Inference}}: {{Algorithms}} and {{Applications}}, 8th {{International Colloquium}}, {{ICGI}} 2006, {{Tokyo}}, {{Japan}}, {{September}} 20-22, 2006, {{Proceedings}}}
+      \field{isbn}{978-3-540-45264-5}
+      \field{series}{Lecture {{Notes}} in {{Computer Science}}}
+      \field{title}{Planar {{Languages}} and {{Learnability}}}
+      \field{volume}{4201}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \field{pages}{148\bibrangedash 160}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1007/11872436_13
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/8VN8EJRW/Clark et al. - 2006 - Planar Languages and Learnability.pdf
+      \endverb
+    \endentry
     \entry{ClarkEtAl08}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=dda71bed5f391f7f7cdba143a71fad0a}{%
@@ -10505,6 +10589,96 @@
       \endverb
       \keyw{Computer algebra system,Python,Symbolics}
     \endentry
+    \entry{MichaelisKracht97}{incollection}{useprefix=true}
+      \name{author}{2}{}{%
+        {{hash=cfd3242b8f8cccbf1a98ad996a4356fd}{%
+           family={Michaelis},
+           familyi={M\bibinitperiod},
+           given={Jens},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7e0c7987cc1192f0590be7c97b295b07}{%
+           family={Kracht},
+           familyi={K\bibinitperiod},
+           given={Marcus},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=7a22bdeb21343e8b5bd0028dcae5d226}{%
+           family={Retoré},
+           familyi={R\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \name{editorb}{5}{}{%
+        {{hash=604c6c8bf6b1f09682f238984bf71c62}{%
+           family={Carbonell},
+           familyi={C\bibinitperiod},
+           given={Jaime\bibnamedelima G.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=b9d8f4d2c623189878b72f61d1a1c538}{%
+           family={Siekmann},
+           familyi={S\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6c216175fe6c14a18bb4aa4490d950af}{%
+           family={Goos},
+           familyi={G\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=64207ecc067bd7e68d40ad9e9138ca67}{%
+           family={Hartmanis},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c2ee1b8985dfa0c75485561d4152d392}{%
+           family={Leeuwen},
+           familyi={L\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{cf848e6003163d8df9f5198bbd0b6078}
+      \strng{fullhash}{cf848e6003163d8df9f5198bbd0b6078}
+      \strng{bibnamehash}{cf848e6003163d8df9f5198bbd0b6078}
+      \strng{authorbibnamehash}{cf848e6003163d8df9f5198bbd0b6078}
+      \strng{authornamehash}{cf848e6003163d8df9f5198bbd0b6078}
+      \strng{authorfullhash}{cf848e6003163d8df9f5198bbd0b6078}
+      \strng{editorbibnamehash}{7a22bdeb21343e8b5bd0028dcae5d226}
+      \strng{editornamehash}{7a22bdeb21343e8b5bd0028dcae5d226}
+      \strng{editorfullhash}{7a22bdeb21343e8b5bd0028dcae5d226}
+      \strng{editorbbibnamehash}{4b1f082f228cd2fbff752bc630a697de}
+      \strng{editorbnamehash}{c441e52fb3f6d0a4d3bddd5d0dcafa90}
+      \strng{editorbfullhash}{4b1f082f228cd2fbff752bc630a697de}
+      \field{labelalpha}{MK97}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mildly context sensitive grammar formalisms such as multicomponent TAGs and linear context free rewrite systems have been introduced to capture the full complexity of natural languages. We show that, in a formal sense, Old Georgian can be taken to provide an example of a non-semilinear language. This implies that none of the aforementioned grammar formalisms is strong enough to generate this language.}
+      \field{booktitle}{Logical {{Aspects}} of {{Computational Linguistics}}}
+      \field{editorbtype}{redactor}
+      \field{isbn}{978-3-540-63700-4 978-3-540-69631-5}
+      \field{langid}{english}
+      \field{title}{Semilinearity as a Syntactic Invariant}
+      \field{volume}{1328}
+      \field{year}{1997}
+      \field{dateera}{ce}
+      \field{pages}{329\bibrangedash 345}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1007/BFb0052165
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/JQYQRASX/Michaelis and Kracht - 1997 - Semilinearity as a syntactic invariant.pdf
+      \endverb
+    \endentry
     \entry{MirandaEtAl21}{online}{}
       \name{author}{5}{}{%
         {{hash=b61dd0848e0d2acb07af458b215cb81b}{%
@@ -15960,6 +16134,7 @@
       \keyw{Quantum computation,Quantum information,Quantum physics,Superconducting quantum computing,Superconducting qubit}
     \endentry
   \enddatalist
+  \missing{BradleyEtAl18}
 \endrefsection
 \endinput
 

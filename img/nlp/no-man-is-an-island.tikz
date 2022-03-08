@@ -11,7 +11,7 @@
 		\node [style=none, fill=white, right] (159) at (18.65, 15.8) {$n$};
 		\node [style=none] (160) at (20.95, 16.25) {};
 		\node [style=none] (161) at (20.95, 13.25) {};
-		\node [style=none, fill=white, right] (162) at (20.15, 15.8) {$np^r$};
+		\node [style=none, fill=white, right] (162) at (19.9, 15.8) {$np^r$};
 		\node [style=none] (163) at (21.45, 16.25) {};
 		\node [style=none] (164) at (21.45, 13.25) {};
 		\node [style=none, fill=white, right] (165) at (21.65, 15.8) {$s$};

@@ -751,6 +751,7 @@ The evaluation of a formula in a finite model corresponds to the application of 
 \begin{minted}{python}
 class Formula(Diagram):
     cut = lambda self: self.bubble(name="_not")
+    # TODO: dagger of Bubble
 
 class Predicate(Box, Formula):
     def __init__(self, name, dom): Box.__init__(self, name, Ty(), dom)

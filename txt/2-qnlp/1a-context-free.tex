@@ -4,18 +4,17 @@
 
 The word ``grammar'' comes from the ancient Greek ``$\rm{\gamma \rho\acute{\alpha}\mu\mu\alpha}$'' (line of writing), it is cognate to the words ``glamour'' and ``grimoire'' \cite{RuppliThorel05, Davies10, Lambek14}.
 Indeed in Middle Age Europe, (Latin) grammar was such a rare skill as to be associated with magic.
-The practice of grammar itself goes back to India, somewhere between the 6th and 4th century BCE the Sanskrit philologist P\={a}\d{n}ini showed ancient mastery of \emph{context-sensitive grammars} \cite{BhateKak93}.
-
+The practice of grammar itself goes back to India, where the Sanskrit philologist P\={a}\d{n}ini showed ancient mastery of \emph{context-sensitive grammars} somewhere between the 6th and 4th century BCE~\cite{BhateKak93}.
 Over two thousand years later, Chomsky~\cite{Chomsky56,Chomsky57} gave grammars their modern definition.
 A \emph{formal grammar}, also called \emph{unrestricted} or \emph{type-0} grammar, is a tuple $G = (V, X, R, s)$ where:
 \begin{itemize}
     \item $V$ and $X$ are finite sets called \emph{terminal} and \emph{non-terminal} symbols respectively, we will also call them the \emph{vocabulary} and the \emph{basic types},
-    \item $R$ is a finite set of \emph{production rules} $x \to y$ where $x, y \in (V + X)^\star$,
+    \item $R$ is a finite set of \emph{production rules}\footnote
+    {Formal grammars are usually defined with the rules going in the other direction, i.e. $w \in L(G)$ if and only if $s \leq_R w$.
+    We choose the opposite convention so that we won't have to switch in the next section.} $x \to y$ where $x, y \in (V + X)^\star$,
     \item $s \in X$ is called the \emph{start symbol} or the \emph{sentence type}.
 \end{itemize}
-A string of words $w = w_1 \dots w_n \in V^\star$ is a \emph{grammatical sentence} whenever $w \leq_R s$\footnote
-{Formal grammars are usually defined with the rules going in the other direction, i.e. $w \in L(G)$ if and only if $s \leq_R w$.
-We choose the opposite convention so that we won't have to switch in the next section.}
+A string of words $w = w_1 \dots w_n \in V^\star$ is a \emph{grammatical sentence} whenever $w \leq_R s$
 for $(\leq_R)$ the reflexive transitive closure of the rewriting relation as defined in section~\ref{subsection:quotient-categories}.
 Thus, the grammar $G$ generates a \emph{language} $L(G) \sub V^\star$, the set of all grammatical sentences.
 Although formal grammars are called unrestricted, the right-hand side of the rules in $R$ is usually restricted to be non-empty.
@@ -40,20 +39,20 @@ Indeed, every CSG is also non-contracting and for every non-contracting grammar 
 
 Two grammars $G$ and $G'$ over the same vocabulary $V$ are \emph{weakly equivalent} whenever they generate the same language, i.e. $L(G) = L(G') \sub V^\star$.
 For example, every non-contracting grammar is weakly-equivalent to a CSG.
-A \emph{strong equivalence} not only preserves the generated languages but also the grammatical structure, i.e. it defines a bijection $\G(w, s) \simeq \G'(f(w), s)$ for all strings $w \in V^\star$\footnote
+A \emph{strong equivalence} not only preserves the generated languages but also the grammatical structure, i.e. it defines a bijection\footnote
 {Chomsky~\cite{Chomsky63} defines two grammars to be strongly equivalent when they generate ``the same set of structural descriptions'' but he doesn't define sameness of structural descriptions.
 Our definition only asserts that the two grammars assign the same number of grammatical structures to any string, not that these structures are isomorphic themselves.
-Asking for an equivalence of monoidal categories $\G \simeq \G'$ would be too strong: when two free categories are equivalent, they are automatically isomorphic.}.
+Asking for an equivalence of monoidal categories $\G \simeq \G'$ would be too strong: when two free categories are equivalent, they are automatically isomorphic.} $\G(w, s) \simeq \G'(f(w), s)$ for all strings $w \in V^\star$.
 For example, every CSG is strongly equivalent to a non-contracting grammar (itself) in a trivial way.
 
 For a less trivial example, every formal grammar $G$ is strongly equivalent to a \emph{lexicalised} one, where the rules are a union $R = D \cup R'$ of \emph{dictionary entries} $D \sub V \times X^\star$ assigning possible types to each word and production rules $R' \sub X^\star \times X^\star$ not involving the vocabulary.
 Indeed, given a grammar $G$ we can add a new basic type $w'$ and a dictionary entry $w \to w'$ for each word $w \in V$ to get a lexicalised grammar $G'$.
-Every grammatical structure $f : w_1 \dots w_n \to s$ in $G'$ factorises as $f = d \fcmp f'$ for a tensor of dictionary entries $d : : w_1 \dots w_n \to w_1' \dots w_n'$ and a diagram $f' : w_1' \dots w_n' \to s$ with no dictionary entries, which is isomorphic to a grammatical structure in $G$.
+Every grammatical structure $f : w_1 \dots w_n \to s$ in $G'$ factorises as $f = d \fcmp f'$ for a tensor of dictionary entries $d : w_1 \dots w_n \to w_1' \dots w_n'$ and a diagram $f' : w_1' \dots w_n' \to s$ with no dictionary entries, which is isomorphic to a grammatical structure in $G$.
 Once the grammar is lexicalised, we usually draw dictionary entries as boxes labeled by the corresponding word and we omit the wires for terminal symbols.
 
 Now unless $\mathtt{P} = \mathtt{NP} = \mathtt{PSPACE}$, there can be no efficient parser for context-sensitive grammars in general.
 This motivates the introduction of \emph{context-free grammars} (CFGs, also called \emph{type-2} grammars) where the right-hand side of each rule has length one.
-We can assume that the grammar is lexicalised, so that the rules have the form either $x \to w$ or $x \to y$ for a basic type $x \in X$, a word $w \in V$ and a list of basic types $y \in X^\star$.
+We can assume that the grammar is lexicalised, so that the rules have the form either $x \to w$ or $y_1 \dots y_n \to x$ for a basic type $x \in X$, a word $w \in V$ and a list of basic types $y_1 \dots y_n \in X^\star$.
 In this case, grammatical structures $f : w_1 \dots w_n \to s$ have the shape of a \emph{syntax tree} with the words $w_1 \dots w_n$ as leaves and the sentence type $s$ as root.
 The interchanger normal form of a syntax tree is called its \emph{left-most derivation}, when two rules apply in parallel the left-most is always applied first.
 A CFG is in \emph{Chomsky normal form} (CNF\footnote
@@ -88,13 +87,13 @@ Whether two grammars are strongly equivalent matters when we want to define thei
 Indeed, weakly equivalent grammars may assign different sets of possible parsing to the same ambiguous sentence, which will correspond to different interpretations.
 For example, we can apply a monoidal functor from a CFG to a category of neural networks, which yields a \emph{recursive neural network} that computes the meaning of a sentence given its parse tree~\cite{SocherEtAl11,SocherEtAl13}.
 Different trees will result in different network architectures, so how do we know we have picked the right one?
-We can use a \emph{probabilistic grammar}~\cite{Salomaa69} to compute the most likely grammatical structure given some training data, in some cases with theoretical guarantees that this is indeed learnable efficiently~\cite{ShibataYoshinaka16}.
+We can use a \emph{probabilistic grammar}~\cite{Salomaa69} to compute the most likely grammatical structure given some training data, in some cases with theoretical guarantees that this is indeed learnable efficiently~\cite{ClarkEtAl06,ShibataYoshinaka16}.
 
-DisCoPy implements formal grammars with \py{Parsing}, a subclass of \py{monoidal.Diagram} with \py{Word} and \py{Production} as boxes.
+DisCoPy implements formal grammars with \py{Parsing}, a subclass of \py{Diagram} with \py{Word} and \py{Production} as boxes.
 It does not implement any parsing algorithm, however it is straightforward to encode the output of an existing parser e.g. that of NLTK~\cite{LoperBird02} into a \py{Parsing} diagram so that we can compute the semantics of sentences by applying a \py{Functor}.
 
 \begin{python}
-{\normalfont Implementation of the \py{cfg} module and its interface with NLTK.}
+{\normalfont Implementation of the \py{grammar} module and its interface with NLTK.}
 
 \begin{minted}{python}
 class Parsing(monoidal.Diagram):
@@ -157,12 +156,17 @@ In the framework of context-free grammars, ambiguity arises in at least two ways
 The second type of ambiguity cannot be alleviated: Parikh~\cite{Parikh61,Parikh66} defined a context-free language that is \emph{inherently ambiguous} in the sense that no unambiguous grammar can generate it~\cite[Theorem~29]{Chomsky63}.
 In the same paper, Parikh unravels a deep connection between the theory of context-free grammars and that of free rigs: CFGs $G$ with symbols $G_0$ are in one to one corresondance with endomorphisms of the free rig $f_G : \N[G_0] \to \N[G_0]$ which fix the vocabulary, i.e. $f_G(w) = w$ for all words $w \in V$~\cite[Section~3]{Parikh66}.
 Indeed, the free rig $\N[X]$ generated by a set $X$ has underlying set $\N^{X^\star}$, it can be thought of as the set of \emph{languages with multiplicities}.
-The formal sum $f_G^n(s) \in \N[G_0]$ has a term for each grammatical sentence that can be generated by a syntax tree of depth $n$ and the coefficients are given by the ambiguity of the sentence, i.e. the number of different syntax trees.
-Thus we can define the language of a CFG as $L(G) = \cup_{n \in \N} \mathtt{sign}(\pi_V(f_G^n(s)))$ for $\pi_V : \N[G_0] \to \N[V]$ the projection onto the vocabulary and $\mathtt{sign} : \N[V] \to \B[V] \simeq \B^{V^\star}$ the quotient map induced by $1 + 1 = 1$, i.e. forgetting multiplicities.
+Iterating the endomorphism $n$ times then projecting on the vocabulary with $\pi_V : \N[G_0] \to \N[V]$, the formal sum $\pi_V(f_G^n(s)) \in \N[G_0]$ has a term for each grammatical sentence that can be generated by a syntax tree of depth $n$ and the coefficients given by the ambiguity of the sentence, i.e. the number of different syntax trees.MichaelisKracht97.
+Thus we can define the language of a CFG as $L(G) = \cup_{n \in \N} \mathtt{sign}(\pi_V(f_G^n(s)))$ for $\mathtt{sign} : \N[V] \to \B[V] \simeq \B^{V^\star}$ the quotient map induced by $1 + 1 = 1$, i.e. forgetting multiplicities.
 
 Parikh~\cite[Theorem~2]{Parikh66} states that if we define the map $p : V^\star \to \N^V$ which sends lists to bags by forgetting word order, then the direct image $p(L(G)) \sub \N^V$ is indistinguishable from that of a \emph{regular grammar}.
 Regular grammars (also called \emph{type-3}) have rules of the form either $x \to 1$ or $x \to w y$ for non-terminals $x, y \in X$ and word $w \in V$, they are the least expressive level in Chomsky's hierarchy.
-They can be also be defined as \emph{regular expressions}: elements of the free \emph{Kleene algebra} $K(V)$, the free idempotent rig with a closure\footnote
+The subsets $p(L(G)) \sub \N^V$ generated by CFGs (or equivalently by regular grammars) are called \emph{semilinear}, they are finite unions of affine subspaces\footnote
+{A subspace of $\N^V$ is affine if it has the form $\{ u_0 + t_1 u_1 + \dots + t_n u_n \ \vert \ t_1, \dots, t_n \in \N \}$ for some $u_0, \dots u_n \in \N^V$.
+Confusingly, affine subspaces are called ``linear'' in the literature, hence ``semilinear''.
+}.
+Semilinearity is sometimes required as an extra condition for a grammar to be considered mildly context-sensitive, although there is evidence that some natural languages like Old Georgian are not semilinear~\cite{MichaelisKracht97}.
+Regular grammars can be be equivalently defined as \emph{regular expressions}: elements of the free \emph{Kleene algebra} $K(V)$, the free idempotent rig with a closure\footnote
 {A closure is an idempotent monad on a preorder, here given by $a \leq b$ iff $\exists c \cdot a + c = b$.} $(-)^\star : K(V) \to K(V)$.
 Equality of regular expressions is decidable, hence so is the weak equivalence of regular grammars.
 Moreover, every regular language can be generated unambiguously.
