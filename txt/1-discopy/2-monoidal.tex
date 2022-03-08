@@ -202,8 +202,9 @@ For example, we can take all the Python types as colours and define $\mathbf{Pyt
 \begin{minted}{python}
 class Tensorable:
     """ Allows syntactic sugar self @ other. """
-    def cast(self, other):
-        return other if isinstance(other, Tensorable) else self.id(other)
+    @classmethod
+    def cast(cls, other):
+        return other if isinstance(other, cls) else cls.id(other)
 
     __matmul__ = lambda self, other: self.tensor(self.cast(other))
     __rmatmul__ = lambda self, other: self.cast(other).tensor(self)
@@ -342,25 +343,25 @@ class Ty(Ob):
         super().__init__(name)
 
     @classmethod
-    def upgrade(cls, old: Ob) -> Ty:
+    def cast(cls, old: Ob) -> Ty:
         if isinstance(old, cls): return old
         return cls(old.inside) if isinstance(old, Ty) else cls(old)
 
     def tensor(self, *others: Ty) -> Ty:
         if all(isinstance(other, Ty) for other in others):
-            return self.upgrade(Ty(
+            return self.cast(Ty(
                 self.inside + sum([other.inside for other in others], [])))
         return NotImplemented  # This will allow whiskering on the left.
 
     __matmul__ = tensor
-    __getitem__ = lambda self, key: self.upgrade(Ty([self.inside[key]]))
-    __pow__ = lambda self, n: self.upgrade(Ty(n * self.inside))
+    __getitem__ = lambda self, key: self.cast(Ty([self.inside[key]]))
+    __pow__ = lambda self, n: self.cast(Ty(n * self.inside))
     __len__ = lambda self: len(self.inside)
 \end{minted}
 \end{python}
 
 The implementation of the class \py{Ty} for types (i.e. lists of objects) is straightforward, it is sketched in listing~\ref{listing:Ty}.
-The only subtlety is in the method \py{upgrade} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to redefine the \py{tensor} method.
+The only subtlety is in the method \py{cast} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to redefine the \py{tensor} method.
 
 \begin{example}
 We can define a \py{Qubits} subclass and be sure that the tensor of qubits is still an instance of \py{Qubits}, not merely \py{Ty}.
@@ -369,7 +370,7 @@ We can define a \py{Qubits} subclass and be sure that the tensor of qubits is st
 class Qubits(Ty):
     def __init__(self, n: int): self.n = n
     objects = property(lambda self: n * [Ob('1')])
-    upgrade = staticmethod(lambda old: Qubits(len(old)))
+    cast = staticmethod(lambda old: Qubits(len(old)))
     __str__ = lambda self: "qubit ** {}".format(len(self))
 
 qubit = Qubits(1)
@@ -379,7 +380,7 @@ assert isinstance(qubit ** 0, Qubits) and isinstance(qubit ** 42, Qubits)
 \end{example}
 
 The implementation of \py{Layer} as a subclass of \py{cat.Box} is sketched in listing~\ref{listing:Layer}.
-It has methods \py{__matmul__} and  \py{__rmatmul__} for whiskering on the right and left respectively, and \py{upgrade} for turning boxes into layers with units on both sides.
+It has methods \py{__matmul__} and  \py{__rmatmul__} for whiskering on the right and left respectively, and \py{cast} for turning boxes into layers with units on both sides.
 Instead of getting the units by calling \py{Ty()} directly, we use the domain of the box to slice empty types of the appropriate \py{Ty} subclass.
 This will prove useful in sections~\ref{subsection:rigid}, \ref{subsection:closed} and~\ref{subsection:towards-higher} where we will subclass \py{Ty} to define the types for free rigid, closed and 2-categories respectively.
 
@@ -402,7 +403,7 @@ class Layer(cat.Box):
         return Layer(other @ self.left, self.box, self.right)
 
     @classmethod
-    def upgrade(cls, old: cat.Box) -> Layer:
+    def cast(cls, old: cat.Box) -> Layer:
         left, box, right = old.dom[:0], box old.dom[len(old.dom):]
         return old if isinstance(old, cls) else cls(left, box, right)
 \end{minted}
@@ -412,12 +413,12 @@ Now we have all the ingredients to define \py{Diagram} as a subclass of \py{Arro
 The \py{tensor} method is defined in terms of left and right whiskering of layers.
 The \py{interchange} method takes an integer \py{i < len(self)} and returns the diagram with boxes \py{i} and \py{i + 1} interchanged, or raises an \py{AssertionError} if they are connected.
 It also takes an optional argument \py{left: bool} which allows to choose between left and right in case we're interchanging an effect then a state.
-
 The \py{normal_form} method applies \py{interchange} until it reaches a normal form, or raises \py{NotImplementedError} if the diagram is disconnected.
 The \py{draw} method renders the diagram as an image, it implements the drawing algorithm discussed in the next section.
 
 \begin{python}\label{listing:monoidal.Diagram}
 {\normalfont Outline of the class \py{monoidal.Diagram}.}
+
 \begin{minted}{python}
 class Diagram(cat.Arrow, Tensorable):
     def __init__(self, inside: list[Layer], dom: Ty, cod: Ty):
@@ -428,7 +429,7 @@ class Diagram(cat.Arrow, Tensorable):
         layers = [layer @ other.dom for layer in self.inside]
         layers += [self.cod @ layer for layer in other.inside]
         dom, cod = self.dom @ other.dom, self.cod @ other.cod
-        return self.upgrade(Diagram(layers, dom, cod))
+        return self.cast(Diagram(layers, dom, cod))
 
     def interchange(self, i: int, left=False) -> Diagram: ...
     def normal_form(self, left=False) -> Diagram: ...
@@ -436,25 +437,25 @@ class Diagram(cat.Arrow, Tensorable):
 \end{minted}
 \end{python}
 
-Again, we have a class method \py{upgrade} which takes an old \py{cat.Arrow} and turns it into a new object of type \py{cls}, a given subclass of \py{Diagram}.
+Again, we have a class method \py{cast} which takes an old \py{cat.Arrow} and turns it into a new object of type \py{cls}, a given subclass of \py{Diagram}.
 This means we do not need to repeat the code for identity or composition which is already implemented by \py{cat.Arrow}.
 In turn, when the user defines a subclass of \py{Diagram}, they do not need to repeat the code for identity, composition or tensor.
 The implementation of \py{monoidal.Box} as a subclass of \py{cat.Box} and \py{Diagram} is relatively straightforward, we only need to make sure that a box is equal to the diagram of just itself.
-We also want the \py{upgrade} method of \py{Box} to be that of \py{Diagram}.
+We also want the \py{cast} method of \py{Box} to be that of \py{Diagram}.
 
 \begin{python}
 {\normalfont Outline of the class \py{monoidal.Box}.}
 \begin{minted}[fontsize=\footnotesize]{python}
 class Box(cat.Box, Diagram):
-    upgrade = Diagram.upgrade
+    cast = Diagram.cast
 
     def __init__(self, name: str, dom: Ty, cod: Ty, **params):
         cat.Box.__init__(self, name, dom, cod, **params)
-        Diagram.__init__(self, dom, cod, [Layer.upgrade(self)])
+        Diagram.__init__(self, dom, cod, [Layer.cast(self)])
 
     def __eq__(self, other):
         if isinstance(other, Box): return cat.Box.__eq__(self, other)
-        return isinstance(other, Diagram) and other.inside == [Layer.upgrade(self)]
+        return isinstance(other, Diagram) and other.inside == [Layer.cast(self)]
 \end{minted}
 \end{python}
 
@@ -475,7 +476,7 @@ class Ket(Circuit, Box):
         name = "Ket({})".format(', '.join(map(str, bits)))
         Box.__init__(self, name, dom, cod)
 
-Gate.upgrade = Ket.upgrade = Circuit.upgrade
+Gate.cast = Ket.cast = Circuit.cast
 
 X, Y, Z, H = [Gate(name, n_qubits=1) for name in "XYZH"]
 CX, sqrt2 = Gate("CX", n_qubits=2), Gate("sqrt(2)", n_qubits=0)
@@ -673,7 +674,7 @@ class Layer:
 A monoidal category is commutative-monoid-enriched when it has sums that distribute over the tensor, i.e.
 $(f + f') \otimes (g + g') = f \otimes g + f \otimes g' + f' \otimes g + f' \otimes g'$
 and $f \otimes 0 = 0 = 0 \otimes f$.
-They are implemented by a adding method a \py{tensor} method to \py{Sum}, as well as overriding \py{Diagram.tensor} so that \py{f @ (g + h) == Sum.upgrade(f) @ (g + h)} for all diagrams \py{f}.
+They are implemented by a adding method a \py{tensor} method to \py{Sum}, as well as overriding \py{Diagram.tensor} so that \py{f @ (g + h) == Sum.cast(f) @ (g + h)} for all diagrams \py{f}.
 
 \begin{python}
 {\normalfont Implementation of free monoidal categories with sums.}
@@ -682,13 +683,13 @@ They are implemented by a adding method a \py{tensor} method to \py{Sum}, as wel
 class Diagram(monoidal.Diagram):
     @inductive
     def tensor(self, other):
-        return self.sum.upgrade(self).tensor(other)\
+        return self.sum.cast(self).tensor(other)\
             if isinstance(other, Sum) else super().tensor(other)
 
 class Sum(cat.Sum, Box):
     @inductive
     def tensor(self, other: Sum) -> Sum:
-        terms = [f @ g for f in self.terms for g in self.upgrade(other).terms]
+        terms = [f @ g for f in self.terms for g in self.cast(other).terms]
         return Sum(terms, self.dom @ other.dom, self.cod @ other.cod)
 
 Diagram.sum = Sum

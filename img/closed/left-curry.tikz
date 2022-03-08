@@ -3,7 +3,7 @@
 		\node [style=none] (0) at (0, 3.5) {};
 		\node [style=none] (1) at (2.5, 7) {};
 		\node [style=none] (2) at (2.5, 6.75) {};
-		\node [style=none, fill=white, right] (3) at (2.7, 7) {$y$};
+		\node [style=none, fill=white, right] (3) at (2.7, 7) {$x$};
 		\node [style=none] (4) at (3.5, 6.5) {};
 		\node [style=none] (5) at (0, 5.75) {};
 		\node [style=none] (6) at (7, 5.75) {};
@@ -17,7 +17,7 @@
 		\node [style=none] (15) at (4, 5.25) {};
 		\node [style=none] (16) at (6, 5.25) {};
 		\node [style=none] (17) at (4, 3.75) {};
-		\node [style=none, fill=white, right] (18) at (4.2, 5.05) {$x$};
+		\node [style=none, fill=white, right] (18) at (4.2, 5.05) {$y$};
 		\node [style=none] (19) at (6, 0.75) {};
 		\node [style=none] (21) at (2, 4.25) {};
 		\node [style=none] (22) at (2, 3.75) {};
@@ -46,7 +46,7 @@
 		\node [style=none] (51) at (2, 0) {};
 		\node [style=none, fill=white, right] (52) at (2.2, 0.05) {$z$};
 		\node [style=none] (53) at (6, 0) {};
-		\node [style=none, fill=white, right] (54) at (6.2, 0.05) {$x^l$};
+		\node [style=none, fill=white, right] (54) at (6.2, 0.05) {$y^l$};
 		\node [style=none] (55) at (1.75, 4.25) {};
 		\node [style=none] (56) at (3.25, 4.25) {};
 		\node [style=none] (57) at (3.25, 4.75) {};
@@ -54,13 +54,13 @@
 		\node [style=none, fill=white] (60) at (8.2, 3.5) {$=$};
 		\node [style=none] (61) at (9.7, 7) {};
 		\node [style=none] (62) at (9.7, 3.75) {};
-		\node [style=none, fill=white, right] (63) at (9.9, 7) {$y$};
+		\node [style=none, fill=white, right] (63) at (9.9, 7) {$x$};
 		\node [style=none] (64) at (9.2, 3.25) {};
 		\node [style=none] (65) at (9.2, 0) {};
 		\node [style=none, fill=white, right] (66) at (9.65, 2.8) {$z$};
 		\node [style=none] (67) at (10.2, 3.25) {};
 		\node [style=none] (68) at (10.2, 0) {};
-		\node [style=none, fill=white, right] (69) at (10.65, 2.8) {$x^l$};
+		\node [style=none, fill=white, right] (69) at (10.65, 2.8) {$y^l$};
 		\node [style=none] (70) at (8.95, 3.25) {};
 		\node [style=none] (71) at (10.45, 3.25) {};
 		\node [style=none] (72) at (10.45, 3.75) {};

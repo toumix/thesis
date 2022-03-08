@@ -18,7 +18,7 @@
 		\node [style=none] (16) at (3, 5.25) {};
 		\node [style=none] (17) at (1, 0.75) {};
 		\node [style=none] (19) at (3, 3.75) {};
-		\node [style=none, fill=white, right] (20) at (2.45, 5.05) {$z$};
+		\node [style=none, fill=white, right] (20) at (2.45, 5.05) {$x$};
 		\node [style=none] (21) at (4, 4.25) {};
 		\node [style=none] (22) at (4, 3.75) {};
 		\node [style=none] (24) at (5, 4.25) {};
@@ -44,9 +44,9 @@
 		\node [style=none] (49) at (1, 0.25) {};
 		\node [style=none] (50) at (5, 0.25) {};
 		\node [style=none] (51) at (1, 0) {};
-		\node [style=none, fill=white, right] (52) at (1.2, 0.05) {$z^r$};
+		\node [style=none, fill=white, right] (52) at (1.2, 0.05) {$x^r$};
 		\node [style=none] (53) at (5, 0) {};
-		\node [style=none, fill=white, right] (54) at (5.2, 0.05) {$x$};
+		\node [style=none, fill=white, right] (54) at (5.2, 0.05) {$z$};
 		\node [style=none] (55) at (3.75, 4.25) {};
 		\node [style=none] (56) at (5.25, 4.25) {};
 		\node [style=none] (57) at (5.25, 4.75) {};
@@ -57,10 +57,10 @@
 		\node [style=none, fill=white, right] (63) at (9.9, 7) {$y$};
 		\node [style=none] (64) at (9.2, 3.25) {};
 		\node [style=none] (65) at (9.2, 0) {};
-		\node [style=none, fill=white, right] (66) at (9.4, 2.8) {$z^r$};
+		\node [style=none, fill=white, right] (66) at (9.4, 2.8) {$x^r$};
 		\node [style=none] (67) at (10.2, 3.25) {};
 		\node [style=none] (68) at (10.2, 0) {};
-		\node [style=none, fill=white, right] (69) at (10.4, 2.8) {$x$};
+		\node [style=none, fill=white, right] (69) at (10.4, 2.8) {$z$};
 		\node [style=none] (70) at (8.95, 3.25) {};
 		\node [style=none] (71) at (10.45, 3.25) {};
 		\node [style=none] (72) at (10.45, 3.75) {};

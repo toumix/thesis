@@ -114,7 +114,7 @@ class Production(monoidal.Box, Parsing):
         name = "Production({}, {})".format(dom, cod)
         monoidal.Box.__init__(self, name, dom, cod)
 
-Word.upgrade = Production.upgrade = Parsing.upgrade
+Word.cast = Production.cast = Parsing.cast
 \end{minted}
 \end{python}
 

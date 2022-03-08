@@ -19,6 +19,44 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{Aaronson05}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9709fc1390d4ac82cbad7750d99484bf}{%
+           family={Aaronson},
+           familyi={A\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Royal Society}%
+      }
+      \strng{namehash}{9709fc1390d4ac82cbad7750d99484bf}
+      \strng{fullhash}{9709fc1390d4ac82cbad7750d99484bf}
+      \strng{bibnamehash}{9709fc1390d4ac82cbad7750d99484bf}
+      \strng{authorbibnamehash}{9709fc1390d4ac82cbad7750d99484bf}
+      \strng{authornamehash}{9709fc1390d4ac82cbad7750d99484bf}
+      \strng{authorfullhash}{9709fc1390d4ac82cbad7750d99484bf}
+      \field{labelalpha}{Aar05}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{I study the class of problems efficiently solvable by a quantum computer, given the ability to ‘postselect’ on the outcomes of measurements. I prove that this class coincides with a classical complexity class called PP, or probabilistic polynomial-time. Using this result, I show that several simple changes to the axioms of quantum mechanics would let us solve PP-complete problems efficiently. The result also implies, as an easy corollary, a celebrated theorem of Beigel, Reingold and Spielman that PP is closed under intersection, as well as a generalization of that theorem due to Fortnow and Reingold. This illustrates that quantum computing can yield new and simpler proofs of major results about classical computation.}
+      \field{day}{8}
+      \field{journaltitle}{Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences}
+      \field{month}{11}
+      \field{number}{2063}
+      \field{title}{Quantum Computing, Postselection, and Probabilistic Polynomial-Time}
+      \field{volume}{461}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \field{pages}{3473\bibrangedash 3482}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1098/rspa.2005.1546
+      \endverb
+      \keyw{Born's rule,computational complexity,quantum computers}
+    \endentry
     \entry{Aaronson15}{article}{}
       \name{author}{1}{}{%
         {{hash=9709fc1390d4ac82cbad7750d99484bf}{%
@@ -61,6 +99,40 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R8S6DEMV/aaronson2015.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LTYUZZQB/nphys3272.html
+      \endverb
+    \endentry
+    \entry{AaronsonArkhipov11}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=9709fc1390d4ac82cbad7750d99484bf}{%
+           family={Aaronson},
+           familyi={A\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bbcd451e41a5aee7c62afe81f35c0279}{%
+           family={Arkhipov},
+           familyi={A\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{19482704ed1d4e1617efca9d7e0e2468}
+      \strng{fullhash}{19482704ed1d4e1617efca9d7e0e2468}
+      \strng{bibnamehash}{19482704ed1d4e1617efca9d7e0e2468}
+      \strng{authorbibnamehash}{19482704ed1d4e1617efca9d7e0e2468}
+      \strng{authornamehash}{19482704ed1d4e1617efca9d7e0e2468}
+      \strng{authorfullhash}{19482704ed1d4e1617efca9d7e0e2468}
+      \field{labelalpha}{AA11}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Forty-Third Annual {{ACM}} Symposium on {{Theory}} of Computing}
+      \field{title}{The Computational Complexity of Linear Optics}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \field{pages}{333\bibrangedash 342}
+      \range{pages}{10}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/74C587CJ/v009a004.pdf
       \endverb
     \endentry
     \entry{AbbaszadeEtAl21}{article}{}
@@ -230,6 +302,47 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/NAZCI32D/Abramsky and Coecke - 2008 - Categorical quantum mechanics.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2JH64VTC/0808.html
       \endverb
       \keyw{Mathematics - Category Theory,Mathematics - Logic,Quantum Physics}
+    \endentry
+    \entry{AbramskyShah18}{online}{}
+      \name{author}{2}{}{%
+        {{hash=f4721a56c3b94b002e7ef8e0ef2b89fa}{%
+           family={Abramsky},
+           familyi={A\bibinitperiod},
+           given={Samson},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a25867e2cf7761d82252b0a43a8a2694}{%
+           family={Shah},
+           familyi={S\bibinitperiod},
+           given={Nihil},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{6119fc35a55c7273eb95b4f030bcb9d2}
+      \strng{fullhash}{6119fc35a55c7273eb95b4f030bcb9d2}
+      \strng{bibnamehash}{6119fc35a55c7273eb95b4f030bcb9d2}
+      \strng{authorbibnamehash}{6119fc35a55c7273eb95b4f030bcb9d2}
+      \strng{authornamehash}{6119fc35a55c7273eb95b4f030bcb9d2}
+      \strng{authorfullhash}{6119fc35a55c7273eb95b4f030bcb9d2}
+      \field{labelalpha}{AS18}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Combinatorial games are widely used in finite model theory, constraint satisfaction, modal logic and concurrency theory to characterize logical equivalences between structures. In particular, Ehrenfeucht-Fraisse games, pebble games, and bisimulation games play a central role. We show how each of these types of games can be described in terms of an indexed family of comonads on the category of relational structures and homomorphisms. The index k is a resource parameter which bounds the degree of access to the underlying structure. The coKleisli categories for these comonads can be used to give syntax-free characterizations of a wide range of important logical equivalences. Moreover, the coalgebras for these indexed comonads can be used to characterize key combinatorial parameters: tree-depth for the Ehrenfeucht-Fraisse comonad, tree-width for the pebbling comonad, and synchronization-tree depth for the modal unfolding comonad. These results pave the way for systematic connections between two major branches of the field of logic in computer science which hitherto have been almost disjoint: categorical semantics, and finite and algorithmic model theory.}
+      \field{day}{23}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{shorttitle}{Relating {{Structure}} and {{Power}}}
+      \field{title}{Relating {{Structure}} and {{Power}}: {{Comonadic Semantics}} for {{Computational Resources}}}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 1806.09031
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/WDAVNIDN/Abramsky Comonad;/Users/alexis.toumi/WORK/Zotero/storage/LNH6ZRC6/1806.html
+      \endverb
+      \keyw{coalgebra,Computer Science - Logic in Computer Science,games,graphs,semantics}
     \endentry
     \entry{AbramskyTzevelekos10}{online}{}
       \name{author}{2}{}{%
@@ -2994,6 +3107,87 @@
       \endverb
       \keyw{Quantum Physics}
     \endentry
+    \entry{ChandraMerlin77}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=744f6bcbe668f8e25ecfa99c441da3fc}{%
+           family={Chandra},
+           familyi={C\bibinitperiod},
+           given={Ashok\bibnamedelima K.},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=12ab293f15b0b6288a1fd3b6724f2830}{%
+           family={Merlin},
+           familyi={M\bibinitperiod},
+           given={Philip\bibnamedelima M.},
+           giveni={P\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boulder, Colorado, United States}%
+      }
+      \list{publisher}{1}{%
+        {ACM Press}%
+      }
+      \strng{namehash}{77615b7e04b7f918a42faf2f1ace01f6}
+      \strng{fullhash}{77615b7e04b7f918a42faf2f1ace01f6}
+      \strng{bibnamehash}{77615b7e04b7f918a42faf2f1ace01f6}
+      \strng{authorbibnamehash}{77615b7e04b7f918a42faf2f1ace01f6}
+      \strng{authornamehash}{77615b7e04b7f918a42faf2f1ace01f6}
+      \strng{authorfullhash}{77615b7e04b7f918a42faf2f1ace01f6}
+      \field{labelalpha}{CM77}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Ninth Annual {{ACM}} Symposium on {{Theory}} of Computing - {{STOC}} '77}
+      \field{eventtitle}{The Ninth Annual {{ACM}} Symposium}
+      \field{langid}{english}
+      \field{title}{Optimal Implementation of Conjunctive Queries in Relational Data Bases}
+      \field{year}{1977}
+      \field{dateera}{ce}
+      \field{pages}{77\bibrangedash 90}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/800105.803397
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/IFYVM3E6/Chandra and Merlin - 1977 - Optimal implementation of conjunctive queries in r.pdf
+      \endverb
+    \endentry
+    \entry{ChekuriRajaraman00}{article}{}
+      \name{author}{2}{}{%
+        {{hash=e64e05b60e285d389253f4c0e695df74}{%
+           family={Chekuri},
+           familyi={C\bibinitperiod},
+           given={Chandra},
+           giveni={C\bibinitperiod}}}%
+        {{hash=45500b3dfad3d2cf0ce07cd00149af68}{%
+           family={Rajaraman},
+           familyi={R\bibinitperiod},
+           given={Anand},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{ad51e1d99da2cb3a07d0d78fa5154ceb}
+      \strng{fullhash}{ad51e1d99da2cb3a07d0d78fa5154ceb}
+      \strng{bibnamehash}{ad51e1d99da2cb3a07d0d78fa5154ceb}
+      \strng{authorbibnamehash}{ad51e1d99da2cb3a07d0d78fa5154ceb}
+      \strng{authornamehash}{ad51e1d99da2cb3a07d0d78fa5154ceb}
+      \strng{authorfullhash}{ad51e1d99da2cb3a07d0d78fa5154ceb}
+      \field{labelalpha}{CR00}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We consider the problems of conjunctive query containment and minimization, which are known to be NP-complete, and show that these problems can be solved in polynomial time for the class of acyclic queries. We then generalize the notion of acyclicity and deÿne a parameter called query width that captures the “degree of cyclicity” of a query: in particular, a query is acyclic if and only if its query width is 1. We give algorithms for containment and minimization that run in time polynomial in nk , where n is the input size and k is the query width. These algorithms naturally generalize those for acyclic queries, and are of practical signiÿcance because many queries have small query width compared to their sizes. We show that good bounds on the query width of Q can be obtained using the treewidth of the incidence graph of Q. We then consider the problem of ÿnding an equivalent query to a given conjunctive query Q that has the least number of subgoals. We show that a polynomial-time approximation algorithm is unlikely for this problem. Finally, we apply our containment algorithm to the practically important problem of ÿnding equivalent rewritings of a query using a set of materialized views. c 2000 Elsevier Science B.V. All rights reserved.}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{langid}{english}
+      \field{title}{Conjunctive Query Containment Revisited}
+      \field{year}{2000}
+      \field{dateera}{ce}
+      \field{pages}{19}
+      \range{pages}{1}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/TXYH2CYV/Chekuri and Rajaraman - 2000 - Conjunctive query containment revisited.pdf
+      \endverb
+    \endentry
     \entry{Chen02}{thesis}{}
       \name{author}{1}{}{%
         {{hash=e9553e9398e2fbbc22ab97d621e399c1}{%
@@ -3253,6 +3447,37 @@
       \field{title}{The {{Psychological Functions}} of {{Function Words}}}
       \field{year}{2007}
       \field{dateera}{ce}
+    \endentry
+    \entry{Church36}{article}{}
+      \name{author}{1}{}{%
+        {{hash=eb8fba5b5e50ff0f327f47041fe3f891}{%
+           family={Church},
+           familyi={C\bibinitperiod},
+           given={Alonzo},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{eb8fba5b5e50ff0f327f47041fe3f891}
+      \strng{fullhash}{eb8fba5b5e50ff0f327f47041fe3f891}
+      \strng{bibnamehash}{eb8fba5b5e50ff0f327f47041fe3f891}
+      \strng{authorbibnamehash}{eb8fba5b5e50ff0f327f47041fe3f891}
+      \strng{authornamehash}{eb8fba5b5e50ff0f327f47041fe3f891}
+      \strng{authorfullhash}{eb8fba5b5e50ff0f327f47041fe3f891}
+      \field{labelalpha}{Chu36}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The journal of symbolic logic}
+      \field{number}{1}
+      \field{title}{A Note on the {{Entscheidungsproblem}}}
+      \field{volume}{1}
+      \field{year}{1936}
+      \field{dateera}{ce}
+      \field{pages}{40\bibrangedash 41}
+      \range{pages}{2}
     \endentry
     \entry{CirsteaEtAl11}{article}{}
       \name{author}{5}{}{%
@@ -3734,6 +3959,60 @@
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Mathematics - Category Theory,Mathematics - Quantum Algebra,Quantum Physics}
     \endentry
+    \entry{CoeckeEtAl18a}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=c8d0d6b0d8ca354b544208d9fa6abd9d}{%
+           family={Coecke},
+           familyi={C\bibinitperiod},
+           given={Bob},
+           giveni={B\bibinitperiod}}}%
+        {{hash=90a608e5aa8c815f07e4c59d5b93be62}{%
+           family={Felice},
+           familyi={F\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=8c606738090153da5b726d3345987aed}{%
+           family={Marsden},
+           familyi={M\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
+           family={Toumi},
+           familyi={T\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {EPTCS}%
+      }
+      \strng{namehash}{7c7f34b128c8abc3346fc67b0d439586}
+      \strng{fullhash}{f0eb89612a6d40ac7dd1fbb253a13e60}
+      \strng{bibnamehash}{f0eb89612a6d40ac7dd1fbb253a13e60}
+      \strng{authorbibnamehash}{f0eb89612a6d40ac7dd1fbb253a13e60}
+      \strng{authornamehash}{7c7f34b128c8abc3346fc67b0d439586}
+      \strng{authorfullhash}{f0eb89612a6d40ac7dd1fbb253a13e60}
+      \field{labelalpha}{Coe+18}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Categorical compositional distributional semantics provide a method to derive the meaning of a sentence from the meaning of its individual words: the grammatical reduction of a sentence automatically induces a linear map for composing the word vectors obtained from distributional semantics. In this paper, we extend this passage from word-to-sentence to sentence-to-discourse composition. To achieve this we introduce a notion of basic anaphoric discourses as a mid-level representation between natural language discourse formalised in terms of basic discourse representation structures (DRS); and knowledge base queries over the Semantic Web as described by basic graph patterns in the Resource Description Framework (RDF). This provides a high-level specification for compositional algorithms for question answering and anaphora resolution, and allows us to give a picture of natural language understanding as a process involving both statistical and logical resources.}
+      \field{booktitle}{Proceedings {{CAPNS}} 2018}
+      \field{day}{8}
+      \field{month}{11}
+      \field{title}{Towards {{Compositional Distributional Discourse Analysis}}}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.4204/EPTCS.283.1
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/5T7LPQ6Y/Coecke et al. - 2018 - Towards Compositional Distributional Discourse Ana.pdf;/Users/alexis.toumi/WORK/Zotero/storage/WLIHHFIB/1811.html
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Databases}
+    \endentry
     \entry{CoeckeEtAl20}{article}{}
       \name{author}{4}{}{%
         {{hash=c8d0d6b0d8ca354b544208d9fa6abd9d}{%
@@ -4204,6 +4483,38 @@
       \field{dateera}{ce}
       \keyw{Body; Mind & Spirit / Magick Studies}
     \endentry
+    \entry{DeGroote01}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=61e0cb2945d666d82b82988b71f11061}{%
+           family={De\bibnamedelima Groote},
+           familyi={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ILLC Amsterdam}%
+      }
+      \strng{namehash}{61e0cb2945d666d82b82988b71f11061}
+      \strng{fullhash}{61e0cb2945d666d82b82988b71f11061}
+      \strng{bibnamehash}{61e0cb2945d666d82b82988b71f11061}
+      \strng{authorbibnamehash}{61e0cb2945d666d82b82988b71f11061}
+      \strng{authornamehash}{61e0cb2945d666d82b82988b71f11061}
+      \strng{authorfullhash}{61e0cb2945d666d82b82988b71f11061}
+      \field{labelalpha}{De 01}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Thirteenth {{Amsterdam Colloquium}}}
+      \field{title}{Type Raising, Continuations, and Classical Logic}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{pages}{97\bibrangedash 101}
+      \range{pages}{5}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/PISHGADG/De Groote - 2001 - Type raising, continuations, and classical logic.pdf
+      \endverb
+    \endentry
     \entry{DeBeaudrapEtAl20}{online}{useprefix=true}
       \name{author}{3}{}{%
         {{hash=294bcfc5ef677c61767ff332f90ff5ce}{%
@@ -4579,6 +4890,66 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9J2SMCK3/Devlin et al. - 2019 - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CBJG7LVJ/1810.html
       \endverb
       \keyw{Computer Science - Computation and Language}
+    \endentry
+    \entry{Dowty88}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=ce5c213b16b1960ecf114f6e6e6a01bd}{%
+           family={Dowty},
+           familyi={D\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=c8a8c9936ca6231b3a6ce4867f646907}{%
+           family={Oehrle},
+           familyi={O\bibinitperiod},
+           given={Richard\bibnamedelima T.},
+           giveni={R\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=25f16506b819c19d972c3c91ecd265a2}{%
+           family={Bach},
+           familyi={B\bibinitperiod},
+           given={Emmon},
+           giveni={E\bibinitperiod}}}%
+        {{hash=c7b2f3a736f93d25662d2be1d885fed5}{%
+           family={Wheeler},
+           familyi={W\bibinitperiod},
+           given={Deirdre},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dordrecht}%
+      }
+      \list{publisher}{1}{%
+        {Springer Netherlands}%
+      }
+      \strng{namehash}{ce5c213b16b1960ecf114f6e6e6a01bd}
+      \strng{fullhash}{ce5c213b16b1960ecf114f6e6e6a01bd}
+      \strng{bibnamehash}{ce5c213b16b1960ecf114f6e6e6a01bd}
+      \strng{authorbibnamehash}{ce5c213b16b1960ecf114f6e6e6a01bd}
+      \strng{authornamehash}{ce5c213b16b1960ecf114f6e6e6a01bd}
+      \strng{authorfullhash}{ce5c213b16b1960ecf114f6e6e6a01bd}
+      \strng{editorbibnamehash}{6d9d8ee1b12984aa76152f9f54e332e4}
+      \strng{editornamehash}{6d9d8ee1b12984aa76152f9f54e332e4}
+      \strng{editorfullhash}{6d9d8ee1b12984aa76152f9f54e332e4}
+      \field{labelalpha}{Dow88}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A very striking feature of the system of categorial grammar in Ades and Steedman (1982) and Steedman (1985), which differentiates it from most other current work in categorial grammar as well as from related theories like Generalized Phrase Structure Grammar (Gazdar et al., 1985), is its appeal to the operation of functional composition as a highly general rule of natural language grammars: Steedman and Ades include in their grammars not only the familiar functional application rule (1) but also the functional composition rule (2) (for which their term is partial combination):}
+      \field{booktitle}{Categorial {{Grammars}} and {{Natural Language Structures}}}
+      \field{isbn}{978-94-015-6878-4}
+      \field{langid}{english}
+      \field{series}{Studies in {{Linguistics}} and {{Philosophy}}}
+      \field{title}{Type {{Raising}}, {{Functional Composition}}, and {{Non-Constituent Conjunction}}}
+      \field{year}{1988}
+      \field{dateera}{ce}
+      \field{pages}{153\bibrangedash 197}
+      \range{pages}{45}
+      \verb{doi}
+      \verb 10.1007/978-94-015-6878-4_7
+      \endverb
+      \keyw{Categorial Grammar,Functional Composition,Prepositional Phrase,Relative Pronoun,Word Order}
     \endentry
     \entry{DuncanEtAl20}{article}{useprefix=true}
       \name{author}{4}{}{%
@@ -5529,6 +5900,48 @@
       \verb https://www.youtube.com/watch?v=5YZG96t8SLQ
       \endverb
     \endentry
+    \entry{GenkinEtAl10}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=9b8ddec78ab1bf52f758858ca3928a61}{%
+           family={Genkin},
+           familyi={G\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=2b0c993cb0b76d92d979d71a1126ad7d}{%
+           family={Francez},
+           familyi={F\bibinitperiod},
+           given={Nissim},
+           giveni={N\bibinitperiod}}}%
+        {{hash=34c466b0b4dba6d233cb09fe644d204c}{%
+           family={Kaminski},
+           familyi={K\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2156eb66e416187a3375bfb112257a5}
+      \strng{fullhash}{f2156eb66e416187a3375bfb112257a5}
+      \strng{bibnamehash}{f2156eb66e416187a3375bfb112257a5}
+      \strng{authorbibnamehash}{f2156eb66e416187a3375bfb112257a5}
+      \strng{authornamehash}{f2156eb66e416187a3375bfb112257a5}
+      \strng{authorfullhash}{f2156eb66e416187a3375bfb112257a5}
+      \field{labelalpha}{GFK10}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A family of languages is called mildly context-sensitive if - it includes the family of all e-free context-free languages; - it contains the languages • \{anbncn : n ≥ 1\} - multiple agreement, • \{ambncmdn : m, n ≥ 1\} - crossed dependencies, and • \{ww : w ∈ Σ+\} - reduplication; - all its languages are semi-linear; and - their membership problem is decidable in polynomial time. In our paper we introduce a new model of computation called buffer augmented pregroup grammars that defines a family of mildly contextsensitive languages. This model of computation is an extension of Lambek pregroup grammars with a variable symbol - the (buffer) and is allowed to make an arbitrary substitution from the original pregroup to the variable. This increases the pregroup grammar generation power, but still retains the desired properties of mildly context-sensitive languages such as semi-linearity and polynomial parsing. We establish a strict hierarchy within the family of mildly context-sensitive languages defined by buffer augmented pregroup grammars. In this hierarchy, the hierarchy level of the family language depends on the allowed number of occurrences of the variable in lexical category assignments.}
+      \field{booktitle}{Essays in {{Memory}} of {{Amir Pnueli}}}
+      \field{title}{Mildly {{Context-Sensitive Languages}} via {{Buffer Augmented Pregroup Grammars}}}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-642-13754-9_7
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/AAG4RLYT/Genkin et al. - 2010 - Mildly Context-Sensitive Languages via Buffer Augm.pdf
+      \endverb
+      \keyw{Context-free language,Context-sensitive grammar,Context-sensitive language,Model of computation,Parsing,Polynomial,Pregroup grammar,Semiconductor industry,Time complexity}
+    \endentry
     \entry{Gentzen35}{article}{}
       \name{author}{1}{}{%
         {{hash=2e5b9df4ca83f294927feb14983d943d}{%
@@ -5738,6 +6151,44 @@
       \verb https://www.theguardian.com/commentisfree/2020/sep/08/robot-wrote-this-article-gpt-3
       \endverb
       \keyw{Artificial intelligence (AI),Computing,Consciousness,Technology}
+    \endentry
+    \entry{Gradel02}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f87eb334e06f6787290cc29d8b2816fc}{%
+           family={Grädel},
+           familyi={G\bibinitperiod},
+           given={Erich},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f87eb334e06f6787290cc29d8b2816fc}
+      \strng{fullhash}{f87eb334e06f6787290cc29d8b2816fc}
+      \strng{bibnamehash}{f87eb334e06f6787290cc29d8b2816fc}
+      \strng{authorbibnamehash}{f87eb334e06f6787290cc29d8b2816fc}
+      \strng{authornamehash}{f87eb334e06f6787290cc29d8b2816fc}
+      \strng{authorfullhash}{f87eb334e06f6787290cc29d8b2816fc}
+      \field{labelalpha}{Grä02}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We survey evaluation games for first-order logic and least fixed point logics, and discuss their algorithmic complexity.}
+      \field{day}{1}
+      \field{issn}{1571-0661}
+      \field{journaltitle}{Electronic Notes in Theoretical Computer Science}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{series}{{{WoLLIC}}'2002, 9th {{Workhop}} on {{Logic}}, {{Language}}, {{Information}} and {{Computation}}}
+      \field{shortjournal}{Electronic Notes in Theoretical Computer Science}
+      \field{title}{Model {{Checking Games}}}
+      \field{volume}{67}
+      \field{year}{2002}
+      \field{dateera}{ce}
+      \field{pages}{15\bibrangedash 34}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1016/S1571-0661(04)80538-3
+      \endverb
+      \keyw{complexity,fixed-point logic,games,logic,model checking,parity games}
     \endentry
     \entry{GrantEtAl19}{article}{}
       \name{author}{4}{}{%
@@ -7299,6 +7750,42 @@
       \field{year}{1781}
       \field{dateera}{ce}
     \endentry
+    \entry{Kartsaklis16}{article}{}
+      \name{author}{1}{}{%
+        {{hash=cd4eafdc776ef88e78f218cd4f79a5b3}{%
+           family={Kartsaklis},
+           familyi={K\bibinitperiod},
+           given={Dimitri},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{cd4eafdc776ef88e78f218cd4f79a5b3}
+      \strng{fullhash}{cd4eafdc776ef88e78f218cd4f79a5b3}
+      \strng{bibnamehash}{cd4eafdc776ef88e78f218cd4f79a5b3}
+      \strng{authorbibnamehash}{cd4eafdc776ef88e78f218cd4f79a5b3}
+      \strng{authornamehash}{cd4eafdc776ef88e78f218cd4f79a5b3}
+      \strng{authorfullhash}{cd4eafdc776ef88e78f218cd4f79a5b3}
+      \field{labelalpha}{Kar16}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the 2016 Workshop on Semantic Spaces at the Intersection of NLP, Physics and Cognitive Science, SLPCS@QPL 2016, Glasgow, Scotland, 11th June 2016.}
+      \field{title}{Coordination in {{Categorical Compositional Distributional Semantics}}}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{pages}{29\bibrangedash 38}
+      \range{pages}{10}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/A722LMJX/Kartsaklis - 2016 - Coordination in Categorical Compositional Distribu.pdf;/Users/alexis.toumi/WORK/Zotero/storage/F3WSQKFH/1606.html
+      \endverb
+      \verb{urlraw}
+      \verb https://drive.google.com/file/d/0B4LXUZHM9v1gYjB5QkhhWDh6Nnc/view?usp=sharing
+      \endverb
+      \verb{url}
+      \verb https://drive.google.com/file/d/0B4LXUZHM9v1gYjB5QkhhWDh6Nnc/view?usp=sharing
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Mathematics - Category Theory}
+    \endentry
     \entry{KartsaklisEtAl21}{article}{}
       \name{author}{10}{}{%
         {{hash=cd4eafdc776ef88e78f218cd4f79a5b3}{%
@@ -7379,6 +7866,42 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8BUQSKZF/Kartsaklis et al. - 2021 - lambeq An Efficient High-Level Python Library for.pdf;/Users/alexis.toumi/WORK/Zotero/storage/F5Z9BMDY/2110.html
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Quantum Physics}
+    \endentry
+    \entry{KartsaklisSadrzadeh15}{article}{}
+      \name{author}{2}{}{%
+        {{hash=cd4eafdc776ef88e78f218cd4f79a5b3}{%
+           family={Kartsaklis},
+           familyi={K\bibinitperiod},
+           given={Dimitri},
+           giveni={D\bibinitperiod}}}%
+        {{hash=1269c03f4d89abba55e31d4b3f8037e6}{%
+           family={Sadrzadeh},
+           familyi={S\bibinitperiod},
+           given={Mehrnoosh},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8f2ffe201df8dc8f3427dbf8a7c18f5a}
+      \strng{fullhash}{8f2ffe201df8dc8f3427dbf8a7c18f5a}
+      \strng{bibnamehash}{8f2ffe201df8dc8f3427dbf8a7c18f5a}
+      \strng{authorbibnamehash}{8f2ffe201df8dc8f3427dbf8a7c18f5a}
+      \strng{authornamehash}{8f2ffe201df8dc8f3427dbf8a7c18f5a}
+      \strng{authorfullhash}{8f2ffe201df8dc8f3427dbf8a7c18f5a}
+      \field{labelalpha}{KS15}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{CoRR}
+      \field{title}{A {{Frobenius Model}} of {{Information Structure}} in {{Categorical Compositional Distributional Semantics}}}
+      \field{volume}{abs/1505.06294}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1505.06294
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1505.06294
+      \endverb
     \endentry
     \entry{KartsaklisEtAl13}{article}{}
       \name{author}{3}{}{%
@@ -11087,6 +11610,109 @@
       \endverb
       \keyw{Categorial grammars,Discourse representation,Pregroup grammars,Semantic interpretation}
     \endentry
+    \entry{Preller10}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=632e96663c86cb2ef8f8f12aacfa42f9}{%
+           family={Preller},
+           familyi={P\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{fullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{bibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorbibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authornamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorfullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \field{labelalpha}{Pre10}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present a deterministic algorithm for solving the derivability problem for the Lambek calculus (the syntactic calculus with left division, right division, and multiplication, introduced by J. Lambek in 1958) and a similar algorithm for the Lambek calculus allowing empty premises. These algorithms work in time polynomial in the input length if the order of all syntactic types is bounded by a constant (it is known that for unbounded order the derivability problem is NP-complete). The algorithms are based on a method for deciding derivability in the multiplicative fragment of the cyclic linear logic. This method also yields an algorithm for solving the membership problem in Lambek grammars, which works in time polynomial in the grammar size and string length provided the order of all syntactic types is bounded by a constant.}
+      \field{title}{Polynomial {{Pregroup Grammars}} Parse {{Context Sensitive Languages}}}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/48BZ5PMI/Preller - 2010 - Polynomial Pregroup Grammars parse Context Sensiti.pdf
+      \endverb
+      \keyw{Algorithm,Backtracking,Categorial grammar,CD300C gene,Complement graph,Concatenation,Context-sensitive language,Cross-serial dependencies,Cubic function,Deterministic parsing,emotional dependency,Formal language,Increment,Mildly context-sensitive grammar formalism,Models; Polynomial,Natural language,NP-completeness,Parsing,Planar graph,Pregroup grammar,Programming Languages,Published Comment,sentence,Status Epilepticus,Treebank}
+    \endentry
+    \entry{Preller14a}{article}{}
+      \name{author}{1}{}{%
+        {{hash=632e96663c86cb2ef8f8f12aacfa42f9}{%
+           family={Preller},
+           familyi={P\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{fullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{bibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorbibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authornamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorfullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \field{labelalpha}{Pre14}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The paper relates two variants of semantic models for natural language, logical functional models and compositional distributional vector space models, by transferring the logic and reasoning from the logical to the distributional models. The geometrical operations of quantum logic are reformulated as algebraic operations on vectors. A map from functional models to vector space models makes it possible to compare the meaning of sentences word by word.}
+      \field{day}{27}
+      \field{eprinttype}{arxiv}
+      \field{issn}{2075-2180}
+      \field{journaltitle}{Electronic Proceedings in Theoretical Computer Science}
+      \field{month}{12}
+      \field{title}{From {{Logical}} to {{Distributional Models}}}
+      \field{volume}{171}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{pages}{113\bibrangedash 131}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.4204/EPTCS.171.11
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/A2ZGU3ES/Preller - 2014 - From Logical to Distributional Models.pdf;/Users/alexis.toumi/WORK/Zotero/storage/R7PC4T9U/1412.html
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Logic in Computer Science,F.4.0,F.4.1,Quantum Physics}
+    \endentry
+    \entry{Preller14}{article}{}
+      \name{author}{1}{}{%
+        {{hash=632e96663c86cb2ef8f8f12aacfa42f9}{%
+           family={Preller},
+           familyi={P\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{fullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{bibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorbibnamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authornamehash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \strng{authorfullhash}{632e96663c86cb2ef8f8f12aacfa42f9}
+      \field{labelalpha}{Pre14}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Applied Logic}
+      \field{number}{1}
+      \field{title}{Natural Language Semantics in Biproduct Dagger Categories}
+      \field{volume}{12}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{pages}{88\bibrangedash 108}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1016/j.jal.2013.08.001
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/E5R7WVTZ/Preller - 2014 - Natural language semantics in biproduct dagger cat.pdf
+      \endverb
+    \endentry
     \entry{PrellerLambek07}{article}{}
       \name{author}{2}{}{%
         {{hash=632e96663c86cb2ef8f8f12aacfa42f9}{%
@@ -11718,6 +12344,94 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QQ9KNU83/Ryle - 1937 - Categories.pdf
+      \endverb
+    \endentry
+    \entry{SadrzadehEtAl13}{article}{}
+      \name{author}{3}{}{%
+        {{hash=1269c03f4d89abba55e31d4b3f8037e6}{%
+           family={Sadrzadeh},
+           familyi={S\bibinitperiod},
+           given={Mehrnoosh},
+           giveni={M\bibinitperiod}}}%
+        {{hash=dda71bed5f391f7f7cdba143a71fad0a}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c8d0d6b0d8ca354b544208d9fa6abd9d}{%
+           family={Coecke},
+           familyi={C\bibinitperiod},
+           given={Bob},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{fullhash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{bibnamehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{authorbibnamehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{authornamehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{authorfullhash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \field{labelalpha}{SCC13}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{Journal of Logic and Computation}
+      \field{title}{The {{Frobenius}} Anatomy of Word Meanings {{I}}: Subject and Object Relative Pronouns}
+      \field{volume}{23}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{1293\bibrangedash 1317}
+      \range{pages}{25}
+      \verb{eprint}
+      \verb 1404.5278
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/3BWY7786/Sadrzadeh et al. - 2013 - The Frobenius anatomy of word meanings I subject .pdf;/Users/alexis.toumi/WORK/Zotero/storage/MWYEIU7X/1404.html
+      \endverb
+      \keyw{Computer Science - Computation and Language}
+    \endentry
+    \entry{SadrzadehEtAl14}{article}{}
+      \name{author}{3}{}{%
+        {{hash=1269c03f4d89abba55e31d4b3f8037e6}{%
+           family={Sadrzadeh},
+           familyi={S\bibinitperiod},
+           given={Mehrnoosh},
+           giveni={M\bibinitperiod}}}%
+        {{hash=dda71bed5f391f7f7cdba143a71fad0a}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c8d0d6b0d8ca354b544208d9fa6abd9d}{%
+           family={Coecke},
+           familyi={C\bibinitperiod},
+           given={Bob},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{fullhash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{bibnamehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{authorbibnamehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{authornamehash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \strng{authorfullhash}{33a452626dbe90b90fe19c4ec51b59bb}
+      \field{labelalpha}{SCC14}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Logic and Computation}
+      \field{title}{The {{Frobenius}} Anatomy of Word Meanings {{II}}: Possessive Relative Pronouns}
+      \field{volume}{abs/1406.4690}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{pages}{exu027}
+      \range{pages}{-1}
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1406.4690
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1406.4690
       \endverb
     \endentry
     \entry{Salomaa69}{article}{}
@@ -13158,6 +13872,47 @@
       \verb 4047583
       \endverb
     \endentry
+    \entry{Steedman91}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=7a7bed50026b5265428aca5961b9ad14}{%
+           family={Steedman},
+           familyi={S\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berkeley, California}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{7a7bed50026b5265428aca5961b9ad14}
+      \strng{fullhash}{7a7bed50026b5265428aca5961b9ad14}
+      \strng{bibnamehash}{7a7bed50026b5265428aca5961b9ad14}
+      \strng{authorbibnamehash}{7a7bed50026b5265428aca5961b9ad14}
+      \strng{authornamehash}{7a7bed50026b5265428aca5961b9ad14}
+      \strng{authorfullhash}{7a7bed50026b5265428aca5961b9ad14}
+      \field{labelalpha}{Ste91}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The form of rules in combinatory categorial grammars (CCG) is constrained by three principles, called "adjacency", "consistency" and "inheritance". These principles have been claimed elsewhere to constrain the combinatory rules of composition and type raising in such a way as to make certain linguistic universals concerning word order under coordination follow immediately. The present paper shows that the three principles have an extremely natural expression in a unification-based interpretation of CCG in which directional information is an attribute of the arguments of functions grounded in string position. The aforementioned universals can thereby be derived as consequences of more elementary assumptions. Some desirable results follow, concerning type-raising and the parser.}
+      \field{booktitle}{Proceedings of the 29th Annual Meeting on {{Association}} for {{Computational Linguistics}} -}
+      \field{eventtitle}{The 29th Annual Meeting}
+      \field{langid}{english}
+      \field{title}{Type-Raising and Directionality in Combinatory Grammar}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{pages}{71\bibrangedash 78}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.3115/981344.981354
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/PFSBCY7G/Steedman - 1991 - Type-raising and directionality in combinatory gra.pdf
+      \endverb
+    \endentry
     \entry{Steedman00}{book}{}
       \name{author}{1}{}{%
         {{hash=7a7bed50026b5265428aca5961b9ad14}{%
@@ -13391,6 +14146,64 @@
       \field{year}{1914}
       \field{dateera}{ce}
     \endentry
+    \entry{Toda91}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a1f9242419a7b502ee2acf66e91eb19f}{%
+           family={Toda},
+           familyi={T\bibinitperiod},
+           given={Seinosuke},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SIAM}%
+      }
+      \strng{namehash}{a1f9242419a7b502ee2acf66e91eb19f}
+      \strng{fullhash}{a1f9242419a7b502ee2acf66e91eb19f}
+      \strng{bibnamehash}{a1f9242419a7b502ee2acf66e91eb19f}
+      \strng{authorbibnamehash}{a1f9242419a7b502ee2acf66e91eb19f}
+      \strng{authornamehash}{a1f9242419a7b502ee2acf66e91eb19f}
+      \strng{authorfullhash}{a1f9242419a7b502ee2acf66e91eb19f}
+      \field{labelalpha}{Tod91}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Journal on Computing}
+      \field{number}{5}
+      \field{title}{{{PP}} Is as Hard as the Polynomial-Time Hierarchy}
+      \field{volume}{20}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{pages}{865\bibrangedash 877}
+      \range{pages}{13}
+    \endentry
+    \entry{Toumi18a}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
+           family={Toumi},
+           familyi={T\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Master’s thesis, University of Oxford}%
+      }
+      \strng{namehash}{8167013bfe97089a16ad5e2a07aaa54f}
+      \strng{fullhash}{8167013bfe97089a16ad5e2a07aaa54f}
+      \strng{bibnamehash}{8167013bfe97089a16ad5e2a07aaa54f}
+      \strng{authorbibnamehash}{8167013bfe97089a16ad5e2a07aaa54f}
+      \strng{authornamehash}{8167013bfe97089a16ad5e2a07aaa54f}
+      \strng{authorfullhash}{8167013bfe97089a16ad5e2a07aaa54f}
+      \field{labelalpha}{Tou18}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Categorical Compositional Distributional Questions, Answers \& Discourse Analysis}
+      \field{type}{phdthesis}
+      \field{year}{2018}
+      \field{dateera}{ce}
+    \endentry
     \entry{ToumiKoziell-Pipe21}{article}{}
       \name{author}{2}{}{%
         {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
@@ -13571,6 +14384,37 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/RTKSLKBZ/Turney and Pantel - 2010 - From Frequency to Meaning Vector Space Models of .pdf
       \endverb
+    \endentry
+    \entry{Valiant79}{article}{}
+      \name{author}{1}{}{%
+        {{hash=fc3b7c13d82ffcf6e12bd81959d5ba59}{%
+           family={Valiant},
+           familyi={V\bibinitperiod},
+           given={Leslie\bibnamedelima G},
+           giveni={L\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{fc3b7c13d82ffcf6e12bd81959d5ba59}
+      \strng{fullhash}{fc3b7c13d82ffcf6e12bd81959d5ba59}
+      \strng{bibnamehash}{fc3b7c13d82ffcf6e12bd81959d5ba59}
+      \strng{authorbibnamehash}{fc3b7c13d82ffcf6e12bd81959d5ba59}
+      \strng{authornamehash}{fc3b7c13d82ffcf6e12bd81959d5ba59}
+      \strng{authorfullhash}{fc3b7c13d82ffcf6e12bd81959d5ba59}
+      \field{labelalpha}{Val79}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical computer science}
+      \field{number}{2}
+      \field{title}{The Complexity of Computing the Permanent}
+      \field{volume}{8}
+      \field{year}{1979}
+      \field{dateera}{ce}
+      \field{pages}{189\bibrangedash 201}
+      \range{pages}{13}
     \endentry
     \entry{Valiant75}{article}{}
       \name{author}{1}{}{%
@@ -15116,7 +15960,6 @@
       \keyw{Quantum computation,Quantum information,Quantum physics,Superconducting quantum computing,Superconducting qubit}
     \endentry
   \enddatalist
-  \missing{Church36}
 \endrefsection
 \endinput
 

@@ -92,7 +92,7 @@ class Diagram(Copyable, symmetric.Diagram):
         return coherence(factory)(cls, a, b, x)
 
 class Box(symmetric.Box, Diagram):
-    upgrade = Diagram.upgrade
+    cast = Diagram.cast
 
 class Copy(Box):
     def __init__(self, x: Ty, n: int = 2, is_dagger=False):
@@ -423,19 +423,19 @@ class Biproduct(Matrix):
         delattr(self.dtype, "__mul__") if tmp is None else setattr(self.dtype, "__mul__", tmp)
 
     @classmethod
-    def upgrade(cls, old: Diagram):
+    def cast(cls, old: Diagram):
         if isinstance(old, cls): return old
         return cls([[old]], [old.dom], [old.cod])
 
     @inductive
     def then(self, other: Biproduct | Diagram) -> Biproduct:
         with self.fake_multiplication(self.dtype.then) as self:
-            return Matrix.then(self, self.upgrade(other))
+            return Matrix.then(self, self.cast(other))
 
     @inductive
     def tensor(self, other: Biproduct | Diagram) -> Biproduct:
         with self.fake_multiplication(self.dtype.tensor) as self:
-            return Matrix.Kronecker(self, self.upgrade(other))
+            return Matrix.Kronecker(self, self.cast(other))
 
     @classmethod
     def copy(cls, x: list[Ty], n: int, is_dagger=False):
@@ -446,14 +446,14 @@ class Biproduct(Matrix):
     def discard(cls, x, is_dagger=False): return cls.copy(x, 0, is_dagger)
 
     dagger = lambda self: self.transpose().map(lambda f: f.dagger())
-    __or__ = lambda self, other: self.direct_sum(self.upgrade(other))
-    __eq__ = lambda self, other: Matrix.__eq__(self, self.upgrade(other))
+    __or__ = lambda self, other: self.direct_sum(self.cast(other))
+    __eq__ = lambda self, other: Matrix.__eq__(self, self.cast(other))
 
 for method in ("self", "other"):
     setattr(Diagram, method, inductive(
-        lambda self, other: getattr(self.biproduct.upgrade(self), method)(other)
+        lambda self, other: getattr(self.biproduct.cast(self), method)(other)
         if isinstance(other, Biproduct) else getattr(monoidal.Diagram, method)(other)))
-Diagram.direct_sum = lambda self, *others: self.biproduct.upgrade(self).direct_sum(*other)
+Diagram.direct_sum = lambda self, *others: self.biproduct.cast(self).direct_sum(*other)
 Diagram.__or__ = Diagram.direct_sum
 Diagram.__eq__ = lambda self, other:\
     other.inside = [[self]] if isinstance(other, Biproduct)\

@@ -71,11 +71,11 @@ class Diagram(monoidal.Diagram):
         for i, (x, f, _), (y, g, _) in enumerate(zip(self.inside, self.inside[1:])):
             if x == y and isinstance(f, Braid) and f == g[::-1]:
                 layers = self.inside[:i] + self.inside[i + 2:]
-                return simplify(self.upgrade(Diagram(self.dom, self.cod, layers)))
+                return simplify(self.cast(Diagram(self.dom, self.cod, layers)))
         return self
 
 class Box(monoidal.Box, Diagram):
-    upgrade = Diagram.upgrade
+    cast = Diagram.cast
 
 class Braid(Box):
     def __init__(self, x: Ty, y: Ty, is_dagger=False):

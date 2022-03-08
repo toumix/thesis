@@ -300,18 +300,18 @@ class Arrow(Composable):
     cod: Ob
 
     @classmethod
-    def upgrade(cls, old: Arrow) -> Arrow:
+    def cast(cls, old: Arrow) -> Arrow:
         return old if isinstance(old, cls) else cls(old.inside, old.dom, old.cod)
 
     @classmethod
     def id(cls, x: Ob) -> Arrow:
-        return cls.upgrade(Arrow([], x, x))
+        return cls.cast(Arrow([], x, x))
 
     def then(self, *others: Arrow) -> Arrow:
         for f, g in zip((self, ) + others, others): assert f.cod == g.dom
         dom, cod = self.dom, others[-1].cod if others else self.cod
         inside = self.inside + sum([other.inside for other in others], [])
-        return self.upgrade(Arrow(inside, dom, cod))
+        return self.cast(Arrow(inside, dom, cod))
 
     __len__ = lambda self: len(self.inside)
     __str__ = lambda self: ' >> '.join(map(str, self.inside))\
@@ -319,7 +319,7 @@ class Arrow(Composable):
 
 @dataclass
 class Box(Arrow):
-    upgrade = Arrow.upgrade
+    cast = Arrow.cast
 
     def __init__(self, name: str, dom: Ob, cod: Ob):
         self.name = name
@@ -341,10 +341,10 @@ We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: 
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.inside == [f]}.
 For the axiom \py{f >> id(y) == f == id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is equal to the arrow with just itself as boxes.
-The main subtlety in the implementation is the class method \py{upgrade} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
+The main subtlety in the implementation is the class method \py{cast} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
 This allows the composition of arrows in a subclass to remain within the subclass, without having to rewrite the method \py{then}.
-This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{upgrade} and return an arrow of the appropriate subclass.
-We also need to fix \py{Box.upgrade = Arrow.upgrade}: when we compose a box then an arrow, we want to return a new arrow object, not a box.
+This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{cast} and return an arrow of the appropriate subclass.
+We also need to fix \py{Box.cast = Arrow.cast}: when we compose a box then an arrow, we want to return a new arrow object, not a box.
 
 \begin{example}\label{example:Circuit}
 We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subclass of \py{Circuit} and \py{Box} defined by a name and a number of qubits.
@@ -353,7 +353,7 @@ We can define \py{Circuit} as a subclass of \py{Arrow} and \py{Gate} as a subcla
 class Circuit(Arrow): pass
 
 class Gate(Box, Circuit):
-    upgrade = Circuit.upgrade
+    cast = Circuit.cast
 
     def __init__(self, name: str, n_qubits: int):
         dom, cod = Ob(str(n_qubits)), Ob(str(n_qubits))
@@ -546,11 +546,11 @@ Although the case of negative indices (i.e. counting backwards from the end of t
 \begin{minted}{python}
 class Arrow(cat.Arrow):
     def dagger(self):
-        return self.upgrade(Arrow(
+        return self.cast(Arrow(
             self.cod, self.dom, [box.dagger() for box in self.inside[::-1]]))
 
     def __getitem__(self, key: int | slice) -> Arrow:
-        if isinstance(key, int): return self.upgrade(self.inside[key])
+        if isinstance(key, int): return self.cast(self.inside[key])
         if key.step not in (-1, 1, None): raise IndexError
         if key.step == -1:
             for i in (key.start, key.stop):
@@ -559,10 +559,10 @@ class Arrow(cat.Arrow):
                 None if i is None else i + 1 for i in (key.stop, key.start))
             return self[start:stop].dagger()
         dom, cod = self[key.start].dom, self[key.stop].cod
-        return self.upgrade(Arrow(dom, cod, self.inside[key]))
+        return self.cast(Arrow(dom, cod, self.inside[key]))
 
 class Box(cat.Box, Arrow):
-    upgrade = Arrow.upgrade
+    cast = Arrow.cast
 
     def __init__(self, name: str, dom: Ob, cod: Ob, is_dagger=False):
         self.is_dagger = is_dagger; cat.Box.__init__(self, name, dom, cod)
@@ -645,10 +645,10 @@ For example, the category $\mathbf{Mat}_\S$ has sums given by elementwise additi
 A commutative-monoid-enriched category with one object is precisely a rig.
 Given a signature $\Sigma$, we construct the free category with sums $F^+(\Sigma)$ by taking the free commutative monoid over each homset of $F(\Sigma)$, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
 
-In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]} as well as its own \py{upgrade} method, which turns an arrow into the sum of just itself.
+In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]} as well as its own \py{cast} method, which turns an arrow into the sum of just itself.
 It is attached to the arrow with \py{Arrow.sum = Sum}.
-The composition of a sum as the sum of the compositions of its terms, we also override \py{Arrow.then} so that \py{f >> (g + h) == Sum.upgrade(f) >> (g + h)} for any arrow \py{f}.
-We define equality so that \py{f == Sum.upgrade(f)}, equality of bags of terms is implemented as equality of lists sorted by an arbitrary ordering.
+The composition of a sum as the sum of the compositions of its terms, we also override \py{Arrow.then} so that \py{f >> (g + h) == Sum.cast(f) >> (g + h)} for any arrow \py{f}.
+We define equality so that \py{f == Sum.cast(f)}, equality of bags of terms is implemented as equality of lists sorted by an arbitrary ordering.
 DisCoPy functors are commutative-monoid-enriched, i.e. a formal sum of arrows can be interpreted as a concrete sum of matrices.
 
 \begin{python}
@@ -661,13 +661,13 @@ class Arrow(cat.Arrow):
             else super().__eq__(other)
 
     def then(self, other: Arrow) -> Arrow:
-        return self.sum.upgrade(self).then(other) if isinstance(other, Sum)\
+        return self.sum.cast(self).then(other) if isinstance(other, Sum)\
             else super().then(other)
 
     @staticmethod
     def zero(dom: Ob, cod: Ob) -> Arrow: return Sum([], dom, cod)
 
-    __add__ = lambda self, other: self.sum.upgrade(self) + other
+    __add__ = lambda self, other: self.sum.cast(self) + other
     __lt__ = lambda self, other: hash(self) < hash(other)  # An arbitrary order.
 
 class Sum(cat.Box, Arrow):
@@ -684,16 +684,16 @@ class Sum(cat.Box, Arrow):
         return self.terms == [other]
 
     def __add__(self, other):
-        if not isinstance(other, Sum): return self + self.upgrade(other)
+        if not isinstance(other, Sum): return self + self.cast(other)
         return Sum(self.terms + other.terms, self.dom, self.cod)
 
     @classmethod
-    def upgrade(cls, old: cat.Arrow) -> Sum:
+    def cast(cls, old: cat.Arrow) -> Sum:
         return old if isinstance(old, cls) else cls([old], old.dom, old.cod)
 
     @inductive
     def then(self, other):
-        terms = [f.then(g) for f in self.terms for g in self.upgrade(other).terms]
+        terms = [f.then(g) for f in self.terms for g in self.cast(other).terms]
         return type(self)(terms, self.dom, other.cod)
 
 Arrow.sum = Sum

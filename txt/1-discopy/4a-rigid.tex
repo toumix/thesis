@@ -108,15 +108,15 @@ class Ob(cat.Ob):
     r = property(lambda self: Ob(self.name, self.z + 1))
 
     @classmethod
-    def upgrade(cls, old: cat.Ob) -> Ob:
+    def cast(cls, old: cat.Ob) -> Ob:
         return old if isinstance(old, cls) else cls(str(old), z=0)
 
 class Ty(monoidal.Ty, Ob):
     def __init__(self, inside=[]):
-        monoidal.Ty.__init__(self, inside=map(Ob.upgrade, inside))
+        monoidal.Ty.__init__(self, inside=map(Ob.cast, inside))
 
-    l = property(lambda self: self.upgrade(Ty(*[x.l for x in self.inside[::-1]])))
-    r = property(lambda self: self.upgrade(Ty(*[x.r for x in self.inside[::-1]])))
+    l = property(lambda self: self.cast(Ty(*[x.l for x in self.inside[::-1]])))
+    r = property(lambda self: self.cast(Ty(*[x.r for x in self.inside[::-1]])))
 \end{minted}
 \end{python}
 
@@ -132,10 +132,10 @@ assert x.r.l == x == x.l.r
 \end{example}
 
 \py{rigid.Ob} and \py{rigid.Ty} are implemented as subclasses of \py{cat.Ob} and \py{monoidal.Ty} respectively, with \py{property} methods (i.e. attributes that are computed on the fly) \py{l} and \py{r} for the left and right adjoints.
-Thanks to the \py{upgrade} method, we do not need to override the \py{tensor} method inherited from \py{monoidal.Ty}.
+Thanks to the \py{cast} method, we do not need to override the \py{tensor} method inherited from \py{monoidal.Ty}.
 In turn, subclasses of \py{rigid.Ty} will not need to override \py{l} and \py{r}.
-Similarly, the \py{rigid.Diagram} class is a subclass of \py{monoidal.Diagram}, thanks to the \py{upgrade} we do not need to reimplement the identity, composition or tensor.
-\py{rigid.Box} is a subclass of \py{monoidal.Box} and \py{rigid.Diagram}, with \py{Box.upgrade = Diagram.upgrade}.
+Similarly, the \py{rigid.Diagram} class is a subclass of \py{monoidal.Diagram}, thanks to the \py{cast} we do not need to reimplement the identity, composition or tensor.
+\py{rigid.Box} is a subclass of \py{monoidal.Box} and \py{rigid.Diagram}, with \py{Box.cast = Diagram.cast}.
 We need to be careful with the order of inheritance however, diagram equality is defined in terms of box equality, so if we had \py{Box.__eq__ = Diagram.__eq__} then checking equality would enter an infinite loop.
 \py{Cup} (\py{Cap}) is a subclass of \py{Box} initialised by a pair of types \py{x, y} such that \py{len(x) == len(y) == 1} \py{x == y.l} (\py{x.l == y}, respectively).
 The class methods \py{cups} and \py{caps} construct diagrams of nested cups and caps by induction, with \py{Cup} and \py{Cap} as a base case.
@@ -152,7 +152,7 @@ class Diagram(monoidal.Diagram):
             >> self.id(self.dom.r) @ self.cups(self.cod, self.cod.r)
 
 class Box(monoidal.Box, Diagram):
-    upgrade = Diagram.upgrade
+    cast = Diagram.cast
 
 class Cup(Box):
     def __init__(self, x: Ty, y: Ty):
@@ -344,16 +344,16 @@ This is still being developed by the DisCoPy community.
 
 \begin{minted}{python}
 class Ob(rigid.Ob):
-    l = r = property(lambda self: self.upgrade(Ob(self.name, (self.z + 1) % 2)))
+    l = r = property(lambda self: self.cast(Ob(self.name, (self.z + 1) % 2)))
 
 class Ty(rigid.Ty, Ob):
     def __init__(self, inside=[]):
-        rigid.Ty.__init__(self, inside=map(Ob.upgrade, inside))
+        rigid.Ty.__init__(self, inside=map(Ob.cast, inside))
 
 class Diagram(rigid.Diagram): pass
 
 class Box(rigid.Box, Diagram):
-    upgrade = Diagram.upgrade
+    cast = Diagram.cast
 
 class Cup(rigid.Cup, Box):
     def dagger(self):

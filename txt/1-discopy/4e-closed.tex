@@ -75,11 +75,12 @@ class Function:
 We can check the axioms for cartesian closed categories hold in $\mathbf{Pyth}$.
 
 \begin{minted}{python}
-x, y, z = map(list, (complex, bool, float))
-f = Function(dom=y, cod=exp(z, x), inside=lambda b: lambda a: abs(a) ** 2 if b else 0)
+x, y, z = [complex], [bool], [float]
+f = Function(dom=y, cod=exp(z, x), inside=lambda y: lambda x: abs(x) ** 2 if y else 0)
+g = Function(dom=x @ y, cod=z, inside=lambda x, y: f(y)(x))
 
-assert (x @ f >> Function.ev(z, x)).curry()(True)(1j) == f(True)(1j)\
-    == (f @ x >> Function.ev(z, x, left=False)).curry(left=False)(True)(1j)
+assert f.uncurry().curry()(True)(1j) == f(True)(1j)
+assert g.curry().uncurry(True, 1j) == g(True, 1j)
 \end{minted}
 \end{example}
 
@@ -106,7 +107,7 @@ DisCoPy implements the types of the closed diagrams with a subclass \py{Exp} of 
 \py{Over} and \py{Under} are two subclasses of \py{Exp}, shortened to \py{x >> y} and \py{y << x}, and attached to the \py{Diagram} class as two static methods \py{over} and \py{under}.
 We need to initalise the type \py{self: Exp} with some list of objects, our only choice is \py{self.inside=[self]}.
 Thus, we need to override the equality and printing methods so that we don't fall into infinite recursion.
-We also need to override the \py{upgrade} method so that the unit law is satisfied, i.e. \py{self @ Ty() == self == Ty() @ self}.
+We also need to override the \py{cast} method so that the unit law is satisfied, i.e. \py{self @ Ty() == self == Ty() @ self}.
 
 \begin{python}
 {\normalfont Implementation of the types in free closed categories.}
@@ -114,14 +115,14 @@ We also need to override the \py{upgrade} method so that the unit law is satisfi
 \begin{minted}{python}
 class Ty(monoidal.Ty):
     @classmethod
-    def upgrade(cls, old: monoidal.Ty) -> Ty:
+    def cast(cls, old: monoidal.Ty) -> Ty:
         return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(*old.inside)
 
     def __pow__(self, other):
         return Exp(self, other) if isinstance(other, Ty) else super().__pow__(other)
 
 class Exp(Ty):
-    upgrade = Ty.upgrade
+    cast = Ty.cast
 
     def __init__(self, base, exponent):
         self.base, self.exponent = base, exponent
@@ -201,7 +202,7 @@ class Functor(monoidal.Functor):
 \end{python}
 
 \begin{example}
-We can check that the axioms hold by applying functors into $\mathbf{Pyth}$.
+We can check the axioms by applying functors into $\mathbf{Pyth}$ and evaluating the result on some test input.
 
 \begin{minted}{python}
 x, y, z = map(Ty, "xyz")
@@ -209,12 +210,12 @@ f, g = Box('f', y, z << x), Box('g', y, z >> x)
 
 F = Functor(
     ob={x: complex, y: bool, z: float},
-    ar={f: lambda b: lambda a: abs(a) ** 2 if b else 0,
-        g: lambda b: lambda a: a + 1j if b else -1j}
+    ar={f: lambda y: lambda x: abs(x) ** 2 if y else 0,
+        g: lambda y: lambda z: z + 1j if y else -1j}
     cod=Category(list[type], Function))
 
-assert F((f @ x >> Ev(z << x)).curry(left=False))(True)(1j) == F(f)(True)(1j)
-assert F((x @ g >> Ev(z >> x)).curry())(True)(1.2) == F(g)(True)(1j)
+assert F(f.uncurry(left=False).curry(left=False))(True)(1j) == F(f)(True)(1j)
+assert F(g.uncurry().curry())(True)(1.2) == F(g)(True)(1.2)
 \end{minted}
 \end{example}
 
@@ -262,13 +263,21 @@ class ClosedDrawing(rigid.Diagram):
 Draw = Functor(lambda x: x, lambda f: f, cod=Category(rigid.Ty, ClosedDrawing))
 Diagram.draw = lambda self, **params: Draw(self).draw(**params)
 
-drawing.equation((f @ x >> Ev(z << x)).curry(left=False), f)
-drawing.equation((x @ g >> Ev(z >> x)).curry(), g)
+f, g, h = Box('f', x, z << y), Box('g', x @ y, z), Box('h', y, x >> z)
+
+drawing.equation(f.uncurry(left=False).curry(left=False), f)
+drawing.equation(h.uncurry().curry(), h)
 \end{minted}
 
 \begin{center}
-\tikzfig{img/closed/left-curry}
-\hfill
 \tikzfig{img/closed/right-curry}
+\hfill
+\tikzfig{img/closed/left-curry}
 \end{center}
+
+\begin{minted}{python}
+drawing.equation(g.curry(left=False).uncurry(left=False), g, g.curry().uncurry())
+\end{minted}
+
+\ctikzfig{img/closed/uncurry}
 \end{example}
