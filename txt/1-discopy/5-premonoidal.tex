@@ -413,7 +413,7 @@ class Ty(cat.Arrow, monoidal.Ty):
     @classmethod
     def cast(cls, old: Arrow | monoidal.Ty) -> Ty:
         return old if isinstance(old, cls) else cls(
-            old.objects if isinstance(old, monoidal.Ty) else old)
+            old.inside if isinstance(old, monoidal.Ty) else old)
 
     tensor = Arrow.then
 

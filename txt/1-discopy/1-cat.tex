@@ -355,11 +355,7 @@ class Circuit(Arrow): pass
 class Gate(Box, Circuit):
     cast = Circuit.cast
 
-    def __init__(self, name: str, n_qubits: int):
-        dom, cod = Ob(str(n_qubits)), Ob(str(n_qubits))
-        Box.__init__(self, name, dom, cod)
-
-X, Y, Z, H = [Gate(name, n_qubits=1) for name in "XYZH"]
+X, Y, Z, H = [Gate(name, Ob('1'), Ob('1')) for name in "XYZH"]
 
 assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Ob('1') == X == Ob('1') >> X
 assert isinstance(Circuit.id(Ob('1')), Circuit) and isinstance(X >> Y, Circuit)

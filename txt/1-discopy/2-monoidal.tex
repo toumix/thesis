@@ -353,7 +353,7 @@ class Ty(Ob):
                 self.inside + sum([other.inside for other in others], [])))
         return NotImplemented  # This will allow whiskering on the left.
 
-    __matmul__ = tensor
+    __matmul__ = __add__ = tensor
     __getitem__ = lambda self, key: self.cast(Ty([self.inside[key]]))
     __pow__ = lambda self, n: self.cast(Ty(n * self.inside))
     __len__ = lambda self: len(self.inside)
@@ -362,18 +362,21 @@ class Ty(Ob):
 
 The implementation of the class \py{Ty} for types (i.e. lists of objects) is straightforward, it is sketched in listing~\ref{listing:Ty}.
 The only subtlety is in the method \py{cast} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to redefine the \py{tensor} method.
+We also use it to define the indexing of a type and its exponential by a natural number.
 
 \begin{example}
 We can define a \py{Qubits} subclass and be sure that the tensor of qubits is still an instance of \py{Qubits}, not merely \py{Ty}.
 
 \begin{minted}[fontsize=\footnotesize]{python}
 class Qubits(Ty):
-    def __init__(self, n: int): self.n = n
-    objects = property(lambda self: n * [Ob('1')])
-    cast = staticmethod(lambda old: Qubits(len(old)))
+    def __init__(self, n: int):
+        super().__init__(self, n * [Ob('1')])
+
     __str__ = lambda self: "qubit ** {}".format(len(self))
+    cast = staticmethod(lambda old: Qubits(len(old)))
 
 qubit = Qubits(1)
+
 assert qubits ** 0 == Qubits(0) and qubits ** 42 == Qubits(42)
 assert isinstance(qubit ** 0, Qubits) and isinstance(qubit ** 42, Qubits)
 \end{minted}
@@ -460,32 +463,41 @@ class Box(cat.Box, Diagram):
 \end{python}
 
 \begin{example}\label{example:circuit-diagrams}
-We can define \py{Circuit} as a subclass of \py{Diagram}. \py{Gate} and \py{Ket} are subclasses of \py{Circuit} and \py{Box}.
+We can define \py{Circuit} as a subclass of \py{Diagram}. \py{Gate}, \py{Bra} and \py{Ket} are subclasses of \py{Box} and \py{Circuit}.
 Now we can compose and tensor gates together and the result will be an instance of \py{Circuit}.
 
 \begin{minted}{python}
 class Circuit(Diagram): pass
 
-class Gate(Circuit, Box):
-    def __init__(self, name: str, n_qubits: int):
-        Box.__init__(self, name, Qubits(n_qubits), Qubits(n_qubits))
+class Gate(Box, Circuit): pass
 
-class Ket(Circuit, Box):
+class Bra(Box, Circuit):
+    def __init__(self, *bits: bool):
+        self.bits, dom, cod = bits, Qubits(len(bits)), Qubits(0)
+        Box.__init__(self, "Bra({})".format(', '.join(map(str, bits))), dom, cod)
+
+    def dagger(self) -> Ket: return Ket(*self.bits)
+
+class Ket(Box, Circuit):
     def __init__(self, *bits: bool):
         self.bits, dom, cod = bits, Qubits(0), Qubits(len(bits))
-        name = "Ket({})".format(', '.join(map(str, bits)))
-        Box.__init__(self, name, dom, cod)
+        Box.__init__(self, "Ket({})".format(', '.join(map(str, bits))), dom, cod)
+
+    def dagger(self) -> Bra: return Bra(*self.bits)
 
 Gate.cast = Ket.cast = Circuit.cast
 
-X, Y, Z, H = [Gate(name, n_qubits=1) for name in "XYZH"]
-CX, sqrt2 = Gate("CX", n_qubits=2), Gate("sqrt(2)", n_qubits=0)
+X, Y, Z, H = [Gate(name, Qubits(1), Qubits(1)) for name in "XYZH"]
+CX, sqrt2 = Gate("CX", Qubits(2), Qubits(2)), Gate("sqrt(2)", Qubits(0), Qubits(0))
 assert isinstance(sqrt2 @ Ket(0, 0) >> H @ qubit >> CX, Circuit)
 \end{minted}
 \end{example}
 
 The \py{monoidal.Functor} class is a subclass of \py{cat.Functor}.
-It overrides the \py{__call__} method to define the image of types and layers, and it delegates to its superclass for the image of objects, boxes and composition.
+It overrides the \py{__call__} method to define the image of types and layers, and it delegates to its superclass for the image of boxes and composition.
+To make the syntax look nicer, we define the domain of the object mapping as types of length one rather than their generating object, e.g. we can define a functor with \py{ob={x: y}} for \py{x = Ty('x')} and \py{y = Ty('y')} rather than \py{ob={x.inside[0]: y}}.
+We also implement some syntactic sugar for the codomain so that we can define e.g. a \py{Tensor}-valued functor with \py{ob={x: n}} rather than \py{ob={x: [n]}} for a \py{x = Ty('x')} and \py{n: int}.
+We make the best use of Python's duck typing so that the codomain can be \py{Ty} or \py{list} indifferently, in both cases computed using the built-in \py{sum} with the \py{Ty()} or \py{[]} as unit.
 
 \begin{python}
 {\normalfont Implementation of monoidal functors.}
@@ -493,15 +505,12 @@ It overrides the \py{__call__} method to define the image of types and layers, a
 class Functor(cat.Functor):
     dom = cod = Category(Ty, Diagram)
 
-    def __call__(self, other):
+    def __call__(self, other : Ty | Diagram) -> Ty | Diagram:
+        if isinstance(other, Ty) and len(other) == 1:
+            result = self.ob[other]
+            return result if isinstance(result, self.cod.ob) else self.cod.ob([result])
         if isinstance(other, Ty):
-            return self.cod.ob(
-                sum([self(x) for x in other.inside], self.ob()))
-        if isinstance(other, Ob):
-            result = self.ob[other] if other in self.ob else self.ob[Ty(other)]
-            if isinstance(result, self.cod.ob): return result
-            # This allows some nice syntactic sugar for the ob mapping.
-            return self.cod.ob([result])
+            return sum([self.ob[x[i]] for i in range(len(other))], self.cod.ob())
         if isinstance(other, Layer):
             return self(layer.left) @ self(layer.box) @ self(layer.right)
         return super().__call__(other)
@@ -512,10 +521,12 @@ Note that the domain the dictionary \py{ob} can be either an \py{Ob} or a \py{Ty
 
 \begin{example}
 We can simulate quantum circuits by applying a functor from \py{Circuit} to \py{Tensor}.
+We override the \py{__call__} method to define the image of \py{Bra} and \py{Ket} on the fly.
+
 \begin{minted}{python}
 class Eval(Functor):
     def __init__(self):
-        ob = {Ob('1'): 2}
+        ob = {qubit: 2}
         ar = {X: [[0, 1], [1, 0]], Y: [[0, -1j], [1j, 0]], Z: [[1, 0], [0, -1]],
               H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]],
               CX: [[i == j for j in [0, 1, 2, 3]] for i in [0, 1, 3, 2]],
@@ -527,6 +538,8 @@ class Eval(Functor):
             if not other.bits: return Tensor.id([])
             head, *tail = other.bits
             return Tensor[complex]([[head, not head]], [], [2]) @ self(Ket(*tail))
+        if isinstance(other, Bra):
+            return self(other.dagger()).dagger()
         return super().__call__(other)
 
 Circuit.eval = Eval()
@@ -720,7 +733,6 @@ We can implement the Born rule as a bubble on $\py{Circ}$ interpreted as element
 We can also implement any classical post-processing as a bubble.
 
 \begin{minted}{python}
-Bra = lambda *bits: Ket(*bits)[::-1]
 Born_rule = lambda x: abs(x) ** 2
 Circuit.measure = lambda self: self.bubble(name="squared_amplitude")
 Tensor.squared_amplitude = lambda self: self.map(Born_rule)

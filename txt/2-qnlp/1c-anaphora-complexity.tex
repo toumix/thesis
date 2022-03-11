@@ -1,0 +1,65 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Anaphora and the quantum complexity of language}
+
+While the meaning of \emph{lexical words} (also called \emph{content} words) such as nouns and verbs are extracted from text data, DisCoCat models allow to encode \emph{functional words} such as pronouns and conjunctions in terms of the Frobenius algebras, a.k.a. spiders, we discussed in section~\ref{subsection:hypergraph}.
+This \emph{Frobenius anatomy of word meanings} was first applied to relative pronouns~\cite{SadrzadehEtAl13,SadrzadehEtAl14}, then to coordination~\cite{Kartsaklis16} as well as intonation~\cite{KartsaklisSadrzadeh15}.
+In previous work with Coecke, de Felice and Marsden~\cite{CoeckeEtAl18a} as well as in a subsequent dissertation~\cite{Toumi18a}, we proposed the use of spiders to model \emph{anaphora}, expressions such as personal pronouns whose meaning depends on another expression in context, connecting the diagrams for sentences together into a diagram for \emph{discourse}.
+This proposal came with an algorithm for constructing a \emph{relational database} from any such discourse diagram and for translating the diagrams of questions into database queries.
+
+This discourse-to-database translation was refined in later work with de Felice and Meichanetzidis~\cite{FeliceEtAl19} where we defined the \emph{functorial question answering} problem as the application of a given DisCoCat model to a question diagram.
+In the case of Boolean-valued models $F : \G \to \mathbf{Mat}_\S$, we proved that this question-answering problem is in fact equivalent to \emph{conjunctive query evaluation}, which is $\mathtt{NP}$-complete by a celebrated theorem of Chandra and Merlin~\cite{ChandraMerlin77}.
+Conjunctive queries can be defined as Peircean diagrams with no bubbles, i.e. only spiders and predicate boxes, or equivalently as the first-order logic formulae with existentials and conjunction but no negation, see Bonchi et. al for a diagrammatic treatment~\cite{BonchiEtAl18}.
+The Chandra-Merlin theorem is based on the construction of a \emph{canonical model} for the given query, i.e. a canonical functor given a diagram, then reducing evaluation to the problem of graph homomorphism between models.
+Once translated in terms of Boolean DisCoCat models, the same result implies that question-answering (i.e. the application of a functor to a diagram) is equivalent to the \emph{entailment problem}: given two sentences, does the truth of one imply that the other?
+
+DisCoCat models with anaphoric spiders are unsatisfying in two opposite ways: they are not expressive enough to encode negation\footnote
+{Note that the results of \cite{FeliceEtAl19} assume that the sentence type is mapped to the unit, i.e. the meaning of a sentence is a scalar in $\B$.
+Preller~\cite{Preller14a,Preller14} takes an alternative, four-valued approach to first-order logic with pregroups where the sentence type is given dimension $2$: a sentence is either true, false, neither or both.}
+but if allow arbitrary anaphora, they are already too expressive to be computed efficiently.
+The first point cannot be avoided if we want our models to be tractable: adding negation to conjunctive queries will generate all of first-order logic, for which question-answering (i.e. model checking) is $\mathtt{PSPACE}$-complete and entailment (i.e. the Entscheidungsproblem) undecidable.
+We may get around the second dissatisfaction by adding restrictions on anaphoric expressions.
+For example, requiring that the corresponding query has \emph{bounded tree-width}~\cite{ChekuriRajaraman00} ensures that question answering is solvable in polynomial time.
+This restriction may be motivated in terms of \emph{bounded short-term memory}: a query with tree-width $k$ corresponds to a first-order logic with $k$ variables, each of which may be bound and reused multiple times.
+We refer to Abramsky and Shah~\cite{AbramskyShah18} for a comonadic approach to such resource bounds.
+
+If we go from Booleans to natural numbers, we get a \emph{counting problem}: we want to know not only whether but \emph{how many} answers a question has in a given model.
+This answer-counting problem is complete for $\mathtt{\#P}$, the generalisation of $\mathtt{NP}$ from decision to counting problems.
+By extension, evaluating DisCoCat models over the real or complex numbers (with finite precision) is also $\mathtt{\#P}$-complete.
+The closest decision complexity class is $\mathtt{PP}$, also called \emph{Majority-P}, the class of problems solvable in probabilistic polynomial time with no error bounds, which amounts to computing the most significant digit of a $\mathtt{\#P}$ problem.
+If we write $\mathtt{P}^\mathtt{X}$ for the class of problems solvable in polynomial time with access to an oracle solving any problem of $\mathtt{X}$ in one step, we can use a binary search to prove $\mathtt{P}^\mathtt{PP} = \mathtt{P}^\mathtt{\#P}$.
+One indication for how much harder counting is compared to decision problems is \emph{Toda's theorem}~\cite{Toda91}.
+It states that $\mathtt{PH} \sub \mathtt{P}^\mathtt{\#P}$ where $\mathtt{PH}$ is the \emph{polynomial hierarchy}, the union of all towers of $\mathtt{NP}$-oracles, i.e. $\mathtt{PH} = \cup_{n \in \N} \Sigma_n$ where $\Sigma_0 = \mathtt{P}$ and $\Sigma_{n + 1} = \mathtt{NP}^{\Sigma_n}$.
+Intuitively, a $\mathtt{PP}$-oracle for counting problems is at least as powerful than any tower of $\mathtt{NP}$-oracles for decision problems.
+
+In a beautifully simple theorem, Aaronson~\cite{Aaronson05} shows that $\mathtt{PP} = \mathtt{PostBQP}$, the class of problems solvable in polynomial time by a quantum computer given \emph{post-selection}, the ability to make the possible necessary and to choose what outcome we get from a quantum measurement\footnote
+{Assuming the many-world hypothesis, Aaronson~\cite{Aaronson05} gives a simple method to achieve post-selection: committing suicide if we do not get the desired outcome.
+A less brutal method is to keep on trying until we do, in exponential time on average.}.
+In one direction, this equality says that the evaluation of a post-selected quantum circuit can be reduced to tensor contraction: quantum gates, bras and kets are nodes, the qubits connecting them are edges.
+In the other, it means that we can use post-selected quantum computation to contract any tensor network, or equivalently to evaluate any monoidal functor from a free compact closed category into $\mathbf{Mat}_\C$.
+The related counting class $\mathtt{\#P}$ was originally introduced by Valiant~\cite{Valiant79} to show the completeness the \emph{matrix permanent}.
+Aaronson and Arkhipov~\cite{AaronsonArkhipov11} then related it to the complexity of \emph{boson sampling}, a restricted model of quantum computation which they prove cannot be simulated classically unless the \emph{polynomial hierarchy collapses to the third level}.
+Although this is less unlikely than $\mathtt{P} = \mathtt{NP}$, i.e. a collapse at level zero, this is still believed to be a strong indication that quantum computers cannot be efficiently classically simulated.
+
+Removing post-selection from $\mathtt{PostBQP}$ we get $\mathtt{BQP}$, bounded-error quantum polynomial time, arguably the largest class of decision problems that a physical machine\footnote
+{By a physical machine we mean a machine that obeys the laws of quantum mechanics.
+This excludes machines exploiting features of general relativity such as closed time-like curves (CTCs).
+Using the CTCs of Deutsch~\cite{Deutsch91} a quantum computer can solve all of $\mathtt{PSPACE}$ in polynomial time, while the more restricted CTCs of Lloyd et al.~\cite{LloydEtAl11,LloydEtAl11a} solve all of $\mathtt{PostBQP}$ in polynomial time.
+See Pinzani, Gogioso and Coecke~\cite{PinzaniEtAl19} for a diagrammatic treatment of time-travel in terms of traced categories.}
+can solve efficiently.
+Its classical analog $\mathtt{BPP}$ (bounded-error probabilistic polynomial time) is contained in $\mathtt{BQP}$ because quantum computers can simulate classical ones efficiently, but whether the containment is strict is an open question.
+The best we can do is define $\mathtt{BQP}$-complete problems with \emph{circuit approximation} as the canonical example: given the description of a quantum circuit, decide whether measuring the first qubit yields a one, with the promise that the probability for this is bounded away from a half.
+Arad and Landau~\cite{AradLandau10} reformulate this in terms of the additive approximation of tensor networks, i.e. the additive approximation of a monoidal functor into $\mathbf{Mat}_\C$.
+In one direction, their reduction tells us that we can approximate tensor networks efficiently with a quantum computer.
+In the other, it means that if we could approximate such functors with a classical computer then we could also simulate any quantum circuit efficiently.
+
+What do these complexity results imply for evaluating DisCoCat models on quantum computers?
+First, that we cannot hope to evaluate them exactly unless we discover (safe and efficient) time travel and prove $\mathtt{PostBQP} = \mathtt{BQP}$.
+Second, that we can evaluate them efficiently with a quantum computer, up to additive approximation.
+Third, that if we could do the same with classical computers then they would turn out to be as powerful as quantum computers after all.
+We would automatically get a classical Shor algorithm that can outperform the best number sieves mathematicans have come up with, and a classical Grover algorithm that can find a needle in a haystack.
+Thus, by interpreting pregroup grammars in terms of tensor networks, DisCoCat models provide a way to reformulate quantum computing in terms of natural language processing.
+In short, if $\mathtt{BPP} \neq \mathtt{BQP}$ then quantum computers would allow us to (approximately) answer exponentially bigger questions than classical computers can.
+The idea of using quantum circuits to evaluate DisCoCat models was first introduced by Zeng and Coecke~\cite{ZengCoecke16}, where they get a quadratic advantage on a more restricted classification task using Grover's algorithm as subroutine.
+Given the size of classical NLP models today, empirical evidence of quantum advantage for natural language processing will most probably require fault-tolerant quantum computers with millions of qubits, if not billions.
+In the meantime, we are left to explore the possibilities offered by the small noisy quantum computers of today.

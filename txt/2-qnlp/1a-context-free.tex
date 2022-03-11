@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\subsection{Formal grammars and ambiguity}
+\subsection{Chomskyan grammars, parsing and ambiguity}\label{subsection:chomsky}
 
 The word ``grammar'' comes from the ancient Greek ``$\rm{\gamma \rho\acute{\alpha}\mu\mu\alpha}$'' (line of writing), it is cognate to the words ``glamour'' and ``grimoire'' \cite{RuppliThorel05, Davies10, Lambek14}.
 Indeed in Middle Age Europe, (Latin) grammar was such a rare skill as to be associated with magic.
@@ -47,8 +47,9 @@ For example, every CSG is strongly equivalent to a non-contracting grammar (itse
 
 For a less trivial example, every formal grammar $G$ is strongly equivalent to a \emph{lexicalised} one, where the rules are a union $R = D \cup R'$ of \emph{dictionary entries} $D \sub V \times X^\star$ assigning possible types to each word and production rules $R' \sub X^\star \times X^\star$ not involving the vocabulary.
 Indeed, given a grammar $G$ we can add a new basic type $w'$ and a dictionary entry $w \to w'$ for each word $w \in V$ to get a lexicalised grammar $G'$.
-Every grammatical structure $f : w_1 \dots w_n \to s$ in $G'$ factorises as $f = d \fcmp f'$ for a tensor of dictionary entries $d : w_1 \dots w_n \to w_1' \dots w_n'$ and a diagram $f' : w_1' \dots w_n' \to s$ with no dictionary entries, which is isomorphic to a grammatical structure in $G$.
+Every grammatical structure $f : w_1 \dots w_n \to s$ in $\G'$ factorises as $f = d \fcmp f'$ for a tensor of dictionary entries $d : w_1 \dots w_n \to w_1' \dots w_n'$ and a diagram $f' : w_1' \dots w_n' \to s$ with no dictionary entries, which is isomorphic to a grammatical structure in $\G$.
 Once the grammar is lexicalised, we usually draw dictionary entries as boxes labeled by the corresponding word and we omit the wires for terminal symbols.
+We also assume that any \emph{semantic functor} $F : \G \to C$ from a lexicalised grammar $\G$ to some concrete category $C$ maps dictionary entries to states, i.e. $F(w) = 1$ for all words $w \in V$, which  implies that the interpretation of any grammatical structure is a also state $F(f) : 1 \to F(s)$.
 
 Now unless $\mathtt{P} = \mathtt{NP} = \mathtt{PSPACE}$, there can be no efficient parser for context-sensitive grammars in general.
 This motivates the introduction of \emph{context-free grammars} (CFGs, also called \emph{type-2} grammars) where the right-hand side of each rule has length one.
@@ -83,7 +84,7 @@ All MCSGs proposed so far have fallen into one of three classes of weak equivale
 Thus, there is reasonable consensus over the kind of computational power required to parse human language, at least up to weak equivalence.
 However, there is no consensus yet on the syntactic way this computational power should be expressed: apart from some isolated results~\cite{SchifferMaletti21}, there is no classification of MCSGs up to strong equivalence.
 
-Whether two grammars are strongly equivalent matters when we want to define their \emph{semantics}, i.e. we want to compute the interpretation of a sentence given its grammatical structure.
+Whether two grammars are strongly equivalent matters when we want to define their semantics, i.e. we want to compute the interpretation of a sentence given its grammatical structure.
 Indeed, weakly equivalent grammars may assign different sets of possible parsing to the same ambiguous sentence, which will correspond to different interpretations.
 For example, we can apply a monoidal functor from a CFG to a category of neural networks, which yields a \emph{recursive neural network} that computes the meaning of a sentence given its parse tree~\cite{SocherEtAl11,SocherEtAl13}.
 Different trees will result in different network architectures, so how do we know we have picked the right one?
