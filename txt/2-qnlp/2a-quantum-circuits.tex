@@ -1,0 +1,339 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Quantum channels}
+
+Thus, this naive definition of QNLP models is unsatisfactory from a computational point of view: if we post-select on all the qubits we'll have to wait an exponentially long time to even approximate an answer.
+It is also unsatisfactory from a category theoretic point of view.
+It would be nice to factorise our DisCoCat model $F : \G \to \mathbf{Mat}_\C$ as a QNLP model $F_Q : \G \to \mathbf{Circ}$ followed by an evaluation functor $\mathbf{Circ} \to \mathbf{Mat}_\C$.
+But what we can actually execute on a quantum machine is the Born rule of the result, which is not a functor: the squared amplitude of a composition is not necessarily the composition of the squared amplitudes.
+Killing two birds with one stone, we can overcome both limitation (computational and theoretical) if we extend our definition of $\mathbf{Circ}$ from \emph{pure} to \emph{mixed} quantum circuits.
+In practice, what our QNLP algorithm is missing is the ability to do nothing, i.e. not to measure a qubit, in theory our category $\mathbf{Circ}$ is missing a box for \emph{discard}.
+As soon as we leave the realm of pure quantum circuits, quantum states cannot be represented as vectors anymore, we need \emph{density matrices}.
+We cannot interpret quantum circuits as unitary matrices anymore, we need \emph{completely-positive trace-preserving} (CPTP) maps, also called \emph{quantum channels}.
+As a bonus, going from pure to mixed and from unitaries to channels gives us enough room to talk about both classical and quantum processes in the same concrete category $\mathbf{Channel}$.
+
+We will adapt the definition of \emph{classical-quantum maps} (cq-maps) from Coecke and Kissinger~\cite[Chapter~8]{CoeckeKissinger17},
+Abstractly, it is a simplification of the $\mathbf{CP^\star}$ construction from Coecke, Heunen and Kissinger~\cite{CoeckeEtAl14a}, which itself generalises the notion of finite-dimensional C$^\star$-algebra to arbitrary dagger compact closed categories.
+Concretly, we define the category $\mathbf{CQMap}$ with objects given by pairs of natural numbers\footnote
+{We actually implement an equivalent category where objects are pairs of lists of natural numbers $(a, b) \in \N^\star \times \N^\star$ and the arrows are tensors rather than matrices.} $(a, b) \in \N \times \N$ for the classical and quantum dimensions of the system.
+The arrows $f : (a, b) \to (c, d)$ are given by $(a b^2) \times (c d^2)$ complex matrices, with composition given by matrix multiplication and tensor given by the following diagram:
+\ctikzfig{img/qnlp/channel-tensor}
+A \emph{quantum channel} is a cq-map subject to the following two conditions:
+\begin{itemize}
+\item \emph{complete positivity} (CP), there is a dimension $x \in \N$ and an $(a b) \times (a b x)$ matrix $g$ such that:
+% \ctikzfig{img/qnlp/complete-positivity} TODO
+\item \emph{trace preservation} (TP) also called \emph{causality}:
+% \ctikzfig{img/qnlp/trace-preservation} TODO
+\end{itemize}
+
+There is a functor $\mathtt{double} : \mathbf{Mat}_\C \to \mathbf{CQMap}$ which sends a dimension $n$ to the pair $(1, n)$ and a complex matrix $f$ to its \emph{double} $\widehat{f}$, the cq-map given by tensoring with its conjugate $\widehat{f} = f \otimes f^\star$.
+The double of a scalar $s : 1 \to 1$ gives the same result as the Born rule $\hat{s} = s \bar{s} = \vert s \vert^2$.
+The double of any matrix $f : m \to n$ automatically satisfies the complete-positivity condition, it satisfies causality iff $f$ is an isometry, i.e. $f^\dagger \fcmp f = \id(n)$.
+Furthermore the functor $\mathtt{double}$ is faithful up to a global phase~\cite[Proposition~6.6]{CoeckeKissinger17}.
+A cq-map is called \emph{pure} if it's in the image of $\mathtt{double}$ and \emph{mixed} otherwise.
+
+There is also a functor $\mathtt{single} : \mathbf{Mat}_\R \to \mathbf{CQMap}$ which sends a dimension $n$ to the pair $(1, n)$ and a real matrix $f : m \to n$ to itself.
+Again, this is always completely positive and it satisfies causality iff $f$ is a stochastic matrix, i.e. all its columns sum to one.
+For every dimension $x \in \N$, there are channels $\mathtt{measure}(x) : (1, x) \to (x, 1)$ and $\mathtt{encode}(x) : (x, 1) \to (1, x)$ with underlying matrix given by $\mathtt{spider}_{2, 1}(x)$ and its dagger.
+For every pair of dimensions $a, b \in \N$, we can also define $\mathtt{discard}(a, b) : (a, b) \to (1, 1)$ and $\mathtt{mixed_state}(a, b) : (1, 1) \to (a, b)$ with underlying matrix given by $\mathtt{spider}_{1, 0}(a) \otimes \mathtt{cup}(b)$ and its dagger.
+Thus, the intuition for the causality condition is that the future cannot signal to the past: if we apply a quantum process then discard the output, we might as well have discarded the input.
+
+\begin{python}
+{\normalfont Implementation of the category $\mathbf{CQMap}$ with \py{CQ} as objects and \py{Channel} as arrows.}
+
+\begin{minted}{python}
+@dataclass
+class CQ:
+    classical: list[int] = []
+    quantum: list[int] = []
+
+    def tensor(self, other: CQ) -> CQ:
+        return CQ(self.classical + other.classical, self.quantum + other.quantum)
+
+    def downgrade(self) -> list[int]:
+        return self.classical + 2 * self.quantum
+
+    __matmul__ = tensor
+
+C, Q = lambda x: CQ(x, []), lambda x: CQ([], x)
+
+
+@dataclass
+class Channel(Composable, Tensorable):
+    inside: Tensor[complex]
+    dom: CQ
+    cod: CQ
+
+    @staticmethod
+    def id(x: CQ) -> Channel: return Channel(x, x, Tensor[complex].id(x.downgrade()))
+
+    def dagger(self) -> Channel: return Channel(self.inside.dagger(), self.cod, self.dom)
+
+    @inductive
+    def then(self, other: Channel) -> Channel:
+        assert self.cod == other.dom
+        return Channel(self.inside >> other.inside, self.dom, other.cod)
+
+    @inductive
+    def tensor(self, other: Channel) -> Channel:
+        inside = ...  # Given by the diagram above.
+        return Channel(inside, self.dom @ other.dom, self.cod @ other.cod)
+
+    @staticmethod
+    def double(f: Tensor[complex]) -> Channel:
+        return Channel(f @ f.map(lambda x: x.conjugate()), Q(f.dom), Q(f.cod))
+
+    @staticmethod
+    def single(f: Tensor[float]) -> Channel:
+        return Channel(Tensor[complex](f.inside, f.dom, f.cod), C(f.dom), C(f.cod))
+
+    @staticmethod
+    def measure(x: list[int]) -> Channel:
+        return Channel(Tensor[complex].spider(2, 1, x), Q(x), C(x))
+
+    @staticmethod
+    def encode(x: list[int]) -> Channel:
+        return Channel(Tensor[complex].spider(1, 2, x), C(x), Q(x))
+
+    @staticmethod
+    def discard(x: CQ) -> Channel:
+        inside = Tensor[complex].spider(1, 0, x.classical)\
+            @ Tensor[complex].cups(x.quantum, x.quantum[::-1])
+        return Channel(inside, x, CQ())
+\end{minted}
+\end{python}
+
+The category $\mathbf{CQMap}$ inherits a dagger compact closed structure from that of $\mathbf{Mat}_\C$.
+The swaps (cups, caps) for classical-quantum systems $(a, b) \in \N \times \N$ are given by tensoring a single swap (cup, cap) for $a$ and a double swap (cup, cap) for $b$.
+It also has sums given by element-wise addition, note however that the functor $\mathtt{double}$ does not preserve sums, i.e. $\widehat{f + f'} \neq \widehat{f} + \widehat{f'}$ in general.
+Crucially, the subcategory $\mathbf{Channel}$ of CPTP maps is \emph{not} compact-closed because caps are not causal.
+It does not have sums in general, the sum of two channels is not causal but any convex combination is.
+
+\begin{python}
+{\normalfont Implementation of $\mathbf{CQMap}$ as a compact closed category with sums.}
+
+\begin{minted}{python}
+CQ.l = CQ.r = property(lambda self: self)
+
+for attr in ("swap", "cups", "caps"):
+    def channel_method(left: CQ, right: CQ) -> Channel:
+        tensor_method = getattr(Tensor, attr)
+        return Channel.single(tensor_method(left.classical, right.classical))\
+            @ Channel.double(tensor_method(left.quantum, right.quantum))
+    setattr(Channel, attr, channel_method)
+
+def __add__(self, other: Channel) -> Channel:
+    assert self.dom == other.dom and self.cod == other.cod
+    return Channel(self.inside + other.inside, self.dom, self.cod)
+
+@staticmethod
+def zero(dom: CQ, cod: CQ) -> Channel:
+    return Channel(Tensor.zero(dom.dowgrade(), cod.downgrade()), dom, cod)
+
+Channel.__add__, Channel.zero = __add__, zero
+\end{minted}
+\end{python}
+
+\subsection{Quantum circuits}
+
+We're now ready to define $\mathbf{Circ}$ as a free symmetric monoidal category with a monoidal functor $\mathbf{Circ} \to \mathbf{CQMap}$.
+We implement \py{Circuit} as a subclass of \py{Diagram} with objects generated by two families of objects \py{Digit(n)} and \py{Qudit(n)} indexed by natural numbers \py{n > 1}, where \py{bit = Ty(Digit(2))} and \py{qubit = Ty(Qudit(2))}.
+The class \py{Gate} is a subclass of \py{Box} and \py{Circuit} with an attribute \py{array} which will define its interpretation as a pure circuit, i.e. a unitary matrix.
+We also have boxes for \py{Ket} and its dagger \py{Bra}, \py{Measure} and its dagger \py{Encode}, \py{Discard} and its dagger \py{MixedState}.
+The evaluation of any such circuit is always completely-positive~\cite[Corollary~8.6]{CoeckeKissinger17}.
+It is a channel, i.e. it is furthermore causal, precisely when the circuit does not contain any instance of \py{Bra}~\cite[Theorem~8.96]{CoeckeKissinger17}.
+In fact, using \emph{Stinespring dilation} we can show that the evaluation of the subcategory of such causal circuits defines a full monoidal functor $\mathbf{CausalCirc} \to \mathbf{Channel}$.
+More explicitly, every quantum channel $f : (a, b) \to (c, d)$ can be written as:
+$$f = \mathtt{double}(\vert 0 \rangle_n) \otimes \mathtt{encode}(a) \otimes b \s \fcmp \s \mathtt{double}(g) \s \fcmp \s \otimes \mathtt{discard}(n) \otimes \mathtt{measure}(c) \otimes d$$
+% TODO
+for some $n$-dimensional ancilla $\vert 0 \rangle_n$ and an $(n a b) \times (n c d)$ unitary matrix $g$.
+This gives us a general intuition for what it means to take a shot at a quantum circuit: 1) we prepare some qubits in the zero state, 2) we perform classically-controlled unitary gates, 3) we measure some of the qubits and discard the others.
+
+\begin{python}
+{\normalfont Implementation of the category $\mathbf{Circ}$ with \py{Digit} and \py{Qudit} as generating objects and \py{Circuit} as arrows.}
+
+\begin{minted}{python}
+class Digit(Ob):
+    def __init__(self, n: int):
+        self.n = n
+        super().__init__(name="bit" if n == 2 else "Digit({})".format(n))
+
+class Qudit(Ob):
+    def __init__(self, n: int):
+        self.n = n
+        super().__init__(name="qubit" if n == 2 else "Qudit({})".format(n))
+
+bit, qubit = Ty(Digit(2)), Ty(Qudit(2))
+
+class Circuit(Diagram): pass
+
+class Gate(Box, Circuit):
+    def __init__(self, name: str, dom: Ty, cod: Ty,
+                 array: list[list[int]], is_dagger=False):
+        self.array = array
+        Box.__init__(self, name, dom, cod, is_dagger=is_dagger)
+
+    def dagger(self) -> Gate: return Gate(
+        self.name, self.cod, self.dom, self.array, is_dagger=not self.is_dagger)
+
+class Bra(Box, Circuit):
+    def __init__(self, *digits: int, base=2):
+        self.digits, self.base = digits, base
+        name = "Bra({}, base={})".format(', '.join(map(str, digits)), base)
+        Box.__init__(self, name, qubit ** len(digits), qubit ** 0)
+
+    def dagger(self) -> Ket: return Ket(*self.digits, base=self.base)
+
+class Ket(Box, Circuit):
+    def __init__(self, *digits: int, base=2):
+        self.digits, self.base, name = digits, base
+        name = "Ket({}, base={})".format(', '.join(map(str, digits)), base)
+        Box.__init__(self, name, qubit ** 0, qubit ** len(digits))
+
+    def dagger(self) -> Bra: return Bra(*self.digits, base=self.base)
+
+class Encode(Box, Circuit):
+    def __init__(self, dom=bit):
+        obj, = dom.inside
+        assert isinstance(obj, Digit)
+        Box.__init__("Encode({})".format(n), dom, Ty(Qudit(obj.n)))
+
+    def dagger(self) -> Measure: return Measure(self.cod)
+
+class Measure(Box, Circuit):
+    def __init__(self, dom=qubit):
+        obj, = dom.inside
+        assert isinstance(obj, Qudit)
+        Box.__init__("Measure({})".format(n), dom, Ty(Digit(obj.n)))
+
+    def dagger(self) -> Encode: return Encode(self.cod)
+
+class Discard(Box, Circuit):
+    def __init__(self, x: Ty):
+        Box.__init__("Discard({})".format(x), x, Ty())
+
+    def dagger(self) -> MixedState: return MixedState(self.dom)
+
+class MixedState(Box, Circuit):
+    def __init__(self, x: Ty):
+        Box.__init__("MixedState({})".format(x), Ty(), x)
+
+    def dagger(self) -> Discard: return Discard(self.cod)
+\end{minted}
+\end{python}
+
+As discussed in example~\ref{example:pivotal-circuit}, the category $\mathbf{Circ}$ also has a dagger compact closed structure where the cups and caps for qudits are given by scaled Bell states and post-selected Bell measurements respectively.
+The cups for digits are given by the result of measuring a scaled Bell state, or equivalently as an (unnormalised) correlated probability distributions, the caps can be thought of as classical post-selection on two digits being equal.
+We can freely add sums to $\mathbf{Circ}$ and execute (simulate) a formal sum of circuits by executing (simulating) each circuit and adding up the results.
+If we can take formal sums, there's no reason not to also take linear combinations of circuits.
+Via the Born rule, we can already define positive real scalars as the evaluation of pure quantum gates on zero qubits, such as the $\sqrt{2}$ scalars of our first example~\ref{example:circuit-alive-loves-bob}.
+Before we can encode arbitrary complex matrices as circuits, what we're missing are \emph{mixed scalars} which get applied after the Born rule.
+
+\begin{python}
+{\normalfont Implementation of mixed scalars in $\mathbf{Circ}$.}
+
+\begin{minted}{python}
+class Sqrt(Gate):
+    def __init__(self, x: float):
+        super().__init__("$\\sqrt{{{}}})$".format(x), Ty(), Ty(), array=[[math.sqrt(x)]])
+
+class Scalar(Box, Circuit):
+    def __init__(self, z: complex, is_pure=False):
+        self.z, self.is_pure = z, is_pure
+        Box.__init__(self, "Scalar({}, is_pure={})".format(z, is_pure), Ty(), Ty())
+\end{minted}
+\end{python}
+
+\begin{python}
+{\normalfont Implementation of the subcategory of $\mathbf{Circ}$ spanned by qubits as a compact closed category.}
+
+\begin{minted}{python}
+Digit.l = Digit.r = Qudit.l = Qudit.r = property(lambda self: self)
+
+@staticmethod
+@nesting
+def cups(left: Ty, right: Ty):
+    if left == right == qubit: return Sqrt(2) @ Ket(0, 0) >> H @ qubit >> CX
+    raise NotImplementedError
+
+Circuit.cups, Circuit.caps = cups, lambda left, right: cups(left, right).dagger()
+\end{minted}
+\end{python}
+
+\py{Circuit} comes with a Boolean property \py{is_pure} which defines the subcategory of pure circuits, i.e. that we can interpret as \py{Tensor}.
+The \py{eval} method now comes with an optional Boolean argument \py{mixed}: if \py{not mixed} and \py{is_pure} we apply a \py{Tensor}-valued functor, otherwise a \py{Channel}-valued functor.
+The optional \py{backend} argument allow to go from numerical simulation to quantum hardware: it translates a circuit diagram with only \py{Digit} outputs (i.e. all qudits have been measured or discarded) into a \py{pytket.Circuit} before executing it on a quantum device.
+As of today, DisCoPy does not implement the execution of \py{Encode} on quantum hardware yet, this would require to decide which quantum gate to perform depending on the result of a previous measurement.
+Although simulating qudits makes no real difference than simulating qubits, we can only execute qubit circuits yet.
+
+\begin{python}
+{\normalfont Implementation of the \py{Circuit.eval} method.}
+
+\begin{minted}{python}
+for cls in (Gate, Bra, Ket):                  setattr(cls, "is_pure", True)
+for cls in (Encode, Measure, Discard, Mixed): setattr(cls, "is_pure", False)
+
+Circuit.is_pure = property(lambda self:
+    all(box.is_pure for box in self.boxes)
+    and all(isinstance(obj, Qudit) for obj in (self.dom @ self.cod).inside))
+
+class PureEval(Functor):
+    ob = ar = {}
+    dom, cod = Category(Ty, Circuit), Category(list[int], Tensor[complex])
+
+    def __call__(self, other):
+        if isinstance(other, Qudit): return [other.n]
+        if isinstance(other, Gate) and not other.is_dagger:
+            return Tensor[complex](other.array, self(other.dom), self(other.cod))
+        if isinstance(other, Bra): return self(other.dagger()).dagger()
+        if isinstance(other, Ket):
+            if not other.digits: return Tensor.id([])
+            if len(other.digits) == 1:
+                inside = [[i == other.digits[0] for i in range(other.base)]]
+                return Tensor[complex](inside, [], [other.base])
+            head, *tail = other.digits
+            return self(Ket(head, base=other.base)) @ self(Ket(*tail, base=other.base))
+        return super().__call__(other)
+
+class MixedEval(Functor):
+    ob = ar = {}
+    dom, cod = Category(Ty, Circuit), Category(CQ, Channel)
+
+    def __call__(self, other):
+        if isinstance(other, Qudit): return Q([other.n])
+        if isinstance(other, Digit): return C([other.n])
+        if isinstance(other, Scalar): return Channel([[
+            abs(other.z) ** 2 if other.is_pure else other.z]], CQ(), CQ())
+        if isinstance(box, (Gate, Bra, Ket)): return Channel.double(PureEval()(box))
+        if isinstance(box, Encode): return Channel.encode(self(box.dom))
+        if isinstance(box, Measure): return Channel.measure(self(box.dom))
+        if isinstance(box, Discard): return Channel.discard(self(box.dom))
+        if isinstance(box, MixtedState): return self(box.dagger()).dagger()
+        return super().__call__(other)
+
+def eval(self, mixed=True, backend=None) -> Tensor | Channel:
+    if backend is not None: ...  # Interface with pytket.
+    return PureEval()(self) if not mixed and self.is_pure else MixedEval()(self)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can simulate a Bell test experiment by applying the evaluation functor $\mathbf{Circ} \to \mathbf{Channel}$.
+
+\begin{minted}{python}
+H = Gate('H', qubit, qubit, [[1 / sqrt(2), 1 / sqrt(2)],
+                             [1 / sqrt(2), -1 / sqrt(2)]])
+CX = Gate('CX', qubit ** 2, qubit ** 2, [[1, 0, 0, 0],
+                                         [0, 1, 0, 0],
+                                         [0, 0, 0, 1],
+                                         [0, 0, 1, 0]])
+circuit = Ket(0, 0) >> H @ qubit >> CX >> Measure() @ Measure()
+circuit.draw()
+\end{minted}
+\ctikzfig{img/qnlp/bell-test}
+\begin{minted}{python}
+assert circuit.eval() == Channel([[.5, 0, 0, .5]], CQ(), C([2, 2]))
+\end{minted}
+\end{example}
+
+There is a faithful monoidal functor $\mathtt{enc} : \mathbf{Tensor}_\C \to \mathbf{Circ}$?

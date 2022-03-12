@@ -168,20 +168,19 @@ class Diagram(monoidal.Diagram):
             else self @ exponent >> Ev(base << exponent)
 
 class Ev(Box):
-    def __init__(self, inside: Exp):
-        self.base, self.exponent, self.left\
-            = inside.base, inside.exponent, isinstance(inside, Over)
-        dom, cod = self.exponent @ inside, self.base if self.left\
-            else inside @ self.exponent, self.base
-        super().__init__("Ev" + str(exp), dom, cod)
+    def __init__(self, x: Exp):
+        self.base, self.exponent, self.left = x.base, x.exponent, isinstance(x, Over)
+        dom, cod = self.exponent @ x, self.base if self.left\
+            else x @ self.exponent, self.base
+        super().__init__("Ev" + str(x), dom, cod)
 
 class Curry(Box):
-    def __init__(self, inside: Diagram, n=1, left=True):
-        self.inside, self.n, self.left = inside, n, left
+    def __init__(self, diagram: Diagram, n=1, left=True):
+        self.diagram, self.n, self.left = diagram, n, left
         name = "Curry({}, {}, {})".format(diagram, n, left)
-        dom, cod = (inside.dom[n:], inside.dom[:n] >> inside.cod) if left\
-            else (inside.dom[:len(inside.dom) - n],
-                  inside.cod << inside.dom[len(inside.dom) - n:])
+        dom, cod = (diagram.dom[n:], diagram.dom[:n] >> diagram.cod) if left\
+            else (diagram.dom[:len(diagram.dom) - n],
+                  diagram.cod << diagram.dom[len(diagram.dom) - n:])
         super().__init__(name, dom, cod)
 
 class Functor(monoidal.Functor):
@@ -194,7 +193,7 @@ class Functor(monoidal.Functor):
             return self.cod.ar.under(self(other.base), self(other.exponent))
         if isinstance(other, Curry):
             return self.cod.ar.curry(
-                self(other.inside), len(self(other.cod.exponent)), other.left)
+                self(other.diagram), len(self(other.cod.exponent)), other.left)
         if isinstance(other, Ev):
             return self.cod.ar.ev(self(other.base), self(other.exponent), other.left)
         return super().__call__(other)

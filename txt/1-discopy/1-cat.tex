@@ -564,7 +564,7 @@ class Box(cat.Box, Arrow):
         self.is_dagger = is_dagger; cat.Box.__init__(self, name, dom, cod)
 
     def dagger(self):
-        return Box(self.name, self.cod, self.dom, not self.is_dagger)
+        return type(self)(self.name, self.cod, self.dom, not self.is_dagger)
 
 class Functor(cat.Functor):
     dom = cod = Category(Ob, Arrow)
@@ -692,6 +692,9 @@ class Sum(cat.Box, Arrow):
         terms = [f.then(g) for f in self.terms for g in self.cast(other).terms]
         return type(self)(terms, self.dom, other.cod)
 
+    def dagger(self):
+        return type(self)([f.dagger() for f in self.terms], self.cod, self.dom)
+
 Arrow.sum = Sum
 
 class Functor(cat.Functor):
@@ -748,9 +751,9 @@ For example, we can define a bubble on the category $\mathbf{Mat}_\B$ of Boolean
 \end{example}
 
 DisCoPy implements free bubbles with \py{Bubble}, a subclass of \py{Box} which we attach to the arrow class with \py{Arrow.bubble = Bubble}.
-\py{Bubble} has attributes \py{inside: Arrow}, \py{dom: Ob} and \py{cod: Ob} as well as \py{name: str}.
-DisCoPy functors interpret bubbles with \py{name = "method"} as the application of \py{method} in the codomain category.
-The resulting syntax with bubbles is strictly more expressive than that of free categories alone.
+\py{Bubble} has attributes \py{diagram: Arrow} as well as optional arguments \py{dom: Ob}, \py{cod: Ob} and \py{method: str}.
+DisCoPy functors interpret bubbles as the application of \py{method} in the codomain category, by default we send bubbles to bubbles.
+The resulting syntax is strictly more expressive than that of free categories alone.
 For example, element-wise negation cannot be expressed as a composition: there is no matrix $N : x \to x$ in $\mathbf{Mat}_\B$ such that $N \fcmp f = \bar{f}$ for all $f : x \to y$.
 This is also the case for the element-wise application of any non-linear function such as the rectified linear units (ReLU) used in machine learning.
 As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
@@ -760,23 +763,25 @@ As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of para
 
 \begin{minted}{python}
 class Bubble(Box):
-    def __init__(self, inside: Arrow, dom=None, cod=None, name="bubble"):
-        self.inside, dom, cod = inside, dom or inside.dom, cod or inside.cod
-        name = "Bubble({}, {}, {}, {})".format(inside, dom, cod, name)
-        super().__init__(name, dom, cod)
+    def __init__(self, diagram: Arrow, dom=None, cod=None, method="bubble", is_dagger=False):
+        self.diagram, self.method = diagram, method
+        dom, cod = dom or diagram.dom, cod or diagram.cod
+        name = "Bubble({}, {}, {}, {})".format(diagram, dom, cod, method)
+        super().__init__(name, dom, cod, **params)
 
-    @property
-    def is_id_on_objects(self) -> bool:
-        return (self.dom, self.cod) == (self.inside.dom, self.inside.cod)
+    dagger = lambda self: type(self)(
+        self.diagram, self.dom, self.cod, self.method, is_dagger=not self.is_dagger)
+    is_id_on_objects = property(lambda self:
+        self.dom == self.diagram.dom and self.cod == self.diagram.cod)
 
 Arrow.bubble = Bubble
 
 class Functor(cat.Functor):
     def __call__(self, other):
         if isinstance(other, Bubble):
-            method = getattr(self.cod.ar, other.name)
-            return method(self(other.inside)) if other.is_id_on_objects\
-                else method(self(other.inside), self(other.dom), self(other.cod))
+            method = getattr(self.cod.ar, other.method)
+            return method(self(other.diagram)) if other.is_id_on_objects\
+                else method(self(other.diagram), self(other.dom), self(other.cod))
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -791,7 +796,7 @@ Matrix.ReLU = lambda self: self.map(lambda x: max(x, 0))
 
 vector, bias = Box('vector', x, y), Box('bias', x, x)
 ones, weights = Box('ones', x, y), Box('weights', y, z)
-network = ((vector + (bias >> ones)) >> weights).bubble(name="ReLU")
+network = ((vector + (bias >> ones)) >> weights).bubble(method="ReLU")
 
 F = Functor(
     ob={x: 1, y: 4, z: 2},
@@ -814,7 +819,7 @@ The evaluation of a formula in a model corresponds to the application of a sum-a
 Matrix._not = lambda self: self.map(lambda x: not x)
 
 class Formula(Arrow):
-    _not = lambda self: self.bubble(name="_not")
+    _not = lambda self: self.bubble(method="_not")
 
 class Proposition(Box, Formula):
     def __init__(self, name): Box.__init__(self, name, Ob('x'), Ob('x'))

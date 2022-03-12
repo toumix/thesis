@@ -138,10 +138,10 @@ In the category of finite sets and relations $\mathbf{Mat}_\B$ with the direct s
 
 \begin{minted}{python}
 class Trace(Box):
-    def __init__(self, inside: Diagram, n=1):
-        assert inside.dom[-n:] == inside.cod[-n:]
-        self.inside, name = inside, "Trace({}, {})".format(inside, n)
-        super().__init__(name, inside.dom[:-n], inside.cod[:-n])
+    def __init__(self, diagram: Diagram, n=1):
+        assert diagram.dom[-n:] == diagram.cod[-n:]
+        self.diagram, name = inside, "Trace({}, {})".format(diagram, n)
+        super().__init__(name, diagram.dom[:-n], diagram.cod[:-n])
 
 class Diagram(monoidal.Diagram):
     trace = Trace
@@ -151,8 +151,8 @@ class Functor(monoidal.Functor):
 
     def __call__(self, other):
         if isinstance(other, Trace):
-            n = len(self(other.inside.dom)) - len(self(other.dom))
-            return self.cod.ar.trace(self(other.inside), n)
+            n = len(self(other.diagram.dom)) - len(self(other.dom))
+            return self.cod.ar.trace(self(other.diagram), n)
         return super().__call__(other)
 \end{minted}
 \end{python}

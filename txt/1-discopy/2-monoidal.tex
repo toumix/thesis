@@ -369,21 +369,17 @@ We can define a \py{Qubits} subclass and be sure that the tensor of qubits is st
 
 \begin{minted}[fontsize=\footnotesize]{python}
 class Qubits(Ty):
-    def __init__(self, n: int):
-        super().__init__(self, n * [Ob('1')])
-
     __str__ = lambda self: "qubit ** {}".format(len(self))
-    cast = staticmethod(lambda old: Qubits(len(old)))
 
-qubit = Qubits(1)
+qubit = Qubits('1')
 
-assert qubits ** 0 == Qubits(0) and qubits ** 42 == Qubits(42)
 assert isinstance(qubit ** 0, Qubits) and isinstance(qubit ** 42, Qubits)
 \end{minted}
 \end{example}
 
 The implementation of \py{Layer} as a subclass of \py{cat.Box} is sketched in listing~\ref{listing:Layer}.
 It has methods \py{__matmul__} and  \py{__rmatmul__} for whiskering on the right and left respectively, and \py{cast} for turning boxes into layers with units on both sides.
+We use empty slices of the box's domain as units, so that \py{Layer} can be used with any subclass of \py{Ty} as attributes.
 Instead of getting the units by calling \py{Ty()} directly, we use the domain of the box to slice empty types of the appropriate \py{Ty} subclass.
 This will prove useful in sections~\ref{subsection:rigid}, \ref{subsection:closed} and~\ref{subsection:towards-higher} where we will subclass \py{Ty} to define the types for free rigid, closed and 2-categories respectively.
 
@@ -407,8 +403,7 @@ class Layer(cat.Box):
 
     @classmethod
     def cast(cls, old: cat.Box) -> Layer:
-        left, box, right = old.dom[:0], box old.dom[len(old.dom):]
-        return old if isinstance(old, cls) else cls(left, box, right)
+        return old if isinstance(old, cls) else cls(old.dom[:0], old, old.dom[:0])
 \end{minted}
 \end{python}
 
@@ -487,8 +482,9 @@ class Ket(Box, Circuit):
 
 Gate.cast = Ket.cast = Circuit.cast
 
-X, Y, Z, H = [Gate(name, Qubits(1), Qubits(1)) for name in "XYZH"]
-CX, sqrt2 = Gate("CX", Qubits(2), Qubits(2)), Gate("sqrt(2)", Qubits(0), Qubits(0))
+X, Y, Z, H = [Gate(name, qubit, qubit) for name in "XYZH"]
+CX = Gate("CX", qubit ** 2, qubit ** 2)
+sqrt2 = Gate("$\\sqrt{2}$", qubit ** 0, qubit ** 0)
 assert isinstance(sqrt2 @ Ket(0, 0) >> H @ qubit >> CX, Circuit)
 \end{minted}
 \end{example}
@@ -506,11 +502,11 @@ class Functor(cat.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other : Ty | Diagram) -> Ty | Diagram:
-        if isinstance(other, Ty) and len(other) == 1:
-            result = self.ob[other]
-            return result if isinstance(result, self.cod.ob) else self.cod.ob([result])
         if isinstance(other, Ty):
-            return sum([self.ob[x[i]] for i in range(len(other))], self.cod.ob())
+            return sum([self(obj) for obj in other.inside], self.cod.ob())
+        if isinstance(other, Ob):
+            result = self.ob[self.dom.ob([other])]
+            return result if isinstance(result, self.cod.ob) else self.cod.ob([result])
         if isinstance(other, Layer):
             return self(layer.left) @ self(layer.box) @ self(layer.right)
         return super().__call__(other)
@@ -525,13 +521,7 @@ We override the \py{__call__} method to define the image of \py{Bra} and \py{Ket
 
 \begin{minted}{python}
 class Eval(Functor):
-    def __init__(self):
-        ob = {qubit: 2}
-        ar = {X: [[0, 1], [1, 0]], Y: [[0, -1j], [1j, 0]], Z: [[1, 0], [0, -1]],
-              H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]],
-              CX: [[i == j for j in [0, 1, 2, 3]] for i in [0, 1, 3, 2]],
-              sqrt2: [[sqrt(2)]]}
-       super().__init__(ob, ar, cod=Category(tuple[int], Tensor[complex]))
+    dom, cod = Category(Qubits, Circuit), Category(tuple[int], Tensor[complex])
 
     def __call__(self, other):
         if isinstance(other, Ket):
@@ -542,7 +532,13 @@ class Eval(Functor):
             return self(other.dagger()).dagger()
         return super().__call__(other)
 
-Circuit.eval = Eval()
+Circuit.eval = Eval(
+    ob={qubit: 2},
+    ar={X: [[0, 1], [1, 0]], Y: [[0, -1j], [1j, 0]], Z: [[1, 0], [0, -1]],
+        H: [[1 / sqrt(2), 1 / sqrt(2)], [1 / sqrt(2), -1 / sqrt(2)]],
+        CX: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]],
+        sqrt2: [[sqrt(2)]]})
+
 circuit = sqrt2 @ Ket(0, 0) >> H @ qubit >> CX
 superposition = Ket(0, 0) + Ket(1, 1)
 assert circuit.eval() == superposition.eval()
