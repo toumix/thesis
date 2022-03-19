@@ -129,13 +129,13 @@ Its components send objects \py{x : t} of any type \py{t} to the singleton list 
 
 \begin{minted}{python}
 class Composable:
-    """ Allows syntactic sugar self >> other and self << other and n * self. """
+    """ Implements syntactic sugar self >> other and self << other and n * self. """
     def cast(self, other):
         return other if isinstance(other, Composable) else self.id(other)
 
     __rshift__ = __llshift__ = lambda self, other: self.then(self.cast(other))
     __lshift__ = __lrshift__ = lambda self, other: self.cast(other).then(self)
-    __rmul__ = lambda self, n: self.id(self.dom).then(*n * [self])
+    __rmul__ = lambda self, n: self.id(self.dom).then(*n * (self, ))
 
 def inductive(method):
     """ Allows to apply a binary method to an arbitrary number of arguments. """
@@ -295,7 +295,7 @@ class Ob:
 
 @dataclass
 class Arrow(Composable):
-    inside: list[Arrow]
+    inside: tuple[Arrow, ...]
     dom: Ob
     cod: Ob
 
@@ -305,12 +305,12 @@ class Arrow(Composable):
 
     @classmethod
     def id(cls, x: Ob) -> Arrow:
-        return cls.cast(Arrow([], x, x))
+        return cls.cast(Arrow((), x, x))
 
     def then(self, *others: Arrow) -> Arrow:
         for f, g in zip((self, ) + others, others): assert f.cod == g.dom
         dom, cod = self.dom, others[-1].cod if others else self.cod
-        inside = self.inside + sum([other.inside for other in others], [])
+        inside = self.inside + sum([other.inside for other in others], ())
         return self.cast(Arrow(inside, dom, cod))
 
     __len__ = lambda self: len(self.inside)
@@ -323,13 +323,13 @@ class Box(Arrow):
 
     def __init__(self, name: str, dom: Ob, cod: Ob):
         self.name = name
-        super().__init__([self], dom, cod)
+        super().__init__((self, ), dom, cod)
 
     def __eq__(self, other):
         if isinstance(other, Box):
             return (self.name, self.dom, self.cod)\
                 == (other.name, other.dom, other.cod)
-        return isinstance(other, Arrow) and other.inside == [self]
+        return isinstance(other, Arrow) and other.inside == (self, )
 
     __str__ = lambda self: self.name
     __hash__ = lambda self: hash(repr(self))
@@ -338,9 +338,10 @@ class Box(Arrow):
 
 The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
 We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of each object and box is in scope.
+The attribute \py{inside} holds the list of generating arrows, which we store as an immutable \py{tuple} rather than a mutable \py{list}. 
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
-The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.inside == [f]}.
-For the axiom \py{f >> id(y) == f == id(x) >> f} to hold, we need to make sure that \py{f == Arrow(x, y, [f])}, i.e. a box is equal to the arrow with just itself as boxes.
+The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.inside == (f, )}.
+For the axiom \py{f >> f.id(y) == f == f.id(x) >> f} to hold, we need to make sure that \py{f == Arrow((f, ), x, y)}, i.e. a box is equal to the arrow with just itself as boxes.
 The main subtlety in the implementation is the class method \py{cast} which takes an \py{old: Arrow} as input and returns a new member of a given \py{cls}, subclass of \py{Arrow}.
 This allows the composition of arrows in a subclass to remain within the subclass, without having to rewrite the method \py{then}.
 This means we need to make \py{Arrow.id} a \py{classmethod} as well so that it can call \py{cast} and return an arrow of the appropriate subclass.
@@ -543,7 +544,7 @@ Although the case of negative indices (i.e. counting backwards from the end of t
 class Arrow(cat.Arrow):
     def dagger(self):
         return self.cast(Arrow(
-            self.cod, self.dom, [box.dagger() for box in self.inside[::-1]]))
+            tuple(box.dagger() for box in self.inside[::-1]), self.cod, self.dom))
 
     def __getitem__(self, key: int | slice) -> Arrow:
         if isinstance(key, int): return self.cast(self.inside[key])
@@ -555,7 +556,7 @@ class Arrow(cat.Arrow):
                 None if i is None else i + 1 for i in (key.stop, key.start))
             return self[start:stop].dagger()
         dom, cod = self[key.start].dom, self[key.stop].cod
-        return self.cast(Arrow(dom, cod, self.inside[key]))
+        return self.cast(Arrow(self.inside[key], dom, cod))
 
 class Box(cat.Box, Arrow):
     cast = Arrow.cast
@@ -653,7 +654,7 @@ DisCoPy functors are commutative-monoid-enriched, i.e. a formal sum of arrows ca
 \begin{minted}{python}
 class Arrow(cat.Arrow):
     def __eq__(self, other):
-        return other.terms == [self] if isinstance(other, Sum)\
+        return other.terms == (self, ) if isinstance(other, Sum)\
             else super().__eq__(other)
 
     def then(self, other: Arrow) -> Arrow:
@@ -661,13 +662,13 @@ class Arrow(cat.Arrow):
             else super().then(other)
 
     @staticmethod
-    def zero(dom: Ob, cod: Ob) -> Arrow: return Sum([], dom, cod)
+    def zero(dom: Ob, cod: Ob) -> Arrow: return Sum((), dom, cod)
 
     __add__ = lambda self, other: self.sum.cast(self) + other
     __lt__ = lambda self, other: hash(self) < hash(other)  # An arbitrary order.
 
 class Sum(cat.Box, Arrow):
-    def __init__(self, terms: list[Arrow], dom: Ob, cod: Ob):
+    def __init__(self, terms: tuple[Arrow, ...], dom: Ob, cod: Ob):
         assert all(f.dom == dom and f.cod == cod for f in terms)
         self.terms, name = terms, "Sum({}, {}, [{}])".format(
             dom, cod, ", ".join(map(str, terms)))
@@ -677,7 +678,7 @@ class Sum(cat.Box, Arrow):
         if isinstance(other, Sum):
             return (self.dom, self.cod, sorted(self.terms))\
                 == (other.dom, other.cod, sorted(other.terms))
-        return self.terms == [other]
+        return self.terms == (other, )
 
     def __add__(self, other):
         if not isinstance(other, Sum): return self + self.cast(other)
@@ -685,15 +686,15 @@ class Sum(cat.Box, Arrow):
 
     @classmethod
     def cast(cls, old: cat.Arrow) -> Sum:
-        return old if isinstance(old, cls) else cls([old], old.dom, old.cod)
+        return old if isinstance(old, cls) else cls((old, ), old.dom, old.cod)
 
     @inductive
     def then(self, other):
-        terms = [f.then(g) for f in self.terms for g in self.cast(other).terms]
+        terms = tuple(f.then(g) for f in self.terms for g in self.cast(other).terms)
         return type(self)(terms, self.dom, other.cod)
 
     def dagger(self):
-        return type(self)([f.dagger() for f in self.terms], self.cod, self.dom)
+        return type(self)(tuple(f.dagger() for f in self.terms), self.cod, self.dom)
 
 Arrow.sum = Sum
 

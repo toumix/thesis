@@ -25,7 +25,7 @@ for all subsets $X, Y \sub M$.
 
 As the name suggests, a \emph{cartesian closed category} is a cartesian category that is also closed.
 Examples of cartesian closed categories include $\mathbf{Set}$ with the exponential $Y^X$ given by the set of functions from $X$ to $Y$ and $\mathbf{Cat}$ with $D^C$ the category of functors from $C$ to $D$ with natural transformations as arrows.
-The category $\mathbf{Pyth}$ with \py{list[type]} as objects and pure functions between tuples as arrows is also cartesian closed, the exponential of two lists of types \py{x, y} is given by \py{Callable[x, tuple[y]]}.
+The category $\mathbf{Pyth}$ with \py{tuple[type, ...]} as objects and pure functions between tuples as arrows is also cartesian closed, the exponential of two lists of types \py{x, y} is given by \py{Callable[x, tuple[y]]}.
 The natural isomorphism $\Lambda : \mathbf{Pyth}(x \times y, z) \to \mathbf{Pyth}(y, z^x)$ is called \emph{currying}, after the founding father of functional programming Haskell Curry.
 A function of two arguments $x \times y \to z$ is the same as a one-argument higher-order function $y \to z^x$.
 Taking the equivalent definition of adjunctions, the unit $\eta_y : y \to (y \times x)^x$ is given by concatenation, i.e. \py{lambda *ys: lambda *xs: ys + xs}, while the counit $\epsilon_y : y^x \times x \to x$ is given by evaluation, i.e. \py{lambda f, *xs: f(*xs)}.
@@ -42,8 +42,8 @@ Intuitively, if we take a higher-order function, evaluate it then abstract away 
 {\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian closed category.}
 
 \begin{minted}{python}
-def exp(base: list[type], exponent: list[type]) -> list[type]:
-    return [Callable[list(exponent), tuple[tuple(base)]]]
+def exp(base: tuple[type, ...], exponent: tuple[type, ...]) -> tuple[type, ...]:
+    return [Callable[exponent, tuple[base]]]
 
 class Function:
     ...
@@ -54,7 +54,7 @@ class Function:
         return Function(inside, dom, cod)
 
     @staticmethod
-    def ev(base: list[type], exponent: list[type], left=True) -> Function:
+    def ev(base: tuple[type, ...], exponent: tuple[type, ...], left=True) -> Function:
         inside = (lambda *xs: xs[-1](*xs[:-1])) if left else (lambda f, *xs: f(*xs))
         dom, cod = (exponent + exp(base, exponent), base) if left\
             else (exp(base, exponent) + exponent, base)
@@ -63,7 +63,7 @@ class Function:
     def uncurry(self, left=True) -> Function:
         if len(self.cod) != 1 or not self.cod[0]._name == "Callable": return self
         *exponent, output = self.cod[0].__args__
-        base = output.__args__ if is_tuple(output) else [output]
+        base = output.__args__ if is_tuple(output) else (output, )
         return exponent @ self >> Function.ev(base, exponent) if left\
             else self @ exponent >> Function.ev(base, exponent, left=False)
 
@@ -75,9 +75,9 @@ class Function:
 We can check the axioms for cartesian closed categories hold in $\mathbf{Pyth}$.
 
 \begin{minted}{python}
-x, y, z = [complex], [bool], [float]
+x, y, z = (complex, ), (bool, ), (float, )
 f = Function(dom=y, cod=exp(z, x), inside=lambda y: lambda x: abs(x) ** 2 if y else 0)
-g = Function(dom=x @ y, cod=z, inside=lambda x, y: f(y)(x))
+g = Function(dom=x + y, cod=z, inside=lambda x, y: f(y)(x))
 
 assert f.uncurry().curry()(True)(1j) == f(True)(1j)
 assert g.curry().uncurry(True, 1j) == g(True, 1j)
@@ -116,7 +116,7 @@ We also need to override the \py{cast} method so that the unit law is satisfied,
 class Ty(monoidal.Ty):
     @classmethod
     def cast(cls, old: monoidal.Ty) -> Ty:
-        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(*old.inside)
+        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(old.inside)
 
     def __pow__(self, other):
         return Exp(self, other) if isinstance(other, Ty) else super().__pow__(other)
@@ -126,7 +126,7 @@ class Exp(Ty):
 
     def __init__(self, base, exponent):
         self.base, self.exponent = base, exponent
-        super().__init__(inside=[self])
+        super().__init__(inside=(self, ))
 
     def __eq__(self, other):
         return isinstance(other, type(self))\
@@ -211,7 +211,7 @@ F = Functor(
     ob={x: complex, y: bool, z: float},
     ar={f: lambda y: lambda x: abs(x) ** 2 if y else 0,
         g: lambda y: lambda z: z + 1j if y else -1j}
-    cod=Category(list[type], Function))
+    cod=Category(tuple[type, ...], Function))
 
 assert F(f.uncurry(left=False).curry(left=False))(True)(1j) == F(f)(True)(1j)
 assert F(g.uncurry().curry())(True)(1.2) == F(g)(True)(1.2)

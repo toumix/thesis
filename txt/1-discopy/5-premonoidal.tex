@@ -50,7 +50,7 @@ The category of matrices $\mathbf{Mat}_\S$ with entries in a rig $\S$ with the K
 \end{example}
 
 \begin{example}
-The category $\mathbf{Pyth}$ with \py{list[type]} as objects and \py{Function} as arrows is premonoidal with \py{tuple} as tensor.
+The category $\mathbf{Pyth}$ with \py{tuple[type, ...]} as objects and \py{Function} as arrows is premonoidal with \py{tuple} as tensor.
 Every pure function is in the center $Z(\mathbf{Pyth})$, but the converse is not necessarily true: take the side effect $f : x \to 1$ which increments a private, internal counter every time it is called.
 It is impure, but not enough that we can observe it by parallel composition, i.e. although it does not commute with copy and discard, it can still be interchanged with any other function.
 In other words, it is in the monoidal center, but not the cartesian center (i.e. the subcategory of comonoid homomorphisms).
@@ -281,16 +281,17 @@ This is still an experimental feature and the results of \py{f.draw()} usually l
 {\normalfont Outline of the \py{discopy.hypergraph} module.}
 
 \begin{minted}{python}
-def pushout(left: int, right: int, left_wires: list[int], right_wires: list[int]
-    ) -> tuple[dict[int, int], dict[int, int]]: ...
+def pushout(left: int, right: int,
+            left_wires: tuple[int, ...], right_wires: tuple[int, ...]
+            ) -> tuple[dict[int, int], dict[int, int]]: ...
 
 @dataclass
 class Diagram(Composable, Tensorable):
     dom: Ty
     cod: Ty
-    boxes: list[Diagram]
-    wires: list[int]
-    spider_types: list[Ty]
+    boxes: tuple[Diagram, ...]
+    wires: tuple[int, ...]
+    spider_types: tuple[Ty, ...]
 
     @staticmethod
     def id(x: Ty) -> Diagram: ...
@@ -312,7 +313,7 @@ class Diagram(Composable, Tensorable):
     def downgrade(self) -> compact.Diagram: ...
 
     cast = staticmethod(compact.Functor(
-        ob=lambda x: Ty(x[0]),
+        ob=lambda x: Ty(x.inside[0]),
         ar=lambda box: Box(box.name, box.dom, box.cod),
         cod=Category(Ty, Diagram)))
 
@@ -320,7 +321,7 @@ class Diagram(Composable, Tensorable):
 
 class Box(Diagram):
     def __init__(self, name: str, dom: Ty, cod: Ty):
-        boxes, spider_types, wires = [self], list(map(Ty, dom @ cod)), ...
+        boxes, spider_types, wires = (self, ), tuple(map(Ty, dom @ cod)), ...
         self.name = name; super().__init__(dom, cod, boxes, wires, spider_types)
 
     __eq__ = lambda self, other: cat.Box.__eq__(self, other)\
@@ -486,7 +487,7 @@ a = Colour('a')
 x = Ty('x', dom=a, cod=a)
 f, g = Box('f', Ty.id(a), x), Box('g', x @ x, x)
 
-Pyth = Category(list[type], Function)
+Pyth = Category(tuple[type, ...], Function)
 List = Functor(
     ob=lambda xs: [list[xs]], ar=lambda f: lambda xs: map(f, xs), dom=Pyth, cod=Pyth)
 Unit = Transformation(lambda _: lambda x: [x], dom=Functor.id(Pyth), cod=List)
@@ -535,7 +536,7 @@ Match.__rshift__ = Match.__rlshift__ = lambda self, other: Match(
     other >> self.top, self.bottom, self.left, self.right)
 
 class Rewrite(Diagram):
-    def __init__(self, slices: list[Slice], dom: Ty | Diagram, cod: Ty | Diagram):
+    def __init__(self, slices: tuple[Slice, ...], dom: Ty | Diagram, cod: Ty | Diagram):
         dom, cod = (x if isinstance(x, Diagram) else Diagram.id(x) for x in (dom, cod))
         super().__init__(slices, dom, cod)
 

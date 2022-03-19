@@ -70,8 +70,8 @@ class Diagram(monoidal.Diagram):
     def simplify(self):
         for i, (x, f, _), (y, g, _) in enumerate(zip(self.inside, self.inside[1:])):
             if x == y and isinstance(f, Braid) and f == g[::-1]:
-                layers = self.inside[:i] + self.inside[i + 2:]
-                return simplify(self.cast(Diagram(self.dom, self.cod, layers)))
+                inside = self.inside[:i] + self.inside[i + 2:]
+                return simplify(self.cast(Diagram(inside, self.dom, self.cod)))
         return self
 
 class Box(monoidal.Box, Diagram):
@@ -170,7 +170,7 @@ for braid in [Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.S
 
 \begin{minted}{python}
 @staticmethod
-def function_swap(x: list[type], y: list[type]) -> Function:
+def function_swap(x: tuple[type, ...], y: tuple[type, ...]) -> Function:
     def inside(*xs):
         assert len(xs) == len(x + y)
         return untuple(xs[len(x):] + xs[:len(x)])
@@ -179,7 +179,7 @@ def function_swap(x: list[type], y: list[type]) -> Function:
 Function.swap = Function.braid = function_swap
 
 @classmethod
-def tensor_swap(cls, x: list[int], y: list[int]) -> Tensor:
+def tensor_swap(cls, x: tuple[int, ...], y: tuple[int, ...]) -> Tensor:
     inside = [[(i0, j0) == (i1, j1)
         for j0 in range(product(y)) for i0 in range(product(x))]
         for i1 in range(product(x)) for j1 in range(product(y))]
@@ -198,7 +198,7 @@ swap_twice = Diagram.swap(x, y @ z) >> Diagram.swap(y @ z, x)
 F = Functor(
     ob={a: 2, b: 3, x: 4, y: 5, z: 6},
     ar={f: [[1-2j, 3+4j]]},
-    cod=Category(list[int], Tensor[complex]))
+    cod=Category(tuple[int, ...], Tensor[complex]))
 
 assert F(f @ x >> Swap(b, x)) == F(Swap(a, x) >> x @ f)
 assert F(x @ f >> Swap(x, b)) == F(Swap(x, a) >> f @ x)
@@ -207,7 +207,7 @@ assert F(swap_twice) == Tensor.id(F(x @ y @ z))
 G = Functor(
     ob={a: complex, b: real, x: int, y: bool, z: str},
     ar={f: lambda z: abs(z) ** 2},
-    cod=Category(list[type], Function))
+    cod=Category(tuple[type, ...], Function))
 
 assert G(f @ x >> Swap(b, x))(1j, 2) == G(Swap(a, x) >> x @ f)(1j, 2) == (2, f(1j))
 assert G(x @ f >> Swap(x, b))(2, 1j) == G(Swap(x, a) >> f @ x)(2, 1j) == (f(1j), 2)

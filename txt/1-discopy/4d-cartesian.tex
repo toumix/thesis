@@ -234,7 +234,7 @@ These 3d diagrams are a complete language for \emph{dataflow programming}~\cite{
 
 The implementation of $\mathbf{Pyth}$ as a cartesian category with \py{tuple} and a cocartesian category with \py{tagged_union} is straightforward.
 What is more challenging is to make both monoidal structures fit in the same class, i.e. implementing a rig category.
-Indeed, if we take $(\mathbf{Pyth}, \py{tuple})$ as the foo-monoidal category implemented in section~\ref{section:monoidal}, \py{dom: list[type]} and \py{cod: list[type]} are interpreted as a \py{tuple}.
+Indeed, if we take $(\mathbf{Pyth}, \py{tuple})$ as the foo-monoidal category implemented in section~\ref{section:monoidal}, \py{dom: tuple[type, ...]} and \py{cod: tuple[type, ...]} are interpreted as a \py{tuple}.
 On the other hand, if we implement $(\mathbf{Pyth}, \py{tagged_union})$ as a foo-monoidal category, lists of types will be interpreted as a \py{TaggedUnion} instead.
 Hence, we need to add an optional argument \py{is_additive: bool} which tells us how we should interpret \py{dom} and \py{cod}, and a pair of methods for converting additive into multiplicative functions.
 In order to keep the syntax simple, we keep the notation \py{f @ g} for \py{tuple} and override the vertical line symbol \py{f | g} to denote the \py{tagged_union}.
@@ -262,16 +262,16 @@ class Function(monoidal.Function):
     def make_additive(self) -> Function:
         if self.is_additive: return self
         dom, cod = (
-            [tuple[types]] if len(types) != 1
-            else list(types[0].__args__) if is_union(types[0])
+            (tuple[types], ) if len(types) != 1
+            else types[0].__args__ if is_union(types[0])
             else types for types in (self.dom, self.cod))
         return Function.additive(self.inside, dom, cod)
 
     def make_multiplicative(self) -> Function:
         if not self.is_additive: return self
         dom, cod = (
-            [TaggedUnion[types]] if len(types) != 1
-            else list(types[0].__args__) if is_tuple(types[0])
+            (TaggedUnion[types], ) if len(types) != 1
+            else types[0].__args__ if is_tuple(types[0])
             else types for types in (self.dom, self.cod))
         return Function(self.inside, dom, cod)
 
@@ -290,16 +290,16 @@ class Function(monoidal.Function):
         return Function(inside, dom, cod)
 
     @staticmethod
-    def copy(x: list[type], n: int, is_dagger=False):
+    def copy(x: tuple[type, ...], n: int, is_dagger=False):
         if is_dagger: return Function.merge(x, n)
         if n == 1: return Function.id(x)
-        return Function(lambda *xs: n * xs, dom=x, cod=x ** n)
+        return Function(lambda *xs: n * xs, dom=x, cod=n * x)
 
     @staticmethod
-    def merge(x: list[type], n: int, is_dagger=False):
+    def merge(x: tuple[type, ...], n: int, is_dagger=False):
         if is_dagger: return Function.copy(x, n)
         if n == 1: return Function.additive.id(x)
-        return Function.additive(lambda _, xs: xs, dom=x ** n, cod=x)
+        return Function.additive(lambda _, xs: xs, dom=n * x, cod=x)
 
     @inductive
     def tensor(self, other: Function) -> Function:
@@ -324,7 +324,7 @@ F = Functor(ob={x: int}, ar={
     add(x, 5): lambda *xs: sum(xs),
     ReLU(x): lambda x: max(0, x),
     bias: lambda: -1, **dict(zip(weights, [0, 1, 2, 3]))},
-    cod=Category(list[type], Function))
+    cod=Category(tuple[type, ...], Function))
 
 assert F(network)(42, -43) == max(0, sum([42 * 0, -43 * 1, 42 * 2, -43 * 3, -1]))
 \end{minted}
@@ -384,8 +384,8 @@ One can verify that the free completion is indeed the left-adjoint to the forget
 Similarly, if $C$ is a $\dagger$-category then $\mathbf{Mat}_C$ is its free $\dagger$-biproduct completion with the element-wise dagger of the transpose.
 If $C$ is also a monoidal category, then $\mathbf{Mat}_C$ is a rig category with the tensor given by an extension of the usual Kronecker product with tensor as product.
 
-DisCoPy implements free $\dagger$-biproduct completion as a subclass of \py{Matrix[Diagram]} with \py{list[Ty]} as objects and addition given by the formal sum of diagrams.
-We use Python's duck typing to lift the code for composition, tensor and direct sum from \py{int} to \py{list[Ty]}.
+DisCoPy implements free $\dagger$-biproduct completion as a subclass of \py{Matrix[Diagram]} with \py{tuple[Ty, ...]} as objects and addition given by the formal sum of diagrams.
+We use Python's duck typing to lift the code for composition, tensor and direct sum from \py{int} to \py{tuple[Ty, ...]}.
 We also use a \py{contextmanager} to temporarily replace the multiplication of two \py{Diagram} entries.
 Again, we override equality so that diagrams are equal to the matrix of just themselves.
 The implementation of biproduct-preserving functors requires some work: given a matrix of diagrams, we construct its image as the sum of the images of its entries, pre- and post-composed by the basis row and column vectors.
@@ -397,19 +397,19 @@ The \py{basis} subroutine constructs basis vectors for an arbitrary class using 
 \begin{minted}{python}
 @dataclass
 class FakeInt:
-    inside: list[Ty] = [Ty()]
+    inside: tuple[Ty, ...] = (Ty(), )
 
     __int__ = lambda self: len(self.inside)
     __iter__ = property(lambda self: self.inside.__iter__)
     __add__ = lambda self, other: FakeInt(self.inside + other.inside)
     __mul__ = lambda self, other: FakeInt([x0 @ x1 for x0 in self.inside for x1 in other])
-    __pow__ = lambda self, n: product(n * [self], unit=FakeInt())
+    __pow__ = lambda self, n: product(n * (self, ), unit=FakeInt())
 
 class Biproduct(Matrix):
     dtype = Diagram
 
-    def __init__(self, inside: list[list[Diagram]], dom: list[Ty], cod: list[Ty]):
-        self.dom, self.cod, self.inside = list(dom), list(cod), [[
+    def __init__(self, inside: list[list[Diagram]], dom: tuple[Ty, ...], cod: tuple[Ty, ...]):
+        self.dom, self.cod, self.inside = tuple(dom), tuple(cod), [[
             cls.dtype.id(x) if val is 1 and x == y
             else cls.dtype.zero(x, y) if val is 0
             else val for y, val in zip(cod, row)] for x, row in zip(dom, inside)]
@@ -419,7 +419,7 @@ class Biproduct(Matrix):
         tmp, self.dtype.__mul__ = getattr(self.dtype, "__mul__", None), method
         self.dom, self.cod = map(FakeInt, (self.dom, self.cod))
         yield self
-        self.dom, self.cod = map(list, (self.dom, self.cod))
+        self.dom, self.cod = map(tuple, (self.dom, self.cod))
         delattr(self.dtype, "__mul__") if tmp is None else setattr(self.dtype, "__mul__", tmp)
 
     @classmethod
@@ -438,7 +438,7 @@ class Biproduct(Matrix):
             return Matrix.Kronecker(self, self.cast(other))
 
     @classmethod
-    def copy(cls, x: list[Ty], n: int, is_dagger=False):
+    def copy(cls, x: tuple[Ty, ...], n: int, is_dagger=False):
         with cls.id(x).fake_multiplication(cls.then) as biproduct:
             return Matrix.copy(biproduct.dom, n, is_dagger)
 
@@ -460,12 +460,12 @@ Diagram.__eq__ = lambda self, other:\
     else monoidal.Diagram.__eq__(self, other)
 
 @classmethod
-def basis(cls, x: list[Ty], i: int):
+def basis(cls, x: tuple[Ty, ...], i: int):
     terms = [cls.id(x[i]) if i == j else cls.zero(x[i], x[j]) for j in range(len(x))]
     return cls.copy(x[i], len(x)) >> cls.direct_sum(*terms)
 
 class Functor(monoidal.Functor):
-    dom = cod = Category(list[Ty], Biproduct)
+    dom = cod = Category(tuple[Ty, ...], Biproduct)
 
     def __call__(self, other):
         if isinstance(other, Biproduct):
@@ -508,7 +508,7 @@ measure = Biproduct([[Bra(0), Bra(1)]], [qubit], bit)
 
 F = Functor(
     ob={qubit: 2}, ar=lambda f: f.eval(),
-    cod=Category(list[int], Tensor[complex]))
+    cod=Category(tuple[int, ...], Tensor[complex]))
 
 assert F(control >> H >> measure).inside\
     == [[(Ket(i) >> H >> Bra(j)).eval() for j in [0, 1]] for i in [0, 1]]

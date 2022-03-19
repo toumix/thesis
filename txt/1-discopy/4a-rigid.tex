@@ -196,7 +196,7 @@ We conjecture that we can in fact solve the word problem (i.e. deciding whether 
 {\normalfont Outline of the snake removal algorithm.}
 
 \begin{minted}{python}
-Obstruction = tuple[list[int], list[int]]
+Obstruction = tuple[tuple[int, ...], tuple[int, ...]]
 Yankable = tuple[int, int, Obstruction, bool]
 
 def follow_wire(self: Diagram, i: int, j: int) -> tuple[int, int, Obstruction]: ...
@@ -316,7 +316,7 @@ We can check that $\mathbf{Tensor}_\S$ is indeed pivotal.
 \begin{minted}{python}
 F = Functor(
     ob={x: 2, y: 3}, ar={f: [[1, 2, 3], [4, 5, 6]]}
-    cod=Category(list[int], Tensor[int]))
+    cod=Category(tuple[int, ...], Tensor[int]))
 
 assert F(left_snake) == F(Diagram.id(x)) == F(right_snake)
 assert F(f.transpose(left=True)) == F(f).transpose() == F(f.transpose(left=False))

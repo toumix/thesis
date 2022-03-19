@@ -39,13 +39,13 @@ Abstractly, the category $\mathbf{Channel}$ is \emph{semicartesian}, i.e. the mo
 \begin{minted}{python}
 @dataclass
 class CQ:
-    classical: list[int] = []
-    quantum: list[int] = []
+    classical: tuple[int, ...] = ()
+    quantum: tuple[int, ...] = ()
 
     def tensor(self, other: CQ) -> CQ:
         return CQ(self.classical + other.classical, self.quantum + other.quantum)
 
-    def downgrade(self) -> list[int]:
+    def downgrade(self) -> tuple[int]:
         return self.classical + 2 * self.quantum
 
     __matmul__ = tensor
@@ -82,11 +82,11 @@ class Channel(Composable, Tensorable):
         return Channel(Tensor[complex](f.inside, f.dom, f.cod), C(f.dom), C(f.cod))
 
     @staticmethod
-    def measure(x: list[int]) -> Channel:
+    def measure(x: tuple[int, ...]) -> Channel:
         return Channel(Tensor[complex].spider(2, 1, x), Q(x), C(x))
 
     @staticmethod
-    def encode(x: list[int]) -> Channel:
+    def encode(x: tuple[int, ...]) -> Channel:
         return Channel(Tensor[complex].spider(1, 2, x), C(x), Q(x))
 
     @staticmethod
@@ -281,7 +281,7 @@ Circuit.is_pure = property(lambda self:
 
 class PureEval(Functor):
     ob = ar = {}
-    dom, cod = Category(Ty, Circuit), Category(list[int], Tensor[complex])
+    dom, cod = Category(Ty, Circuit), Category(tuple[int, ...], Tensor[complex])
 
     def __call__(self, other):
         if isinstance(other, Qudit): return [other.n]

@@ -88,7 +88,7 @@ program, runs = Word("program", x), Word("runs", x >> y)
 program_runs = program @ runs >> Ev(x >> y)
 
 F = closed.Functor(
-    dom=Category(Ty, Parsing), cod=Category(list[type], Function),
+    dom=Category(Ty, Parsing), cod=Category(tuple[type, ...], Function),
     ob={x: int, y: int}, ar={program: lambda: 42, runs: lambda: lambda n: n * 10})
 assert F(program_runs)() == 420
 \end{minted}
@@ -104,7 +104,7 @@ The transitive verb ``is'' must take two such functions \py{P} and \py{Q} as inp
 x = Ty('x')
 
 Montague = closed.Functor(
-    dom=Category(Ty, Parsing), cod=Category(list[type], Function),
+    dom=Category(Ty, Parsing), cod=Category(tuple[type, ...], Function),
     ob={s: Formula, n: Formula, np: exp(Formula, Formula)},
     ar={no: lambda: lambda state: lambda effect: (state >> effect).bubble(),
         man: lambda: Predicate("man", x),
@@ -182,7 +182,7 @@ sentence.draw()
 
 \begin{minted}{python}
 F = rigid.Functor(
-    dom=Category(rigid.Ty, Parsing), cod=Category(list[int], Tensor),
+    dom=Category(rigid.Ty, Parsing), cod=Category(tuple[int, ...], Tensor),
     ob={s: 1, n: 2}, ar={Alice: [[1, 0]], loves: [[0, 1], [1, 0]], Bob: [[0, 1]]})
 
 assert F(sentence)

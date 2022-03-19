@@ -53,7 +53,7 @@ For example, the following functor $G : F^M(\Sigma) \to \mathbf{Pyth}$ was intro
 
 \begin{minted}{python}
 G = monoidal.Functor(
-    dom=Category(rigid.Ty, rigid.Diagram), cod=Category(list[type], Function),
+    dom=Category(rigid.Ty, rigid.Diagram), cod=Category(tuple[type, ...], Function),
     ob={s: pregroup.Parsing, n: pregroup.Parsing},
     ar={Box("Alice", Ty(), n): lambda: Alice, Box("Bob", Ty(), n): lambda: Bob,
         Box("loves", n @ n, s): lambda f, g:

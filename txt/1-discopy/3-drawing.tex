@@ -512,7 +512,7 @@ def read(box_pixels: array, wire_pixels: array) -> Diagram:
         offset = max(len(left_of_box), 0)
         boxes_and_offsets.append((box, offset))
         scan = scan[:offset] + output_wires + scan[offset + len(input_wires):]
-    return decode(dom, boxes_and_offsets)
+    return decode(dom, tuple(boxes_and_offsets))
 \end{minted}
 \end{python}
 
