@@ -2822,6 +2822,62 @@
       \verb http://github.%20com/google/jax
       \endverb
     \endentry
+    \entry{BradleyEtAl18}{article}{}
+      \name{author}{4}{}{%
+        {{hash=fff067422a75a1d873bd824828566779}{%
+           family={Bradley},
+           familyi={B\bibinitperiod},
+           given={Tai-Danae},
+           giveni={T\bibinithyphendelim D\bibinitperiod}}}%
+        {{hash=3d037336f916e3d00976664238a7da94}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={Martha},
+           giveni={M\bibinitperiod}}}%
+        {{hash=fa8912eb6f0f0c230fc8d8371db35a2f}{%
+           family={Master},
+           familyi={M\bibinitperiod},
+           given={Jade},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8881070f2c88a99008902165e14d3d50}{%
+           family={Theilman},
+           familyi={T\bibinitperiod},
+           given={Brad},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{aee14a6bc57c7eb000e2bd4616f4e9fe}
+      \strng{fullhash}{e469dd771d2af878505a4a9fb96e2eec}
+      \strng{bibnamehash}{e469dd771d2af878505a4a9fb96e2eec}
+      \strng{authorbibnamehash}{e469dd771d2af878505a4a9fb96e2eec}
+      \strng{authornamehash}{aee14a6bc57c7eb000e2bd4616f4e9fe}
+      \strng{authorfullhash}{e469dd771d2af878505a4a9fb96e2eec}
+      \field{labelalpha}{Bra+18}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The categorical compositional distributional (DisCoCat) model of meaning developed by Coecke et al. (2010) has been successful in modeling various aspects of meaning. However, it fails to model the fact that language can change. We give an approach to DisCoCat that allows us to represent language models and translations between them, enabling us to describe translations from one language to another, or changes within the same language. We unify the product space representation given in (Coecke et al., 2010) and the functorial description in (Kartsaklis et al., 2013), in a way that allows us to view a language as a catalogue of meanings. We formalize the notion of a lexicon in DisCoCat, and define a dictionary of meanings between two lexicons. All this is done within the framework of monoidal categories. We give examples of how to apply our methods, and give a concrete suggestion for compositional translation in corpora.}
+      \field{day}{8}
+      \field{eprinttype}{arxiv}
+      \field{issn}{2075-2180}
+      \field{journaltitle}{Electronic Proceedings in Theoretical Computer Science}
+      \field{month}{11}
+      \field{shortjournal}{Electron. Proc. Theor. Comput. Sci.}
+      \field{shorttitle}{Translating and {{Evolving}}}
+      \field{title}{Translating and {{Evolving}}: {{Towards}} a {{Model}} of {{Language Change}} in {{DisCoCat}}}
+      \field{volume}{283}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{50\bibrangedash 61}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.4204/EPTCS.283.4
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/RK8RB2ZB/Bradley et al. - 2018 - Translating and Evolving Towards a Model of Langu.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CDCMI89I/1811.html
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Mathematics - Category Theory}
+    \endentry
     \entry{BradyTrimble00}{article}{}
       \name{author}{2}{}{%
         {{hash=1c6d947021afefb4a5eeee9386f565f8}{%
@@ -4780,6 +4836,41 @@
       \endverb
       \keyw{Quantum Physics}
     \endentry
+    \entry{Delpeuch19}{online}{}
+      \name{author}{1}{}{%
+        {{hash=aebd046ca2d354b09454d004a4af0412}{%
+           family={Delpeuch},
+           familyi={D\bibinitperiod},
+           given={Antonin},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{aebd046ca2d354b09454d004a4af0412}
+      \strng{fullhash}{aebd046ca2d354b09454d004a4af0412}
+      \strng{bibnamehash}{aebd046ca2d354b09454d004a4af0412}
+      \strng{authorbibnamehash}{aebd046ca2d354b09454d004a4af0412}
+      \strng{authornamehash}{aebd046ca2d354b09454d004a4af0412}
+      \strng{authorfullhash}{aebd046ca2d354b09454d004a4af0412}
+      \field{labelalpha}{Del19}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We show that contrary to common belief in the DisCoCat community, a monoidal category is all that is needed to define a categorical compositional model of natural language. This relies on a construction which freely adds adjoints to a monoidal category. In the case of distributional semantics, this broadens the range of available models, to include non-linear maps and cartesian products for instance. We illustrate the applications of this principle to various distributional models of meaning.}
+      \field{day}{15}
+      \field{eprintclass}{cs, math}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{title}{Autonomization of {{Monoidal Categories}}}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 1411.3827
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/XASUFPM9/Delpeuch - 2019 - Autonomization of Monoidal Categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YPT3ZXQ3/1411.html
+      \endverb
+      \keyw{18D10,Computer Science - Computation and Language,Mathematics - Category Theory}
+    \endentry
     \entry{Delpeuch20a}{article}{}
       \name{author}{1}{}{%
         {{hash=aebd046ca2d354b09454d004a4af0412}{%
@@ -5521,6 +5612,34 @@
       \endverb
       \keyw{Quantum Physics}
     \endentry
+    \entry{Felice22}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=90a608e5aa8c815f07e4c59d5b93be62}{%
+           family={Felice},
+           familyi={F\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Oxford}%
+      }
+      \strng{namehash}{90a608e5aa8c815f07e4c59d5b93be62}
+      \strng{fullhash}{90a608e5aa8c815f07e4c59d5b93be62}
+      \strng{bibnamehash}{90a608e5aa8c815f07e4c59d5b93be62}
+      \strng{authorbibnamehash}{90a608e5aa8c815f07e4c59d5b93be62}
+      \strng{authornamehash}{90a608e5aa8c815f07e4c59d5b93be62}
+      \strng{authorfullhash}{90a608e5aa8c815f07e4c59d5b93be62}
+      \field{labelalpha}{Fel22}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Categorical Tools for Natural Language Processing}
+      \field{year}{2022}
+      \field{dateera}{ce}
+    \endentry
     \entry{FeliceEtAl20}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=90a608e5aa8c815f07e4c59d5b93be62}{%
@@ -6112,6 +6231,46 @@
       \endverb
       \verb{url}
       \verb https://www.youtube.com/watch?v=5YZG96t8SLQ
+      \endverb
+    \endentry
+    \entry{Gaifman65}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1ef8f3916e9761575ce4dcc3f68c77a1}{%
+           family={Gaifman},
+           familyi={G\bibinitperiod},
+           given={Haim},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{1ef8f3916e9761575ce4dcc3f68c77a1}
+      \strng{fullhash}{1ef8f3916e9761575ce4dcc3f68c77a1}
+      \strng{bibnamehash}{1ef8f3916e9761575ce4dcc3f68c77a1}
+      \strng{authorbibnamehash}{1ef8f3916e9761575ce4dcc3f68c77a1}
+      \strng{authornamehash}{1ef8f3916e9761575ce4dcc3f68c77a1}
+      \strng{authorfullhash}{1ef8f3916e9761575ce4dcc3f68c77a1}
+      \field{labelalpha}{Gai65}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A language is considered here as a finite set of symbols (words of the language) together with a set of strings (finite sequences) of these symbols (sentences of the language). A grammar is a system of rules by means of which those strings which belong to the language (i.e., are sentences) are defined. Two types of grammars are dealt with-those based on dependency rules and those based on phrase-structure rules. Both of these supply the sentences that they analyze with additional structure; there is a very close relationship between these structures. Different notions of equivalence between grammars of the two types, based on structure similarities, are defined. Every dependency system has a “naturally corresponding≓ phrase-structure system but not vice versa. An effective necessary and sufficient condition for the existence of a “naturally corresponding≓ dependency system for a given phrase-structure system is given, and an effective way to construct it when it exists. Nevertheless, every set of strings defined by means of a grammar of one type is also defined by means of a grammar of the other type, which can be found effectively. However, the result above implies that there will be cases in which the second system will not be “naturally correlated≓ with the given one from a structural point of view.}
+      \field{day}{1}
+      \field{issn}{0019-9958}
+      \field{journaltitle}{Information and Control}
+      \field{langid}{english}
+      \field{month}{6}
+      \field{number}{3}
+      \field{shortjournal}{Information and Control}
+      \field{title}{Dependency Systems and Phrase-Structure Systems}
+      \field{volume}{8}
+      \field{year}{1965}
+      \field{dateera}{ce}
+      \field{pages}{304\bibrangedash 337}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.1016/S0019-9958(65)90232-9
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/QLFYEGIQ/Gaifman - 1965 - Dependency systems and phrase-structure systems.pdf
       \endverb
     \endentry
     \entry{GenkinEtAl10}{inproceedings}{}
@@ -14748,6 +14907,45 @@
       \endverb
       \keyw{Computer Science - Computation and Language,Mathematics - Category Theory}
     \endentry
+    \entry{ToumiNLab21}{online}{}
+      \name{author}{2}{}{%
+        {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
+           family={Toumi},
+           familyi={T\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7a26d92ad0740e6d358c6fe228fa3eb7}{%
+           family={{nLab}},
+           familyi={n\bibinitperiod}}}%
+      }
+      \strng{namehash}{26afc943e4df5c73e6dd22c33efc4643}
+      \strng{fullhash}{26afc943e4df5c73e6dd22c33efc4643}
+      \strng{bibnamehash}{26afc943e4df5c73e6dd22c33efc4643}
+      \strng{authorbibnamehash}{26afc943e4df5c73e6dd22c33efc4643}
+      \strng{authornamehash}{26afc943e4df5c73e6dd22c33efc4643}
+      \strng{authorfullhash}{26afc943e4df5c73e6dd22c33efc4643}
+      \field{labelalpha}{Tn21}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Dependency Grammar}
+      \field{urlday}{17}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/T2C644ST/dependency+grammar.html
+      \endverb
+      \verb{urlraw}
+      \verb https://ncatlab.org/nlab/show/dependency+grammar
+      \endverb
+      \verb{url}
+      \verb https://ncatlab.org/nlab/show/dependency+grammar
+      \endverb
+    \endentry
     \entry{ToumiEtAl21a}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
@@ -16470,7 +16668,6 @@
   \keyalias{CoeckeEtAl14a}{CoeckeEtAl14}
   \keyalias{FritzEtAl20a}{FritzEtAl20}
   \keyalias{HeunenVicary19a}{HeunenVicary19}
-  \missing{BradleyEtAl18}
 \endrefsection
 \endinput
 

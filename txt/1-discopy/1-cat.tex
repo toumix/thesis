@@ -756,7 +756,7 @@ DisCoPy functors interpret bubbles as the application of \py{method} in the codo
 The resulting syntax is strictly more expressive than that of free categories alone.
 For example, element-wise negation cannot be expressed as a composition: there is no matrix $N : x \to x$ in $\mathbf{Mat}_\B$ such that $N \fcmp f = \bar{f}$ for all $f : x \to y$.
 This is also the case for the element-wise application of any non-linear function such as the rectified linear units (ReLU) used in machine learning.
-As we will discuss in Chapter~\ref{chapter-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
+As we will discuss in section~\ref{section-3:diag-diff}, differentiation of parameterised matrices cannot be expressed as a composition either, but it is a unary operator between homsets, i.e. a bubble.
 
 \begin{python}
 {\normalfont Implementation of free categories with bubbles and their functors.}

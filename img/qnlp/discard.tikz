@@ -1,0 +1,20 @@
+\begin{tikzpicture}[baseline=(0.base), scale=2]
+\begin{pgfonlayer}{nodelayer}
+\node (0) at (0, 0.5) {};
+\node [] (1) at (0, 0.5) {};
+\node [] (2) at (0, 0.25) {};
+\node [style=none, fill=white, right] (3) at (0.2, 0.5) {qubit};
+\node [] (4) at (-0.25, 0.25) {};
+\node [] (5) at (0.25, 0.25) {};
+\node [] (6) at (-0.15, 0.15) {};
+\node [] (7) at (0.15, 0.15) {};
+\node [] (8) at (-0.04999999999999999, 0.04999999999999999) {};
+\node [] (9) at (0.04999999999999999, 0.04999999999999999) {};
+\end{pgfonlayer}
+\begin{pgfonlayer}{edgelayer}
+\draw (1.center) to (2.center);
+\draw (4.center) to (5.center);
+\draw (6.center) to (7.center);
+\draw (8.center) to (9.center);
+\end{pgfonlayer}
+\end{tikzpicture}

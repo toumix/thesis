@@ -1,30 +1,24 @@
 %!TEX root = ../../THESIS.tex
 
-\subsection{Quantum channels}
+\subsection{Quantum channels and mixed quantum circuits}
 
-Thus, this naive definition of QNLP models is unsatisfactory from a computational point of view: if we post-select on all the qubits we'll have to wait an exponentially long time to even approximate an answer.
-It is also unsatisfactory from a category theoretic point of view.
-It would be nice to factorise our DisCoCat model $F : \G \to \mathbf{Mat}_\C$ as a QNLP model $F_Q : \G \to \mathbf{Circ}$ followed by an evaluation functor $\mathbf{Circ} \to \mathbf{Mat}_\C$.
-But what we can actually execute on a quantum machine is the Born rule of the result, which is not a functor: the squared amplitude of a composition is not necessarily the composition of the squared amplitudes.
-Killing two birds with one stone, we can overcome both limitation (computational and theoretical) if we extend our definition of $\mathbf{Circ}$ from \emph{pure} to \emph{mixed} quantum circuits.
-In practice, what our QNLP algorithm is missing is the ability to do nothing, i.e. not to measure a qubit, in theory our category $\mathbf{Circ}$ is missing a box for \emph{discard}.
-As soon as we leave the realm of pure quantum circuits, quantum states cannot be represented as vectors anymore, we need \emph{density matrices}.
-We cannot interpret quantum circuits as unitary matrices anymore, we need \emph{completely-positive trace-preserving} (CPTP) maps, also called \emph{quantum channels}.
-As a bonus, going from pure to mixed and from unitaries to channels gives us enough room to talk about both classical and quantum processes in the same concrete category $\mathbf{Channel}$.
-
-We will adapt the definition of \emph{classical-quantum maps} (cq-maps) from Coecke and Kissinger~\cite[Chapter~8]{CoeckeKissinger17},
+DisCoPy implements a variant of the definition of \emph{classical-quantum maps} (cq-maps) from Coecke and Kissinger~\cite[Chapter~8]{CoeckeKissinger17}.
 Abstractly, it is a simplification of the $\mathbf{CP^\star}$ construction from Coecke, Heunen and Kissinger~\cite{CoeckeEtAl14a}, which itself generalises the notion of finite-dimensional C$^\star$-algebra to arbitrary dagger compact closed categories.
-Concretly, we define the category $\mathbf{CQMap}$ with objects given by pairs of natural numbers\footnote
-{We actually implement an equivalent category where objects are pairs of lists of natural numbers $(a, b) \in \N^\star \times \N^\star$ and the arrows are tensors rather than matrices.} $(a, b) \in \N \times \N$ for the classical and quantum dimensions of the system.
+Concretly, we first define the category $\mathbf{CQMap}$ with objects given by pairs of natural numbers\footnote
+{We actually implement an equivalent category where objects are pairs of lists of natural numbers and the arrows are tensors rather than matrices.} $(a, b) \in \N \times \N$ for the classical and quantum dimensions of the system.
 The arrows $f : (a, b) \to (c, d)$ are given by $(a b^2) \times (c d^2)$ complex matrices, with composition given by matrix multiplication and tensor given by the following diagram:
 \ctikzfig{img/qnlp/channel-tensor}
 A \emph{quantum channel} is a cq-map subject to the following two conditions:
 \begin{itemize}
-\item \emph{complete positivity} (CP), there is a dimension $x \in \N$ and an $(a b) \times (a b x)$ matrix $g$ such that:
-% \ctikzfig{img/qnlp/complete-positivity} TODO
+\item \emph{complete positivity} (CP), there is a dimension $n \in \N$ and an $(a b) \times (c d n)$ matrix $g$ with element-wise conjugate $g^\star$ such that:
+\ctikzfig{img/qnlp/complete-positivity}
 \item \emph{trace preservation} (TP) also called \emph{causality}:
-% \ctikzfig{img/qnlp/trace-preservation} TODO
+\ctikzfig{img/qnlp/trace-preservation}
 \end{itemize}
+Note that we take the convention to use the \emph{algebraic conjugate} which is the identity on objects, rather than the \emph{diagrammatic conjugate} which reverses the order of wires.
+This makes the implementation easier at the cost of breaking the symmetry of the diagram for complete positivity.
+We also note that \emph{Picturing quantum processes}~\cite{CoeckeKissinger17} does not distinguish between diagrams and their evaluation as matrices.
+Moreover, their definition of cq-map includes the complete positivity condition, thus they do not give a name to the matrices that we call cq-maps.
 
 There is a functor $\mathtt{double} : \mathbf{Mat}_\C \to \mathbf{CQMap}$ which sends a dimension $n$ to the pair $(1, n)$ and a complex matrix $f$ to its \emph{double} $\widehat{f}$, the cq-map given by tensoring with its conjugate $\widehat{f} = f \otimes f^\star$.
 The double of a scalar $s : 1 \to 1$ gives the same result as the Born rule $\hat{s} = s \bar{s} = \vert s \vert^2$.
@@ -37,6 +31,7 @@ Again, this is always completely positive and it satisfies causality iff $f$ is 
 For every dimension $x \in \N$, there are channels $\mathtt{measure}(x) : (1, x) \to (x, 1)$ and $\mathtt{encode}(x) : (x, 1) \to (1, x)$ with underlying matrix given by $\mathtt{spider}_{2, 1}(x)$ and its dagger.
 For every pair of dimensions $a, b \in \N$, we can also define $\mathtt{discard}(a, b) : (a, b) \to (1, 1)$ and $\mathtt{mixed_state}(a, b) : (1, 1) \to (a, b)$ with underlying matrix given by $\mathtt{spider}_{1, 0}(a) \otimes \mathtt{cup}(b)$ and its dagger.
 Thus, the intuition for the causality condition is that the future cannot signal to the past: if we apply a quantum process then discard the output, we might as well have discarded the input.
+Abstractly, the category $\mathbf{Channel}$ is \emph{semicartesian}, i.e. the monoidal unit is a terminal object, discarding is the unique arrow from any object into it.
 
 \begin{python}
 {\normalfont Implementation of the category $\mathbf{CQMap}$ with \py{CQ} as objects and \py{Channel} as arrows.}
@@ -55,8 +50,7 @@ class CQ:
 
     __matmul__ = tensor
 
-C, Q = lambda x: CQ(x, []), lambda x: CQ([], x)
-
+C, Q = lambda x: CQ(classical=x), lambda x: CQ(quantum=x)
 
 @dataclass
 class Channel(Composable, Tensorable):
@@ -134,20 +128,21 @@ Channel.__add__, Channel.zero = __add__, zero
 \end{minted}
 \end{python}
 
-\subsection{Quantum circuits}
-
 We're now ready to define $\mathbf{Circ}$ as a free symmetric monoidal category with a monoidal functor $\mathbf{Circ} \to \mathbf{CQMap}$.
 We implement \py{Circuit} as a subclass of \py{Diagram} with objects generated by two families of objects \py{Digit(n)} and \py{Qudit(n)} indexed by natural numbers \py{n > 1}, where \py{bit = Ty(Digit(2))} and \py{qubit = Ty(Qudit(2))}.
 The class \py{Gate} is a subclass of \py{Box} and \py{Circuit} with an attribute \py{array} which will define its interpretation as a pure circuit, i.e. a unitary matrix.
 We also have boxes for \py{Ket} and its dagger \py{Bra}, \py{Measure} and its dagger \py{Encode}, \py{Discard} and its dagger \py{MixedState}.
 The evaluation of any such circuit is always completely-positive~\cite[Corollary~8.6]{CoeckeKissinger17}.
 It is a channel, i.e. it is furthermore causal, precisely when the circuit does not contain any instance of \py{Bra}~\cite[Theorem~8.96]{CoeckeKissinger17}.
-In fact, using \emph{Stinespring dilation} we can show that the evaluation of the subcategory of such causal circuits defines a full monoidal functor $\mathbf{CausalCirc} \to \mathbf{Channel}$.
+In fact, we can show that the evaluation of the subcategory of such causal circuits defines a full monoidal functor $\mathbf{CausalCirc} \to \mathbf{Channel}$.
 More explicitly, every quantum channel $f : (a, b) \to (c, d)$ can be written as:
-$$f = \mathtt{double}(\vert 0 \rangle_n) \otimes \mathtt{encode}(a) \otimes b \s \fcmp \s \mathtt{double}(g) \s \fcmp \s \otimes \mathtt{discard}(n) \otimes \mathtt{measure}(c) \otimes d$$
-% TODO
+$$f = \mathtt{encode}(a) \otimes b \otimes \mathtt{double}(\vert 0 \rangle_n)
+\s \fcmp \s \mathtt{double}(g) \s \fcmp \s
+\mathtt{measure}(c) \otimes d \otimes \mathtt{discard}(n)$$
 for some $n$-dimensional ancilla $\vert 0 \rangle_n$ and an $(n a b) \times (n c d)$ unitary matrix $g$.
 This gives us a general intuition for what it means to take a shot at a quantum circuit: 1) we prepare some qubits in the zero state, 2) we perform classically-controlled unitary gates, 3) we measure some of the qubits and discard the others.
+Drawing digits and qudits as thin and thick wires, encode and measure as spiders, discard as three horizontal lines, we get the following diagram for a generic circuit:
+\ctikzfig{img/qnlp/stinespring}
 
 \begin{python}
 {\normalfont Implementation of the category $\mathbf{Circ}$ with \py{Digit} and \py{Qudit} as generating objects and \py{Circuit} as arrows.}
@@ -226,16 +221,16 @@ As discussed in example~\ref{example:pivotal-circuit}, the category $\mathbf{Cir
 The cups for digits are given by the result of measuring a scaled Bell state, or equivalently as an (unnormalised) correlated probability distributions, the caps can be thought of as classical post-selection on two digits being equal.
 We can freely add sums to $\mathbf{Circ}$ and execute (simulate) a formal sum of circuits by executing (simulating) each circuit and adding up the results.
 If we can take formal sums, there's no reason not to also take linear combinations of circuits.
-Via the Born rule, we can already define positive real scalars as the evaluation of pure quantum gates on zero qubits, such as the $\sqrt{2}$ scalars of our first example~\ref{example:circuit-alive-loves-bob}.
-Before we can encode arbitrary complex matrices as circuits, what we're missing are \emph{mixed scalars} which get applied after the Born rule.
+Via the Born rule, we can already define positive real scalars as the evaluation of pure quantum gates on zero qubits, such as the $\sqrt 2$ scalars of our first example~\ref{example:circuit-alive-loves-bob}.
+What we're missing are \emph{mixed scalars} which get applied after the Born rule.
 
 \begin{python}
-{\normalfont Implementation of mixed scalars in $\mathbf{Circ}$.}
+{\normalfont Implementation of pure and mixed scalars in $\mathbf{Circ}$.}
 
 \begin{minted}{python}
 class Sqrt(Gate):
     def __init__(self, x: float):
-        super().__init__("$\\sqrt{{{}}})$".format(x), Ty(), Ty(), array=[[math.sqrt(x)]])
+        super().__init__("$\\sqrt {}$".format(x), Ty(), Ty(), array=[[math.sqrt(x)]])
 
 class Scalar(Box, Circuit):
     def __init__(self, z: complex, is_pure=False):
@@ -250,6 +245,13 @@ class Scalar(Box, Circuit):
 \begin{minted}{python}
 Digit.l = Digit.r = Qudit.l = Qudit.r = property(lambda self: self)
 
+X, Y, Z, H = (Gate(name, qubit, qubit, array) for name, array in zip("XYZH", [
+    [[0, 1], [1, 0]], [[0, -1j], [1j, 0]], [[1, 0], [0, -1]],
+    [[1 / sqrt(2), 1 / sqrt(2)], [1 / sqrt(2), -1 / sqrt(2)]]]))
+CX = Gate('CX', qubit ** 2, qubit ** 2, [[1, 0, 0, 0],
+                                         [0, 1, 0, 0],
+                                         [0, 0, 0, 1],
+                                         [0, 0, 1, 0]])
 @staticmethod
 @nesting
 def cups(left: Ty, right: Ty):
@@ -321,12 +323,6 @@ def eval(self, mixed=True, backend=None) -> Tensor | Channel:
 We can simulate a Bell test experiment by applying the evaluation functor $\mathbf{Circ} \to \mathbf{Channel}$.
 
 \begin{minted}{python}
-H = Gate('H', qubit, qubit, [[1 / sqrt(2), 1 / sqrt(2)],
-                             [1 / sqrt(2), -1 / sqrt(2)]])
-CX = Gate('CX', qubit ** 2, qubit ** 2, [[1, 0, 0, 0],
-                                         [0, 1, 0, 0],
-                                         [0, 0, 0, 1],
-                                         [0, 0, 1, 0]])
 circuit = Ket(0, 0) >> H @ qubit >> CX >> Measure() @ Measure()
 circuit.draw()
 \end{minted}
@@ -335,5 +331,3 @@ circuit.draw()
 assert circuit.eval() == Channel([[.5, 0, 0, .5]], CQ(), C([2, 2]))
 \end{minted}
 \end{example}
-
-There is a faithful monoidal functor $\mathtt{enc} : \mathbf{Tensor}_\C \to \mathbf{Circ}$?

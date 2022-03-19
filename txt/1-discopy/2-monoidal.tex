@@ -240,7 +240,7 @@ class Tensor(Tensorable, Matrix):
         return Matrix[self.dtype](self.inside, product(self.dom), product(self.cod))
 
     @classmethod
-    def id(cls, x: list[int] = []) -> Tensor:
+    def id(cls, x: list[int]) -> Tensor:
         return cls(Matrix.id(product(x)).inside, x, x)
 
     @inductive
@@ -335,10 +335,8 @@ In the next section, we will show that this construction is in fact equivalent t
 \begin{minted}{python}
 @dataclass
 class Ty(Ob):
-    inside: list[Ob | str] = []
-
-    def __init__(self, inside=[]):
-        self.inside = [x if isinstance(x, Ob) else Ob(x) for x in inside]
+    def __init__(self, inside: Optional[list[Ob | str]] = None):
+        self.inside = [x if isinstance(x, Ob) else Ob(x) for x in inside or []]
         name = ' @ '.join(map(str, inside)) if inside else "{}()".format(type(self).__name__)
         super().__init__(name)
 

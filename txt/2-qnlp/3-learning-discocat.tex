@@ -1,0 +1,24 @@
+%!TEX root = ../../THESIS.tex
+
+\section{Training QNLP models}
+
+In the previous section, we have showed how to evaluate a given DisCoCat model on a quantum computer.
+But where do we get this model from in the first place?
+This section will review previous approaches to solving this problem and how we can adapt them to noisy intermediate-scale quantum (NISQ) computers.
+
+\subsection{DisCoCat models via knowledge graph embedding}
+
+The first two DisCoCat papers~\cite{ClarkEtAl08,ClarkEtAl10} focused on the mathematical foundations for their models, assuming that the meaning for words was given they showed how to compute the meaning for grammatical sentences.
+Grefenstette and Sadrzadeh~\cite{GrefenstetteSadrzadeh11} gave a first implementation of a DisCoCat model $F : \G \to \mathbf{Mat}_\R$ for a simple pregroup grammar $G = (V, X, D, s)$ made of common nouns and transitive verbs.
+Concretely, they take the vocabulary $V = E + R$ for some finite sets $E$ and $R$ which we may call \emph{entities} and (binary) \emph{relations} and the dictionary $D = \{ (e, n) \}_{e \in E} \cup \{ (r, n^r s n^l) \}_{r \in R}$.
+We may summarise their approach in the following recipe:
+\begin{enumerate}
+\item take a corpus of text, extract a weighted co-occurrence matrix and compute a word vector $F(e, n) \in \R^N$ for each noun $e \in E$ and $F(n) = N$,
+\item for each transitive verb $r \in R$, find all the pairs of nouns $(x, y) \in K_r \sub E \times E$ such that the sentence $x r y \in E \times R \times E \sub V^\star$ occurs in the corpus, then define
+$$F(r, n^r s n^l) = \big( \sum_{(x, y) \in K_r} F(x, n) \otimes F(y, n) \big) \fcmp \spider_{1, 2}(N) \otimes \spider_{1, 2}(N)$$
+\item for each sentence of the form $x r y \in E \times R \times E$ with the obvious grammatical structure $f : x r y \to s$ compute its meaning $F(f) = F(F(x, n) \otimes F(y, n)$
+\end{enumerate}
+
+\subsection{Learning monoidal functors from data}
+
+\subsection{}
