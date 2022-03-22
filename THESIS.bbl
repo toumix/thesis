@@ -627,6 +627,47 @@
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Statistics - Machine Learning}
     \endentry
+    \entry{Valiant84}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=c471403d8eb46b1c05025654f79ca48e}{%
+           family={Valiant},
+           familyi={V\bibinitperiod},
+           given={L.\bibnamedelimi G.},
+           giveni={L\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{c471403d8eb46b1c05025654f79ca48e}
+      \strng{fullhash}{c471403d8eb46b1c05025654f79ca48e}
+      \strng{bibnamehash}{c471403d8eb46b1c05025654f79ca48e}
+      \strng{authorbibnamehash}{c471403d8eb46b1c05025654f79ca48e}
+      \strng{authornamehash}{c471403d8eb46b1c05025654f79ca48e}
+      \strng{authorfullhash}{c471403d8eb46b1c05025654f79ca48e}
+      \field{labelalpha}{Val84}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Humans appear to be able to learn new concepts without needing to be programmed explicitly in any conventional sense. In this paper we regard learning as the phenomenon of knowledge acquisition in the absence of explicit programming. We give a precise methodology for studying this phenomenon from a computational viewpoint. It consists of choosing an appropriate information gathering mechanism, the learning protocol, and exploring the class of concepts that can be learnt using it in a reasonable (polynomial) number of steps. We find that inherent algorithmic complexity appears to set serious limits to the range of concepts that can be so learnt. The methodology and results suggest concrete principles for designing realistic learning systems.}
+      \field{booktitle}{Proceedings of the {{Sixteenth Annual ACM Symposium}} on {{Theory}} of {{Computing}}}
+      \field{isbn}{978-0-89791-133-7}
+      \field{series}{{{STOC}} '84}
+      \field{title}{A {{Theory}} of the {{Learnable}}}
+      \field{year}{1984}
+      \field{dateera}{ce}
+      \field{pages}{436\bibrangedash 445}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/800057.808710
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/SPPKVRLN/ValiantLearnable.pdf
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

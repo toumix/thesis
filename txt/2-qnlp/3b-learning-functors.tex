@@ -1,3 +1,32 @@
 %!TEX root = ../../THESIS.tex
 
 \subsection{Learning monoidal functors from data}
+
+While supervised machine learning has traditionally been formulated in terms of learning \emph{functions} while in our case we are in fact \emph{learning functors}.
+We argue that going from sets to categories and from functions to functors gives a theoretical framework for \emph{structured} machine learning where the input data are arrows in a category rather than elements in a set and the functions we want to learn respect the structure of the category.
+
+Before we attempt to categorify machine learning, let us recall the \emph{probably approximately correct} (PAC) learning framework as introduced by Valiant~\cite{Valiant84} .
+We start from a set $\mathcal{X}$ called the \emph{instance space}, usually taken to be $\B^n$ or $\R^n$ for some dimension $n \in \N$.
+A \emph{concept} is a function $c : \mathcal{X} \to \mathcal{Y}$ where $\mathcal{Y}$ is a \emph{label space}, usually taken to be the Booleans $\mathcal{Y} = \B$ so that a concept can be identified with a subset $c \sub \mathcal{X}$.
+Given a \emph{hypothesis} $h \sub \mathcal{X}$, a \emph{target concept} $c \sub \mathcal{X}$ and a distribution $\mathcal{D}$ over $\mathcal{X}$, we define $\mathtt{error}_{c, \mathcal{D}}(h) = \mathbb{P}_{x \sim \mathcal{D}} [ h(x) \neq c(x) ]$.
+
+A \emph{concept class} is a collection of concepts $\mathcal{C} \sub \mathcal{X} \to \mathcal{Y}$, together with a function $\mathtt{size} : \mathcal{C} \to \N$ where $\mathtt{size}(c)$ is usually the number of bits required to encode a concept $c \in \mathcal{C}$.
+A \emph{learning algorithm} $A$ for a concept class $\mathcal{C}$ is one that takes as input a confidence $\delta > 0$, an error rate $\epsilon > 0$, a training set $\Omega \sub \mathcal{X} \times \mathcal{Y}$ and returns a hypothesis $A(\Omega, \epsilon, \delta) \in \mathcal{C}$.
+A concept class $\mathcal{C}$ is \emph{PAC learnable} whenever there exists a learning algorithm $A$ and a polynomial $p$ such that:
+\begin{itemize}
+    \item for all target concepts $c \in \mathcal{C}$,
+    \item for all distributions $\mathcal{D}$ over $\mathcal{X}$,
+    \item for all confidence $\delta > 0$ and error rate $\epsilon > 0$
+\end{itemize}
+$$\mathbb{P}_{X \sim \mathcal{D}^N}\big[ \mathtt{error}_{c, \mathcal{D}}(A(X, \epsilon, \delta)) \geq \epsilon \big] \leq \delta$$
+where we draw $N = p(n, \frac{1}{\delta}, \frac{1}{\epsilon})$ samples $X \in \mathcal{X}^N$ independently and identically distributed according to $\mathcal{D}$.
+The concept class $\mathcal{C}$ is \emph{efficiently PAC learnable} if furthermore the running time of $A$ is polynomial in $n$, $\frac{1}{\delta}$, $\frac{1}{\epsilon}$ and $\mathtt{size}(c)$.
+
+Replace sets by categories, functions by functors
+Take $\mathcal{X} = \coprod_{x, y} C(x, y)$ for some category
+
+Take bounded sign rank knowledge graphs, then their VC dimension~\cite{VapnikChervonenkis15a} is bounded, thus it is learnable, but very hard to prove that Trouillon satisfies the conditions, i.e. that it works whatever the distribution
+
+Hard to evaluate implies hard to learn~\cite[Theorem~7]{Schapire90}, thus learning arbitrary DisCoCat models (unless P/poly = NP/poly)
+
+What DisCoCat models are efficiently PAC learnable? Future work
