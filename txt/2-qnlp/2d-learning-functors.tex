@@ -1,0 +1,24 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Variational quantum question answering}
+
+The previous section introduced the idea of using gradient descent to learn DisCoCat models $F : \G \to \mathbf{Mat}_\C$ from data, we now discuss how to apply the same functorial learning approach in order to learn QNLP models $F : \G \to \mathbf{Circ}$.
+There are two main challenges: 1) we need a way to load our model onto a quantum machine, i.e. encode word embeddings as parameterised quantum circuits, 2) we need a way to train the model, i.e. to compute the optimal parameters in some data-driven task.
+As we mentioned in section~\ref{section:discocat-qnlp}, we could solve the first challenge by post-composing a classical model $F : \G \to \mathbf{Mat}_\C$ with any choice of encoding $\mathtt{load} : \mathbf{Mat}_\C \to \mathbf{Circ}$ to get a QNLP model $F \fcmp \mathtt{load} : \G \to \mathbf{Circ}$.
+However, this would require circuits with depth exponential in the number of qubits, which are out of reach for the NISQ computers available today.
+Instead of learning classical vectors of parameters that we then encode as circuits, we introduce a \emph{variational} quantum algorithm where we learn the parameters of quantum circuits directly.
+As for the second challenge, we cannot hope to backpropagate gradients through a quantum circuit in the same way as for classical neural networks.
+In this section we pick the easiest alternative: we treat our QNLP model as a black box and use a noisy optimisation algorithm such as the stochastic perturbation stochastic approximation (SPSA) of Spall~\cite{Spall98}.
+In the next section, we will open the black box and introduce \emph{diagrammatic differentiation} in order to use the quantum circuits to compute their own gradients.
+
+Our variational algorithm depends on a choice of \emph{ansatz}, i.e. a family of parameterised quantum circuits
+
+%
+% $\{ c_\theta : 1 \to \mathtt{qubit}^n \s \vert \theta \in \Theta_n \}$
+% for
+% of the appropriate shape for each type in our pregroup dictionary.
+% As in the previous section, we can abstract the details away into a parameter space $\Theta$ and a function $\theta \in \Theta \mapsto F_\theta : \G \to \mathbf{Circ}$ from parameters to functors.
+% On objects, the parameterised functor $F_\theta$ sends the basic types $x \in X$ of our pregroup grammar $G = (V, X, D, s)$ to some number of qubits $F_\theta(x) \in \N$, which we may call \emph{hyper-parameters}.
+% On arrows,
+
+\cite{MaEtAl19}

@@ -1,0 +1,114 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (156) at (2.25, 0.775) {};
+		\node [style=none] (157) at (2.725, 0.775) {};
+		\node [style=none] (158) at (2.725, -0.775) {};
+		\node [style=none] (159) at (3.225, 0.275) {};
+		\node [style=none] (160) at (3.225, -0.325) {};
+		\node [style=none] (161) at (1.75, 0.275) {};
+		\node [style=none] (162) at (1.75, -0.775) {};
+		\node [style=none, font={\scriptsize}] (163) at (1.9, -0.575) {$\sigma$};
+		\node [style=none] (6) at (1.25, 0) {$=$};
+		\node [style=none] (8) at (-0.25, 0) {};
+		\node [style=none] (9) at (-1, 0) {};
+		\node [style=none] (10) at (-0.25, 0.5) {};
+		\node [style=none] (11) at (-0.25, -0.5) {};
+		\node [style=none] (12) at (-0.5, 0) {$\vec{x_i}$};
+		\node [style=none] (13) at (0, 0.25) {$a_i$};
+		\node [style=none] (14) at (0.75, 0) {};
+		\node [style=none] (21) at (0.5, 0.25) {$b_i$};
+		\node [style=none] (54) at (2.75, 0) {};
+		\node [style=none] (55) at (2, 0) {};
+		\node [style=none] (56) at (2.75, 0.5) {};
+		\node [style=none] (57) at (2.75, -0.5) {};
+		\node [style=none] (58) at (2.5, 0) {$\vec{y_i}$};
+		\node [style=none] (59) at (3, 0.25) {$b_i$};
+		\node [style=none] (60) at (3.75, 0) {};
+		\node [style=none] (61) at (3.25, 0) {};
+		\node [style=none] (63) at (1.75, 0) {};
+		\node [style=none] (67) at (3.5, 0.25) {$b_i$};
+		\node [style=none] (69) at (5, 0) {where};
+		\node [style=none] (94) at (7, 0) {};
+		\node [style=none] (95) at (6.25, 0) {};
+		\node [style=none] (96) at (7, 0.5) {};
+		\node [style=none] (97) at (7, -0.5) {};
+		\node [style=none] (98) at (6.75, 0) {$\vec{y_i}$};
+		\node [style=none] (99) at (7.5, 0) {};
+		\node [style=none] (123) at (8.25, 0) {$=$};
+		\node [style=none] (124) at (9.75, 0) {};
+		\node [style=none] (125) at (9, 0) {};
+		\node [style=none] (126) at (9.75, 0.5) {};
+		\node [style=none] (127) at (9.75, -0.5) {};
+		\node [style=none] (128) at (9.5, 0) {$\beta_i$};
+		\node [style=none] (129) at (10.25, 0) {};
+		\node [style=none] (130) at (12, 0) {};
+		\node [style=none] (131) at (11.25, 0) {};
+		\node [style=none] (132) at (12, 0.5) {};
+		\node [style=none] (133) at (12, -0.5) {};
+		\node [style=none] (134) at (11.75, 0) {$\vec{x_i}$};
+		\node [style=none] (135) at (12.25, 0.25) {$a_i$};
+		\node [style=none] (136) at (12.5, 0) {};
+		\node [style=none] (137) at (12.5, 0.5) {};
+		\node [style=none] (138) at (12.5, -0.5) {};
+		\node [style=none] (139) at (13.5, 0.5) {};
+		\node [style=none] (140) at (13.5, -0.5) {};
+		\node [style=none] (141) at (13.5, 0) {};
+		\node [style=none] (142) at (13, 0) {$W_i$};
+		\node [style=none] (143) at (13.75, 0.25) {$b_i$};
+		\node [style=none] (144) at (10.75, 0) {$+$};
+		\node [style=none] (145) at (14, 0) {};
+		\node [style=none] (146) at (10, 0.25) {$b_i$};
+		\node [style=none] (147) at (7.25, 0.25) {$b_i$};
+		\node [style=none] (148) at (-0.725, 0.775) {};
+		\node [style=none] (149) at (-0.25, 0.775) {};
+		\node [style=none] (150) at (-0.25, -0.775) {};
+		\node [style=none] (151) at (0.25, 0.275) {};
+		\node [style=none] (152) at (0.25, -0.325) {};
+		\node [style=none] (153) at (-1.225, 0.275) {};
+		\node [style=none] (154) at (-1.225, -0.775) {};
+		\node [style=none, font={\scriptsize}] (155) at (-1.075, -0.575) {$f_i$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boxedge] (156.center)
+			 to [bend right=45, looseness=1.25] (161.center)
+			 to (162.center)
+			 to (158.center)
+			 to [bend right=45, looseness=1.50] (160.center)
+			 to (159.center)
+			 to [bend right=45, looseness=1.25] (157.center)
+			 to cycle;
+		\draw [style=boxedge] (148.center)
+			 to [bend right=45, looseness=1.25] (153.center)
+			 to (154.center)
+			 to (150.center)
+			 to [bend right=45, looseness=1.50] (152.center)
+			 to (151.center)
+			 to [bend right=45, looseness=1.25] (149.center)
+			 to cycle;
+		\draw (9.center) to (10.center);
+		\draw (10.center) to (11.center);
+		\draw (11.center) to (9.center);
+		\draw (8.center) to (14.center);
+		\draw (55.center) to (56.center);
+		\draw (56.center) to (57.center);
+		\draw (57.center) to (55.center);
+		\draw (54.center) to (60.center);
+		\draw (95.center) to (96.center);
+		\draw (96.center) to (97.center);
+		\draw (97.center) to (95.center);
+		\draw (94.center) to (99.center);
+		\draw (125.center) to (126.center);
+		\draw (126.center) to (127.center);
+		\draw (127.center) to (125.center);
+		\draw (124.center) to (129.center);
+		\draw (131.center) to (132.center);
+		\draw (132.center) to (133.center);
+		\draw (133.center) to (131.center);
+		\draw (130.center) to (136.center);
+		\draw (137.center) to (138.center);
+		\draw (138.center) to (140.center);
+		\draw (140.center) to (139.center);
+		\draw (139.center) to (137.center);
+		\draw (141.center) to (145.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

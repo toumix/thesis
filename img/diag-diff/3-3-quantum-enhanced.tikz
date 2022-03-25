@@ -1,0 +1,64 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=X] (0) at (0, 2) {};
+		\node [style=X] (1) at (0, 1) {};
+		\node [style=H] (2) at (0.5, 2) {};
+		\node [style=H] (3) at (0.5, 1) {};
+		\node [style=none] (4) at (1, 2.25) {};
+		\node [style=none] (5) at (1, 0.75) {};
+		\node [style=none] (6) at (2.5, 0.75) {};
+		\node [style=none] (7) at (2.5, 2.25) {};
+		\node [style=none] (8) at (1.75, 1.5) {$U(\vec{x})$};
+		\node [style=H] (9) at (3, 2) {};
+		\node [style=H] (10) at (3, 1) {};
+		\node [style=none] (11) at (3.5, 2.25) {};
+		\node [style=none] (12) at (3.5, 0.75) {};
+		\node [style=none] (13) at (5, 0.75) {};
+		\node [style=none] (14) at (5, 2.25) {};
+		\node [style=none] (15) at (4.25, 1.5) {$U(\vec{x})$};
+		\node [style=none] (16) at (6, 2.25) {};
+		\node [style=none] (17) at (6, 0.75) {};
+		\node [style=none] (18) at (7.5, 0.75) {};
+		\node [style=none] (19) at (7.5, 2.25) {};
+		\node [style=none] (20) at (6.75, 1.5) {$W(\vec{\theta})$};
+		\node [style=Z] (21) at (8, 2) {};
+		\node [style=Z] (22) at (8, 1) {};
+		\node [style=none] (23) at (8.5, 2.25) {};
+		\node [style=none] (24) at (8.5, 0.75) {};
+		\node [style=none] (25) at (9.5, 0.75) {};
+		\node [style=none] (26) at (9.5, 2.25) {};
+		\node [style=none] (27) at (9, 1.5) {$f$};
+		\node [style=none] (28) at (10, 2) {};
+		\node [style=none] (29) at (10, 1) {};
+		\node [style=none] (30) at (0.5, 1.6) {\scriptsize $\vdots$};
+		\node [style=none] (31) at (10, 1.6) {\scriptsize $\vdots$};
+		\node [style=none] (32) at (8, 1.6) {\scriptsize $\vdots$};
+		\node [style=none] (33) at (3, 1.6) {\scriptsize $\vdots$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [line width=0.6mm] (0) to (21);
+		\draw [line width=0.6mm] (1) to (22);
+		\draw (21) to (28.center);
+		\draw (22) to (29.center);
+		\draw [style=boxedge] (5.center)
+			 to (6.center)
+			 to (7.center)
+			 to (4.center)
+			 to cycle;
+		\draw [style=boxedge] (11.center)
+			 to (12.center)
+			 to (13.center)
+			 to (14.center)
+			 to cycle;
+		\draw [style=boxedge] (16.center)
+			 to (17.center)
+			 to (18.center)
+			 to (19.center)
+			 to cycle;
+		\draw [style=boxedge] (26.center)
+			 to (23.center)
+			 to (24.center)
+			 to (25.center)
+			 to cycle;
+	\end{pgfonlayer}
+\end{tikzpicture}

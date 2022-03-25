@@ -44,7 +44,7 @@ We have evaluated (the squared amplitude of) the DisCoCat model of example~\ref{
 Indeed, we have chosen our QNLP model so that the quantum states for words encode their interpretation, e.g. we have sent \py{loves} to an (anti-correlated) Bell state scaled by $\sqrt{2}$ so that \py{F(loves).eval().inside} \py{= [[0, 1], [1, 0]]}.
 Assuming a universal gate set, every complex vector $u \in \C^{2^n}$ can be encoded as a pure quantum circuit $c : \mathtt{qubit}^0 \to \mathtt{qubit}^n$ scaled by a positive real scalar to account for the normalisation, which we can represent as a quantum gate on zero qubits.
 
-In fact, every choice of encoding will define a faithful monoidal functor $\mathtt{load} : \mathbf{Tensor}_\C \to \mathbf{Circ}$ from complex tensors to pure quantum circuits with real scalars, which is an inverse to evaluation $\mathtt{load} \fcmp \mathtt{eval} = \id(\mathbf{Tensor}_\C)$.
+In fact, every choice of encoding will define a faithful monoidal functor $\mathtt{load} : \mathbf{Tensor}_\C \to \mathbf{Circ}$ from complex tensors to pure quantum circuits with real scalars (up to equality of their interpretation) which is an inverse to evaluation, i.e. $\mathtt{load} \fcmp \mathtt{eval} = \id(\mathbf{Tensor}_\C)$.
 On objects, it sends a dimension $d \in \N$ to a qudit, i.e. a $d$-dimensional quantum system.
 From the rigid structure of $\mathbf{Tensor}_\C$, every arrow $f : x \to y$ can be written as $f = x \otimes u \fcmp \ttcup{x} \otimes y$ for the state $u : 1 \to x y$ given by $u = \ttcap{x} \fcmp x \otimes f$.
 Thus, every tensor can be encoded as a scaled circuit followed by a post-selected Bell measurement.

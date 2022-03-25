@@ -1,0 +1,86 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{DisCoCat models via knowledge graph embedding}
+
+In the previous section, we have showed how to evaluate a given DisCoCat model on a quantum computer.
+But where do we get this model from in the first place?
+The first two DisCoCat papers~\cite{ClarkEtAl08,ClarkEtAl10} focused on the mathematical foundations for their models.
+Assuming that the meaning for words was given, they showed how to compute the meaning for grammatical sentences.
+Grefenstette and Sadrzadeh~\cite{GrefenstetteSadrzadeh11} gave a first implementation of a DisCoCat model for a simple pregroup grammar $G = (V, X, D, s)$ made of common nouns and transitive verbs.
+Concretely, their vocabulary is given $V = E + R$ for some finite sets $E$ and $R$ which we may call \emph{entities} and (binary) \emph{relations}.
+They take basic types $X = \{ s, n \}$ and dictionary $D = \{ (e, n) \}_{e \in E} \cup \{ (r, n^r s n^l) \}_{r \in R}$.
+Thus, every grammatical sentence is of the form $f : x r y \to s$ for what we may call a \emph{triple} of subject-verb-object $(x, r, y) \in L(G) \simeq E \times R \times E$.
+They define a DisCoCat model $F : \G \to \mathbf{Mat}_\R$ with $F(s) = 1$ and a hyper-parameter $F(n) = d \in \N$ using the following recipe:
+\begin{enumerate}
+\item extract a co-occurrence matrix from a corpus of text and compute a $d$-dimensional word vector $F(e) \in \R^d$ for each noun $e \in E$,
+\item for each transitive verb $r \in R$, find the set $K_r \sub E \times E$ of all pairs of nouns $(x, y) \in K_r$ such that the sentence $x r y \in E \times R \times E$ occurs in the corpus, then define
+$$F(r) = \sum_{(x, y) \in K_r} F(x) \otimes F(y)$$
+\end{enumerate}
+The meaning of a sentence $f : x r y \to s$ would then given by the inner product $F(f) = \langle F(x) \otimes F(y) \vert F(r) \rangle$ which we can rewrite as
+$$F(f) = \sum_{(x', y') \in K_r} \langle F(x) \vert F(x') \rangle \langle F(y) \vert F(y') \rangle$$
+i.e. we take the sum of the similarities between our subject-object pair $(x, y)$ and the pairs $(x', y')$ that appeared in the corpus.
+However, the task they aim to solve is \emph{word sense disambiguation} which they cast in terms of \emph{sentence similarity}, but if the meaning of sentences are given by scalars there is no meaningful way compare them.
+For example, the verb ``draw'' can be synonymous to ``sketch'' but also to ``pull''.
+Thus, they want their model to predict that ``Bob draws diagrams'' is more similar to ``Bob sketches diagrams'' than to ``Bob pulls diagrams''.
+Using a spider trick that has been later formalised by Kartsaklis et al.~\cite{KartsaklisEtAl12}, they decide to replace inner product by element-wise multiplication.
+This amounts to defining a new functor $F' : \G \to \mathbf{Mat}_\R$ by post-composing verb meanings with spiders, i.e.
+$$
+F'(n) = F(n) = d, \quad F'(s) = d^2, \quad F'(e) = F(e)
+$$ $$
+\text{and} \quad F'(r) \s = \s F(r) \ \fcmp \ \spider_{1, 2}(d) \otimes \spider_{1, 2}(d)
+$$
+Indeed, the element-wise multiplication of two vectors $u, v \in \R^d$ can be defined as $u \odot v = u \otimes v \fcmp \spider_{2, 1}(d)$, from which we get the desired meaning for the sentence:
+\ctikzfig{img/qnlp/frobenius-trick}
+Now that sentence meanings are given by $d^2$-dimensional vectors rather than scalars, we can compute their similarity with inner products and use this to solve the disambiguation task.
+
+The key observation which motivated our previous dissertation~\cite{Toumi18a} as well as the subsequent articles \cite{CoeckeEtAl18a} and \cite{FeliceEtAl19} is that a corpus $K \sub E \times R \times E$ of such subject-verb-object sentences can be seen as the data for a \emph{knowledge graph}.
+In this simplified setting, a DisCoCat model can be seen as an instance of \emph{knowledge graph embedding} (KGE) where we want to find a low-dimensional representation of entities and relations.
+The interpretation of a sentence can be used for \emph{link prediction}, where we want generalising the corpus to unseen sentences.
+By extending the grammar with the words ``who'' and ``whom'', we can use the same model to solve simple instances of question answering.
+As discussed in section~\ref{section:anaphora}, extending the grammar with anaphora which we interpret as spiders then allows to answer any conjunctive query.
+
+Taking this DisCoCat-KGE analogy in the other direction, we can interpret knowledge graph embeddings as DisCoCat models.
+Take for example\footnote
+{We focus on ComplEx, other examples of KGE as functors are treated in \cite[Section~2.6]{Felice22}.}
+the ComplEx model of Trouillon et al.~\cite{TrouillonEtAl16,TrouillonEtAl17}, it is defined by a dimension $d \in \N$, a (normalised) complex vector $u_e \in \C^d$ for each entity $e \in E$ and a complex vector $v_r \in \C^d$ for each relation $r \in R$.
+Let us pack this into a dependent pair $\theta \in \Theta = \coprod_{d \in \N} \C^{d (\vert E \vert + \vert R \vert)}$.
+The interpretation of a triple $f : x r y \to s$ is given by the scoring function $T_\theta(f) = 2 \text{Re}(\langle u_x, v_r, u_y^\star \rangle)$, where $\langle u, v, w \rangle = \sum_{i \leq d} u_d v_d w_d$ is the tri-linear dot product, $u_y^\star$ is the element-wise conjugate, and $2 \text{Re}$ takes twice\footnote
+{We scale the original definition by $2$ in order to avoid cluttering the diagrams with $\frac{1}{2}$ scalars.} the real part of a complex number.
+We can reformulate this as the complex-valued DisCoCat model $T_\theta : \G \to \mathbf{Mat}_\C$ given by $T_\theta(s) = 1$, $T_\theta(n) = d^2$ and:
+\ctikzfig{img/qnlp/trouillon-trick}
+where we draw the conjugate of a vector as the horizontal reflection of its box.
+We can use the same spider trick as above to rewrite $\langle u_x, v_r, u_y^\star \rangle$ in terms of post-composition with a three-legged spider.
+We can also rewrite the real part of a scalar as half the sum with its conjugate $2 \text{Re}(z) = z + \bar z$, from which we get the desired meaning for sentences:
+\ctikzfig{img/qnlp/trouillon-functor}
+The meaning of a sentence $f : x r y \to s$ is given by a real scalar which we interpret as true when $T_\theta(f) \geq 0$.
+In fact, any knowledge graph $K : E \times R \times E \to \{ \pm 1 \}$ can be written as $K = T_\theta \fcmp \mathtt{sign}$ for the function $\mathtt{sign} : \R \to \{ \pm 1 \}$~\cite[Theorem~4]{TrouillonEtAl17}.
+Furthermore, the dimension $d \in \N$ of the model can be bounded by the \emph{sign-rank} of the matrices for each relation~\cite[Proposition~2.5.17]{Felice22}, with theoretical guarantees that $d \ll \vert E \vert$ if the problem is learnable efficiently~\cite{AlonEtAl16a}.
+
+Hence, the knowledge graph embedding can be defined as a space of parameters $\Theta$ together with a function $T_- : \Theta \to [\G, \mathbf{Mat}_\C]$ which sends parameters $\theta \in \Theta$ to functors $T_\theta : \G \to \mathbf{Mat}_\C$.
+Now if we are given a training set $\Omega \sub E \times R \times E$ annotated by $Y : \Omega \to \{ \pm 1 \}$ for whether each triple belongs to the knowledge graph\footnote
+{When the dataset contains only positive triples, it is common use the \emph{local closed world assumption} where we randomly change either the subject or object to generate negative triples.
+This can be improved by \emph{adversarial sampling} methods~\cite{CaiWang18}, akin to \emph{generative adversarial networks} where we train a model to generate hard negative examples.
+In \cite{FeliceEtAl20} we investigate how this can be formalised in terms of \emph{functorial language games}.},
+we want to find the parameters that best approximate the data:
+$$
+\theta^\star \s = \s \argmin_{\theta \in \Theta} \
+\lambda \lVert \theta \rVert + \sum_{f \in \Omega} \mathtt{loss}(T_\theta(f), Y(f))
+$$
+where $\lVert \theta \rVert$ is a choice of norm (usually $L^2$) scaled by some regularisation hyper-parameter $\lambda \geq 0$ and $\mathtt{loss} : \R \times \R \to \R^+$ is a choice of loss function, usually the negative log-likelihood of the logistic model $\mathtt{loss}(y, y') = \log (1 + \exp(-yy'))$.
+If we fix the dimension $d \in \N$ (i.e. we take it as a hyper-parameter) we can use stochastic gradient descent to compute $\theta^\star$ and hence the optimal model $T_{\theta^\star} : \G \to \mathbf{Mat}_\C$.
+Using $T_{\theta^\star}$ to predict the value of triples $f \in (E \times R \times E) - \Omega$ not seen during training, Trouillon et al. obtained state-of-the-art results on standard benchmarks with both fewer parameters and a lower time complexity.
+Again if we extend the grammar with question words and anaphora, we can answer not only Boolean questions but any conjunctive query.
+
+In the Grefenstette-Sadrzadeh implementation of DisCoCat models, we had to compute the meanings for nouns by some other means (e.g. from a co-occurrence matrix) then use a knowledge graph to lift these to the meaning for verbs.
+On the other hand, our KGE approach computes the meanings for all words simultaneously, using only samples from the knowledge graph as training data.
+Indeed, once reformulated as a DisCoCat model, training a knowledge graph embedding amounts to \emph{learning a functor} $F : \G \to \mathbf{Mat}_\C$ given only access to pairs $(f, a)$ such that $F(f) = a$.
+Generalising this from subject-verb-object sentences to arbitrary grammars, Koziell-Pipe and the author~\cite{ToumiKoziell-Pipe21} coined the term \emph{functorial learning} for this approach to structured machine learning where we want to learn structure-preserving functors from data.
+We show how the approach can be extended, from a supervised learning task such as link prediction and question answering to unsupervised \emph{functorial language models}, where we use a functor together with a probabilistic grammar to compute the probability of a missing word given its context.
+Together with Clark's recent progress in using transformer models for parsing~\cite{Clark21}, functorial language models open the door to training large scale DisCoCat models end-to-end, i.e. from raw text to functor.
+
+Functorial learning is part of the blooming field at the intersection of machine learning and category theory which is surveyed by Shiebler et al.~\cite{ShieblerEtAl21}.
+A starting point was the work of Fong et al.~\cite{FongEtAl17} on characterising \emph{backpropagation as functor} into a category of learners, which was later formalised in terms of \emph{parameterised lenses}~\cite[Lemma~2.13]{CruttwellEtAl21}.
+The idea of learning functors via gradient descent first appeared in the work of Gavranović~\cite{Gavranovic19,Gavranovic19a}, where the cyclic generative adversarial networks (cycleGAN) of Zhu et al.~\cite{ZhuEtAl20} are reformulated as functors from a finitely presented category into a category of neural networks.
+However, there is some ambiguity in what it means exactly to learn a functor: in our approach, arrows in the domain category (i.e. diagrams generated by the grammar) encode the training data, whereas for Gavranović they encode the architecture of a neural network.
+In both cases however, we start from existing machine learning algorithms (ComplEx or cycleGAN), reformulate them in terms of functors before we can generalise them.
+In some cases, category theory does provide genuinely new learning algorithms, one example is the \emph{reverse derivative ascent} of Wilson and Zanasi~\cite{WilsonZanasi20} where the notion of \emph{reverse derivative category} is used to generalise gradient descent to Boolean functions.

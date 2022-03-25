@@ -1,0 +1,140 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Bubbles and the chain rule} \label{4-bubbles}
+
+This section introduces an extension of the language of string diagrams
+that encodes arbitrary non-linear operators on matrices: bubbles.
+Previous sections already used two kinds of bubbles informally:
+matrix exponentials and gradients. We give a formal definition of bubbles and
+their gradients with the chain rule. We then use them to compute the gradient
+of hybrid classical-quantum circuits where the measurement results can be
+post-processed by any classical feed-forward neural network.
+
+Fix a set of colours $C$.
+Take a monoidal signature $\Sigma$, we construct the free monoidal category with
+sums and bubbles $\mathbf{C}_{\beta(\Sigma)}^+$, i.e. arrows are formal sums of
+diagrams with bubbles. We define the signature of bubbled diagrams
+as a union $\beta(\Sigma) = \bigcup_{n \in \N} \beta(\Sigma, n)$ where the
+signature of $(\leq n)$-nested bubbles $\beta(\Sigma, n)$ is defined by
+induction:
+$$
+\beta(\Sigma, 0) \s = \s \Sigma \qquad \text{and} \qquad
+\beta(\Sigma, n + 1) \s = \s \big\{\beta^c(d) : x \to y \s \vert \s
+c \in C, \s d : x \to y \in \mathbf{C}_{\beta(\Sigma, n)}^+ \big\}$$
+That is, we put a formal sum of diagrams $d \in \mathbf{C}_{\beta(\Sigma, n)}^+$
+with $(\leq n)$-nested bubbles inside a $c$-coloured bubble and take it as a box
+$\beta^c(d) \in \beta(\Sigma, n + 1)$ for diagrams with $(n + 1)$-nested
+bubbles.
+We say a monoidal category $\mathbf{C}$ has bubbles when it comes equipped with
+a unary operator on homsets $\beta^c :
+\coprod_{x, y} \mathbf{C}(x, y) \to \mathbf{C}(x, y)$ for each colour $c \in C$.
+
+Although it makes the bureaucracy heavier, we may consider bubbles that change
+the domain and codomain of the diagram inside. Such a bubble is defined by two
+operators on objects
+$\beta^c_\dom, \beta^c_\cod : \text{Ob}(\mathbf{C}) \to \text{Ob}(\mathbf{C})$
+and an operator on homsets $\beta^c : \coprod_{x, y}
+\mathbf{C}(x, y) \to \mathbf{C}(\beta^c_\dom(x), \beta^c_\cod(y))$.
+
+\begin{example}
+Bubbles first appear in Penrose and Rindler \cite{PenroseRindler84}
+where they are used to encode the covariant derivative. An extra wire comes in
+the bubble to encode the dimension of the tangent vector.
+\end{example}
+
+\begin{example}
+The functorial boxes of Melli\`es \cite{Mellies06} can be thought of as
+well-behaved bubbles, i.e. such that the composition of bubbles is the
+bubble of the composition. Indeed, a functor $F : \mathbf{C} \to \mathbf{D}$
+between two categories $\mathbf{C}$ and $\mathbf{D}$ defines a bubble on the
+subcategory of their coproduct $\mathbf{C} \coprod \mathbf{D}$ spanned by $\mathbf{C}$.
+\end{example}
+
+\begin{example}
+Bubbles appear under the name ``uooh'' (unary operator on homsets) in
+\cite{HaydonSobocinski20} where they are used to encode the sep lines of
+C.S.Peirce's existential graphs.
+Take the predicates of a first-order logic as signature, i.e. one
+generating object $x$ and each predicate $P$ with arity $k$ as a box with
+$\dom(P) = 1$ and $\cod(P) = x^{\otimes k}$. Add generators for spiders to
+encode lines of identity.
+Then bubbled diagrams encode first-order logic formulae, and every formula can
+be represented in this way. Logical deduction rules may be given entirely
+in terms of diagrammatic rules.
+The evaluation of first-order logic formulae is a bubble-preserving functor
+$F : \mathbf{C}_{B(\Sigma)} \to \mathbf{Mat}_\B$, where bubbles are interpreted
+as pointwise negation.
+\end{example}
+
+\begin{example}
+Take colours to be arbitrary rig-valued functions $\S \to \S$, then
+the category of matrices $\mathbf{Mat}_\S$ has bubbles given by pointwise
+application. Gradient bubbles $\partial : \S \to \S$ are a special case.
+\end{example}
+
+\begin{example}
+In the subcategory of square matrices, matrix exponential is an example of
+bubble for $\S = \R, \C$. When $\S = \B$, square matrices are finite
+graphs and reflexive transitive closure is an example.
+\end{example}
+
+\begin{example}
+Bubbles can encode the standard non-linear operators used in machine learning.
+The sigmoid $\sigma(x) = 1 / (1 + e^{-x})$ and rectified linear unit
+$\sigma(x) = \max(0, x)$ are pointwise bubbles $\sigma : \R \to \R$.
+The softmax function $\sigma : \R^n \to \R^n$ takes a vector $\vec{x}$,
+applies exponential pointwise then normalises by $\sum_{i<n} e^{\vec{x}_i}$.
+It can be drawn as a bubble around the diagram for the vector $\vec{x}$.
+Bubbles may also depend on the labels from the dataset.
+Take a loss function such as the relative entropy $l(\vec{y}, \vec{y}^\star)
+= \sum_{i < m} \vec{y}_i \log(\vec{y}_i / \vec{y}^\star_i)$.
+The partially-applied loss function $l(-, \vec{y}^\star) : \R^m \to \R$ for the
+label $\vec{y}^\star \in \R^m$ can be drawn as a bubble around the diagram for
+the prediction $\vec{y} \in \R^m$.
+\end{example}
+
+Bubbles compose by nesting, this defines a category of post-processes
+$pp(\mathbf{C})$. The objects are pairs of objects from $\mathbf{C}$, arrows
+$(x, y) \to (x', y')$ are $c$-coloured bubbles such that
+$\beta^c_\dom(x) = x'$ and $\beta^c_\cod(y) = y'$.
+If we apply this to the category of matrices, $pp(\mathbf{Mat}_\S)$ is the
+category of all matrix-valued functions. In particular, this includes
+any feed-forward neural networks. Indeed, take
+$f = f_n \circ \dots \circ f_1 : \R^a \to \R^b$
+where each layer is given by $f_i(\vec{x_i}) = \sigma(W_i \vec{x_i} + \beta_i)$
+for the input vector $\vec{x_i} : 1 \to a_i$,
+the parametrised weight matrix $W_i : a_i \to b_i$
+and bias vector $\beta_i : 1 \to b_i$ in $\mathbf{Mat}_{\R^n \to \R}$
+for $n$ the total number of parameters.
+Drawing both the layer $f_i$ and the activation $\sigma : \R \to \R$ as bubbles
+we get the following definition:
+$$\tikzfig{img/diag-diff/4-1-neural-network}$$
+
+When the bubble $\beta$ has a derivative $\partial \beta$, we may define the
+gradient of bubbled diagrams with the chain rule
+$\partial(\beta(f)) = (\partial \beta)(f) \times \partial f$.
+In order to make sense of the multiplication, we assume that the homsets of our
+category $\mathbf{C}$ have a product on homsets which is compatible with the
+sum, i.e. each homset forms a rig\footnote{
+We do not assume that products are compatible with composition,
+in other words $\mathbf{C}$ need not be rig-enriched.}
+and which commutes with the tensor,
+i.e. $(f \times f') \otimes (g \times g')
+= (f \otimes g) \times (f' \otimes g')$.
+The category of matrices $\mathbf{Mat}_\S$ over a rig $\S$ is an example, each
+homset $\mathbf{Mat}_\S(m, n)$ is a rig with entrywise sums and products.
+Another example is the category of diagrams with spiders on each object, where
+the product is given by pre/post-composition with the co/monoid structure.
+We get the following equation:
+$$\tikzfig{img/diag-diff/4-2-chain-rule}$$
+For scalar diagrams, spiders are empty diagrams and the
+equation simplifies to the usual chain rule.
+
+Thus, we can draw both a parametrised quantum circuit and its classical
+post-processing as one bubbled diagram in $cq(\mathbf{ZX}_n)$. By applying the
+product rule to the quantum circuit and the chain rule to its post-processing,
+we can compute a diagram for the overall gradient. This applies to
+parametrised quantum circuits seen as machine learning models
+\cite{BenedettiEtAl19}, to the patterns of measurement-based quantum
+computing seen as ZX-diagrams \cite{DuncanPerdrix10} as well as the quantum
+natural language processing of \cite{MeichanetzidisEtAl20a}.

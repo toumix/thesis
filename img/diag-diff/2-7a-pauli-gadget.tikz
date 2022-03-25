@@ -1,0 +1,38 @@
+\begin{tikzpicture}[scale=1, baseline={([yshift=-0.5ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (10) at (0.975, 1.4) {};
+		\node [style=none] (11) at (1.9, 1.4) {};
+		\node [style=none] (12) at (1.9, -0.4) {};
+		\node [style=none] (13) at (2.4, 0.9) {};
+		\node [style=none] (14) at (2.4, 0.05) {};
+		\node [style=none] (15) at (0.475, 0.9) {};
+		\node [style=none] (16) at (0.475, -0.4) {};
+		\node [style=none] (0) at (0, 1) {};
+		\node [style=none] (1) at (0, 0) {};
+		\node [style=none] (2) at (2.75, 0) {};
+		\node [style=none] (3) at (2.75, 1) {};
+		\node [style=Z] (4) at (1, 1) {};
+		\node [style=X] (5) at (1, 0) {};
+		\node [style=X] (6) at (1.5, 0.5) {};
+		\node [style={Z_med}] (7) at (2, 0.5) {};
+		\node [style={Z_med}] (8) at (2, 0.5) {$\alpha$};
+		\node [style=H, rotate=45] (9) at (1.25, 0.25) {};
+		\node [style=none, font={\scriptsize}] (17) at (0.625, -0.2) {$\partial$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boxedge] (14.center)
+			 to (13.center)
+			 to [bend right=45, looseness=1.25] (11.center)
+			 to (10.center)
+			 to [bend right=45, looseness=1.25] (15.center)
+			 to (16.center)
+			 to (12.center)
+			 to [bend right=45, looseness=1.50] cycle;
+		\draw (4) to (6);
+		\draw (5) to (6);
+		\draw (6) to (8);
+		\draw (0.center) to (4);
+		\draw (1.center) to (2.center);
+		\draw (3.center) to (4);
+	\end{pgfonlayer}
+\end{tikzpicture}
