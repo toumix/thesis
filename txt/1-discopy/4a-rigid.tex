@@ -173,6 +173,7 @@ def nesting(factory):
         if head.dom:  # We are nesting cups.
             return x[0] @ method(x[1:], y[:-1]) @ y[-1] >> head
         return head >> x[0] @ method(x[1:], y[:-1]) @ y[-1]
+    return method
 
 Diagram.cups, Diagram.caps = nesting(Cup), nesting(Cap)
 \end{minted}

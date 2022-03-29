@@ -2,8 +2,6 @@
 
 \section{Categories in Python} \label{section:cat}
 
-\subsection{Abstract categories}
-
 What are categories and how can they be useful to the Python programmer?
 This section will answer this question by taking the standard mathematical definitions and breaking them into \emph{data}, which can be translated into Python code, and \emph{axioms}, which cannot be formally verified in Python, but can be translated into test cases.
 The data for a category is given by a tuple $C = (C_0, C_1, \dom, \cod, \id, \then)$ where:
@@ -27,22 +25,37 @@ The axioms for the category $C$ are the following:
 
 Note that we play with the overloaded meaning of the word \emph{class}: we use it to mean both a mathematical collection that need not be a set, and a Python class with its methods and attributes.
 Reading it in the latter sense, $\dom$ and $\cod$ are \emph{attributes} of the arrow class, $\then$ is a \emph{method}, $\id$ is a \emph{static method}.
-Thus, implementing a category in Python means nothing more than subclassing the abstract classes \py{Ob} and \py{Arrow} of listing~\ref{listing:abstract classes}, and then checking that the axioms hold via some (necessarily non-exhaustive) software tests.
+Thus, the Python implementation of a category is nothing more than a pair of classes \py{Ob} and \py{Arrow} for objects and arrows, together with four methods $\dom, \cod, \then$ and $\id$ .
 The \py{Category} class is nothing more than a named tuple with two attributes \py{ob} and \py{ar} for its object and arrow class respectively.
+The axioms can be implemented as (necessarily non-exhaustive) software tests, however Python has no formal semantics so there is no hope for to formally verify them.
+
+The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
+\begin{itemize}
+    \item $F(\dom(f)) = \dom(F(f))$ and $F(\cod(f)) = \cod(F(f))$ for all $f \in C_1$,
+    \item $F(\id(x)) = \id(F(x))$ and $F(f \fcmp g) = F(f) \fcmp F(g)$ for all $x \in C_0$ and $f, g \in C_1$.
+\end{itemize}
+Thus, implementing a functor in Python amounts to implementing a class with the magic method \py{__call__} of the appropriate type, and then implementing software tests to check that the axioms hold.
+
+The data for a \emph{transformation} $\alpha : F \to G$ between two parallel functors $F, G : C \to D$ is given by a function from objects $x \in C_0$ to components $\alpha(x) : F(x) \to G(x)$ in $D$.
+A \emph{natural transformation} is one where $\alpha(x) \fcmp G(f) = F(f) \fcmp \alpha(y)$ for all arrows $f : x \to y$ in $C$.
+Again, implementing a transformation amounts to implementing a class with a \py{__call__} method of the appropriate type, checking that a transformation is natural cannot be done formally in Python.
+The class templates listed below summarise the required data for categories, functors and transformations.
 
 \begin{python}\label{listing:abstract classes}
-{\normalfont Abstract classes for categories, functors and transformations.}
+{\normalfont Class templates for categories, functors and transformations.}
 
 \begin{minted}{python}
+from __future__ import annotations
+
 class Ob: ...
 
 class Arrow:
-    dom: Object
-    cod: Object
+    dom: Ob
+    cod: Ob
 
     @staticmethod
-    def id(x: Ob) -> Arrow[x, x]: ...
-    def then(self, other: Arrow[self.cod, y]) -> Arrow[self.dom, y]: ...
+    def id(x: Ob) -> Arrow: ...
+    def then(self, other: Arrow) -> Arrow: ...
 
 @dataclass
 class Category:
@@ -54,36 +67,23 @@ class Functor:
     cod: Category
 
     @overload
-    def __call__(self, x: self.dom.ob) -> self.cod.ob: ...
+    def __call__(self, x: Ob) -> Ob: ...
 
     @overload
-    def __call__(self, f: self.dom.ar[x, y]) -> self.cod.ar[self(x), self(y)]: ...
+    def __call__(self, f: Arrow) -> Arrow: ...
 
 class Transformation:
-    C: Category
-    D: Category
-    dom: Functor[C, D]
-    cod: Functor[C, D]
+    dom: Functor
+    cod: Functor
 
-    def __call__(self, x: C.ob) -> D.ar[self.dom(x), self.cod(x)]: ...
+    def __call__(self, x: Ob) -> Arrow: ...
 \end{minted}
-
-Note that annotations with dependent types are not supported by any Python implementation yet.
-We include them here to make the thesis clearer although they do not appear in the DisCoPy code.
-Since Python cannot statically check that arrow composition is well-typed, the best we can do is raise an \py{AxiomError} at runtime.
 \end{python}
 
-The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
-\begin{itemize}
-    \item $F(\dom(f)) = \dom(F(f))$ and $F(\cod(f)) = \cod(F(f))$ for all $f \in C_1$,
-    \item $F(\id(x)) = \id(F(x))$ and $F(f \fcmp g) = F(f) \fcmp F(g)$ for all $x \in C_0$ and $f, g \in C_1$.
-\end{itemize}
-Thus, implementing a functor in Python amounts to subclassing the \py{Functor} class of listing~\ref{listing:abstract classes} (and then implementing software tests to check that the axioms hold).
-
-The data for a \emph{transformation} $\alpha : F \to G$ between two parallel functors $F, G : C \to D$ is given by a function from objects $x \in C_0$ to components $\alpha(x) : F(x) \to G(x)$ in $D$.
-A \emph{natural transformation} is one where $\alpha(x) \fcmp G(f) = F(f) \fcmp \alpha(y)$ for all arrows $f : x \to y$ in $C$.
-The \py{Transformation} class is given in listing~\ref{listing:abstract classes}, checking that a transformation is natural cannot be done formally in Python.
-In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two sets $X$ and $Y$, for any two categories $C$ and $D$ there is a category $D^C$ with functors $C \to D$ as objects and natural transformations as arrows.
+\begin{remark}
+Throughout the thesis we use the postponed evaluation of annotations introduced in Python \py{3.7}~\cite{Langa17}.
+Python cannot statically check that arrow composition is well-typed as this would require some form of dependent types, the best we can do is raise an \py{AssertionError} at runtime.
+\end{remark}
 
 \begin{example}
 When the class of objects and arrows are in fact sets, $C$ is called a \emph{small category}.
@@ -110,7 +110,9 @@ There is a functor from $\mathbf{Cat}$ to $\mathbf{Preord}$ called the preorder 
 There is a faithful (i.e. injective on homsets) functor $U : \mathbf{Mon} \to \mathbf{Set}$ called the \emph{forgetful functor} which sends monoids to their underlying set and homomorphisms to functions.
 \end{example}
 
-\subsection{Concrete categories}
+\begin{example}
+In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two sets $X$ and $Y$, for any two categories $C$ and $D$ there is a category $D^C$ with functors $C \to D$ as objects and natural transformations as arrows.
+\end{example}
 
 \begin{example}\label{ex:python categories}
 We can define the category $\mathbf{Pyth}$ with objects the class of all Python types and arrows the class of all Python functions.
@@ -118,33 +120,38 @@ Domain and codomain of may be extracted from type annotations.
 Identity may given by \py{lambda *xs: xs} and the composition by \py{lambda f, g: lambda *xs: f(*g(*xs)))}. (The star takes care of functions with multiple arguments.)
 However, equality of functions in Python is undecidable so there will be no way to check the axioms hold in general.
 
-Endofunctors $\mathbf{Pyth} \to \mathbf{Pyth}$ can be thought of as some kind of data containers.
+Endofunctors $\mathbf{Pyth} \to \mathbf{Pyth}$ can be thought of as data containers, see Milewski~\cite{Milewski14} for a discussion in the case of Haskell.
 For example, we can define a $\mathbf{List}$ functor which sends a type \py{t} to \py{List[t]} and a function \py{f} to \py{lambda *xs: map(f, xs)}.
 There is a natural transformation $\eta : \mathbf{Id} \to \mathbf{List}$ from the obvious identity functor, implemented by the built-in function \py{id}.
 Its components send objects \py{x : t} of any type \py{t} to the singleton list \py{[x] : List[t]}.
 \end{example}
 
-\begin{python}\label{listing:Function}
-{\normalfont Implementation of the category $\mathbf{Pyth}$ with \py{type} as objects and \py{Function} as arrows.}
+\begin{python}
+{\normalfont Syntactic sugar for composition.}
+
+\py{Composable} implements the syntactic sugar \py{self >> other} (and \py{self << other}) for composition in diagrammatic order (and its opposite) as well as \py{n * self} for $n$-fold composition.
+It is an abstract class, i.e. it it subclassed but never instantiated.
+The higher-order function \py{inductive} takes a binary method and makes it $n$-ary by using a left fold, we use it as a decorator.
 
 \begin{minted}{python}
 class Composable:
-    """ Implements syntactic sugar self >> other and self << other and n * self. """
-    def cast(self, other):
-        return other if isinstance(other, Composable) else self.id(other)
-
-    __rshift__ = __llshift__ = lambda self, other: self.then(self.cast(other))
-    __lshift__ = __lrshift__ = lambda self, other: self.cast(other).then(self)
+    __rshift__ = __llshift__ = lambda self, other: self.then(other)
+    __lshift__ = __lrshift__ = lambda self, other: other.then(self)
     __rmul__ = lambda self, n: self.id(self.dom).then(*n * (self, ))
 
 def inductive(method):
-    """ Allows to apply a binary method to an arbitrary number of arguments. """
     def result(self, *others):
         if not others: return self
         if len(others) == 1: return method(self, others[0])
         if len(others) > 1: return method(method(self, others[0]), *others[1:])
     return result
+\end{minted}
+\end{python}
 
+\begin{python}\label{listing:Function}
+{\normalfont Implementation of the category $\mathbf{Pyth}$ with \py{type} as objects and \py{Function} as arrows.}
+
+\begin{minted}{python}
 @dataclass
 class Function(Composable):
     inside: Callable
@@ -193,15 +200,16 @@ There is a faithful functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends fi
 \begin{minted}{python}
 @dataclass
 class Matrix(Composable):
-    dtype = int
-
     dom: int
     cod: int
     inside: list[list[dtype]]
 
+    dtype = int
+
     def __class_getitem__(cls, dtype):
         class C(cls): pass
-        C.dtype = dtype; return C
+        C.dtype = dtype
+        return C
 
     def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
         self.dom, self.cod = dom, cod
@@ -228,10 +236,11 @@ class Matrix(Composable):
         setattr(Matrix, attr, method)
 \end{minted}
 
-Subscriptable types such as \py{list[list[int]]} and the \py{__class_getitem__} method are a new feature of Python \py{>=3.10}.
+Subscriptable types such as \py{list[list[int]]} implemented by the magic method \py{__class_getitem__} are a new feature of Python \py{3.10}~\cite{Levkivskyi17}.
 By default, we fix \py{Matrix = Matrix[int]}.
 We can get Boolean, real and complex matrices with \py{Matrix[bool]}, \py{Matrix[float]} and \py{Matrix[complex]} respectively.
 Note that this implementation is not meant to be efficient, rather it helps in making the thesis self-contained.
+As we will mention in section~\ref{subsection:hypergraph-vs-premonoidal}, DisCoPy interfaces with NumPy~\cite{VanDerWaltEtAl11} for efficient matrix multiplication.
 \end{python}
 
 \begin{example}
@@ -338,7 +347,7 @@ class Box(Arrow):
 
 The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
 We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of each object and box is in scope.
-The attribute \py{inside} holds the list of generating arrows, which we store as an immutable \py{tuple} rather than a mutable \py{list}. 
+The attribute \py{inside} holds the list of generating arrows, which we store as an immutable \py{tuple} rather than a mutable \py{list}.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.inside == (f, )}.
 For the axiom \py{f >> f.id(y) == f == f.id(x) >> f} to hold, we need to make sure that \py{f == Arrow((f, ), x, y)}, i.e. a box is equal to the arrow with just itself as boxes.

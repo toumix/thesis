@@ -203,11 +203,11 @@ For example, we can take all the Python types as colours and define $\mathbf{Pyt
 class Tensorable:
     """ Allows syntactic sugar self @ other. """
     @classmethod
-    def cast(cls, other):
+    def whisker(cls, other):
         return other if isinstance(other, cls) else cls.id(other)
 
-    __matmul__ = lambda self, other: self.tensor(self.cast(other))
-    __rmatmul__ = lambda self, other: self.cast(other).tensor(self)
+    __matmul__ = lambda self, other: self.tensor(self.whisker(other))
+    __rmatmul__ = lambda self, other: self.whisker(other).tensor(self)
 
 class Function(cat.Function, Tensorable):
     def __init__(self, inside: Callable, dom: tuple[type, ...], cod: tuple[type, ...]):
@@ -418,8 +418,9 @@ The \py{draw} method renders the diagram as an image, it implements the drawing 
 
 \begin{minted}{python}
 class Diagram(cat.Arrow, Tensorable):
-    def __init__(self, inside: tuple[Layer, ...], dom: Ty, cod: Ty):
-        super().__init__(inside, dom, cod)
+    inside: tuple[Layer, ...]
+    dom: Ty
+    cod: Ty
 
     @inductive
     def tensor(self, other: Diagram) -> Diagram:

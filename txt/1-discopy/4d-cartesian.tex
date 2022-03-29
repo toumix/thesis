@@ -262,17 +262,17 @@ class Function(monoidal.Function):
     def make_additive(self) -> Function:
         if self.is_additive: return self
         dom, cod = (
-            (tuple[types], ) if len(types) != 1
-            else types[0].__args__ if is_union(types[0])
-            else types for types in (self.dom, self.cod))
+            (tuple[x], ) if len(x) != 1
+            else x[0].__args__ if is_union(x[0])
+            else x for x in (self.dom, self.cod))
         return Function.additive(self.inside, dom, cod)
 
     def make_multiplicative(self) -> Function:
         if not self.is_additive: return self
         dom, cod = (
-            (TaggedUnion[types], ) if len(types) != 1
-            else types[0].__args__ if is_tuple(types[0])
-            else types for types in (self.dom, self.cod))
+            (TaggedUnion[x], ) if len(x) != 1
+            else x[0].__args__ if is_tuple(x[0])
+            else x for x in (self.dom, self.cod))
         return Function(self.inside, dom, cod)
 
     def tuple(self, other: Function) -> Function:

@@ -47,15 +47,15 @@ We hope it may be useful both as an introduction to monoidal categories for the 
 We list but a few of the many potential directions for further developments.
 
 \begin{itemize}
-\item DisCoPy was implemented only with correctness in mind, thus there is much room for improving performance.
+\item DisCoPy was implemented mainly with correctness in mind, thus there is much room for improving performance.
 For now, this has not been quite necessary since the diagrams we manipulate are exponentially smaller than the computation they represent.
-If we want to implement any serious rewriting efficiently, we will need to port the core algorithms to a lower-level language such as Rust~\cite{KlabnikNichols19} and wrap them with Python bindings.
+However if we want to implement any serious rewriting efficiently, we will need to port the core algorithms to a lower-level language such as Rust~\cite{KlabnikNichols19} and wrap them with Python bindings.
 This strategy has improved the time performance of PyZX by over 4000 on a small benchmark consisting of the fusion of 1 million spiders\footnote{\url{https://github.com/quantomatic/quizx}}.
 
 \item As we mentioned in section~\ref{subsection:tacit-to-explicit}, DisCoPy uses a \emph{point-free}, \emph{tacit programming} style which can get very verbose as soon as diagrams have more than a few boxes.
 One of the features in our backlog is implementing an \emph{explicit} syntax where diagrams are defined as decorated Python functions taking the wires in their domain as argument, applying boxes to them and returning their codomain.
 We already have a working version of this for planar diagrams, it would be straightforward to extend it to any cartesian diagram where we can swap, copy and discard arguments.
-What is much less straightforward is to extend it to the syntax of structures beyond cartesian: cocartesian (control flow), closed (higher-order functions) and traced (iteration and recursion).
+What would be less straightforward is to extend it to the syntax of structures beyond cartesian: cocartesian (control flow), closed (higher-order functions) and traced (iteration and recursion).
 One starting point for this, rather than reinventing the wheel, would be to use JAX~\cite{BradburyEtAl20} expressions as an intermediate language between pure Python and diagrams.
 
 \item There are many more ways we can interpret diagrams as code, i.e. many more functors into concrete categories we can implement.
