@@ -56,6 +56,10 @@ In order to encode the substraction of the parameter shift-rule diagrammatically
 need either to consider formal sums with minus signs (a.k.a. enrichment in
 abelian groups) or simply to extend the signature with the $-1$ scalar.
 Such \emph{mixed scalars} are implemented in listing~\ref{listing:mixed-scalars}.
+
+\begin{minted}{python}
+Circuit.__sub__ = lambda self, other: self + Scalar(-1) @ other
+\end{minted}
 \end{remark}
 
 \begin{example}
@@ -67,4 +71,27 @@ The quantum classifier can be drawn as a diagram:
 
 where $U(\vec{x})$ depends on the input, $W(\vec{\theta})$ depends on the
 trainable parameters and $f$ is a fixed Boolean function encoded as a linear map.
+\end{example}
+
+\begin{example}
+We can define a class for a parameterised quantum gate and override the default \py{grad} with its gradient recipe.
+
+\begin{minted}{python}
+class Rz(Gate):
+    def __init__(self, phase: sympy.Expr):
+        self.phase = phase
+        half_theta = sympy.pi * phase
+        array = [[sympy.exp(-1j * half_theta), 0],
+                 [0, sympy.exp(1j * half_theta)]]
+        super().__init__("Rz({})".format(phase), qubit, qubit, array)
+
+    def grad(self):
+        return Scalar(sympy.pi * self.phase.diff(var))\
+            @ (Rz(self.phase + .25) - Rz(self.phase - .25))
+
+phi = sympy.Symbol('\\phi')
+circuit = Ket(0, 0) >> Rz(phi + 1) @ Rz(2 * phi - .5) >> Measure() @ Measure()
+
+assert circuit.grad(phi).eval() == circuit.eval().grad(phi)
+\end{minted}
 \end{example}

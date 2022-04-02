@@ -1,4 +1,4 @@
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=2.5]
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=X] (0) at (1.25, 1) {};
 		\node [style=X] (1) at (0.25, 1) {};
@@ -30,11 +30,11 @@
 		\node [style=none] (27) at (0.75, -4.25) {$f$};
 		\node [style=none] (28) at (1.25, -5) {};
 		\node [style=none] (29) at (0.25, -5) {};
-		\node [style=none] (30) at (0.85, 0.5) {\scriptsize $\vdots$};
-		\node [style=none] (34) at (0.75, -2.25) {\scriptsize $\vdots$};
-		\node [style=none] (35) at (0.75, -3.5) {\scriptsize $\vdots$};
-		\node [style=none] (36) at (0.75, -4.75) {\scriptsize $\vdots$};
-		\node [style=none] (37) at (0.75, -1) {\scriptsize $\vdots$};
+		\node [style=none] (34) at (0.75, -2.25) {$\dots$};
+		\node [style=none] (37) at (0.75, -1) {$\dots$};
+		\node [style=none] (38) at (0.75, -3.5) {$\dots$};
+		\node [style=none] (39) at (0.75, -4.75) {$\dots$};
+		\node [style=none] (40) at (0.75, 0.5) {$\dots$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [line width=0.6mm] (0) to (21);

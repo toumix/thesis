@@ -47,6 +47,34 @@ scalars in $\S$. Conversely, applying a derivation $\partial : \S \to \S$
 entrywise on matrices yields a derivation on $\mathbf{Mat}_\S$.
 \end{proof}
 
+DisCoPy implements parameterised matrices with SymPy~\cite{MeurerEtAl17} expressions as entries.
+The method \py{Tensor.grad} takes a SymPy variable and applies element-wise symbolic differentiation.
+
+\begin{python}
+{\normalfont Implementation of gradients of parameterised tensors with SymPy.}
+
+\begin{minted}{python}
+def grad(self: Tensor[sympy.Expr], var: sympy.Symbol):
+    return self.map(lambda x: x.diff(var))
+
+Tensor.grad = grad
+\end{minted}
+\end{python}
+
+\begin{example}
+We can check the product rule for tensor and composition of matrices.
+
+\begin{minted}{python}
+x = sympy.Symbol('x')
+f = Tensor([[x + 1, 2 * x], [x ** 2, 1 / x     ]], [2], [2])
+g = Tensor([[1,     2],     [2 * x, -1 / x ** 2]], [2], [2])
+
+assert f.grad(x) == g
+assert (f @ g).grad(x)  == f.grad(x) @ g  +  f @ g.grad(x)
+assert (f >> g).grad(x) == f.grad(x) >> g + f >> g.grad(x)
+\end{minted}
+\end{example}
+
 Fix a monoidal signature $\Sigma$ and let $C_\Sigma^+$ be the free monoidal category with sums that it generates, i.e. arrows are formal sums of diagrams as defined in sections~\ref{subsection:dagger-sums-bubbles} and \ref{subsection:monoidal-daggers-sums-bubbles}.
 We assume our diagrams are interpreted as matrices, i.e. we fix a sum-preserving monoidal functor $[\![-]\!]  : C_\Sigma^+ \to \mathbf{Mat}_\S$ for $\S$ a commutative rig with a derivation $\partial : \S \to \S$.
 Our main two examples are the ZX-calculus of Coecke and Duncan~\cite{CoeckeDuncan08} with smooth functions $\R^n \to \R$ as phases and the algebraic ZX-calculus over $\S$, introduced by Wang~\cite{Wang20}.
@@ -61,6 +89,50 @@ Once translated to string diagrams, the axioms for derivations on monoidal
 categories with sums become:
 \ctikzfig{img/diag-diff/2-1a-product-rule}
 \ctikzfig{img/diag-diff/2-1b-product-rule}
+
+We implement dual diagrams with a method \py{Diagram.grad} which takes SymPy variables and returns formal sums of diagrams by applying the product rules for tensor and composition.
+By default, we assume that boxes are constant, i.e. their gradient is the empty sum.
+
+\begin{python}
+{\normalfont Implementation of dual diagrams.}
+
+\begin{minted}{python}
+Box.grad = lambda self, var: Sum([], self.dom, self.cod)
+
+def grad(self: Diagram, var: sympy.Symbol):
+    if len(self) == 0: return Sum([], self.dom, self.cod)
+    left, box, right = self.layers[0]
+    return left @ box.grad(var) @ right >> self[1:]\
+        + left @ box @ right >> self[1:].grad(var)
+
+Diagram.grad = grad
+\end{minted}
+\end{python}
+
+\begin{example}
+We can override the default \py{grad} method and check the product rule for diagrams.
+
+\begin{minted}{python}
+class DataBox(Box):
+    def __init__(self, name: str, dom: Ty, cod: Ty, data: sympy.Expr):
+        self.data = data
+        super().__init__(name, dom, cod)
+
+    def __eq__(self, other):
+        if not isinstance(other, DataBox): return super().__eq__(other)
+        return super().__eq__(other) and self.data == other.data
+
+    def grad(self, var):
+        return DataBox(self.name, self.dom, self.cod, self.data.diff(var))
+
+phi = sympy.Symbol('\\phi')
+x, y, z = map(Ty, "xyz")
+f, g = DataBox('f', x, y, phi ** 2), DataBox('g', y, z, 1 / phi)
+
+assert (f @ g).grad(phi) == f.grad(phi) @ g + f @ g.grad(phi)
+assert (f >> g).grad(phi) == f.grad(phi) >> g + f >> g.grad(phi)
+\end{minted}
+\end{example}
 
 \subsection{Differentiating the ZX-calculus}\label{2b-differentiating-zx}
 

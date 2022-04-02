@@ -5631,6 +5631,43 @@
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Mathematics - Combinatorics,Quantum Physics}
     \endentry
+    \entry{DuncanPerdrix10}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=e9ac652a64f5dbf5f7c99e61db4aa4a7}{%
+           family={Duncan},
+           familyi={D\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+        {{hash=2cfa2528fc3a1c11861293c11239171a}{%
+           family={Perdrix},
+           familyi={P\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{152934f8e5e542617603f0fab684eb30}
+      \strng{fullhash}{152934f8e5e542617603f0fab684eb30}
+      \strng{bibnamehash}{152934f8e5e542617603f0fab684eb30}
+      \strng{authorbibnamehash}{152934f8e5e542617603f0fab684eb30}
+      \strng{authornamehash}{152934f8e5e542617603f0fab684eb30}
+      \strng{authorfullhash}{152934f8e5e542617603f0fab684eb30}
+      \field{labelalpha}{DP10}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Colloquium on Automata, Languages, and Programming}
+      \field{title}{Rewriting Measurement-Based Quantum Computations with Generalised Flow}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{pages}{285\bibrangedash 296}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/s10472-009-9141-x
+      \endverb
+    \endentry
     \entry{DunnVicary19}{unpublished}{}
       \name{author}{2}{}{%
         {{hash=8344ba07780f5b92e28b0caa68f3c8c5}{%
@@ -18078,8 +18115,6 @@
   \keyalias{CoeckeEtAl14a}{CoeckeEtAl14}
   \keyalias{FritzEtAl20a}{FritzEtAl20}
   \keyalias{HeunenVicary19a}{HeunenVicary19}
-  \missing{DeFeliceEtAl20}
-  \missing{DuncanPerdrix10}
 \endrefsection
 \endinput
 

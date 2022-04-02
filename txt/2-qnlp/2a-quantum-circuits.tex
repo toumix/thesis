@@ -180,7 +180,7 @@ class Circuit(Diagram): pass
 
 class Gate(Box, Circuit):
     def __init__(self, name: str, dom: Ty, cod: Ty,
-                 array: list[list[int]], is_dagger=False):
+                 array: list[list[complex]], is_dagger=False):
         self.array = array
         Box.__init__(self, name, dom, cod, is_dagger=is_dagger)
 

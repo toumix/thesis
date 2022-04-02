@@ -731,13 +731,13 @@ We can also implement any classical post-processing as a bubble.
 
 \begin{minted}{python}
 Born_rule = lambda x: abs(x) ** 2
-Circuit.measure = lambda self: self.bubble(name="squared_amplitude")
+Circuit.measure = lambda self: self.bubble(method="squared_amplitude")
 Tensor.squared_amplitude = lambda self: self.map(Born_rule)
 
 assert float((Ket(0) >> H >> Bra(0)).measure().eval()) == .5
 
 biased_ReLU = lambda x: max(0, 2 * x - 1)
-Circuit.post_process = lambda self: self.bubble(name="non_linearity")
+Circuit.post_process = lambda self: self.bubble(method="non_linearity")
 Tensor.non_linearity = lambda self: self.map(biased_ReLU)
 
 circuit = Ket(0, 0) >> H @ qubit >> CX >> Bra(0, 0)

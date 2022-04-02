@@ -1,0 +1,131 @@
+%!TEX root = ../../THESIS.tex
+
+\subsection{Traced categories} \label{subsection:traced}
+
+, i.e. the free symmetric monoidal category $C$ with a family of functions $\mathtt{trace}_x(a, b) : C(a \otimes x, b \otimes x) \to C(a, b)$ subject to axioms that formalise the intuition that we can trace a morphism $f : a \otimes x \to b \otimes x$ by connecting its input and output $x$-wires in a loop~\cite{JoyalEtAl96}.
+
+Every compact closed category has a trace given by cups and caps, traced symmetric categories allow to express recursion and fixed points more generally in non-rigid categories.
+Indeed in the case of a cartesian category such as $\mathbf{Pyth}$, the trace can equivalently be given in terms of \emph{fixed point operators} $\mathtt{fix}_x : C(a \times x, x) \to C(a, x)$~\cite[Proposition~6.8]{Selinger10}.
+Dually, in a cocartesian category the trace can be defined in terms \emph{iteration operators} $\mathtt{iter}_x : C(x, a + x) \to C(x, a)$.
+When the category has biproducts, it is sufficient to define a \emph{repetition operator} $\mathtt{repeat}_x : C(x, x) \to C(x, x)$~\cite[Proposition~6.11]{Selinger10}.
+In the category of finite sets and relations $\mathbf{Mat}_\B$ with the direct sum as tensor, this coincides with the usual notion of reflexive transitive closure~\cite[Proposition~6.3]{JoyalEtAl96}.
+
+\begin{python}
+{\normalfont Implementation of the syntax for free traced categories.}
+
+\begin{minted}{python}
+class Trace(Box):
+    def __init__(self, diagram: Diagram, n=1):
+        assert diagram.dom[-n:] == diagram.cod[-n:]
+        self.diagram, name = inside, "Trace({}, {})".format(diagram, n)
+        super().__init__(name, diagram.dom[:-n], diagram.cod[:-n])
+
+class Diagram(monoidal.Diagram):
+    trace = Trace
+
+class Functor(monoidal.Functor):
+    dom = cod = Category(Ty, Diagram)
+
+    def __call__(self, other):
+        if isinstance(other, Trace):
+            n = len(self(other.diagram.dom)) - len(self(other.dom))
+            return self.cod.ar.trace(self(other.diagram), n)
+        return super().__call__(other)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can draw traced diagrams by applying a traced functor into compact-closed categories with bubbles.
+
+\begin{minted}{python}
+def compact_trace(self, n=1):
+    assert self.dom[-n:] == self.cod[-n:]
+    return self.dom[:-n] @ self.caps(self.dom[-n:], self.dom[-n:].r)\
+        >> self @ self.dom[:n].r\
+        >> self.cod[:-n] @ self.cups(self.cod[-n:], self.cod[-n:].r)
+
+compact.Diagram.trace = compact_trace
+
+class TracedDrawing(compact.Diagram):
+    trace = lambda self, n: compact_trace(self, n).bubble()
+
+Draw = Functor(lambda x: x, lambda f: f, cod=Category(Ty, TracedDrawing))
+Diagram.draw = lambda self, **params: Draw(self).draw(**params)
+
+a, b, x = map(Ty, "abx")
+Box('f', a @ x, b @ x).draw()
+\end{minted}
+\ctikzfig{img/closed/trace}
+\end{example}
+
+\begin{python}\label{listing:traced-python}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a traced cartesian category.}
+
+\begin{minted}{python}
+class Function:
+    ...
+    def iter(self, n=1):
+        assert self.is_additive and self.cod[-n:] == self.dom
+        dom, cod = self.dom, self.cod[:-n]
+        def inside(x):
+            i, y = self.inside(x)
+            return y if i < len(self.cod) - n else inside(y)
+        return Function(inside, dom, cod)
+
+    def fix(self, n=1):
+        assert not self.is_additive and self.dom[-n:] == self.cod
+        dom, cod = self.dom[:-n], self.cod
+        def inside(*xs, ys=None):
+            result = self.inside(*xs + (ys or []))
+            return ys if result == ys else inside(*xs, ys=result)
+        return Function(inside, dom, cod)
+
+    def trace(self, n=1):
+        assert self.dom[-n:] == self.cod[-n:]
+        dom, cod, traced = self.dom[:-n], self.cod[:-n], self.dom[-n:]
+        if self.is_additive:
+            iterated = (self.unit(cod) @ traced >> self).iter()
+            return dom @ self.unit(traced) >> self >> cod @ iterated >> self.merge(cod)
+        fixed = (self >> self.discard(cod) @ traced).fix()
+        return self.copy(dom) >> dom @ fixed >> self >> cod @ self.discard(traced)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can compute the golden ratio as a fixed point.
+Note that in order to find a fixed point we need a default value to start from.
+
+\begin{minted}{python}
+phi = Function(lambda x=1: 1 + 1 / x, [int], [int]).fix()
+assert phi() == (1 + sqrt(5)) / 2
+\end{minted}
+
+We can define \py{even} as a recursive function.
+
+\begin{minted}{python}
+inside = lambda n: (0, n == 0) if n < 2 else (1, n - 2)
+even = Function.additive(inside, dom=[int], cod=[bool, int]).iter()
+assert even(42)
+\end{minted}
+\end{example}
+
+\begin{python}\label{listing:traced-matrix}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a traced biproduct category.}
+
+\begin{minted}{python}
+class Matrix:
+    ...
+    def repeat(self):
+        assert self.dtype is bool and self.dom == self.cod
+        return sum(Matrix.id(self.dom).then(*n * [self]) for n in range(self.dom + 1))
+
+    def trace(self, n=1):
+        assert self.dtype is bool
+        A, B, C, D = (row >> self >> column
+                      for row in [self.id(self.dom - n) @ self.unit(n),
+                                  self.unit(self.dom - n) @ self.id(n)],
+                      for column in [self.id(self.cod - n) @ self.discard(n),
+                                     self.discard(self.cod - n) @ self.id(n)])
+        return A + (B >> D.repeat() >> C)
+\end{minted}
+\end{python}

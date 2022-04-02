@@ -8,10 +8,10 @@ When the bubble has a derivative $\partial \beta$, we may define the gradient of
 In order to make sense of the multiplication, we assume that the homsets of our category have a product on homsets which is compatible with the sum\footnote
 {That is, each homset forms a rig. Note that we do not assume that products are compatible with composition, in other words $\mathbf{C}$ need not be rig-enriched.}
 and which commutes with the tensor.
-The homsets of any hypergraph category with sums form a rig, where the product is given by pre/post-composition with the co/monoid structure.
+For example, each homset $\mathbf{Mat}_\S(m, n)$ is a rig with entrywise sums and products.
+More generally, the homsets of any hypergraph category with sums form a rig, where the product is given by pre/post-composition with the co/monoid structure.
 We get the following equation:
 $$\tikzfig{img/diag-diff/4-2-chain-rule}$$
-In particular, each homset $\mathbf{Mat}_\S(m, n)$ is a rig with entrywise sums and products.
 For scalar diagrams, spiders are empty diagrams and the
 equation simplifies to the usual chain rule.
 
@@ -25,25 +25,8 @@ parametrised quantum circuits seen as machine learning models
 computing seen as ZX-diagrams \cite{DuncanPerdrix10} as well as quantum
 natural language processing.
 
-Although this section focused on the theoretical foundations of diagrammatic
-differentiation, we briefly describe its implementation as
-part of the open-source DisCoPy library \cite{DeFeliceEtAl20}. A notebook
-with examples is available in the documentation\footnote{
-\href{https://discopy.readthedocs.io/en/main/notebooks/diag-diff.html}{
-https://discopy.readthedocs.io/en/main/notebooks/diag-diff.html}}.
-The \texttt{cqmap} module implements classical-quantum maps as NumPy arrays
-\cite{VanDerWaltEtAl11}, with SymPy \cite{MeurerEtAl17} symbols as parameters.
-The two modules \texttt{zx} and \texttt{circuit} build upon \texttt{monoidal},
-the implementation of diagrams in monoidal categories. They both come with
-an \texttt{eval} method which evaluates a diagram as a NumPy array and a
-\texttt{grad} method which returns a formal sum of diagrams given a SymPy symbol.
-The \texttt{zx} module comes with back-and-forth translations with the PyZX
-library \cite{KissingerVanDeWetering19} for automated diagram simplification.
-The \texttt{circuit} module interfaces with the tket compiler \cite{SivarajahEtAl20},
-allowing to execute the diagrams for circuits and their gradient on quantum hardware.
-
 For now, we have only defined gradients of diagrams with respect to one
 parameter at a time. In future work, we plan to extend our definition to
 compute the Jacobian of a tensor with respect to a vector of variables.
 Other promising directions for research include the study of diagrammatic
-differential equations, as well as a definition of integration for diagrams.
+differential equations, opening the door to studying e.g. the Schrödinger equation with diagrams.

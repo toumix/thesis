@@ -63,7 +63,7 @@
 		\node [style=none] (429) at (4.55, -3.725) {};
 		\node [style=none] (430) at (4.05, -4.225) {};
 		\node [style=none] (431) at (4.05, -2.05) {};
-		\node [style=none, font={\scriptsize}] (432) at (2.95, -2.3) {$[\theta \mapsto 0]$};
+		\node [style=none, font={\scriptsize}] (432) at (2.85, -2.3) {$[\theta \mapsto 0]$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (358.center) to (359.center);
