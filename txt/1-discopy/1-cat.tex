@@ -117,6 +117,7 @@ In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two set
 \begin{example}\label{ex:python categories}
 We can define the category $\mathbf{Pyth}$ with objects the class of all Python types and arrows the class of all Python functions.
 Domain and codomain of may be extracted from type annotations.
+{\blue although we require it explicitly in the initialisation of a $\bf{Pyth}$ arrow}
 Identity may given by \py{lambda *xs: xs} and the composition by \py{lambda f, g: lambda *xs: f(*g(*xs)))}. (The star takes care of functions with multiple arguments.)
 However, equality of functions in Python is undecidable so there will be no way to check the axioms hold in general.
 
@@ -490,6 +491,8 @@ Explicitly, the congruence $(\sim_R)$ can be constructed in two steps: first, we
 Second, we define $(\sim_R)$ as the \emph{symmetric, reflexive, transitive closure} of the rewriting relation, i.e. two elements $x, y \in M$ are equal in $M / R$ iff they are in the same connected component of the undirected graph induced by $(\to_R) \sub M \times M$.
 Now there is a homomorphism $q : M \to M / R$ which sends monoid elements to their equivalence class with the following property: for any homomorphism $f : M \to N$ with $x \sim_R y$ implies $f(x) = f(y)$, there is a unique $f' : M / R \to N$ with $f = q \fcmp f'$.
 Intuitively, a homomorphism from a quotient $M / R$ is nothing more than a homomorphism from $M$ which respects the axioms $R$.
+{\blue In order for the quotient $M /R$ to be a monoid, don't you need to check
+that multiplication is still well defined?}
 Up to isomorphism, we can construct any monoid $M$ as the quotient $X^\star / R$ of a free monoid $X^\star$: take $X = U(M)$ and $R = \{ (x y, z) \in X^\star \times X^\star \s \vert \s x \times y = z \in M \}$.
 
 The pair $(X, R \sub X^\star \times X^\star)$ of a set of generating elements $X$ and a binary relation $R$ on its free monoid is called a \emph{presentation} of the monoid $M \simeq X^\star / R$.
