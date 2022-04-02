@@ -1,0 +1,56 @@
+\begin{tikzpicture}[scale=2.5, baseline={([yshift=-0.5ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (46) at (0.4, 0.025) {};
+		\node [style=none] (47) at (0.4, -0.15) {};
+		\node [style=none] (48) at (-1.4, -0.15) {};
+		\node [style=none] (49) at (-0.1, -0.65) {};
+		\node [style=none] (50) at (-0.95, -0.65) {};
+		\node [style=none] (51) at (-0.1, 0.525) {};
+		\node [style=none] (52) at (-1.4, 0.525) {};
+		\node [style=none] (17) at (0, 1) {};
+		\node [style=none] (19) at (-1, 1) {};
+		\node [style=none] (36) at (-1, -1) {};
+		\node [style=none] (37) at (0, -1) {};
+		\node [style={Z_med}] (44) at (0, -0.05) {$\alpha$};
+		\node [style={X_med}] (45) at (-1, -0.05) {$\alpha$};
+		\node [style=none, font={\scriptsize}] (56) at (-1.2, 0.375) {$\partial$};
+		\node [style=none] (57) at (3.5, 1) {};
+		\node [style=none] (58) at (2.5, 1) {};
+		\node [style=none] (59) at (2.5, -1) {};
+		\node [style=none] (60) at (3.5, -1) {};
+		\node [style={Z_med}] (61) at (3.5, -0.5) {$\alpha$};
+		\node [style={X_med}] (62) at (2.5, -0.5) {$\alpha$};
+		\node [style={Z_med}] (63) at (3.5, 0.25) {$\pi$};
+		\node [style=none] (64) at (2, 0) {$\frac{\partial\alpha}{2}$};
+		\node [style=none] (65) at (5.75, 1) {};
+		\node [style=none] (66) at (6.75, 1) {};
+		\node [style=none] (67) at (6.75, -1) {};
+		\node [style=none] (68) at (5.75, -1) {};
+		\node [style={X_med}] (69) at (5.75, -0.5) {$\alpha$};
+		\node [style={Z_med}] (70) at (6.75, -0.5) {$\alpha$};
+		\node [style={X_med}] (71) at (5.75, 0.25) {$\pi$};
+		\node [style=none] (72) at (5.25, 0) {$\frac{\partial\alpha}{2}$};
+		\node [style=none] (73) at (1.25, 0) {$=$};
+		\node [style=none] (74) at (4.5, 0) {$=$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boxedge] (50.center)
+			 to (49.center)
+			 to [bend right=45, looseness=1.25] (47.center)
+			 to (46.center)
+			 to [bend right=45, looseness=1.25] (51.center)
+			 to (52.center)
+			 to (48.center)
+			 to [bend right=45, looseness=1.50] cycle;
+		\draw (19.center) to (36.center);
+		\draw (17.center) to (37.center);
+		\draw (58.center) to (59.center);
+		\draw (57.center) to (63);
+		\draw (63) to (61);
+		\draw (61) to (60.center);
+		\draw (66.center) to (67.center);
+		\draw (65.center) to (71);
+		\draw (71) to (69);
+		\draw (69) to (68.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

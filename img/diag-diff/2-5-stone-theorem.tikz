@@ -1,115 +1,115 @@
 \begin{tikzpicture}[scale=2]
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=none] (1) at (-7.375, -4.625) {};
-		\node [style=none] (3) at (-6.725, -4.625) {$U(\theta)$};
-		\node [style=none] (10) at (-7.375, -5.125) {};
-		\node [style=none] (11) at (-6, -5.125) {};
-		\node [style=none] (12) at (-6, -4.125) {};
-		\node [style=none] (13) at (-7.375, -4.125) {};
-		\node [style=none] (19) at (-7.875, -4.625) {};
-		\node [style=none] (21) at (-6, -4.625) {};
-		\node [style=none] (25) at (-5.5, -4.625) {};
-		\node [style=none] (222) at (-4.75, -4.625) {$=$};
-		\node [style=none] (277) at (-6, -4.875) {};
-		\node [style=none] (278) at (-3.125, -3.7) {};
-		\node [style=none] (279) at (-2.325, -3.7) {};
-		\node [style=none] (280) at (-2.325, -5.375) {};
-		\node [style=none] (281) at (-1.825, -4.2) {};
-		\node [style=none] (282) at (-1.825, -4.925) {};
-		\node [style=none] (283) at (-3.625, -4.2) {};
-		\node [style=none] (284) at (-3.625, -5.375) {};
-		\node [style=none] (285) at (-3.25, -4.625) {};
-		\node [style=none] (286) at (-2.75, -4.625) {$H$};
-		\node [style=none] (287) at (-3.25, -5) {};
-		\node [style=none] (288) at (-2.25, -5) {};
-		\node [style=none] (289) at (-2.25, -4.25) {};
-		\node [style=none] (290) at (-3.25, -4.25) {};
-		\node [style=none] (291) at (-4, -4.625) {};
-		\node [style=none] (292) at (-2.25, -4.625) {};
-		\node [style=none] (293) at (-1.5, -4.625) {};
-		\node [style=none, font={\scriptsize}] (294) at (-3.35, -5.2) {$\exp$};
-		\node [style=none] (295) at (-2.25, -4.75) {};
-		\node [style=scalar] (297) at (-2.75, -4) {$i \theta$};
-		\node [style=none] (298) at (2, -4.625) {};
-		\node [style=none] (299) at (2.65, -4.625) {$H$};
-		\node [style=none] (300) at (2, -5.125) {};
-		\node [style=none] (301) at (3.375, -5.125) {};
-		\node [style=none] (302) at (3.375, -4.125) {};
-		\node [style=none] (303) at (2, -4.125) {};
-		\node [style=none] (304) at (1.5, -4.625) {};
-		\node [style=none] (305) at (3.375, -4.625) {};
-		\node [style=none] (306) at (3.875, -4.625) {};
-		\node [style=none] (307) at (4.625, -4.625) {$=$};
-		\node [style=none] (308) at (3.375, -4.875) {};
-		\node [style=none] (309) at (6.25, -3.7) {};
-		\node [style=none] (310) at (7.05, -3.7) {};
-		\node [style=none] (311) at (7.05, -5.375) {};
-		\node [style=none] (312) at (7.55, -4.2) {};
-		\node [style=none] (313) at (7.55, -4.925) {};
-		\node [style=none] (314) at (5.75, -4.2) {};
-		\node [style=none] (315) at (5.75, -5.375) {};
-		\node [style=none] (316) at (6.125, -4.625) {};
-		\node [style=none] (317) at (6.625, -4.625) {$U(\theta)$};
-		\node [style=none] (318) at (6.125, -5) {};
-		\node [style=none] (319) at (7.125, -5) {};
-		\node [style=none] (320) at (7.125, -4.25) {};
-		\node [style=none] (321) at (6.125, -4.25) {};
-		\node [style=none] (322) at (5.375, -4.625) {};
-		\node [style=none] (323) at (7.125, -4.625) {};
-		\node [style=none] (324) at (7.875, -4.625) {};
-		\node [style=none, font={\scriptsize}] (325) at (6.525, -5.2) {$[\theta \mapsto 0] \circ \partial$};
-		\node [style=none] (326) at (7.125, -4.75) {};
-		\node [style=scalar] (328) at (5.375, -4.25) {$-i$};
-		\node [style=none] (329) at (0, -4.5) {and};
+		\node [style=none] (297) at (4.25, 0) {$i \theta$};
+		\node [style=none, font={\scriptsize}] (325) at (2.75, -2.7) {$\partial$};
+		\node [style=none] (328) at (1.875, -3.25) {$-i$};
+		\node [style=none] (358) at (0, 0.5) {};
+		\node [style=none] (359) at (-1, 0.5) {};
+		\node [style=none] (360) at (0, -0.5) {};
+		\node [style=none] (361) at (-1, -0.5) {};
+		\node [style=none] (362) at (-0.5, -0.5) {};
+		\node [style=none] (363) at (-0.5, 0.5) {};
+		\node [style=none] (364) at (-0.5, 0) {$U(\theta)$};
+		\node [style=none] (365) at (-0.5, 1.25) {};
+		\node [style=none] (366) at (-0.5, -1.25) {};
+		\node [style=none] (375) at (4.55, 0.45) {};
+		\node [style=none] (376) at (4.55, -0.475) {};
+		\node [style=none] (377) at (2.5, -0.475) {};
+		\node [style=none] (378) at (4.05, -0.975) {};
+		\node [style=none] (379) at (2.95, -0.975) {};
+		\node [style=none] (380) at (4.05, 0.95) {};
+		\node [style=none] (381) at (2.5, 0.95) {};
+		\node [style=none] (382) at (3.9, 0.5) {};
+		\node [style=none] (383) at (2.9, 0.5) {};
+		\node [style=none] (384) at (3.9, -0.5) {};
+		\node [style=none] (385) at (2.9, -0.5) {};
+		\node [style=none] (386) at (3.4, 0) {$H$};
+		\node [style=none] (387) at (3.4, -0.5) {};
+		\node [style=none] (388) at (3.4, 1.25) {};
+		\node [style=none] (389) at (3.4, 0.5) {};
+		\node [style=none, font={\scriptsize}] (390) at (2.95, 0.8) {$\exp$};
+		\node [style=none] (391) at (1.25, 0) {$=$};
+		\node [style=none] (395) at (3.4, -1.25) {};
+		\node [style=none] (397) at (0, -2.75) {};
+		\node [style=none] (398) at (-1, -2.75) {};
+		\node [style=none] (399) at (0, -3.75) {};
+		\node [style=none] (400) at (-1, -3.75) {};
+		\node [style=none] (401) at (-0.5, -3.75) {};
+		\node [style=none] (402) at (-0.5, -2.75) {};
+		\node [style=none] (403) at (-0.5, -3.25) {$H$};
+		\node [style=none] (404) at (-0.5, -2) {};
+		\node [style=none] (405) at (-0.5, -4.5) {};
+		\node [style=none] (406) at (4.3, -3.05) {};
+		\node [style=none] (407) at (4.3, -3.475) {};
+		\node [style=none] (408) at (2.5, -3.475) {};
+		\node [style=none] (409) at (3.8, -3.975) {};
+		\node [style=none] (410) at (2.95, -3.975) {};
+		\node [style=none] (411) at (3.8, -2.55) {};
+		\node [style=none] (412) at (2.5, -2.55) {};
+		\node [style=none] (413) at (3.9, -2.75) {};
+		\node [style=none] (414) at (2.9, -2.75) {};
+		\node [style=none] (415) at (3.9, -3.75) {};
+		\node [style=none] (416) at (2.9, -3.75) {};
+		\node [style=none] (417) at (3.4, -3.25) {$U(\theta)$};
+		\node [style=none] (418) at (3.4, -3.75) {};
+		\node [style=none] (419) at (3.4, -1.75) {};
+		\node [style=none] (420) at (3.4, -2.75) {};
+		\node [style=none] (422) at (1, -3.25) {$=$};
+		\node [style=none] (423) at (3.4, -4.5) {};
+		\node [style=none] (425) at (2.3, -3.725) {};
+		\node [style=none] (426) at (2.75, -4.225) {};
+		\node [style=none] (427) at (2.3, -2.05) {};
+		\node [style=none] (428) at (4.55, -2.55) {};
+		\node [style=none] (429) at (4.55, -3.725) {};
+		\node [style=none] (430) at (4.05, -4.225) {};
+		\node [style=none] (431) at (4.05, -2.05) {};
+		\node [style=none, font={\scriptsize}] (432) at (2.95, -2.3) {$[\theta \mapsto 0]$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
-		\draw [style=boxedge] (13.center)
-			 to (10.center)
-			 to (11.center)
-			 to (277.center)
-			 to (12.center)
-			 to cycle;
-		\draw [style=thick] (19.center) to (1.center);
-		\draw [style=thick] (25.center) to (21.center);
-		\draw [style=thick] (282.center)
-			 to (281.center)
-			 to [bend right=45, looseness=1.25] (279.center)
-			 to (278.center)
-			 to [bend right=45, looseness=1.25] (283.center)
-			 to (284.center)
-			 to (280.center)
-			 to [bend right=45, looseness=1.50] cycle;
-		\draw [style=boxedge] (290.center)
-			 to (287.center)
-			 to (288.center)
-			 to (295.center)
-			 to (289.center)
-			 to cycle;
-		\draw [style=thick] (291.center) to (285.center);
-		\draw [style=thick] (293.center) to (292.center);
-		\draw [style=boxedge] (303.center)
-			 to (300.center)
-			 to (301.center)
-			 to (308.center)
-			 to (302.center)
-			 to cycle;
-		\draw [style=thick] (304.center) to (298.center);
-		\draw [style=thick] (306.center) to (305.center);
-		\draw [style=thick] (313.center)
-			 to (312.center)
-			 to [bend right=45, looseness=1.25] (310.center)
-			 to (309.center)
-			 to [bend right=45, looseness=1.25] (314.center)
-			 to (315.center)
-			 to (311.center)
-			 to [bend right=45, looseness=1.50] cycle;
-		\draw [style=boxedge] (321.center)
-			 to (318.center)
-			 to (319.center)
-			 to (326.center)
-			 to (320.center)
-			 to cycle;
-		\draw [style=thick] (322.center) to (316.center);
-		\draw [style=thick] (324.center) to (323.center);
+		\draw (358.center) to (359.center);
+		\draw (359.center) to (361.center);
+		\draw (361.center) to (360.center);
+		\draw (360.center) to (358.center);
+		\draw (365.center) to (363.center);
+		\draw (362.center) to (366.center);
+		\draw [style=boxedge] (379.center) to (378.center);
+		\draw [style=boxedge, bend right=45, looseness=1.25] (378.center) to (376.center);
+		\draw [style=boxedge] (376.center) to (375.center);
+		\draw [style=boxedge, bend right=45, looseness=1.25] (375.center) to (380.center);
+		\draw [style=boxedge] (380.center) to (381.center);
+		\draw [style=boxedge] (381.center) to (377.center);
+		\draw [style=boxedge, bend right=45, looseness=1.50] (377.center) to (379.center);
+		\draw (382.center) to (383.center);
+		\draw (383.center) to (385.center);
+		\draw (384.center) to (385.center);
+		\draw (384.center) to (382.center);
+		\draw (389.center) to (388.center);
+		\draw (387.center) to (395.center);
+		\draw (397.center) to (398.center);
+		\draw (398.center) to (400.center);
+		\draw (400.center) to (399.center);
+		\draw (399.center) to (397.center);
+		\draw (404.center) to (402.center);
+		\draw (401.center) to (405.center);
+		\draw [style=boxedge] (410.center) to (409.center);
+		\draw [style=boxedge, bend right=45, looseness=1.25] (409.center) to (407.center);
+		\draw [style=boxedge] (407.center) to (406.center);
+		\draw [style=boxedge, bend right=45, looseness=1.25] (406.center) to (411.center);
+		\draw [style=boxedge] (411.center) to (412.center);
+		\draw [style=boxedge] (412.center) to (408.center);
+		\draw [style=boxedge, bend right=45, looseness=1.50] (408.center) to (410.center);
+		\draw (413.center) to (414.center);
+		\draw (414.center) to (416.center);
+		\draw (415.center) to (416.center);
+		\draw (415.center) to (413.center);
+		\draw (420.center) to (419.center);
+		\draw (418.center) to (423.center);
+		\draw [style=boxedge] (427.center) to (425.center);
+		\draw [style=boxedge, bend right=45, looseness=1.50] (425.center) to (426.center);
+		\draw [style=boxedge, bend right=45, looseness=1.25] (430.center) to (429.center);
+		\draw [style=boxedge] (429.center) to (428.center);
+		\draw [style=boxedge, bend right=45, looseness=1.25] (428.center) to (431.center);
+		\draw (427.center) to (431.center);
+		\draw (426.center) to (430.center);
 	\end{pgfonlayer}
 \end{tikzpicture}

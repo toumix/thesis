@@ -1,0 +1,95 @@
+\begin{tikzpicture}[scale=2, baseline={([yshift=-0.5ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (14) at (1.25, -0.5) {};
+		\node [style=none] (15) at (0.75, 0) {};
+		\node [style=none] (16) at (1.25, 0.5) {};
+		\node [style=none] (17) at (1.75, 0) {};
+		\node [style=none] (0) at (0, -1.5) {};
+		\node [style=none] (1) at (0.75, -1.5) {};
+		\node [style=none] (2) at (2.5, -1.5) {};
+		\node [style=none] (8) at (0, 1.5) {};
+		\node [style=none] (9) at (0.75, 1.5) {};
+		\node [style=none] (10) at (2.5, 1.5) {};
+		\node [style={Z_med}] (11) at (1.25, 0) {$\alpha$};
+		\node [style=node] (12) at (1.5, -1.25) {$\vdots$};
+		\node [style=node] (13) at (1.5, 1.25) {$\vdots$};
+		\node [style=none] (18) at (6.25, 0.5) {};
+		\node [style=none] (19) at (6.75, 0) {};
+		\node [style=none] (20) at (6.25, -0.5) {};
+		\node [style=none] (21) at (5.75, 0) {};
+		\node [style=none] (22) at (6, 1.5) {};
+		\node [style=none] (23) at (4.25, 1.5) {};
+		\node [style=none] (24) at (3.5, 1.5) {};
+		\node [style=none] (25) at (6, -1.5) {};
+		\node [style=none] (26) at (4.25, -1.5) {};
+		\node [style=none] (27) at (3.5, -1.5) {};
+		\node [style={Z_med}] (28) at (4.75, 0) {};
+		\node [style=node] (29) at (5.25, 1.25) {$\vdots$};
+		\node [style=node] (30) at (5.25, -1.25) {$\vdots$};
+		\node [style={Z_med}] (31) at (6.25, 0) {$\alpha$};
+		\node [style=none] (32) at (10.25, 1.5) {};
+		\node [style=none] (33) at (8.5, 1.5) {};
+		\node [style=none] (34) at (7.75, 1.5) {};
+		\node [style=none] (35) at (10.25, -1.5) {};
+		\node [style=none] (36) at (8.5, -1.5) {};
+		\node [style=none] (37) at (7.75, -1.5) {};
+		\node [style={Z_med}] (38) at (9, 0) {};
+		\node [style=node] (39) at (9.5, 1.25) {$\vdots$};
+		\node [style=node] (40) at (9.5, -1.25) {$\vdots$};
+		\node [style={Z_long}] (41) at (10, 0) {$\alpha + \pi$};
+		\node [style=none] (49) at (14.5, 1.5) {};
+		\node [style=none] (50) at (12.75, 1.5) {};
+		\node [style=none] (51) at (12, 1.5) {};
+		\node [style=none] (52) at (14.5, -1.5) {};
+		\node [style=none] (53) at (12.75, -1.5) {};
+		\node [style=none] (54) at (12, -1.5) {};
+		\node [style={Z_long}] (55) at (13.25, 0) {$\alpha+\pi$};
+		\node [style=node] (56) at (13.75, 1.25) {$\vdots$};
+		\node [style=node] (57) at (13.75, -1.25) {$\vdots$};
+		\node [style=none] (58) at (13.25, 0) {};
+		\node [style=none] (59) at (13.25, 0) {};
+		\node [style=none] (61) at (10.75, 0) {$\frac{\partial\alpha}{2}$};
+		\node [style=none] (62) at (3, 0) {$=$};
+		\node [style=none] (63) at (11.5, 0) {$=$};
+		\node [style=none] (64) at (7.25, 0) {$=$};
+		\node [style=none] (65) at (14.25, 0) {$\frac{\partial\alpha}{2}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boxedge] (16.center)
+			 to [bend left=45] (17.center)
+			 to [bend left=45] (14.center)
+			 to [bend left=45] (15.center)
+			 to [bend left=45] cycle;
+		\draw [bend left] (0.center) to (11);
+		\draw [bend right=15] (11) to (1.center);
+		\draw [bend left] (11) to (2.center);
+		\draw [bend right] (11) to (10.center);
+		\draw [bend left=15] (11) to (9.center);
+		\draw [bend left] (11) to (8.center);
+		\draw [style=boxedge] (20.center)
+			 to [bend right=315] (21.center)
+			 to [bend left=45] (18.center)
+			 to [bend left=45] (19.center)
+			 to [bend left=45] cycle;
+		\draw [bend left] (22.center) to (28);
+		\draw [bend left=15] (28) to (23.center);
+		\draw [bend left] (28) to (24.center);
+		\draw [bend right] (28) to (27.center);
+		\draw [bend right=15] (28) to (26.center);
+		\draw [bend left] (28) to (25.center);
+		\draw (31) to (28);
+		\draw [bend left] (32.center) to (38);
+		\draw [bend left=15] (38) to (33.center);
+		\draw [bend right] (34.center) to (38);
+		\draw [bend right] (38) to (37.center);
+		\draw [bend left=15] (36.center) to (38);
+		\draw [bend left] (38) to (35.center);
+		\draw (41) to (38);
+		\draw [bend left] (49.center) to (55);
+		\draw [bend left] (55) to (51.center);
+		\draw [bend right] (55) to (54.center);
+		\draw [bend left] (55) to (52.center);
+		\draw [bend right=15] (50.center) to (58.center);
+		\draw [bend right=15] (59.center) to (53.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,18 +1,23 @@
 \begin{tikzpicture}[scale=2, baseline={([yshift=-0.5ex]current bounding box.center)}]
 	\begin{pgfonlayer}{nodelayer}
-		\node [style={Z_med}] (11) at (1.775, 0) {$\alpha$};
-		\node [style=none] (14) at (1.025, 0) {};
-		\node [style=none] (15) at (1.775, 0.75) {};
-		\node [style=none] (16) at (2.525, 0) {};
-		\node [style=none] (17) at (1.775, -0.75) {};
-		\node [style=none] (18) at (3.525, 0) {};
+		\node [style={Z_med}] (11) at (0.5, -0.025) {$\alpha$};
+		\node [style=none] (14) at (0.5, 0.475) {};
+		\node [style=none] (15) at (1, -0.025) {};
+		\node [style=none] (16) at (0.5, -0.525) {};
+		\node [style=none] (17) at (0, -0.025) {};
+		\node [style=none] (18) at (0.5, -0.775) {};
+		\node [style={Z_long}] (19) at (3.25, 0) {$\alpha+\pi$};
+		\node [style=none] (20) at (3.25, -0.75) {};
+		\node [style=none] (22) at (1.5, 0) {$=$};
+		\node [style=none] (23) at (2.25, 0) {$\frac{\partial\alpha}{2}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [style=boxedge] (16.center)
-			 to [bend left=45, looseness=1.25] (17.center)
-			 to [bend left=45, looseness=1.25] (14.center)
-			 to [bend left=45, looseness=1.25] (15.center)
-			 to [bend left=45, looseness=1.25] cycle;
+			 to [bend left=45] (17.center)
+			 to [bend left=45] (14.center)
+			 to [bend left=45] (15.center)
+			 to [bend left=45] cycle;
 		\draw (18.center) to (11);
+		\draw (19) to (20.center);
 	\end{pgfonlayer}
 \end{tikzpicture}

@@ -2,89 +2,21 @@
 
 \subsection{Differentiating quantum circuits}\label{3-dual-circuits}
 
-In this section, we extend diagrammatic differentiation to classical-quantum
-circuits. These circuit diagrams have two kinds of wires for bits and qubits,
-and boxes for pure quantum processes, measurements and preparations.
-We interpret these classical-quantum circuits in terms of parametrised matrices,
-where the tensor product reorders the indices to keep the classical and quantum
-dimensions in order. Borrowing the term from Coecke and Kissinger
-\cite{CoeckeKissinger17}, we call these matrices cq-maps.
+In this section, we extend diagrammatic differentiation to the category $\mathbf{Circ}$ of mixed quantum circuits as defined in section~\ref{section:mixed-circuits}.
+Recall that the definition of $\mathbf{Circ}$ depends on a choice of gateset, here we assume that this gateset is interpreted as complex matrices parameterised by some number $n \in \N$ of real variables.
+That is, we fix an interpretation $[\![-]\!] : \mathbf{Circ} \to \mathbf{Mat}_\S$ for $\S = \R^n \to \C$.
 In this context, diagrammatic derivations correspond to the notion of gradient
-recipe for parametrised quantum gates \cite{SchuldEtAl19}.
+recipe for parametrised quantum gates introduced by Schuld et al.~\cite{SchuldEtAl19}.
 
-We first give the definition of parametrised cq-maps which is at the basis
-of our Python implementation.
-The category $\mathbf{CQMap}_n$ has objects given by pairs of natural numbers
-$\text{Ob}(\mathbf{CQMap}_n) = \N \times \N$, where the first and second element
-of the pair encode the classical and the quantum dimension of the system respectively.
-Arrows $f : (a, b) \to (c, d)$ are given by $a \times b^2 \to c \times d^2$
-parametrised complex matrices, i.e. with entries in $\R^n \to \C$.
-Composition of cq-maps is given by multiplying their underlying matrices.
-Tensor is given on objects by pointwise multiplication and on arrows by the
-following diagram in $\mathbf{Mat}_{\R^n \to \C}$:
-$$\tikzfig{img/diag-diff/3-1-tensor}$$
-
-Each pure map $f : a \to b$ in $\mathbf{Mat}_{\R^n \to \C}$ embeds as a
-cq-map $(1, a) \to (1, b)$ by ``doubling'', i.e. tensoring with its complex
-conjugate $f \mapsto \bar{f} \otimes f$.
-Note that doubling is faithful up to a global phase.
-For each dimension $a \in \N$, there are distinguished cq-maps
-$M_a : (1, a) \to (a, 1), \s E_a : (a, 1) \to (1, a)$ for measurement and
-preparation in the computational basis with matrices given by
-$M_a = \sum_{i < a} \ket{i} \bra{i, i}$
-and $E_a = \sum_{i < a} \ket{i, i} \bra{i}$.
-The sum of two cq-maps is given by entrywise addition of their underlying
-matrix. Note that doubling does not preserve sums,
-i.e. $\overline{(\sum_i f_i)} \otimes (\sum_i f_i)
-\neq \sum_i (\overline{f_i} \otimes f_i)$.
-In quantum mechanical terms, this corresponds to the distinction between
-quantum superposition and probabilistic mixing.
-
-\begin{remark}
-The cq-maps we have defined here differ from \cite{CoeckeKissinger17} in two
-minor ways. First, we take the algebraic conjugate rather than the diagrammatic
-conjugate, i.e. we take $\overline{f \otimes g}
-= \overline{f} \otimes \overline{g} \neq \overline{g} \otimes \overline{f}$.
-This is just a choice of convention that makes numerical computation easier.
-Second, our category $\mathbf{CQMap}$ contains matrices that have no physical
-interpretation, e.g. we do not ask for complete positivity. This can be fixed
-by considering the subcategory in the image of the interpretation functor
-defined below.
-\end{remark}
-
-Take a monoidal signature $\Sigma$ with one object $\Sigma_0 = \{ q \}$
-interpreted as a qubit, and boxes interpreted as pure quantum processes with
-$n$ parameters. That is, we fix a parametrised interpretation functor $[\![-]\!]
-: \mathbf{C}_\Sigma \to \mathbf{Mat}_{\R^n \to \C}$ with $[\![q]\!] = 2$.
-This could be the signatures for parametrised or algebraic ZX
-from the previous section, or any universal quantum gate set plus boxes
-for scalars, bras and kets.
-We define an extended signature $cq(\Sigma) \supset \Sigma$ with two objects
-$cq(\Sigma)_0 = \{ c, q \}$ interpreted as bit and qubit respectively.
-Boxes are given by $cq(\Sigma)_1 =
-\{ \hat{f} : q^{\otimes a} \to q^{\otimes b} \ \vert \ f \in \Sigma_1 \}
-+ \{ M : q \to c, \s E : c \to q \}$.
-Let $\mathbf{C}_{cq(\Sigma)}$ be the free monoidal category it generates,
-i.e. arrows are classical-quantum circuits.
-Their interpretation is given by a monoidal functor
-$[\![-]\!] : \mathbf{C}_{cq(\Sigma)} \to \mathbf{CQMap}_n$ with
-$[\![c]\!] = (2, 1)$ and $[\![q]\!] = (1, 2)$ on objects.
-On arrows we define $[\![M]\!] = M_2$, $[\![E]\!] = E_2$ and
-$[\![\hat{f}]\!] = \overline{[\![f]\!]} \otimes [\![f]\!]$.
-We write $cq(\mathbf{ZX}_n)$ for the category of classical-quantum circuits
-with parametrised ZX diagrams as pure processes.
-
-Let $\mathbf{C}_{cq(\Sigma)}^+$ be the free monoidal category with sums,
-i.e. arrows are bags of circuits.
+Let $\mathbf{Circ}^+$ be the category with formal sums of mixed quantum circuits as arrows, i.e. the free commutative-monoid-enrichment of $\mathbf{Circ}$.
 Again, we want to find a diagrammatic derivation
-$\partial : \mathbf{C}_{cq(\Sigma)}^+ \to \D[\mathbf{C}_{cq(\Sigma)}^+]$
+$\partial : \mathbf{Circ}^+ \to \D[\mathbf{Circ}^+]$
 which commutes with the interpretation, i.e. such that
 $[\![\partial \hat{f}]\!] = \partial [\![\hat{f}]\!] =
 \partial \big( \overline{[\![f]\!]} \otimes [\![f]\!] \big)$
-for all pure maps $f \in \Sigma_1$.
-Note that a diagrammatic derivation for pure processes in
-$\mathbf{C}_{\Sigma}^+$ does not in general lift to one for classical-quantum
-circuits in $\mathbf{C}_{\Sigma}$. Indeed, using the product rule we get
+for all circuits $f \in \mathbf{Circ}$.
+Note that a diagrammatic derivation for the interpretation of pure quantum circuits does not in general lift to one for mixed quantum circuits.
+Indeed, using the product rule we get
 $\partial \big( \overline{[\![f]\!]} \otimes [\![f]\!] \big)
 \s = \s \partial \overline{[\![f]\!]} \otimes [\![f]\!]
 \ + \ \overline{[\![f]\!]} \otimes \partial [\![f]\!]
@@ -98,21 +30,15 @@ gradient recipes are given by the parameter-shift rule. In the general case
 where the parameter-shift rule does not apply, gradient recipes require the
 introduction of an ancilla qubit.
 
-\begin{theorem}[Schuld et al.]
+\begin{theorem}[\cite{SchuldEtAl19}]
 For a one-parameter unitary group $f$ with
 $[\![f(\theta)]\!] = \exp (i \theta H)$, if $H$ has at most two eigenvalues
 $\pm r$, then there is a shift $s \in [0, 2 \pi)$ such that
 $[\![r\big(f(\theta + s) - f(\theta - s)\big)]\!] = \partial [\![f(\theta)]\!]$.
 \end{theorem}
 
-\begin{proof}
-The shift is given by $s = \frac{\pi}{4 r}$, see the Taylor expansion given in
-\cite[Theorem 1]{SchuldEtAl19}.
-\end{proof}
-
 \begin{corollary}
-Classical-quantum circuits $cq(\mathbf{ZX}_n)$ with parametrised ZX diagrams as
-pure processes admit diagrammatic differentiation.
+Mixed quantum circuits with parametrised ZX diagrams as gateset admit diagrammatic differentiation.
 \end{corollary}
 
 \begin{proof}
@@ -126,10 +52,10 @@ arbitrary-many legs using spider fusion.
 \end{proof}
 
 \begin{remark}
-All scalars in $cq(\mathbf{ZX}_n)$ are non-negative real numbers. Thus in order
-to encode the substraction of the parameter shift-rule diagrammatically, we
+In order to encode the substraction of the parameter shift-rule diagrammatically, we
 need either to consider formal sums with minus signs (a.k.a. enrichment in
-Abelian groups) or simply to extend the signature with the $-1$ scalar.
+abelian groups) or simply to extend the signature with the $-1$ scalar.
+Such \emph{mixed scalars} are implemented in listing~\ref{listing:mixed-scalars}.
 \end{remark}
 
 \begin{example}
