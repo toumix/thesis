@@ -2416,6 +2416,54 @@
       \verb https://aclanthology.org/N13-1105
       \endverb
     \endentry
+    \entry{BluteEtAl06}{article}{}
+      \name{author}{3}{}{%
+        {{hash=6f80b83002dc5515f00f32e5e2384d40}{%
+           family={Blute},
+           familyi={B\bibinitperiod},
+           given={R.\bibnamedelimi F.},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=5a2923ea9b6808841988300081d595a9}{%
+           family={Cockett},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi R.\bibnamedelimi B.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=9d1a1283ca7be79b56794ee41db264c2}{%
+           family={Seely},
+           familyi={S\bibinitperiod},
+           given={R.\bibnamedelimi A.\bibnamedelimi G.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{190389f1d9f4a7a64423e145151829ef}
+      \strng{fullhash}{190389f1d9f4a7a64423e145151829ef}
+      \strng{bibnamehash}{190389f1d9f4a7a64423e145151829ef}
+      \strng{authorbibnamehash}{190389f1d9f4a7a64423e145151829ef}
+      \strng{authornamehash}{190389f1d9f4a7a64423e145151829ef}
+      \strng{authorfullhash}{190389f1d9f4a7a64423e145151829ef}
+      \field{labelalpha}{BCS06}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0960-1295, 1469-8072}
+      \field{journaltitle}{Mathematical Structures in Computer Science}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{number}{06}
+      \field{shortjournal}{Math. Struct. in Comp. Science}
+      \field{title}{Differential Categories}
+      \field{volume}{16}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \field{pages}{1049}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1017/S0960129506005676
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/U9WQLCG9/Blute et al. - 2006 - Differential categories.pdf
+      \endverb
+    \endentry
     \entry{BoltEtAl17}{article}{}
       \name{author}{6}{}{%
         {{hash=af25108ce4c9b87b9e8798084bed46f4}{%
@@ -4034,6 +4082,71 @@
       \field{title}{A Preliminary Sketch of Biquaternions}
       \field{year}{1873}
       \field{dateera}{ce}
+    \endentry
+    \entry{CockettEtAl19}{unpublished}{}
+      \name{author}{7}{}{%
+        {{hash=d8765e441ff2d0202876909373accec9}{%
+           family={Cockett},
+           familyi={C\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3ea0f7c45df4643e66dae205b5dfff1d}{%
+           family={Cruttwell},
+           familyi={C\bibinitperiod},
+           given={Geoffrey},
+           giveni={G\bibinitperiod}}}%
+        {{hash=bf27c3e184d441b7308cb87487da9ede}{%
+           family={Gallagher},
+           familyi={G\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=012f684b7d32d5c3e8b2ff1f0df496d0}{%
+           family={Lemay},
+           familyi={L\bibinitperiod},
+           given={Jean-Simon\bibnamedelima Pacaud},
+           giveni={J\bibinithyphendelim S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=3de289a758458dfaeb9f9955c3513aea}{%
+           family={MacAdam},
+           familyi={M\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=5ac4023ed140a900b897444afb2c41d9}{%
+           family={Plotkin},
+           familyi={P\bibinitperiod},
+           given={Gordon},
+           giveni={G\bibinitperiod}}}%
+        {{hash=99961f77ef3feca99280610091ef52de}{%
+           family={Pronk},
+           familyi={P\bibinitperiod},
+           given={Dorette},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{6a8e3a111dcce03024b5dec7fc6c720b}
+      \strng{fullhash}{6474be89910b21635a076209c9606987}
+      \strng{bibnamehash}{6474be89910b21635a076209c9606987}
+      \strng{authorbibnamehash}{6474be89910b21635a076209c9606987}
+      \strng{authornamehash}{6a8e3a111dcce03024b5dec7fc6c720b}
+      \strng{authorfullhash}{6474be89910b21635a076209c9606987}
+      \field{labelalpha}{Coc+19}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The reverse derivative is a fundamental operation in machine learning and automatic differentiation. This paper gives a direct axiomatization of a category with a reverse derivative operation, in a similar style to that given by Cartesian differential categories for a forward derivative. Intriguingly, a category with a reverse derivative also has a forward derivative, but the converse is not true. In fact, we show explicitly what a forward derivative is missing: a reverse derivative is equivalent to a forward derivative with a dagger structure on its subcategory of linear maps. Furthermore, we show that these linear maps form an additively enriched category with dagger biproducts.}
+      \field{day}{15}
+      \field{eprintclass}{cs, math}
+      \field{eprinttype}{arxiv}
+      \field{month}{10}
+      \field{title}{Reverse Derivative Categories}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 1910.07065
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/WILFUBUG/Cockett et al. - 2019 - Reverse derivative categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZP9NF3ZP/Cockett et al. - 2019 - Reverse derivative categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ELC5TBEL/1910.html;/Users/alexis.toumi/WORK/Zotero/storage/LYXDRKHV/1910.html
+      \endverb
+      \keyw{Computer Science - Logic in Computer Science,D.3.1,F.3.2,Mathematics - Category Theory}
     \endentry
     \entry{CoeckeEtAl13}{article}{}
       \name{author}{3}{}{%
@@ -7164,6 +7277,46 @@
       \endverb
       \keyw{Quantum Physics}
     \endentry
+    \entry{Hadfield21}{article}{}
+      \name{author}{1}{}{%
+        {{hash=51e691975c42c1f9efd494b455acb7e5}{%
+           family={Hadfield},
+           familyi={H\bibinitperiod},
+           given={Stuart},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{51e691975c42c1f9efd494b455acb7e5}
+      \strng{fullhash}{51e691975c42c1f9efd494b455acb7e5}
+      \strng{bibnamehash}{51e691975c42c1f9efd494b455acb7e5}
+      \strng{authorbibnamehash}{51e691975c42c1f9efd494b455acb7e5}
+      \strng{authornamehash}{51e691975c42c1f9efd494b455acb7e5}
+      \strng{authorfullhash}{51e691975c42c1f9efd494b455acb7e5}
+      \field{labelalpha}{Had21}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mapping functions on bits to Hamiltonians acting on qubits has many applications in quantum computing. In particular, Hamiltonians representing Boolean functions are required for applications of quantum annealing or the quantum approximate optimization algorithm to combinatorial optimization problems. We show how such functions are naturally represented by Hamiltonians given as sums of Pauli Z operators (Ising spin operators) with the terms of the sum corresponding to the function’s Fourier expansion. For many classes of Boolean functions which are given by a compact description, such as a Boolean formula in conjunctive normal form that gives an instance of the satisfiability problem, it is \#P-hard to compute its Hamiltonian representation, i.e., as hard as computing its number of satisfying assignments. On the other hand, no such difficulty exists generally for constructing Hamiltonians representing a real function such as a sum of local Boolean clauses each acting on a fixed number of bits as is common in constraint satisfaction problems. We show composition rules for explicitly constructing Hamiltonians representing a wide variety of Boolean and real functions by combining Hamiltonians representing simpler clauses as building blocks, which are particularly suitable for direct implementation as classical software. We further apply our results to the construction of controlled-unitary operators, and to the special case of operators that compute function values in an ancilla qubit register. Finally, we outline several additional applications and extensions of our results to quantum algorithms for optimization. A goal of this work is to provide a design toolkit for quantum optimization which may be utilized by experts and practitioners alike in the construction and analysis of new quantum algorithms, and at the same time to provide a unified framework for the various constructions appearing in the literature.}
+      \field{day}{21}
+      \field{issn}{2643-6809}
+      \field{journaltitle}{ACM Transactions on Quantum Computing}
+      \field{month}{12}
+      \field{number}{4}
+      \field{shortjournal}{ACM Transactions on Quantum Computing}
+      \field{title}{On the {{Representation}} of {{Boolean}} and {{Real Functions}} as {{Hamiltonians}} for {{Quantum Computing}}}
+      \field{volume}{2}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{pages}{18:1\bibrangedash 18:21}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1145/3478519
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/XTKQQI9K/Hadfield - 2021 - On the Representation of Boolean and Real Function.pdf
+      \endverb
+      \keyw{Boolean and pseudo-Boolean functions,diagonal Hamiltonians,Fourier analysis on the Boolean cube,Quantum optimization}
+    \endentry
     \entry{HadzihasanovicEtAl18}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=48ba6a8c66711f3b59879e4e1149110c}{%
@@ -8165,6 +8318,51 @@
       \verb https://thequantuminsider.com/2020/12/10/meaning-aware-computers-cqc-researchers-make-major-nlp-advance-in-using-quantum-computers-to-understand-language-and-towards-achieving-meaningful-quantum-advantage/
       \endverb
     \endentry
+    \entry{JeandelEtAl22}{unpublished}{}
+      \name{author}{3}{}{%
+        {{hash=c2b5fc169871d0b556525fef63dfcaed}{%
+           family={Jeandel},
+           familyi={J\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=2cfa2528fc3a1c11861293c11239171a}{%
+           family={Perdrix},
+           familyi={P\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=50cd25e362afb696f22d5b8b98834702}{%
+           family={Veshchezerova},
+           familyi={V\bibinitperiod},
+           given={Margarita},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3d487d7b4017acdf6cd8b53f6ba54648}
+      \strng{fullhash}{3d487d7b4017acdf6cd8b53f6ba54648}
+      \strng{bibnamehash}{3d487d7b4017acdf6cd8b53f6ba54648}
+      \strng{authorbibnamehash}{3d487d7b4017acdf6cd8b53f6ba54648}
+      \strng{authornamehash}{3d487d7b4017acdf6cd8b53f6ba54648}
+      \strng{authorfullhash}{3d487d7b4017acdf6cd8b53f6ba54648}
+      \field{labelalpha}{JPV22}
+      \field{sortinit}{J}
+      \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The ZX-calculus is a powerful framework for reasoning in quantum computing. It provides in particular a compact representation of matrices of interests. A peculiar property of the ZX-calculus is the absence of a formal sum allowing the linear combinations of arbitrary ZX-diagrams. The universality of the formalism guarantees however that for any two ZX-diagrams, the sum of their interpretations can be represented by a ZX-diagram. We introduce a general, inductive definition of the addition of ZX-diagrams, relying on the construction of controlled diagrams. Based on this addition technique, we provide an inductive differentiation of ZX-diagrams. Indeed, given a ZX-diagram with variables in the description of its angles, one can differentiate the diagram according to one of these variables. Differentiation is ubiquitous in quantum mechanics and quantum computing (e.g. for solving optimization problems). Technically, differentiation of ZX-diagrams is strongly related to summation as witnessed by the product rules. We also introduce an alternative, non inductive, differentiation technique rather based on the isolation of the variables. Finally, we apply our results to deduce a diagram for an Ising Hamiltonian.}
+      \field{day}{23}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arxiv}
+      \field{month}{2}
+      \field{title}{Addition and {{Differentiation}} of {{ZX-diagrams}}}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 2202.11386
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/AL6W2UWT/Jeandel et al. - 2022 - Addition and Differentiation of ZX-diagrams.pdf;/Users/alexis.toumi/WORK/Zotero/storage/7KD7WKYV/2202.html
+      \endverb
+      \keyw{Quantum Physics}
+    \endentry
     \entry{JeandelEtAl18a}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=c2b5fc169871d0b556525fef63dfcaed}{%
@@ -8435,6 +8633,70 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R8GA897F/Mathematiques - 2007 - Traced Monoidal Categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UDGK6J2E/2BE85628D269D9FABAB41B6364E117C8.html
+      \endverb
+    \endentry
+    \entry{KandalaEtAl17}{article}{}
+      \name{author}{7}{}{%
+        {{hash=9705aa9039b085b4ba6158e898c83dea}{%
+           family={Kandala},
+           familyi={K\bibinitperiod},
+           given={Abhinav},
+           giveni={A\bibinitperiod}}}%
+        {{hash=74d05fb977698256fa6985ec3e6c490b}{%
+           family={Mezzacapo},
+           familyi={M\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=68b8d929f9cb9fea3f1f9991863a6439}{%
+           family={Temme},
+           familyi={T\bibinitperiod},
+           given={Kristan},
+           giveni={K\bibinitperiod}}}%
+        {{hash=12bbdc8bbfdbcde0e066c6c763ccc6f3}{%
+           family={Takita},
+           familyi={T\bibinitperiod},
+           given={Maika},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c82fb7acc2d468771049e8f29337546b}{%
+           family={Brink},
+           familyi={B\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=521bef49ac90a7507ae4e8d91c8958d7}{%
+           family={Chow},
+           familyi={C\bibinitperiod},
+           given={Jerry\bibnamedelima M},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1f093fdddadc74f94fe93a4af37a0419}{%
+           family={Gambetta},
+           familyi={G\bibinitperiod},
+           given={Jay\bibnamedelima M},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{22c5656abc9a38240178946ae849ba73}
+      \strng{fullhash}{42dc5c3ee031e77e5a247d728cc0aa36}
+      \strng{bibnamehash}{42dc5c3ee031e77e5a247d728cc0aa36}
+      \strng{authorbibnamehash}{42dc5c3ee031e77e5a247d728cc0aa36}
+      \strng{authornamehash}{22c5656abc9a38240178946ae849ba73}
+      \strng{authorfullhash}{42dc5c3ee031e77e5a247d728cc0aa36}
+      \field{labelalpha}{Kan+17}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{number}{7671}
+      \field{title}{Hardware-Efficient Variational Quantum Eigensolver for Small Molecules and Quantum Magnets}
+      \field{volume}{549}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{pages}{242\bibrangedash 246}
+      \range{pages}{5}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/UTJJPRD8/Kandala et al. - 2017 - Hardware-efficient Variational Quantum Eigensolver.pdf
       \endverb
     \endentry
     \entry{Kant81}{book}{}
@@ -8745,6 +9007,51 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3NHARQV6/Kerenidis and Prakash - 2016 - Quantum Recommendation Systems.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HIIMBCXC/1603.html
       \endverb
       \keyw{Computer Science - Data Structures and Algorithms,Computer Science - Information Retrieval,Quantum Physics}
+    \endentry
+    \entry{KimEtAl20}{unpublished}{}
+      \name{author}{3}{}{%
+        {{hash=cf0e25729ae9aa22e35156ff1421f8c8}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Joon-Hwi},
+           giveni={J\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=b1d0aac72715a031e0fd42f2eaa112d2}{%
+           family={Oh},
+           familyi={O\bibinitperiod},
+           given={Maverick\bibnamedelimb S.\bibnamedelimi H.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=6a741fb741d5cec48c7136e7625e5ae1}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Keun-Young},
+           giveni={K\bibinithyphendelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{58ae4554ac052306c73e391933fb7801}
+      \strng{fullhash}{58ae4554ac052306c73e391933fb7801}
+      \strng{bibnamehash}{58ae4554ac052306c73e391933fb7801}
+      \strng{authorbibnamehash}{58ae4554ac052306c73e391933fb7801}
+      \strng{authornamehash}{58ae4554ac052306c73e391933fb7801}
+      \strng{authorfullhash}{58ae4554ac052306c73e391933fb7801}
+      \field{labelalpha}{KOK20}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Learning vector calculus techniques is one of the major missions to be accomplished by physics undergraduates. However, beginners report various difficulties dealing with the index notation due to its bulkiness. Meanwhile, there have been graphical notations for tensor algebra that are intuitive and effective in calculations and can serve as a quick mnemonic for algebraic identities. Although they have been introduced and applied in vector algebra in the educational context, to the best of our knowledge, there have been no publications that employ the graphical notation to three-dimensional Euclidean vector calculus, involving differentiation and integration of vector fields. Aiming for physics students and educators, we introduce such "graphical vector calculus," demonstrate its pedagogical advantages, and provide enough exercises containing both purely mathematical identities and practical calculations in physics. The graphical notation can readily be utilized in the educational environment to not only lower the barriers in learning and practicing vector calculus but also make students interested and self-motivated to manipulate the vector calculus syntax and heuristically comprehend the language of tensors by themselves.}
+      \field{day}{8}
+      \field{eprintclass}{hep-th, physics:physics}
+      \field{eprinttype}{arxiv}
+      \field{month}{1}
+      \field{title}{Boosting {{Vector Calculus}} with the {{Graphical Notation}}}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 1911.00892
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/8GDEJ8XP/Kim et al. - 2020 - Boosting Vector Calculus with the Graphical Notati.pdf;/Users/alexis.toumi/WORK/Zotero/storage/R2Z5GGFC/1911.html
+      \endverb
+      \keyw{High Energy Physics - Theory,Physics - Physics Education}
     \endentry
     \entry{KissingerUijlen19}{unpublished}{}
       \name{author}{2}{}{%
@@ -9719,6 +10026,44 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/5HVGRRTU/Lambek - From rules of grammar to laws of nature.pdf
       \endverb
     \endentry
+    \entry{Langa17}{report}{}
+      \name{author}{1}{}{%
+        {{hash=4f35c51cffaa129c0cdb26d6b1cd5d1c}{%
+           family={Langa},
+           familyi={L\bibinitperiod},
+           given={Łukasz},
+           giveni={Ł\bibinitperiod}}}%
+      }
+      \strng{namehash}{4f35c51cffaa129c0cdb26d6b1cd5d1c}
+      \strng{fullhash}{4f35c51cffaa129c0cdb26d6b1cd5d1c}
+      \strng{bibnamehash}{4f35c51cffaa129c0cdb26d6b1cd5d1c}
+      \strng{authorbibnamehash}{4f35c51cffaa129c0cdb26d6b1cd5d1c}
+      \strng{authornamehash}{4f35c51cffaa129c0cdb26d6b1cd5d1c}
+      \strng{authorfullhash}{4f35c51cffaa129c0cdb26d6b1cd5d1c}
+      \field{labelalpha}{Lan17}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{563}
+      \field{title}{Postponed {{Evaluation}} of {{Annotations}}}
+      \field{type}{PEP}
+      \field{urlday}{28}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/KY69ASC8/pep-0526.html
+      \endverb
+      \verb{urlraw}
+      \verb https://peps.python.org/pep-0563/
+      \endverb
+      \verb{url}
+      \verb https://peps.python.org/pep-0563/
+      \endverb
+    \endentry
     \entry{Lauda05}{unpublished}{}
       \name{author}{1}{}{%
         {{hash=fac800ea6e2e4510a0c0a8c5a6787460}{%
@@ -10266,6 +10611,44 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/ACZA5AQG/lawvere1996.pdf.pdf
+      \endverb
+    \endentry
+    \entry{Levkivskyi17}{report}{}
+      \name{author}{1}{}{%
+        {{hash=1b4df2facfe1dfdb85a1b3a9e14c2e39}{%
+           family={Levkivskyi},
+           familyi={L\bibinitperiod},
+           given={Ivan},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{1b4df2facfe1dfdb85a1b3a9e14c2e39}
+      \strng{fullhash}{1b4df2facfe1dfdb85a1b3a9e14c2e39}
+      \strng{bibnamehash}{1b4df2facfe1dfdb85a1b3a9e14c2e39}
+      \strng{authorbibnamehash}{1b4df2facfe1dfdb85a1b3a9e14c2e39}
+      \strng{authornamehash}{1b4df2facfe1dfdb85a1b3a9e14c2e39}
+      \strng{authorfullhash}{1b4df2facfe1dfdb85a1b3a9e14c2e39}
+      \field{labelalpha}{Lev17}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{560}
+      \field{title}{Core Support for Typing Module and Generic Types}
+      \field{type}{PEP}
+      \field{urlday}{28}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/74YKSP4V/pep-0560.html
+      \endverb
+      \verb{urlraw}
+      \verb https://peps.python.org/pep-0560/
+      \endverb
+      \verb{url}
+      \verb https://peps.python.org/pep-0560/
       \endverb
     \endentry
     \entry{LloydEtAl11a}{article}{}
@@ -11561,6 +11944,53 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/JQYQRASX/Michaelis and Kracht - 1997 - Semilinearity as a syntactic invariant.pdf
+      \endverb
+    \endentry
+    \entry{Milewski14}{online}{}
+      \name{author}{1}{}{%
+        {{hash=236eacfad7155a4018777d5bf2ad8ad7}{%
+           family={Milewski},
+           familyi={M\bibinitperiod},
+           given={Bartosz},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Bartosz 's Programming Cafe}%
+      }
+      \strng{namehash}{236eacfad7155a4018777d5bf2ad8ad7}
+      \strng{fullhash}{236eacfad7155a4018777d5bf2ad8ad7}
+      \strng{bibnamehash}{236eacfad7155a4018777d5bf2ad8ad7}
+      \strng{authorbibnamehash}{236eacfad7155a4018777d5bf2ad8ad7}
+      \strng{authornamehash}{236eacfad7155a4018777d5bf2ad8ad7}
+      \strng{authorfullhash}{236eacfad7155a4018777d5bf2ad8ad7}
+      \field{labelalpha}{Mil14}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{For an outsider, Haskell is full of intimidating terms like functor, monad, applicative, monoid… These mathematical abstractions are hard to explain to a newcomer. The internet is full of tut…}
+      \field{day}{14}
+      \field{hour}{17}
+      \field{langid}{english}
+      \field{minute}{40}
+      \field{month}{1}
+      \field{second}{27}
+      \field{timezone}{Z}
+      \field{title}{Functors Are {{Containers}}}
+      \field{urlday}{28}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/CYSMJRRX/functors-are-containers.html
+      \endverb
+      \verb{urlraw}
+      \verb https://bartoszmilewski.com/2014/01/14/functors-are-containers/
+      \endverb
+      \verb{url}
+      \verb https://bartoszmilewski.com/2014/01/14/functors-are-containers/
       \endverb
     \endentry
     \entry{MirandaEtAl21}{unpublished}{}
@@ -15160,6 +15590,45 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/LFZJSKHG/Steedman - 2000 - The syntactic process.pdf
       \endverb
     \endentry
+    \entry{Stone32}{article}{}
+      \name{author}{1}{}{%
+        {{hash=5cbf88e9d0a7fdffc6317c36f84e3cd3}{%
+           family={Stone},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi H.},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Annals of Mathematics}%
+      }
+      \strng{namehash}{5cbf88e9d0a7fdffc6317c36f84e3cd3}
+      \strng{fullhash}{5cbf88e9d0a7fdffc6317c36f84e3cd3}
+      \strng{bibnamehash}{5cbf88e9d0a7fdffc6317c36f84e3cd3}
+      \strng{authorbibnamehash}{5cbf88e9d0a7fdffc6317c36f84e3cd3}
+      \strng{authornamehash}{5cbf88e9d0a7fdffc6317c36f84e3cd3}
+      \strng{authorfullhash}{5cbf88e9d0a7fdffc6317c36f84e3cd3}
+      \field{labelalpha}{Sto32}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{jstor}
+      \field{issn}{0003486X}
+      \field{journaltitle}{Annals of Mathematics}
+      \field{number}{3}
+      \field{title}{On One-Parameter Unitary Groups in Hilbert Space}
+      \field{volume}{33}
+      \field{year}{1932}
+      \field{dateera}{ce}
+      \field{pages}{643\bibrangedash 648}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.2307/1968538
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/PY8R3VJB/Stone - 1932 - On one-parameter unitary groups in hilbert space.pdf
+      \endverb
+    \endentry
     \entry{SutskeverEtAl11}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
@@ -16213,6 +16682,46 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PYKEF2TB/Wang - 2020 - Completeness of algebraic ZX-calculus over arbitra.pdf;/Users/alexis.toumi/WORK/Zotero/storage/SYP464IP/Wang - 2020 - Completeness of algebraic ZX-calculus over arbitra.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Y4VJ53UG/1912.html;/Users/alexis.toumi/WORK/Zotero/storage/YSS4UWVN/1912.html
       \endverb
       \keyw{Mathematics - Category Theory,Quantum Physics}
+    \endentry
+    \entry{WangYeung22}{unpublished}{}
+      \name{author}{2}{}{%
+        {{hash=1bc579bd64d3413d06dee03347c5789b}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Quanlong},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=6ff31e2c04cc4d25667ca8bfbbf58546}{%
+           family={Yeung},
+           familyi={Y\bibinitperiod},
+           given={Richie},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{95c4d1a110bdd47bbc31efbef2aca868}
+      \strng{fullhash}{95c4d1a110bdd47bbc31efbef2aca868}
+      \strng{bibnamehash}{95c4d1a110bdd47bbc31efbef2aca868}
+      \strng{authorbibnamehash}{95c4d1a110bdd47bbc31efbef2aca868}
+      \strng{authornamehash}{95c4d1a110bdd47bbc31efbef2aca868}
+      \strng{authorfullhash}{95c4d1a110bdd47bbc31efbef2aca868}
+      \field{labelalpha}{WY22}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{ZX-calculus has proved to be a useful tool for quantum technology with a wide range of successful applications. Most of these applications are of an algebraic nature. However, other tasks that involve differentiation and integration remain unreachable with current ZX techniques. Here we elevate ZX to an analytical perspective by realising differentiation and integration entirely within the framework of ZX-calculus. We explicitly illustrate the new analytic framework of ZX-calculus by applying it in context of quantum machine learning.}
+      \field{day}{28}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arxiv}
+      \field{month}{2}
+      \field{title}{Differentiating and {{Integrating ZX Diagrams}}}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 2201.13250
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/55PNASVC/Wang and Yeung - 2022 - Differentiating and Integrating ZX Diagrams.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Y8TYNN57/2201.html
+      \endverb
+      \keyw{Computer Science - Machine Learning,Quantum Physics}
     \endentry
     \entry{Weaver55}{article}{}
       \name{author}{1}{}{%
@@ -17569,14 +18078,8 @@
   \keyalias{CoeckeEtAl14a}{CoeckeEtAl14}
   \keyalias{FritzEtAl20a}{FritzEtAl20}
   \keyalias{HeunenVicary19a}{HeunenVicary19}
-  \missing{BluteEtAl06}
-  \missing{CockettEtAl19}
   \missing{DeFeliceEtAl20}
   \missing{DuncanPerdrix10}
-  \missing{KandalaEtAl17}
-  \missing{KimEtAl20}
-  \missing{Stone32}
-  \missing{ZhaoGao21}
 \endrefsection
 \endinput
 

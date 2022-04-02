@@ -212,7 +212,7 @@ class Matrix(Composable):
         C.dtype = dtype
         return C
 
-    def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
+    def __init__(self, inside: list[list[Number]], dom: int, cod: int):
         self.dom, self.cod = dom, cod
         self.inside = [list(map(self.dtype, row)) for row in inside]
 
@@ -346,8 +346,8 @@ class Box(Arrow):
 \end{minted}
 \end{python}
 
-The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the built-in \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
-We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of each object and box is in scope.
+The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, setc.
+We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of all objects and boxes are in scope.
 The attribute \py{inside} holds the list of generating arrows, which we store as an immutable \py{tuple} rather than a mutable \py{list}.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.
 The \py{Box} class requires more attention: a box \py{f = Box('f', x, y)} is an arrow with the list of just itself as boxes, i.e. \py{f.inside == (f, )}.

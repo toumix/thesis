@@ -1,0 +1,75 @@
+\begin{tikzpicture}[scale=2.5, baseline={([yshift=-0.5ex]current bounding box.center)}]
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (10) at (-0.1, 0.525) {};
+		\node [style=none] (11) at (-0.1, -0.4) {};
+		\node [style=none] (12) at (-1.9, -0.4) {};
+		\node [style=none] (13) at (-0.6, -0.9) {};
+		\node [style=none] (14) at (-1.45, -0.9) {};
+		\node [style=none] (15) at (-0.6, 1.025) {};
+		\node [style=none] (16) at (-1.9, 1.025) {};
+		\node [style=none] (0) at (-0.5, 1.5) {};
+		\node [style=none] (1) at (-1.5, 1.5) {};
+		\node [style=none] (2) at (-1.5, -1.25) {};
+		\node [style=none] (3) at (-0.5, -1.25) {};
+		\node [style=Z] (4) at (-0.5, 0.5) {};
+		\node [style=X] (5) at (-1.5, 0.5) {};
+		\node [style=X] (6) at (-1, 0) {};
+		\node [style={Z_med}] (7) at (-1, -0.5) {};
+		\node [style={Z_med}] (8) at (-1, -0.5) {$\alpha$};
+		\node [style=H, rotate=45] (9) at (-1.25, 0.25) {};
+		\node [style=none, font={\scriptsize}] (17) at (-1.7, 0.875) {$\partial$};
+		\node [style=none] (18) at (2.9, 1.5) {};
+		\node [style=none] (19) at (1.9, 1.5) {};
+		\node [style=none] (20) at (1.9, -1.25) {};
+		\node [style=none] (21) at (2.9, -1.25) {};
+		\node [style=Z] (22) at (2.9, 0.75) {};
+		\node [style=X] (23) at (1.9, 0.75) {};
+		\node [style=X] (24) at (2.4, 0.25) {};
+		\node [style={Z_med}] (25) at (2.4, -0.5) {};
+		\node [style={Z_long}] (26) at (2.4, -0.5) {$\alpha+\pi$};
+		\node [style=H, rotate=45] (27) at (2.15, 0.5) {};
+		\node [style=none] (28) at (1.4, 0) {$\frac{\partial\alpha}{2}$};
+		\node [style=none] (29) at (6.25, 1.35) {};
+		\node [style=none] (30) at (5.25, 1.35) {};
+		\node [style=none] (31) at (5.25, -1.15) {};
+		\node [style=none] (32) at (6.25, -1.15) {};
+		\node [style=Z] (33) at (6.25, 0.35) {};
+		\node [style=X] (34) at (5.25, 0.35) {};
+		\node [style=X] (35) at (5.75, -0.15) {};
+		\node [style={Z_med}] (36) at (5.75, -0.65) {$\alpha$};
+		\node [style=H, rotate=45] (37) at (5.5, 0.1) {};
+		\node [style={Z_med}] (38) at (6.25, 0.85) {$\pi$};
+		\node [style={X_med}] (39) at (5.25, 0.85) {$\pi$};
+		\node [style=none] (41) at (0.75, 0) {$=$};
+		\node [style=none] (42) at (3.75, 0) {$=$};
+		\node [style=none] (43) at (4.5, 0) {$\frac{\partial\alpha}{2}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boxedge] (14.center)
+			 to (13.center)
+			 to [bend right=45, looseness=1.25] (11.center)
+			 to (10.center)
+			 to [bend right=45, looseness=1.25] (15.center)
+			 to (16.center)
+			 to (12.center)
+			 to [bend right=45, looseness=1.50] cycle;
+		\draw (4) to (6);
+		\draw (5) to (6);
+		\draw (6) to (8);
+		\draw (0.center) to (4);
+		\draw (1.center) to (2.center);
+		\draw (3.center) to (4);
+		\draw (22) to (24);
+		\draw (23) to (24);
+		\draw (24) to (26);
+		\draw (18.center) to (22);
+		\draw (19.center) to (20.center);
+		\draw (21.center) to (22);
+		\draw (33) to (35);
+		\draw (34) to (35);
+		\draw (35) to (36);
+		\draw (29.center) to (33);
+		\draw (30.center) to (31.center);
+		\draw (32.center) to (33);
+	\end{pgfonlayer}
+\end{tikzpicture}

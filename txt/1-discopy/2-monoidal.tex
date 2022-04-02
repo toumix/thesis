@@ -2,8 +2,6 @@
 
 \section{Diagrams in Python} \label{section:monoidal}
 
-\subsection{Abstract monoidal categories}
-
 In the previous section, we introduced the idea of arrows in free categories as abstract data pipelines and functor application as their evaluation in concrete categories such as $\mathbf{Pyth}$, $\mathbf{Mat}$ or $\mathbf{Circ}$ where the computation happens.
 For now, our pipelines are rather basic because they are linear: we cannot express functions of multiple arguments, nor tensors of order higher than 2, nor circuits with multiple qubits in any explicit way.
 In this section, we move from the one-dimensional syntax of arrows in free categories to the two-dimensional syntax of \emph{string diagrams}, the arrows of free \emph{monoidal categories}.
@@ -58,8 +56,6 @@ $\mathbf{FinSet}$ is also monoidal with the empty set $0$ as unit and disjoint u
 \begin{example}\label{example:endofunctors are monoidal}
 For any category $C$, there is a monoidal category $C^C$ where the objects are enfodunctors with composition as tensor and the arrows are natural transformations $\alpha : F \to F'$, $\beta : G \to G'$ with vertical composition $(\alpha \otimes \beta)(x) : G(F(x)) \to G'(F'(x))$ as tensor.
 \end{example}
-
-\subsection{Concrete monoidal categories}
 
 \begin{example}
 The category $\mathbf{Pyth}$ is monoidal with unit \py{()} and \py{tuple[t1, t2]} as the tensor of types \py{t1} and \py{t2}.
@@ -152,7 +148,7 @@ The category $\mathbf{Circ}$ is monoidal with addition of natural numbers as ten
 The evaluation functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ is monoidal: it sends the parallel composition of circuits to the Kronecker product of their unitary matrices.
 \end{example}
 
-\subsection{Free monoidal categories}
+\subsection{Foo monoidal categories}
 
 Now, what does it mean to implement a monoidal category in Python?
 Again, nothing more than defining a pair of classes for objects and arrows with a \py{tensor} method that satisfies the axioms.
@@ -233,7 +229,7 @@ Note that we could define yet another equivalent category where the objects are 
 def product(x, unit=1): return unit if not x else product(unit * x[0], x[1:])
 
 class Tensor(Tensorable, Matrix):
-    def __init__(self, inside: list[list], dom: tuple[int, ...], cod: tuple[int, ...]):
+    def __init__(self, inside: list[list[Number]], dom: tuple[int, ...], cod: tuple[int, ...]):
         Matrix.__init__(self, inside, dom, cod)
 
     def downgrade(self) -> Matrix:
@@ -264,6 +260,8 @@ class Tensor(Tensorable, Matrix):
         setattr(Tensor, attr, lambda self: getattr(self.downgrade(), attr)())
 \end{minted}
 \end{python}
+
+\subsection{Free monoidal categories}
 
 Now how do we go on constructing the left adjoint $F : \mathbf{MonSig} \to \mathbf{MonCat}$?
 In the same way that lists in the free monoid $X^\star$ can be defined as equivalence classes of expressions built from generators in $X$, product and unit, we can construct the arrows of the free monoidal category $F(\Sigma)$ as equivalence classes of expressions built from boxes in $\Sigma_1$, identity, composition and tensor.

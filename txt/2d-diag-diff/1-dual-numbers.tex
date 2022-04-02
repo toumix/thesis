@@ -2,11 +2,11 @@
 
 \subsection{Dual numbers}\label{1-dual-numbers}
 
-Dual numbers were first introduced by Clifford in 1873 \cite{Clifford73}.
-Given a commutative rig (i.e. a riNg without Negatives) $\S$, the rig of dual
-numbers $\D[\S]$ extends $\S$ by adjoining a new element $\epsilon$ such that $\epsilon^2 = 0$.
-Concretely, elements of $\D[\S]$ are formal sums $s + s' \epsilon$ where
-$s$ and $s'$ are scalars in $\S$.
+Dual numbers were first introduced by Clifford~\cite{Clifford73}, they are a fundamental tool for \emph{automatic differentiation}~\cite{Hoffmann16}, i.e. they allow to compute the derivative of a function automatically from its definition.
+
+Given a commutative rig $\S$, the rig of dual numbers $\D[\S]$ extends $\S$ by adjoining a new element $\epsilon$ such that $\epsilon^2 = 0$.
+Abstractly, $\D[\S] = \S[x] / x^2$ is a quotient of the rig of polynomials with coefficients in $\S$.
+Concretely, elements of $\D[\S]$ are formal sums $s + s' \epsilon$ where $s$ and $s'$ are scalars in $\S$.
 We write $\pi_0, \pi_1 : \D[\S] \to \S$
 for the projection on the real and epsilon component respectively.
 Addition and multiplication of dual numbers are given by:
@@ -20,30 +20,20 @@ Addition and multiplication of dual numbers are given by:
 \end{split}
 \end{align}
 
-A related notion is that of differential rig: a rig $\S$ equipped with a
-derivation, i.e. a map $\partial : \S \to \S$ which preserves sums and satisfies
-the Leibniz product rule
-$\partial(f \times g) = f \times \partial(g) + \partial(f) \times g$ for all
-$f, g \in \S$.
-An equivalent condition is that the map $f \mapsto f + (\partial f) \epsilon$
-is a homomorphism of rigs $\S \to \D[\S]$. The correspondance also works the
-other way around: given a homorphism $\partial : \S \to \D[\S]$ such that
-$\pi_0 \circ \partial = \id_\S$, projecting on the epsilon component is a
-derivation $\pi_1 \circ \partial : \S \to \S$. The motivating example is the rig
-of smooth functions $\S = \R \to \R$, where differentiation is a derivation.
-Concretely, we can extend any smooth function $f : \R \to \R$ to a
-function $f : \D[\R] \to \D[\R]$ over the dual numbers defined by:
+A related notion is that of \emph{differential rig}: a rig $\S$ equipped with a derivation, i.e. a map $\partial : \S \to \S$ which preserves sums and satisfies the Leibniz product rule
+$\partial(f \times g) = f \times \partial(g) + \partial(f) \times g$ for all $f, g \in \S$.
+An equivalent condition is that the map $f \mapsto f + (\partial f) \epsilon$ is a homomorphism of rigs $\S \to \D[\S]$.
+The correspondance also works the other way around: given a homorphism $\partial : \S \to \D[\S]$ such that $\pi_0 \circ \partial = \id_\S$, projecting on the epsilon component is a derivation $\pi_1 \circ \partial : \S \to \S$.
+The motivating example is the rig of smooth functions $\S = \R \to \R$, where differentiation is a derivation.
+Concretely, we can extend any smooth function $f : \R \to \R$ to a function $f : \D[\R] \to \D[\R]$ over the dual numbers defined by:
 \begin{equation}\label{dual-numbers-eq}
 f(a + a' \epsilon) \quad = \quad f(a) \s + \s a' \times (\partial f)(a) \epsilon
 \end{equation}
 
-We can use equations~\ref{linearity}, \ref{product-rule} and \ref{dual-numbers-eq}
-to derive the usual rules for gradients in terms of dual numbers.
-For the identity function we have $\id(a + a' \epsilon) = \id(a) + a' \epsilon$,
-i.e. $\partial \id = 1$. For the constant functions we have $c(a + a' \epsilon) =
-c(a) + 0 \epsilon$, i.e. $\partial c = 0$.
-For addition, multiplication and composition of functions, we can derive the
-following \emph{linearity}, \emph{product} and \emph{chain} rules:
+We can use equations~\ref{linearity}, \ref{product-rule} and \ref{dual-numbers-eq} to derive the usual rules for gradients in terms of dual numbers.
+For the identity function we have $\id(a + a' \epsilon) = \id(a) + a' \epsilon$, i.e. $\partial \id = 1$.
+For the constant functions we have $c(a + a' \epsilon) = c(a) + 0 \epsilon$, i.e. $\partial c = 0$.
+For addition, multiplication and composition of functions, we can derive the following \emph{linearity}, \emph{product} and \emph{chain} rules:
 \begin{align} \begin{split}
     (f + g)(a + a' \epsilon)
     \s &= \s (f + g)(a) \s + \s a' \times (\partial f + \partial g)(a) \epsilon
@@ -55,46 +45,19 @@ following \emph{linearity}, \emph{product} and \emph{chain} rules:
     \s &= \s (f \circ g)(a) \s + \s a' \times (\partial g \ \times \ \partial f \circ g)(a) \epsilon
 \end{split} \end{align}
 
-This generalises to smooth functions $\R^n \to \R^m$, where the partial
-derivative $\partial_i$ is a derivation for each $i < n$.
-The functions $\F_2^n \to \F_2^m$ on the two-element
-field $\F_2$ with elementwise XOR as sum and conjunction as product
-also forms a differential rig.
-The partial derivative is given by $(\partial_i f)(\vec{x}) =
-f(\vec{x}_{[x_i \mapsto 0]}) \oplus f(\vec{x}_{[x_i \mapsto 1]})$.
-Intuitively, the $\F_2$ gradient $\partial_i f(\vec{x}) \in \F_2^m$ encodes
-which coordinates of $f(\vec{x})$ actually depend on the input $x_i$.
-An example of differential rig that isn't also a ring is given by the set
-$\N[X]$ of polynomials with natural number coefficients, again each
-partial derivative is a derivation.
+This generalises to smooth functions $\R^n \to \R^m$, where the partial derivative $\partial_i$ is a derivation for each $i < n$.
+The functions $\F_2^n \to \F_2^m$ on the two-element field $\F_2$ with elementwise XOR as sum and conjunction as product also forms a differential rig.
+The partial derivative is given by $(\partial_i f)(\vec{x}) = f(\vec{x}_{[x_i \mapsto 0]}) \oplus f(\vec{x}_{[x_i \mapsto 1]})$.
+Intuitively, the $\F_2$ gradient $\partial_i f(\vec{x}) \in \F_2^m$ encodes which coordinates of $f(\vec{x})$ actually depend on the input $x_i$.
+An example of differential rig that isn't also a ring is given by the set $\N[X]$ of polynomials with natural number coefficients, again each partial derivative is a derivation.
 
-A more exotic example is the rig of Boolean functions with elementwise
-disjunction as sum and conjunction as product. Boolean functions $\B^n \to \B^m$
-can be represented as tuples of $m$ propositional formulae over $n$ variables.
-The partial derivative $\partial_i$ for $i < n$ is defined by induction over
-the formulae: for variables we have $\partial_i x_j = \delta_{ij}$,
-for constants $\partial_i 0 = \partial_i 1 = 0$ and for negation
-$\partial_i \neg \phi = \neg \partial_i \phi$. The derivative of disjunctions
-and conjunctions are given by the linerarity and product rules.
-Equivalently, the gradient of a propositional formula can be given by
-$\partial_i \phi = \neg \phi_{[x_i \mapsto 0]} \land \phi_{[x_i \mapsto 1]}$.
-Concretely, a model satisfies $\partial_i \phi$ if and only if it satisfies
-$\phi \leftrightarrow x_i$: the derivative is true when the variable and the
-formula are positively correlated. Substituting $x_i$ with its negation,
-we get that a model satisfies $\partial_i \phi_{[x_i \mapsto \neg x_i]}$
-if and only if it satisfies $\phi \leftrightarrow \neg x_i$, i.e. iff variable
-and formula are anti-correlated.
-Note that although $\B$ and $\F_2$ are isomorphic as sets, they are distinct
-rigs. Their derivations are related however by $\partial^{\F_2}_i f \mapsto
-\partial^\B_i \phi \lor \partial^\B_i \phi_{[x_i \mapsto \neg x_i]}$
-for $\phi : \B^n \to \B$ the formula corresponding to the function
-$f : \F_2^n \to \F_2$. That is, a Boolean function depends on an input variable
-precisely when either the corresponding formula is positively correlated or
-anti-correlated.
-
-Dual numbers are a fundamental tool for \emph{automatic differentiation}
-\cite{Hoffmann16}, i.e.
-they allow to compute the derivative of a function automatically from its
-definition. The key idea is that given a definition of $f : \S^n \to \S^m$ as a
-composition of elementary functions, we can compute $(\partial_i f)(a)$ by
-evaluating $f(a + \epsilon)$ and projecting on the epsilon component.
+A more exotic example is the rig of Boolean functions with elementwise disjunction as sum and conjunction as product.
+Boolean functions $\B^n \to \B^m$ can be represented as tuples of $m$ propositional formulae over $n$ variables.
+The partial derivative $\partial_i$ for $i < n$ is defined by induction over the formulae:
+for variables we have $\partial_i x_j = \delta_{ij}$, for constants $\partial_i 0 = \partial_i 1 = 0$ and for negation $\partial_i \neg \phi = \neg \partial_i \phi$. The derivative of disjunctions and conjunctions are given by the linerarity and product rules.
+Equivalently, the gradient of a propositional formula can be given by $\partial_i \phi = \neg \phi_{[x_i \mapsto 0]} \land \phi_{[x_i \mapsto 1]}$.
+Concretely, a model satisfies $\partial_i \phi$ if and only if it satisfies $\phi \leftrightarrow x_i$: the derivative is true when the variable and the formula are positively correlated.
+Substituting $x_i$ with its negation, we get that a model satisfies $\partial_i \phi_{[x_i \mapsto \neg x_i]}$ if and only if it satisfies $\phi \leftrightarrow \neg x_i$, i.e. iff variable and formula are anti-correlated.
+Note that although $\B$ and $\F_2$ are isomorphic as sets, they are distinct rigs.
+Their derivations are related however by $\partial^{\F_2}_i f \mapsto \partial^\B_i \phi \lor \partial^\B_i \phi_{[x_i \mapsto \neg x_i]}$ for $\phi : \B^n \to \B$ the formula corresponding to the function $f : \F_2^n \to \F_2$.
+That is, a Boolean function depends on an input variable precisely when either the corresponding formula is positively correlated or anti-correlated.
