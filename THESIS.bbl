@@ -19,43 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
-    \entry{Aaronson04}{unpublished}{}
-      \name{author}{1}{}{%
-        {{hash=9709fc1390d4ac82cbad7750d99484bf}{%
-           family={Aaronson},
-           familyi={A\bibinitperiod},
-           given={Scott},
-           giveni={S\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Royal Society}%
-      }
-      \strng{namehash}{9709fc1390d4ac82cbad7750d99484bf}
-      \strng{fullhash}{9709fc1390d4ac82cbad7750d99484bf}
-      \strng{bibnamehash}{9709fc1390d4ac82cbad7750d99484bf}
-      \strng{authorbibnamehash}{9709fc1390d4ac82cbad7750d99484bf}
-      \strng{authornamehash}{9709fc1390d4ac82cbad7750d99484bf}
-      \strng{authorfullhash}{9709fc1390d4ac82cbad7750d99484bf}
-      \field{labelalpha}{Aar04}
-      \field{sortinit}{A}
-      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{I study the class of problems efficiently solvable by a quantum computer, given the ability to "postselect" on the outcomes of measurements. I prove that this class coincides with a classical complexity class called PP, or Probabilistic Polynomial-Time. Using this result, I show that several simple changes to the axioms of quantum mechanics would let us solve PP-complete problems efficiently. The result also implies, as an easy corollary, a celebrated theorem of Beigel, Reingold, and Spielman that PP is closed under intersection, as well as a generalization of that theorem due to Fortnow and Reingold. This illustrates that quantum computing can yield new and simpler proofs of major results about classical computation.}
-      \field{day}{23}
-      \field{eprinttype}{arxiv}
-      \field{month}{12}
-      \field{title}{Quantum {{Computing}}, {{Postselection}}, and {{Probabilistic Polynomial-Time}}}
-      \field{year}{2004}
-      \field{dateera}{ce}
-      \verb{eprint}
-      \verb quant-ph/0412187
-      \endverb
-      \verb{file}
-      \verb /Users/alexis.toumi/WORK/Zotero/storage/MD8PBGKK/Aaronson - 2004 - Quantum Computing, Postselection, and Probabilisti.pdf;/Users/alexis.toumi/WORK/Zotero/storage/W23D9YS5/0412187.html
-      \endverb
-      \keyw{Born's rule,computational complexity,Computer Science - Computational Complexity,quantum computers,Quantum Physics}
-    \endentry
     \entry{Aaronson15}{article}{}
       \name{author}{1}{}{%
         {{hash=9709fc1390d4ac82cbad7750d99484bf}{%
@@ -88,9 +51,13 @@
       \field{number}{4}
       \field{shortjournal}{Nature Phys}
       \field{title}{Read the Fine Print}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{11}
       \field{year}{2015}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{291\bibrangedash 293}
       \range{pages}{3}
       \verb{doi}
@@ -98,6 +65,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R8S6DEMV/aaronson2015.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LTYUZZQB/nphys3272.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/nphys3272
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/nphys3272
       \endverb
     \endentry
     \entry{AaronsonArkhipov11}{inproceedings}{}
@@ -224,6 +197,9 @@
       \verb{doi}
       \verb 10.1142/S0218216596000333
       \endverb
+      \verb{eprint}
+      \verb http://www.worldscientific.com/doi/pdf/10.1142/S0218216596000333
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/TXLV2TTD/abrams1996.pdf.pdf
       \endverb
@@ -268,6 +244,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/AI4EEECF/abramsky2004.pdf.pdf
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/LICS.2004.1319636
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/LICS.2004.1319636
+      \endverb
     \endentry
     \entry{AbramskyCoecke08}{unpublished}{}
       \name{author}{2}{}{%
@@ -299,13 +281,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{8}
       \field{title}{Categorical Quantum Mechanics}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2008}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 0808.1023
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/NAZCI32D/Abramsky and Coecke - 2008 - Categorical quantum mechanics.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2JH64VTC/0808.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/0808.1023
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/0808.1023
       \endverb
       \keyw{Mathematics - Category Theory,Mathematics - Logic,Quantum Physics}
     \endentry
@@ -340,13 +332,23 @@
       \field{month}{6}
       \field{shorttitle}{Relating {{Structure}} and {{Power}}}
       \field{title}{Relating {{Structure}} and {{Power}}: {{Comonadic Semantics}} for {{Computational Resources}}}
+      \field{urlday}{14}
+      \field{urlmonth}{10}
+      \field{urlyear}{2018}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1806.09031
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/WDAVNIDN/Abramsky Comonad;/Users/alexis.toumi/WORK/Zotero/storage/LNH6ZRC6/1806.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1806.09031
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1806.09031
       \endverb
       \keyw{coalgebra,Computer Science - Logic in Computer Science,games,graphs,semantics}
     \endentry
@@ -385,6 +387,9 @@
       \range{pages}{92}
       \verb{doi}
       \verb 10.1007/978-3-642-12821-9_1
+      \endverb
+      \verb{eprint}
+      \verb 1102.1313
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/T3QNMKFJ/Abramsky and Tzevelekos - 2010 - Introduction to Categories and Categorical Logic.pdf;/Users/alexis.toumi/WORK/Zotero/storage/GI7BRUNT/1102.html
@@ -426,9 +431,13 @@
       \field{number}{4}
       \field{shortjournal}{SIAM J. Comput.}
       \field{title}{Fault-{{Tolerant Quantum Computation}} with {{Constant Error Rate}}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{38}
       \field{year}{2008}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1207\bibrangedash 1282}
       \range{pages}{76}
       \verb{doi}
@@ -436,6 +445,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/LECQCGZB/aharonov2008.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LQSDECD9/Aharonov and Ben-Or - 2008 - Fault-Tolerant Quantum Computation with Constant E.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://epubs.siam.org/doi/10.1137/S0097539799359385
+      \endverb
+      \verb{url}
+      \verb https://epubs.siam.org/doi/10.1137/S0097539799359385
       \endverb
       \keyw{68Q01,81P68,concatenated codes,density matrices,noise and decoherence,polynomial codes,quantum computation,quantum error correction,quantum fault tolerance,quantum Reed–Solomon codes,universal set of gates}
     \endentry
@@ -494,13 +509,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{10}
       \field{title}{A {{Refined Laser Method}} and {{Faster Matrix Multiplication}}}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2010.05846
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/WJXZRD3Z/Alman and Williams - 2020 - A Refined Laser Method and Faster Matrix Multiplic.pdf;/Users/alexis.toumi/WORK/Zotero/storage/H7IXNVBI/2010.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2010.05846
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2010.05846
       \endverb
       \keyw{Computer Science - Computational Complexity,Computer Science - Data Structures and Algorithms,Mathematics - Combinatorics}
     \endentry
@@ -574,9 +599,13 @@
       \field{number}{2}
       \field{shortjournal}{SIGACT News}
       \field{title}{Quantum Search Algorithms}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{35}
       \field{year}{2004}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{22\bibrangedash 35}
       \range{pages}{14}
       \verb{doi}
@@ -584,6 +613,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/B76JEW2K/Ambainis - 2004 - Quantum search algorithms.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Z9DZQN8B/ambainis2004.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/992287.992296
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/992287.992296
       \endverb
     \endentry
     \entry{AradLandau10}{unpublished}{}
@@ -616,13 +651,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{Quantum Computation and the Evaluation of Tensor Networks}
+      \field{urlday}{23}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2010}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 0805.0040
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/BIPSCSPF/Arad and Landau - 2010 - Quantum computation and the evaluation of tensor n.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KFFSGBEH/Arad and Landau - 2010 - Quantum computation and the evaluation of tensor n.pdf;/Users/alexis.toumi/WORK/Zotero/storage/FVF6ELCX/0805.html;/Users/alexis.toumi/WORK/Zotero/storage/KARTDY9X/0805.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/0805.0040
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/0805.0040
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -729,9 +774,13 @@
       \field{number}{12}
       \field{shortjournal}{New J. Phys.}
       \field{title}{On the Robustness of Bucket Brigade Quantum {{RAM}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{17}
       \field{year}{2015}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{123010}
       \range{pages}{1}
       \verb{doi}
@@ -739,6 +788,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/HHII8J8A/arunachalam2015.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZGB7N46W/Arunachalam et al. - 2015 - On the robustness of bucket brigade quantum RAM.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://iopscience.iop.org/article/10.1088/1367-2630/17/12/123010
+      \endverb
+      \verb{url}
+      \verb https://iopscience.iop.org/article/10.1088/1367-2630/17/12/123010
       \endverb
     \endentry
     \entry{AruteEtAl19}{article}{}
@@ -1152,9 +1207,13 @@
       \field{month}{10}
       \field{number}{7779}
       \field{title}{Quantum Supremacy Using a Programmable Superconducting Processor}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{574}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{505\bibrangedash 510}
       \range{pages}{6}
       \verb{doi}
@@ -1162,6 +1221,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/7666WNJ5/arute2019.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CFXAA2BB/Arute et al. - 2019 - Quantum supremacy using a programmable superconduc.pdf;/Users/alexis.toumi/WORK/Zotero/storage/JFSMSR9P/s41586 019 1666 5.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/s41586%20019%201666%205
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/s41586%20019%201666%205
       \endverb
     \endentry
     \entry{Atiyah88}{article}{}
@@ -1244,13 +1309,23 @@
       \field{month}{3}
       \field{shorttitle}{There and Back Again}
       \field{title}{There and Back Again: {{A}} Circuit Extraction Tale}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2003.01664
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/62GMX7U8/Backens et al. - 2020 - There and back again A circuit extraction tale.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UEPEQRGX/2003.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2003.01664
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2003.01664
       \endverb
       \keyw{81P68,Quantum Physics}
     \endentry
@@ -1285,13 +1360,23 @@
       \field{langid}{english}
       \field{shorttitle}{Quantum {{Quandaries}}}
       \field{title}{Quantum {{Quandaries}}: {{A Category-Theoretic Perspective}}}
+      \field{urlday}{22}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{year}{2006}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{doi}
       \verb 10.1093/acprof:oso/9780199269693.003.0008
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/UA2E8TCW/Baez - 2004 - Quantum Quandaries a Category-Theoretic Perspecti.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://oxford.universitypressscholarship.com/10.1093/acprof:oso/9780199269693.001.0001/acprof-9780199269693-chapter-8
+      \endverb
+      \verb{url}
+      \verb https://oxford.universitypressscholarship.com/10.1093/acprof:oso/9780199269693.001.0001/acprof-9780199269693-chapter-8
       \endverb
       \keyw{general relativity,Hilbert spaces,nCob,quantum theory}
     \endentry
@@ -1325,13 +1410,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{5}
       \field{title}{Categories in {{Control}}}
+      \field{urlday}{12}
+      \field{urlmonth}{11}
+      \field{urlyear}{2018}
       \field{year}{2014}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1405.6881
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/GVIAIPGZ/Baez and Erbele - 2014 - Categories in Control.pdf;/Users/alexis.toumi/WORK/Zotero/storage/93NCFV8V/1405.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1405.6881
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1405.6881
       \endverb
       \keyw{Mathematics - Category Theory,Mathematics - Quantum Algebra,Quantum Physics}
     \endentry
@@ -1406,6 +1501,9 @@
       \verb{doi}
       \verb 10.1142/S0129055X17500283
       \endverb
+      \verb{eprint}
+      \verb 1704.02051
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/98HQ2I9Q/Baez and Pollard - 2017 - A Compositional Framework for Reaction Networks.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6X59UTQA/1704.html
       \endverb
@@ -1442,13 +1540,23 @@
       \field{month}{3}
       \field{shorttitle}{Physics, {{Topology}}, {{Logic}} and {{Computation}}}
       \field{title}{Physics, {{Topology}}, {{Logic}} and {{Computation}}: {{A Rosetta Stone}}}
+      \field{urlday}{3}
+      \field{urlmonth}{10}
+      \field{urlyear}{2019}
       \field{year}{2009}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 0903.0340
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/VNU5X9SF/Baez and Stay - 2009 - Physics, Topology, Logic and Computation A Rosett.pdf;/Users/alexis.toumi/WORK/Zotero/storage/F8WY3WHB/0903.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/0903.0340
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/0903.0340
       \endverb
       \keyw{Mathematics - Category Theory,Quantum Physics}
     \endentry
@@ -1523,13 +1631,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{5}
       \field{title}{Neural {{Machine Translation}} by {{Jointly Learning}} to {{Align}} and {{Translate}}}
+      \field{urlday}{22}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{year}{2016}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1409.0473
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/E25STW9G/Bahdanau et al. - 2016 - Neural Machine Translation by Jointly Learning to .pdf;/Users/alexis.toumi/WORK/Zotero/storage/Q7JEXDIG/Bahdanau et al. - 2016 - Neural Machine Translation by Jointly Learning to .pdf;/Users/alexis.toumi/WORK/Zotero/storage/7BIDSQ9Z/1409.html;/Users/alexis.toumi/WORK/Zotero/storage/UWPYTPR8/1409.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1409.0473
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1409.0473
       \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing,Statistics - Machine Learning}
     \endentry
@@ -1613,13 +1731,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{3}
       \field{title}{Quantum {{Learning Machine}}}
+      \field{urlday}{27}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{2008}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 0803.2976
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/D72QG7DP/Bang et al. - 2008 - Quantum Learning Machine.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CE2KVCNB/0803.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/0803.2976
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/0803.2976
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -1656,6 +1784,9 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.2307/410452
+      \endverb
+      \verb{eprint}
+      \verb 410452
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/EYCNJNFF/Bar-Hillel - 1953 - A Quasi-Arithmetical Notation for Syntactic Descri.pdf
@@ -1694,6 +1825,9 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.2307/410265
+      \endverb
+      \verb{eprint}
+      \verb 410265
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3JJAZK7V/bar-hillel1954.pdf.pdf
@@ -1779,6 +1913,12 @@
       \verb{doi}
       \verb 10.23638/LMCS-14(1:8)2018
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.23638/LMCS-14(1:8)2018
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.23638/LMCS-14(1:8)2018
+      \endverb
     \endentry
     \entry{BarVicary17}{inproceedings}{}
       \name{author}{2}{}{%
@@ -1856,13 +1996,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{6}
       \field{title}{Parameterized Quantum Circuits as Machine Learning Models}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1906.07682
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/G7R69FWE/Benedetti et al. - 2019 - Parameterized quantum circuits as machine learning.pdf;/Users/alexis.toumi/WORK/Zotero/storage/GH829Q96/1906.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1906.07682
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1906.07682
       \endverb
       \keyw{Computer Science - Machine Learning,Quantum Physics}
     \endentry
@@ -1895,9 +2045,13 @@
       \field{shortjournal}{J Stat Phys}
       \field{shorttitle}{The Computer as a Physical System}
       \field{title}{The Computer as a Physical System: {{A}} Microscopic Quantum Mechanical {{Hamiltonian}} Model of Computers as Represented by {{Turing}} Machines}
+      \field{urlday}{19}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{22}
       \field{year}{1980}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{563\bibrangedash 591}
       \range{pages}{29}
       \verb{doi}
@@ -1905,6 +2059,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8NLU85CP/Benioff - The computer as a physical system A microscopic q.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF01011339
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF01011339
       \endverb
     \endentry
     \entry{BennettEtAl97}{article}{}
@@ -1952,9 +2112,13 @@
       \field{number}{5}
       \field{shortjournal}{SIAM J. Comput.}
       \field{title}{Strengths and {{Weaknesses}} of {{Quantum Computing}}}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{26}
       \field{year}{1997}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1510\bibrangedash 1523}
       \range{pages}{14}
       \verb{doi}
@@ -1962,6 +2126,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/JRVA3Y3Z/Bennett et al. - 1997 - Strengths and Weaknesses of Quantum Computing.pdf;/Users/alexis.toumi/WORK/Zotero/storage/WBTHH36Y/bennett1997.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://epubs.siam.org/doi/10.1137/S0097539796300933
+      \endverb
+      \verb{url}
+      \verb https://epubs.siam.org/doi/10.1137/S0097539796300933
       \endverb
       \keyw{03D10,03D15,68Q05,68Q15,oracle quantum Turing machines,quantum polynomial time,quantum Turing machines}
     \endentry
@@ -1992,9 +2162,13 @@
       \field{shortjournal}{Information and Control}
       \field{shorttitle}{Syntax and Semantics}
       \field{title}{Syntax and Semantics: {{A}} Categorical View}
+      \field{urlday}{13}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{17}
       \field{year}{1970}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{145\bibrangedash 160}
       \range{pages}{16}
       \verb{doi}
@@ -2002,6 +2176,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/J7SGBCWI/B. Benson - 1970 - Syntax and semantics A categorical view.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0019995870905176
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0019995870905176
       \endverb
     \endentry
     \entry{BentonHyland03}{article}{}
@@ -2036,9 +2216,13 @@
       \field{number}{4}
       \field{shortjournal}{RAIRO-Theor. Inf. Appl.}
       \field{title}{Traced {{Premonoidal Categories}}}
+      \field{urlday}{20}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{37}
       \field{year}{2003}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{273\bibrangedash 299}
       \range{pages}{27}
       \verb{doi}
@@ -2046,6 +2230,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/HHICZAJ7/Benton and Hyland - 2003 - Traced Premonoidal Categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KY5GP38P/benton2003.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.rairo-ita.org/10.1051/ita:2003020
+      \endverb
+      \verb{url}
+      \verb http://www.rairo-ita.org/10.1051/ita:2003020
       \endverb
     \endentry
     \entry{BergholmEtAl20}{unpublished}{}
@@ -2144,13 +2334,23 @@
       \field{month}{2}
       \field{shorttitle}{{{PennyLane}}}
       \field{title}{{{PennyLane}}: {{Automatic}} Differentiation of Hybrid Quantum-Classical Computations}
+      \field{urlday}{24}
+      \field{urlmonth}{11}
+      \field{urlyear}{2020}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1811.04968
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/NP8RSGIR/Bergholm et al. - 2020 - PennyLane Automatic differentiation of hybrid qua.pdf;/Users/alexis.toumi/WORK/Zotero/storage/FJKHZ5SU/1811.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1811.04968
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1811.04968
       \endverb
       \keyw{Computer Science - Emerging Technologies,Computer Science - Machine Learning,Physics - Computational Physics,Quantum Physics}
     \endentry
@@ -2452,9 +2652,13 @@
       \field{number}{06}
       \field{shortjournal}{Math. Struct. in Comp. Science}
       \field{title}{Differential Categories}
+      \field{urlday}{22}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
       \field{volume}{16}
       \field{year}{2006}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1049}
       \range{pages}{1}
       \verb{doi}
@@ -2462,6 +2666,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/U9WQLCG9/Blute et al. - 2006 - Differential categories.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.journals.cambridge.org/abstract_S0960129506005676
+      \endverb
+      \verb{url}
+      \verb http://www.journals.cambridge.org/abstract_S0960129506005676
       \endverb
     \endentry
     \entry{BoltEtAl17}{article}{}
@@ -2520,6 +2730,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/5WQK297Q/Bolt et al. - 2017 - Interacting Conceptual Spaces I Grammatical Comp.pdf;/Users/alexis.toumi/WORK/Zotero/storage/4XBFFLLA/1703.html
       \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1703.08314
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1703.08314
+      \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Logic in Computer Science}
     \endentry
     \entry{BonchiEtAl16}{article}{}
@@ -2572,6 +2788,9 @@
       \verb{doi}
       \verb 10.1145/2933575.2935316
       \endverb
+      \verb{eprint}
+      \verb 1602.06771
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/5IFYEY4P/Bonchi et al. - 2016 - Rewriting modulo symmetric monoidal structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/SKR52WW2/1602.html
       \endverb
@@ -2623,13 +2842,23 @@
       \field{month}{12}
       \field{shorttitle}{String {{Diagram Rewrite Theory I}}}
       \field{title}{String {{Diagram Rewrite Theory I}}: {{Rewriting}} with {{Frobenius Structure}}}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2012.01847
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/W4GY4SGG/Bonchi et al. - 2020 - String Diagram Rewrite Theory I Rewriting with Fr.pdf;/Users/alexis.toumi/WORK/Zotero/storage/66AM2NND/2012.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2012.01847
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2012.01847
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Mathematics - Category Theory}
     \endentry
@@ -2668,13 +2897,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{4}
       \field{title}{Graphical {{Conjunctive Queries}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2018}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1804.07626
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/FNXDHKV6/Bonchi et al. - 2018 - Graphical Conjunctive Queries.pdf;/Users/alexis.toumi/WORK/Zotero/storage/36Y2KSTP/1804.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1804.07626
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1804.07626
       \endverb
       \keyw{Computer Science - Logic in Computer Science}
     \endentry
@@ -2852,6 +3091,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/775HV8VV/8978196.html
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/ICDAR.2019.00126
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/ICDAR.2019.00126
+      \endverb
       \keyw{Cultural differences,Feature extraction,Histograms,historical documents,IIIF,Image classification,Image recognition,Interoperability,Machine learning,Neural networks,Servers,Text analysis}
     \endentry
     \entry{BradburyEtAl20}{software}{}
@@ -2963,6 +3208,9 @@
       \range{pages}{12}
       \verb{doi}
       \verb 10.4204/EPTCS.283.4
+      \endverb
+      \verb{eprint}
+      \verb 1811.11041
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/RK8RB2ZB/Bradley et al. - 2018 - Translating and Evolving Towards a Model of Langu.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CDCMI89I/1811.html
@@ -3090,6 +3338,9 @@
       \verb{doi}
       \verb 10.1090/conm/305/05215
       \endverb
+      \verb{eprint}
+      \verb quant-ph/0005055
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XWNF4SWI/Brassard et al. - 2002 - Quantum Amplitude Amplification and Estimation.pdf;/Users/alexis.toumi/WORK/Zotero/storage/W7M82VXC/0005055.html
       \endverb
@@ -3157,13 +3408,23 @@
       \field{month}{4}
       \field{shorttitle}{{{KBGAN}}}
       \field{title}{{{KBGAN}}: {{Adversarial Learning}} for {{Knowledge Graph Embeddings}}}
+      \field{urlday}{8}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1711.04071
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/NY6UL3T6/Cai and Wang - 2018 - KBGAN Adversarial Learning for Knowledge Graph Em.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HASPM42L/1711.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1711.04071
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1711.04071
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language}
     \endentry
@@ -3196,9 +3457,13 @@
       \field{month}{12}
       \field{number}{6}
       \field{title}{Why Do Syntactic Links Not Cross?}
+      \field{urlday}{3}
+      \field{urlmonth}{11}
+      \field{urlyear}{2018}
       \field{volume}{76}
       \field{year}{2006}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1228\bibrangedash 1235}
       \range{pages}{8}
       \verb{doi}
@@ -3206,6 +3471,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/6GVCIYR2/cancho2006.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/87I96MV7/Cancho - 2006 - Why do syntactic links not cross.pdf;/Users/alexis.toumi/WORK/Zotero/storage/NU3ZUKAF/Cancho - 2006 - Why do syntactic links not cross.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CVLGTHEH/pdf.html
+      \endverb
+      \verb{urlraw}
+      \verb http://stacks.iop.org/0295-5075/76/i=6/a=1228?key=crossref.c5aa5afe5f42bd6057ef0d1e9cb0d760
+      \endverb
+      \verb{url}
+      \verb http://stacks.iop.org/0295-5075/76/i=6/a=1228?key=crossref.c5aa5afe5f42bd6057ef0d1e9cb0d760
       \endverb
     \endentry
     \entry{Carnap37}{book}{}
@@ -3308,13 +3579,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{1}
       \field{title}{Graphical {{Structures}} for {{Design}} and {{Verification}} of {{Quantum Error Correction}}}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1611.08012
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/GRN8RBBA/Chancellor et al. - 2018 - Graphical Structures for Design and Verification o.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EQFW6V65/1611.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1611.08012
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1611.08012
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -3352,8 +3633,12 @@
       \field{eventtitle}{The Ninth Annual {{ACM}} Symposium}
       \field{langid}{english}
       \field{title}{Optimal Implementation of Conjunctive Queries in Relational Data Bases}
+      \field{urlday}{5}
+      \field{urlmonth}{12}
+      \field{urlyear}{2018}
       \field{year}{1977}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{77\bibrangedash 90}
       \range{pages}{14}
       \verb{doi}
@@ -3361,6 +3646,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/IFYVM3E6/Chandra and Merlin - 1977 - Optimal implementation of conjunctive queries in r.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://portal.acm.org/citation.cfm?doid=800105.803397
+      \endverb
+      \verb{url}
+      \verb http://portal.acm.org/citation.cfm?doid=800105.803397
       \endverb
     \endentry
     \entry{ChekuriRajaraman00}{article}{}
@@ -3467,6 +3758,9 @@
       \range{pages}{34}
       \verb{doi}
       \verb 10.1017/S0960129518000488
+      \endverb
+      \verb{eprint}
+      \verb 1709.00322
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/AEG4T7U6/Cho and Jacobs - 2019 - Disintegration and Bayesian Inversion via String D.pdf;/Users/alexis.toumi/WORK/Zotero/storage/GRS8XET7/1709.html
@@ -3613,9 +3907,13 @@
       \field{number}{15}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Experimental {{Implementation}} of {{Fast Quantum Searching}}}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{80}
       \field{year}{1998}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{3408\bibrangedash 3411}
       \range{pages}{4}
       \verb{doi}
@@ -3623,6 +3921,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QRAM8RMF/PhysRevLett.80.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.80.3408
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.80.3408
       \endverb
     \endentry
     \entry{ChungPennebaker07}{article}{}
@@ -3778,9 +4082,13 @@
       \field{number}{25}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Preconditioned {{Quantum Linear System Algorithm}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{110}
       \field{year}{2013}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{250504}
       \range{pages}{1}
       \verb{doi}
@@ -3788,6 +4096,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/93PZM6F8/Clader et al. - 2013 - Preconditioned Quantum Linear System Algorithm.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DAVRPYS6/clader2013.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.110.250504
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.110.250504
       \endverb
     \endentry
     \entry{ClarkEtAl06}{inproceedings}{}
@@ -3900,13 +4214,23 @@
       \field{month}{9}
       \field{shorttitle}{Something {{Old}}, {{Something New}}}
       \field{title}{Something {{Old}}, {{Something New}}: {{Grammar-based CCG Parsing}} with {{Transformer Models}}}
+      \field{urlday}{23}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2109.10044
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/5K2WMDTQ/Clark - 2021 - Something Old, Something New Grammar-based CCG Pa.pdf;/Users/alexis.toumi/WORK/Zotero/storage/QWDD8FWK/2109.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2109.10044
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2109.10044
       \endverb
       \keyw{Computer Science - Computation and Language}
     \endentry
@@ -4138,13 +4462,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{10}
       \field{title}{Reverse Derivative Categories}
+      \field{urlday}{1}
+      \field{urlmonth}{8}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1910.07065
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/WILFUBUG/Cockett et al. - 2019 - Reverse derivative categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZP9NF3ZP/Cockett et al. - 2019 - Reverse derivative categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ELC5TBEL/1910.html;/Users/alexis.toumi/WORK/Zotero/storage/LYXDRKHV/1910.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1910.07065
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1910.07065
       \endverb
       \keyw{Computer Science - Logic in Computer Science,D.3.1,F.3.2,Mathematics - Category Theory}
     \endentry
@@ -4216,13 +4550,23 @@
       \field{month}{7}
       \field{shorttitle}{An Alternative {{Gospel}} of Structure}
       \field{title}{An Alternative {{Gospel}} of Structure: Order, Composition, Processes}
+      \field{urlday}{15}
+      \field{urlmonth}{10}
+      \field{urlyear}{2018}
       \field{year}{2013}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1307.4038
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/WYJD8GR5/Coecke - 2013 - An alternative Gospel of structure order, composi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LSLA8LLH/1307.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1307.4038
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1307.4038
       \endverb
       \keyw{Computer Science - Computation and Language,Mathematics - Category Theory,Quantum Physics}
     \endentry
@@ -4251,13 +4595,23 @@
       \field{langid}{english}
       \field{month}{4}
       \field{title}{The {{Mathematics}} of {{Text Structure}}}
+      \field{urlday}{2}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1904.03478
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/J4SCZW9R/Coecke - 2019 - The Mathematics of Text Structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/NE5BENZQ/Coecke - 2020 - The Mathematics of Text Structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/J5IK4LG6/1904.html;/Users/alexis.toumi/WORK/Zotero/storage/NS94GA7Y/1904.html
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1904.03478v2
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1904.03478v2
       \endverb
       \keyw{Computer Science - Computation and Language,Mathematics - Category Theory,Quantum Physics}
     \endentry
@@ -4472,14 +4826,24 @@
       \field{eprinttype}{arxiv}
       \field{journaltitle}{CoRR}
       \field{title}{Foundations for {{Near-Term Quantum Natural Language Processing}}}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{abs/2012.03755}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2012.03755
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/T6W6LJ6N/Coecke et al. - 2020 - Foundations for Near-Term Quantum Natural Language.pdf;/Users/alexis.toumi/WORK/Zotero/storage/VXZ5LBXV/Coecke et al. - 2020 - Foundations for Near-Term Quantum Natural Language.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZP6HJE3X/Coecke et al. - 2020 - Foundations for Near-Term Quantum Natural Language.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6Y5JTBJQ/2012.html;/Users/alexis.toumi/WORK/Zotero/storage/JJ9E98ZW/2012.html;/Users/alexis.toumi/WORK/Zotero/storage/N7NFBEB4/2012.html
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2012.03755
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2012.03755
       \endverb
       \keyw{Computer Science - Computation and Language,Quantum Physics}
     \endentry
@@ -4578,14 +4942,24 @@
       \field{eprinttype}{arxiv}
       \field{journaltitle}{CoRR}
       \field{title}{How to Make Qubits Speak}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{abs/2107.06776}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2107.06776
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/B7IRREDA/Coecke et al. - 2021 - How to make qubits speak.pdf;/Users/alexis.toumi/WORK/Zotero/storage/489NH4DA/2107.html
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2107.06776
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2107.06776
       \endverb
       \keyw{Computer Science - Computation and Language,Quantum Physics}
     \endentry
@@ -4627,6 +5001,9 @@
       \verb{doi}
       \verb 10.4204/EPTCS.158.1
       \endverb
+      \verb{eprint}
+      \verb arXiv:1408.0049
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/MCP9NBFG/Coecke et al. - 2014 - Categories of Quantum and Classical Channels (exte.pdf;/Users/alexis.toumi/WORK/Zotero/storage/M7EN25UE/1408.html
       \endverb
@@ -4666,13 +5043,23 @@
       \field{isbn}{978-1-107-10422-8}
       \field{shorttitle}{Picturing {{Quantum Processes}}}
       \field{title}{Picturing {{Quantum Processes}}: {{A First Course}} in {{Quantum Theory}} and {{Diagrammatic Reasoning}}}
+      \field{urlday}{4}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2017}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{doi}
       \verb 10.1017/9781316219317
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/6U9XXW9D/1119568B3101F3A685BE832FEEC53E52.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/books/picturing-quantum-processes/1119568B3101F3A685BE832FEEC53E52
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/books/picturing-quantum-processes/1119568B3101F3A685BE832FEEC53E52
       \endverb
     \endentry
     \entry{CoeckeSpekkens12}{article}{}
@@ -4714,6 +5101,9 @@
       \verb{doi}
       \verb 10.1007/s11229-011-9917-5
       \endverb
+      \verb{eprint}
+      \verb 1102.2368
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/ZFT2P5A3/Coecke and Spekkens - 2012 - Picturing classical and quantum Bayesian inference.pdf;/Users/alexis.toumi/WORK/Zotero/storage/WD3CIW8U/1102.html
       \endverb
@@ -4754,13 +5144,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{12}
       \field{title}{Sheet Diagrams for Bimonoidal Categories}
+      \field{urlday}{10}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2010.13361
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9VD5VZ9X/Comfort et al. - 2020 - Sheet diagrams for bimonoidal categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/9WYSB6QN/2010.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2010.13361
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2010.13361
       \endverb
       \keyw{18M30; 18M50,Mathematics - Category Theory}
     \endentry
@@ -4819,6 +5219,9 @@
       \verb{doi}
       \verb 10.4204/EPTCS.318.13
       \endverb
+      \verb{eprint}
+      \verb 1906.01734
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XKLMI9UV/Cowtan et al. - 2020 - Phase Gadget Synthesis for Shallow Circuits.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YJZDEIDY/1906.html
       \endverb
@@ -4859,13 +5262,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{8}
       \field{title}{A {{Generic Compilation Strategy}} for the {{Unitary Coupled Cluster Ansatz}}}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2007.10515
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QRRSQCHW/Cowtan et al. - 2020 - A Generic Compilation Strategy for the Unitary Cou.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZQ933WRJ/2007.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2007.10515
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2007.10515
       \endverb
       \keyw{Computer Science - Emerging Technologies,Quantum Physics}
     \endentry
@@ -4955,13 +5368,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{3}
       \field{title}{Categorical {{Foundations}} of {{Gradient-Based Learning}}}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2103.01931
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/88R62WEW/Cruttwell et al. - 2021 - Categorical Foundations of Gradient-Based Learning.pdf;/Users/alexis.toumi/WORK/Zotero/storage/863F6J58/2103.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2103.01931
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2103.01931
       \endverb
       \keyw{Computer Science - Machine Learning,Mathematics - Category Theory}
     \endentry
@@ -4999,6 +5422,9 @@
       \range{pages}{28}
       \verb{doi}
       \verb 10.2307/2370619
+      \endverb
+      \verb{eprint}
+      \verb 2370619
       \endverb
     \endentry
     \entry{Davies10}{book}{}
@@ -5102,13 +5528,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{4}
       \field{title}{Fast and Effective Techniques for {{T-count}} Reduction via Spider Nest Identities}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2004.05164
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/SFKKJVB8/de Beaudrap et al. - 2020 - Fast and effective techniques for T-count reductio.pdf;/Users/alexis.toumi/WORK/Zotero/storage/38PGIMYK/2004.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2004.05164
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2004.05164
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -5144,13 +5580,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{4}
       \field{title}{Architecture-Aware Synthesis of Phase Polynomials for {{NISQ}} Devices}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2004.06052
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QZSCSB5P/de Griend and Duncan - 2020 - Architecture-aware synthesis of phase polynomials .pdf;/Users/alexis.toumi/WORK/Zotero/storage/FMRDENBL/2004.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2004.06052
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2004.06052
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -5179,13 +5625,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{6}
       \field{title}{Autonomization of {{Monoidal Categories}}}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1411.3827
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XASUFPM9/Delpeuch - 2019 - Autonomization of Monoidal Categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YPT3ZXQ3/1411.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1411.3827
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1411.3827
       \endverb
       \keyw{18D10,Computer Science - Computation and Language,Mathematics - Category Theory}
     \endentry
@@ -5225,6 +5681,9 @@
       \verb{doi}
       \verb 10.4204/EPTCS.323.1
       \endverb
+      \verb{eprint}
+      \verb 1906.05937
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/T2B5RWL5/Delpeuch - 2020 - A Complete Language for Faceted Dataflow Programs.pdf;/Users/alexis.toumi/WORK/Zotero/storage/TUPWHWJF/1906.html
       \endverb
@@ -5256,13 +5715,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{1}
       \field{title}{The Word Problem for Double Categories}
+      \field{urlday}{1}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1907.09927
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/78PCQVBW/Delpeuch - 2020 - The word problem for double categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HPF97B9R/1907.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1907.09927
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1907.09927
       \endverb
       \keyw{18D05,Computer Science - Logic in Computer Science,Mathematics - Category Theory}
     \endentry
@@ -5296,13 +5765,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{4}
       \field{title}{Normalization for Planar String Diagrams and a Quadratic Equivalence Algorithm}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2019}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1804.07832
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/WNNFLY7K/Delpeuch and Vicary - 2018 - Normalization for planar string diagrams and a qua.pdf;/Users/alexis.toumi/WORK/Zotero/storage/5FUZB6YJ/1804.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1804.07832
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1804.07832
       \endverb
       \keyw{Computer Science - Logic in Computer Science}
     \endentry
@@ -5336,13 +5815,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{5}
       \field{title}{The Word Problem for Braided Monoidal Categories Is Unknot-Hard}
+      \field{urlday}{2}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2105.04237
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PSGDFHRH/Delpeuch and Vicary - 2021 - The word problem for braided monoidal categories i.pdf;/Users/alexis.toumi/WORK/Zotero/storage/K95CJ3J8/2105.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2105.04237
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2105.04237
       \endverb
       \keyw{03D40; 18M30; 18N20,Mathematics - Category Theory}
     \endentry
@@ -5409,13 +5898,23 @@
       \field{number}{10}
       \field{shortjournal}{Phys. Rev. D}
       \field{title}{Quantum Mechanics near Closed Timelike Lines}
+      \field{urlday}{9}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{44}
       \field{year}{1991}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{3197\bibrangedash 3217}
       \range{pages}{21}
       \verb{doi}
       \verb 10.1103/PhysRevD.44.3197
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevD.44.3197
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevD.44.3197
       \endverb
     \endentry
     \entry{DeutschJozsa92}{article}{}
@@ -5451,9 +5950,13 @@
       \field{month}{12}
       \field{number}{1907}
       \field{title}{Rapid Solution of Problems by Quantum Computation}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{439}
       \field{year}{1992}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{553\bibrangedash 558}
       \range{pages}{6}
       \verb{doi}
@@ -5461,6 +5964,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/UI5FGZE2/Deutsch and Jozsa - 1992 - Rapid solution of problems by quantum computation.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://royalsocietypublishing.org/doi/10.1098/rspa.1992.0167
+      \endverb
+      \verb{url}
+      \verb https://royalsocietypublishing.org/doi/10.1098/rspa.1992.0167
       \endverb
     \endentry
     \entry{DevlinEtAl19}{unpublished}{}
@@ -5504,13 +6013,23 @@
       \field{month}{5}
       \field{shorttitle}{{{BERT}}}
       \field{title}{{{BERT}}: {{Pre-training}} of {{Deep Bidirectional Transformers}} for {{Language Understanding}}}
+      \field{urlday}{22}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1810.04805
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9J2SMCK3/Devlin et al. - 2019 - BERT Pre-training of Deep Bidirectional Transform.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CBJG7LVJ/1810.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1810.04805
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1810.04805
       \endverb
       \keyw{Computer Science - Computation and Language}
     \endentry
@@ -5565,12 +6084,22 @@
       \field{langid}{english}
       \field{series}{Studies in {{Linguistics}} and {{Philosophy}}}
       \field{title}{Type {{Raising}}, {{Functional Composition}}, and {{Non-Constituent Conjunction}}}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{1988}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{153\bibrangedash 197}
       \range{pages}{45}
       \verb{doi}
       \verb 10.1007/978-94-015-6878-4_7
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-94-015-6878-4_7
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-94-015-6878-4_7
       \endverb
       \keyw{Categorial Grammar,Functional Composition,Prepositional Phrase,Relative Pronoun,Word Order}
     \endentry
@@ -5625,6 +6154,9 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.22331/q-2020-06-04-279
+      \endverb
+      \verb{eprint}
+      \verb 1902.03178
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/P9JDI5FZ/Duncan et al. - 2020 - Graph-theoretic Simplification of Quantum Circuits.pdf;/Users/alexis.toumi/WORK/Zotero/storage/5ARLCNDL/1902.html
@@ -5700,6 +6232,9 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.23638/LMCS-15(3:5)2019
+      \endverb
+      \verb{eprint}
+      \verb 1601.05372
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/YN5JFS95/Dunn and Vicary - Coherence for Frobenius pseudomonoids and the geom.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UFCQVVGU/1601.html
@@ -5795,6 +6330,9 @@
       \verb{doi}
       \verb 10.2307/1968966
       \endverb
+      \verb{eprint}
+      \verb 1968966
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/N7YIAN8T/eilenberg1942.pdf.pdf
       \endverb
@@ -5869,9 +6407,13 @@
       \field{langid}{english}
       \field{shortjournal}{Trans. Amer. Math. Soc.}
       \field{title}{General Theory of Natural Equivalences}
+      \field{urlday}{30}
+      \field{urlmonth}{10}
+      \field{urlyear}{2019}
       \field{volume}{58}
       \field{year}{1945}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{231\bibrangedash 294}
       \range{pages}{64}
       \verb{doi}
@@ -5879,6 +6421,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/2TSUA5QS/Eilenberg and MacLane - 1945 - General theory of natural equivalences.pdf;/Users/alexis.toumi/WORK/Zotero/storage/THZ5E7C8/home.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ams.org/tran/1945-058-00/S0002-9947-1945-0013131-6/
+      \endverb
+      \verb{url}
+      \verb https://www.ams.org/tran/1945-058-00/S0002-9947-1945-0013131-6/
       \endverb
     \endentry
     \entry{FarhiEtAl14}{unpublished}{}
@@ -5916,13 +6464,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{11}
       \field{title}{A {{Quantum Approximate Optimization Algorithm}}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{2014}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1411.4028
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8VQUWIQD/Farhi et al. - 2014 - A Quantum Approximate Optimization Algorithm.pdf;/Users/alexis.toumi/WORK/Zotero/storage/69AEPIDJ/1411.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1411.4028
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1411.4028
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -5956,14 +6514,24 @@
       \field{eprinttype}{arxiv}
       \field{month}{8}
       \field{title}{Classification with {{Quantum Neural Networks}} on {{Near Term Processors}}}
+      \field{urlday}{27}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{version}{2}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1802.06002
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XIMXRZRX/Farhi and Neven - 2018 - Classification with Quantum Neural Networks on Nea.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RUG83HYP/1802.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1802.06002
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1802.06002
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -6105,6 +6673,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QXS2RA8E/de Felice et al. - 2020 - Functorial Question Answering.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CIQ7Z5AK/1905.html
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.4204/EPTCS.323.6
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.4204/EPTCS.323.6
+      \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Databases,Computer Science - Logic in Computer Science,Mathematics - Category Theory}
     \endentry
     \entry{FeliceEtAl20a}{inproceedings}{}
@@ -6217,9 +6791,13 @@
       \field{number}{6}
       \field{shortjournal}{Int J Theor Phys}
       \field{title}{Simulating Physics with Computers}
+      \field{urlday}{19}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{21}
       \field{year}{1982}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{467\bibrangedash 488}
       \range{pages}{22}
       \verb{doi}
@@ -6227,6 +6805,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8LDC2HMA/Feynman - 1982 - Simulating physics with computers.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF02650179
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF02650179
       \endverb
     \endentry
     \entry{Firth57}{article}{}
@@ -6333,13 +6917,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{3}
       \field{title}{Lenses and {{Learners}}}
+      \field{urlday}{27}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1903.03671
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/G56WUQN4/Fong and Johnson - 2019 - Lenses and Learners.pdf;/Users/alexis.toumi/WORK/Zotero/storage/QYW3J24N/1903.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1903.03671
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1903.03671
       \endverb
       \keyw{Computer Science - Machine Learning,Computer Science - Programming Languages,Mathematics - Category Theory}
     \endentry
@@ -6493,13 +7087,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{10}
       \field{title}{Representable {{Markov Categories}} and {{Comparison}} of {{Statistical Experiments}} in {{Categorical Probability}}}
+      \field{urlday}{25}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2010.07416
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/DHZTGJBI/Fritz et al. - 2020 - Representable Markov Categories and Comparison of .pdf;/Users/alexis.toumi/WORK/Zotero/storage/NLBR3N39/Fritz et al. - 2020 - Representable Markov Categories and Comparison of .pdf;/Users/alexis.toumi/WORK/Zotero/storage/82Q58KMV/2010.html;/Users/alexis.toumi/WORK/Zotero/storage/HXQL8RA4/2010.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2010.07416
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2010.07416
       \endverb
       \keyw{60A05; 62B15 (Primary) 18C20; 18M05; 62A01 (Secondary),Computer Science - Logic in Computer Science,Mathematics - Category Theory,Mathematics - Probability,Mathematics - Statistics Theory}
     \endentry
@@ -6541,9 +7145,13 @@
       \field{number}{33}
       \field{shortjournal}{Proc Natl Acad Sci USA}
       \field{title}{Large-Scale Evidence of Dependency Length Minimization in 37 Languages}
+      \field{urlday}{20}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{volume}{112}
       \field{year}{2015}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{10336\bibrangedash 10341}
       \range{pages}{6}
       \verb{doi}
@@ -6551,6 +7159,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/B6TWF98C/Futrell et al. - 2015 - Large-scale evidence of dependency length minimiza.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LJJKPME5/futrell2015.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.pnas.org/lookup/doi/10.1073/pnas.1502134112
+      \endverb
+      \verb{url}
+      \verb http://www.pnas.org/lookup/doi/10.1073/pnas.1502134112
       \endverb
     \endentry
     \entry{FuturatiPodcast21}{online}{}
@@ -6616,9 +7230,13 @@
       \field{number}{3}
       \field{shortjournal}{Information and Control}
       \field{title}{Dependency Systems and Phrase-Structure Systems}
+      \field{urlday}{1}
+      \field{urlmonth}{12}
+      \field{urlyear}{2020}
       \field{volume}{8}
       \field{year}{1965}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{304\bibrangedash 337}
       \range{pages}{34}
       \verb{doi}
@@ -6626,6 +7244,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QLFYEGIQ/Gaifman - 1965 - Dependency systems and phrase-structure systems.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S0019995865902329
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0019995865902329
       \endverb
     \endentry
     \entry{Gavranovic19}{article}{}
@@ -6683,13 +7307,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{7}
       \field{title}{Compositional {{Deep Learning}}}
+      \field{urlday}{8}
+      \field{urlmonth}{9}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1907.08292
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3LLWQKHA/Gavranović - 2019 - Compositional Deep Learning.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LKRCXMLG/1907.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1907.08292
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1907.08292
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Mathematics - Category Theory}
     \endentry
@@ -6800,13 +7434,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{Compositional Game Theory}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1603.04641
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/JCCJD68J/Ghani et al. - 2018 - Compositional game theory.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KI6D6EUK/1603.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1603.04641
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1603.04641
       \endverb
       \keyw{Computer Science - Computer Science and Game Theory}
     \endentry
@@ -6840,13 +7484,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{5}
       \field{title}{Flexible Layout of Surface Code Computations Using {{AutoCCZ}} States}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1905.08916
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XHHQHDHP/Gidney and Fowler - 2019 - Flexible layout of surface code computations using.pdf;/Users/alexis.toumi/WORK/Zotero/storage/BK47W4LZ/1905.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1905.08916
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1905.08916
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -6887,9 +7541,13 @@
       \field{number}{16}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Quantum {{Random Access Memory}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{100}
       \field{year}{2008}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{160501}
       \range{pages}{1}
       \verb{doi}
@@ -6897,6 +7555,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/Q89CFBG3/Giovannetti et al. - 2008 - Quantum Random Access Memory.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Y83KPQUA/giovannetti2008.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.100.160501
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.100.160501
       \endverb
     \endentry
     \entry{GPT-320}{article}{}
@@ -6973,13 +7637,23 @@
       \field{series}{{{WoLLIC}}'2002, 9th {{Workhop}} on {{Logic}}, {{Language}}, {{Information}} and {{Computation}}}
       \field{shortjournal}{Electronic Notes in Theoretical Computer Science}
       \field{title}{Model {{Checking Games}}}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{67}
       \field{year}{2002}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{15\bibrangedash 34}
       \range{pages}{20}
       \verb{doi}
       \verb 10.1016/S1571-0661(04)80538-3
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1571066104805383
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1571066104805383
       \endverb
       \keyw{complexity,fixed-point logic,games,logic,model checking,parity games}
     \endentry
@@ -7026,9 +7700,13 @@
       \field{langid}{british}
       \field{month}{12}
       \field{title}{An Initialization Strategy for Addressing Barren Plateaus in Parametrized Quantum Circuits}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{3}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{214}
       \range{pages}{1}
       \verb{doi}
@@ -7036,6 +7714,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/2CR4IWVQ/Grant et al. - 2019 - An initialization strategy for addressing barren p.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2YYYJQ99/q-2019-12-09-214.html
+      \endverb
+      \verb{urlraw}
+      \verb https://quantum-journal.org/papers/q-2019-12-09-214/
+      \endverb
+      \verb{url}
+      \verb https://quantum-journal.org/papers/q-2019-12-09-214/
       \endverb
     \endentry
     \entry{Grassmann44}{book}{}
@@ -7191,13 +7875,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{12}
       \field{title}{Concrete {{Sentence Spaces}} for {{Compositional Distributional Models}} of {{Meaning}}}
+      \field{urlday}{1}
+      \field{urlmonth}{7}
+      \field{urlyear}{2019}
       \field{year}{2010}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1101.0309
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/GREYMS4H/Grefenstette et al. - 2010 - Concrete Sentence Spaces for Compositional Distrib.pdf;/Users/alexis.toumi/WORK/Zotero/storage/F378PMR7/1101.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1101.0309
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1101.0309
       \endverb
       \keyw{68T50,Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Information Retrieval,G.1.3,H.3.1,H.3.3}
     \endentry
@@ -7225,9 +7919,13 @@
       \field{month}{1}
       \field{number}{1}
       \field{title}{A {{New Normal-Form Theorem}} for {{Context-Free Phrase Structure Grammars}}}
+      \field{urlday}{4}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{volume}{12}
       \field{year}{1965}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{42\bibrangedash 52}
       \range{pages}{11}
       \verb{doi}
@@ -7235,6 +7933,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/B283WK4V/Greibach - 1965 - A New Normal-Form Theorem for Context-Free Phrase .pdf;/Users/alexis.toumi/WORK/Zotero/storage/NBPLXSBD/Greibach - 1965 - A New Normal-Form Theorem for Context-Free Phrase .pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://doi.acm.org/10.1145/321250.321254
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/321250.321254
       \endverb
     \endentry
     \entry{GrothendieckDieudonne60}{article}{}
@@ -7309,6 +8013,9 @@
       \verb{doi}
       \verb 10.1103/PhysRevLett.79.325
       \endverb
+      \verb{eprint}
+      \verb quant-ph/9706033
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/LGKV2H7V/Grover - 1997 - Quantum Mechanics helps in searching for a needle .pdf;/Users/alexis.toumi/WORK/Zotero/storage/WB9DFVQL/9706033.html
       \endverb
@@ -7341,9 +8048,13 @@
       \field{number}{4}
       \field{shortjournal}{ACM Transactions on Quantum Computing}
       \field{title}{On the {{Representation}} of {{Boolean}} and {{Real Functions}} as {{Hamiltonians}} for {{Quantum Computing}}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{2}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{18:1\bibrangedash 18:21}
       \range{pages}{-1}
       \verb{doi}
@@ -7351,6 +8062,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XTKQQI9K/Hadfield - 2021 - On the Representation of Boolean and Real Function.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3478519
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3478519
       \endverb
       \keyw{Boolean and pseudo-Boolean functions,diagonal Hamiltonians,Fourier analysis on the Boolean cube,Quantum optimization}
     \endentry
@@ -7394,13 +8111,23 @@
       \field{isbn}{978-1-4503-5583-4}
       \field{series}{{{LICS}} '18}
       \field{title}{Two {{Complete Axiomatisations}} of {{Pure-state Qubit Quantum Computing}}}
+      \field{urlday}{27}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{venue}{Oxford, United Kingdom}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{502\bibrangedash 511}
       \range{pages}{10}
       \verb{doi}
       \verb 10.1145/3209108.3209128
+      \endverb
+      \verb{urlraw}
+      \verb http://doi.acm.org/10.1145/3209108.3209128
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/3209108.3209128
       \endverb
       \keyw{Categorical Quantum Mechanics,Monoidal Categories,Quantum Computation,String Diagrams}
     \endentry
@@ -7518,9 +8245,13 @@
       \field{month}{8}
       \field{number}{2-3}
       \field{title}{Distributional {{Structure}}}
+      \field{urlday}{19}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{volume}{10}
       \field{year}{1954}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{146\bibrangedash 162}
       \range{pages}{17}
       \verb{doi}
@@ -7528,6 +8259,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/IZGD68S9/harris1954.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/P37AHGZ3/Harris - 1954 - Distributional Structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/BV5B36AL/00437956.1954.html
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1080/00437956.1954.11659520
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1080/00437956.1954.11659520
       \endverb
     \endentry
     \entry{HarrowEtAl09}{article}{}
@@ -7567,9 +8304,13 @@
       \field{number}{15}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Quantum {{Algorithm}} for {{Linear Systems}} of {{Equations}}}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{103}
       \field{year}{2009}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{150502}
       \range{pages}{1}
       \verb{doi}
@@ -7577,6 +8318,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/C8E8J2MP/Harrow et al. - 2009 - Quantum Algorithm for Linear Systems of Equations.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RIN93WE2/harrow2009.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.103.150502
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.103.150502
       \endverb
     \endentry
     \entry{Haugeland89}{book}{}
@@ -7669,6 +8416,9 @@
       \range{pages}{4}
       \verb{doi}
       \verb 10.1038/s41586-019-0980-2
+      \endverb
+      \verb{eprint}
+      \verb 1804.11326
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9JSDDB8Y/Havlicek et al. - 2019 - Supervised learning with quantum enhanced feature .pdf;/Users/alexis.toumi/WORK/Zotero/storage/F78F5SIT/1804.html
@@ -7765,13 +8515,23 @@
       \field{langid}{english}
       \field{month}{4}
       \field{title}{Coherence for Lenses and Open Games}
+      \field{urlday}{12}
+      \field{urlmonth}{12}
+      \field{urlyear}{2018}
       \field{year}{2017}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1704.02230
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XRXC6AKK/Hedges - 2017 - Coherence for lenses and open games.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1704.02230
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1704.02230
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Mathematics - Category Theory}
     \endentry
@@ -7800,13 +8560,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{From Open Learners to Open Games}
+      \field{urlday}{10}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1902.08666
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/S9NQJMBE/Hedges - 2019 - From open learners to open games.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CWGYIUFR/1902.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1902.08666
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1902.08666
       \endverb
       \keyw{Computer Science - Machine Learning,Mathematics - Category Theory}
     \endentry
@@ -7840,13 +8610,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{7}
       \field{title}{Towards Functorial Language-Games}
+      \field{urlday}{15}
+      \field{urlmonth}{10}
+      \field{urlyear}{2018}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1807.07828
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/KI3SCM8E/Hedges and Lewis - 2018 - Towards functorial language-games.pdf;/Users/alexis.toumi/WORK/Zotero/storage/AGQH6UR7/1807.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1807.07828
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1807.07828
       \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Logic in Computer Science}
     \endentry
@@ -7916,6 +8696,9 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.1093/oso/9780198739623.001.0001
+      \endverb
+      \verb{eprint}
+      \verb PdG8DwAAQBAJ
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/ZMQBZ7PC/Heunen and Vicary - 2019 - Categories for Quantum Theory An Introduction.pdf
@@ -8013,9 +8796,13 @@
       \field{number}{02}
       \field{shortjournal}{Int. J. Unc. Fuzz. Knowl. Based Syst.}
       \field{title}{The {{Vanishing Gradient Problem During Learning Recurrent Neural Nets}} and {{Problem Solutions}}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{06}
       \field{year}{1998}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{107\bibrangedash 116}
       \range{pages}{10}
       \verb{doi}
@@ -8023,6 +8810,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/BPU7ZYS4/hochreiter1998.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.worldscientific.com/doi/abs/10.1142/S0218488598000094
+      \endverb
+      \verb{url}
+      \verb https://www.worldscientific.com/doi/abs/10.1142/S0218488598000094
       \endverb
     \endentry
     \entry{HochreiterSchmidhuber97}{article}{}
@@ -8101,6 +8894,9 @@
       \range{pages}{37}
       \verb{doi}
       \verb 10.1007/s11075-015-0067-6
+      \endverb
+      \verb{eprint}
+      \verb 1411.0583
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/Y5T8F2UD/Hoffmann - 2016 - A Hitchhiker's Guide to Automatic Differentiation.pdf;/Users/alexis.toumi/WORK/Zotero/storage/5NKQ88RT/1411.html
@@ -8390,13 +9186,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{Addition and {{Differentiation}} of {{ZX-diagrams}}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2022}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2202.11386
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/AL6W2UWT/Jeandel et al. - 2022 - Addition and Differentiation of ZX-diagrams.pdf;/Users/alexis.toumi/WORK/Zotero/storage/7KD7WKYV/2202.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2202.11386
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2202.11386
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -8440,9 +9246,13 @@
       \field{isbn}{978-1-4503-5583-4}
       \field{series}{{{LICS}} '18}
       \field{title}{A {{Complete Axiomatisation}} of the {{ZX-Calculus}} for {{Clifford}}+{{T Quantum Mechanics}}}
+      \field{urlday}{27}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{venue}{Oxford, United Kingdom}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{559\bibrangedash 568}
       \range{pages}{10}
       \verb{doi}
@@ -8450,6 +9260,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QBRZQPP2/Jeandel et al. - 2018 - A Complete Axiomatisation of the ZX-Calculus for C.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://doi.acm.org/10.1145/3209108.3209131
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/3209108.3209131
       \endverb
       \keyw{Categorical Quantum Mechanics,Clifford+T,Completeness,ZX-Calculus}
     \endentry
@@ -8577,9 +9393,13 @@
       \field{number}{1}
       \field{shortjournal}{Advances in Mathematics}
       \field{title}{The Geometry of Tensor Calculus, {{I}}}
+      \field{urlday}{15}
+      \field{urlmonth}{4}
+      \field{urlyear}{2019}
       \field{volume}{88}
       \field{year}{1991}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{55\bibrangedash 112}
       \range{pages}{58}
       \verb{doi}
@@ -8587,6 +9407,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/7ZDJB9BM/Joyal - THE GEOMETRY OF TENSOR CALCULUS II.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZVU7SI6T/Joyal and Street - 1991 - The geometry of tensor calculus, I.pdf;/Users/alexis.toumi/WORK/Zotero/storage/NFLKRIRS/000187089190003P.html
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/000187089190003P
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/000187089190003P
       \endverb
     \endentry
     \entry{JoyalStreet95}{article}{}
@@ -8660,9 +9486,13 @@
       \field{month}{4}
       \field{number}{3}
       \field{title}{Traced Monoidal Categories}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{volume}{119}
       \field{year}{1996}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{447\bibrangedash 468}
       \range{pages}{22}
       \verb{doi}
@@ -8670,6 +9500,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R8GA897F/Mathematiques - 2007 - Traced Monoidal Categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UDGK6J2E/2BE85628D269D9FABAB41B6364E117C8.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/traced-monoidal-categories/2BE85628D269D9FABAB41B6364E117C8
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/traced-monoidal-categories/2BE85628D269D9FABAB41B6364E117C8
       \endverb
     \endentry
     \entry{KandalaEtAl17}{article}{}
@@ -8878,14 +9714,24 @@
       \field{journaltitle}{CoRR}
       \field{shorttitle}{Lambeq}
       \field{title}{Lambeq: {{An Efficient High-Level Python Library}} for {{Quantum NLP}}}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{abs/2110.04236}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2110.04236
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8BUQSKZF/Kartsaklis et al. - 2021 - lambeq An Efficient High-Level Python Library for.pdf;/Users/alexis.toumi/WORK/Zotero/storage/F5Z9BMDY/2110.html
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2110.04236
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2110.04236
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Quantum Physics}
     \endentry
@@ -9035,13 +9881,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{3}
       \field{title}{Quantum {{Recommendation Systems}}}
+      \field{urlday}{28}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
       \field{year}{2016}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1603.08675
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3NHARQV6/Kerenidis and Prakash - 2016 - Quantum Recommendation Systems.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HIIMBCXC/1603.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1603.08675
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1603.08675
       \endverb
       \keyw{Computer Science - Data Structures and Algorithms,Computer Science - Information Retrieval,Quantum Physics}
     \endentry
@@ -9080,13 +9936,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{1}
       \field{title}{Boosting {{Vector Calculus}} with the {{Graphical Notation}}}
+      \field{urlday}{28}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1911.00892
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8GDEJ8XP/Kim et al. - 2020 - Boosting Vector Calculus with the Graphical Notati.pdf;/Users/alexis.toumi/WORK/Zotero/storage/R2Z5GGFC/1911.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1911.00892
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1911.00892
       \endverb
       \keyw{High Energy Physics - Theory,Physics - Physics Education}
     \endentry
@@ -9122,6 +9988,9 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.23638/LMCS-15(3:15)2019
+      \endverb
+      \verb{eprint}
+      \verb 1701.04732
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/2AEN3PPH/Kissinger and Uijlen - A categorical semantics for causal structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/3245WJMD/Kissinger and Uijlen - A categorical semantics for causal structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6H9LVQRE/1701.html;/Users/alexis.toumi/WORK/Zotero/storage/YKYJHBY7/1701.html
@@ -9161,13 +10030,23 @@
       \field{month}{4}
       \field{shorttitle}{{{PyZX}}}
       \field{title}{{{PyZX}}: {{Large Scale Automated Diagrammatic Reasoning}}}
+      \field{urlday}{3}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1904.04735
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/M3X4IPXT/Kissinger and van de Wetering - 2019 - PyZX Large Scale Automated Diagrammatic Reasoning.pdf;/Users/alexis.toumi/WORK/Zotero/storage/X4NDHNYN/1904.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1904.04735
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1904.04735
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -9213,6 +10092,9 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.1103/PhysRevA.102.022406
+      \endverb
+      \verb{eprint}
+      \verb 1903.10477
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8L7GXBP7/Kissinger and van de Wetering - 2020 - Reducing T-count with the ZX-calculus.pdf;/Users/alexis.toumi/WORK/Zotero/storage/GWK8HNNG/1903.html
@@ -9305,13 +10187,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{11}
       \field{title}{Quantum Measurements and the {{Abelian Stabilizer Problem}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{1995}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb quant-ph/9511026
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8AG7RQMK/Kitaev - 1995 - Quantum measurements and the Abelian Stabilizer Pr.pdf;/Users/alexis.toumi/WORK/Zotero/storage/U3DMQQTK/9511026.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/quant-ph/9511026
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/quant-ph/9511026
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -9343,9 +10235,13 @@
       \field{number}{1}
       \field{shortjournal}{Annals of Physics}
       \field{title}{Fault-Tolerant Quantum Computation by Anyons}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{303}
       \field{year}{2003}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{2\bibrangedash 30}
       \range{pages}{29}
       \verb{doi}
@@ -9353,6 +10249,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/C636LMUK/kitaev2003.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RAI6UHCY/Kitaev - 2003 - Fault-tolerant quantum computation by anyons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/B99FEXMN/S0003491602000180.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0003491602000180
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0003491602000180
       \endverb
     \endentry
     \entry{KlabnikNichols19}{book}{}
@@ -9557,8 +10459,12 @@
       \field{langid}{english}
       \field{series}{Studies in {{Linguistics}} and {{Philosophy}}}
       \field{title}{Categorial and {{Categorical Grammars}}}
+      \field{urlday}{3}
+      \field{urlmonth}{10}
+      \field{urlyear}{2019}
       \field{year}{1988}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{297\bibrangedash 317}
       \range{pages}{21}
       \verb{doi}
@@ -9566,6 +10472,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/GEWGSXL9/Lambek - 1988 - Categorial and Categorical Grammars.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-94-015-6878-4_11
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-94-015-6878-4_11
       \endverb
       \keyw{Categorial Grammar,Count Noun,Deductive System,Heyting Algebra,Monoidal Category}
     \endentry
@@ -9608,9 +10520,13 @@
       \field{isbn}{978-3-642-12820-2 978-3-642-12821-9}
       \field{langid}{english}
       \field{title}{Compact {{Monoidal Categories}} from {{Linguistics}} to {{Physics}}}
+      \field{urlday}{3}
+      \field{urlmonth}{10}
+      \field{urlyear}{2019}
       \field{volume}{813}
       \field{year}{2010}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{467\bibrangedash 487}
       \range{pages}{21}
       \verb{doi}
@@ -9618,6 +10534,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/RTNCEHVQ/Lambek - 2010 - Compact Monoidal Categories from Linguistics to Ph.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-642-12821-9_8
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-642-12821-9_8
       \endverb
     \endentry
     \entry{Lambek58}{article}{}
@@ -9645,9 +10567,13 @@
       \field{month}{3}
       \field{number}{3}
       \field{title}{The {{Mathematics}} of {{Sentence Structure}}}
+      \field{urlday}{17}
+      \field{urlmonth}{3}
+      \field{urlyear}{2019}
       \field{volume}{65}
       \field{year}{1958}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{154\bibrangedash 170}
       \range{pages}{17}
       \verb{doi}
@@ -9655,6 +10581,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R8BRKDFI/Lambek - 1958 - The Mathematics of Sentence Structure.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6W7W88MW/00029890.1958.html
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1080/00029890.1958.11989160
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1080/00029890.1958.11989160
       \endverb
     \endentry
     \entry{Lambek59}{article}{}
@@ -9683,9 +10615,13 @@
       \field{number}{2}
       \field{shortjournal}{Can. J. Linguist.}
       \field{title}{Contributions to a {{Mathematical Analysis}} of the {{English Verb-phrase}}}
+      \field{urlday}{13}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{5}
       \field{year}{1959}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{83\bibrangedash 89}
       \range{pages}{7}
       \verb{doi}
@@ -9693,6 +10629,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/C2IRJIFC/lambek1959.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/product/identifier/S0008413100018715/type/journal_article
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/product/identifier/S0008413100018715/type/journal_article
       \endverb
     \endentry
     \entry{Lambek61}{article}{}
@@ -9896,9 +10838,13 @@
       \field{langid}{english}
       \field{series}{Trends in {{Logic}}}
       \field{title}{Deductive {{Systems}} and {{Categories}} in {{Linguistics}}}
+      \field{urlday}{8}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{5}
       \field{year}{1999}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{279\bibrangedash 294}
       \range{pages}{16}
       \verb{doi}
@@ -9906,6 +10852,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/6J67WDK8/Lambek - 1999 - Deductive Systems and Categories in Linguistics.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-94-011-4574-9_12
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-94-011-4574-9_12
       \endverb
     \endentry
     \entry{Lambek99}{inproceedings}{}
@@ -10125,13 +11077,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{8}
       \field{title}{Frobenius Algebras and Planar Open String Topological Field Theories}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2005}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb math/0508349
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/SLEQC7EM/Lauda - 2005 - Frobenius algebras and planar open string topologi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZJFQFJHR/0508349.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/math/0508349
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/math/0508349
       \endverb
       \keyw{18D05,57M99,57R56,Mathematics - Geometric Topology,Mathematics - Quantum Algebra}
     \endentry
@@ -10603,13 +11565,23 @@
       \field{isbn}{978-3-11-087029-9}
       \field{month}{1}
       \field{title}{Categories of {{Space}} and of {{Quantity}}}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{year}{1992}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{doi}
       \verb 10.1515/9783110870299.14
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/F7DBDVZV/Lawvere - 1992 - Categories of Space and of Quantity.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.degruyter.com/document/doi/10.1515/9783110870299.14/html
+      \endverb
+      \verb{url}
+      \verb https://www.degruyter.com/document/doi/10.1515/9783110870299.14/html
       \endverb
     \endentry
     \entry{Lawvere96}{article}{}
@@ -10638,9 +11610,13 @@
       \field{number}{2-3}
       \field{shortjournal}{Appl Categor Struct}
       \field{title}{Unity and Identity of Opposites in Calculus and Physics}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{4}
       \field{year}{1996}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{167\bibrangedash 174}
       \range{pages}{8}
       \verb{doi}
@@ -10648,6 +11624,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/ACZA5AQG/lawvere1996.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/BF00122250
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/BF00122250
       \endverb
     \endentry
     \entry{Levkivskyi17}{report}{}
@@ -10738,9 +11720,13 @@
       \field{number}{2}
       \field{shortjournal}{Phys. Rev. D}
       \field{title}{Quantum Mechanics of Time Travel through Post-Selected Teleportation}
+      \field{urlday}{9}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{84}
       \field{year}{2011}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{025007}
       \range{pages}{1}
       \verb{doi}
@@ -10748,6 +11734,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/QKVVYSCY/Lloyd et al. - 2011 - Quantum mechanics of time travel through post-sele.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevD.84.025007
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevD.84.025007
       \endverb
     \endentry
     \entry{LloydEtAl11}{article}{}
@@ -10831,9 +11823,13 @@
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{shorttitle}{Closed {{Timelike Curves}} via {{Postselection}}}
       \field{title}{Closed {{Timelike Curves}} via {{Postselection}}: {{Theory}} and {{Experimental Test}} of {{Consistency}}}
+      \field{urlday}{9}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{106}
       \field{year}{2011}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{040403}
       \range{pages}{1}
       \verb{doi}
@@ -10841,6 +11837,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/JWXHMZVT/Lloyd et al. - 2011 - Closed Timelike Curves via Postselection Theory a.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.106.040403
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.106.040403
       \endverb
     \endentry
     \entry{LloydEtAl13}{unpublished}{}
@@ -10878,13 +11880,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{11}
       \field{title}{Quantum Algorithms for Supervised and Unsupervised Machine Learning}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{2013}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1307.0411
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/YP56KP26/Lloyd et al. - 2013 - Quantum algorithms for supervised and unsupervised.pdf;/Users/alexis.toumi/WORK/Zotero/storage/7AYX2ZWH/1307.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1307.0411
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1307.0411
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -10935,6 +11947,9 @@
       \verb{doi}
       \verb 10.1038/nphys3029
       \endverb
+      \verb{eprint}
+      \verb 1307.0401
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/4X96V6WQ/Lloyd et al. - 2014 - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/DDW6V6VL/Lloyd et al. - 2014 - Quantum principal component analysis.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G2ZFTTC4/1307.html;/Users/alexis.toumi/WORK/Zotero/storage/UG9UXSBQ/97628.html
       \endverb
@@ -10970,13 +11985,23 @@
       \field{month}{5}
       \field{shorttitle}{{{NLTK}}}
       \field{title}{{{NLTK}}: {{The Natural Language Toolkit}}}
+      \field{urlday}{29}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
       \field{year}{2002}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb cs/0205028
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8LULFCQ2/Loper and Bird - 2002 - NLTK The Natural Language Toolkit.pdf;/Users/alexis.toumi/WORK/Zotero/storage/XTZLK8LR/0205028.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/cs/0205028
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/cs/0205028
       \endverb
       \keyw{Computer Science - Computation and Language,D.2.6,I.2.7,J.5,K.3.2}
     \endentry
@@ -11026,13 +12051,23 @@
       \field{month}{2}
       \field{shorttitle}{{{QNLP}} in {{Practice}}}
       \field{title}{{{QNLP}} in {{Practice}}: {{Running Compositional Models}} of {{Meaning}} on a {{Quantum Computer}}}
+      \field{urlday}{2}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2102.12846
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/45BIXJVI/Lorenz et al. - 2021 - QNLP in Practice Running Compositional Models of .pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZTQZKJM6/2102.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2102.12846
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2102.12846
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning,Quantum Physics}
     \endentry
@@ -11076,13 +12111,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{Variational {{Quantum Circuit Model}} for {{Knowledge Graphs Embedding}}}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1903.00556
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/SIMWA4WG/Ma et al. - 2019 - Variational Quantum Circuit Model for Knowledge Gr.pdf;/Users/alexis.toumi/WORK/Zotero/storage/8UT9YSJB/1903.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1903.00556
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1903.00556
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Quantum Physics}
     \endentry
@@ -11348,6 +12393,9 @@
       \verb{doi}
       \verb 10.1038/s41467-018-07090-4
       \endverb
+      \verb{eprint}
+      \verb 1803.11173
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/MUZ5XVJU/McClean et al. - 2018 - Barren plateaus in quantum neural network training.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KF8G6H4I/1803.html
       \endverb
@@ -11394,9 +12442,13 @@
       \field{number}{2}
       \field{shortjournal}{New J. Phys.}
       \field{title}{The Theory of Variational Hybrid Quantum-Classical Algorithms}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{18}
       \field{year}{2016}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{023023}
       \range{pages}{1}
       \verb{doi}
@@ -11404,6 +12456,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/HD9Z5X5N/mcclean2016.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/IN48T6QK/McClean et al. - 2016 - The theory of variational hybrid quantum-classical.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023
+      \endverb
+      \verb{url}
+      \verb https://iopscience.iop.org/article/10.1088/1367-2630/18/2/023023
       \endverb
     \endentry
     \entry{McCullochPitts43}{article}{}
@@ -11488,14 +12546,24 @@
       \field{journaltitle}{CoRR}
       \field{shorttitle}{Anaphora and {{Ellipsis}} in {{Lambek Calculus}} with a {{Relevant Modality}}}
       \field{title}{Anaphora and {{Ellipsis}} in {{Lambek Calculus}} with a {{Relevant Modality}}: {{Syntax}} and {{Semantics}}}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{abs/2110.10641}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2110.10641
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/RAZ3QYPQ/McPheat et al. - 2021 - Anaphora and Ellipsis in Lambek Calculus with a Re.pdf;/Users/alexis.toumi/WORK/Zotero/storage/N68RPKHC/2110.html
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2110.10641
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2110.10641
       \endverb
       \keyw{Computer Science - Logic in Computer Science}
     \endentry
@@ -11583,6 +12651,9 @@
       \verb{doi}
       \verb 10.4204/EPTCS.340.11
       \endverb
+      \verb{eprint}
+      \verb 2005.04147
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/5FUF9JMF/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HTSL632Z/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KCUELZGV/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YL3H4IR4/Meichanetzidis et al. - 2020 - Quantum Natural Language Processing on Near-Term Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2PPIAEI6/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/JIK7K4E5/2005.html;/Users/alexis.toumi/WORK/Zotero/storage/NA5TLJV4/2005.html
       \endverb
@@ -11629,13 +12700,23 @@
       \field{eprinttype}{arxiv}
       \field{journaltitle}{ArXiv e-prints}
       \field{title}{Grammar-{{Aware Question-Answering}} on {{Quantum Computers}}}
+      \field{urlday}{29}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2012.03756
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/M8S86RYQ/Meichanetzidis et al. - 2020 - Grammar-Aware Question-Answering on Quantum Comput.pdf;/Users/alexis.toumi/WORK/Zotero/storage/TMLK5JSQ/Meichanetzidis et al. - 2020 - Grammar-Aware Question-Answering on Quantum Comput.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HFXXKIAA/2012.html;/Users/alexis.toumi/WORK/Zotero/storage/Q9QNRCI7/2012.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2012.03756
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2012.03756
       \endverb
       \keyw{Computer Science - Computation and Language,Quantum Physics}
     \endentry
@@ -11719,13 +12800,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{8}
       \field{title}{A Bifibrational Reconstruction of {{Lawvere}}'s Presheaf Hyperdoctrine}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2020}
       \field{year}{2016}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1601.06098
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/EQ5K47EB/Melliès and Zeilberger - 2016 - A bifibrational reconstruction of Lawvere's preshe.pdf;/Users/alexis.toumi/WORK/Zotero/storage/S7X9HU84/1601.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1601.06098
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1601.06098
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Mathematics - Category Theory,Mathematics - Logic}
     \endentry
@@ -11891,6 +12982,12 @@
       \verb{doi}
       \verb 10.7717/peerj-cs.103
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.7717/peerj-cs.103
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.7717/peerj-cs.103
+      \endverb
       \keyw{Computer algebra system,Python,Symbolics}
     \endentry
     \entry{MichaelisKracht97}{incollection}{useprefix=true}
@@ -11971,9 +13068,13 @@
       \field{isbn}{978-3-540-63700-4 978-3-540-69631-5}
       \field{langid}{english}
       \field{title}{Semilinearity as a Syntactic Invariant}
+      \field{urlday}{4}
+      \field{urlmonth}{10}
+      \field{urlyear}{2019}
       \field{volume}{1328}
       \field{year}{1997}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{329\bibrangedash 345}
       \range{pages}{17}
       \verb{doi}
@@ -11981,6 +13082,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/JQYQRASX/Michaelis and Kracht - 1997 - Semilinearity as a syntactic invariant.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/BFb0052165
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/BFb0052165
       \endverb
     \endentry
     \entry{Milewski14}{online}{}
@@ -12075,13 +13182,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{11}
       \field{title}{A {{Quantum Natural Language Processing Approach}} to {{Musical Intelligence}}}
+      \field{urlday}{2}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2111.06741
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/29YSIVS9/Miranda et al. - 2021 - A Quantum Natural Language Processing Approach to .pdf;/Users/alexis.toumi/WORK/Zotero/storage/EBTRPZAJ/2111.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2111.06741
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2111.06741
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Quantum Physics}
     \endentry
@@ -12225,9 +13342,13 @@
       \field{langid}{english}
       \field{number}{3}
       \field{title}{Universal Grammar}
+      \field{urlday}{29}
+      \field{urlmonth}{3}
+      \field{urlyear}{2019}
       \field{volume}{36}
       \field{year}{1970}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{373\bibrangedash 398}
       \range{pages}{26}
       \verb{doi}
@@ -12235,6 +13356,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/EISNBPYX/Montague - 1970 - Universal grammar.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1755-2567.1970.tb00434.x
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1755-2567.1970.tb00434.x
       \endverb
     \endentry
     \entry{Montague73}{article}{}
@@ -12450,9 +13577,13 @@
       \field{number}{4}
       \field{shortjournal}{J. ACM}
       \field{title}{On {{Context-Free Languages}}}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{13}
       \field{year}{1966}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{570\bibrangedash 581}
       \range{pages}{12}
       \verb{doi}
@@ -12460,6 +13591,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R6BGSEZP/Parikh - 1966 - On Context-Free Languages.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/321356.321364
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/321356.321364
       \endverb
     \endentry
     \entry{Patterson17}{unpublished}{}
@@ -12487,13 +13624,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{6}
       \field{title}{Knowledge {{Representation}} in {{Bicategories}} of {{Relations}}}
+      \field{urlday}{17}
+      \field{urlmonth}{1}
+      \field{urlyear}{2019}
       \field{year}{2017}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1706.00526
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3JF4LYP4/Patterson - 2017 - Knowledge Representation in Bicategories of Relati.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YPR4R5HF/1706.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1706.00526
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1706.00526
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Logic in Computer Science,Mathematics - Category Theory}
     \endentry
@@ -12536,6 +13683,9 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.4204/EPTCS.333.4
+      \endverb
+      \verb{eprint}
+      \verb 2101.12046
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/FCYSGZJU/Patterson et al. - 2021 - Wiring diagrams as normal forms for computing in s.pdf;/Users/alexis.toumi/WORK/Zotero/storage/YDGXQTMQ/2101.html
@@ -12587,13 +13737,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{10}
       \field{title}{Leveraging {{Secondary Storage}} to {{Simulate Deep}} 54-Qubit {{Sycamore Circuits}}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1910.09534
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/NB3424TF/Pednault et al. - 2019 - Leveraging Secondary Storage to Simulate Deep 54-q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Q5GHEM27/1910.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1910.09534
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1910.09534
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -12733,11 +13893,21 @@
       \field{series}{Cambridge {{Monographs}} on {{Mathematical Physics}}}
       \field{shorttitle}{Spinors and {{Space-Time}}}
       \field{title}{Spinors and {{Space-Time}}: {{Volume}} 1: {{Two-Spinor Calculus}} and {{Relativistic Fields}}}
+      \field{urlday}{4}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{volume}{1}
       \field{year}{1984}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{doi}
       \verb 10.1017/CBO9780511564048
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/books/spinors-and-spacetime/B66766D4755F13B98F95D0EB6DF26526
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/books/spinors-and-spacetime/B66766D4755F13B98F95D0EB6DF26526
       \endverb
     \endentry
     \entry{Pentus93}{inproceedings}{}
@@ -12879,9 +14049,13 @@
       \field{number}{1}
       \field{shortjournal}{Nat Commun}
       \field{title}{A Variational Eigenvalue Solver on a Photonic Quantum Processor}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{5}
       \field{year}{2014}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{4213}
       \range{pages}{1}
       \verb{doi}
@@ -12889,6 +14063,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9LUR3CBU/peruzzo2014.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/E49VBDD4/Peruzzo et al. - 2014 - A variational eigenvalue solver on a photonic quan.pdf;/Users/alexis.toumi/WORK/Zotero/storage/4MFJATU9/ncomms5213.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/ncomms5213
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/ncomms5213
       \endverb
     \endentry
     \entry{PesahEtAl21}{article}{}
@@ -12943,9 +14123,13 @@
       \field{number}{4}
       \field{shortjournal}{Phys. Rev. X}
       \field{title}{Absence of {{Barren Plateaus}} in {{Quantum Convolutional Neural Networks}}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{11}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{041011}
       \range{pages}{1}
       \verb{doi}
@@ -12953,6 +14137,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/8CP4P37R/Pesah et al. - 2021 - Absence of Barren Plateaus in Quantum Convolutiona.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevX.11.041011
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevX.11.041011
       \endverb
     \endentry
     \entry{PinzaniEtAl19}{unpublished}{}
@@ -12990,13 +14180,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{1}
       \field{title}{Categorical {{Semantics}} for {{Time Travel}}}
+      \field{urlday}{9}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1902.00032
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/K8XZDZW6/Pinzani et al. - 2019 - Categorical Semantics for Time Travel.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HS9ZUG86/1902.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1902.00032
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1902.00032
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -13051,9 +14251,13 @@
       \field{month}{3}
       \field{number}{1}
       \field{title}{Recursive {{Unsolvability}} of a Problem of {{Thue}}}
+      \field{urlday}{6}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{volume}{12}
       \field{year}{1947}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 11}
       \range{pages}{11}
       \verb{doi}
@@ -13061,6 +14265,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/SVVF3GD3/Post - 1947 - Recursive Unsolvability of a problem of Thue.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/product/identifier/S0022481200076295/type/journal_article
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/product/identifier/S0022481200076295/type/journal_article
       \endverb
     \endentry
     \entry{PowerRobinson97}{article}{}
@@ -13094,9 +14304,13 @@
       \field{month}{10}
       \field{number}{5}
       \field{title}{Premonoidal Categories and Notions of Computation}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2020}
       \field{volume}{7}
       \field{year}{1997}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{453\bibrangedash 468}
       \range{pages}{16}
       \verb{doi}
@@ -13104,6 +14318,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/BFQ8YAZB/Power and Robinson - 1997 - Premonoidal categories and notions of computation.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6I48YS7U/54C062AA3C990322C50595D5533B2BB4.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/premonoidal-categories-and-notions-of-computation/54C062AA3C990322C50595D5533B2BB4
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/premonoidal-categories-and-notions-of-computation/54C062AA3C990322C50595D5533B2BB4
       \endverb
     \endentry
     \entry{Preller07a}{article}{}
@@ -13178,6 +14398,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PQF7RKQE/Preller - 2007 - Toward discourse representation via pregroup gramm.pdf
       \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/s10849-006-9033-y
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/s10849-006-9033-y
+      \endverb
       \keyw{Categorial grammars,Discourse representation,Pregroup grammars,Semantic interpretation}
     \endentry
     \entry{Preller10}{inproceedings}{}
@@ -13243,6 +14469,9 @@
       \verb{doi}
       \verb 10.4204/EPTCS.171.11
       \endverb
+      \verb{eprint}
+      \verb 1412.8527
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/A2ZGU3ES/Preller - 2014 - From Logical to Distributional Models.pdf;/Users/alexis.toumi/WORK/Zotero/storage/R7PC4T9U/1412.html
       \endverb
@@ -13281,6 +14510,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/E5R7WVTZ/Preller - 2014 - Natural language semantics in biproduct dagger cat.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.jal.2013.08.001
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.jal.2013.08.001
       \endverb
     \endentry
     \entry{PrellerLambek07}{article}{}
@@ -13321,6 +14556,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/Q5TPTR7D/Preller and Lambek - 2007 - Free compact 2-categories.pdf
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1017/S0960129506005901
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1017/S0960129506005901
+      \endverb
     \endentry
     \entry{Preskill18}{article}{}
       \name{author}{1}{}{%
@@ -13347,9 +14588,13 @@
       \field{langid}{british}
       \field{month}{8}
       \field{title}{Quantum {{Computing}} in the {{NISQ}} Era and Beyond}
+      \field{urlday}{12}
+      \field{urlmonth}{9}
+      \field{urlyear}{2019}
       \field{volume}{2}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{79}
       \range{pages}{1}
       \verb{doi}
@@ -13357,6 +14602,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/VUQC6N52/Preskill - 2018 - Quantum Computing in the NISQ era and beyond.pdf;/Users/alexis.toumi/WORK/Zotero/storage/BGT6LWUW/q-2018-08-06-79.html
+      \endverb
+      \verb{urlraw}
+      \verb https://quantum-journal.org/papers/q-2018-08-06-79/
+      \endverb
+      \verb{url}
+      \verb https://quantum-journal.org/papers/q-2018-08-06-79/
       \endverb
     \endentry
     \entry{RebentrostEtAl14}{article}{}
@@ -13396,9 +14647,13 @@
       \field{number}{13}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Quantum {{Support Vector Machine}} for {{Big Data Classification}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{113}
       \field{year}{2014}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{130503}
       \range{pages}{1}
       \verb{doi}
@@ -13406,6 +14661,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/7DWUJE2M/Rebentrost et al. - 2014 - Quantum Support Vector Machine for Big Data Classi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/G9UYVYRF/rebentrost2014.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.113.130503
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.113.130503
       \endverb
     \endentry
     \entry{Reidemeister13}{book}{}
@@ -13465,13 +14726,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{High-Level Methods for Homotopy Construction in Associative \$n\$-Categories}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1902.03831
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/Q2SBL6M9/Reutter and Vicary - 2019 - High-level methods for homotopy construction in as.pdf;/Users/alexis.toumi/WORK/Zotero/storage/N6NZ3RRA/1902.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1902.03831
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1902.03831
       \endverb
       \keyw{Mathematics - Category Theory}
     \endentry
@@ -13532,13 +14803,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{9}
       \field{title}{Categories of {{Optics}}}
+      \field{urlday}{1}
+      \field{urlmonth}{11}
+      \field{urlyear}{2018}
       \field{year}{2018}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1809.00738
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/34U5XK7I/Riley - 2018 - Categories of Optics.pdf;/Users/alexis.toumi/WORK/Zotero/storage/PW5ETB3Q/1809.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1809.00738
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1809.00738
       \endverb
       \keyw{Mathematics - Category Theory}
     \endentry
@@ -13657,13 +14938,23 @@
       \field{month}{5}
       \field{shorttitle}{{{TensorNetwork}}}
       \field{title}{{{TensorNetwork}}: {{A Library}} for {{Physics}} and {{Machine Learning}}}
+      \field{urlday}{2}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1905.01330
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/AZT58PQI/Roberts et al. - 2019 - TensorNetwork A Library for Physics and Machine L.pdf;/Users/alexis.toumi/WORK/Zotero/storage/4ATDEGJJ/1905.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1905.01330
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1905.01330
       \endverb
       \keyw{Computer Science - Machine Learning,Condensed Matter - Strongly Correlated Electrons,High Energy Physics - Theory,Physics - Computational Physics,Statistics - Machine Learning}
     \endentry
@@ -13693,13 +14984,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{4}
       \field{title}{Coend {{Calculus}} and {{Open Diagrams}}}
+      \field{urlday}{14}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2004.04526
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/D3FWXWBF/Román - 2020 - Coend Calculus and Open Diagrams.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ENRGI4D4/2004.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2004.04526
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2004.04526
       \endverb
       \keyw{18A30 (Primary); 18D10 (Secondary),Computer Science - Programming Languages,Mathematics - Category Theory}
     \endentry
@@ -13729,13 +15030,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{3}
       \field{title}{Comb {{Diagrams}} for {{Discrete-Time Feedback}}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2020}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2003.06214
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/KQGE9SYB/Román - 2020 - Comb Diagrams for Discrete-Time Feedback.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6IDYCCWS/2003.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2003.06214
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2003.06214
       \endverb
       \keyw{18B20,Computer Science - Logic in Computer Science}
     \endentry
@@ -13780,9 +15091,13 @@
       \field{month}{10}
       \field{number}{6088}
       \field{title}{Learning Representations by Back-Propagating Errors}
+      \field{urlday}{22}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{volume}{323}
       \field{year}{1986}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{533\bibrangedash 536}
       \range{pages}{4}
       \verb{doi}
@@ -13790,6 +15105,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/XRHBW5WI/Rumelhart et al. - 1986 - Learning representations by back-propagating error.pdf;/Users/alexis.toumi/WORK/Zotero/storage/65VXXP6W/323533a0.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nature.com/articles/323533a0
+      \endverb
+      \verb{url}
+      \verb https://www.nature.com/articles/323533a0
       \endverb
       \keyw{Humanities and Social Sciences,multidisciplinary,Science}
     \endentry
@@ -14009,9 +15330,13 @@
       \field{number}{6}
       \field{shortjournal}{Information and Control}
       \field{title}{Probabilistic and Weighted Grammars}
+      \field{urlday}{25}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{volume}{15}
       \field{year}{1969}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{529\bibrangedash 544}
       \range{pages}{16}
       \verb{doi}
@@ -14019,6 +15344,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/IERMEHQS/Salomaa - 1969 - Probabilistic and weighted grammars.pdf;/Users/alexis.toumi/WORK/Zotero/storage/PQGPXS35/salomaa1969.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/WLZXC46F/S0019995869905543.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0019995869905543
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0019995869905543
       \endverb
     \endentry
     \entry{SaltonEtAl75}{article}{}
@@ -14070,6 +15401,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9E3LRIQB/Salton et al. - 1975 - A vector space model for automatic indexing.pdf;/Users/alexis.toumi/WORK/Zotero/storage/J6X2E24X/salton1975.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://doi.acm.org/10.1145/361219.361220
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/361219.361220
       \endverb
     \endentry
     \entry{Savitch70}{article}{}
@@ -14134,9 +15471,13 @@
       \field{langid}{english}
       \field{month}{8}
       \field{title}{Strong {{Equivalence}} of {{TAG}} and {{CCG}}}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{9}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{707\bibrangedash 720}
       \range{pages}{14}
       \verb{doi}
@@ -14144,6 +15485,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R5S7B5I6/Schiffer and Maletti - 2021 - Strong Equivalence of TAG and CCG.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00393/106789/Strong-Equivalence-of-TAG-and-CCG
+      \endverb
+      \verb{url}
+      \verb https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00393/106789/Strong-Equivalence-of-TAG-and-CCG
       \endverb
     \endentry
     \entry{Schonfinkel24}{article}{}
@@ -14173,9 +15520,13 @@
       \field{number}{3}
       \field{shortjournal}{Math. Ann.}
       \field{title}{Über die Bausteine der mathematischen Logik}
+      \field{urlday}{5}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{92}
       \field{year}{1924}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{305\bibrangedash 316}
       \range{pages}{12}
       \verb{doi}
@@ -14183,6 +15534,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3DQJYDMV/Schönfinkel - 1924 - Über die Bausteine der mathematischen Logik.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF01448013
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF01448013
       \endverb
     \endentry
     \entry{SchreiberEtAl21}{misc}{}
@@ -14251,13 +15608,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{1}
       \field{title}{Quantum Machine Learning Models Are Kernel Methods}
+      \field{urlday}{19}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2101.11020
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/4UGGKVDM/Schuld - 2021 - Quantum machine learning models are kernel methods.pdf;/Users/alexis.toumi/WORK/Zotero/storage/7JEINM9J/2101.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2101.11020
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2101.11020
       \endverb
       \keyw{Quantum Physics,Statistics - Machine Learning}
     \endentry
@@ -14317,6 +15684,9 @@
       \verb{doi}
       \verb 10.1103/PhysRevA.99.032331
       \endverb
+      \verb{eprint}
+      \verb 1811.11184
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3F6SWD2S/Schuld et al. - 2019 - Evaluating analytic gradients on quantum hardware.pdf;/Users/alexis.toumi/WORK/Zotero/storage/S6ZIBTVG/1811.html
       \endverb
@@ -14362,6 +15732,9 @@
       \range{pages}{1}
       \verb{doi}
       \verb 10.1103/PhysRevLett.122.040504
+      \endverb
+      \verb{eprint}
+      \verb 1803.07128
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/Q4P3PAHV/Schuld and Killoran - 2019 - Quantum machine learning in feature Hilbert spaces.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EETXFAIS/1803.html
@@ -14473,6 +15846,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3HSB2T6D/Selinger - 2010 - A survey of graphical languages for monoidal categ.pdf;/Users/alexis.toumi/WORK/Zotero/storage/VGWGBWBQ/0908.html
       \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-642-12821-9_4
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-642-12821-9_4
+      \endverb
       \keyw{18D10,Mathematics - Category Theory}
     \endentry
     \entry{Selinger04}{article}{}
@@ -14535,9 +15914,13 @@
       \field{shortjournal}{Electronic Notes in Theoretical Computer Science}
       \field{shorttitle}{Dagger {{Compact Closed Categories}} and {{Completely Positive Maps}}}
       \field{title}{Dagger {{Compact Closed Categories}} and {{Completely Positive Maps}}: ({{Extended Abstract}})}
+      \field{urlday}{5}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
       \field{volume}{170}
       \field{year}{2007}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{139\bibrangedash 163}
       \range{pages}{25}
       \verb{doi}
@@ -14545,6 +15928,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/FMVE9JAX/Selinger - 2007 - Dagger Compact Closed Categories and Completely Po.pdf;/Users/alexis.toumi/WORK/Zotero/storage/SIZKS3MY/S1571066107000606.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1571066107000606
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1571066107000606
       \endverb
       \keyw{Categorical model,CPM construction,dagger categories,quantum computing}
     \endentry
@@ -14580,9 +15969,13 @@
       \field{number}{3}
       \field{shortjournal}{Math. Struct. Comp. Sci.}
       \field{title}{A Lambda Calculus for Quantum Computation with Classical Control}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{16}
       \field{year}{2006}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{527\bibrangedash 552}
       \range{pages}{26}
       \verb{doi}
@@ -14590,6 +15983,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/4VJ2ZYPE/Selinger and Valiron - 2006 - A lambda calculus for quantum computation with cla.pdf;/Users/alexis.toumi/WORK/Zotero/storage/FEQKSCI2/selinger2006.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/product/identifier/S0960129506005238/type/journal_article
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/product/identifier/S0960129506005238/type/journal_article
       \endverb
     \endentry
     \entry{SelingerEtAl09}{article}{}
@@ -14651,13 +16050,23 @@
       \field{month}{11}
       \field{shorttitle}{Learning a {{Deep Generative Model}} like a {{Program}}}
       \field{title}{Learning a {{Deep Generative Model}} like a {{Program}}: The {{Free Category Prior}}}
+      \field{urlday}{9}
+      \field{urlmonth}{12}
+      \field{urlyear}{2020}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2011.11063
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/DEDTX3J9/Sennesh - 2020 - Learning a Deep Generative Model like a Program t.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EPEBWGSP/2011.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2011.11063
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2011.11063
       \endverb
       \keyw{Computer Science - Machine Learning,Computer Science - Programming Languages,Statistics - Machine Learning}
     \endentry
@@ -14694,9 +16103,13 @@
       \field{month}{5}
       \field{number}{2105}
       \field{title}{Temporally Unstructured Quantum Computation}
+      \field{urlday}{27}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{465}
       \field{year}{2009}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1413\bibrangedash 1439}
       \range{pages}{27}
       \verb{doi}
@@ -14704,6 +16117,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/AL755ZLS/shepherd2009.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HRR8GIYU/Shepherd and Bremner - 2009 - Temporally unstructured quantum computation.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://royalsocietypublishing.org/doi/10.1098/rspa.2008.0443
+      \endverb
+      \verb{url}
+      \verb https://royalsocietypublishing.org/doi/10.1098/rspa.2008.0443
       \endverb
       \keyw{Abelian dynamics,binary matroids,quantum algorithm,quantum computational complexity}
     \endentry
@@ -14739,9 +16158,13 @@
       \field{series}{Algorithmic {{Learning Theory}}}
       \field{shortjournal}{Theoretical Computer Science}
       \field{title}{Probabilistic Learnability of Context-Free Grammars with Basic Distributional Properties from Positive Examples}
+      \field{urlday}{27}
+      \field{urlmonth}{10}
+      \field{urlyear}{2018}
       \field{volume}{620}
       \field{year}{2016}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{46\bibrangedash 72}
       \range{pages}{27}
       \verb{doi}
@@ -14749,6 +16172,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/IK9W27IP/S0304397515009433.html
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S0304397515009433
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0304397515009433
       \endverb
       \keyw{Distributional learning,Grammatical inference,PAC learning}
     \endentry
@@ -14808,8 +16237,12 @@
       \field{langid}{english}
       \field{series}{Studies in {{Linguistics}} and {{Philosophy}}}
       \field{title}{Evidence {{Against}} the {{Context-Freeness}} of {{Natural Language}}}
+      \field{urlday}{3}
+      \field{urlmonth}{10}
+      \field{urlyear}{2019}
       \field{year}{1987}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{320\bibrangedash 334}
       \range{pages}{15}
       \verb{doi}
@@ -14817,6 +16250,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/2SCIUFU2/Shieber - 1987 - Evidence Against the Context-Freeness of Natural L.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-94-009-3401-6_12
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-94-009-3401-6_12
       \endverb
       \keyw{Computational Linguistics,Defense Advance Research Project Agency,Natural Language,Regular Language,Subordinate Clause}
     \endentry
@@ -14855,13 +16294,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{6}
       \field{title}{Category {{Theory}} in {{Machine Learning}}}
+      \field{urlday}{23}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2106.07032
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/LSTZTIL7/Shiebler et al. - 2021 - Category Theory in Machine Learning.pdf;/Users/alexis.toumi/WORK/Zotero/storage/I8BN6JVW/2106.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2106.07032
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2106.07032
       \endverb
       \keyw{Computer Science - Machine Learning}
     \endentry
@@ -14897,14 +16346,24 @@
       \field{eprinttype}{arxiv}
       \field{journaltitle}{CoRR}
       \field{title}{Incremental {{Monoidal Grammars}}}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{abs/2001.02296}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2001.02296
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/ID7EHQCL/Shiebler et al. - 2020 - Incremental Monoidal Grammars.pdf;/Users/alexis.toumi/WORK/Zotero/storage/XMAC8HDZ/Shiebler et al. - 2020 - Incremental Monoidal Grammars.pdf;/Users/alexis.toumi/WORK/Zotero/storage/LA37WBDA/2001.html;/Users/alexis.toumi/WORK/Zotero/storage/PIVXNRKN/2001.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2001.02296
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2001.02296
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Formal Languages and Automata Theory,Computer Science - Logic in Computer Science}
     \endentry
@@ -14939,8 +16398,12 @@
       \field{langid}{english}
       \field{shorttitle}{Algorithms for Quantum Computation}
       \field{title}{Algorithms for Quantum Computation: Discrete Logarithms and Factoring}
+      \field{urlday}{22}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{1994}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{124\bibrangedash 134}
       \range{pages}{11}
       \verb{doi}
@@ -14948,6 +16411,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PH9XT74C/Shor - 1994 - Algorithms for quantum computation discrete logar.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/365700/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/365700/
       \endverb
     \endentry
     \entry{Shor96}{inproceedings}{}
@@ -15020,6 +16489,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/C62HSIMB/Simon - 1994 - On the power of quantum computation.pdf
       \endverb
+      \verb{urlraw}
+      \verb https://doi.ieeecomputersociety.org/10.1109/SFCS.1994.365701
+      \endverb
+      \verb{url}
+      \verb https://doi.ieeecomputersociety.org/10.1109/SFCS.1994.365701
+      \endverb
       \keyw{complexity theory,discrete logarithm,integer factoring,probabilistic model,probabilistic turing machine,quantum computation,quantum model of computation}
     \endentry
     \entry{SivarajahEtAl20}{unpublished}{}
@@ -15073,13 +16548,23 @@
       \field{month}{3}
       \field{shorttitle}{T\$|\$ket\$\textbackslash rangle\$}
       \field{title}{Tket : {{A Retargetable Compiler}} for {{NISQ Devices}}}
+      \field{urlday}{3}
+      \field{urlmonth}{4}
+      \field{urlyear}{2020}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2003.10611
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/LQEG256F/Sivarajah et al. - 2020 - t$$ket$rangle$ A Retargetable Compiler for NIS.pdf;/Users/alexis.toumi/WORK/Zotero/storage/T7BL6X3D/2003.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2003.10611
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2003.10611
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -15149,9 +16634,13 @@
       \field{number}{2}
       \field{shortjournal}{Artif Intell Rev}
       \field{title}{Connectionist {{AI}}, Symbolic {{AI}}, and the Brain}
+      \field{urlday}{18}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{volume}{1}
       \field{year}{1987}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{95\bibrangedash 109}
       \range{pages}{15}
       \verb{doi}
@@ -15159,6 +16648,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PZ74KTS6/smolensky1987.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/BF00130011
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/BF00130011
       \endverb
     \endentry
     \entry{Smolensky88}{article}{}
@@ -15190,9 +16685,13 @@
       \field{month}{3}
       \field{number}{1}
       \field{title}{On the Proper Treatment of Connectionism}
+      \field{urlday}{30}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{volume}{11}
       \field{year}{1988}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 23}
       \range{pages}{23}
       \verb{doi}
@@ -15200,6 +16699,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/FGIJ6Z3K/smolensky1988.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EHK6QYKS/4B8871A82A932DB96D183AAC9C0CF037.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/abs/on-the-proper-treatment-of-connectionism/4B8871A82A932DB96D183AAC9C0CF037
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/abs/on-the-proper-treatment-of-connectionism/4B8871A82A932DB96D183AAC9C0CF037
       \endverb
       \keyw{cognition,computation,connectionism,dynamical systems,networks,neural models,parallel distributed processing,symbolic models}
     \endentry
@@ -15231,9 +16736,13 @@
       \field{number}{1}
       \field{shortjournal}{Artificial Intelligence}
       \field{title}{Tensor Product Variable Binding and the Representation of Symbolic Structures in Connectionist Systems}
+      \field{urlday}{30}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{volume}{46}
       \field{year}{1990}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{159\bibrangedash 216}
       \range{pages}{58}
       \verb{doi}
@@ -15241,6 +16750,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/JL4V4A45/smolensky1990.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/000437029090007M
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/000437029090007M
       \endverb
     \endentry
     \entry{SobocinskiEtAl19}{inproceedings}{}
@@ -15281,6 +16796,12 @@
       \range{pages}{-1}
       \verb{doi}
       \verb 10.4230/LIPIcs.CALCO.2019.20
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.4230/LIPIcs.CALCO.2019.20
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.4230/LIPIcs.CALCO.2019.20
       \endverb
     \endentry
     \entry{SocherEtAl11}{inproceedings}{}
@@ -15476,9 +16997,13 @@
       \field{number}{5}
       \field{shorttitle}{Varieties of Crossing Dependencies}
       \field{title}{Varieties of Crossing Dependencies: Structure Dependence and Mild Context Sensitivity}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{volume}{28}
       \field{year}{2004}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{699\bibrangedash 720}
       \range{pages}{22}
       \verb{doi}
@@ -15486,6 +17011,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3P9SAWIX/Stabler - 2004 - Varieties of crossing dependencies structure depe.pdf;/Users/alexis.toumi/WORK/Zotero/storage/HWTF7MEI/s15516709cog2805_4.html
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1207/s15516709cog2805_4
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1207/s15516709cog2805_4
       \endverb
       \keyw{Goal,Language,Sensitivity}
     \endentry
@@ -15586,8 +17117,12 @@
       \field{eventtitle}{The 29th Annual Meeting}
       \field{langid}{english}
       \field{title}{Type-Raising and Directionality in Combinatory Grammar}
+      \field{urlday}{7}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{1991}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{71\bibrangedash 78}
       \range{pages}{8}
       \verb{doi}
@@ -15595,6 +17130,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PFSBCY7G/Steedman - 1991 - Type-raising and directionality in combinatory gra.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://portal.acm.org/citation.cfm?doid=981344.981354
+      \endverb
+      \verb{url}
+      \verb http://portal.acm.org/citation.cfm?doid=981344.981354
       \endverb
     \endentry
     \entry{Steedman00}{book}{}
@@ -15661,6 +17202,9 @@
       \range{pages}{6}
       \verb{doi}
       \verb 10.2307/1968538
+      \endverb
+      \verb{eprint}
+      \verb 1968538
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PY8R3VJB/Stone - 1932 - On one-parameter unitary groups in hilbert space.pdf
@@ -15966,6 +17510,109 @@
       \verb https://www.youtube.com/watch?v=5jK8qEQvR-o
       \endverb
     \endentry
+    \entry{ToumiFelice21}{online}{}
+      \name{author}{2}{}{%
+        {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
+           family={Toumi},
+           familyi={T\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod}}}%
+        {{hash=90a608e5aa8c815f07e4c59d5b93be62}{%
+           family={Felice},
+           familyi={F\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{fullhash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{bibnamehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{authorbibnamehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{authornamehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{authorfullhash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \field{labelalpha}{TF21}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{3}
+      \field{month}{5}
+      \field{origday}{11}
+      \field{orighour}{9}
+      \field{origminute}{2}
+      \field{origmonth}{10}
+      \field{origsecond}{0}
+      \field{origtimezone}{Z}
+      \field{origyear}{2019}
+      \field{title}{Categories for {{Linguistics}}}
+      \field{urlday}{3}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{origdateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/oxford-quantum-group/discopy/blob/ea5b370d4853d7c0bdd1c3c4719a5f71917b1b6c/docs/slides/21-05-03-tallcat.ipynb
+      \endverb
+      \verb{url}
+      \verb https://github.com/oxford-quantum-group/discopy/blob/ea5b370d4853d7c0bdd1c3c4719a5f71917b1b6c/docs/slides/21-05-03-tallcat.ipynb
+      \endverb
+    \endentry
+    \entry{ToumiFelice21a}{online}{}
+      \name{author}{2}{}{%
+        {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
+           family={Toumi},
+           familyi={T\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod}}}%
+        {{hash=90a608e5aa8c815f07e4c59d5b93be62}{%
+           family={Felice},
+           familyi={F\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{fullhash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{bibnamehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{authorbibnamehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{authornamehash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \strng{authorfullhash}{72cf6a3c62ea6cdcc67f482bd48c2c28}
+      \field{labelalpha}{TF21}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{a toolbox for computing with monoidal categories}
+      \field{day}{5}
+      \field{month}{5}
+      \field{origday}{11}
+      \field{orighour}{9}
+      \field{origminute}{2}
+      \field{origmonth}{10}
+      \field{origsecond}{0}
+      \field{origtimezone}{Z}
+      \field{origyear}{2019}
+      \field{title}{Categories for {{Quantum}}}
+      \field{urlday}{3}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{origdateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/oxford-quantum-group/discopy/blob/ea5b370d4853d7c0bdd1c3c4719a5f71917b1b6c/docs/slides/21-05-05-tallcat.ipynb
+      \endverb
+      \verb{url}
+      \verb https://github.com/oxford-quantum-group/discopy/blob/ea5b370d4853d7c0bdd1c3c4719a5f71917b1b6c/docs/slides/21-05-05-tallcat.ipynb
+      \endverb
+    \endentry
     \entry{ToumiKoziell-Pipe21}{article}{}
       \name{author}{2}{}{%
         {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
@@ -15993,14 +17640,24 @@
       \field{eprinttype}{arxiv}
       \field{journaltitle}{CoRR}
       \field{title}{Functorial {{Language Models}}}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
       \field{volume}{abs/2103.14411}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2103.14411
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/UWAKC49T/Toumi and Koziell-Pipe - 2021 - Functorial Language Models.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EAKVT4PM/2103.html
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2103.14411
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2103.14411
       \endverb
       \keyw{Computer Science - Computation and Language,Mathematics - Category Theory}
     \endentry
@@ -16165,6 +17822,12 @@
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3FQT36XI/Trouillon et al. - 2017 - Knowledge Graph Completion via Complex Tensor Fact.pdf
       \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1702.06879
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1702.06879
+      \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Mathematics - Spectral Theory,Statistics - Machine Learning}
     \endentry
     \entry{TrouillonEtAl16}{unpublished}{}
@@ -16212,13 +17875,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{6}
       \field{title}{Complex {{Embeddings}} for {{Simple Link Prediction}}}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
       \field{year}{2016}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1606.06357
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/HZQLHZ86/Trouillon et al. - 2016 - Complex Embeddings for Simple Link Prediction.pdf;/Users/alexis.toumi/WORK/Zotero/storage/3IDFXTY3/1606.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1606.06357
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1606.06357
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Statistics - Machine Learning}
     \endentry
@@ -16248,9 +17921,13 @@
       \field{month}{10}
       \field{number}{236}
       \field{title}{Computing Machinery and Intelligence}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{LIX}
       \field{year}{1950}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{433\bibrangedash 460}
       \range{pages}{28}
       \verb{doi}
@@ -16258,6 +17935,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/YTVEF5UR/Turing - 1950 - Computing machinery and intelligence.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://academic.oup.com/mind/article/LIX/236/433/986238
+      \endverb
+      \verb{url}
+      \verb https://academic.oup.com/mind/article/LIX/236/433/986238
       \endverb
     \endentry
     \entry{TurneyPantel10}{article}{}
@@ -16292,9 +17975,13 @@
       \field{month}{2}
       \field{shorttitle}{From {{Frequency}} to {{Meaning}}}
       \field{title}{From {{Frequency}} to {{Meaning}}: {{Vector Space Models}} of {{Semantics}}}
+      \field{urlday}{19}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
       \field{volume}{37}
       \field{year}{2010}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{141\bibrangedash 188}
       \range{pages}{48}
       \verb{doi}
@@ -16302,6 +17989,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/RTKSLKBZ/Turney and Pantel - 2010 - From Frequency to Meaning Vector Space Models of .pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jair.org/index.php/jair/article/view/10640
+      \endverb
+      \verb{url}
+      \verb https://www.jair.org/index.php/jair/article/view/10640
       \endverb
     \endentry
     \entry{Valiant79}{article}{}
@@ -16363,9 +18056,13 @@
       \field{number}{2}
       \field{shortjournal}{Journal of Computer and System Sciences}
       \field{title}{General Context-Free Recognition in Less than Cubic Time}
+      \field{urlday}{28}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{volume}{10}
       \field{year}{1975}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{308\bibrangedash 315}
       \range{pages}{8}
       \verb{doi}
@@ -16373,6 +18070,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/R8L36MAT/Valiant - 1975 - General context-free recognition in less than cubi.pdf;/Users/alexis.toumi/WORK/Zotero/storage/T4QS5MN8/valiant1975.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/TXNE7L7T/S0022000075800468.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0022000075800468
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0022000075800468
       \endverb
     \endentry
     \entry{VanDerWaltEtAl11}{article}{useprefix=true}
@@ -16518,13 +18221,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{12}
       \field{title}{Attention {{Is All You Need}}}
+      \field{urlday}{16}
+      \field{urlmonth}{9}
+      \field{urlyear}{2020}
       \field{year}{2017}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1706.03762
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/Q37P5UVI/Vaswani et al. - 2017 - Attention Is All You Need.pdf;/Users/alexis.toumi/WORK/Zotero/storage/ZQ8N3KN5/1706.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1706.03762
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1706.03762
       \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning}
     \endentry
@@ -16595,14 +18308,24 @@
       \field{number}{182}
       \field{series}{Memoirs of the {{American Mathematical Society}}}
       \field{title}{Coherence and Non-Commutative Diagrams in Closed Categories}
+      \field{urlday}{23}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{volume}{9}
       \field{year}{1977}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{doi}
       \verb 10.1090/memo/0182
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/UYUA2RWF/0182.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ams.org/memo/0182
+      \endverb
+      \verb{url}
+      \verb https://www.ams.org/memo/0182
       \endverb
     \endentry
     \entry{WaltEtAl14}{article}{}
@@ -16673,9 +18396,13 @@
       \field{shortjournal}{PeerJ}
       \field{shorttitle}{Scikit-Image}
       \field{title}{Scikit-Image: Image Processing in {{Python}}}
+      \field{urlday}{31}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
       \field{volume}{2}
       \field{year}{2014}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{e453}
       \range{pages}{-1}
       \verb{doi}
@@ -16683,6 +18410,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/788ZHGV5/vanderwalt2014.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/NKV3C7LK/Walt et al. - 2014 - scikit-image image processing in Python.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CL4PCKN9/453.html
+      \endverb
+      \verb{urlraw}
+      \verb https://peerj.com/articles/453
+      \endverb
+      \verb{url}
+      \verb https://peerj.com/articles/453
       \endverb
     \endentry
     \entry{Wang20}{unpublished}{}
@@ -16710,13 +18443,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{10}
       \field{title}{Completeness of Algebraic {{ZX-calculus}} over Arbitrary Commutative Rings and Semirings}
+      \field{urlday}{7}
+      \field{urlmonth}{12}
+      \field{urlyear}{2020}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1912.01003
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/PYKEF2TB/Wang - 2020 - Completeness of algebraic ZX-calculus over arbitra.pdf;/Users/alexis.toumi/WORK/Zotero/storage/SYP464IP/Wang - 2020 - Completeness of algebraic ZX-calculus over arbitra.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Y4VJ53UG/1912.html;/Users/alexis.toumi/WORK/Zotero/storage/YSS4UWVN/1912.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1912.01003
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1912.01003
       \endverb
       \keyw{Mathematics - Category Theory,Quantum Physics}
     \endentry
@@ -16750,13 +18493,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{Differentiating and {{Integrating ZX Diagrams}}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2022}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2201.13250
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/55PNASVC/Wang and Yeung - 2022 - Differentiating and Integrating ZX Diagrams.pdf;/Users/alexis.toumi/WORK/Zotero/storage/Y8TYNN57/2201.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2201.13250
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2201.13250
       \endverb
       \keyw{Computer Science - Machine Learning,Quantum Physics}
     \endentry
@@ -16866,13 +18619,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{2}
       \field{title}{Quantum {{Language Processing}}}
+      \field{urlday}{1}
+      \field{urlmonth}{9}
+      \field{urlyear}{2020}
       \field{year}{2019}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1902.05162
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/3VGPUTFS/Wiebe et al. - 2019 - Quantum Language Processing.pdf;/Users/alexis.toumi/WORK/Zotero/storage/AQ9LMD7N/1902.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1902.05162
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1902.05162
       \endverb
       \keyw{Quantum Physics}
     \endentry
@@ -16913,9 +18676,13 @@
       \field{number}{5}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Quantum {{Algorithm}} for {{Data Fitting}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{109}
       \field{year}{2012}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{050505}
       \range{pages}{1}
       \verb{doi}
@@ -16923,6 +18690,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/EM34SBMH/wiebe2012.pdf.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.109.050505
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.109.050505
       \endverb
     \endentry
     \entry{WilsonEtAl22}{unpublished}{}
@@ -16960,13 +18733,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{1}
       \field{title}{String Diagrams for Non-Strict Monoidal Categories}
+      \field{urlday}{25}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2022}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2201.11738
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/FB6TXVAB/Wilson et al. - 2022 - String diagrams for non-strict monoidal categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/3HRNQG97/2201.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2201.11738
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2201.11738
       \endverb
       \keyw{Mathematics - Category Theory}
     \endentry
@@ -17370,9 +19153,13 @@
       \field{number}{18}
       \field{shortjournal}{Phys. Rev. Lett.}
       \field{title}{Strong {{Quantum Computational Advantage Using}} a {{Superconducting Quantum Processor}}}
+      \field{urlday}{28}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{volume}{127}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \field{pages}{180501}
       \range{pages}{1}
       \verb{doi}
@@ -17380,6 +19167,12 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/KU7ZH6CX/Wu et al. - 2021 - Strong quantum computational advantage using a sup.pdf;/Users/alexis.toumi/WORK/Zotero/storage/KQKPKYGB/PhysRevLett.127.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.127.180501
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.127.180501
       \endverb
     \endentry
     \entry{Yeung20}{unpublished}{}
@@ -17407,13 +19200,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{11}
       \field{title}{Diagrammatic {{Design}} and {{Study}} of {{Ansatze}} for {{Quantum Machine Learning}}}
+      \field{urlday}{1}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2011.11073
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/WN6X8Y58/Yeung - 2020 - Diagrammatic Design and Study of Ans a tze for Q.pdf;/Users/alexis.toumi/WORK/Zotero/storage/WHCB8V3I/2011.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2011.11073
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2011.11073
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Quantum Physics}
     \endentry
@@ -17447,13 +19250,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{5}
       \field{title}{A {{CCG-Based Version}} of the {{DisCoCat Framework}}}
+      \field{urlday}{20}
+      \field{urlmonth}{2}
+      \field{urlyear}{2022}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 2105.07720
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/EDPKSNDC/Yeung and Kartsaklis - 2021 - A CCG-Based Version of the DisCoCat Framework.pdf;/Users/alexis.toumi/WORK/Zotero/storage/8FBEWG8M/2105.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2105.07720
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2105.07720
       \endverb
       \keyw{Computer Science - Computation and Language,Mathematics - Category Theory}
     \endentry
@@ -17558,6 +19371,9 @@
       \verb{doi}
       \verb 10.1145/3458817.3487399
       \endverb
+      \verb{eprint}
+      \verb 2110.14502
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/J3ZGN672/Yong et al. - 2021 - Closing the Quantum Supremacy Gap Achieving Rea.pdf;/Users/alexis.toumi/WORK/Zotero/storage/T4NGFFF5/2110.html
       \endverb
@@ -17601,6 +19417,9 @@
       \range{pages}{9}
       \verb{doi}
       \verb 10.4204/EPTCS.221.8
+      \endverb
+      \verb{eprint}
+      \verb 1608.01406
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/MLJ8KWII/Zeng and Coecke - 2016 - Quantum Algorithms for Compositional Natural Langu.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CYIPND4L/1608.html
@@ -17758,6 +19577,9 @@
       \verb{doi}
       \verb 10.1126/science.abe8770
       \endverb
+      \verb{eprint}
+      \verb 2012.01625
+      \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/6FRKXU5Z/Zhong et al. - 2020 - Quantum computational advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/CRAFKVP8/Zhong et al. - 2020 - Quantum computational advantage using photons.pdf;/Users/alexis.toumi/WORK/Zotero/storage/EQ7DUFJH/10.1126@science.abe8770.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/UPZH8QF5/science.abe8770.pdf.pdf;/Users/alexis.toumi/WORK/Zotero/storage/XASCJG38/2012.html
       \endverb
@@ -17803,13 +19625,23 @@
       \field{eprinttype}{arxiv}
       \field{month}{8}
       \field{title}{Unpaired {{Image-to-Image Translation}} Using {{Cycle-Consistent Adversarial Networks}}}
+      \field{urlday}{23}
+      \field{urlmonth}{3}
+      \field{urlyear}{2022}
       \field{year}{2020}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{eprint}
       \verb 1703.10593
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/SWKT9WFF/Zhu et al. - 2020 - Unpaired Image-to-Image Translation using Cycle-Co.pdf;/Users/alexis.toumi/WORK/Zotero/storage/U7G9LPU5/1703.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1703.10593
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1703.10593
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
@@ -18100,21 +19932,31 @@
       \field{month}{10}
       \field{shortjournal}{Science Bulletin}
       \field{title}{Quantum {{Computational Advantage}} via 60-{{Qubit}} 24-{{Cycle Random Circuit Sampling}}}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2021}
       \field{year}{2021}
       \field{dateera}{ce}
+      \field{urldateera}{ce}
       \verb{doi}
       \verb 10.1016/j.scib.2021.10.017
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/ZDHH5435/Zhu et al. - 2021 - Quantum Computational Advantage via 60-Qubit 24-Cy.pdf;/Users/alexis.toumi/WORK/Zotero/storage/INC2JPN5/S2095927321006733.html
       \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S2095927321006733
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S2095927321006733
+      \endverb
       \keyw{Quantum computation,Quantum information,Quantum physics,Superconducting quantum computing,Superconducting qubit}
     \endentry
   \enddatalist
-  \keyalias{Aaronson05}{Aaronson04}
   \keyalias{CoeckeEtAl14a}{CoeckeEtAl14}
   \keyalias{FritzEtAl20a}{FritzEtAl20}
   \keyalias{HeunenVicary19a}{HeunenVicary19}
+  \missing{Aaronson05}
 \endrefsection
 \endinput
 

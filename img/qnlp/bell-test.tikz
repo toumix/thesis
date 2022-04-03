@@ -28,8 +28,8 @@
 		\node [style=none] (94) at (0.25, 4.75) {};
 		\node [style=none] (95) at (-0.25, 4.25) {};
 		\node [style=none] (96) at (-0.25, 4.75) {};
-		\node [circle, fill=black, scale=.5] (97) at (0, 1.75) {};
-		\node [circle, fill=black, scale=.5] (98) at (1, 1.75) {};
+		\node [circle, draw=black, fill=white, scale=.5] (97) at (0, 1.75) {};
+		\node [circle, draw=black, fill=white, scale=.5] (98) at (1, 1.75) {};
 		\node [style=none] (99) at (0, 1.25) {};
 		\node [style=none] (100) at (1, 1.25) {};
 	\end{pgfonlayer}

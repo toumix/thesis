@@ -122,7 +122,7 @@ The inclusion functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ is monoidal in two w
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Mat}_\S$ as a strict monoidal category with \py{direct_sum} and \py{Kronecker} as tensor.}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a monoidal category with \py{direct_sum} and \py{Kronecker} as tensor.}
 
 \begin{minted}{python}
 class Matrix:
@@ -150,8 +150,7 @@ The evaluation functor $\mathtt{eval} : \mathbf{Circ} \to \mathbf{Mat}_\C$ is mo
 
 \subsection{Foo monoidal categories}
 
-Now, what does it mean to implement a monoidal category in Python?
-Again, nothing more than defining a pair of classes for objects and arrows with a \py{tensor} method that satisfies the axioms.
+Again, implementing a monoidal category in Python means nothing but defining a pair of classes for objects and arrows with a \py{tensor} method that satisfies the axioms.
 Less trivially, we want to implement the arrows of \emph{free monoidal categories} which can then be interpreted in arbitrary monoidal categories via the application of monoidal functors: this is the content of the \py{discopy.monoidal} module.
 As in the case of free categories, free monoidal categories will be the image of a functor $F : \mathbf{MonSig} \to \mathbf{MonCat}$, the left adjoint to the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$ from monoidal categories to \emph{monoidal signatures}.
 A monoidal signature $\Sigma$ is a monoidal category without identity, composition or tensor: a pair of sets $\Sigma_0, \Sigma_1$ and a pair of functions $\dom, \cod : \Sigma_1 \to \Sigma_0^\star$ from boxes to lists of objects.
@@ -178,7 +177,7 @@ This means we can take the data for a monoidal category $C$ to be the following:
 \item a class $C_0$ of \emph{generating objects} and a class $C_1$ of arrows,
 \item domain and codomain functions $\dom, \cod : C_1 \to C_0^\star$,
 \item a function $\id : C_0^\star \to C_1$ and a (partial) operation $\then : C_1 \times C_1 \to C_1$,
-\item an operation on arrows $\tensor : C_1 \times C_1 \to C_1$ with $\dom (f \otimes g) = \dom(f) \dom(g)$ and $\cod (f \otimes g) = \cod(f) \cod(g)$.
+\item an operation on arrows $\tensor : C_1 \times C_1 \to C_1$ such that $\dom (f \otimes g) = \dom(f) \dom(g)$ and $\cod (f \otimes g) = \cod(f) \cod(g)$.
 \end{itemize}
 The axioms for the objects to be a monoid now come for free, we only need to require that tensor on arrows is a monoid with the interchange law.
 With this definition of (free-on-objects) monoidal category, we can define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$: it forgets the identity, composition and tensor on arrows, but not the tensor on objects which is free.
@@ -589,7 +588,7 @@ Again, every monoidal category $C$ is isomorphic to the quotient of a free monoi
 
 The word problem for categories reduces to that of monoidal categories, indeed the signature of a category can be seen as a monoidal signature where boxes all have domain and codomain of length one.
 Thus, deciding equality of diagrams in arbitrary quotient monoidal categories is just as undecidable.
-The implementation of a quotient is nothing more than a subclass of \py{Diagram} with an equality method that respects the axioms of a monoidal congruence.
+The implementation of a quotient is nothing but a subclass of \py{Diagram} with an equality method that respects the axioms of a monoidal congruence.
 The easy way is to define equality of diagrams to be equality of their evaluation by a monoidal functor into a category where equality is decidable.
 The hard way is to define a \py{normal_form} method which sends every diagram to a chosen representative of its equivalence class.
 DisCoPy provides some basic tools to define such a normal form: \emph{pattern matching} and \emph{substitution}.
@@ -682,8 +681,10 @@ class Layer:
 \end{python}
 
 A monoidal category is commutative-monoid-enriched when it has sums that distribute over the tensor, i.e.
-$(f + f') \otimes (g + g') = f \otimes g + f \otimes g' + f' \otimes g + f' \otimes g'$
-and $f \otimes 0 = 0 = 0 \otimes f$.
+$$(f + f') \s \otimes \s (g + g')
+\quad = \quad
+f \otimes g \s + \s f \otimes g' \s + \s f' \otimes g \s + \s f' \otimes g'
+\quad \text{and} \quad f \otimes 0 \s = \s 0 \s = \s 0 \otimes f$$
 They are implemented by a adding method a \py{tensor} method to \py{Sum}, as well as overriding \py{Diagram.tensor} so that \py{f @ (g + h) == Sum.cast(f) @ (g + h)} for all diagrams \py{f}.
 
 \begin{python}

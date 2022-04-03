@@ -135,13 +135,17 @@ The definition of circuits depends on a choice of \emph{gateset}, i.e. a monoida
 We assume there is a generating object for each finite-dimensional quantum system $\Sigma_0 = \{ \mathtt{qudit}(n) \}_{n > 1}$ and a box $g \in \Sigma_1$ for each pure quantum process, e.g. unitary gates, preparations (kets) and post-selected measurements (bras).
 We say the gateset is universal when the interpretation $[\![-]\!] : F^S(\Sigma) \to \mathbf{Mat}_\C$ is full, i.e. every complex matrix is the interpretation of some pure circuit.
 
-We then define an extended signature $cq(\Sigma) \supset \Sigma$ with objects $cq(\Sigma)_0 = \{ \mathtt{digit}(n) \}_{n > 1} + \{ \mathtt{qudit}(n) \}_{n > 1}$ for classical and quantum systems of each dimension, and boxes given by:
-$$cq(\Sigma)_1 = \{ \hat{g} \}_{g \in \Sigma_1}
-+ \{ \mathtt{measure}(n) : \mathtt{qudit}(n) \to \mathtt{digit}(n) \}_{n > 1}
-+ \{ \mathtt{encode}(n) : \mathtt{digit}(n) \to \mathtt{qudit}(n) \}_{n > 1}$$
+We then define an extended signature $cq(\Sigma) \supset \Sigma$ with objects:
+$$cq(\Sigma)_0 = \{ \mathtt{digit}(n) \}_{n > 1} + \{ \mathtt{qudit}(n) \}_{n > 1}$$
+for classical and quantum systems of each dimension, and boxes given by:
+\begin{align*}
+cq(\Sigma)_1 = \{ \hat{g} \}_{g \in \Sigma_1}
+&+ \{ \mathtt{measure}(n) : \mathtt{qudit}(n) \to \mathtt{digit}(n) \}_{n > 1}\\
+&+ \{ \mathtt{encode}(n) : \mathtt{digit}(n) \to \mathtt{qudit}(n) \}_{n > 1}
+\end{align*}
 Let $\mathbf{Circ} = F^S(cq(\Sigma))$ be the free symmetric category it generates, where the diagrams are called mixed quantum circuits.
 Their interpretation $[\![-]\!] : \mathbf{Circ} \to \mathbf{CQMap}$ is given by
-$[\![\mathtt{digit}(n)]\!] = (n, 1)$ and $[\![\mathtt{qudit}(n)]\!] = (1, n)$ on objects and
+$[\![\mathtt{digit}(n)]\!] = (n, 1)$, $[\![\mathtt{qudit}(n)]\!] = (1, n)$ and
 $[\![\hat{g}]\!] = \mathtt{double}([\![g]\!])$.
 
 The evaluation of any mixed circuit is always completely-positive~\cite[Corollary~8.6]{CoeckeKissinger17}.

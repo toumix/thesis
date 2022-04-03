@@ -33,7 +33,7 @@
 		\node [style=none] (30) at (3, 0) {};
 		\node [style=none, fill=white, right] (31) at (3.2, 0.05) {$y$};
 		\node [circle, fill=white, scale=0.5] (32) at (1.5, 3.25) {$\otimes$};
-		\node [circle, fill=black, scale=.5] (32) at (1.5, 2.5) {};
+		\node [circle, draw=black, fill=white, scale=.5] (32) at (1.5, 2.5) {};
 		\node [circle, fill=white, scale=0.5] (32) at (0.5, 1.5) {$\otimes$};
 		\node [circle, fill=white, scale=0.5] (32) at (2.5, 0.5) {$\otimes$};
 		\node [style=none, fill=white] (32) at (4.2, 2) {$=$};
@@ -66,8 +66,8 @@
 		\node [style=none, fill=white, right] (59) at (6.4, 0.216667) {$y$};
 		\node [style=none] (60) at (7.2, 0) {};
 		\node [style=none, fill=white, right] (61) at (7.4, 0.216667) {$x$};
-		\node [circle, fill=black, scale=.5] (62) at (5.7, 3.33333) {};
-		\node [circle, fill=black, scale=.5] (62) at (7.7, 2) {};
+		\node [circle, draw=black, fill=white, scale=.5] (62) at (5.7, 3.33333) {};
+		\node [circle, draw=black, fill=white, scale=.5] (62) at (7.7, 2) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [in=90, out=-90] (7.center) to (8.center);

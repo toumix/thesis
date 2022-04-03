@@ -5,7 +5,7 @@
 		\node [style=none] (2) at (0, 0.25) {};
 		\node [style=none, fill=white, right] (3) at (0.2, 0.55) {};
 		\node [style=none] (4) at (0, 0) {};
-		\node [circle, fill=black, scale=.5] (5) at (0, 0) {};
+		\node [circle, draw=black, fill=white, scale=.5] (5) at (0, 0) {};
 		\node [style=none] (5) at (-0.25, 0.75) {};
 		\node [style=none] (6) at (0.25, 0.75) {};
 		\node [style=none] (7) at (0.25, 1.25) {};

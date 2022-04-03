@@ -12,8 +12,8 @@
 \node [] (9) at (0, 0.25) {};
 \node [] (10) at (0, 0.0) {};
 \node [style=none, fill=white, right] (11) at (0.2, 0.04999999999999999) {};
-\node [circle, fill=black, text=white, scale=.5] (12) at (0.0, 1.5) {\Large $\phi$};
-\node [circle, fill=black, text=white, scale=.5] (12) at (0.0, 0.5) {\Large $\phi'$};
+\node [circle, draw=black, fill=white, scale=.5] (12) at (0.0, 1.5) {\Large $\phi$};
+\node [circle, draw=black, fill=white, scale=.5] (12) at (0.0, 0.5) {\Large $\phi'$};
 \node [style=none, fill=white] (12) at (1.2, 1.0) {=};
 \node [] (13) at (2.2, 2.0) {};
 \node [] (14) at (2.2, 1.25) {};
@@ -22,7 +22,7 @@
 \node [] (17) at (2.2, 0.75) {};
 \node [] (18) at (2.2, 0.0) {};
 \node [style=none, fill=white, right] (19) at (2.4000000000000004, 0.55) {};
-\node [circle, fill=black, text=white, scale=.333] (20) at (2.2, 1.0) {\Large $\phi + \phi'$};
+\node [circle, draw=black, fill=white, scale=.333] (20) at (2.2, 1.0) {\Large $\phi + \phi'$};
 \end{pgfonlayer}
 \begin{pgfonlayer}{edgelayer}
 \draw [in=90, out=-90] (1.center) to (2.center);

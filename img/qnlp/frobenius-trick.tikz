@@ -29,8 +29,8 @@
 		\node [style=none, fill=white] (32) at (-3.5, 0.75) {$F(y)$};
 		\node [style=none] (33) at (-5.5, -1.5) {};
 		\node [style=none] (34) at (-4, -1.5) {};
-		\node [circle, fill=black, scale=0.5] (35) at (-5.5, -0.75) {};
-		\node [circle, fill=black, scale=0.5] (36) at (-4, -0.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (35) at (-5.5, -0.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (36) at (-4, -0.75) {};
 		\node [style=none] (37) at (-11.5, 0.25) {};
 		\node [style=none] (38) at (-11.5, 0.5) {};
 		\node [style=none] (39) at (-11.5, 0.25) {};
@@ -62,7 +62,7 @@
 		\node [style=none] (66) at (-8.5, 1) {};
 		\node [style=none, fill=white] (67) at (-8, 0.75) {$F(y)$};
 		\node [style=none] (68) at (-10.5, -0.25) {};
-		\node [circle, fill=black, scale=0.5] (70) at (-10.25, 0) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (70) at (-10.25, 0) {};
 		\node [style=none] (72) at (-10, -0.25) {};
 		\node [style=none] (74) at (-9.5, -0.25) {};
 		\node [style=none] (76) at (-9, -1) {};
@@ -102,13 +102,13 @@
 		\node [style=none, fill=white] (115) at (-0.25, 0.75) {$F(y)$};
 		\node [style=none] (116) at (-0.5, -1.5) {};
 		\node [style=none] (117) at (0.5, -1.5) {};
-		\node [circle, fill=black, scale=0.5] (118) at (-0.5, -0.75) {};
-		\node [circle, fill=black, scale=0.5] (119) at (0.5, -0.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (118) at (-0.5, -0.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (119) at (0.5, -0.75) {};
 		\node [style=none] (121) at (-7, 0) {$=$};
 		\node [style=none] (122) at (-2.5, 0) {$=$};
 		\node [style=none] (125) at (-9.25, 0) {};
 		\node [style=none] (126) at (-9.5, -0.25) {};
-		\node [circle, fill=black, scale=0.5] (127) at (-9.25, 0) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (127) at (-9.25, 0) {};
 		\node [style=none] (128) at (-9, -0.25) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}

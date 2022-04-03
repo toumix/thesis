@@ -54,7 +54,7 @@ Finally we define spiders with one input leg by induction on the output legs $b 
 \ctikzfig{img/hypergraph/induction-step-one-legged}
 \end{itemize}
 One can show that this satisfies the spider fusion law, again by induction on the legs~\cite[Lemma 5.20]{HeunenVicary19a}.
-In this way, we can construct an infinite family of spiders from just the four boxes $\merge(x), \unit(x), \ttsplit(x), \counit(x)$ and a finite set of equations: a spider is nothing more than a big multiplication followed by a big co-multiplication.
+In this way, we can construct an infinite family of spiders from just the four boxes $\merge(x), \unit(x), \ttsplit(x), \counit(x)$ and a finite set of equations: a spider is nothing but a big multiplication followed by a big co-multiplication.
 As for the phases, we can recover them from a family of \emph{phase shifts} $\{ \shift_\phi(x) : x \to x \}_{\phi \in \Phi}$ such that:
 \begin{itemize}
 \item $\shift_-(x)$ is a monoid homomorphism $\Phi \to C(x, x)$, i.e. $\shift_0(x) = \id(x)$ and $\shift_{\phi}(x) \fcmp \shift_{\phi'} = \shift_{\phi + \phi'}(x)$,
@@ -170,7 +170,7 @@ A \emph{$\dagger$-hypergraph category} is a $\dagger$-symmetric category (i.e. t
 We also require that the monoid of phases is in fact a group with the dagger as inverse or equivalently, that phase shifts are unitaries.
 
 \begin{example}
-Every commutative rig $\S$ induces a $\dagger$-hypergraph category $\mathbf{Tensor}_\S$ with the transpose as dagger.
+For evert commutative rig $\S$, the category $\mathbf{Tensor}_\S$ is $\dagger$-hypergraph with the transpose as dagger.
 Arguably, special commutative Frobenius algebras were first defined by Peirce~\cite{Peirce06} with their interpretation in the category of relations, or equivalently $\mathbf{Tensor}_\B$.
 Indeed, they correspond to what Peirce calls \emph{lines of identity}: they express in two dimensions what one-dimensional first-order logic would express with equality symbols.
 For example, take a binary predicate encoded as a box $p : 1 \to x^2$ (interpreted as the formula $\exists \ a \cdot \exists \ b \cdot p(a, b)$) then the diagram $p \fcmp \merge(x)$ is interpreted as the formula $\exists \ a \cdot \exists \ b \cdot p(a, b) \land a = b$ or equivalently $\exists \ a \cdot p(a, a)$.
@@ -186,7 +186,7 @@ Thus, the axioms for spiders allow us to define any orthonormal basis without ev
 \end{example}
 
 \begin{example}
-With the spiders defined in example~\ref{example:circuit-spider}, $\mathbf{Circ}$ is a $\dagger$-hypergraph category and the evaluation functor $\mathbf{Circ} \to \mathbf{Tensor}_\C$ is a $\dagger$-hypergraph functor.
+The category $\mathbf{Circ}$ is $\dagger$-hypergraph with the spiders defined in example~\ref{example:circuit-spider}, the evaluation functor $\mathbf{Circ} \to \mathbf{Tensor}_\C$ is a $\dagger$-hypergraph functor.
 \end{example}
 
 DisCoPy implements spiders for types of length one (i.e. generating objects) as a subclass of \py{Box} and spiders for arbitrary types as a method \py{Diagram.spiders}.

@@ -384,7 +384,7 @@ One can verify that the free completion is indeed the left adjoint to the forget
 Similarly, if $C$ is a $\dagger$-category then $\mathbf{Mat}_C$ is its free $\dagger$-biproduct completion with the element-wise dagger of the transpose.
 If $C$ is also a monoidal category, then $\mathbf{Mat}_C$ is a rig category with the tensor given by an extension of the usual Kronecker product with tensor as product.
 
-DisCoPy implements free $\dagger$-biproduct completion as a subclass of \py{Matrix[Diagram]} with \py{tuple[Ty, ...]} as objects and addition given by the formal sum of diagrams.
+We implement free $\dagger$-biproduct completion as a subclass of \py{Matrix[Diagram]} with \py{tuple[Ty, ...]} as objects and addition given by the formal sum of diagrams.
 We use Python's duck typing to lift the code for composition, tensor and direct sum from \py{int} to \py{tuple[Ty, ...]}.
 We also use a \py{contextmanager} to temporarily replace the multiplication of two \py{Diagram} entries.
 Again, we override equality so that diagrams are equal to the matrix of just themselves.

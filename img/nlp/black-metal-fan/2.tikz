@@ -18,8 +18,8 @@
 		\node [style=none] (15) at (2.25, 1.75) {};
 		\node [style=none] (16) at (2.25, 1.5) {};
 		\node [style=none, fill=white, right] (17) at (2.55, 1.55) {$n$};
-		\node [circle, fill=black, scale=0.471] (18) at (3.5, 3.25) {};
-		\node [circle, fill=black, scale=0.471] (19) at (2.25, 2.25) {};
+		\node [circle, draw=black, fill=white, scale=0.471] (18) at (3.5, 3.25) {};
+		\node [circle, draw=black, fill=white, scale=0.471] (19) at (2.25, 2.25) {};
 		\node [style=none] (20) at (4.75, 4.25) {};
 		\node [style=none] (21) at (3.75, 4.25) {};
 		\node [style=none] (22) at (3.75, 4.75) {};

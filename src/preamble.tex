@@ -20,24 +20,14 @@
 ]{biblatex}
 \renewcommand*{\bibfont}{\raggedright\small}
 
-% print url if no doi
+% https://tex.stackexchange.com/questions/154864/biblatex-use-doi-only-if-there-is-no-url/154875#154875
 \DeclareSourcemap{
   \maps[datatype=bibtex]{
-    \map[overwrite]{
-      \step[fieldsource=doi, final]
-      \step[fieldset=url, null]
-      \step[fieldset=urldate, null]
-      \step[fieldset=eprint, null]
-    }
-  }
-}
-% print url if no arXiv
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map[overwrite]{
-      \step[fieldsource=eprint, final]
-      \step[fieldset=url, null]
-      \step[fieldset=urldate, null]
+    \map{
+      \step[fieldsource=doi,final]
+      \step[fieldsource=eprint,final]
+      \step[fieldset=url,null]
+      \step[fieldset=urldate,null]
     }
   }
 }

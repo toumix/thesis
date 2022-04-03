@@ -18,8 +18,8 @@
 		\node [style=none, fill=white, right] (15) at (0.2, 0.05) {};
 		\node [style=none] (16) at (1, 0) {};
 		\node [style=none, fill=white, right] (17) at (1.2, 0.05) {};
-		\node [circle, fill=black, scale=.5] (18) at (1.25, 1.5) {};
-		\node [circle, fill=black, scale=.5] (18) at (0.5, 0.5) {};
+		\node [circle, draw=black, fill=white, scale=.5] (18) at (1.25, 1.5) {};
+		\node [circle, draw=black, fill=white, scale=.5] (18) at (0.5, 0.5) {};
 		\node [style=none, fill=white] (18) at (3.2, 1) {$=$};
 		\node [style=none] (19) at (4.95, 2) {};
 		\node [style=none] (20) at (4.95, 1.75) {};
@@ -38,8 +38,8 @@
 		\node [style=none, fill=white, right] (33) at (5.4, 0.05) {};
 		\node [style=none] (34) at (6.2, 0) {};
 		\node [style=none, fill=white, right] (35) at (6.4, 0.05) {};
-		\node [circle, fill=black, scale=.5] (36) at (4.95, 1.5) {};
-		\node [circle, fill=black, scale=.5] (36) at (5.7, 0.5) {};
+		\node [circle, draw=black, fill=white, scale=.5] (36) at (4.95, 1.5) {};
+		\node [circle, draw=black, fill=white, scale=.5] (36) at (5.7, 0.5) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [in=90, out=-90] (1.center) to (2.center);

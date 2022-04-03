@@ -38,7 +38,7 @@
 		\node [style=none, fill=white, right] (36) at (6.2, 4.55) {};
 		\node [style=none] (37) at (4.5, 3) {};
 		\node [style=none] (38) at (3, 2.5) {};
-		\node [circle, fill=black, scale=0.5] (39) at (2, 6) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (39) at (2, 6) {};
 		\node [style=none] (39) at (1.75, 6.75) {};
 		\node [style=none] (40) at (5.25, 6.75) {};
 		\node [style=none] (41) at (5.25, 7.25) {};

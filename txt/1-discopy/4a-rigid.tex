@@ -131,7 +131,7 @@ assert x.r.l == x == x.l.r
 \end{minted}
 \end{example}
 
-\py{rigid.Ob} and \py{rigid.Ty} are implemented as subclasses of \py{cat.Ob} and \py{monoidal.Ty} respectively, with \py{property} methods (i.e. attributes that are computed on the fly) \py{l} and \py{r} for the left and right adjoints.
+\py{rigid.Ob} and \py{rigid.Ty} are subclasses of \py{cat.Ob} and \py{monoidal.Ty} respectively, with \py{property} methods (i.e. attributes that are computed on the fly) \py{l} and \py{r} for the left and right adjoints.
 Thanks to the \py{cast} method, we do not need to override the \py{tensor} method inherited from \py{monoidal.Ty}.
 In turn, subclasses of \py{rigid.Ty} will not need to override \py{l} and \py{r}.
 Similarly, the \py{rigid.Diagram} class is a subclass of \py{monoidal.Diagram}, thanks to the \py{cast} we do not need to reimplement the identity, composition or tensor.
@@ -275,7 +275,7 @@ assert (two_qubit_Bell_state @ qubit ** 2 >> qubit ** 2 @ two_qubit_Bell_effect)
 \end{minted}
 \end{example}
 
-\py{rigid.Functor} is implemented as a subclass of \py{monoidal.Functor} with the \py{__call__} method overriden.
+\py{rigid.Functor} is implemented as a subclass of \py{monoidal.Functor} with the magic method \py{__call__} overriden.
 The image on types and on objects \py{x} with \py{x.z == 0} remains unchanged.
 The image on objects \py{x} with \py{x.z < 0} is defined by \py{F(x) = F(x.r).l} and symmetrically for \py{x.z > 0}.
 Indeed, when defining a strict rigid functor we only need to define the image of basic types, the image of their iterated adjoints is completely determined.

@@ -21,7 +21,7 @@
 		\node [style=none, fill=white, right] (18) at (2.2, 1.55) {$d$};
 		\node [style=none] (19) at (0, 1) {};
 		\node [style=none] (20) at (1.5, 1) {};
-		\node [circle, fill=black, scale=0.5] (21) at (0, 1) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (21) at (0, 1) {};
 		\node [style=none] (21) at (-0.25, 1.75) {};
 		\node [style=none] (22) at (2.25, 1.75) {};
 		\node [style=none] (23) at (2.25, 2.25) {};
@@ -39,7 +39,7 @@
 		\node [style=none, fill=white, right] (35) at (6.45, 2.5) {$b$};
 		\node [style=none] (36) at (4.25, 1.75) {};
 		\node [style=none] (37) at (5.75, 1.75) {};
-		\node [circle, fill=black, scale=0.5] (38) at (4.25, 1.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (38) at (4.25, 1.75) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [in=90, out=-90] (1.center) to (2.center);

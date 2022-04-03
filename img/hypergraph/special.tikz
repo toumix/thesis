@@ -15,8 +15,8 @@
 \node [] (12) at (0.5, 0.25) {};
 \node [] (13) at (0.5, 0.0) {};
 \node [style=none, fill=white, right] (14) at (0.7, 0.04999999999999999) {};
-\node [circle, fill=black, scale=.5] (15) at (0.5, 1.5) {};
-\node [circle, fill=black, scale=.5] (15) at (0.5, 0.5) {};
+\node [circle, draw=black, fill=white, scale=.5] (15) at (0.5, 1.5) {};
+\node [circle, draw=black, fill=white, scale=.5] (15) at (0.5, 0.5) {};
 \node [style=none, fill=white] (15) at (2.2, 1.0) {$=$};
 \node [] (16) at (3.2, 2.0) {};
 \node [] (17) at (3.2, 0.0) {};

@@ -40,7 +40,7 @@ We apply a monoidal functor \py{F} to the diagram for a \py{sentence} to get a c
 DisCoPy then translates it into a \py{pytket.Circuit} which gets executed $2^{10}$ times on the \py{'ibmq_singapore'} backend (a 20-qubit quantum device).
 We then assert that the probability of measuring all zeros is bigger than a $\frac{1}{2}$ threshold, once multiplied by $(\vert \sqrt{2} \vert^2)^3 = 8$ to account for the three scalars.
 What did we achieve?
-We have evaluated (the squared amplitude of) the DisCoCat model of example~\ref{example:discopy-alice-loves-bob} on a quantum computer!
+We have evaluated (the squared amplitude of) the DisCoCat model of example~\ref{example:alice-loves-bob} on a quantum computer!
 Indeed, we have chosen our QNLP model so that the quantum states for words encode their interpretation, e.g. we have sent \py{loves} to an (anti-correlated) Bell state scaled by $\sqrt{2}$ so that \py{F(loves).eval().inside} \py{= [[0, 1], [1, 0]]}.
 Assuming a universal gate set, every complex vector $u \in \C^{2^n}$ can be encoded as a pure quantum circuit $c : \mathtt{qubit}^0 \to \mathtt{qubit}^n$ scaled by a positive real scalar to account for the normalisation, which we can represent as a quantum gate on zero qubits.
 

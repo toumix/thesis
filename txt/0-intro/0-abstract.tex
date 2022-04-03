@@ -1,14 +1,18 @@
 %!TEX root = ../../THESIS.tex
 
 \begin{abstract}
-This thesis introduces a framework for quantum natural language processing (QNLP) based on a simple yet powerful analogy between computational linguistics and quantum mechanics: grammar as entanglement.
+This thesis introduces quantum natural language processing (QNLP) models based on a simple yet powerful analogy between computational linguistics and quantum mechanics: grammar as entanglement.
 The grammatical structure of text and sentences connects the meaning of words in the same way that entanglement structure connects the states of quantum systems.
 Category theory allows to make this language-to-qubit analogy formal: it is a monoidal functor from grammar to vector spaces.
 We turn this abstract analogy into a concrete algorithm that translates the grammatical structure onto the architecture of parameterised quantum circuits.
 We then use a hybrid classical-quantum algorithm to train the model so that evaluating the circuits computes the meaning of sentences in data-driven tasks.
 
-The implementation of these QNLP models led to the development of DisCoPy (Distributional Compositional Python) a toolkit for applied category theory, of which the first chapter gives a comprehensive overview.
-The second chapter defines QNLP models as parameterised functors from grammar to quantum circuits.
+The implementation of QNLP models motivated the development of DisCoPy (Distributional Compositional Python), the toolkit for applied category theory of which the first chapter gives a comprehensive overview.
+String diagrams are the core data structure of DisCoPy, they allow to reason about computation at a high level of abstraction.
+We show how they can encode both grammatical structures and quantum circuits, but also logical formulae, neural networks or arbitrary Python code.
+Monoidal functors allow to translate these abstract diagrams into concrete computation, interfacing with optimised task-specific libraries.
+
+The second chapter uses DisCopy to implement QNLP models as parameterised functors from grammar to quantum circuits.
 It gives a first proof-of-concept for the more general concept of functorial learning: generalising machine learning from functions to functors by learning from diagram-like data.
-In order to learn optimal functor parameters via gradient descent, we introduce the notion of diagrammatic differentiation, a graphical calculus for computing the gradients of quantum circuits and parameterised diagrams in general.
+In order to learn optimal functor parameters via gradient descent, we introduce the notion of diagrammatic differentiation: a graphical calculus for computing the gradients of quantum circuits and parameterised diagrams in general.
 \end{abstract}

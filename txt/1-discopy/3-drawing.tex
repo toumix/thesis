@@ -41,7 +41,7 @@ A \emph{labeling} of progressive plane graph $G$ by a monoidal signature $\Sigma
 From an lgpp (\emph{labeled generic progressive plane}) graph, one can construct a \py{Diagram}.
 
 \begin{python}\label{listing:lgpp2diagram}
-{\normalfont Translation from labeled generic progressive plane graphs to \py{Diagram}.}
+{\normalfont Reading a labeled generic progressive plane graphs as a \py{Diagram}.}
 \vspace{5pt}
 \hrule
 \vspace{-15pt}
@@ -251,11 +251,12 @@ def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
 \begin{proof}
 By induction on \py{n = len(self)}.
 If \py{len(self) == 0} we get that \py{dom == self.dom} and \py{boxes == offsets == []}.
-If the proposition holds for \py{self}, it holds for \py{self >> Layer(left, box, right)}.
+If the proposition holds for \py{self}, then it holds for \py{self} \py{>> Layer(left, box, right)}.
 Indeed, we have:
 \begin{itemize}
 \item \py{dom == self.dom and boxes == self.boxes + [box]}
-\item \py{(x, Node('cod', self.cod[i], i, n)) in graph for i, x in enumerate(scan)}
+\item \py{(x, Node('cod', self.cod[i], i, n)) in graph}\\
+\noindent \py{for i, x in enumerate(scan)}
 \end{itemize}
 Moreover, the horizontal coordinates of the nodes in \py{scan} are strictly increasing,
 thus we get the desired \py{offsets == self.offsets + [len(left)]}.
@@ -335,7 +336,7 @@ The interchange law holds on the nose, i.e. $(G \otimes G') \fcmp (H \otimes H')
 \end{figure}
 
 Thus, we have defined a monoidal category $G(\Sigma)$.
-Given a morphism of monoidal signatures $f : \Sigma \to \Sigma'$, there is a functor $G(f) : G(\Sigma) \to G(\Sigma')$ which sends a graph to itself relabeled with $f \fcmp \lambda$, its image on arrows is given in listing~\ref{listing:G_of_f}.
+Now given a morphism of monoidal signatures $f : \Sigma \to \Sigma'$, we can define a functor $G(f) : G(\Sigma) \to G(\Sigma')$ which sends a graph to itself relabeled with $f \fcmp \lambda$, its image on arrows is given in listing~\ref{listing:G_of_f}.
 Hence, we have defined a functor\footnote
 {For lack of a better notation, we use the same letter $G$ to refer to an arbitrary graph as well as for the functor $G  : \mathbf{Monsig} \to \mathbf{MonCat}$.} $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
 An abstract way to prove this is to appeal to the universal property of free monoidal categories: if the topological and the combinatorial definitions are both free monoidal, they are necessarily isomorphic.
@@ -358,7 +359,7 @@ def G(f: SigMorph) -> Callable[[Graph], Graph]:
 \end{python}
 
 \begin{proposition}\label{proposition:nat-iso}
-There is a natural isomorphism $F \simeq G$ for $F : \mathbf{Monsig} \to \mathbf{MonCat}$ the combinatorial definition of section~\ref{subsection:free-monoidal} and $G : \mathbf{Monsig} \to \mathbf{MonCat}$ the topological definition in terms of labeled generic progressive plane graphs.
+There is a natural isomorphism $F \simeq G$ for $F : \mathbf{Monsig} \to \mathbf{MonCat}$ the combinatorial definition of diagrams in section~\ref{subsection:free-monoidal} and $G : \mathbf{Monsig} \to \mathbf{MonCat}$ the topological definition in terms of labeled generic progressive plane graphs.
 \end{proposition}
 
 \begin{proof}

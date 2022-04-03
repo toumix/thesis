@@ -24,9 +24,9 @@
 		\node [style=none] (24) at (3.25, -0.75) {};
 		\node [style=none] (26) at (2.25, -1) {};
 		\node [style=none] (28) at (3.75, -1) {};
-		\node [circle, fill=black, scale=0.5] (29) at (3.75, -0.5) {};
-		\node [circle, fill=black, scale=0.5] (30) at (3, -0.5) {};
-		\node [circle, fill=black, scale=0.5] (31) at (2.25, -0.5) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (29) at (3.75, -0.5) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (30) at (3, -0.5) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (31) at (2.25, -0.5) {};
 		\node [style=none] (32) at (4.75, 0) {$+$};
 		\node [style=none] (33) at (6.25, 0) {};
 		\node [style=none] (34) at (5.75, 0) {};
@@ -38,9 +38,9 @@
 		\node [style=none] (40) at (7, -1) {};
 		\node [style=none] (41) at (6, -1) {};
 		\node [style=none] (42) at (6.5, -1) {};
-		\node [circle, fill=black, scale=0.5] (43) at (6.5, -0.75) {};
-		\node [circle, fill=black, scale=0.5] (44) at (6.25, -0.25) {};
-		\node [circle, fill=black, scale=0.5] (45) at (6, -0.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (43) at (6.5, -0.75) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (44) at (6.25, -0.25) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (45) at (6, -0.75) {};
 		\node [style=none] (46) at (2.75, -1) {};
 		\node [style=none] (47) at (3.25, -1) {};
 		\node [style=none] (48) at (5.5, -1) {};

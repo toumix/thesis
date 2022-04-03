@@ -50,7 +50,7 @@ The category of matrices $\mathbf{Mat}_\S$ with entries in a rig $\S$ with the K
 \end{example}
 
 \begin{example}
-The category $\mathbf{Pyth}$ with \py{tuple[type, ...]} as objects and \py{Function} as arrows is premonoidal with \py{tuple} as tensor.
+The category $\mathbf{Pyth}$ with \py{tuple} as tensor is premonoidal.
 Every pure function is in the center $Z(\mathbf{Pyth})$, but the converse is not necessarily true: take the side effect $f : x \to 1$ which increments a private, internal counter every time it is called.
 It is impure, but not enough that we can observe it by parallel composition, i.e. although it does not commute with copy and discard, it can still be interchanged with any other function.
 In other words, it is in the monoidal center, but not the cartesian center (i.e. the subcategory of comonoid homomorphisms).
@@ -146,7 +146,8 @@ The composition method calls a \py{pushout} subroutine which takes as input the 
 The three properties for bijective, monogamous and progressive diagrams implement the subcategory of compact closed, traced and symmetric diagrams respectively.
 The three corresponding methods take a diagram and add explicit boxes for spiders, cups and caps so that \py{f.make_bijective().is_bijective} for all \py{f: Diagram} and similarly for monogamous and progressive.
 The \py{downgrade} method calls \py{make_progressive} to construct a \py{compact.Diagram} with explicit boxes for swaps and spiders.
-The \py{cast} applies a \py{compact.Functor} so that \py{cast(f.downgrade()) == f} on the nose for any \py{f: Diagram} and \py{cast(f).downgrade()} is equal to any \py{f: compact.Diagram} up to the special commutative Frobenius axioms.
+
+The method \py{cast} applies a \py{compact.Functor} so that \py{cast(f.downgrade()) == f} on the nose for any \py{f: Diagram} and \py{cast(f).downgrade()} is equal to any \py{f: compact.Diagram} up to the special commutative Frobenius axioms.
 The \py{draw} method uses a randomised force-based layout algorithm for graphs to compute an embedding from the hypergraph diagram to the plane where wires do not cross too much.
 This is still an experimental feature and the results of \py{f.draw()} usually look much worse than the drawing of \py{f.downgrade().draw()} using the deterministic algorithm of section~\ref{section:drawing}.
 
@@ -239,7 +240,7 @@ They then used DisCoPy to encode every sentence of Alice in Wonderland as a diag
 
 \subsection{Towards higher-dimensional diagrams}\label{subsection:towards-higher}
 
-The premonoidal approach is also well-suited to be generalised from two-dimensional diagrams to arbitrary dimensions.
+The premonoidal approach is also well-suited to be generalised from two- to arbitrary-dimensional diagrams.
 The first step would be to add some colours to our diagrams, generalising them from monoidal categories to (strict) \emph{2-categories}, or equivalently from premonoidal categories to \emph{sesquicategories}.
 The data for a sesquicategory $C$ is given by:
 \begin{itemize}

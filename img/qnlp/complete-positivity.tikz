@@ -74,8 +74,8 @@
 		\node [style=none] (72) at (6.75, 1) {};
 		\node [style=none] (73) at (6.75, 0.75) {};
 		\node [style=none, fill=white, right] (74) at (6.95, 0.8) {$c$};
-		\node [circle, fill=black, scale=0.5] (75) at (6.75, 6.5) {};
-		\node [circle, fill=black, scale=0.5] (76) at (6.75, 1.5) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (75) at (6.75, 6.5) {};
+		\node [circle, draw=black, fill=white, scale=0.5] (76) at (6.75, 1.5) {};
 		\node [style=none] (77) at (5, 4.25) {};
 		\node [style=none] (78) at (7.5, 4.25) {};
 		\node [style=none] (79) at (7.5, 4.75) {};
