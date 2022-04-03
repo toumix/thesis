@@ -10288,6 +10288,79 @@
       \field{year}{2019}
       \field{dateera}{ce}
     \endentry
+    \entry{KluyverEtAl16}{inproceedings}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=282b5d6fe909cc357c8dd473058b8fdc}{%
+           family={Kluyver},
+           familyi={K\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=bf54c6dcf9d9a7e4407531fa9b9d3109}{%
+           family={Ragan-Kelley},
+           familyi={R\bibinithyphendelim K\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=5de35d0202422daf0351f0bb10387179}{%
+           family={Pérez},
+           familyi={P\bibinitperiod},
+           given={Fernando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=93abc4653e2a8fc14b89ed3a89ff7033}{%
+           family={Granger},
+           familyi={G\bibinitperiod},
+           given={Brian\bibnamedelima E},
+           giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=7f34166865a83ff30f9d4413ef06b9c4}{%
+           family={Bussonnier},
+           familyi={B\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0f7d9893defe60d76157e1cadb5400c0}{%
+           family={Frederic},
+           familyi={F\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=deedcc61b45535cf6338ad78ce8f8232}{%
+           family={Kelley},
+           familyi={K\bibinitperiod},
+           given={Kyle},
+           giveni={K\bibinitperiod}}}%
+        {{hash=19e13f3584f966efb0195e57215f6b54}{%
+           family={Hamrick},
+           familyi={H\bibinitperiod},
+           given={Jessica\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=fd289a69d047befbdbf4cdb8c13e5114}{%
+           family={Grout},
+           familyi={G\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+        {{hash=983b7e23a76250681fa9f1b243743ee6}{%
+           family={Corlay},
+           familyi={C\bibinitperiod},
+           given={Sylvain},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{48035973e2ebb91d3445f30ca56d312f}
+      \strng{fullhash}{90d0ba29903674131be3a4f036209337}
+      \strng{bibnamehash}{90d0ba29903674131be3a4f036209337}
+      \strng{authorbibnamehash}{90d0ba29903674131be3a4f036209337}
+      \strng{authornamehash}{48035973e2ebb91d3445f30ca56d312f}
+      \strng{authorfullhash}{90d0ba29903674131be3a4f036209337}
+      \field{labelalpha}{Klu+16}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{{ELPUB}}}
+      \field{title}{Jupyter {{Notebooks-a}} Publishing Format for Reproducible Computational Workflows.}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{pages}{87\bibrangedash 90}
+      \range{pages}{4}
+    \endentry
     \entry{Knuth68a}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=fcbea740aeb72b8e941e0d4aa9f6a9c6}{%
