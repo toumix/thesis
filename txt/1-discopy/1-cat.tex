@@ -27,7 +27,7 @@ Note that we play with the overloaded meaning of the word \emph{class}: we use i
 Reading it in the latter sense, $\dom$ and $\cod$ are \emph{attributes} of the arrow class, $\then$ is a \emph{method}, $\id$ is a \emph{static method}.
 Thus, the Python implementation of a category is nothing but a pair of classes \py{Ob} and \py{Arrow} for objects and arrows, together with four methods $\dom, \cod, \then$ and $\id$ .
 The \py{Category} class is nothing but a named tuple with two attributes \py{ob} and \py{ar} for its object and arrow class respectively.
-The axioms can be implemented as (necessarily non-exhaustive) software tests, however Python has no formal semantics so there is no hope for to formally verify them.
+The axioms can be implemented as (necessarily non-exhaustive) software tests, however Python has no formal semantics so there is no hope to formally verify them.
 
 The data for a \emph{functor} $F : C \to D$ between two categories $C$ and $D$ is given by a pair of overloaded functions $F : C_0 \to D_0$ and $F : C_1 \to D_1$ such that:
 \begin{itemize}
