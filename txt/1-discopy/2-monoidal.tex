@@ -823,8 +823,10 @@ There is also a node for each box and an edge from that box node to its domain a
 First, we initialise the graph of the identity diagram and feed the objects of its codomain as input to the decorated function.
 When a box is applied to a list of nodes, it adds edges going into each object of its domain and returns nodes for each object of its codomain.
 Finally, the return value of the decorated function is taken as the codomain of the whole diagram.
-{\blue here transition is unclear, do you use the diagram2graph method to diagramize functions?
-what does the code below have to do with tacit/explicit programming?}
+
+The \py{graph2diagram} algorithm which translates the resulting graph into a diagram will be covered in the next section.
+It will allow to automatically read \emph{pictures of diagrams} (i.e. matrices of pixels) and translate them into \py{Diagram} objects.
+Listing~\ref{listing:diagram2graph} shows the implementation of the inverse translation \py{diagram2graph} which outputs only planar graphs as we will show in the next section by constructing their embedding in the plane, i.e. their drawing.
 
 \begin{python}\label{listing:diagram2graph}
 {\normalfont Translation from \py{Diagram} to \py{Graph}.}
@@ -859,11 +861,8 @@ def diagram2graph(diagram: Diagram) -> Graph:
 \end{minted}
 \end{python}
 
-The \py{graph2diagram} algorithm which translates the resulting graph into a diagram will be covered in the next section.
-It will allow to automatically read \emph{pictures of diagrams} (i.e. matrices of pixels) and translate them into \py{Diagram} objects.
 Note that in order to construct a \py{monoidal.Diagram} we need to assume \emph{plane graphs} as input, i.e. graphs with an embedding in the plane.
 This means the \py{diagramize} method cannot accept functions which swap the order of variables such as \py{lambda x, y: y, x}.
 We also need to assume that every codomain node is connected to exactly one domain node.
 In terms of Python functions, this means we have to use every variable exactly once.
 In section~\ref{section:extra structure} we will discuss the case of diagrams induced by non-planar graphs, with potentially multiple edges between domain and codomain nodes.
-Listing~\ref{listing:diagram2graph} shows the implementation of the inverse translation \py{diagram2graph} which outputs only planar graphs as we will show in the next section by constructing their embedding in the plane, i.e. their drawing.

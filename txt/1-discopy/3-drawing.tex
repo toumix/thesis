@@ -306,11 +306,8 @@ DisCoPy can output these proofs as videos using \py{Diagram.normalize} to iterat
 \subsection{A natural isomorphism}
 
 We have established an isomorphism between the class of lgpp graphs (up to progressive deformation) and the class of \py{Diagram} objects (up to interchanger).
-It remains to show that this actually forms an isomorphism of monoidal categories.
-{\blue It is unclear what you're 'proving' below, are you going through Joyal and
-Street's proof that lgpp graphs are the morphisms of the free moncat? If so then
-say it, otherwise clarify what this section is about}
-That is for every monoidal signature $\Sigma$, there is a monoidal category $G(\Sigma)$ with objects $\Sigma_0^\star$ and arrows the equivalence classes of lgpp graphs with labels in $\Sigma$.
+It remains to define lgpp graphs as the arrows of a monoidal category, i.e. to define identity, composition and tensor.
+For every monoidal signature $\Sigma$, there is a monoidal category $G(\Sigma)$ with objects $\Sigma_0^\star$ and arrows the equivalence classes of lgpp graphs with labels in $\Sigma$.
 The domain and codomain of an arrow is given by the labels of the domain and codomain of the graph.
 The identity $\id(x_1 \dots x_n)$ is the graph with wires $(i, a) \to (i, b)$ for $i \leq n$ and $a, b \in \R$ the horizontal boundaries.
 The tensor of two graphs $G$ and $G'$ is given by horizontal juxtaposition, i.e. take $w = \max(p_0(G)) + 1$ the right-most point of $G$ plus a margin and set $G \otimes G' = G \cup \{ (p_0(x) + w, p_1(x)) \ \vert \ x \in G' \}$.
@@ -340,6 +337,7 @@ The interchange law holds on the nose, i.e. $(G \otimes G') \fcmp (H \otimes H')
 Thus, we have defined a monoidal category $G(\Sigma)$.
 Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, there is a functor $G(f) : G(\Sigma) \to G(\Gamma)$ which sends a graph to itself relabeled with $f \fcmp \lambda$, its image on arrows is given in listing~\ref{listing:G_of_f}.
 Hence, we have defined a functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
+An abstract way to prove this is to appeal to the universal property of free monoidal categories: if the topological and the combinatorial definitions are both free monoidal, they are necessarily isomorphic.
 
 \begin{python}\label{listing:G_of_f}
 {\normalfont Implementation of the functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$.}

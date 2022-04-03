@@ -2,7 +2,8 @@
 
 \subsection{Traced categories} \label{subsection:traced}
 
-, i.e. the free symmetric monoidal category $C$ with a family of functions $\mathtt{trace}_x(a, b) : C(a \otimes x, b \otimes x) \to C(a, b)$ subject to axioms that formalise the intuition that we can trace a morphism $f : a \otimes x \to b \otimes x$ by connecting its input and output $x$-wires in a loop~\cite{JoyalEtAl96}.
+The category $\mathbf{Pyth}$ has another categorical structure in common with hypergraph categories like $\mathbf{Tensor}$: they are both \emph{traced symmetric categories}.
+A symmetric category is traced when it comes equipped with a family of functions $\mathtt{trace}_x(a, b) : C(a \otimes x, b \otimes x) \to C(a, b)$ subject to axioms that formalise the intuition that we can trace a morphism $f : a \otimes x \to b \otimes x$ by connecting its input and output $x$-wires in a loop, see Joyal et al.~\cite{JoyalEtAl96}.
 
 Every compact closed category has a trace given by cups and caps, traced symmetric categories allow to express recursion and fixed points more generally in non-rigid categories.
 Indeed in the case of a cartesian category such as $\mathbf{Pyth}$, the trace can equivalently be given in terms of \emph{fixed point operators} $\mathtt{fix}_x : C(a \times x, x) \to C(a, x)$~\cite[Proposition~6.8]{Selinger10}.

@@ -1,6 +1,6 @@
 %!TEX root = ../../THESIS.tex
 
-\subsection{Variational quantum question answering}
+\subsection{Variational quantum question answering}\label{subsection:vqqa}
 
 The previous section introduced the idea of using gradient descent to learn DisCoCat models $F : \G \to \mathbf{Mat}_\C$ from data, we now discuss how to apply the same functorial learning approach in order to learn QNLP models $F : \G \to \mathbf{Circ}$.
 There are two main challenges: 1) we need a way to load our model onto a quantum machine, i.e. encode word embeddings as parameterised quantum circuits, 2) we need a way to train the model, i.e. to compute the optimal parameters in some data-driven task.

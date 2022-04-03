@@ -52,7 +52,8 @@ This includes an implementation of:
 \item the syntax for diagrams in free hypergraph categories, i.e. with coherent special commutative Frobenius algebras on each object (section~\ref{subsection:hypergraph}),
 \item the syntax for diagrams in free cartesian and cocartesian diagrams (section~\ref{subsection:cartesian}) with $\mathbf{Pyth}$ as an example of a \emph{rig category} with two monoidal structures (listing~\ref{listing:python-co-cartesian}),
 \item the free biproduct completion as the category of matrices with arrows as entries (section~\ref{subsection:biproducts}), taking quantum measurements as example (\ref{example:biproduct-measurement}),
-\item the syntax for diagrams in closed monoidal categories (section~\ref{subsection:closed}) with currying of functions in $\mathbf{Pyth}$ as example (\ref{example:closed-function}).
+\item the syntax for diagrams in closed monoidal categories (section~\ref{subsection:closed}) with currying of functions in $\mathbf{Pyth}$ as example (\ref{example:closed-function}),
+\item an implementation of $\mathbf{Pyth}$ as a traced cartesian and cocartesian category (listing~\ref{listing:traced-python}) and $\mathbf{Mat}_\B \simeq \mathbf{FinRel}$ as a traced biproduct category (listing~\ref{listing:traced-matrix}).
 \end{itemize}
 
 \item We discuss the relationship between our premonoidal approach and the existing graph-based data structures for diagrams in symmetric monoidal categories.
@@ -60,7 +61,6 @@ This includes:
 \begin{itemize}
 \item a comparison between our definition of \emph{premonoidal diagrams} as lists of layers and the free premonoidal category as a state construction over a monoidal category (section~\ref{subsection:state-construction}),
 \item a definition of \emph{hypergraph diagrams}, i.e. the arrows of free hypergraph categories, and the subcategories of compact, traced and symmetric diagrams (section~\ref{subsection:hypergraph-diagrams}),
-\item an implementation of $\mathbf{Pyth}$ as a traced cartesian and cocartesian category (listing~\ref{listing:traced-python}) and $\mathbf{Mat}_\B \simeq \mathbf{FinRel}$ as a traced biproduct category (listing~\ref{listing:traced-matrix}),
 \item an implementation of hypergraph diagrams and its comparison with premonoidal diagrams (section~\ref{subsection:hypergraph-vs-premonoidal}),
 \item an implementation of free sesquicategories (i.e. 2-categories without interchangers) with \emph{coloured diagrams} as 2-cells (listing~\ref{listing:free-sesquicategory}),
 \item an implementation of $\mathbf{Cat}$ as a sesquicategory with (not-necessarily-natural) transformations as 2-cells (listing~\ref{listing:Transformation}),
@@ -70,26 +70,23 @@ This includes:
 
 The second chapter deals with QNLP, building on \cite{MeichanetzidisEtAl20,CoeckeEtAl20,MeichanetzidisEtAl20a}.
 It was joint work with Bob Coecke, Giovanni de Felice and Konstantinos Meichanetzidis.
-Although we shared a common office, Stefano Gogioso arrived at the same ideas independently with his collaborator Nicolò Chiappori.
-\begin
-{itemize}
-\item We define QNLP models as functors from grammar to quantum circuits and show that any DisCoCat model can be implemented in this way.
-\item We show how our snake removal algorithm can reduce both the required number of qubits and the amount of post-selection.
-\item We introduce a hybrid classical-quantum algorithm to train QNLP models on a question-answering task.
+\begin{itemize}
+\item Section~\ref{section:NLP} gives a very short introduction to QNLP, from Chomskyan grammars and ambiguity (\ref{subsection:chomsky}) to DisCocat models via the Lambek calculus and Montague semantics (\ref{subsection:lambek-discocat}).
+We conclude with a discussion of previous work on anaphora and the quantum complexity of language (\ref{section:anaphora}).
+\item Section~\ref{section:discocat-qnlp} defines QNLP models as functors from grammar to quantum circuits and show that any DisCoCat model can be implemented in this way.
+We discuss our implementation of classical-quantum channels and mixed quantum circuits (\ref{section:mixed-circuits}) and the use of our snake removal algorithm to reduce both the number of qubits and the amount of post-selection required for QNLP models (\ref{subsection:snake-removal}).
+\item We review previous implementations of DisCoCat models and study their relationship with \emph{knowledge graph embeddings} (\ref{subsection:kge}) and  hybrid classical-quantum algorithm to train QNLP models on a question-answering task (\ref{subsection:vqqa}).
 The underlying idea of \emph{functorial learning}, i.e. learning structure-preserving functors from diagram-like data, provides a theoretical framework for machine learning on structured data.
-\end
-{itemize}
-The last section introduces \emph{diagrammatic differentiation}, a graphical calculus for computing the gradients of parameterised diagrams which applies to the training of QNLP models but also to functorial learning in general.
-Most of the material has been published in joint work with Richie Yeung and Giovanni de Felice~\cite{ToumiEtAl21a}.
-\begin
-{itemize}
-\item We generalise the dual number construction from rings to monoidal categories. Dual diagrams are formal sums of a string diagram (the real part) and its derivative with respect to some parameter (the epsilon part).
-\item We introduce graphical gadgets called bubbles, which can encode arbitrary unary operators on monoidal categories.
-In particular, they encode differentiation of diagrams and allow to express the standard rules of calculus (linearity, product, chain) entirely in terms of diagrams.
-\item We study diagrammatic differentiation for the ZX calculus.
-In the pure case, this allows to compute the gradients of linear maps with respect to phase parameters.
-In the mixed classical-quantum case, this yields a definition of the parameter-shift rules used in quantum machine learning.
-\item We define the gradient of QNLP models and any parameterised functor.
+\end{itemize}
+The last section has been published in joint work with Richie Yeung and Giovanni de Felice~\cite{ToumiEtAl21a}.
+It introduces \emph{diagrammatic differentiation}, a graphical calculus for computing the gradients of parameterised diagrams which applies to the training of QNLP models but also to functorial learning in general.
+\begin{itemize}
+\item In section~\ref{2-dual-diagrams}, we generalise the dual number construction from rings to monoidal categories. Dual diagrams are formal sums of a string diagram (the real part) and its derivative with respect to some parameter (the epsilon part).
+We use bubbles to encode differentiation of diagrams and express the standard rules of calculus (linearity, product, chain) entirely in terms of diagrams.
+\item In section~\ref{2b-differentiating-zx}, we study diagrammatic differentiation for the ZX calculus.
+This allows to compute the gradients of linear maps with respect to phase parameters.
+\item In section~\ref{3-dual-circuits}, we look at the diagrammatic differentiation of mixed quantum circuits, this yields a definition of the parameter-shift rules used in quantum machine learning.
+\item In section~\ref{4-bubbles}, we define the gradient of diagrams with bubbles in terms of the chain rule. This allows to differentiate quantum circuits with neural networks as classical post-processing.
 \end{itemize}
 
 \section*{Publications}
