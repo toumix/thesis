@@ -282,7 +282,7 @@ rigid_cartesian_implies_trivial.draw()
 \ctikzfig{img/hypergraph/rigid-cartesian-implies-trivial}
 \end{example}
 
-The equality of hypergraph diagrams reduces to hypergraph isomorphism, it will be discussed in section~\ref{subsection:hypergraph-diagrams}.
+The equality of hypergraph diagrams reduces to hypergraph isomorphism, it will be discussed in section~\ref{subsection:hypergraph-vs-premonoidal}.
 The equality of non-commutative spiders is not implemented yet, spider fusion would be a natural extension of the snake removal algorithm for rigid diagrams: we find pairs fusable spiders then apply interchangers to make them adjacent.
 The possible obstructions are more serious for spiders than for cups and caps however, for example consider the diagram $\spider_{0, 3}(x) \ \fcmp \ x \otimes f \otimes g \ \fcmp \ \spider_{3, 0}(x)$.
 The two three-legged spiders want to fuse but the boxes $f$ and $g$ stand on the way, the best we can do is to bend their output wires with two cups and get a four-legged spider $\spider_{0, 4}(x) \ \fcmp \ x \otimes f \otimes g \otimes x \ \fcmp \ \ttcup(x) \otimes \ttcup(x)$.

@@ -280,12 +280,12 @@ The data for a signature is given by a tuple $\Sigma = (\Sigma_0, \Sigma_1, \dom
     \item $\Sigma_1$ is a set of \emph{generating arrows}, which we will also call \emph{boxes},
     \item $\dom, \cod : \Sigma_1 \to \Sigma_0$ are the domain and codomain.
 \end{itemize}
-A morphism of signatures $f : \Sigma \to \Gamma$ is a pair of overloaded functions $f : \Sigma_0 \to \Gamma_0$ and $f : \Sigma_1 \to \Gamma_1$ such that $f \fcmp \dom = \dom \fcmp f$ and $f \fcmp \cod = \cod \fcmp f$.
+A morphism of signatures $f : \Sigma \to \Sigma'$ is a pair of overloaded functions $f : \Sigma_0 \to \Sigma'_0$ and $f : \Sigma_1 \to \Sigma'_1$ such that $f \fcmp \dom = \dom \fcmp f$ and $f \fcmp \cod = \cod \fcmp f$.
 Thus, signatures and their morphisms form a category $\mathbf{Sig}$ and there is a faithful functor $U : \mathbf{Cat} \to \mathbf{Sig}$ which sends a category to its underlying signature: it forgets the identity and composition.
 Signatures may be thought of as directed multigraphs \emph{with an attitude}~\cite{NLab}.
 Given a signature $\Sigma$, we can define a category $F(\Sigma)$ with nodes as objects and \emph{paths as arrows}.
 More precisely, an arrow $f : x \to y$ is given by a length $n \in \N$ and a list $f_1, \dots, f_n \in \Sigma_1$ with $\dom(f_1) = x$, $\cod(f_n) = y$ and $\cod(f_i) = \dom(f_{i + 1})$ for all $i < n$.
-Given a morphism of signatures $f : \Sigma \to \Gamma$, we get a functor $F(f) : F(\Sigma) \to F(\Gamma)$ relabeling boxes in $\Sigma$ by boxes in $\Gamma$.
+Given a morphism of signatures $f : \Sigma \to \Sigma'$, we get a functor $F(f) : F(\Sigma) \to F(\Sigma')$ relabeling boxes in $\Sigma$ by boxes in $\Sigma'$.
 Thus, we have defined a functor $F : \mathbf{Sig} \to \mathbf{Cat}$, it remains to show that it indeed forms an adjunction $F \dashv U$.
 This is very similar to the monoid case: the unit sends a box in a signature to the path of just itself, the counit sends a path of arrows in a category to their composition.
 Equivalently, we have a natural isomorphism $\mathbf{Cat}(F(\Sigma), C) \simeq \mathbf{Sig}(\Sigma, U(C))$: to define a functor $F(\Sigma) \to C$ from a free category is the same as to define a morphism of signatures $\Sigma \to U(C)$.

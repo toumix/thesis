@@ -9,7 +9,7 @@ With a more restricted language, we get a broader range of possible interpretati
 For example, there can be only one cartesian closed structure on $\mathbf{Cat}$ (because any other would be naturally isomorphic) but are there any other monoidal closed structures?
 Foltz, Lair and Kelly~\cite{FoltzEtAl80} answer the question with the positive: $\mathbf{Cat}$ has exactly two closed structures: the usual cartesian closed structure with the exponential $D^C$ given by the category of functors $C \to D$ and natural transformations, and a second one where the exponential $C \Rightarrow D$ is given by the category of functors $C \to D$ and \emph{transformations}, with no naturality requirement.
 
-The corresponding tensor product on $\mathbf{Cat}$, i.e. the left-adjoint $C \Box - \dashv C \Rightarrow -$, is called the \emph{funny tensor product}, maybe because mathematicians thought it was funny not to require naturality.
+The corresponding tensor product on $\mathbf{Cat}$, i.e. the left adjoint $C \Box - \dashv C \Rightarrow -$, is called the \emph{funny tensor product}, maybe because mathematicians thought it was funny not to require naturality.
 More explicitly, the funny tensor $C \Box D$ can be described as the push-out of $C \times D_0 \leftarrow C_0 \times D_0 \to C_0 \times D$ where $C_0, D_0$ are the discrete categories of objects, or equivalently as a quotient of the coproduct $(C \times D_0 + C_0 \times D) / R$ where the relations are given by $(0, \id(x), y) = (1, x, \id(y))$.
 Even more explicitly, the objects of $C \Box D$ are given by the cartesian product $C_0 \times D_0$, the arrows are alternating compositions $(0, f_1, y_1) \fcmp (1, x_2, g_2) \fcmp \dots \fcmp (0, f_{n - 1}, y_{n -1}) \fcmp (1, x_n, g_n)$ of arrows in one category paired with an object of the other.
 When the two categories are in fact monoids, the funny tensor is called the \emph{free product} because it sends free monoids to free monoids, i.e. $X^\star \Box Y^\star = (X + Y)^\star$.
@@ -94,7 +94,7 @@ Another advantage of representing string diagrams with lists rather than graphs 
 Similarly, the algorithm for drawing premonoidal diagrams requires almost no choices, the order of wires and boxes is fixed, we can only choose their shape and the spacing between them.
 On the other hand, drawing graphs requires complex heuristics and graphical interfaces in order to get satisfying results.
 
-\subsection{Hypergraph, compact, traced, symmetric}\label{subsection:hypergraph-diagrams}
+\subsection{Hypergraph versus premonoidal diagrams}\label{subsection:hypergraph-vs-premonoidal}
 
 In order to compare the two approaches, we need to say a few words about how string diagrams for symmetric categories are implemented.
 Recall from sections~\ref{subsection:symmetric} and \ref{subsection:hypergraph} that equality of diagrams in symmetric and hypergraph categories reduce to graph and hypergraph isomorphisms respectively.
@@ -135,8 +135,6 @@ The resulting category of progressive hypergraph diagrams up to progressive inte
 If we remove the interchanger quotient, we get premonoidal versions of free hypergraph, compact closed, traced and symmetric categories.
 Traced preonoidal categories were introduced by Benton and Hyland~\cite{BentonHyland03} in order to model recursion in the presence of side-effects.
 To the best of our knowledge, no one has ever considered premonoidal compact closed categories: the snake equations still hold but we cannot yank the snakes away if there are obstructions, i.e. the snake removal algorithm of section~\ref{section:monoidal} does not apply.
-
-\subsection{Hypergraph versus premonoidal diagrams}\label{subsection:hypergraph-vs-premonoidal}
 
 At every level of this symmetric-traced-compact-hypergraph hierarchy, premonoidal diagrams have the same linear-time algorithm for deciding equality, the data structure for hypergraph diagrams faithfully encode the premonoidal axioms without needing to compute any quotient: normal form becomes identity.
 Now suppose we want to compute the interpretation of such a hypergraph diagram in a category given only access to its methods for identity, composition, tensor, swaps and spiders.

@@ -155,7 +155,7 @@ Again, nothing more than defining a pair of classes for objects and arrows with 
 Less trivially, we want to implement the arrows of \emph{free monoidal categories} which can then be interpreted in arbitrary monoidal categories via the application of monoidal functors: this is the content of the \py{discopy.monoidal} module.
 As in the case of free categories, free monoidal categories will be the image of a functor $F : \mathbf{MonSig} \to \mathbf{MonCat}$, the left adjoint to the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$ from monoidal categories to \emph{monoidal signatures}.
 A monoidal signature $\Sigma$ is a monoidal category without identity, composition or tensor: a pair of sets $\Sigma_0, \Sigma_1$ and a pair of functions $\dom, \cod : \Sigma_1 \to \Sigma_0^\star$ from boxes to lists of objects.
-A morphism of monoidal signatures $f : \Sigma \to \Gamma$ is a pair of functions $f : \Sigma_0 \to \Gamma_0$ and $f : \Sigma_1 \to \Gamma_1$ with $f \fcmp \dom = \dom \fcmp f^\star$ and $f \fcmp \cod = \cod \fcmp f^\star$.
+A morphism of monoidal signatures $f : \Sigma \to \Sigma'$ is a pair of functions $f : \Sigma_0 \to \Sigma'_0$ and $f : \Sigma_1 \to \Sigma'_1$ with $f \fcmp \dom = \dom \fcmp f^\star$ and $f \fcmp \cod = \cod \fcmp f^\star$.
 Thus, we have defined the category $\mathbf{MonSig}$ of monoidal signatures and their morphisms.
 In order to define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$, we will need the following technical lemma.
 
@@ -261,7 +261,7 @@ class Tensor(Tensorable, Matrix):
 \end{minted}
 \end{python}
 
-\subsection{Free monoidal categories}
+\subsection{Free monoidal categories}\label{subsection:free-monoidal}
 
 Now how do we go on constructing the left adjoint $F : \mathbf{MonSig} \to \mathbf{MonCat}$?
 In the same way that lists in the free monoid $X^\star$ can be defined as equivalence classes of expressions built from generators in $X$, product and unit, we can construct the arrows of the free monoidal category $F(\Sigma)$ as equivalence classes of expressions built from boxes in $\Sigma_1$, identity, composition and tensor.
@@ -269,7 +269,7 @@ In order to find good representatives for these equivalence classes, we will nee
 
 \begin{definition}
 Given a monoidal signature $\Sigma$, we define a signature of \emph{layers} $L(\Sigma)$ with $\Sigma_0^\star$ as objects and triples $(x, f, y) \in \Sigma_0^\star \times \Sigma_1 \times \Sigma_0^\star$ as boxes with $\dom(x, f, y) = x \dom(f) y$ and $\cod(x, f, y) = x \cod(f) y$.
-Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, we get a morphism between their signatures of layers $L(f) : L(\Sigma) \to L(\Gamma)$.
+Given a morphism of monoidal signatures $f : \Sigma \to \Sigma'$, we get a morphism between their signatures of layers $L(f) : L(\Sigma) \to L(\Sigma')$.
 Thus, we have defined a functor $L : \mathbf{MonSig} \to \mathbf{Sig}$.
 \end{definition}
 
@@ -321,7 +321,7 @@ First, we define the \emph{whiskering} $f \otimes z$ of a diagram $f$ by an obje
 Then, we can define the tensor $f \otimes g$ of two diagrams $f : x \to y$ and $g : z \to w$ in terms of whiskering $f \otimes g = f \otimes z \s \fcmp \s y \otimes g$.
 Note that we could have chosen to define $f \otimes g = x \otimes g \fcmp f \otimes w$, the two definitions are equated by the interchanger.
 
-Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, we get a monoidal functor $F(f) : F(\Sigma) \to F(\Gamma)$ by relabeling: we have defined a functor $F : \mathbf{MonSig} \to \mathbf{MonCat}$.
+Given a morphism of monoidal signatures $f : \Sigma \to \Sigma'$, we get a monoidal functor $F(f) : F(\Sigma) \to F(\Sigma')$ by relabeling: we have defined a functor $F : \mathbf{MonSig} \to \mathbf{MonCat}$.
 We now have to show that it is indeed the left adjoint of $U : \mathbf{MonCat} \to \mathbf{MonSig}$.
 This is very similar to the monoid case.
 The unit $\eta_\Sigma : \Sigma \to U(F(\Sigma))$ sends objects to themselves and boxes $f : x \to y \in \Sigma$ to diagrams $(1, f, 1) \in L(\Sigma)$, i.e. the layer with empty lists on both sides of $f$.

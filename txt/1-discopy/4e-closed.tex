@@ -90,7 +90,7 @@ Its left adjoint $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$ can be constructe
 First, we define a \emph{closed signature} as a signature $\Sigma$ with a pair of binary operators $(- / -), \ (- \backslash -) : \Sigma_0 \times \Sigma_0 \to \Sigma_0$, i.e. for every pair $x, y \in \Sigma_0$ there are two generating objects $x / y, \ y \backslash x \in \Sigma_0$.
 A closed monoidal signature is both a monoidal signature (i.e. its generating objects are a free monoid) and a closed signature.
 Morphisms of closed monoidal signatures are defined in the obvious way, thus we get a category $\mathbf{CMonSig}$ with two forgetful functors $U : \mathbf{CCCat} \to \mathbf{CMonSig}$ and $U : \mathbf{CMonSig} \to \mathbf{MonSig}$.
-The left-adjoint $F^C : \mathbf{MonSig} \to \mathbf{CMonSig}$ takes a monoidal signature and freely adds extra objects for the over and under slashes, it can be defined by induction on the number of nested slashes.
+The left adjoint $F^C : \mathbf{MonSig} \to \mathbf{CMonSig}$ takes a monoidal signature and freely adds extra objects for the over and under slashes, it can be defined by induction on the number of nested slashes.
 Now we can define the left adjoint $F : \mathbf{CMonSig} \to \mathbf{CCCat}$ as a quotient of the free cartesian category with boxes for evaluations, bubbles for currying (i.e. by induction on the number of nested curryings) and relations given by the axioms for natural isomorphisms.
 Composing the two adjunctions we get $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$.
 

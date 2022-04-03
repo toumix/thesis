@@ -244,14 +244,14 @@ def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
 \end{minted}
 \end{python}
 
-\begin{theorem}\label{theorem:graph2diagram(self.draw())}
+\begin{proposition}\label{proposition:graph2diagram(self.draw())}
 \py{graph2diagram(self.draw()) == self} for all \py{self: Diagram}.
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 By induction on \py{n = len(self)}.
 If \py{len(self) == 0} we get that \py{dom == self.dom} and \py{boxes == offsets == []}.
-If the theorem holds for \py{self}, it holds for \py{self >> Layer(left, box, right)}.
+If the proposition holds for \py{self}, it holds for \py{self >> Layer(left, box, right)}.
 Indeed, we have:
 \begin{itemize}
 \item \py{dom == self.dom and boxes == self.boxes + [box]}
@@ -271,9 +271,9 @@ A deformation $h : G \to G'$ between two labeled plane graphs $G, G'$ is a conti
 A deformation is progressive (generic) when $h(G, t)$ is progressive (generic) for all $t \in [0, 1]$.
 We write $G \sim G'$ when there exists some deformation $h : G \to G'$, this defines an equivalence relation.
 
-\begin{theorem}\label{theorem:g2d then d2g}
+\begin{proposition}\label{proposition:g2d then d2g}
 For all lgpp graphs $G$, \py{Diagram.draw(graph2diagram(} $G$ \py{))} $\sim G$ up to generic progressive deformation.
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 By induction on the length of $\boxes(G)$.
@@ -287,9 +287,9 @@ This deformation is indeed progressive, i.e. we never bend wires we only make th
 It is also generic, i.e. we never move a box node past another.
 \end{proof}
 
-\begin{theorem}\label{theorem:d2g then g2d}
+\begin{proposition}\label{proposition:d2g then g2d}
 There is a progressive deformation $h : G \to G'$ between two lgpp graphs iff \py{graph2diagram(} $G$ \py{) == graph2diagram(} $G'$ \py{)} up to interchanger.
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 By induction on the number $n$ of \emph{coincidences}, the times at which the deformation $h$ fails to be generic, i.e. two or more boxes are at the same height.
@@ -335,9 +335,11 @@ The interchange law holds on the nose, i.e. $(G \otimes G') \fcmp (H \otimes H')
 \end{figure}
 
 Thus, we have defined a monoidal category $G(\Sigma)$.
-Given a morphism of monoidal signatures $f : \Sigma \to \Gamma$, there is a functor $G(f) : G(\Sigma) \to G(\Gamma)$ which sends a graph to itself relabeled with $f \fcmp \lambda$, its image on arrows is given in listing~\ref{listing:G_of_f}.
-Hence, we have defined a functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
+Given a morphism of monoidal signatures $f : \Sigma \to \Sigma'$, there is a functor $G(f) : G(\Sigma) \to G(\Sigma')$ which sends a graph to itself relabeled with $f \fcmp \lambda$, its image on arrows is given in listing~\ref{listing:G_of_f}.
+Hence, we have defined a functor\footnote
+{For lack of a better notation, we use the same letter $G$ to refer to an arbitrary graph as well as for the functor $G  : \mathbf{Monsig} \to \mathbf{MonCat}$.} $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
 An abstract way to prove this is to appeal to the universal property of free monoidal categories: if the topological and the combinatorial definitions are both free monoidal, they are necessarily isomorphic.
+More concretely, we can implement this natural isomorphism as a commutative diagram in $\mathbf{Pyth}$ and think of it as a software test for our drawing and reading algorithms.
 
 \begin{python}\label{listing:G_of_f}
 {\normalfont Implementation of the functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$.}
@@ -355,12 +357,12 @@ def G(f: SigMorph) -> Callable[[Graph], Graph]:
 \end{minted}
 \end{python}
 
-\begin{theorem}\label{theorem:nat-iso}
-There is a natural isomorphism $F \simeq G$.
-\end{theorem}
+\begin{proposition}\label{proposition:nat-iso}
+There is a natural isomorphism $F \simeq G$ for $F : \mathbf{Monsig} \to \mathbf{MonCat}$ the combinatorial definition of section~\ref{subsection:free-monoidal} and $G : \mathbf{Monsig} \to \mathbf{MonCat}$ the topological definition in terms of labeled generic progressive plane graphs.
+\end{proposition}
 
 \begin{proof}
-From theorems~\ref{theorem:g2d then d2g} and \ref{theorem:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}, up to deformation and interchanger respectively.
+From propositions~\ref{proposition:g2d then d2g} and \ref{proposition:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}, up to deformation and interchanger respectively.
 Now define the image of $F$ on arrows \py{F = lambda f: Functor(ob=f[0], ar=f[1])}.
 Given a morphism of monoidal signatures \py{f: SigMorph} we have the following two naturality squares.
 \begin{center}
@@ -475,7 +477,7 @@ formula.draw()
 
 \subsection{Automatic diagram recognition}
 
-We conclude this section with an application of theorem~\ref{theorem:nat-iso} to \emph{automatic diagram recognition}: turning pictures of diagrams into diagrams.
+We conclude this section with an application of proposition~\ref{proposition:nat-iso} to \emph{automatic diagram recognition}: turning pictures of diagrams into diagrams.
 In listing~\ref{listing:lgpp2diagram}, we described an abstract reading algorithm which took lgpp graphs as input and returned diagrams.
 We make it a concrete algorithm by taking \emph{bitmaps} as input: grids of Boolean pixels describing a black-and-white picture.
 The algorithm \py{read} listed below takes as input a pair of bitmaps for the box nodes and the wires of the plane graph, it returns a \py{Diagram}.

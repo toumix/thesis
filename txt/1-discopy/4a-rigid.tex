@@ -12,7 +12,7 @@ An object $x^l \in C_0$ is the left adjoint of $x \in C_0$ whenever there are tw
 \ctikzfig{img/rigid/snake-right}
 \end{itemize}
 This is equivalent to the condition that the functor $x^l \otimes - : C \to C$ is the left adjoint of $x \otimes - : C \to C$.
-Symmetrically, $x^r \in C_0$ is the right-adjoint of $x \in C_0$ if $x$ is its left adjoint.
+Symmetrically, $x^r \in C_0$ is the right adjoint of $x \in C_0$ if $x$ is its left adjoint.
 We say that $C$ is \emph{rigid} (also called \emph{autonomous}) if every object has a left and right adjoint.
 From this definition we can deduce a number of properties:
 \begin{itemize}
@@ -47,7 +47,7 @@ They send objects to their left and right adjoints, and each arrow $f : x \to y$
 \end{center}
 A rigid category $C$ is called \emph{pivotal} when it has a monoidal natural isomorphism $x^l \sim x^r$ for each object $x$, which implies that the left and right transpose coincide: we can rotate diagrams by 360 degrees.
 We say $C$ is strictly piotal when this isomorphism is an equality.
-This is the case for any rigid category $C$ with a dagger structure: the dagger of the cup (cap) for an object $x$ is the cap (cup) of its left-adjoint $x^l$.
+This is the case for any rigid category $C$ with a dagger structure: the dagger of the cup (cap) for an object $x$ is the cap (cup) of its left adjoint $x^l$.
 When this is the case, $C$ is called $\dagger$-pivotal.
 We say $C$ is strictly piotal when left and right transpose are equal.
 
@@ -87,10 +87,10 @@ We define a \emph{rigid signature} $\Sigma$ as a monoidal signature where the ge
 We identify $x \in \Sigma_0$ with $(x, 0) \in \Sigma_0 \times \Z$ and define the left and right adjoints $(x, z)^l = (x, z - 1)$ and $(x, z)^r = (x, z + 1)$.
 The objects $\Sigma_0$ are called \emph{basic types}, their iterated adjoints $\Sigma_0 \times \Z$ are called \emph{simple types}.
 The integer $z \in \Z$ is called the \emph{adjunction number} of the simple type $(x, z) \in \Sigma_0 \times \Z$ by Lambek and Preller~\cite{PrellerLambek07} and its \emph{winding number} by Joyal and Street~\cite{JoyalStreet88}.
-Again, a morphism of rigid signatures $f : \Sigma \to \Gamma$ is a pair of functions $f : \Sigma_0 \to \Gamma_0$ and $f : \Sigma_1 \to \Gamma_1$ which commute with domain and codomain.
+Again, a morphism of rigid signatures $f : \Sigma \to \Sigma'$ is a pair of functions $f : \Sigma_0 \to \Sigma'_0$ and $f : \Sigma_1 \to \Sigma'_1$ which commute with domain and codomain.
 
 There is a forgetful functor $U : \mathbf{RigidCat} \to \mathbf{RigidSig}$ which sends any strictly-rigid foo-monoidal category to its underlying rigid signature.
-We now describe its left-adjoint $F^r : \mathbf{RigidSig} \to \mathbf{RigidCat}$.
+We now describe its left adjoint $F^r : \mathbf{RigidSig} \to \mathbf{RigidCat}$.
 Given a rigid signature $\Sigma$, we define a monoidal signature $\Sigma^r = \Sigma \cup \{ \ttcup (x) \}_{x \in \Sigma_0} \cup \{ \ttcap (x) \}_{x \in \Sigma_0}$.
 The free rigid category is the quotient $F^r(\Sigma) = F(\Sigma^r) / R$ of the free monoidal category by the snake equations $R$.
 That is, the objects are lists of simple types $(\Sigma_0 \times \Z)^\star$, the arrows are equivalence classes of diagrams with cup and cap boxes.

@@ -55,7 +55,7 @@ and show that $\otimes = \times$ is in fact a categorical product, see Selinger'
 A functor is cartesian when it preserves the categorical product, or equivalently if it is a symmetric functor that preserves the comonoid.
 This defines a category $\mathbf{CCat}$ of cartesian categories and functors.
 From lemma~\ref{lemma:foo-monoidal} we can assume that cartesian categories are free-on-objects, i.e. the monoid axioms for objects are equalities rather than natural transformations.
-Thus, we get a forgetful functor $U : \mathbf{CCat} \to \mathbf{MonSig}$ with its left-adjoint given by a quotient of the free symmetric category $F^C(\Sigma) = F^S(\Sigma \cup \ttsplit \cup \counit) / R$ with the relations $R$ given by the naturality equations for each box.
+Thus, we get a forgetful functor $U : \mathbf{CCat} \to \mathbf{MonSig}$ with its left adjoint given by a quotient of the free symmetric category $F^C(\Sigma) = F^S(\Sigma \cup \ttsplit \cup \counit) / R$ with the relations $R$ given by the naturality equations for each box.
 
 Taking the opposite definition, a \emph{cocartesian category} is one with a categorical coproduct, or equivalently with a coherent natural commutative monoid.
 For example, the category $\mathbf{Set}$ is cocartesian with the disjoint union, the category $\mathbf{Pyth}$ is cocartesian with the tagged union: the merging function takes a tagged element of an n-fold disjoint union and forgets the tag.
@@ -380,7 +380,7 @@ Indeed, given any category $C$ with sums we can construct its \emph{free biprodu
 Composition in $\mathbf{Mat}_C$ is an extension of the usual matrix multiplication with composition as product.
 In particular, if $C = \S$ is a rig, i.e. a one-object category with sums, then this definition coincides with the usual one.
 Any category with biproducts also has sums $f + g : x \to y$ given by $\ttsplit(x) \fcmp f \oplus g \fcmp \merge(x)$ and a zero morphism $0 = \counit(x) \fcmp \unit(y)$.
-One can verify that the free completion is indeed the left-adjoint to the forgetful functor from biproducts to sums, see~\cite[Exercise VIII.2.6]{MacLane71}.
+One can verify that the free completion is indeed the left adjoint to the forgetful functor from biproducts to sums, see~\cite[Exercise VIII.2.6]{MacLane71}.
 Similarly, if $C$ is a $\dagger$-category then $\mathbf{Mat}_C$ is its free $\dagger$-biproduct completion with the element-wise dagger of the transpose.
 If $C$ is also a monoidal category, then $\mathbf{Mat}_C$ is a rig category with the tensor given by an extension of the usual Kronecker product with tensor as product.
 

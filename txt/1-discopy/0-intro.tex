@@ -23,11 +23,16 @@ The fifth section gives the category theoretic foundations for our definition of
 
 Note that the code presented in this thesis represents a significant refactoring of the original implementation of DisCoPy as available online at the time this thesis is submitted\footnote
 {\url{https://github.com/oxford-quantum-group/discopy}}.
-We list some of the significant changes between the two versions:
+We list some of the significant changes between the two versions.
 \begin{itemize}
-\item better inheritance with staticmethods
-\item less bureaucracy with dataclass
-\item more uniform syntax inside, dom, cod
-\item matrices and functions no longer subclasses of Box, Composable and Tensorable for syntactic sugar
-\item 
+\item We add type annotations throughout the codebase, using the postponed evaluation of annotations introduced in Python \py{3.7}~\cite{Langa17}.
+\item We simplify the inheritance mechanism using Python's \py{classmethod} decorator.
+This improves the code reuse for composition of diagrams, application of functors, etc.
+\item We reorganise the codebase so that it follows more closely the hierarchy of categorical structures.
+For example, we move the code for \py{Braid} outside of the \py{monoidal} module into its own \py{braided} module, we also introduce e.g. the \py{tortile} module which imports from both \py{rigid} and \py{braided}.
+\item We make the syntax more uniform for arrows in different categories, which are all initialised with the same attributes \py{inside}, \py{dom} and \py{cod}.
+\item We implement whiskering, i.e. tensoring arrows with the identity on a given object on the left and right. This avoids cluttering diagram definitions with \py{Id}.
+\item Arrows in concrete categories like \py{Matrix}, \py{Tensor} and \py{Function} are no longer subclasses of \py{Box}. Instead, we implement the syntactic sugar for composition, whiskering, etc. with abstract classes \py{Composable} and \py{Tensorable}.
+\item We make the \py{Matrix} and \py{Tensor} classes parameterised by the datatype of their entries.
+This makes use of the magic method \py{__class_getitem__} which appeared in Python \py{3.10}~\cite{Levkivskyi17}.
 \end{itemize}
