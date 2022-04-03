@@ -255,8 +255,8 @@ We can draw closed diagrams by applying a functor to a rigid category with bubbl
 
 \begin{minted}{python}
 class ClosedDrawing(rigid.Diagram):
-    ev = staticmethod(
-        lambda base, exponent, left=True: rigid.Diagram.ev(base, exponent, left).bubble())
+    ev = staticmethod(lambda base, exponent, left=True:
+        rigid.Diagram.ev(base, exponent, left).bubble())
     curry = lambda self, n=1, left=True: rigid.Diagram.curry(self, n, left).bubble()
 
 Draw = Functor(lambda x: x, lambda f: f, cod=Category(rigid.Ty, ClosedDrawing))

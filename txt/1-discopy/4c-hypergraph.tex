@@ -170,7 +170,7 @@ A \emph{$\dagger$-hypergraph category} is a $\dagger$-symmetric category (i.e. t
 We also require that the monoid of phases is in fact a group with the dagger as inverse or equivalently, that phase shifts are unitaries.
 
 \begin{example}
-For evert commutative rig $\S$, the category $\mathbf{Tensor}_\S$ is $\dagger$-hypergraph with the transpose as dagger.
+For every commutative rig $\S$, $\mathbf{Tensor}_\S$ is a $\dagger$-hypergraph category with the transpose as dagger.
 Arguably, special commutative Frobenius algebras were first defined by Peirce~\cite{Peirce06} with their interpretation in the category of relations, or equivalently $\mathbf{Tensor}_\B$.
 Indeed, they correspond to what Peirce calls \emph{lines of identity}: they express in two dimensions what one-dimensional first-order logic would express with equality symbols.
 For example, take a binary predicate encoded as a box $p : 1 \to x^2$ (interpreted as the formula $\exists \ a \cdot \exists \ b \cdot p(a, b)$) then the diagram $p \fcmp \merge(x)$ is interpreted as the formula $\exists \ a \cdot \exists \ b \cdot p(a, b) \land a = b$ or equivalently $\exists \ a \cdot p(a, a)$.
@@ -234,7 +234,8 @@ Diagram.caps = nesting(lambda x, _: Spider(2, 0, x))
 class Functor(braided.Functor):
     def __call__(self, other):
         if isinstance(other, Spider):
-            a, b, x, phase = len(other.dom), len(other.cod), other.object, other.phase
+            a, b =  = len(other.dom), len(other.cod)
+            x, phase = other.object, other.phase
             return self.cod.ar.spiders(a, b, self(x), phase)
         return super().__call__(other)
 \end{minted}

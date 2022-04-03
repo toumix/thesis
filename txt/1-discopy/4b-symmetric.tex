@@ -53,6 +53,7 @@ A $\dagger$-symmetric category is a $\dagger$-braided category that is also symm
 \begin{remark}
 A symmetric (braided) category with one generating object is called a PROP (PROB) for PROduct and Permutation (Braid).
 Indeed, the arrows of the free PROP with no generating boxes (i.e. only swaps) are \emph{permutations}, the arrows of the free braided PRO with no boxes are called \emph{braids}.
+
 Both are \emph{groupoids}, i.e. all their arrows are isomorphisms, which also implies that they are $\dagger$-braided with the dagger given by the inverse.
 For every $n \in \N$, the arrows $f : x^n \to x^n$ in the free PROP (PROB) are the elements of the $n$-th symmetric group $S_n$ (braid group $B_n$).
 \end{remark}
@@ -110,7 +111,8 @@ def naturality(self: Diagram, i: int, left=True, down=True, braid=None):
     braid = braid or self.braid
     layer, box = self.inside[i], self.inside[i].box
     def pattern(left, down):
-        if left and down: return layer.left[-1] @ box >> braid(layer.left[-1], box.cod)
+        if left and down:
+            return layer.left[-1] @ box >> braid(layer.left[-1], box.cod)
         if down: return box @ layer.right[0] >> braid(box.cod, layer.right[0])
         if left: return braid(box.dom, layer.right[0]) >> layer.right[0] @ box
         return braid(layer.left[-1], box.dom) >> box @ layer.left[-1]

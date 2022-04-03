@@ -147,7 +147,7 @@ The three properties for bijective, monogamous and progressive diagrams implemen
 The three corresponding methods take a diagram and add explicit boxes for spiders, cups and caps so that \py{f.make_bijective().is_bijective} for all \py{f: Diagram} and similarly for monogamous and progressive.
 The \py{downgrade} method calls \py{make_progressive} to construct a \py{compact.Diagram} with explicit boxes for swaps and spiders.
 
-The method \py{cast} applies a \py{compact.Functor} so that \py{cast(f.downgrade()) == f} on the nose for any \py{f: Diagram} and \py{cast(f).downgrade()} is equal to any \py{f: compact.Diagram} up to the special commutative Frobenius axioms.
+The method \py{cast} applies a \py{compact.Functor} so that we have \py{cast(f.downgrade())} \py{== f} on the nose for any \py{f: Diagram} and \py{cast(f).downgrade()} is equal to any \py{f:} \py{compact.Diagram} up to the special commutative Frobenius axioms.
 The \py{draw} method uses a randomised force-based layout algorithm for graphs to compute an embedding from the hypergraph diagram to the plane where wires do not cross too much.
 This is still an experimental feature and the results of \py{f.draw()} usually look much worse than the drawing of \py{f.downgrade().draw()} using the deterministic algorithm of section~\ref{section:drawing}.
 
@@ -362,8 +362,8 @@ x = Ty('x', dom=a, cod=a)
 f, g = Box('f', Ty.id(a), x), Box('g', x @ x, x)
 
 Pyth = Category(tuple[type, ...], Function)
-List = Functor(
-    ob=lambda xs: [list[xs]], ar=lambda f: lambda xs: map(f, xs), dom=Pyth, cod=Pyth)
+List = Functor(dom=Pyth, cod=Pyth,
+               ob=lambda xs: [list[xs]], ar=lambda f: lambda xs: map(f, xs))
 Unit = Transformation(lambda _: lambda x: [x], dom=Functor.id(Pyth), cod=List)
 Mult = Transformation(lambda _: lambda xs: sum(xs, []), dom=List >> List, cod=List)
 
@@ -397,8 +397,10 @@ class Slice(Box):
 
     __matmul__ = lambda self, other: Slice(self.rule, self.match @ other)
     __rmatmul__ = lambda self, other: Slice(self.rule, other @ self.match)
-    __lshift__ = __rrshift__ = lambda self, other: Slice(self.rule, self.match >> other)
-    __rshift__ = __rlshift__ = lambda self, other: Slice(self.rule, other >> self.match)
+    __lshift__ = __rrshift__ = lambda self, other:\
+        Slice(self.rule, self.match >> other)
+    __rshift__ = __rlshift__ = lambda self, other:\
+        Slice(self.rule, other >> self.match)
 
 Match.__matmul__ = lambda self, other: Match(
     self.top @ other.dom, self.bottom @ other, self.left, self.right @ other.dom)
@@ -410,8 +412,10 @@ Match.__rshift__ = Match.__rlshift__ = lambda self, other: Match(
     other >> self.top, self.bottom, self.left, self.right)
 
 class Rewrite(Diagram):
-    def __init__(self, slices: tuple[Slice, ...], dom: Ty | Diagram, cod: Ty | Diagram):
-        dom, cod = (x if isinstance(x, Diagram) else Diagram.id(x) for x in (dom, cod))
+    def __init__(self, slices: tuple[Slice, ...],
+                 dom: Ty | Diagram, cod: Ty | Diagram):
+        dom, cod =\
+            (x if isinstance(x, Diagram) else Diagram.id(x) for x in (dom, cod))
         super().__init__(slices, dom, cod)
 
     def then(self, other, horizontal=False):

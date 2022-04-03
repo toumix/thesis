@@ -197,7 +197,8 @@ class Dict(Composable, Tensorable):
 
     @inductive
     def then(self, other: Dict) -> Dict:
-        return Dict({i: other[self[i]] for i in range(self.dom)}, self.dom, other.cod)
+        return Dict(
+            {i: other[self[i]] for i in range(self.dom)}, self.dom, other.cod)
 
     @inductive
     def tensor(self, other: Dict) -> Dict:
@@ -285,7 +286,8 @@ class Function(monoidal.Function):
         if not other.is_additive: return self.tagged_union(other.make_additive())
         inside = self.inside if len(self.dom) == 1 and len(other.dom) == 0\
             else other.inside if len(self.dom) == 0 and len(other.dom) == 1\
-            else lambda i, x: self(i, x) if i < len(self.dom) else other(i - len(self.dom), x)
+            else lambda i, x: self(i, x) if i < len(self.dom)
+            else other(i - len(self.dom), x)
         dom, cod = self.dom + other.dom, self.cod + other.cod
         return Function(inside, dom, cod)
 
@@ -318,7 +320,8 @@ ReLU = lambda x: Box('$\sigma$', x, x)
 weights = [Box('w{}{}'.format(i, j), x, x) for i in range(2) for j in range(2)]
 bias = Box('b', Ty(), x)
 
-network = Diagram.copy(x @ x, 2) >> Diagram.tensor(*weights) @ bias >> add(x, 5) >> ReLU(x)
+network = Diagram.copy(x @ x, 2)\
+    >> Diagram.tensor(*weights) @ bias >> add(x, 5) >> ReLU(x)
 
 F = Functor(ob={x: int}, ar={
     add(x, 5): lambda *xs: sum(xs),

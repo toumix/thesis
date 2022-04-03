@@ -147,7 +147,6 @@ Let $\mathbf{Circ} = F^S(cq(\Sigma))$ be the free symmetric category it generate
 Their interpretation $[\![-]\!] : \mathbf{Circ} \to \mathbf{CQMap}$ is given by
 $[\![\mathtt{digit}(n)]\!] = (n, 1)$, $[\![\mathtt{qudit}(n)]\!] = (1, n)$ and
 $[\![\hat{g}]\!] = \mathtt{double}([\![g]\!])$.
-
 The evaluation of any mixed circuit is always completely-positive~\cite[Corollary~8.6]{CoeckeKissinger17}.
 Let $\mathbf{CausalCirc} \injects \mathbf{Circ}$ be the subcategory of causal processes, i.e. $\mathbf{CausalCirc} = F^S(cq(\Sigma'))$ for $\Sigma' \sub \Sigma$ the set of boxes that are interpreted as isometries.
 If the gateset is universal, then the interpretation $\mathbf{CausalCirc} \to \mathbf{Channel}$ is full~\cite[Theorem~8.96]{CoeckeKissinger17}.
@@ -250,12 +249,14 @@ What we're missing are \emph{mixed scalars} which get applied after the Born rul
 \begin{minted}{python}
 class Sqrt(Gate):
     def __init__(self, x: float):
-        super().__init__("$\\sqrt {}$".format(x), Ty(), Ty(), array=[[math.sqrt(x)]])
+        super().__init__(
+            "$\\sqrt {}$".format(x), Ty(), Ty(), array=[[math.sqrt(x)]])
 
 class Scalar(Box, Circuit):
     def __init__(self, z: complex, is_pure=False):
         self.z, self.is_pure = z, is_pure
-        Box.__init__(self, "Scalar({}, is_pure={})".format(z, is_pure), Ty(), Ty())
+        Box.__init__(
+            self, "Scalar({}, is_pure={})".format(z, is_pure), Ty(), Ty())
 \end{minted}
 \end{python}
 
@@ -314,7 +315,8 @@ class PureEval(Functor):
                 inside = [[i == other.digits[0] for i in range(other.base)]]
                 return Tensor[complex](inside, [], [other.base])
             head, *tail = other.digits
-            return self(Ket(head, base=other.base)) @ self(Ket(*tail, base=other.base))
+            return self(Ket(head, base=other.base))\
+                @ self(Ket(*tail, base=other.base))
         return super().__call__(other)
 
 class MixedEval(Functor):

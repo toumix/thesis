@@ -86,7 +86,8 @@ class Function:
         dom, cod, traced = self.dom[:-n], self.cod[:-n], self.dom[-n:]
         if self.is_additive:
             iterated = (self.unit(cod) @ traced >> self).iter()
-            return dom @ self.unit(traced) >> self >> cod @ iterated >> self.merge(cod)
+            return dom @ self.unit(traced)\
+                >> self >> cod @ iterated >> self.merge(cod)
         fixed = (self >> self.discard(cod) @ traced).fix()
         return self.copy(dom) >> dom @ fixed >> self >> cod @ self.discard(traced)
 \end{minted}

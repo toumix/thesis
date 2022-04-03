@@ -266,12 +266,12 @@ class Circuit(monoidal.Circuit, Diagram):
 We can verify the teleportation protocol for two qubits.
 
 \begin{minted}{python}
-two_qubit_Bell_state = Circuit.caps(qubit ** 2)
-two_qubit_Bell_effect = Circuit.cups(qubit ** 2)
+Bell_state = Circuit.caps(qubit ** 2)
+Bell_effect = Circuit.cups(qubit ** 2)
 
-assert (two_qubit_Bell_state @ qubit ** 2 >> qubit ** 2 @ two_qubit_Bell_effect).eval()\
+assert (Bell_state @ qubit ** 2 >> qubit ** 2 @ Bell_effect).eval()\
     == (qubit ** 2).eval()\
-    == (qubit ** 2 @ two_qubit_Bell_state >> two_qubit_Bell_effect @ qubit ** 2).eval()
+    == (qubit ** 2 @ Bell_state >> Bell_effect @ qubit ** 2).eval()
 \end{minted}
 \end{example}
 

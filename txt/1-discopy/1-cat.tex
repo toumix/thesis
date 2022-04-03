@@ -427,7 +427,8 @@ class Functor(Composable):
     def then(self: Functor, other: Functor) -> Functor:
         assert self.cod == other.dom
         ob, ar = (
-            {x: g[f[x]] for x in f} if hasattr(f, "__iter__") else (lambda x: g[f[x]])
+            {x: g[f[x]] for x in f} if hasattr(f, "__iter__")
+            else (lambda x: g[f[x]])
             for f, g in [(self.ob, other.ob), (self.ar, other.ar)])
         return type(self)(ob, ar, self.dom, other.cod)
 \end{minted}
@@ -552,8 +553,8 @@ Although the case of negative indices (i.e. counting backwards from the end of t
 \begin{minted}{python}
 class Arrow(cat.Arrow):
     def dagger(self):
-        return self.cast(Arrow(
-            tuple(box.dagger() for box in self.inside[::-1]), self.cod, self.dom))
+        inside = tuple(box.dagger() for box in self.inside[::-1])
+        return self.cast(Arrow(inside, self.cod, self.dom))
 
     def __getitem__(self, key: int | slice) -> Arrow:
         if isinstance(key, int): return self.cast(self.inside[key])
@@ -652,7 +653,7 @@ A commutative-monoid-enriched category with one object is precisely a rig.
 Given a signature $\Sigma$, we construct the free category with sums $F^+(\Sigma)$ by taking the free commutative monoid over each homset of $F(\Sigma)$, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
 
 In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]} as well as its own \py{cast} method, which turns an arrow into the sum of just itself.
-It is attached to the arrow with \py{Arrow.sum = Sum}, we also override \py{Arrow.then} so that \py{f >> (g + h)} \py{== Sum.cast(f) >> (g + h)} for any arrow \py{f}, i.e. .
+It is attached to the arrow with \py{Arrow.sum = Sum}, we also override \py{Arrow.then} so that we have \py{f >> (g + h)} \py{== Sum.cast(f) >> (g + h)} for any arrow \py{f}, i.e. .
 the composition of an arrow with a sum is the sum of the compositions with its terms.
 We define equality so that \py{f == Sum.cast(f)}, equality of bags of terms is implemented as equality of lists sorted by an arbitrary ordering.
 DisCoPy functors are commutative-monoid-enriched, i.e. a formal sum of arrows can be interpreted as a concrete sum of matrices.
@@ -773,7 +774,8 @@ As we will discuss in section~\ref{section:diag-diff}, differentiation of parame
 
 \begin{minted}{python}
 class Bubble(Box):
-    def __init__(self, diagram: Arrow, dom=None, cod=None, method="bubble", is_dagger=False):
+    def __init__(self, diagram: Arrow, dom=None, cod=None,
+                 method="bubble", is_dagger=False):
         self.diagram, self.method = diagram, method
         dom, cod = dom or diagram.dom, cod or diagram.cod
         name = "Bubble({}, {}, {}, {})".format(diagram, dom, cod, method)

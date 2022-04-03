@@ -81,7 +81,8 @@ def draw(self: Diagram) -> PlaneGraph:
     dom_nodes = scan = [Node('dom', x, i, -1) for i, x in enumerate(self.dom)]
     position = {node: (i, -1) for i, node in enumerate(dom_nodes)}
     for j, (left, box, _) in enumerate(self.inside):
-        box_node, left_of_box = Node('box', box, -1, j), make_space(scan, box, offset)
+        box_node, left_of_box =\
+            Node('box', box, -1, j), make_space(scan, box, offset)
         position[box_node] = (left_of_box + max(len(box.dom), len(box.cod)) / 2, j)
         for kind, epsilon in (('dom', -.1), ('cod', .1)):
             for i, x in enumerate(getattr(box, kind)):
@@ -220,7 +221,7 @@ Diagram.to_gif(*diagram.normalize())
 \end{center}
 
 The interchangers between these two diagrams can be downloaded as a \py{.gif}\footnote
-{\href{https://github.com/oxford-quantum-group/discopy/blob/f364ce218890d87fda4aa5c1f4f770f07c7b4f25/docs/_static/imgs/spiral.gif}{\nolinkurl{https://github.com/oxford-quantum-group/discopy/.../docs/_static/imgs/spiral.gif}}} video.
+{\href{https://github.com/oxford-quantum-group/discopy/blob/f364ce218890d87fda4aa5c1f4f770f07c7b4f25/docs/_static/imgs/spiral.gif}{\nolinkurl{https://github.com/oxford-quantum-group/discopy/.../imgs/spiral.gif}}} video.
 \end{example}
 
 Next, we define the inverse translation \py{graph2diagram}.
@@ -230,7 +231,8 @@ Next, we define the inverse translation \py{graph2diagram}.
 
 \begin{minted}{python}
 def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
-    dom = Ty(*[node.label for node in graph.nodes if node.kind == 'dom' and node.j == -1])
+    dom = Ty(*[node.label for node in graph.nodes
+               if node.kind == 'dom' and node.j == -1])
     boxes = [node.label for node in graph.nodes if node.kind == 'box']
     scan, offsets = [Node('dom', x, i, -1) for i, x in enumerate(dom)], []
     for j, box in enumerate(boxes):
@@ -250,7 +252,7 @@ def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
 
 \begin{proof}
 By induction on \py{n = len(self)}.
-If \py{len(self) == 0} we get that \py{dom == self.dom} and \py{boxes == offsets == []}.
+If \py{n == 0} we get that \py{dom == self.dom} and \py{boxes == offsets == []}.
 If the proposition holds for \py{self}, then it holds for \py{self} \py{>> Layer(left, box, right)}.
 Indeed, we have:
 \begin{itemize}
@@ -273,7 +275,7 @@ A deformation is progressive (generic) when $h(G, t)$ is progressive (generic) f
 We write $G \sim G'$ when there exists some deformation $h : G \to G'$, this defines an equivalence relation.
 
 \begin{proposition}\label{proposition:g2d then d2g}
-For all lgpp graphs $G$, \py{Diagram.draw(graph2diagram(} $G$ \py{))} $\sim G$ up to generic progressive deformation.
+\py{Diagram.draw(graph2diagram(} $G$ \py{))} $\sim G$ for all lgpp graphs $G$, up to generic progressive deformation.
 \end{proposition}
 
 \begin{proof}
@@ -341,7 +343,7 @@ Hence, we have defined a functor\footnote
 {For lack of a better notation, we use the same letter $G$ to refer to an arbitrary graph as well as for the functor $G  : \mathbf{Monsig} \to \mathbf{MonCat}$.} $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
 An abstract way to prove this is to appeal to the universal property of free monoidal categories: if the topological and the combinatorial definitions are both free monoidal, they are necessarily isomorphic.
 More concretely, we can implement this natural isomorphism as a commutative diagram in $\mathbf{Pyth}$ and think of it as a software test for our drawing and reading algorithms.
-
+\pagebreak
 \begin{python}\label{listing:G_of_f}
 {\normalfont Implementation of the functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$.}
 
@@ -393,7 +395,8 @@ When we draw a diagram in the free $\dagger$-monoidal category, we add some asym
 
 \begin{minted}{python}
 f, g = Box('f', x, y), Box('g', z, w)
-(f >> f[::-1]).draw(); Diagram.id(x).draw(); (f[::-1] >> f).draw(); Diagram.id(y).draw()
+(f >> f[::-1]).draw(); Diagram.id(x).draw()
+(f[::-1] >> f).draw(); Diagram.id(y).draw()
 \end{minted}
 
 \begin{center}
@@ -498,16 +501,19 @@ def read(box_pixels: array, wire_pixels: array) -> Diagram:
     connected_components = lambda img: regionprops(label(img))
     box_nodes, wires = map(connected_components, (box_pixels, wire_pixels))
     source, target, length, width = [], [], len(box_pixels), len(box_pixels[0])
-    critical_heights = [0] + [int(node.centroid[0]) for node in box_nodes] + [length]
+    critical_heights = [0] + [
+        int(node.centroid[0]) for node in box_nodes] + [length]
     for wire, region in enumerate(wires):
-        top, bottom = (minmax(i for i, _ in region.coords) for minmax in (min, max))
+        top, bottom = (
+            minmax(i for i, _ in region.coords) for minmax in (min, max))
         source.append(argmin(abs(array(critical_heights) - top)))
         target.append(argmin(abs(array(critical_heights) - bottom)))
     scan = [wire for wire, node in enumerate(source) if node == 0]
     dom, boxes_and_offsets = Ty('x') ** len(scan), []
     for depth, box_node in enumerate(box_nodes):
         input_wires = [wire for wire in scan if target[wire] == depth + 1]
-        output_wires = [wire for wire, node in enumerate(source) if node == depth + 1]
+        output_wires = [
+            wire for wire, node in enumerate(source) if node == depth + 1]
         dom, cod = Ty('x') ** len(input_wires), Ty('x') ** len(output_wires)
         box = Box('box_{}_{}'.format(len(dom), len(cod)), dom, cod)
         height, left = map(int, box_node.centroid)

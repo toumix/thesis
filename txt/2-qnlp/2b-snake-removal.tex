@@ -36,7 +36,8 @@ Let's remove the snakes from ``Alice loves Bob'' by applying a functor $\py{wiri
 
 \begin{minted}{python}
 wiring = rigid.Functor(
-    dom=Category(rigid.Ty, pregroup.Parsing), cod=Category(rigid.Ty, rigid.Diagram),
+    dom=Category(rigid.Ty, pregroup.Parsing),
+    cod=Category(rigid.Ty, rigid.Diagram),
     ob=lambda x: x,
     ar={Alice: Box("Alice", Ty(), n), Bob: Box("Bob", Ty(), n),
         loves: Cap(n.r, n) @ Cap(n, n.l) >> n.r @ Box("loves", n @ n, s) @ n.l})
