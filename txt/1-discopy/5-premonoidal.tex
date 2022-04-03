@@ -147,7 +147,7 @@ The three properties for bijective, monogamous and progressive diagrams implemen
 The three corresponding methods take a diagram and add explicit boxes for spiders, cups and caps so that \py{f.make_bijective().is_bijective} for all \py{f: Diagram} and similarly for monogamous and progressive.
 The \py{downgrade} method calls \py{make_progressive} to construct a \py{compact.Diagram} with explicit boxes for swaps and spiders.
 
-The method \py{cast} applies a \py{compact.Functor} so that we have \py{cast(f.downgrade())} \py{== f} on the nose for any \py{f: Diagram} and \py{cast(f).downgrade()} is equal to any \py{f:} \py{compact.Diagram} up to the special commutative Frobenius axioms.
+The method \py{cast} applies a \py{compact.Functor} from premonoidal to hypergraph diagrams so that we have \py{cast(f.downgrade())} \py{== f} on the nose for any \py{f: Diagram} and \py{cast(f).downgrade()} is equal to any \py{f:} \py{compact.Diagram} up to the special commutative Frobenius axioms.
 The \py{draw} method uses a randomised force-based layout algorithm for graphs to compute an embedding from the hypergraph diagram to the plane where wires do not cross too much.
 This is still an experimental feature and the results of \py{f.draw()} usually look much worse than the drawing of \py{f.downgrade().draw()} using the deterministic algorithm of section~\ref{section:drawing}.
 

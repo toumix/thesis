@@ -361,11 +361,11 @@ def G(f: SigMorph) -> Callable[[Graph], Graph]:
 \end{python}
 
 \begin{proposition}\label{proposition:nat-iso}
-There is a natural isomorphism $F \simeq G$ for $F : \mathbf{Monsig} \to \mathbf{MonCat}$ the combinatorial definition of diagrams in section~\ref{subsection:free-monoidal} and $G : \mathbf{Monsig} \to \mathbf{MonCat}$ the topological definition in terms of labeled generic progressive plane graphs.
+There is a natural isomorphism $F \simeq G : \mathbf{Monsig} \to \mathbf{MonCat}$ for $F$ the combinatorial definition of diagrams in section~\ref{subsection:free-monoidal} and $G$ the topological definition in terms of labeled generic progressive plane graphs.
 \end{proposition}
 
 \begin{proof}
-From propositions~\ref{proposition:g2d then d2g} and \ref{proposition:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}, up to deformation and interchanger respectively.
+From propositions~\ref{proposition:g2d then d2g} and \ref{proposition:d2g then g2d}, we have an isomorphism between \py{Diagram} and \py{PlaneGraph} (up to deformation and interchanger respectively) given by \py{d2g = Diagram.draw} and \py{g2d = graph2diagram}.
 Now define the image of $F$ on arrows \py{F = lambda f: Functor(ob=f[0], ar=f[1])}.
 Given a morphism of monoidal signatures \py{f: SigMorph} we have the following two naturality squares.
 \begin{center}
