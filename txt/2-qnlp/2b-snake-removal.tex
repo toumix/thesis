@@ -67,7 +67,8 @@ We can also apply a functor $G : F^M(\Sigma) \to \mathbf{Circ}$ to simplify the 
 
 \begin{minted}{python}
 G = monoidal.Functor(
-    dom=Category(rigid.Ty, rigid.Diagram), cod=Category(circuit.Ty, Circuit),
+    dom=Category(rigid.Ty, rigid.Diagram),
+    cod=Category(circuit.Ty, Circuit),
     ob={s: qubit ** 0, n: qubit},
     ar={Box("Alice", Ty(), n): Ket(0), Box("Bob", Ty(), n): Ket(1),
         Box("loves", n @ n, s): CX >> H @ sqrt2 @ X >> Bra(0, 0)})
@@ -101,7 +102,10 @@ G.ar[Box("who_1", n, x @ n)] = H @ sqrt2 @ Ket(0) >> CX
 G.ar[Box("who_2", x @ s, n)] = Circuit.id(qubit)
 
 rewrite_steps = (
-    phrase, wiring(phrase), wiring(phrase).normal_form(), G(wiring(phrase).normal_form()))
+    phrase,
+    wiring(phrase),
+    wiring(phrase).normal_form(),
+    G(wiring(phrase).normal_form()))
 drawing.equation(rewrite_steps, symbol='$\\mapsto$')
 \end{minted}
 \ctikzfig{img/qnlp/snake-removal-who}
@@ -124,7 +128,8 @@ def trivial_ar(word: Word) -> rigid.Diagram:
         for i, x in enumerate(word.cod)])
 
 trivial = rigid.Functor(
-    dom=Category(rigid.Ty, pregroup.Parsing), cod=Category(rigid.Ty, rigid.Diagram),
+    dom=Category(rigid.Ty, pregroup.Parsing),
+    cod=Category(rigid.Ty, rigid.Diagram),
     ob=lambda x: x, ar=trivial_ar)
 
 drawing.equation(
@@ -139,7 +144,7 @@ We do not know if a non-trivial autonomisation is possible for arbitrary pregrou
 In example~\ref{example:autonomisation}, wiring was straightforward because all types had the shape $(x^r) y (z^l)$ for a generating object $y \in X$ and some types $x, z \in X^\star$ which do not contain adjoints.
 Let us call types of this shape \emph{dependency types}, we claim\footnote
 {A sketch of this statement is available on the nLab~\cite{ToumiNLab21}, a detailed proof will appear in de Felice's thesis~\cite{Felice22}.} that a pregroup grammar with only dependency types is in fact a \emph{dependency grammar} (DG) as defined by Gaifman~\cite{Gaifman65}.
-From such a dependency grammar $G = (V, X, D, s)$ with dictionary entries $e = (w, (x^r) y (z^l)) \in D$, we construct a monoidal signature $\Sigma_G$ with generating objects $X$ and boxes $f_e : x z \to y$ together with a rigid functor $\py{wiring} : \G \to A(F^M(\Sigma_G))$ which acts as $e \mapsto \ttcap{x^r, x} \otimes \ttcap{z, z^l} \fcmp x^r \otimes f_e \otimes z^l$.
+From such a dependency grammar $G = (V, X, D, s)$ with dictionary entries $e = (w, (x^r) y (z^l)) \in D$, we construct a monoidal signature $\Sigma_G$ with generating objects $X$ and boxes $f_e : x z \to y$ together with a rigid functor $\py{wiring} : \G \to A(F^M(\Sigma_G))$ which acts as $e \mapsto \ttcap(x^r) \otimes \ttcap(z) \fcmp x^r \otimes f_e \otimes z^l$.
 The resulting normal form is a monoidal diagram where all boxes have exactly one output, thus it is isomorphic to a tree which is called a \emph{dependency tree}.
 
 Dependency grammars are weakly equivalent to context-free grammars~\cite[Theorem~3.11]{Gaifman65} and they are in fact strongly equivalent to a subclass of CFGs characterised by a notion of finite degree~\cite[Theorem~3.10]{Gaifman65}.

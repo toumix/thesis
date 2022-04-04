@@ -21,7 +21,7 @@ The first point cannot be avoided if we want our models to be tractable: adding 
 We may get around the second dissatisfaction by adding restrictions on anaphoric expressions.
 For example, requiring that the corresponding query has \emph{bounded tree-width}~\cite{ChekuriRajaraman00} ensures that question answering is solvable in polynomial time.
 This restriction may be motivated in terms of \emph{bounded short-term memory}: a query with tree-width $k$ corresponds to a first-order logic with $k$ variables, each of which may be bound and reused multiple times.
-We refer to Abramsky and Shah~\cite{AbramskyShah18} for a comonadic approach to such resource bounds.
+We refer to Abramsky and Shah~\cite{AbramskyShah21} for a comonadic approach to such resource bounds.
 
 If we go from Booleans to natural numbers, we get a \emph{counting problem}: we want to know not only whether but \emph{how many} answers a question has in a given model.
 This answer-counting problem is complete for $\mathtt{\#P}$, the generalisation of $\mathtt{NP}$ from decision to counting problems.
@@ -30,7 +30,7 @@ The closest decision complexity class is $\mathtt{PP}$, also called \emph{Majori
 If we write $\mathtt{P}^\mathtt{X}$ for the class of problems solvable in polynomial time with access to an oracle solving any problem of $\mathtt{X}$ in one step, we can use a binary search to prove $\mathtt{P}^\mathtt{PP} = \mathtt{P}^\mathtt{\#P}$.
 One indication for how much harder counting is compared to decision problems is \emph{Toda's theorem}~\cite{Toda91}.
 It states that $\mathtt{PH} \sub \mathtt{P}^\mathtt{\#P}$ where $\mathtt{PH}$ is the \emph{polynomial hierarchy}, the union of all towers of $\mathtt{NP}$-oracles, i.e. $\mathtt{PH} = \cup_{n \in \N} \Sigma_n$ where $\Sigma_0 = \mathtt{P}$ and $\Sigma_{n + 1} = \mathtt{NP}^{\Sigma_n}$.
-Intuitively, a $\mathtt{PP}$-oracle for counting problems is at least as powerful than any tower of $\mathtt{NP}$-oracles for decision problems.
+Intuitively, a $\mathtt{PP}$-oracle for counting problems is at least as powerful as any tower of $\mathtt{NP}$-oracles for decision problems.
 
 In a beautifully simple theorem, Aaronson~\cite{Aaronson05} shows that $\mathtt{PP} = \mathtt{PostBQP}$, the class of problems solvable in polynomial time by a quantum computer given \emph{post-selection}, the ability to make the possible necessary and to choose what outcome we get from a quantum measurement\footnote
 {Assuming the many-world hypothesis, Aaronson~\cite{Aaronson05} gives a simple method to achieve post-selection: committing suicide if we do not get the desired outcome.

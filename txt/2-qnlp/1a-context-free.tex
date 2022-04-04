@@ -66,7 +66,7 @@ Thus in the presence of unary and nullary rules, the functor cannot be faithful 
 
 The CYK (Cocke–Younger–Kasami) algorithm solves the parsing problem for CNF in cubic time using dynamic programming.
 Valiant~\cite{Valiant75} then reduced the problem to Boolean matrix multiplication, yielding a solution in time $O(n^{\log_2 7})$ via Strassen's algorithm.
-Today, the fastest algorithm known for matrix multiplication, hence for parsing context-free grammars, is the galactic algorithm by Alman and Williams~\cite{AlmanWilliams20}.
+Today, the fastest algorithm known for matrix multiplication, hence for parsing context-free grammars, is the galactic algorithm by Alman and Williams~\cite{AlmanWilliams21}.
 Parsing context-free grammars is in fact complete for $\mathtt{P}$, the class of problems solvable in deterministic polynomial time~\cite{JonesLaaser74}.
 Hence, whatever grammatical framework we may come up with, if its parsing problem is solvable in polynomial time then there exists a logarithmic-space reduction to CFG parsing: it takes a grammar and a string, returns a CFG and a new string such that the input is grammatical if and only if the output is.
 Crucially, the output CFG depends not only on the input grammar but also on the input string: $\mathtt{P}$-completeness does not imply that there exists one fixed CFG that generates the same language.

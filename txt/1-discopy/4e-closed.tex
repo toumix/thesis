@@ -95,7 +95,7 @@ Now we can define the left adjoint $F : \mathbf{CMonSig} \to \mathbf{CCCat}$ as 
 Composing the two adjunctions we get $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$.
 
 Diagrams in free cartesian closed categories can also be seen as terms of the \emph{simply typed lambda calculus} (up to $\beta\eta$-equivalence) or as proofs in \emph{minimal logic} (the fragment of propositional logic with only conjunction and implication).
-See Abramsky and Tzevelekos~\cite{AbramskyTzevelekos10} for an introduction to this \emph{Curry-Howard-Lambek correspondance}.
+See Abramsky and Tzevelekos~\cite{AbramskyTzevelekos11} for an introduction to this \emph{Curry-Howard-Lambek correspondance}.
 The problem of deciding the ($\beta\eta$) equivalence of a given pair of simply typed lambda terms (or equivalently the equivalence of two minimal logic formulae) is decidable~\cite{Tait67} but not elementary recursive~\cite{Statman79}, i.e. its time complexity is not bounded by any tower of exponentials.
 As such, the word problem for free cartesian closed categories is as intractable as it gets.
 If we remove the copying and discarding, the word problem for free symmetric closed categories is decidable in linear time~\cite{Voreadou77}.
@@ -218,7 +218,7 @@ assert F(g.uncurry().curry())(True)(1.2) == F(g)(True)(1.2)
 \end{minted}
 \end{example}
 
-Understanding the relationship between closed and rigid categories will also explain how we draw closed diagrams, using the bubble notation introduced by Baez and Stay~\cite[Section~2.6]{BaezStay09}.
+Understanding the relationship between closed and rigid categories will also explain how we draw closed diagrams, using the bubble notation introduced by Baez and Stay~\cite[Section~2.6]{BaezStay10}.
 Indeed, in a free rigid category the exponentials are given as a tensor of a type and an adjoint, thus we can draw them as two wires side by side.
 On the other hand, the exponentials of a free closed category are defined as generating objects, they ought to be drawn as one wire but we can decide to draw them as two, inseparable wires.
 This constraint can be materialised by a \emph{clasp} that binds the two wires together.

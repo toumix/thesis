@@ -3,7 +3,7 @@
 \subsection{Quantum channels and mixed quantum circuits}\label{section:mixed-circuits}
 
 DisCoPy implements a variant of the definition of \emph{classical-quantum maps} (cq-maps) from Coecke and Kissinger~\cite[Chapter~8]{CoeckeKissinger17}.
-Abstractly, it is a simplification of the $\mathbf{CP^\star}$ construction from Coecke, Heunen and Kissinger~\cite{CoeckeEtAl14a}, which itself generalises the notion of finite-dimensional C$^\star$-algebra to arbitrary dagger compact closed categories.
+Abstractly, it is a simplification of the $\mathbf{CP^\star}$ construction from Coecke, Heunen and Kissinger~\cite{CoeckeEtAl12}, which itself generalises the notion of finite-dimensional C$^\star$-algebra to arbitrary dagger compact closed categories.
 Concretly, we first define the category $\mathbf{CQMap}$ with objects given by pairs of natural numbers\footnote
 {We actually implement an equivalent category where objects are pairs of lists of natural numbers and the arrows are tensors rather than matrices.} $(a, b) \in \N \times \N$ for the classical and quantum dimensions of the system.
 The arrows $f : (a, b) \to (c, d)$ are given by $(a b^2) \times (c d^2)$ complex matrices, with composition given by matrix multiplication and tensor given by the following diagram:
@@ -24,7 +24,7 @@ There is a functor $\mathtt{double} : \mathbf{Mat}_\C \to \mathbf{CQMap}$ which 
 The double of a scalar $s : 1 \to 1$ gives the same result as the Born rule $\hat{s} = s \bar{s} = \vert s \vert^2$.
 The double of any matrix $f : m \to n$ automatically satisfies the complete-positivity condition, it satisfies causality iff $f$ is an isometry, i.e. $f^\dagger \fcmp f = \id(n)$.
 Furthermore the functor $\mathtt{double}$ is faithful up to a global phase~\cite[Proposition~6.6]{CoeckeKissinger17}.
-A cq-map is called \emph{pure} if it's in the image of $\mathtt{double}$ and \emph{mixed} otherwise.
+A cq-map is called \emph{pure} if it is in the image of $\mathtt{double}$ and \emph{mixed} otherwise.
 
 There is also a functor $\mathtt{single} : \mathbf{Mat}_\R \to \mathbf{CQMap}$ which sends a dimension $n$ to the pair $(1, n)$ and a real matrix $f : m \to n$ to itself.
 Again, this is always completely positive and it satisfies causality iff $f$ is a stochastic matrix, i.e. all its columns sum to one.

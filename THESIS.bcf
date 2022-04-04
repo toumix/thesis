@@ -525,6 +525,10 @@
     <bcf:maps datatype="bibtex" level="user">
       <bcf:map>
         <bcf:map_step map_field_source="doi" map_final="1"/>
+        <bcf:map_step map_field_set="url" map_null="1"/>
+        <bcf:map_step map_field_set="urldate" map_null="1"/>
+      </bcf:map>
+      <bcf:map>
         <bcf:map_step map_field_source="eprint" map_final="1"/>
         <bcf:map_step map_field_set="url" map_null="1"/>
         <bcf:map_step map_field_set="urldate" map_null="1"/>
@@ -2061,7 +2065,7 @@
     <bcf:citekey order="72">GravesEtAl13</bcf:citekey>
     <bcf:citekey order="73">SutskeverEtAl14</bcf:citekey>
     <bcf:citekey order="74">SchusterPaliwal97</bcf:citekey>
-    <bcf:citekey order="75">BahdanauEtAl16</bcf:citekey>
+    <bcf:citekey order="75">BahdanauEtAl15</bcf:citekey>
     <bcf:citekey order="76">VaswaniEtAl17</bcf:citekey>
     <bcf:citekey order="77">DevlinEtAl19</bcf:citekey>
     <bcf:citekey order="78">GPT-320</bcf:citekey>
@@ -2075,7 +2079,7 @@
     <bcf:citekey order="85">ClarkPulman07</bcf:citekey>
     <bcf:citekey order="86">ClarkEtAl08</bcf:citekey>
     <bcf:citekey order="86">ClarkEtAl10</bcf:citekey>
-    <bcf:citekey order="87">GrefenstetteEtAl10</bcf:citekey>
+    <bcf:citekey order="87">GrefenstetteEtAl11</bcf:citekey>
     <bcf:citekey order="88">GrefenstetteSadrzadeh11</bcf:citekey>
     <bcf:citekey order="88">KartsaklisEtAl13</bcf:citekey>
     <bcf:citekey order="89">ZengCoecke16</bcf:citekey>
@@ -2124,13 +2128,12 @@
     <bcf:citekey order="124">Atiyah88</bcf:citekey>
     <bcf:citekey order="125">BaezDolan95</bcf:citekey>
     <bcf:citekey order="126">Baez06</bcf:citekey>
-    <bcf:citekey order="127">BaezStay09</bcf:citekey>
+    <bcf:citekey order="127">BaezStay10</bcf:citekey>
     <bcf:citekey order="128">Selinger04</bcf:citekey>
     <bcf:citekey order="129">VanTonder04</bcf:citekey>
     <bcf:citekey order="129">SelingerValiron06</bcf:citekey>
     <bcf:citekey order="129">SelingerEtAl09</bcf:citekey>
     <bcf:citekey order="130">AbramskyCoecke04</bcf:citekey>
-    <bcf:citekey order="130">AbramskyCoecke08</bcf:citekey>
     <bcf:citekey order="131">CoeckeDuncan08</bcf:citekey>
     <bcf:citekey order="131">CoeckeDuncan11</bcf:citekey>
     <bcf:citekey order="132">JeandelEtAl18a</bcf:citekey>
@@ -2142,7 +2145,7 @@
     <bcf:citekey order="134">DeBeaudrapEtAl20</bcf:citekey>
     <bcf:citekey order="135">CowtanEtAl20</bcf:citekey>
     <bcf:citekey order="135">DeGriendDuncan20</bcf:citekey>
-    <bcf:citekey order="136">BackensEtAl20</bcf:citekey>
+    <bcf:citekey order="136">BackensEtAl21</bcf:citekey>
     <bcf:citekey order="137">Lambek99</bcf:citekey>
     <bcf:citekey order="137">Lambek01</bcf:citekey>
     <bcf:citekey order="138">Coecke19</bcf:citekey>
@@ -2251,15 +2254,15 @@
     <bcf:citekey order="228">Markov47</bcf:citekey>
     <bcf:citekey order="229">Mellies06</bcf:citekey>
     <bcf:citekey order="230">MacLane71</bcf:citekey>
-    <bcf:citekey order="231">DelpeuchVicary18</bcf:citekey>
-    <bcf:citekey order="232">DelpeuchVicary18</bcf:citekey>
+    <bcf:citekey order="231">VicaryDelpeuch22</bcf:citekey>
+    <bcf:citekey order="232">VicaryDelpeuch22</bcf:citekey>
     <bcf:citekey order="233">BradyTrimble98</bcf:citekey>
     <bcf:citekey order="233">BradyTrimble00</bcf:citekey>
     <bcf:citekey order="233">MelliesZeilberger16</bcf:citekey>
     <bcf:citekey order="233">HaydonSobocinski20</bcf:citekey>
     <bcf:citekey order="234">HagbergEtAl08</bcf:citekey>
     <bcf:citekey order="235">JoyalStreet88</bcf:citekey>
-    <bcf:citekey order="236">DelpeuchVicary18</bcf:citekey>
+    <bcf:citekey order="236">VicaryDelpeuch22</bcf:citekey>
     <bcf:citekey order="237">Hunter07</bcf:citekey>
     <bcf:citekey order="238">Tantau13</bcf:citekey>
     <bcf:citekey order="239">VanDerWaltEtAl11</bcf:citekey>
@@ -2291,12 +2294,12 @@
     <bcf:citekey order="265">Delpeuch20a</bcf:citekey>
     <bcf:citekey order="266">MacLane71</bcf:citekey>
     <bcf:citekey order="267">Coecke13</bcf:citekey>
-    <bcf:citekey order="268">AbramskyTzevelekos10</bcf:citekey>
+    <bcf:citekey order="268">AbramskyTzevelekos11</bcf:citekey>
     <bcf:citekey order="269">Tait67</bcf:citekey>
     <bcf:citekey order="270">Statman79</bcf:citekey>
     <bcf:citekey order="271">Voreadou77</bcf:citekey>
     <bcf:citekey order="272">Gentzen35</bcf:citekey>
-    <bcf:citekey order="273">BaezStay09</bcf:citekey>
+    <bcf:citekey order="273">BaezStay10</bcf:citekey>
     <bcf:citekey order="274">JoyalEtAl96</bcf:citekey>
     <bcf:citekey order="275">Selinger10</bcf:citekey>
     <bcf:citekey order="276">Selinger10</bcf:citekey>
@@ -2323,7 +2326,7 @@
     <bcf:citekey order="297">Cancho06</bcf:citekey>
     <bcf:citekey order="298">Stabler04</bcf:citekey>
     <bcf:citekey order="299">YeungKartsaklis21</bcf:citekey>
-    <bcf:citekey order="300">BaezStay09</bcf:citekey>
+    <bcf:citekey order="300">BaezStay10</bcf:citekey>
     <bcf:citekey order="301">BarEtAl18</bcf:citekey>
     <bcf:citekey order="302">ReutterVicary19</bcf:citekey>
     <bcf:citekey order="303">BarVicary17</bcf:citekey>
@@ -2354,7 +2357,7 @@
     <bcf:citekey order="324">Chomsky63</bcf:citekey>
     <bcf:citekey order="325">Chomsky63</bcf:citekey>
     <bcf:citekey order="326">Valiant75</bcf:citekey>
-    <bcf:citekey order="327">AlmanWilliams20</bcf:citekey>
+    <bcf:citekey order="327">AlmanWilliams21</bcf:citekey>
     <bcf:citekey order="328">JonesLaaser74</bcf:citekey>
     <bcf:citekey order="329">Shieber87</bcf:citekey>
     <bcf:citekey order="330">Weir88</bcf:citekey>
@@ -2435,7 +2438,7 @@
     <bcf:citekey order="393">Preller14a</bcf:citekey>
     <bcf:citekey order="393">Preller14</bcf:citekey>
     <bcf:citekey order="394">ChekuriRajaraman00</bcf:citekey>
-    <bcf:citekey order="395">AbramskyShah18</bcf:citekey>
+    <bcf:citekey order="395">AbramskyShah21</bcf:citekey>
     <bcf:citekey order="396">Toda91</bcf:citekey>
     <bcf:citekey order="397">Aaronson05</bcf:citekey>
     <bcf:citekey order="398">Aaronson05</bcf:citekey>
@@ -2451,7 +2454,7 @@
     <bcf:citekey order="407">CoeckeEtAl20b</bcf:citekey>
     <bcf:citekey order="408">AradLandau10</bcf:citekey>
     <bcf:citekey order="409">CoeckeKissinger17</bcf:citekey>
-    <bcf:citekey order="410">CoeckeEtAl14</bcf:citekey>
+    <bcf:citekey order="410">CoeckeEtAl12</bcf:citekey>
     <bcf:citekey order="411">CoeckeKissinger17</bcf:citekey>
     <bcf:citekey order="412">CoeckeKissinger17</bcf:citekey>
     <bcf:citekey order="413">CoeckeKissinger17</bcf:citekey>
@@ -2486,7 +2489,7 @@
     <bcf:citekey order="440">ToumiKoziell-Pipe21</bcf:citekey>
     <bcf:citekey order="441">Clark21</bcf:citekey>
     <bcf:citekey order="442">ShieblerEtAl21</bcf:citekey>
-    <bcf:citekey order="443">FongEtAl17</bcf:citekey>
+    <bcf:citekey order="443">FongEtAl19</bcf:citekey>
     <bcf:citekey order="444">CruttwellEtAl21</bcf:citekey>
     <bcf:citekey order="445">Gavranovic19</bcf:citekey>
     <bcf:citekey order="445">Gavranovic19a</bcf:citekey>
@@ -2530,7 +2533,7 @@
     <bcf:citekey order="482">HavlicekEtAl19</bcf:citekey>
     <bcf:citekey order="483">BenedettiEtAl19</bcf:citekey>
     <bcf:citekey order="484">DuncanPerdrix10</bcf:citekey>
-    <bcf:citekey order="485">CoeckeEtAl14a</bcf:citekey>
+    <bcf:citekey order="485">AbramskyTzevelekos10</bcf:citekey>
     <bcf:citekey order="486">FritzEtAl20a</bcf:citekey>
     <bcf:citekey order="487">HeunenVicary19a</bcf:citekey>
   </bcf:section>

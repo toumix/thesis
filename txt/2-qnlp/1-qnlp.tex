@@ -1,0 +1,15 @@
+%!TEX root = ../../THESIS.tex
+
+\chapter{Quantum natural language processing} \label{chapter-2:qnlp}
+
+This chapter introduces quantum natural language processing (QNLP) models as monoidal functors from grammar to quantum circuits.
+Building on the previous chapter, we show how to implement QNLP models in DisCoPy and how to train them to solve NLP tasks such as classification and question answering.
+
+\section{A very short introduction to QNLP}\label{section:NLP}
+
+The previous chapter has put much emphasis on string diagrams and its role at the intersection of mathematics and computer science.
+From the programming perspective, diagrams are a two-dimensional generalisation of lists which may describe the run of a Turing machine, the syntax of a first-order logic formula or the architecture of a neural network.
+In fact, we will see that string diagrams also play a key role in linguistics, where they allow to encode the grammatical structure of sentences.
+First, section~\ref{subsection:chomsky} reviews Chomskyan grammars, the notion of ambiguity and the computational complexity of parsing.
+Then we discuss categorial grammars, from the Lambek calculus and Montague semantics to pregroup grammars and DisCoCat models.
+Finally, we summarise previous work on the Frobenius anatomy of anaphora and investigate the quantum complexity of DisCoCat models.

@@ -14,7 +14,7 @@
 		\node [style=none] (62) at (-0.475, -0.225) {};
 		\node [style=none] (64) at (-0.975, -0.725) {};
 		\node [style=none] (66) at (-0.975, 0.75) {};
-		\node [style=none] (68) at (-2.2, 0.45) {$\beta$};
+		\node [style=none] (68) at (-2.25, 0.45) {$\beta$};
 		\node [style=none] (0) at (-1, -0.25) {};
 		\node [style=none] (1) at (-2, 0.25) {};
 		\node [style=none] (2) at (-2, -0.25) {};
@@ -55,7 +55,7 @@
 		\node [style=none] (73) at (0.025, -0.725) {};
 		\node [style=none] (74) at (-0.475, -1.225) {};
 		\node [style=none] (75) at (-0.475, 1.25) {};
-		\node [style=none] (76) at (-2.7, 0.95) {$\partial$};
+		\node [style=none] (76) at (-2.75, 0.95) {$\partial$};
 		\node [style=none] (77) at (3.975, -0.225) {};
 		\node [style=none] (78) at (4.425, -0.725) {};
 		\node [style=none] (79) at (3.975, 0.75) {};
@@ -63,8 +63,8 @@
 		\node [style=none] (81) at (5.525, -0.225) {};
 		\node [style=none] (82) at (5.025, -0.725) {};
 		\node [style=none] (83) at (5.025, 0.75) {};
-		\node [style=none] (84) at (4.3, 0.4) {$\partial \beta$};
-		\node [style=none] (93) at (2.3, 0.45) {$\partial$};
+		\node [style=none] (84) at (4.25, 0.5) {$\partial \beta$};
+		\node [style=none] (93) at (2.25, 0.5) {$\partial$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [style=boxedge] (90.center)

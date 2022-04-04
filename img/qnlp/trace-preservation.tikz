@@ -27,7 +27,7 @@
 		\node [style=none] (23) at (2.25, 2.25) {};
 		\node [style=none] (24) at (-0.25, 2.25) {};
 		\node [style=none, fill=white] (25) at (1, 2) {$f$};
-		\node [style=none, fill=white] (26) at (3.25, 1.5) {=};
+		\node [style=none, fill=white] (26) at (3.25, 2) {=};
 		\node [style=none] (27) at (4.25, 2.5) {};
 		\node [style=none] (28) at (4.25, 2) {};
 		\node [style=none, fill=white, right] (29) at (4.45, 2.5) {$a$};

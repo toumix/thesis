@@ -312,9 +312,9 @@ for all types $a, b, c \in \Sigma_0^\star$ and boxes $f : x \to y$ and $g : z \t
 That is, we can interchange two consecutive layers whenever the output of the first box is not connected to the input of the second, i.e. there is an identity arrow $\id(b)$ separating them.
 Note that for an effect $f : x \to 1$ followed by a state $g : 1 \to y$, we have two options: we can apply the right interchanger $(1, f, 1) \fcmp (1, g, 1) \to_R (1, g, x) \fcmp (y, f, 1)$ or its opposite $(1, f, 1) \fcmp (1, g, 1) \leftarrow_R (x, g, 1) \fcmp (1, f, y)$.
 For the composition of two scalars $a : 1 \to 1$ and $b : 1 \to 1$, we can apply interchangers indefinitely $a \fcmp b \to_R b \fcmp a \to_R a \fcmp b$: this is the Eckmann-Hilton argument.
-Delpeuch and Vicary~\cite{DelpeuchVicary18} give a quadratic solution to the word problem for free monoidal categories, i.e. deciding when two diagrams are equal.
+Delpeuch and Vicary~\cite{VicaryDelpeuch22} give a quadratic solution to the word problem for free monoidal categories, i.e. deciding when two diagrams are equal.
 
-\begin{theorem}[\cite{DelpeuchVicary18}]
+\begin{theorem}[\cite{VicaryDelpeuch22}]
 \label{theorem:monoidal-normal-form}
 The equality of diagrams is decidable in linear time in the connected case, and quadratic in the general case.
 The right interchanger is confluent and for connected diagrams, i.e. when the Eckmann-Hilton argument does not apply, it reaches a normal form in a cubic number of steps.

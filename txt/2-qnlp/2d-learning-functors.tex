@@ -17,14 +17,14 @@ Our variational algorithm may be summarised in the following recipe for a parame
 \item Fix a hyper-parameter $F(x) \in \N$ for the number of qubits representing each basic type $x \in X$.
 For simplicity, we will assume that $F(s) = 0$ so that sentences are represented as closed circuits.
 \item Choose an \emph{ansatz} for each dictionary entry $(w, t) \in D$, i.e. a function $F_-(w, t) : \Theta_{(w, t)} \to \mathbf{Circ}(0, F(t))$ from some space of parameters $\Theta_{(w, t)}$ to the set of $F(t)$-qubit circuits.
-Ideally, we want an ansatz that is shallow enough to run on NISQ machines but still hard to approximate classically, such as instantaneous quantum polynomials (IQP) of Shepherd and Bremner~\cite{ShepherdBremner09}.
+Ideally, we want an ansatz that is shallow enough to run on NISQ machines but still hard to approximate classically, such as the instantaneous quantum polynomials (IQP) of Shepherd and Bremner~\cite{ShepherdBremner09}.
 A more practical choice is to use a \emph{hardware-efficient} ansatz such as that of Kandala et al.~\cite{KandalaEtAl17}, where we essentially squeeze as many parameters as possible out of whatever hardware we can get our hands on.
 \end{enumerate}
 As in the previous section, we can abstract these choices away into one big parameter space $\Theta = \prod_{(w, t) \in D} \Theta_{(w, t)}$ and a function $F_- : \Theta \to [\G, \mathbf{Circ}]$ from parameters to functors.
 We can now use SPSA (or any noisy optimisation algorithm of our choice) to approximate the optimal parameters:
 $$\theta^\star \s = \argmin_{\theta \in \Theta}
 \lambda \lVert \theta \rVert + \sum_{f \in \Omega} \mathtt{loss}(\mathtt{eval}(F(f)), Y(f))$$
-where $\mathtt{eval} : \mathbf{Circ}(0, 0) \to \R$ takes closed circuits and returns the result of evaluating them
+where $\mathtt{eval} : \mathbf{Circ}(0, 0) \to \R$ takes closed circuits and returns the result of evaluating them either using a classical simulation or a quantum device.
 
 We can now evaluate the optimal functor $F_{\theta^\star} : \G \to \mathbf{Circ}$ on unseen sentences, or equivalently answer Boolean questions.
 This variational approach to question answering was first demonstrated in a classical simulation by Ma et al.~\cite{MaEtAl19} in the restricted case of knowledge graphs, i.e. subject-verb-object sentences.

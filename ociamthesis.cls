@@ -38,7 +38,7 @@
 \setlength{\frontmatterbaselineskip}{17pt plus1pt minus1pt}
 \setlength{\textbaselineskip}{22pt plus2pt}
 
-\newcommand{\submittedtext}{{A (draft of a) thesis (to be) submitted for the degree of}}
+\newcommand{\submittedtext}{{A thesis (to be) submitted for the degree of}}
 \usepackage{varwidth}
 \newcommand{\originalitytext}{%
    \rule[-2mm]{1pt}{7mm}\hspace{-1pt}%

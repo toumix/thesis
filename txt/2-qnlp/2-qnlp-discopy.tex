@@ -46,7 +46,7 @@ Assuming a universal gate set, every complex vector $u \in \C^{2^n}$ can be enco
 
 In fact, every choice of encoding will define a faithful monoidal functor $\mathtt{load} : \mathbf{Tensor}_\C \to \mathbf{Circ}$ from complex tensors to pure quantum circuits with real scalars (up to equality of their interpretation) which is an inverse to evaluation, i.e. $\mathtt{load} \fcmp \mathtt{eval} = \id(\mathbf{Tensor}_\C)$.
 On objects, it sends a dimension $d \in \N$ to a qudit, i.e. a $d$-dimensional quantum system.
-From the rigid structure of $\mathbf{Tensor}_\C$, every arrow $f : x \to y$ can be written as $f = x \otimes u \fcmp \ttcup{x} \otimes y$ for the state $u : 1 \to x y$ given by $u = \ttcap{x} \fcmp x \otimes f$.
+From the rigid structure of $\mathbf{Tensor}_\C$, every arrow $f : x \to y$ can be written as $f = x \otimes u \fcmp \ttcup(x) \otimes y$ for the state $u : 1 \to x y$ given by $u = \ttcap(x) \fcmp x \otimes f$.
 Thus, every tensor can be encoded as a scaled circuit followed by a post-selected Bell measurement.
 From this isomorphism we can extract an abstract proof of $\mathtt{PostBQP} = \mathtt{PP}$: simulating a post-selected quantum circuit is equivalent to evaluating a monoidal functor into tensors, i.e. contracting a tensor network.
 
@@ -58,13 +58,14 @@ However, we are measuring the probability of an exponentially unlikely event (me
 If the truth value is an arbitrary complex scalar, we can use a \emph{Hadamard test} to compute the real and imaginary part of the complex scalar $\mathtt{eval}(c) \in \C$.
 When the interpretation is an $F(s) = n$-dimensional state for $n \geq 2$, we can perform a \emph{swap test} with the quantum state for another grammatical expression of the same type, which will compute their inner product, i.e. measure their similarity.
 From the characterisation of $\mathtt{BQP}$ by Arad and Landau~\cite{AradLandau10}, we know we can get an additive approximation using a polynomial number of shots.
-However, in general we have no guarantee that this additive error will not be larger than the value we want to approximate.
+However, in general we have no guarantee that this additive error will be no larger than the value we want to approximate.
 
 Thus, this naive definition of QNLP models is unsatisfactory from a computational point of view: if we post-select on all the qubits we'll have to wait an exponentially long time even to approximate an answer.
 It is also unsatisfactory from a category theoretic point of view.
 Indeed, so far we have defined the evaluation of pure quantum circuits as a functor into tensor, but what we can actually execute on a quantum device is the Born rule of the result, which is not a functor: the squared amplitude of a composition is not necessarily the composition of the squared amplitudes.
 Killing two birds with one stone, we can overcome both limitation (computational and theoretical) if we extend our definition of $\mathbf{Circ}$ from \emph{pure} to \emph{mixed} quantum circuits.
-In practice, what our QNLP algorithm is missing is the ability to do nothing, i.e. not to measure a qubit, in theory, our category $\mathbf{Circ}$ is missing a box for \emph{discard}.
+In practice, what our QNLP algorithm is missing is the ability to do nothing, i.e. not to measure a qubit.
+In theory, our category $\mathbf{Circ}$ is missing a box for \emph{discard}.
 As soon as we leave the realm of pure quantum circuits, quantum states cannot be represented as complex vectors anymore, we need \emph{density matrices}.
 Similarly, we cannot interpret quantum circuits as unitary matrices anymore, we need \emph{completely-positive trace-preserving} (CPTP) maps, also called \emph{quantum channels}.
 As a bonus, going from pure to mixed and from unitaries to channels gives us enough room to talk about both classical and quantum processes in the same concrete category $\mathbf{Channel}$.
