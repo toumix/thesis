@@ -46,6 +46,8 @@ The class templates listed below summarise the required data for categories, fun
 
 \begin{minted}{python}
 from __future__ import annotations
+from dataclasses import dataclass
+from typing import overload
 
 class Ob: ...
 
@@ -117,7 +119,7 @@ In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two set
 \begin{example}\label{ex:python categories}
 We can define the category $\mathbf{Pyth}$ with objects the class of all Python types and arrows the class of all Python functions.
 Domain and codomain could be extracted from type annotations, but instead we implement a class \py{Function} with attributes \py{inside: Callable} as well as \py{dom: Ty} and \py{cod: Ty}.
-Identity and composition is given by \py{lambda *xs: xs} and \py{lambda f, g:} \py{lambda *xs:} \py{f(*g(*xs)))} where the star takes care of functions with multiple arguments.
+Identity and composition is given by \py{lambda x: x} and \py{lambda f, g:} \py{lambda x:} \py{g(f(x)))}.
 However, equality of functions in Python is undecidable so there will be no way to check the axioms hold in general.
 
 As discussed by Milewski~\cite{Milewski14} in the case of Haskell, endofunctors $\mathbf{Pyth} \to \mathbf{Pyth}$ can be thought of as data containers.
@@ -143,7 +145,7 @@ def inductive(method):
     def result(self, *others):
         if not others: return self
         if len(others) == 1: return method(self, others[0])
-        if len(others) > 1: return method(method(self, others[0]), *others[1:])
+        if len(others) > 1: return result(method(self, others[0]), *others[1:])
     return result
 \end{minted}
 \end{python}
@@ -152,6 +154,8 @@ def inductive(method):
 {\normalfont Implementation of the category $\mathbf{Pyth}$ with \py{type} as objects and \py{Function} as arrows.}
 
 \begin{minted}{python}
+from typing import Callable
+
 @dataclass
 class Function(Composable):
     inside: Callable
@@ -159,15 +163,16 @@ class Function(Composable):
     cod: type
 
     @staticmethod
-    def id(x: type) -> Function:
-        return Function(lambda *xs: xs, x, x)
+    def id(dom: type) -> Function:
+        return Function(lambda x: x, dom, dom)
 
     @inductive
     def then(self, other: Function) -> Function:
-        inside = lambda *xs: other(*tuple(self(*xs)))
-        return Function(inside, self.dom, other.cod)
+        assert self.cod == other.dom
+        return Function(lambda x: other(self(x)), self.dom, other.cod)
 
-    def __call__(self, *xs): return self.inside(*xs)
+    def __call__(self, x):
+        return self.inside(x)
 \end{minted}
 \end{python}
 
@@ -198,22 +203,31 @@ There is a faithful functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends fi
 {\normalfont Implementation of $\mathbf{Mat}_\S$ with \py{int} as objects and \py{Matrix[dtype]} as arrows.}
 
 \begin{minted}{python}
-@dataclass
+from typing import Number
+
 class Matrix(Composable):
+    dtype = int
+
     dom: int
     cod: int
     inside: list[list[dtype]]
 
-    dtype = int
-
-    def __class_getitem__(cls, dtype):
+    def __class_getitem__(cls, dtype: type):
         class C(cls): pass
         C.dtype = dtype
+        C.__name__ = C.__qualname__ = "Matrix[{}]".format(dtype.__name__)
         return C
 
     def __init__(self, inside: list[list[Number]], dom: int, cod: int):
-        self.dom, self.cod = dom, cod
-        self.inside = [list(map(self.dtype, row)) for row in inside]
+        assert len(inside) == dom and all(len(row) == cod for row in inside)
+        self.inside, self.dom, self.cod =\
+            [list(map(self.dtype, row)) for row in inside], dom, cod
+
+    def __eq__(self, other):
+        if not isinstance(other, Matrix):
+            return self.dom == self.cod == 1 and self.inside[0][0] == other
+        return (self.dtype, self.inside, self.dom, self.cod)\
+            == (other.dtype, other.inside, other.dom, other.cod)
 
     @classmethod
     def id(cls, x: int) -> Matrix:
@@ -221,19 +235,24 @@ class Matrix(Composable):
 
     @inductive
     def then(self, other: Matrix) -> Matrix:
-        inside = [[sum([self[i][j] * other[j][k] for j in range(other.dom)])
-                   for k in range(other.cod)] for i in range(self.dom)]
+        assert self.dtype == other.dtype and self.cod == other.dom
+        inside = [[sum(
+            self.inside[i][j] * other.inside[j][k] for j in range(other.dom))
+            for k in range(other.cod)] for i in range(self.dom)]
         return type(self)(inside, self.dom, other.cod)
 
-    def __getitem__(self, key: int) -> Matrix:
-        if self.dom == 1: return Matrix([[self.inside[0][key]]], 1, 1)
-        return Matrix([self.inside[key]], 1, self.cod)
+    def __getitem__(self, key: int | tuple[int, ...]) -> Matrix:
+        key = key if isinstance(key, tuple) else (key, )
+        inside = [[self.inside[i][j] for i in key for j in range(self.cod)]]\
+            if len(key) == 1 else [[self.inside[i][j] for i, j in [key]]]
+        dom, cod = 1, self.cod if len(key) == 1 else 1
+        return type(self)(inside, dom, cod)
 
-    for attr in ("__bool__", "__int__", "__float__", "__complex__"):
-        def method(self):  # Downcasting a 1 by 1 Matrix to a scalar.
-            assert self.dom == self.cod == 1
-            return getattr(self[0][0], attr)()
-        setattr(Matrix, attr, method)
+for converter in (bool, int, float, complex):
+    def method(self):  # Downcasting a 1 by 1 Matrix to a scalar.
+        assert self.dom == self.cod == 1
+        return converter(self.inside[0][0])
+    setattr(Matrix, "__{}__".format(converter.__name__), method)
 \end{minted}
 
 Subscriptable types such as \py{list[list[int]]} implemented by the magic method \py{__class_getitem__} are a new feature of Python \py{3.10}~\cite{Levkivskyi17}.
@@ -326,10 +345,7 @@ class Arrow(Composable):
     __str__ = lambda self: ' >> '.join(map(str, self.inside))\
         if self.inside else '{}.id({})'.format(type(self).__name__, self.dom)
 
-@dataclass
 class Box(Arrow):
-    cast = Arrow.cast
-
     def __init__(self, name: str, dom: Ob, cod: Ob):
         self.name = name
         super().__init__((self, ), dom, cod)
@@ -340,8 +356,9 @@ class Box(Arrow):
                 == (other.name, other.dom, other.cod)
         return isinstance(other, Arrow) and other.inside == (self, )
 
-    __str__ = lambda self: self.name
     __hash__ = lambda self: hash(repr(self))
+    __str__ = lambda self: self.name
+    cast = Arrow.cast
 \end{minted}
 \end{python}
 
@@ -365,10 +382,11 @@ class Circuit(Arrow): pass
 class Gate(Box, Circuit):
     cast = Circuit.cast
 
+Id = Circuit.id(Ob('1'))
 X, Y, Z, H = [Gate(name, Ob('1'), Ob('1')) for name in "XYZH"]
 
-assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Ob('1') == X == Ob('1') >> X
-assert isinstance(Circuit.id(Ob('1')), Circuit) and isinstance(X >> Y, Circuit)
+assert (X >> Y) >> Z == X >> (Y >> Z) and X >> Id == X == Id >> X
+assert isinstance(Id, Circuit) and isinstance(X >> Y, Circuit)
 \end{minted}
 \end{example}
 
@@ -396,19 +414,19 @@ class FakeDict:
     inside: Callable
     __getitem__ = lambda self, key: self.inside(key)
 
-@dataclass
-class Functor(Composable):
+class Functor:
     ob: dictOrCallable[Ob, Ob]
     ar: dictOrCallable[Box, Ar]
     dom: Category = Category(Ob, Arrow)
     cod: Category = Category(Ob, Arrow)
 
-    def __init__(self, ob, ar, dom, cod):
+    def __init__(self, ob, ar, dom=Category(Ob, Arrow), cod=Category(Ob, Arrow)):
         ob, ar = (d if hasattr(d, "__getitem__") else FakeDict(d) for d in (ob, ar))
         self.ob, self.ar, self.dom, self.cod = ob, ar, dom, cod
 
     def __call__(self, other: Ob | Arrow) -> Ob | Arrow:
-        if isinstance(other, Ob): return self.ob[other]
+        if isinstance(other, Ob):
+            return self.ob[other]
         if isinstance(other, Box):
             result = self.ar[other]
             if isinstance(result, self.cod.ar): return result
@@ -416,7 +434,7 @@ class Functor(Composable):
             return self.cod.ar(result, self(other.dom), self(other.cod))
         if isinstance(other, Arrow):
             base_case = self.cod.ar.id(self(other.dom))
-            return base_case.then(*self(box) for box in other.inside)
+            return base_case.then(*[self(box) for box in other.inside])
         raise TypeError
 
     @classmethod
@@ -426,10 +444,7 @@ class Functor(Composable):
     @inductive
     def then(self: Functor, other: Functor) -> Functor:
         assert self.cod == other.dom
-        ob, ar = (
-            {x: g[f[x]] for x in f} if hasattr(f, "__iter__")
-            else (lambda x: g[f[x]])
-            for f, g in [(self.ob, other.ob), (self.ar, other.ar)])
+        ob, ar = lambda x: other.ob[self.ob[x]], lambda f: other.ar[self.ar[f]]
         return type(self)(ob, ar, self.dom, other.cod)
 \end{minted}
 \end{python}
@@ -546,7 +561,6 @@ DisCoPy implements free $\dagger$-categories by adding an attribute \py{is_dagge
 The normal form is computable in linear time but it has not been implemented yet.
 In order to implement the syntactic sugar \py{f[::-1] == f.dagger()}, we need to override the \py{__getitem__} method.
 In general, DisCoPy defines indexing \py{f[i]} and slicing \py{f[start:stop:step]} so that \py{f[key].inside == f.inside[key]} for any \py{key: int} and any \py{key: slice} with \py{key.step in (-1, 1, None)}.
-Although the case of negative indices (i.e. counting backwards from the end of the list) is implemented in DisCoPy, its interaction with list reversal is too complex to be listed here.
 
 \begin{python}
 {\normalfont Implementation of free $\dagger$-categories and $\dagger$-functors.}
@@ -557,16 +571,21 @@ class Arrow(cat.Arrow):
         return self.cast(Arrow(inside, self.cod, self.dom))
 
     def __getitem__(self, key: int | slice) -> Arrow:
-        if isinstance(key, int): return self.cast(self.inside[key])
-        if key.step not in (-1, 1, None): raise IndexError
-        if key.step == -1:
-            for i in (key.start, key.stop):
-                if i is not None and i < 0: ...
-            stop, start = (
-                None if i is None else i + 1 for i in (key.stop, key.start))
-            return self[start:stop].dagger()
-        dom, cod = self[key.start].dom, self[key.stop].cod
-        return self.cast(Arrow(self.inside[key], dom, cod))
+        if isinstance(key, slice):
+            if key.step == -1:
+                inside = tuple(box.dagger() for box in self.inside[key])
+                return self.cast(Arrow(inside, self.cod, self.dom))
+            if (key.step or 1) != 1:
+                raise IndexError
+            inside = self.inside[key]
+            if not inside:
+                if (key.start or 0) >= len(self):
+                    return self.id(self.cod)
+                if (key.start or 0) <= -len(self):
+                    return self.id(self.dom)
+                return self.id(self.inside[key.start or 0].dom)
+            return self.cast(Arrow(inside, inside[0].dom, inside[-1].cod))
+        return self.inside[key]
 
 class Box(cat.Box, Arrow):
     cast = Arrow.cast
@@ -591,10 +610,10 @@ class Functor(cat.Functor):
 We can show the dagger is indeed a contravariant endofunctor.
 
 \begin{minted}{python}
-x, y, z = map(Ty, "xyz")
+x, y, z = map(Ob, "xyz")
 f, g = Box('f', x, y), Box('g', y, z)
 
-assert Diagram.id(x)[::-1] == Diagram.id(x)
+assert Arrow.id(x)[::-1] == Arrow.id(x)
 assert (f >> g)[::-1] == g[::-1] >> f[::-1]
 \end{minted}
 \end{example}
@@ -621,20 +640,22 @@ Matrix.dagger = lambda self: self.conjugate().transpose()
 We can implement a simulator for $1$-qubit circuits as a $\dagger$-functor.
 
 \begin{minted}{python}
-Circuit.eval = Functor(
+Circuit.eval = lambda self: Functor(
     ob={Ob('1'): 2},
     ar={X: [[0, 1], [1, 0]],
         Y: [[0, -1j], [1j, 0]],
         Z: [[1, 0], [0, -1]],
-        H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]]}
-    cod=Category(int, Matrix[complex]))
+        H: [[x / sqrt(2) for x in row] for row in [[1, 1], [1, -1]]]},
+    cod=Category(int, Matrix[complex]))(self)
 \end{minted}
 
 We can check that every circuit is \emph{unitary}, i.e. its dagger is also its inverse.
 
 \begin{minted}{python}
 for c in [X, Y, Z, H, X >> Y >> Z >> H]:
-    assert (c >> c[::-1]).eval() == Matrix.id(2) == (c[::-1] >> c).eval()
+    assert (c >> c[::-1]).eval()\
+        == Matrix[complex].id(2)\
+        == (c[::-1] >> c).eval()
 \end{minted}
 
 We can check the equations given in the presentation of example~\ref{example:1-qubit-presentation}.
@@ -642,7 +663,7 @@ We can check the equations given in the presentation of example~\ref{example:1-q
 \begin{minted}{python}
 assert (Z >> H).eval() == (H >> X).eval()
 assert (Z >> X).eval() == (X >> Z).eval().map(lambda x: -x)
-for gate in [H, Z, X]: assert (gate >> gate).eval() == Matrix.id(2)
+for gate in [H, Z, X]: assert (gate >> gate).eval() == Matrix[complex].id(2)
 \end{minted}
 \end{example}
 
@@ -671,8 +692,8 @@ class Arrow(cat.Arrow):
         return self.sum.cast(self).then(other) if isinstance(other, Sum)\
             else super().then(other)
 
-    @staticmethod
-    def zero(dom: Ob, cod: Ob) -> Arrow: return Sum((), dom, cod)
+    @classmethod
+    def zero(cls, dom: Ob, cod: Ob) -> Arrow: return cls.sum((), dom, cod)
 
     __add__ = lambda self, other: self.sum.cast(self) + other
     __lt__ = lambda self, other: hash(self) < hash(other)  # An arbitrary order.
@@ -725,10 +746,15 @@ class Functor(cat.Functor):
 \begin{minted}{python}
 class Matrix:
     ...
-    def __add__(self: Matrix, other: Matrix) -> Matrix:
+    def __add__(self, other: Matrix) -> Matrix:
         inside = [[x + y for x, y in zip(u, v)]
                   for u, v in zip(self.inside, other.inside)]
         return type(self)(inside, self.dom, self.cod)
+
+    def __radd__(self, other: Number) -> Matrix:
+        # We can add a scalar matrix and a number.
+        assert self.dom == self.cod == 1
+        return self.inside[0][0] + other
 
     @classmethod
     def zero(cls, dom: int, cod: int) -> Matrix:
@@ -774,19 +800,23 @@ As we will discuss in section~\ref{section:diag-diff}, differentiation of parame
 
 \begin{minted}{python}
 class Bubble(Box):
-    def __init__(self, diagram: Arrow, dom=None, cod=None,
-                 method="bubble", is_dagger=False):
-        self.diagram, self.method = diagram, method
+    method = "bubble"
+
+    def __init__(self, diagram: Arrow, dom=None, cod=None, **params):
+        self.diagram = diagram
+        name = "Bubble({}, {}, {})".format(diagram, dom, cod)
         dom, cod = dom or diagram.dom, cod or diagram.cod
-        name = "Bubble({}, {}, {}, {})".format(diagram, dom, cod, method)
         super().__init__(name, dom, cod, **params)
 
-    dagger = lambda self: type(self)(
-        self.diagram, self.dom, self.cod, self.method, is_dagger=not self.is_dagger)
-    is_id_on_objects = property(lambda self:
-        self.dom == self.diagram.dom and self.cod == self.diagram.cod)
+    def dagger(self):
+        return type(self)(
+            self.diagram, self.dom, self.cod, is_dagger=not self.is_dagger)
 
-Arrow.bubble = Bubble
+    @property
+    def is_id_on_objects(self):
+        return self.dom == self.diagram.dom and self.cod == self.diagram.cod
+
+Arrow.bubble = lambda self: Bubble(self)
 
 class Functor(cat.Functor):
     def __call__(self, other):
@@ -804,18 +834,31 @@ The evaluation of the neural network on some input vector for some parameters is
 The hyper-parameters (i.e. the number of neurons at each layer) are given by the image of the functor on objects.
 
 \begin{minted}{python}
+x, y, z = map(Ob, "xyz")
+
 Matrix.ReLU = lambda self: self.map(lambda x: max(x, 0))
+
+class Network(Arrow):
+    pass
+
+class ReLU(Bubble, Network):
+    method = "ReLU"
+    cast = Network.cast
+
+class Box(cat.Box, Network):
+    cast = Network.cast
 
 vector, bias = Box('vector', x, y), Box('bias', x, x)
 ones, weights = Box('ones', x, y), Box('weights', y, z)
-network = ((vector + (bias >> ones)) >> weights).bubble(method="ReLU")
+network = ReLU((vector + (bias >> ones)) >> weights)
 
 F = Functor(
     ob={x: 1, y: 4, z: 2},
     ar={vector: [[1.2, -2.3, 3.4, -4.5]],
-        bias: [[-3.14]], ones: [[1, 1, 1, 1]]
-        weights: [[5.6, -6.7, 7.8, -8.9],
-                  [9.0, -0.1, 2.3, -3.4]]},
+        bias: [[-3.14]], ones: [[1, 1, 1, 1]],
+        weights: [[5.6, -6.7], [7.8, -8.9],
+                  [9.0, -0.1], [2.3, -3.4]]},
+    dom=Category(Ob, Network),
     cod=Category(int, Matrix[float]))
 
 assert F(network) == F(vector).map(lambda x: x + F(bias))\
@@ -830,24 +873,29 @@ The evaluation of a formula in a model corresponds to the application of a sum-a
 \begin{minted}{python}
 Matrix._not = lambda self: self.map(lambda x: not x)
 
-class Formula(Arrow):
-    _not = lambda self: self.bubble(method="_not")
+class Formula(Arrow): pass
+
+class Not(Bubble, Formula):
+    method = "_not"
 
 class Proposition(Box, Formula):
-    def __init__(self, name): Box.__init__(self, name, Ob('x'), Ob('x'))
+    def __init__(self, name):
+        Box.__init__(self, name, Ob('x'), Ob('x'))
+
+Not.cast = Proposition.cast = Formula.cast
 
 def model(data: dict[Proposition, bool]):
     return Functor(ob={Ob('x'): 1}, ar={p: [[data[p]]] for p in data},
                    dom=Category(Ob, Formula), cod=Category(int, Matrix[bool]))
 
 p, q = map(Proposition, "pq")
-p_implies_q = (q._not() >> p)._not()
-not_p_or_q = p._not() + q
+p_implies_q = Not(Not(q) >> p)
+not_p_or_q = Not(p) + q
 
 for a, b in itertools.product([0, 1], [0, 1]):
-    F = model({p: a, q: b})
-    assert F(p_implies_q) == not (not F(q) and F(p))\
-        == F(not_p_or_q) == not F(p) or F(q)
+   F = model({p: a, q: b})
+   assert F(p_implies_q) == (not (not F(q) and F(p)))\
+       == F(not_p_or_q) == (not F(p) or F(q))
 \end{minted}
 \end{example}
 
