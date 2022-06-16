@@ -13,7 +13,7 @@ This section will sketch a brief and biased history of the field and of its futu
 
 In 1980, Benioff~\cite{Benioff80} takes the abstract definition of a computer and makes it physical: he designs a quantum mechanical system whose time evolution encodes the computation steps of a given Turing machine.
 In retrospect, this may be taken as the first proof that quantum mechanics can simulate classical computers.
-The same year, Manin~\cite{Manin80} looks at the opposite direction: he argues that it would take exponential time for a classical computer to simulate a generic quantum system.
+The same year, Manin~\cite{Manin80} looks at the opposite direction: he argues that it should take exponential time for a classical computer to simulate a generic quantum system.
 Feynman~\cite{Feynman82,Feynman85} comes to the same conclusion and suggests a way to simulate quantum mechanics much more efficiently: building a quantum computer!
 
 So what are quantum computers good for? Feynman's intuition gives us a first, trivial answer: at least quantum computers could simulate quantum mechanics efficiently. Deutsch~\cite{Deutsch85a} makes the question formal by defining quantum Turing machines and the circuit model.
@@ -28,7 +28,7 @@ In 1997, Grover provides another application for quantum computers: ``searching 
 Formally, given a function $f : X \to \{0, 1\}$ and the promise that there is a unique $x \in X$ with $f(x) = 1$, Grover's algorithm finds $x$ in $O(\sqrt{|X|})$ steps, quadratically faster than the optimal $O(|X|)$ classical algorithm.
 Grover's algorithm may be used to brute-force symmetric cryptographic keys twice bigger than what is possible classically~\cite{BernsteinEtAl09}.
 It can also be used to obtain quadratic speedups for the exhaustive search involved in the solution of NP-hard problems such as constraint satisfaction~\cite{Ambainis04}.
-Independently, Benett et al.~\cite{BennettEtAl97} prove that Grover's algorithm is in fact optimal, adding evidence to the conjecture that quantum computers cannot solve these NP-hard problems in polynomial time.
+Independently, Bennett et al.~\cite{BennettEtAl97} prove that Grover's algorithm is in fact optimal, adding evidence to the conjecture that quantum computers cannot solve these NP-hard problems in polynomial time.
 Chuang et al.~\cite{ChuangEtAl98} give the first experimental demonstration of a quantum algorithm, running Grover's algorithm on two qubits.
 
 Shor's and Grover's discovery of the first real-world applications sparked a considerable interest in quantum computing.
@@ -76,7 +76,7 @@ A classical algorithm then uses this quantum prediction as a subroutine to find 
 
 One of the many challenges on the way to solving real-world problems with parameterised quantum circuits is the existence of \emph{barren plateaus}~\cite{McCleanEtAl18}:
 with random circuits as ansatz, the probability of non-zero gradients is exponentially small in the number of qubits and our classical optimisation gets lost in a flat landscape.
-One can help but notice the striking similarity with the vanishing gradient
+One cannot help but notice the striking similarity with the vanishing gradient
 problem for classical neural networks, formulated twenty years earlier~\cite{Hochreiter98}.
 Barren plateaus do not appear in circuits with enough structure such as quantum convolutional networks~\cite{PesahEtAl21}, they can also be mitigated by structured initialisation strategies~\cite{GrantEtAl19}.
 Another direction is to avoid gradients altogether and use \emph{kernel methods}~\cite{SchuldKilloran19}:

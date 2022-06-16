@@ -54,7 +54,6 @@ While Siri, Alexa and their competitors have made NLP mainstream, none of them m
 Instead of the complex grammatical analysis and knowledge representation of expert systems like Watson, the AI of these next-generation NLP machines is powered by deep neural networks and machine learning of big data.
 Although their architecture got increasingly complex, these neural networks implement a simple statistical concept: \emph{language models}, i.e. probability distributions over sequences of words.
 Instead of the compositionality of symbolic AI, these statistical methods rely on another linguistic principle, \emph{distributionality}: words with similar distributions have similar meanings.
-Intuitively,
 
 This principle may be traced back to Wittgenstein's \emph{Philosophical Investigations}: ``the meaning of a word is its use in the language''~\cite{Wittgenstein53}, usually shortened into the slogan \emph{meaning is use}.
 It was then formulated in the context of computational linguistics by Harris~\cite{Harris54}, Weaver~\cite{Weaver55} and Firth~\cite{Firth57}, who coined the famous quotation: ``You shall know a word by the company it keeps!''
@@ -82,8 +81,8 @@ Starting with BERT~\cite{DevlinEtAl19}, transformers have replaced RNNs as the s
 
 Indeed \emph{why} should we be scared?
 Because we are ignorant of \emph{how} the robot wrote the article and we cannot explain what in its billions of parameters made it write the way it did.
-Transformers and neural networks in general are \emph{black boxes}: we can probe the way they map inputs to outputs, but if we look at the terabytes of weights in between, we find no interpreation of the mapping.
-Moreover without explanability there can be no fairness: if we cannot explain how its decisions are made, we can hardly prevent the network from reproducing the discriminations present both in the datasets and in the assumptions of the data scientist.
+Transformers and neural networks in general are \emph{black boxes}: we can probe the way they map inputs to outputs, but if we look at the terabytes of weights in between, we find no interpretation of the mapping.
+Moreover without explainability there can be no fairness: if we cannot explain how its decisions are made, we can hardly prevent the network from reproducing the discriminations present both in the datasets and in the assumptions of the data scientist.
 We argue that explainable AI requires to make the distributional black boxes transparent by endowing them with a compositional structure: we need \emph{compositional distributional} (DisCo) models that reconcile symbolic GOFAI with deep learning.
 
 DisCo models have their roots in neuropsychology rather than AI.
