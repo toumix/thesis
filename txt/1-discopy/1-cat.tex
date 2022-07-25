@@ -667,13 +667,13 @@ for gate in [H, Z, X]: assert (gate >> gate).eval() == Matrix[complex].id(2)
 \end{minted}
 \end{example}
 
-A category $C$ has \emph{sums}, or equivalently $C$ is \emph{commutative-monoid-enriched}, when it comes equipped with a commutative monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
-A functor $F : C \to D$ between categories with sums is commutative-monoid-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
-For example, the category $\mathbf{Mat}_\S$ has sums given by elementwise addition of matrices.
+A category $C$ is \emph{commutative-monoid-enriched} (CM-enriched) when it comes equipped with a commutative monoid $(+, 0)$ on each homset $C(x, y)$ such that $f \fcmp 0 = 0 = 0 \fcmp f$ and $(f + f') \fcmp (g + g') = f \fcmp g + f \fcmp g' + f' \fcmp g + f' \fcmp g'$ for all arrows $f, g, f', g'$.
+A functor $F : C \to D$ between CM-enriched categories is CM-enriched when $F(0) = 0$ and $F(f + g) = F(f) + F(g)$.
+For example, the category $\mathbf{Mat}_\S$ is CM-enriched with elementwise addition of matrices.
 A commutative-monoid-enriched category with one object is precisely a rig.
-Given a signature $\Sigma$, we construct the free category with sums $F^+(\Sigma)$ by taking the free commutative monoid over each homset of $F(\Sigma)$, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
+Given a signature $\Sigma$, we construct the free CM-enriched category $F^+(\Sigma)$ by taking the free commutative monoid over each homset of $F(\Sigma)$, i.e. arrows $f : x \to y$ in $F^+(\Sigma)$ are \emph{bags} (also called \emph{multisets}) of arrows $f_i : x \to y$ in $F(\Sigma)$.
 
-In DisCoPy, free categories with sums are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]} as well as its own \py{cast} method, which turns an arrow into the sum of just itself.
+In DisCoPy, free CM-enriched categories are implemented by \py{Sum}, a subclass of \py{Box} with an attribute \py{terms: list[Arrow]} as well as its own \py{cast} method, which turns an arrow into the sum of just itself.
 It is attached to the arrow with \py{Arrow.sum = Sum}, we also override \py{Arrow.then} so that we have \py{f >> (g + h)} \py{== Sum.cast(f) >> (g + h)} for any arrow \py{f}, i.e. .
 the composition of an arrow with a sum is the sum of the compositions with its terms.
 We define equality so that \py{f == Sum.cast(f)}, equality of bags of terms is implemented as equality of lists sorted by an arbitrary ordering.
@@ -741,7 +741,7 @@ class Functor(cat.Functor):
 \end{python}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Mat}_\S$ as a category with sums.}
+{\normalfont Implementation of $\mathbf{Mat}_\S$ as a CM-enriched category.}
 
 \begin{minted}{python}
 class Matrix:
@@ -775,7 +775,7 @@ These functor bubbles have also been called \emph{functorial boxes}~\cite{Mellie
 \end{example}
 
 \begin{example}
-An \emph{exponential rig} is a one-object category $\S$ with sums and a bubble $\exp : \S \to \S$ which is a homomorphism from sum to product, i.e. $\exp(a + b) = \exp(a) \exp(b)$ and $\exp(0) = 1$.
+An \emph{exponential rig} is a one-object CM-enriched category $\S$ with a bubble $\exp : \S \to \S$ which is a homomorphism from sum to product, i.e. $\exp(a + b) = \exp(a) \exp(b)$ and $\exp(0) = 1$.
 Any rig $\S$ is an exponetial rig by taking $\exp(a) = 1$ for all $a \in \S$.
 Non-trivial examples include the complex numbers as well as the Boolean rig with negation.
 Thus, exponential rigs provide enough syntax to define the matrices of most quantum gates, as well as any propositional logic formula.

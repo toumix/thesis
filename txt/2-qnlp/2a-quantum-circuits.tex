@@ -99,14 +99,14 @@ class Channel(Composable, Tensorable):
 
 The category $\mathbf{CQMap}$ inherits a dagger compact closed structure from that of $\mathbf{Mat}_\C$.
 The swaps (cups, caps) for classical-quantum systems $(a, b) \in \N \times \N$ are given by tensoring a single swap (cup, cap) for $a$ and a double swap (cup, cap) for $b$.
-It also has sums given by element-wise addition, note however that the functor $\mathtt{double}$ does not preserve sums, i.e. $\widehat{f + f'} \neq \widehat{f} + \widehat{f'}$ in general.
+It is also commutative-monoid-enriched with element-wise addition, note however that the functor $\mathtt{double}$ is not CM-enriched, i.e. $\widehat{f + f'} \neq \widehat{f} + \widehat{f'}$ in general.
 In quantum mechanical terms, this corresponds to the distinction between
 quantum superposition and probabilistic mixing.
 Crucially, the subcategory $\mathbf{Channel}$ of CPTP maps is \emph{not} compact-closed because caps are not causal.
-It does not have sums in general, the sum of two channels is not causal but any convex combination is.
+It is not commutative-monoid-enriched: the sum of two channels is not causal (although any convex combination is).
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{CQMap}$ as a compact closed category with sums.}
+{\normalfont Implementation of $\mathbf{CQMap}$ as a CM-enriched compact closed category.}
 
 \begin{minted}{python}
 CQ.l = CQ.r = property(lambda self: self)
@@ -238,7 +238,7 @@ class MixedState(Box, Circuit):
 
 As discussed in example~\ref{example:pivotal-circuit}, the category $\mathbf{Circ}$ also has a dagger compact closed structure where the cups and caps for qudits are given by scaled Bell states and post-selected Bell measurements respectively.
 The cups for digits are given by the result of measuring a scaled Bell state, or equivalently as an (unnormalised) correlated probability distributions, the caps can be thought of as classical post-selection on two digits being equal.
-We can freely add sums to $\mathbf{Circ}$ and execute (simulate) a formal sum of circuits by executing (simulating) each circuit and adding up the results.
+We can freely enrich $\mathbf{Circ}$ in commutative monoids and execute (simulate) a formal sum of circuits by executing (simulating) each circuit and adding up the results.
 If we can take formal sums, there's no reason not to also take linear combinations of circuits.
 Via the Born rule, we can already define positive real scalars as the evaluation of pure quantum gates on zero qubits, such as the $\sqrt 2$ scalars of our first example~\ref{example:circuit-alive-loves-bob}.
 What we're missing are \emph{mixed scalars} which get applied after the Born rule.

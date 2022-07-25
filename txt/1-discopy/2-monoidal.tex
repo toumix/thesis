@@ -694,7 +694,7 @@ class Layer:
 \end{minted}
 \end{python}
 
-A monoidal category is commutative-monoid-enriched when it has sums that distribute over the tensor, i.e.
+A monoidal category is commutative-monoid-enriched when sums distribute over the tensor, i.e.
 $$(f + f') \s \otimes \s (g + g')
 \quad = \quad
 f \otimes g \s + \s f \otimes g' \s + \s f' \otimes g \s + \s f' \otimes g'$$
@@ -702,7 +702,7 @@ $$\text{and} \quad f \otimes 0 \s = \s 0 \s = \s 0 \otimes f$$
 They are implemented by a adding method a \py{tensor} method to \py{Sum}, as well as overriding \py{Diagram.tensor} so that \py{f @ (g + h) == Sum.cast(f) @ (g + h)} for all diagrams \py{f}.
 
 \begin{python}
-{\normalfont Implementation of free monoidal categories with sums.}
+{\normalfont Implementation of free CM-enriched monoidal categories.}
 
 \begin{minted}{python}
 class Diagram(monoidal.Diagram):

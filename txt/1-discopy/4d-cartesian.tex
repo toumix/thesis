@@ -379,11 +379,11 @@ class Tensor:
 \end{python}
 
 Biproducts and matrices happen to be intimately related.
-Indeed, given any category $C$ with sums we can construct its \emph{free biproduct completion} $\mathbf{Mat}_C$ as the monoidal category with objects given by $C_0^\star$ and arrows $f : x \to y$ given by matrices $f_{ij} : x_i \to y_j$ of arrows in $C_1$.
+Indeed, given any commutative-monoid-enriched category $C$ we can construct its \emph{free biproduct completion} $\mathbf{Mat}_C$ as the monoidal category with objects given by $C_0^\star$ and arrows $f : x \to y$ given by matrices $f_{ij} : x_i \to y_j$ of arrows in $C_1$.
 Composition in $\mathbf{Mat}_C$ is an extension of the usual matrix multiplication with composition as product.
-In particular, if $C = \S$ is a rig, i.e. a one-object category with sums, then this definition coincides with the usual one.
-Any category with biproducts also has sums $f + g : x \to y$ given by $\ttsplit(x) \fcmp f \oplus g \fcmp \merge(x)$ and a zero morphism $0 = \counit(x) \fcmp \unit(y)$.
-One can verify that the free completion is indeed the left adjoint to the forgetful functor from biproducts to sums, see~\cite[Exercise VIII.2.6]{MacLane71}.
+In particular, if $C = \S$ is a rig, i.e. a one-object CM-enriched category, then this definition coincides with the usual one.
+Any category with biproducts is automatically enriched in commutative monoids with $f + g : x \to y$ given by $\ttsplit(x) \fcmp f \oplus g \fcmp \merge(x)$ and the zero morphism $0 = \counit(x) \fcmp \unit(y)$.
+One can verify that the free completion is indeed the left adjoint to the forgetful functor from biproducts to CM-enrichment, see~\cite[Exercise VIII.2.6]{MacLane71}.
 Similarly, if $C$ is a $\dagger$-category then $\mathbf{Mat}_C$ is its free $\dagger$-biproduct completion with the element-wise dagger of the transpose.
 If $C$ is also a monoidal category, then $\mathbf{Mat}_C$ is a rig category with the tensor given by an extension of the usual Kronecker product with tensor as product.
 
