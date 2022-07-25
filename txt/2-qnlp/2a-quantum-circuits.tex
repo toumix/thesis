@@ -22,7 +22,7 @@ Moreover, their definition of cq-map includes the complete positivity condition,
 
 There is a functor $\mathtt{double} : \mathbf{Mat}_\C \to \mathbf{CQMap}$ which sends a dimension $n$ to the pair $(1, n)$ and a complex matrix $f$ to its \emph{double} $\widehat{f}$, the cq-map given by tensoring with its conjugate $\widehat{f} = f \otimes f^\star$.
 The double of a scalar $s : 1 \to 1$ gives the same result as the Born rule $\hat{s} = s \bar{s} = \vert s \vert^2$.
-The double of any matrix $f : m \to n$ automatically satisfies the complete-positivity condition, it satisfies causality iff $f$ is an isometry, i.e. $f^\dagger \fcmp f = \id(n)$.
+The double of any matrix $f : m \to n$ automatically satisfies the complete-positivity condition; it satisfies causality iff $f$ is an isometry, i.e. $f^\dagger \fcmp f = \id(n)$.
 Furthermore the functor $\mathtt{double}$ is faithful up to a global phase~\cite[Proposition~6.6]{CoeckeKissinger17}.
 A cq-map is called \emph{pure} if it is in the image of $\mathtt{double}$ and \emph{mixed} otherwise.
 
@@ -285,9 +285,9 @@ Circuit.cups, Circuit.caps = cups, lambda left, right: cups(left, right).dagger(
 
 \py{Circuit} comes with a Boolean property \py{is_pure} which defines the subcategory of pure circuits, i.e. that we can interpret as \py{Tensor}.
 The \py{eval} method now comes with an optional Boolean argument \py{mixed}: if \py{not mixed} and \py{is_pure} we apply a \py{Tensor}-valued functor, otherwise a \py{Channel}-valued functor.
-The optional \py{backend} argument allow to go from numerical simulation to quantum hardware: it translates a circuit diagram with only \py{Digit} outputs (i.e. all qudits have been measured or discarded) into a \py{pytket.Circuit} before executing it on a quantum device.
+The optional \py{backend} argument allows to go from numerical simulation to quantum hardware: it translates a circuit diagram with only \py{Digit} outputs (i.e. all qudits have been measured or discarded) into a \py{pytket.Circuit} before executing it on a quantum device.
 As of today, DisCoPy does not implement the execution of \py{Encode} on quantum hardware yet, this would require to decide which quantum gate to perform depending on the result of a previous measurement.
-Although simulating qudits makes no real difference than simulating qubits, we can only execute qubit circuits yet.
+Although simulating qudit circuits is no harder than qubit simulation, standard quantum hardware can only execute qubit circuits so far.
 
 \begin{python}
 {\normalfont Implementation of the \py{Circuit.eval} method.}

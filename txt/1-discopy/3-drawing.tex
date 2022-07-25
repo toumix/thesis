@@ -63,7 +63,7 @@ Vicary and Delpeuch \cite{VicaryDelpeuch22} give a linear-time algorithm to comp
 For example, if we tensor an identity with a scalar, the wire representing the identity will wiggle around the node representing the scalar.
 DisCoPy uses a quadratic-time drawing algorithm with the following design decision: we make every wire a straight line and as vertical as possible.
 We first initialise the lgpp graph of the identity with a constant spacing between each wire, then for each layer we update the embedding so that there is enough space for the output wires of the box before we add it to the graph.
-The resulting plane graph is then either plotted on the screen using Matplotlib~\cite{Hunter07} or translated to TikZ~\cite{Tantau13} code that can be integrated to a \LaTeX document.
+The resulting plane graph is then either plotted on the screen using Matplotlib~\cite{Hunter07} or translated to TikZ~\cite{Tantau13} code that can be integrated to a \LaTeX \ document.
 All the diagrams in this thesis were drawn using DisCoPy together with TikZiT\footnote{\url{https://tikzit.github.io}} for manual editing.
 
 \begin{python}
@@ -286,7 +286,7 @@ We can apply the case of the identity to the left and right slices, for the midd
 Because $G$ is generic, we can cut a graph with $n > 2$ boxes in two horizontal slices between the last and the one-before-last box, then apply the case for layers and the induction hypothesis.
 To glue the two slices back together while keeping the wires straight, we need to make space for the wires going out of the box.
 
-This deformation is indeed progressive, i.e. we never bend wires we only make them straight.
+This deformation is indeed progressive, i.e. we never bend wires, we only make them straight.
 It is also generic, i.e. we never move a box node past another.
 \end{proof}
 

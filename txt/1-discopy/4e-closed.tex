@@ -5,11 +5,12 @@
 As we have seen in sections~\ref{subsection:hypergraph} and \ref{subsection:cartesian}, cartesian categories like $\mathbf{Pyth}$ and hypergraph categories like $\mathbf{Tensor}$ are two orthogonal extensions of monoidal categories.
 The former have natural comonoids on each object, the latter have spiders on each object, an object that has both is necessarily trivial.
 Nevertheless, the category $\mathbf{Pyth}$ does share a common structure with rigid categories beyond being monoidal: both are \emph{closed} monoidal categories.
-A monoidal category $C$ is left-closed if for every object $x \in C_0$, the functor $x \otimes - : C \to C$ has a right adjoint $x / - : C \to C$ called \emph{$x$ over $-$}.
-Symmetrically, $C$ is right-closed if the functor $- \otimes x : C \to C$ has a right adjoint $- \backslash x : C \to C$ called \emph{$-$ under $x$}.
+A monoidal category $C$ is left-closed if for every object $x \in C_0$, the functor $x \otimes - : C \to C$ has a right adjoint $x \backslash - : C \to C$ called \emph{$x$ under $-$}.
+Symmetrically, $C$ is right-closed if the functor $- \otimes x : C \to C$ has a right adjoint $- / x : C \to C$ called \emph{$-$ over $x$}.\footnote
+{There is a simple mnemonic to remember what comes over or under: the input is under the slash in the same way that the denominator is under the fraction bar, it gets canceled when multiplied on the appropriate side $x / y \otimes y \to x$ and $y \otimes y \backslash x \to x$.}
 A \emph{closed (monoidal) category} is one that is closed on the left and the right.
-For example, a rigid category is a closed category where the over and under types have the form $x / y = x^r \otimes y$ and $y / x = y \otimes x^l$.
-When the category is symmetric, over and under types coincide, they are called \emph{exponentials} $x / y = y \backslash x = y^x$.
+For example, a rigid category is a closed category where the over and under types have the form $x \backslash y = x^r \otimes y$ and $y / x = y \otimes x^l$.
+When the category is symmetric, over and under types coincide, they are called \emph{exponentials} $x \backslash y = y / x = y^x$.
 
 \begin{example}\label{example:residuated-monoids}
 A discrete monoidal category (i.e. a monoid) is closed if and only if it is a group.
@@ -95,11 +96,11 @@ Now we can define the left adjoint $F : \mathbf{CMonSig} \to \mathbf{CCCat}$ as 
 Composing the two adjunctions we get $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$.
 
 Diagrams in free cartesian closed categories can also be seen as terms of the \emph{simply typed lambda calculus} (up to $\beta\eta$-equivalence) or as proofs in \emph{minimal logic} (the fragment of propositional logic with only conjunction and implication).
-See Abramsky and Tzevelekos~\cite{AbramskyTzevelekos11} for an introduction to this \emph{Curry-Howard-Lambek correspondance}.
+See Abramsky and Tzevelekos~\cite{AbramskyTzevelekos11} for an introduction to this \emph{Curry-Howard-Lambek correspondence}.
 The problem of deciding the ($\beta\eta$) equivalence of a given pair of simply typed lambda terms (or equivalently the equivalence of two minimal logic formulae) is decidable~\cite{Tait67} but not elementary recursive~\cite{Statman79}, i.e. its time complexity is not bounded by any tower of exponentials.
 As such, the word problem for free cartesian closed categories is as intractable as it gets.
 If we remove the copying and discarding, the word problem for free symmetric closed categories is decidable in linear time~\cite{Voreadou77}.
-The algorithm is based on a variant of Gentzen's cut-elimination theorem~\cite{Gentzen35} for a \emph{substructural logic}, one where the \emph{weakening} and \emph{contraction} rules are omitted, i.e. we cannot discard or copy assumptions.
+The algorithm is based on a variant of Gentzen's cut-elimination theorem~\cite{Gentzen35} for \emph{multiplicative intuitionistic linear logic} (MILL), a \emph{substructural logic} where the \emph{weakening} and \emph{contraction} rules are omitted, i.e. we cannot discard or copy assumptions.
 To the best of our knowledge, the case of (non-symmetric) closed monoidal categories is still open.
 We conjecture it can be solved with a variant of cut-elimination for a \emph{non-commutative logic} omitting the \emph{exchange} rule, i.e. we cannot swap assumptions.
 
@@ -132,16 +133,16 @@ class Exp(Ty):
         return isinstance(other, type(self))\
             and (self.base, self.exponent) == (other.base, other.exponent)
 
-    __str__ = lambda self: "({}) ** ({})".format(self.base, self.exponent)
-
-class Under(Exp):
-    __str__ = lambda self: "({} << {})".format(self.base, self.exponent)
+    __str__ = lambda self: "({} ** {})".format(self.base, self.exponent)
 
 class Over(Exp):
+    __str__ = lambda self: "({} << {})".format(self.base, self.exponent)
+
+class Under(Exp):
     __str__ = lambda self: "({} >> {})".format(self.exponent, self.base)
 
-Ty.__lshift__, Ty.__rshift__ = Under, lambda self, other: Over(other, self)
-Diagram.over, Diagram.under = map(staticmethod, (Over, Under))
+Ty.__lshift__, Ty.__rshift__ = Over, lambda self, other: Under(other, self)
+Diagram.over, Diagram.under, Diagram.exp = map(staticmethod, (Over, Under, Exp))
 \end{minted}
 \end{python}
 
@@ -187,10 +188,10 @@ class Functor(monoidal.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):
-        if isinstance(other, Over):
-            return self.cod.ar.over(self(other.exponent), self(other.base))
-        if isinstance(other, Under):
-            return self.cod.ar.under(self(other.base), self(other.exponent))
+        for cls, attr in [(Over, "over"), (Under, "under"), (Exp, "exp")]:
+            if isinstance(other, cls):
+                method = getattr(self.cod.ar, attr)
+                return method(self(other.base), self(other.exponent))
         if isinstance(other, Curry):
             return self.cod.ar.curry(
                 self(other.diagram), len(self(other.cod.exponent)), other.left)
@@ -232,8 +233,8 @@ Once drawn in this way, the equations for currying become a special case of the 
 \begin{minted}{python}
 rigid.Ty.__lshift__ = lambda self, other: self @ other.l
 rigid.Ty.__rshift__ = lambda self, other: self.r @ other
-rigid.Diagram.under = staticmethod(lambda base, exponent: base << exponent)
-rigid.Diagram.over = staticmethod(lambda base, exponent: exponent >> base)
+rigid.Diagram.over = staticmethod(lambda base, exponent: base << exponent)
+rigid.Diagram.under = staticmethod(lambda base, exponent: exponent >> base)
 
 @classmethod
 def ev(cls, base: rigid.Ty, exponent: rigid.Ty, left=True) -> rigid.Diagram:

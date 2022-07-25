@@ -16,23 +16,24 @@ Both TQFTs and DisCoCat can be given a one-sentence definition in terms of categ
 
 How can the same piece of general abstract nonsense (category theory's nickname) apply to both quantum gravity and natural language processing?
 And how can this nonsense be of any help in the implementation of QNLP algorithms?
-This section will answer with a brief and biased history of category theory and its applications to quantum physics and computational linguistics, from an abstract framework for meta-mathematics to a concrete toolbox for NLP on quantum hardware.
+This section will answer with a history of category theory and its applications to quantum physics and computational linguistics, from an abstract framework for meta-mathematics to a concrete toolbox for NLP on quantum hardware.
 First, a short philosophical digression on the etymology of the words ``functor'' and ``category'' shall bring some light to their divergent meanings in mathematics and linguistics.
 
 The word ``functor'' first appears in Carnap's \emph{Logical syntax of language}~\cite{Carnap37} to describe what would be called a \emph{function symbol} in a modern textbook on first-order logic.
 He introduces them as a way to reduce the laws of empirical sciences like physics to the pure syntax of his formal logic, taking the example of a \emph{temperature functor} $T$ such that $T(3) = 5$ means ``the temperature at position 3 is 5''\footnote
 {MacLane~\cite{MacLane38} would later remark that Carnap's formal language cannot express the coordinate system for positions, nor the scale in which temperature is measured.}.
-In the linguistics community, this meaning has then drifted to become synonymous with \emph{function words} such as ``such'', ``as'', ``with'', etc. These words do not refer to anything in the world but serve as the grammatical glue between the \emph{lexical words} that describe things and actions.
+This meaning has then drifted to become synonymous with \emph{function words} such as ``such'', ``as'', ``with'', etc. These words do not refer to anything in the world but serve as the grammatical glue between the \emph{lexical words} that describe things and actions.
 They represent less than one thousandth of our vocabulary but nearly half of the words we speak~\cite{ChungPennebaker07}.
 
 Categories (from the ancient Greek \emph{\foreignlanguage{greek}{κατηγορία}}, ``that which can be said'') have a much older philosophical tradition.
-In his \emph{Categories}~\cite{Aristotle66}, Aristotle first makes the distinction between the simple forms of speech (the things that are ``said without any combination'' such as ``man'' or ``arguing'') and the composite ones such as ``a man argued''.
+In his \emph{Categories}, Aristotle first makes the distinction between the simple forms of speech (the things that are ``said without any combination'' such as ``man'' or ``arguing'') and the composite ones such as ``a man argued''.
 He then classifies the simple, atomic things into ten categories: ``each signifies either substance or quantity or qualification or a relative or where or when or being-in-a-position or having or doing or being-affected''.
 A common explanation~\cite{Ryle37} for how Aristotle arrived at such a list is that it comes from the possible \emph{types of questions}: the answer to ``What is it?'' has to be a substance, the answer to ``How much?'' a quantity, etc.
 Although he was using language as a tool, his system of categories aims at classifying things in the world, not forms of speech: it was meant as an \emph{ontology}, not a grammar.
 In his \emph{Critique of Pure Reason}~\cite{Kant81}, Kant revisits Aristotle's system to classify not the world, but the mind: he defines categories of understanding rather than categories of being.
 The idea that every object (whether in the world or in the mind) is an object of a certain type has then become foundational in mathematical logic and Russell's \emph{theory of types}~\cite{Russell03}.
-The same idea has also had a great influence in linguistics and especially in the \emph{categorial grammar} tradition initiated by Ajdukiewicz~\cite{Ajdukiewicz35} and Bar-Hillel~\cite{Bar-Hillel53,Bar-Hillel54}, where categories have now become synonymous with \emph{grammatical types} such as nouns, verbs, etc.
+The same idea has also had a great influence in linguistics and especially in the \emph{categorial grammar} tradition initiated by Ajdukiewicz~\cite{Ajdukiewicz35} and Bar-Hillel~\cite{Bar-Hillel53,Bar-Hillel54}, where categories have now become synonymous with \emph{grammatical types}.
+As we shall see in section~\ref{subsection:lambek-discocat}, the key innovation from Aristotelian categories to categorial grammars is that the grammatical types now come with some structure: we can compose \emph{atomic categories} together to form complex types, confusingly called \emph{functor categories}.
 
 Independently of their use in linguistics, a series of papers from Eilenberg and MacLane~\cite{EilenbergMacLane42,EilenbergMacLane42a,EilenbergMacLane45} gave categories and functors their current mathematical definition.
 Inspired by Aristotle's categories of things and Kant's categories of thoughts, they defined categories as types of \emph{mathematical structures}: sets, groups, spaces, etc.
@@ -62,11 +63,11 @@ with applications including error correction \cite{ChancellorEtAl18,GidneyFowler
 
 In quantum computing as well, adjunction is fundamental: it underlies the definition of entanglement and the proof of correctness for the \emph{teleportation protocol}.
 Back in 2004 when Coecke first presented this result at the McGill category theory seminar, Lambek immediately pointed out the analogy with his \emph{pregroup grammars}~\cite{Lambek99,Lambek01} where adjunction is the only grammatical rule\footnote
-{See \cite{Coecke19} for a first-hand account of this story and a praise of Jim Lambek.}.
-Half a century beforehand, Lambek~\cite{Lambek58,Lambek59,Lambek61} had started to unravel the analogy between the derivations in categorial grammars and proof trees in mathematical logic.
+{See \cite{Coecke21} for a first-hand account of this story and a praise of Jim Lambek.}.
+Half a century beforehand, the \emph{Lambek calculus}~\cite{Lambek58,Lambek59,Lambek61} revealed an analogy between the derivations in categorial grammars and proof trees in mathematical logic.
 He then extended this analogy in \emph{Categorial and categorical grammar}~\cite{Lambek88} where he showed that these grammatical derivations are in fact arrows in \emph{closed monoidal categories} and proposed to cast Montague semantics as a topos-valued functor.
 Later, he argued not ``that categories should play a role in linguistics, but rather that they already do''~\cite{Lambek99b}.
-Indeed, Hotz~\cite{Hotz66} had already proved that Chomsky's generative grammars were \emph{free monoidal categories}, although his original German article was never translated to English and remains confidential.
+Indeed, Hotz~\cite{Hotz66} had already proved that Chomsky's generative grammars were \emph{free monoidal categories}, although his original German article was never translated to English.
 The idea of using functors as semantics had appeared implicitly in Knuth~\cite{Knuth68a} in the context-free case and was made explicit by Benson~\cite{Benson70a} for unrestricted grammars.
 From this categorical formulation of linguistics, Lambek~\cite{Lambek10} first suggested the analogy between linguistics and physics which is the basis of this thesis: \emph{pregroup reductions as quantum processes}.
 
@@ -75,10 +76,12 @@ It is remarkable that Lambek could foresee QNLP without \emph{string diagrams}\f
 Instead, he either uses lines of equations, proof trees or ``underlinks'' for pregroup adjunctions~\cite{Lambek08}.
 He admits ``not having had the patience to absorb'' the topological definition of Joyal-Street string diagrams~\cite{Lambek10}.
 }, probably the most powerful tool in the hands of the applied category theorist.
-They first appeared in another confidential article from Hotz~\cite{Hotz65} as a formalisation of the diagrams commonly used in electronics.
+They first appeared in another article from Hotz~\cite{Hotz65} as a formalisation of the diagrams commonly used in electronics.
 Penrose~\cite{Penrose71} then used the same notation as an informal shortcut for tedious tensor calculations, and later applied it to relativity theory with Rindler~\cite{PenroseRindler84}.
 Joyal and Street~\cite{JoyalStreet88,JoyalStreet91,JoyalStreet95} gave the first topological definition of string diagrams and characterised them as the arrows of free monoidal categories.
-At first a piece of mathematical folklore that was hand-drawn on blackboards and rarely included in publications, string diagrams were published at a much bigger scale with the advent of typesetting tools like \LaTeX and Ti\emph{k}Z.
+A generalisation of string diagrams called \emph{proof nets} were introduced by Girard~\cite{Girard87} as a way to free the proofs of his \emph{linear logic} from ``the bureaucracy of syntax'', they were then applied to the Lambek calculus~\cite{Roorda92} and to its multimodal extensions~\cite{MootPuite02}.
+
+At first a piece of mathematical folklore that was hand-drawn on blackboards and rarely included in publications, string diagrams were published at a much bigger scale with the advent of typesetting tools like \LaTeX \ and Ti\emph{k}Z.
 Selinger's survey~\cite{Selinger10}, makes the hierarchy of categorical structures (symmetric, compact closed, etc.) correspond to a hierarchy of graphical gadgets (swaps, wire bending, etc.).
 In \emph{Picturing Quantum Processes}~\cite{CoeckeKissinger17}, Coecke and Kissinger introduce quantum theory with over a thousand diagrams.
 And the list of applications keeps growing:

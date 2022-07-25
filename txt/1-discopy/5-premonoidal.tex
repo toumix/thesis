@@ -234,7 +234,7 @@ Indeed, the left to right order of wires in a planar diagram encode the chronolo
 More impotantly, planarity in grammar has been given a cognitive explanation.
 In order to minimise the computational resources needed by the brain, human languages tend to minimise the distance between words that are syntactically connected~\cite{FutrellEtAl15} and the minimisation of swaps comes as a side-effect~\cite{Cancho06}.
 It can also be given a complexity-theoretic explanation: planar grammatical structures such as Chomsky's syntax trees, Lambek's pregroup diagrams or Gaifman's dependency trees (which we introduce in section~\ref{section:NLP}) are all \emph{context-free}, they have the same expressive power as \emph{push-down automaton}.
-In languages such as Dutch and Swiss German, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way that makes them \emph{mildly context-sensitive}~\cite{Stabler04}.
+As we will mention in section~\ref{subsection:chomsky}, \emph{cross-serial dependencies} are counter examples where grammatical wires are allowed to cross, albeit in a restricted way that makes them \emph{mildly context-sensitive}~\cite{Stabler04}.
 Yeung and Kartsaklis~\cite{YeungKartsaklis21} showed that up to word reordering, the diagrams for these cross-serial dependencies can always be rewritten in a planar way using naturality.
 They then used DisCoPy to encode every sentence of Alice in Wonderland as a diagram, ready to be translated into a circuit and sent to a quantum computer.
 

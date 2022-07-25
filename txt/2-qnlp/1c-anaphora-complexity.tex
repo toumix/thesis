@@ -11,12 +11,12 @@ This discourse-to-database translation was refined in later work with de Felice 
 In the case of Boolean-valued models $F : \G \to \mathbf{Mat}_\S$, we proved that this question-answering problem is in fact equivalent to \emph{conjunctive query evaluation}, which is $\mathtt{NP}$-complete by a celebrated theorem of Chandra and Merlin~\cite{ChandraMerlin77}.
 Conjunctive queries can be defined as Peircean diagrams with no bubbles, i.e. only spiders and predicate boxes, or equivalently as the first-order logic formulae with existentials and conjunction but no negation, see Bonchi et. al for a diagrammatic treatment~\cite{BonchiEtAl18}.
 The Chandra-Merlin theorem is based on the construction of a \emph{canonical model} for the given query, i.e. a canonical functor given a diagram, then reducing evaluation to the problem of graph homomorphism between models.
-Once translated in terms of Boolean DisCoCat models, the same result implies that question-answering (i.e. the application of a functor to a diagram) is equivalent to the \emph{entailment problem}: given two sentences, does the truth of one imply that the other?
+Once translated in terms of Boolean DisCoCat models, the same result implies that question-answering (i.e. the application of a functor to a diagram) is equivalent to the \emph{entailment problem}: given two sentences, does the truth of one imply that of the other?
 
 DisCoCat models with anaphoric spiders are unsatisfying in two opposite ways: they are not expressive enough to encode negation\footnote
 {Note that the results of \cite{FeliceEtAl19} assume that the sentence type is mapped to the unit, i.e. the meaning of a sentence is a scalar in $\B$.
 Preller~\cite{Preller14a,Preller14} takes an alternative, four-valued approach to first-order logic with pregroups where the sentence type is given dimension $2$: a sentence is either true, false, neither or both.}
-but if allow arbitrary anaphora, they are already too expressive to be computed efficiently.
+but if we allow arbitrary anaphora, they are already too expressive to be computed efficiently.
 The first point cannot be avoided if we want our models to be tractable: adding negation to conjunctive queries will generate all of first-order logic, for which question-answering (i.e. model checking) is $\mathtt{PSPACE}$-complete and entailment (i.e. the Entscheidungsproblem) undecidable.
 We may get around the second dissatisfaction by adding restrictions on anaphoric expressions.
 For example, requiring that the corresponding query has \emph{bounded tree-width}~\cite{ChekuriRajaraman00} ensures that question answering is solvable in polynomial time.

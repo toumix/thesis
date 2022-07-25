@@ -1,20 +1,19 @@
 %!TEX root = ../../THESIS.tex
 
-\subsection{Chomskyan grammars, parsing and ambiguity}\label{subsection:chomsky}
+\subsection{Formal grammars, parsing and ambiguity}\label{subsection:chomsky}
 
 The word ``grammar'' comes from the ancient Greek ``$\rm{\gamma \rho\acute{\alpha}\mu\mu\alpha}$'' (line of writing), it is cognate to the words ``glamour'' and ``grimoire'' \cite{RuppliThorel05, Davies10, Lambek14}.
-Indeed, (Latin) grammar was such a rare skill in medieval Europe that it was associated with magic.
 The practice of grammar itself goes back to India somewhere between the 6th and 4th century BCE~\cite{BhateKak93}, where the Sanskrit philologist P\={a}\d{n}ini introduced what was later recognised as \emph{context-sensitive grammars}.
 More than two thousand years later, Chomsky~\cite{Chomsky56,Chomsky57} gave grammars their modern definition.
 A \emph{formal grammar}, also called \emph{unrestricted} or \emph{type-0} grammar, is a tuple $G = (V, X, R, s)$ where:
 \begin{itemize}
     \item $V$ and $X$ are finite sets called \emph{terminal} and \emph{non-terminal} symbols respectively, we will also call them the \emph{vocabulary} and the \emph{basic types},
-    \item $R$ is a finite set of \emph{production rules}\footnote
-    {Formal grammars are usually defined with the rules going in the other direction, i.e. $w \in L(G)$ if and only if $s \leq_R w$.
-    We choose the opposite convention so that we won't have to switch in the next section.} $x \to y$ where $x, y \in (V + X)^\star$,
+    \item $R$ is a finite set of \emph{production rules} $x \to y$ where $x, y \in (V + X)^\star$,
     \item $s \in X$ is called the \emph{start symbol} or the \emph{sentence type}.
 \end{itemize}
-A string of words $w = w_1 \dots w_n \in V^\star$ is a \emph{grammatical sentence} whenever $w \leq_R s$
+A string of words $w = w_1 \dots w_n \in V^\star$ is a \emph{grammatical sentence} whenever\footnote
+{Formal grammars are usually defined in the other direction, i.e. $w \in L(G)$ iff $s \leq_R w$.
+We choose the opposite convention so that we won't have to switch in the next section.} $w \leq_R s$
 for $(\leq_R)$ the reflexive transitive closure of the rewriting relation as defined in section~\ref{subsection:quotient-categories}.
 Thus, the grammar $G$ generates a \emph{language} $L(G) \sub V^\star$, the set of all grammatical sentences.
 Although formal grammars are called unrestricted, the right-hand side of the rules in $R$ is usually restricted to be non-empty.
@@ -29,9 +28,9 @@ It is easily shown to be equivalent to the word problem for monoids and the halt
 Moreover, there exists a \emph{universal grammar} $G$ such that the parsing problem with $G$ fixed and only the string $w \in V^\star$ as input is undecidable.
 That is, for any other grammar $G'$ and string $w \in V(G')^\star$ we can compute some other string $w' \in V(G)^\star$ such that $w \in L(G')$ if and only if $w' \in L(G)$.
 
-If we are to build a \emph{parser}, i.e. a machine that computes the grammatical structure of a given string, type-0 grammars are too general.
-Going one level up in Chomsky's hierarchy, a \emph{context-sensitive grammar} (CSG, also called a \emph{type-1} grammar) is a formal grammar $G$ where the rules have the form $a x c \to a b c$ for a non-terminal symbol $x \in X$ and lists of symbols $a, b, c \in G_0^\star$ where $\len(b) \geq 1$\footnote
-{If we care about whether a language contains the empty string $1$ or not, we also have to allow for the rule $1 \to s$.}.
+If we are to build a \emph{parser}, i.e. a machine that computes the grammatical structure of a given string, type-0 grammars are too general: their parsing problem is undecidable.
+Going one level up in Chomsky's hierarchy, a \emph{context-sensitive grammar} (CSG, also called a \emph{type-1} grammar) is a formal grammar $G$ where the rules have the form $a b c \to a x c$ for a non-terminal symbol $x \in X$ and lists of symbols $a, b, c \in G_0^\star$ where $\len(b) \geq 1$\footnote
+{If we care about whether a language contains the empty string $1$ or not, we also have to allow for the rule $s \to 1$.}.
 The parsing problem for CSG was the first to be shown complete for the class $\mathtt{NPSPACE}$ of problems solvable in non-deterministic polynomial space~\cite{Kuroda64}.
 Savitch~\cite{Savitch70} then proved $\mathtt{NPSPACE} = \mathtt{PSPACE}$, hence that parsing CSG is in fact complete for deterministic polynomial space.
 Another $\mathtt{PSPACE}$-complete problem is the parsing problem for \emph{non-contracting grammars}, where we have that $\len(y) \leq \len(x)$ for every rule $x \to y$.
@@ -45,20 +44,20 @@ Our definition only asserts that the two grammars assign the same number of gram
 Asking for an equivalence of monoidal categories $\G \simeq \G'$ would be too strong: when two free categories are equivalent, they are automatically isomorphic.} $\G(w, s) \simeq \G'(f(w), s)$ for all strings $w \in V^\star$.
 For example, every CSG is strongly equivalent to a non-contracting grammar (itself) in a trivial way.
 
-For a less trivial example, every formal grammar $G$ is strongly equivalent to a \emph{lexicalised} one, where the rules are a union $R = D \cup R'$ of \emph{dictionary entries} $D \sub V \times X^\star$ assigning possible types to each word and production rules $R' \sub X^\star \times X^\star$ not involving the vocabulary.
+For a less trivial example, every formal grammar $G$ is strongly equivalent to a \emph{lexicalised} one, where the rules are a union $R = D \cup R'$ of \emph{dictionary entries} $D \sub V \times X$ assigning possible types to each word and production rules $R' \sub X^\star \times X^\star$ not involving the vocabulary.
 Indeed, given a grammar $G$ we can add a new basic type $w'$ and a dictionary entry $w \to w'$ for each word $w \in V$ to get a lexicalised grammar $G'$.
 Every grammatical structure $f : w_1 \dots w_n \to s$ in $\G'$ factorises as $f = d \fcmp f'$ for a tensor of dictionary entries $d : w_1 \dots w_n \to w_1' \dots w_n'$ and a diagram $f' : w_1' \dots w_n' \to s$ with no dictionary entries, which is isomorphic to a grammatical structure in $\G$.
 Once the grammar is lexicalised, we usually draw dictionary entries as boxes labeled by the corresponding word and we omit the wires for terminal symbols.
-We also assume that any \emph{semantic functor} $F : \G \to C$ from a lexicalised grammar $\G$ to some concrete category $C$ maps dictionary entries to states, i.e. $F(w) = 1$ for all words $w \in V$, which  implies that the interpretation of any grammatical structure is a also state $F(f) : 1 \to F(s)$.
+We also assume that any \emph{semantic functor} $F : \G \to C$ from a lexicalised grammar $\G$ to some concrete category $C$ maps dictionary entries to states, i.e. $F(w) = 1$ for all words $w \in V$, which implies that the interpretation of any grammatical structure is a also state $F(f) : 1 \to F(s)$.
 
-Now unless $\mathtt{P} = \mathtt{NP} = \mathtt{PSPACE}$, there can be no efficient parser for context-sensitive grammars in general.
+Unless $\mathtt{P} = \mathtt{NP} = \mathtt{PSPACE}$, there can be no efficient parser for context-sensitive grammars in general.
 This motivates the introduction of \emph{context-free grammars} (CFGs, also called \emph{type-2} grammars) where the right-hand side of each rule has length one.
-We can assume that the grammar is lexicalised, so that the rules have the form either $x \to w$ or $y_1 \dots y_n \to x$ for a basic type $x \in X$, a word $w \in V$ and a list of basic types $y_1 \dots y_n \in X^\star$.
+We can assume that the grammar is lexicalised, so that the rules have the form either $w \to x$ or $y_1 \dots y_n \to x$ for a basic type $x \in X$, a word $w \in V$ and a list of basic types $y_1 \dots y_n \in X^\star$.
 In this case, grammatical structures $f : w_1 \dots w_n \to s$ have the shape of a \emph{syntax tree} with the words $w_1 \dots w_n$ as leaves and the sentence type $s$ as root.
 The interchanger normal form of a syntax tree is called its \emph{left-most derivation}, when two rules apply in parallel the left-most is always applied first.
 A CFG is in \emph{Chomsky normal form} (CNF\footnote
 {CNF is \emph{not} a normal form in the sense that it computes representatives of equivalence classes, a given grammar may have many non-isomorphic CNFs.
-In fact, deciding whether two CFGs are weakly equivalent is undecidable~\cite[Theorem~26]{Chomsky63}.}) when it is lexicalised and the rules are of the form either $s \to 1$ or $x \to y z$ for $x \in X$ and $y, z \in X - \{ s \}$, i.e. where all the syntax trees are binary.
+In fact, deciding whether two CFGs are weakly equivalent is undecidable~\cite[Theorem~26]{Chomsky63}.}) when it is lexicalised and the rules are of the form either $s \to 1$ or $x y \to z$ for $x, y \in X - \{ s \}$ qnd $z \in X$, i.e. where all the syntax trees are binary and the sentence type appears only at the root.
 Every context-free grammar $\G$ can be converted to some weakly equivalent $\G'$ in CNF, with at most a quadratic blow-up in size.
 There is a monoidal functor $\G \to \G'$ mapping every $n$-ary rule to a tree of $n - 1$ binary rules when $n \geq 2$ and to the identity when $n < 2$.
 This means that \emph{nullable} types, i.e. from which we can derive the empty string, are all sent to the monoidal unit.
@@ -72,16 +71,11 @@ Hence, whatever grammatical framework we may come up with, if its parsing proble
 Crucially, the output CFG depends not only on the input grammar but also on the input string: $\mathtt{P}$-completeness does not imply that there exists one fixed CFG that generates the same language.
 This opens the door to grammars that are more expressive than context-free but still efficiently-parsable.
 
-Indeed, there is evidence for context-sensitivity in natural language~\cite{Shieber87}.
-Abstract examples include the following non-context-free languages:
-\begin{itemize}
-  \item $\{ a^n b^n c^n \ \vert \ a, b, c \in V, \s n \geq 1 \}$ called \emph{multiple agreement},
-  \item $\{ a^n b^m c^n d^m \ \vert \ a, b, c, \in V, \s m, n \geq 1 \}$ called \emph{crossed dependency},
-  \item $\{ w w \ \vert \ w \in V^\star \}$ called \emph{duplication}.
-\end{itemize}
-Thus, several \emph{mildly context-sensitive grammar} (MCSG) formalisms have been introduced, which generate all of the context-free languages as well as the three languages above, yet are still parsable in polynomial time.
+Indeed, there is evidence for some degree context-sensitivity in natural language~\cite{Huybregts84,Shieber85}.
+The most studied examples are the \emph{cross-serial dependencies} of Dutch and Swiss German, which have been abstracted as the formal language $\{ w^k \ \vert \ w \in V^\star, k \leq n \}$ for some (low) constant threshold $k \leq n$.
+Thus, several \emph{mildly context-sensitive grammar} (MCSG) formalisms have been introduced, which generate all of the context-free languages as well as cross-serial dependencies, yet are still parsable in polynomial time.
 All MCSGs proposed so far have fallen into one of three classes of weak equivalence~\cite{Weir88}.
-Thus, there is reasonable consensus over the kind of computational power required to parse human language, at least up to weak equivalence.
+Thus, there is reasonable consensus over the kind of computational power required to parse human language, at least up to weak equivalence, see Kallmeyer~\cite{Kallmeyer10} for a standard survey.
 However, there is no consensus yet on the syntactic way this computational power should be expressed: apart from some isolated results~\cite{SchifferMaletti21}, there is no classification of MCSGs up to strong equivalence.
 
 Whether two grammars are strongly equivalent matters when we want to define their semantics, i.e. we want to compute the interpretation of a sentence given its grammatical structure.
@@ -157,7 +151,7 @@ In the framework of context-free grammars, ambiguity arises in at least two ways
 The second type of ambiguity cannot be alleviated: Parikh~\cite{Parikh61,Parikh66} defined a context-free language that is \emph{inherently ambiguous} in the sense that no unambiguous grammar can generate it~\cite[Theorem~29]{Chomsky63}.
 In the same paper, Parikh unravels a deep connection between the theory of context-free grammars and that of free rigs: CFGs $G$ with symbols $G_0$ are in one to one corresondance with endomorphisms of the free rig $f_G : \N[G_0] \to \N[G_0]$ which fix the vocabulary, i.e. $f_G(w) = w$ for all words $w \in V$~\cite[Section~3]{Parikh66}.
 Indeed, the free rig $\N[X]$ generated by a set $X$ has underlying set $\N^{X^\star}$, it can be thought of as the set of \emph{languages with multiplicities}.
-Iterating the endomorphism $n$ times then projecting on the vocabulary with $\pi_V : \N[G_0] \to \N[V]$, the formal sum $\pi_V(f_G^n(s)) \in \N[G_0]$ has a term for each grammatical sentence that can be generated by a syntax tree of depth $n$ and the coefficients given by the ambiguity of the sentence, i.e. the number of different syntax trees.MichaelisKracht97.
+Iterating the endomorphism $n$ times then projecting on the vocabulary with $\pi_V : \N[G_0] \to \N[V]$, the formal sum $\pi_V(f_G^n(s)) \in \N[G_0]$ has a term for each grammatical sentence that can be generated by a syntax tree of depth $n$ and the coefficients given by the ambiguity of the sentence, i.e. the number of different syntax trees~\cite{MichaelisKracht97}.
 Thus we can define the language of a CFG as $L(G) = \cup_{n \in \N} \mathtt{sign}(\pi_V(f_G^n(s)))$ for $\mathtt{sign} : \N[V] \to \B[V] \simeq \B^{V^\star}$ the quotient map induced by $1 + 1 = 1$, i.e. forgetting multiplicities.
 
 Parikh~\cite[Theorem~2]{Parikh66} states that if we define the map $p : V^\star \to \N^V$ which sends lists to bags by forgetting word order, then the direct image $p(L(G)) \sub \N^V$ is indistinguishable from that of a \emph{regular grammar}.

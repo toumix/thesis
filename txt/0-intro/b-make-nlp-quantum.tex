@@ -40,12 +40,13 @@ Most NLP tasks of interest involve natural language \emph{semantics}: we want ma
 Given the grammatical structure of a sentence, we can compute its meaning as a function of the meanings of its words.
 This is known as the \emph{principle of compositionality}, usually attributed to Frege.\footnote
 {Compositionality does not appear in any of Frege's published work~\cite{Pelletier01}.
-Frege~\cite{Frege84} did state what is known as the \emph{context principle}:
+Frege did state what is known as the \emph{context principle}:
 ``it is enough if the sentence as whole has meaning; thereby also its parts obtain their meanings''.
 This can be taken as a kind of dual to compositionality: the meanings of the words are functions of the meaning of the sentence.}
 It was already implicit in Boole's \emph{laws of thought}~\cite{Boole54} and then made explicit by Carnap~\cite{Carnap47}.
-Montague~\cite{Montague70,Montague70a,Montague73} applied this principle in linguistics for the first time, arguing that there is ``no important theoretical difference between natural languages and the artificial languages of logicians''.
-From a theoretical principle, one may argue that compositionality became the basis of the symbolic approach to NLP, also known as \emph{good old-fashioned AI} (GOFAI)~\cite{Haugeland89}.
+Montague~\cite{Montague70,Montague70a,Montague73} then formalised this principle as a \emph{homomorphism} from the algebra of syntax (i.e. grammar) to that of semantics (i.e. logic).
+He applied compositionality to linguistics for the first time, arguing that there is ``no important theoretical difference between natural languages and the artificial languages of logicians''.
+Compositionality became the basis of the symbolic approach to NLP, also known as \emph{good old-fashioned AI} (GOFAI)~\cite{Haugeland89}.
 Word meanings are first encoded in a machine-readable format, then the machine can compose them to answer complex questions.
 This approach culminated in 2011 with IBM Watson defeating a human champion at \emph{Jeopardy!}~\cite{LallyFodor11}.
 

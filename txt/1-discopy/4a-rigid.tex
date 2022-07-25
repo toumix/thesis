@@ -136,7 +136,7 @@ Thanks to the \py{cast} method, we do not need to override the \py{tensor} metho
 In turn, subclasses of \py{rigid.Ty} will not need to override \py{l} and \py{r}.
 Similarly, the \py{rigid.Diagram} class is a subclass of \py{monoidal.Diagram}, thanks to the \py{cast} we do not need to reimplement the identity, composition or tensor.
 \py{rigid.Box} is a subclass of \py{monoidal.Box} and \py{rigid.Diagram}, with \py{Box.cast = Diagram.cast}.
-We need to be careful with the order of inheritance however, diagram equality is defined in terms of box equality, so if we had \py{Box.__eq__ = Diagram.__eq__} then checking equality would enter an infinite loop.
+We need to be careful with the order of inheritance however: diagram equality is defined in terms of box equality, so if we had \py{Box.__eq__ = Diagram.__eq__} then checking equality would enter an infinite loop.
 \py{Cup} (\py{Cap}) is a subclass of \py{Box} initialised by a pair of types \py{x, y} such that \py{len(x) == len(y) == 1} \py{x == y.l} (\py{x.l == y}, respectively).
 The class methods \py{cups} and \py{caps} construct diagrams of nested cups and caps by induction, with \py{Cup} and \py{Cap} as a base case.
 
@@ -181,8 +181,9 @@ Diagram.cups, Diagram.caps = nesting(Cup), nesting(Cap)
 
 The \emph{snake removal} algorithm listed below computes the normal form of diagrams in rigid categories.
 It is a concrete implementation of the abstract algorithm described in pictures by Dunn and Vicary~\cite[2.12]{DunnVicary19}.
-First, we implement a subroutine \py{follow_wire} takes a codomain node (given by the index \py{i} of its box and the index \py{j} of itself in the box's codomain)
-follows the wire till it finds either the domain of another box or the codomain of the diagram.
+First, we implement a subroutine \py{follow_wire}.
+It takes a codomain node (given by the index \py{i} of its box and the index \py{j} of itself in the box's codomain)
+and follows the wire till it finds either the domain of another box or the codomain of the diagram.
 When we follow a wire, we compute two lists of \emph{obstructions}, the index of each box on its left and right.
 The \py{find_snake} function calls \py{follow_wire} for each \py{Cap} in the diagram until it finds one that is connected to a \py{Cup}, or returns \py{None} otherwise.
 A \py{Yankable} snake is given by the index of its cup and cap, the two lists of obstructions on each side and whether it is a left or right snake.

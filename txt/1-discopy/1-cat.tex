@@ -94,7 +94,7 @@ This time equality of functions between finite sets is decidable, so we can writ
 \end{example}
 
 \begin{example}
-When the class of objects and arrow are finite sets, we can draw the category as a directed multigraph with objects as nodes and arrows as edges, together with the list of equations between paths.
+When the class of objects and arrows are finite sets, we can draw the category as a directed multigraph with objects as nodes and arrows as edges, together with the list of equations between paths.
 A functor $F : C \to D$ from such a finite category $C$ is called a \emph{commutative diagram} in $D$.
 One commutative diagram can state a large number of equations, which can be read by \emph{diagram chasing}.
 \end{example}
@@ -132,7 +132,7 @@ Its components send objects \py{x : t} of any type \py{t} to the singleton list 
 {\normalfont Syntactic sugar for composition.}
 
 \py{Composable} implements the syntactic sugar \py{self >> other} (and \py{self << other}) for composition in diagrammatic order (and its opposite) as well as \py{n * self} for $n$-fold composition.
-It is an abstract class, i.e. it it subclassed but never instantiated.
+It is an abstract class, i.e. it is subclassed but never instantiated.
 The higher-order function \py{inductive} takes a binary method and makes it $n$-ary by using a left fold, we use it as a decorator.
 
 \begin{minted}{python}
@@ -177,7 +177,7 @@ class Function(Composable):
 \end{python}
 
 \begin{example}
-The following commutative diagram denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrow $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
+The following commutative diagram denotes a functor $3 \to \mathbf{Pyth}$ from the finite category $3$ with three objects $\{ 0, 1, 2 \}$ and three non-identity arrows $f : 0 \to 1, g : 1 \to 2$ and $h : 0 \to 2$, with the only non-trivial composition $f \fcmp g = h$.
 \[ \begin{tikzcd}
 \py{int}
 \ar{rrrrrr}{\py{lambda n: n * (n - 1) // 2}}
@@ -286,7 +286,7 @@ This may be taken as a mathematical explanation for why lists are so ubiquitous 
 Another equivalent definition of adjunction is in terms of an isomorphism $C(x, U(y)) \simeq D(F(x), y)$ which is natural\footnote
 {The isomorphism $C(x, U(y)) \simeq D(F(x), y)$ is natural in $x$ if it is a natural transformation between the two functors $C(-, U(y)), D(F(-), y) : C \to \mathbf{Set}$.}
 in $x \in C_0$ and $y \in D_0$.
-In the adjunction for lists, functions $X \to U(M)$ from a set $X$ to the underlying set of a monoid $M$ are in a natural one-to-one correspondance with monoid homomorphisms $X^\star \to M$.
+In the adjunction for lists, functions $X \to U(M)$ from a set $X$ to the underlying set of a monoid $M$ are in a natural one-to-one correspondence with monoid homomorphisms $X^\star \to M$.
 To define a homomorphism from a free monoid, it is sufficient to define the image of each generating element.
 
 Now we want to play the same game with categories instead of monoids.
@@ -362,7 +362,7 @@ class Box(Arrow):
 \end{minted}
 \end{python}
 
-The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, setc.
+The classes \py{Ob} and \py{Arrow} for objects and arrows are implemented in a straightforward way, using the \py{dataclass} decorator to avoid the bureaucracy of defining initialisation, equality, etc.
 We define the method \py{__str__} so that \py{eval(str(f)) == f} for all \py{f: Arrow}, provided that the names of all objects and boxes are in scope.
 The attribute \py{inside} holds the list of generating arrows, which we store as an immutable \py{tuple} rather than a mutable \py{list}.
 The method \py{Arrow.then} accepts any number of arrows \py{others}, which will prove useful when defining functors.

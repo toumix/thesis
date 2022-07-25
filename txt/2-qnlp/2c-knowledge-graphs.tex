@@ -16,7 +16,7 @@ They define a DisCoCat model $F : \G \to \mathbf{Mat}_\R$ with $F(s) = 1$ and a 
 \item for each transitive verb $r \in R$, find the set $K_r \sub E \times E$ of all pairs of nouns $(x, y) \in K_r$ such that the sentence $x r y \in E \times R \times E$ occurs in the corpus, then define
 $$F(r) = \sum_{(x, y) \in K_r} F(x) \otimes F(y)$$
 \end{enumerate}
-The meaning of a sentence $f : x r y \to s$ would then given by the inner product $F(f) = \langle F(x) \otimes F(y) \vert F(r) \rangle$ which we can rewrite as
+The meaning of a sentence $f : x r y \to s$ would then be given by the inner product $F(f) = \langle F(x) \otimes F(y) \vert F(r) \rangle$ which we can rewrite as
 $$F(f) = \sum_{(x', y') \in K_r} \langle F(x) \vert F(x') \rangle \langle F(y) \vert F(y') \rangle$$
 i.e. we take the sum of the similarities between our subject-object pair $(x, y)$ and the pairs $(x', y')$ that appeared in the corpus.
 However, the task they aim to solve is \emph{word sense disambiguation} which they cast in terms of \emph{sentence similarity}, but if the meaning of sentences are given by scalars there is no meaningful way compare them.
@@ -68,7 +68,7 @@ $$
 $$
 where $\lVert \theta \rVert$ is a choice of norm (usually $L^2$) scaled by some regularisation hyper-parameter $\lambda \geq 0$ and $\mathtt{loss} : \R \times \R \to \R^+$ is a choice of loss function, usually the negative log-likelihood of the logistic model $\mathtt{loss}(y, y') = \log (1 + \exp(-yy'))$.
 If we fix the dimension $d \in \N$ (i.e. we take it as a hyper-parameter) we can use stochastic gradient descent to compute $\theta^\star$ and hence the optimal model $T_{\theta^\star} : \G \to \mathbf{Mat}_\C$.
-Using $T_{\theta^\star}$ to predict the value of triples $f \in (E \times R \times E) - \Omega$ not seen during training, Trouillon et al. obtained state-of-the-art results on standard benchmarks with both fewer parameters and a lower time complexity than competing models.
+Using $T_{\theta^\star}$ to predict the value of triples $f \in (E \times R \times E) - \Omega$ not seen during training, Trouillon et al.~\cite{TrouillonEtAl16} obtained state-of-the-art results on standard benchmarks with both fewer parameters and a lower time complexity than competing models.
 Again if we extend the grammar with question words and anaphora, we can answer not only Boolean questions but any conjunctive query.
 
 In the Grefenstette-Sadrzadeh implementation of DisCoCat models, we had to compute the meanings for nouns by some other means (e.g. from a co-occurrence matrix) then use a knowledge graph to lift these to the meaning for verbs.

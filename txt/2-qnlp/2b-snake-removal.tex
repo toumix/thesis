@@ -7,7 +7,8 @@ The main limitation of this approach is the need for post-selection: for each cu
 Another related problem is that we need to load all the word vectors on the quantum device at once, requiring a number of qubits proportional to the length of the sentence.
 We may solve both issues at once using the \emph{snake removal} algorithm described in listing~\ref{listing:snake-removal}.
 Instead of mapping the grammatical structure of the sentence directly onto the architecture of a quantum circuit, we will first rewrite the pregroup diagram to remove unnecessary snakes.
-Indeed, from the rigid structure of $\mathbf{Circ}$ we have that the three-qubit circuit for a snake can be simplified to a one-qubit identity circuit, this is an abstract way to reformulate the correctness of the post-selected teleportation protocol.
+Indeed, from the rigid structure of $\mathbf{Circ}$ we have that the three-qubit circuit for a snake can be simplified to a one-qubit identity circuit.
+This is an abstract way to reformulate the correctness of the post-selected teleportation protocol.
 Thus, for each snake removed we are effectively reducing the number of required qubits by two, with half the amount of required post-selection.
 
 Pregroup diagrams themselves have no snakes, only boxes for the dictionary entries followed by cups.
@@ -140,7 +141,7 @@ drawing.equation(
 
 The \py{wiring} functor is the key ingredient of the autonomisation recipe as given by Delpeuch~\cite{Delpeuch19}.
 For each dictionary entry we need to find some monoidal boxes (i.e. without adjoints) from which we can bend the wires to get the desired pregroup type.
-We do not know if a non-trivial autonomisation is possible for arbitrary pregroup types, for example object relative pronouns of type $n^r n n^ll s^l$.
+We do not know if a non-trivial autonomisation is possible for arbitrary pregroup types, for example object relative pronouns of type $n^r n n^{ll} s^l$.
 In example~\ref{example:autonomisation}, wiring was straightforward because all types had the shape $(x^r) y (z^l)$ for a generating object $y \in X$ and some types $x, z \in X^\star$ which do not contain adjoints.
 Let us call types of this shape \emph{dependency types}, we claim\footnote
 {A sketch of this statement is available on the nLab~\cite{ToumiNLab21}, a detailed proof will appear in de Felice's thesis~\cite{Felice22}.} that a pregroup grammar with only dependency types is in fact a \emph{dependency grammar} (DG) as defined by Gaifman~\cite{Gaifman65}.

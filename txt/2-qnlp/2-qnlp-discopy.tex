@@ -13,7 +13,7 @@ Chapter~\ref{chapter:discopy} has already given several definitions of $\mathbf{
 So far, these definitions have only covered \emph{pure quantum circuits} with post-selected measurements. Pure quantum gates are interpreted as unitary matrices, preparation (kets) and measurement (bras) as basis vectors.
 The evaluation of a closed pure circuit is a complex scalar and the Born rule says its squared amplitude is the probability of a measurement outcome for a given preparation.
 We can use a quantum computer to approximate this probability by executing our circuit many times or in quantum computing parlance, taking many \emph{shots}.
-At each execution, we measure all the qubits then we divide the number of times the post-selected outcome occurs by the number the shots.
+At each execution, we measure all the qubits then we divide the number of times the post-selected outcome occurs by the number of shots.
 With the interface from the \py{Circuit} class of DisCoPy to that of the t$\vert$ket$\rangle$ compiler~\cite{SivarajahEtAl20}, going from numerical simulation to quantum hardware is as easy as providing an extra argument \py{backend: pytket.Backend} to the method \py{Circuit.eval}.
 
 \begin{example}\label{example:circuit-alive-loves-bob}
@@ -63,7 +63,7 @@ However, in general we have no guarantee that this additive error will be no lar
 Thus, this naive definition of QNLP models is unsatisfactory from a computational point of view: if we post-select on all the qubits we'll have to wait an exponentially long time even to approximate an answer.
 It is also unsatisfactory from a category theoretic point of view.
 Indeed, so far we have defined the evaluation of pure quantum circuits as a functor into tensor, but what we can actually execute on a quantum device is the Born rule of the result, which is not a functor: the squared amplitude of a composition is not necessarily the composition of the squared amplitudes.
-Killing two birds with one stone, we can overcome both limitation (computational and theoretical) if we extend our definition of $\mathbf{Circ}$ from \emph{pure} to \emph{mixed} quantum circuits.
+Killing two birds with one stone, we can overcome both limitations (computational and theoretical) if we extend our definition of $\mathbf{Circ}$ from \emph{pure} to \emph{mixed} quantum circuits.
 In practice, what our QNLP algorithm is missing is the ability to do nothing, i.e. not to measure a qubit.
 In theory, our category $\mathbf{Circ}$ is missing a box for \emph{discard}.
 As soon as we leave the realm of pure quantum circuits, quantum states cannot be represented as complex vectors anymore, we need \emph{density matrices}.
