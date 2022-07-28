@@ -138,11 +138,11 @@ assert (f >> g).grad(x) == f.grad(x) >> g + f >> g.grad(x)
 Fix a monoidal signature $\Sigma$ and let $C_\Sigma^+$ be the free monoidal category with sums that it generates, i.e. arrows are formal sums of diagrams as defined in sections~\ref{subsection:dagger-sums-bubbles} and \ref{subsection:monoidal-daggers-sums-bubbles}.
 We assume our diagrams are interpreted as matrices, i.e. we fix a sum-preserving monoidal functor $[\![-]\!]  : C_\Sigma^+ \to \mathbf{Mat}_\S$ for $\S$ a commutative rig with a derivation $\partial : \S \to \S$.
 Our main two examples are the ZX-calculus of Coecke and Duncan~\cite{CoeckeDuncan08} with smooth functions $\R^n \to \R$ as phases and the algebraic ZX-calculus over $\S$, introduced by Wang~\cite{Wang20}.
-
 Applying the dual number construction to $C_\Sigma^+$, we get the category of \emph{dual diagrams} $\D[C_\Sigma^+]$ which is where diagrammatic differentiation happens.
 By the universal property of $C_\Sigma^+$, every derivation $\partial : C_\Sigma^+ \to \D[C_\Sigma^+]$ is uniquely determined by its image on the generating boxes in $\Sigma_1$.
 Intuitively, if we're given the derivative for each box, we can compute the derivative for every sum of diagram using the product rule.
-We say that the interpretation $[\![-]\!] : C_\Sigma^+ \to \mathbf{Mat}_\S$ admits diagrammatic differentiation if there is a derivation $\partial$ on $C_\Sigma^+$ such that $[\![-]\!] \circ \partial = \partial \circ [\![-]\!]$.
+
+We say that the interpretation $[\![-]\!] : C_\Sigma^+ \to \mathbf{Mat}_\S$ \emph{admits diagrammatic differentiation} if there is a derivation $\partial$ on $C_\Sigma^+$ such that $[\![-]\!] \circ \partial = \partial \circ [\![-]\!]$.
 That is, the interpretation of the gradient $[\![\partial d]\!]$ coincides with the gradient of the interpretation $\partial [\![d]\!]$ for all sums of diagrams $d \in C_\Sigma^+$.
 We depict the gradient $\partial d$ as a bubble surrounding the diagram $d$, as discussed in sections~\ref{subsection:dagger-sums-bubbles} and \ref{subsection:monoidal-daggers-sums-bubbles}.
 Once translated to string diagrams, the axioms for derivations on monoidal

@@ -59,9 +59,11 @@ class Channel(Composable, Tensorable):
     cod: CQ
 
     @staticmethod
-    def id(x: CQ) -> Channel: return Channel(x, x, Tensor[complex].id(x.downgrade()))
+    def id(x: CQ) -> Channel:
+        return Channel(x, x, Tensor[complex].id(x.downgrade()))
 
-    def dagger(self) -> Channel: return Channel(self.inside.dagger(), self.cod, self.dom)
+    def dagger(self) -> Channel:
+        return Channel(self.inside.dagger(), self.cod, self.dom)
 
     @inductive
     def then(self, other: Channel) -> Channel:
@@ -79,7 +81,8 @@ class Channel(Composable, Tensorable):
 
     @staticmethod
     def single(f: Tensor[float]) -> Channel:
-        return Channel(Tensor[complex](f.inside, f.dom, f.cod), C(f.dom), C(f.cod))
+        inside = Tensor[complex](f.inside, f.dom, f.cod)
+        return Channel(inside, C(f.dom), C(f.cod))
 
     @staticmethod
     def measure(x: tuple[int, ...]) -> Channel:
@@ -328,7 +331,8 @@ class MixedEval(Functor):
         if isinstance(other, Digit): return C([other.n])
         if isinstance(other, Scalar): return Channel([[
             abs(other.z) ** 2 if other.is_pure else other.z]], CQ(), CQ())
-        if isinstance(box, (Gate, Bra, Ket)): return Channel.double(PureEval()(box))
+        if isinstance(box, (Gate, Bra, Ket)):
+            return Channel.double(PureEval()(box))
         if isinstance(box, Encode): return Channel.encode(self(box.dom))
         if isinstance(box, Measure): return Channel.measure(self(box.dom))
         if isinstance(box, Discard): return Channel.discard(self(box.dom))

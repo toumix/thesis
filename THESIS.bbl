@@ -4603,6 +4603,50 @@
       \endverb
       \keyw{Computer Science - Logic in Computer Science,Mathematics - Category Theory,Mathematics - Probability,Quantum Physics}
     \endentry
+    \entry{CoeckeWang21}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=c8d0d6b0d8ca354b544208d9fa6abd9d}{%
+           family={Coecke},
+           familyi={C\bibinitperiod},
+           given={Bob},
+           giveni={B\bibinitperiod}}}%
+        {{hash=49e442be2e7d085dafc48ec7580bdf24}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Vincent},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{57f161f867b932c00fd52ec3f90fdbd6}
+      \strng{fullhash}{57f161f867b932c00fd52ec3f90fdbd6}
+      \strng{bibnamehash}{57f161f867b932c00fd52ec3f90fdbd6}
+      \strng{authorbibnamehash}{57f161f867b932c00fd52ec3f90fdbd6}
+      \strng{authornamehash}{57f161f867b932c00fd52ec3f90fdbd6}
+      \strng{authorfullhash}{57f161f867b932c00fd52ec3f90fdbd6}
+      \field{labelalpha}{CW21}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Diagrammatically speaking, grammatical calculi such as pregroups provide wires between words in order to elucidate their interactions, and this enables one to verify grammatical correctness of phrases and sentences. In this paper we also provide wirings within words. This will enable us to identify grammatical constructs that we expect to be either equal or closely related. Hence, our work paves the way for a new theory of grammar, that provides novel `grammatical truths'. We give a nogo-theorem for the fact that our wirings for words make no sense for preordered monoids, the form which grammatical calculi usually take. Instead, they require diagrams -- or equivalently, (free) monoidal categories.}
+      \field{day}{14}
+      \field{eprintclass}{cs, math}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{number}{arXiv:2106.07485}
+      \field{title}{Grammar {{Equations}}}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 2106.07485
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/F2AUUBPA/Coecke and Wang - 2021 - Grammar Equations.pdf;/Users/alexis.toumi/WORK/Zotero/storage/C7QURQCL/2106.html
+      \endverb
+      \keyw{Computer Science - Computation and Language,Mathematics - Category Theory}
+    \endentry
     \entry{ComfortEtAl20}{article}{}
       \name{author}{3}{}{%
         {{hash=b9436c729e2a5cffc2296cd06bd07f61}{%
@@ -4647,6 +4691,45 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/9VD5VZ9X/Comfort et al. - 2020 - Sheet diagrams for bimonoidal categories.pdf;/Users/alexis.toumi/WORK/Zotero/storage/9WYSB6QN/2010.html
       \endverb
       \keyw{18M30; 18M50,Mathematics - Category Theory}
+    \endentry
+    \entry{HaskellWikiContributors12}{online}{}
+      \name{author}{1}{}{%
+        {{hash=7dc724c85800a17aee7d507caa3cf3ac}{%
+           family={contributors},
+           familyi={c\bibinitperiod},
+           given={HaskellWiki},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {HaskellWiki}%
+      }
+      \strng{namehash}{7dc724c85800a17aee7d507caa3cf3ac}
+      \strng{fullhash}{7dc724c85800a17aee7d507caa3cf3ac}
+      \strng{bibnamehash}{7dc724c85800a17aee7d507caa3cf3ac}
+      \strng{authorbibnamehash}{7dc724c85800a17aee7d507caa3cf3ac}
+      \strng{authornamehash}{7dc724c85800a17aee7d507caa3cf3ac}
+      \strng{authorfullhash}{7dc724c85800a17aee7d507caa3cf3ac}
+      \field{labelalpha}{con12}
+      \field{sortinit}{c}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Hask}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2022}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/X92DSRGB/Hask.html
+      \endverb
+      \verb{urlraw}
+      \verb https://wiki.haskell.org/index.php?title=Hask&oldid=52908
+      \endverb
+      \verb{url}
+      \verb https://wiki.haskell.org/index.php?title=Hask&oldid=52908
+      \endverb
     \endentry
     \entry{CowtanEtAl20a}{article}{}
       \name{author}{5}{}{%
@@ -4890,6 +4973,61 @@
       \verb{eprint}
       \verb 2370619
       \endverb
+    \endentry
+    \entry{DanielssonEtAl06}{article}{}
+      \name{author}{4}{}{%
+        {{hash=e3dbb2a655cbcf8da9b912aafbe3b4cd}{%
+           family={Danielsson},
+           familyi={D\bibinitperiod},
+           given={Nils\bibnamedelima Anders},
+           giveni={N\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=05db43db1a50c29c0eca01fd35ec8758}{%
+           family={Hughes},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d8b8f97c67741b2d7edb7e0a527c3183}{%
+           family={Jansson},
+           familyi={J\bibinitperiod},
+           given={Patrik},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d7effacc4950f11aea627dc1bac84255}{%
+           family={Gibbons},
+           familyi={G\bibinitperiod},
+           given={Jeremy},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f295514436b0f1808fff59629d3b591}
+      \strng{fullhash}{f4c2082e69d2461fed602cb2dccc7a5c}
+      \strng{bibnamehash}{f4c2082e69d2461fed602cb2dccc7a5c}
+      \strng{authorbibnamehash}{f4c2082e69d2461fed602cb2dccc7a5c}
+      \strng{authornamehash}{9f295514436b0f1808fff59629d3b591}
+      \strng{authorfullhash}{f4c2082e69d2461fed602cb2dccc7a5c}
+      \field{labelalpha}{Dan+06}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Functional programmers often reason about programs as if they were written in a total language, expecting the results to carry over to non-total (partial) languages. We justify such reasoning.Two languages are defined, one total and one partial, with identical syntax. The semantics of the partial language includes partial and infinite values, and all types are lifted, including the function spaces. A partial equivalence relation (PER) is then defined, the domain of which is the total subset of the partial language. For types not containing function spaces the PER relates equal values, and functions are related if they map related values to related values.It is proved that if two closed terms have the same semantics in the total language, then they have related semantics in the partial language. It is also shown that the PER gives rise to a bicartesian closed category which can be used to reason about values in the domain of the relation.}
+      \field{day}{11}
+      \field{issn}{0362-1340}
+      \field{journaltitle}{ACM SIGPLAN Notices}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shortjournal}{SIGPLAN Not.}
+      \field{title}{Fast and Loose Reasoning Is Morally Correct}
+      \field{volume}{41}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \field{pages}{206\bibrangedash 217}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/1111320.1111056
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/PWMIEIZ2/Danielsson et al. - 2006 - Fast and loose reasoning is morally correct.pdf
+      \endverb
+      \keyw{equational reasoning,inductive and coinductive types,lifted types,non-strict and strict languages,partial and infinite values,partial and total languages}
     \endentry
     \entry{Davies10}{book}{}
       \name{author}{1}{}{%
@@ -7965,6 +8103,80 @@
       \field{year}{1812}
       \field{dateera}{ce}
     \endentry
+    \entry{HenrietEtAl20}{article}{}
+      \name{author}{7}{}{%
+        {{hash=397d254e974a6fe2e8260c3358f1d97d}{%
+           family={Henriet},
+           familyi={H\bibinitperiod},
+           given={Loic},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d2aa5993fce229a9e8a044c1f6474cf6}{%
+           family={Beguin},
+           familyi={B\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=ad71a75d1ee416104eac174ba2f740fa}{%
+           family={Signoles},
+           familyi={S\bibinitperiod},
+           given={Adrien},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6306a2c150b957113a918488726559ee}{%
+           family={Lahaye},
+           familyi={L\bibinitperiod},
+           given={Thierry},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f243eee2a4dbf763fb80352db4b92e9d}{%
+           family={Browaeys},
+           familyi={B\bibinitperiod},
+           given={Antoine},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5bc896daf68899c460619fcba52ed127}{%
+           family={Reymond},
+           familyi={R\bibinitperiod},
+           given={Georges-Olivier},
+           giveni={G\bibinithyphendelim O\bibinitperiod}}}%
+        {{hash=fa4270c5146ec02cff3dd355b53e1f10}{%
+           family={Jurczak},
+           familyi={J\bibinitperiod},
+           given={Christophe},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b36882d52b5326a0e046dc641076693f}
+      \strng{fullhash}{1d029452d10d9eda3e2ea894bcf208cf}
+      \strng{bibnamehash}{1d029452d10d9eda3e2ea894bcf208cf}
+      \strng{authorbibnamehash}{1d029452d10d9eda3e2ea894bcf208cf}
+      \strng{authornamehash}{b36882d52b5326a0e046dc641076693f}
+      \strng{authorfullhash}{1d029452d10d9eda3e2ea894bcf208cf}
+      \field{labelalpha}{Hen+20}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The manipulation of neutral atoms by light is at the heart of countless scientific discoveries in the field of quantum physics in the last three decades. The level of control that has been achieved at the single particle level within arrays of optical traps, while preserving the fundamental properties of quantum matter (coherence, entanglement, superposition), makes these technologies prime candidates to implement disruptive computation paradigms. In this paper, we review the main characteristics of these devices from atoms / qubits to application interfaces, and propose a classification of a wide variety of tasks that can already be addressed in a computationally efficient manner in the Noisy Intermediate Scale Quantum era we are in. We illustrate how applications ranging from optimization challenges to simulation of quantum systems can be explored either at the digital level (programming gate-based circuits) or at the analog level (programming Hamiltonian sequences). We give evidence of the intrinsic scalability of neutral atom quantum processors in the 100-1,000 qubits range and introduce prospects for universal fault tolerant quantum computing and applications beyond quantum computing.}
+      \field{day}{21}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arxiv}
+      \field{issn}{2521-327X}
+      \field{journaltitle}{Quantum}
+      \field{month}{9}
+      \field{shortjournal}{Quantum}
+      \field{title}{Quantum Computing with Neutral Atoms}
+      \field{volume}{4}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{pages}{327}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.22331/q-2020-09-21-327
+      \endverb
+      \verb{eprint}
+      \verb 2006.12326
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/AZQPADWL/Henriet et al. - 2020 - Quantum computing with neutral atoms.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RI9GPBC2/2006.html
+      \endverb
+      \keyw{Quantum Physics}
+    \endentry
     \entry{HeunenVicary19}{book}{}
       \name{author}{2}{}{%
         {{hash=c3024eeb0bd8a7ab10c20dc0c7d03b48}{%
@@ -9778,6 +9990,72 @@
       \range{pages}{19}
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/25U79KI2/Knuth - 1968 - Semantics of Context-Free Languages.pdf;/Users/alexis.toumi/WORK/Zotero/storage/2DLDVMMX/download.html
+      \endverb
+    \endentry
+    \entry{KokEtAl07}{article}{}
+      \name{author}{6}{}{%
+        {{hash=f8fb06a01546ae6be2c704ed20c2c847}{%
+           family={Kok},
+           familyi={K\bibinitperiod},
+           given={Pieter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d3e284df9ac4c0e8d49e1ceb559a62ca}{%
+           family={Munro},
+           familyi={M\bibinitperiod},
+           given={W.\bibnamedelimi J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=43de8552ab61d76a124fd195717ad5a8}{%
+           family={Nemoto},
+           familyi={N\bibinitperiod},
+           given={Kae},
+           giveni={K\bibinitperiod}}}%
+        {{hash=daec5077e44bfda9fc5fffede7a9a11f}{%
+           family={Ralph},
+           familyi={R\bibinitperiod},
+           given={T.\bibnamedelimi C.},
+           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=5fb8918cba331939fd6603e1a77b3006}{%
+           family={Dowling},
+           familyi={D\bibinitperiod},
+           given={Jonathan\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=bd60120a5bf49aa422728e3f70a08c33}{%
+           family={Milburn},
+           familyi={M\bibinitperiod},
+           given={G.\bibnamedelimi J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{64e72a3a899ffe8de2a6953ea64f3524}
+      \strng{fullhash}{3cd741c02e233d104985f400915ee14f}
+      \strng{bibnamehash}{3cd741c02e233d104985f400915ee14f}
+      \strng{authorbibnamehash}{3cd741c02e233d104985f400915ee14f}
+      \strng{authornamehash}{64e72a3a899ffe8de2a6953ea64f3524}
+      \strng{authorfullhash}{3cd741c02e233d104985f400915ee14f}
+      \field{labelalpha}{Kok+07}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Linear optics with photon counting is a prominent candidate for practical quantum computing. The protocol by Knill, Laflamme, and Milburn [2001, Nature (London) 409, 46] explicitly demonstrates that efficient scalable quantum computing with single photons, linear optical elements, and projective measurements is possible. Subsequently, several improvements on this protocol have started to bridge the gap between theoretical scalability and practical implementation. The original theory and its improvements are reviewed, and a few examples of experimental two-qubit gates are given. The use of realistic components, the errors they induce in the computation, and how these errors can be corrected is discussed.}
+      \field{day}{24}
+      \field{journaltitle}{Reviews of Modern Physics}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shortjournal}{Rev. Mod. Phys.}
+      \field{title}{Linear Optical Quantum Computing with Photonic Qubits}
+      \field{volume}{79}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{pages}{135\bibrangedash 174}
+      \range{pages}{40}
+      \verb{doi}
+      \verb 10.1103/RevModPhys.79.135
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/CAEYXT2S/Kok et al. - 2007 - Linear optical quantum computing with photonic qub.pdf;/Users/alexis.toumi/WORK/Zotero/storage/NXII39FY/RevModPhys.79.html
       \endverb
     \endentry
     \entry{Kuroda64}{article}{}
@@ -12551,46 +12829,6 @@
       \verb https://github.com/PaulaGarciaMolina/QNLP_Qiskit_Hackathon
       \endverb
     \endentry
-    \entry{Montague70}{incollection}{}
-      \name{author}{1}{}{%
-        {{hash=7c6ba51ce7aee268ca16ba50bb7f44f2}{%
-           family={Montague},
-           familyi={M\bibinitperiod},
-           given={Richard},
-           giveni={R\bibinitperiod}}}%
-      }
-      \name{editor}{1}{}{%
-        {{hash=f09def8e204cb771c0d63a3519580e39}{%
-           family={Visentini},
-           familyi={V\bibinitperiod},
-           given={Bruno},
-           giveni={B\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Edizioni di Communita, reprinted in Thomason (ed.) Formal Philosophy. Selected papers of Richard Montague, Yale 1974}%
-      }
-      \strng{namehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
-      \strng{fullhash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
-      \strng{bibnamehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
-      \strng{authorbibnamehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
-      \strng{authornamehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
-      \strng{authorfullhash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
-      \strng{editorbibnamehash}{f09def8e204cb771c0d63a3519580e39}
-      \strng{editornamehash}{f09def8e204cb771c0d63a3519580e39}
-      \strng{editorfullhash}{f09def8e204cb771c0d63a3519580e39}
-      \field{labelalpha}{Mon70}
-      \field{sortinit}{M}
-      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
-      \field{extraalpha}{1}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Linguaggi Nella Societa e Nella Tecnica}
-      \field{title}{English as a {{Formal Language}}}
-      \field{year}{1970}
-      \field{dateera}{ce}
-      \field{pages}{188\bibrangedash 221}
-      \range{pages}{34}
-    \endentry
     \entry{Montague70a}{article}{}
       \name{author}{1}{}{%
         {{hash=7c6ba51ce7aee268ca16ba50bb7f44f2}{%
@@ -12608,7 +12846,6 @@
       \field{labelalpha}{Mon70}
       \field{sortinit}{M}
       \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
-      \field{extraalpha}{2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1755-2567}
@@ -12677,6 +12914,45 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/7MAXYZNW/Montague - The Proper Treatment of Quantification in Ordinary.pdf
       \endverb
       \keyw{compositional grammar interface montague semantic semantics syntax}
+    \endentry
+    \entry{Montague70}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=7c6ba51ce7aee268ca16ba50bb7f44f2}{%
+           family={Montague},
+           familyi={M\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=60a27e920a0461c4091b1a42ecc343ed}{%
+           family={Thomason},
+           familyi={T\bibinitperiod},
+           given={R.H.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Yale University Press, New Haven}%
+      }
+      \strng{namehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
+      \strng{fullhash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
+      \strng{bibnamehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
+      \strng{authorbibnamehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
+      \strng{authornamehash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
+      \strng{authorfullhash}{7c6ba51ce7aee268ca16ba50bb7f44f2}
+      \strng{editorbibnamehash}{60a27e920a0461c4091b1a42ecc343ed}
+      \strng{editornamehash}{60a27e920a0461c4091b1a42ecc343ed}
+      \strng{editorfullhash}{60a27e920a0461c4091b1a42ecc343ed}
+      \field{labelalpha}{Mon74}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Formal {{Philosophy}}. {{Selected}} Papers of {{Richard Montague}}}
+      \field{title}{English as a {{Formal Language}}}
+      \field{year}{1974}
+      \field{dateera}{ce}
+      \field{pages}{188\bibrangedash 221}
+      \range{pages}{34}
     \endentry
     \entry{Moortgat97}{incollection}{useprefix=true}
       \name{author}{1}{}{%
@@ -14235,6 +14511,45 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/KQGE9SYB/Román - 2020 - Comb Diagrams for Discrete-Time Feedback.pdf;/Users/alexis.toumi/WORK/Zotero/storage/6IDYCCWS/2003.html
       \endverb
       \keyw{18B20,Computer Science - Logic in Computer Science}
+    \endentry
+    \entry{Roman22}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d4f092c73ead809932c43d0668067f0a}{%
+           family={Román},
+           familyi={R\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{d4f092c73ead809932c43d0668067f0a}
+      \strng{fullhash}{d4f092c73ead809932c43d0668067f0a}
+      \strng{bibnamehash}{d4f092c73ead809932c43d0668067f0a}
+      \strng{authorbibnamehash}{d4f092c73ead809932c43d0668067f0a}
+      \strng{authornamehash}{d4f092c73ead809932c43d0668067f0a}
+      \strng{authorfullhash}{d4f092c73ead809932c43d0668067f0a}
+      \field{labelalpha}{Rom22}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Premonoidal and Freyd categories are both generalized by non-cartesian Freyd categories: Effectful categories. We construct string diagrams for effectful categories in terms of the string diagrams for a monoidal category with a freely added object. We show that effectful categories are pseudomonoids in a monoidal bicategory of promonads with a suitable tensor product.}
+      \field{day}{16}
+      \field{eprintclass}{cs, math}
+      \field{eprinttype}{arxiv}
+      \field{month}{5}
+      \field{number}{arXiv:2205.07664}
+      \field{title}{Promonads and {{String Diagrams}} for {{Effectful Categories}}}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb 2205.07664
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/Y7HDFZIP/Román - 2022 - Promonads and String Diagrams for Effectful Catego.pdf;/Users/alexis.toumi/WORK/Zotero/storage/RJLKJF9V/2205.html
+      \endverb
+      \keyw{18M30,Computer Science - Logic in Computer Science,Mathematics - Category Theory}
     \endentry
     \entry{Roorda92}{article}{}
       \name{author}{1}{}{%
@@ -16029,6 +16344,52 @@
       \verb /Users/alexis.toumi/WORK/Zotero/storage/4GNLSFPE/Statman - THE TYPED A-CALCULUS IS NOT ELEMENTARY RECURSIVE.pdf
       \endverb
     \endentry
+    \entry{StatonLevy13}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=5351d3a060653e114d956a0a3700d556}{%
+           family={Staton},
+           familyi={S\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a71ddeb67bd68d082807464edd1a0586}{%
+           family={Levy},
+           familyi={L\bibinitperiod},
+           given={Paul\bibnamedelima Blain},
+           giveni={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{4206dd41619b76cb59308cdf5e0e9664}
+      \strng{fullhash}{4206dd41619b76cb59308cdf5e0e9664}
+      \strng{bibnamehash}{4206dd41619b76cb59308cdf5e0e9664}
+      \strng{authorbibnamehash}{4206dd41619b76cb59308cdf5e0e9664}
+      \strng{authornamehash}{4206dd41619b76cb59308cdf5e0e9664}
+      \strng{authorfullhash}{4206dd41619b76cb59308cdf5e0e9664}
+      \field{labelalpha}{SL13}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We investigate impure, call-by-value programming languages. Our first language only has variables and let-binding. Its equational theory is a variant of Lambek's theory of multicategories that omits the commutativity axiom. We demonstrate that type constructions for impure languages --- products, sums and functions --- can be characterized by universal properties in the setting of 'premulticategories', multicategories where the commutativity law may fail. This leads us to new, universal characterizations of two earlier equational theories of impure programming languages: the premonoidal categories of Power and Robinson, and the monad-based models of Moggi. Our analysis thus puts these earlier abstract ideas on a canonical foundation, bringing them to a new, syntactic level.}
+      \field{booktitle}{Proceedings of the 40th Annual {{ACM SIGPLAN-SIGACT}} Symposium on {{Principles}} of Programming Languages}
+      \field{day}{23}
+      \field{isbn}{978-1-4503-1832-7}
+      \field{month}{1}
+      \field{series}{{{POPL}} '13}
+      \field{title}{Universal Properties of Impure Programming Languages}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{179\bibrangedash 192}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/2429069.2429091
+      \endverb
+      \keyw{multicamonads,multicategories,premonoidal categories}
+    \endentry
     \entry{Steedman87}{article}{}
       \name{author}{1}{}{%
         {{hash=7a7bed50026b5265428aca5961b9ad14}{%
@@ -16655,6 +17016,67 @@
       \verb https://ncatlab.org/nlab/show/dependency+grammar
       \endverb
     \endentry
+    \entry{ToumiEtAl21}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=8167013bfe97089a16ad5e2a07aaa54f}{%
+           family={Toumi},
+           familyi={T\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6ff31e2c04cc4d25667ca8bfbbf58546}{%
+           family={Yeung},
+           familyi={Y\bibinitperiod},
+           given={Richie},
+           giveni={R\bibinitperiod}}}%
+        {{hash=90a608e5aa8c815f07e4c59d5b93be62}{%
+           family={Felice},
+           familyi={F\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=c3024eeb0bd8a7ab10c20dc0c7d03b48}{%
+           family={Heunen},
+           familyi={H\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=a470fbfc3ff8cf85e1392f5c1a7e62b5}{%
+           family={Backens},
+           familyi={B\bibinitperiod},
+           given={Miriam},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{506d7191764b218a8ca230b28b3e708d}
+      \strng{fullhash}{506d7191764b218a8ca230b28b3e708d}
+      \strng{bibnamehash}{506d7191764b218a8ca230b28b3e708d}
+      \strng{authorbibnamehash}{506d7191764b218a8ca230b28b3e708d}
+      \strng{authornamehash}{506d7191764b218a8ca230b28b3e708d}
+      \strng{authorfullhash}{506d7191764b218a8ca230b28b3e708d}
+      \strng{editorbibnamehash}{5483ccc29957744d7ed45476a7efb11f}
+      \strng{editornamehash}{5483ccc29957744d7ed45476a7efb11f}
+      \strng{editorfullhash}{5483ccc29957744d7ed45476a7efb11f}
+      \field{labelalpha}{TYF21}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings 18th {{International Conference}} on {{Quantum Physics}} and {{Logic}}, {{QPL}} 2021, {{Gdansk}}, {{Poland}}, and Online, 7-11 {{June}} 2021}
+      \field{series}{{{EPTCS}}}
+      \field{title}{Diagrammatic {{Differentiation}} for {{Quantum Machine Learning}}}
+      \field{volume}{343}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{pages}{132\bibrangedash 144}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.4204/EPTCS.343.7
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/TMK73EE8/Toumi et al. - 2021 - Diagrammatic Differentiation for Quantum Machine L.pdf
+      \endverb
+    \endentry
     \entry{TrouillonEtAl17}{article}{}
       \name{author}{6}{}{%
         {{hash=42de07a57ebce8948963bfa46f960d3e}{%
@@ -16853,6 +17275,54 @@
       \endverb
       \verb{file}
       \verb /Users/alexis.toumi/WORK/Zotero/storage/RTKSLKBZ/Turney and Pantel - 2010 - From Frequency to Meaning Vector Space Models of .pdf
+      \endverb
+    \endentry
+    \entry{UustaluEtAl18}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ee50513d1a9288cce2900f00506e9fe4}{%
+           family={Uustalu},
+           familyi={U\bibinitperiod},
+           given={Tarmo},
+           giveni={T\bibinitperiod}}}%
+        {{hash=201a95b60d7a555e52c3c3f6ff443fc9}{%
+           family={Veltri},
+           familyi={V\bibinitperiod},
+           given={Niccolò},
+           giveni={N\bibinitperiod}}}%
+        {{hash=d63c7a22e2f6832bf45413ca88d2406d}{%
+           family={Zeilberger},
+           familyi={Z\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{347ee1fc4f22d86dcdc20b140630d0c7}
+      \strng{fullhash}{347ee1fc4f22d86dcdc20b140630d0c7}
+      \strng{bibnamehash}{347ee1fc4f22d86dcdc20b140630d0c7}
+      \strng{authorbibnamehash}{347ee1fc4f22d86dcdc20b140630d0c7}
+      \strng{authornamehash}{347ee1fc4f22d86dcdc20b140630d0c7}
+      \strng{authorfullhash}{347ee1fc4f22d86dcdc20b140630d0c7}
+      \field{labelalpha}{UVZ18}
+      \field{sortinit}{U}
+      \field{sortinithash}{36a2444f5238e0dcf4bb59704df6624d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Szlach´anyi’s skew monoidal categories are a well-motivated variation of monoidal categories in which the unitors and associator are not required to be natural isomorphisms, but merely natural transformations in a particular direction. We present a sequent calculus for skew monoidal categories, building on the recent formulation by one of the authors of a sequent calculus for the Tamari order (skew semigroup categories). In this calculus, antecedents consist of a stoup (an optional formula) followed by a context (a list of formulae), and the connectives unit and tensor behave like in intuitionistic non-commutative linear logic (the logic of monoidal categories) except that the left rules may only be applied in stoup position. We show the admissibility of two forms cut (stoup cut and context cut), and prove the calculus sound and complete with respect to existence of maps in the free skew monoidal category. We then introduce an equivalence relation on sequent calculus derivations and prove that there is a one-to-one correspondence between equivalence classes of derivations and maps in the free skew monoidal category. Finally, we identify a subcalculus of focused derivations, and establish that it contains exactly one canonical representative from each equivalence class. As an end result, we obtain simple algorithms both for deciding equality of maps in the free skew monoidal category and for enumerating any homset without duplicates, in particular, for deciding whether there is a map. We have formalized this development in the dependently typed programming language Agda.}
+      \field{issn}{15710661}
+      \field{journaltitle}{Electronic Notes in Theoretical Computer Science}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{shortjournal}{Electronic Notes in Theoretical Computer Science}
+      \field{title}{The {{Sequent Calculus}} of {{Skew Monoidal Categories}}}
+      \field{volume}{341}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{345\bibrangedash 370}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1016/j.entcs.2018.11.017
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/FVX6EMMR/Uustalu et al. - 2018 - The Sequent Calculus of Skew Monoidal Categories.pdf
       \endverb
     \endentry
     \entry{Valiant79}{article}{}
@@ -18797,15 +19267,12 @@
       \keyw{Quantum computation,Quantum information,Quantum physics,Superconducting quantum computing,Superconducting qubit}
     \endentry
   \enddatalist
-  \keyalias{AbramskyTzevelekos10}{AbramskyTzevelekos11}
   \keyalias{FritzEtAl20a}{FritzEtAl20}
   \keyalias{Grishin83}{grishin1983generalization}
   \keyalias{HeunenVicary19a}{HeunenVicary19}
   \missing{BaezFong15}
   \missing{Groote01}
   \missing{ReutterVicary19}
-  \missing{ToumiEtAl21a}
-  \missing{UustaluEtAl18}
 \endrefsection
 \endinput
 

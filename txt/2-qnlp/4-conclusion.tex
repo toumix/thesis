@@ -1,0 +1,32 @@
+%!TEX root = ../../THESIS.tex
+
+\section{Conclusion} \label{section:conclusion}
+
+This chapter built on the category theory of chapter~\ref{chapter:discopy} to lay the mathemetical foundations of \emph{quantum natural language processing} (QNLP).
+We defined QNLP models as \emph{parameterised monoidal functors} $F_\theta : \G \to \mathbf{Circ}$ from a category $\G$ of grammatical derivations to a category $\mathbf{Circ}$ of quantum circuits.
+Given the grammatical structure $f : w_1 \dots w_n \to s \in \G$ for a sentence, the QNLP model produces a parameterised quantum circuit $F_\theta(f)$ which computes the meaning of that sentence.
+Using a hybrid classical-quantum algorithm, we computed the optimal parameters $\theta \in \Theta$ in a simple supervised learning task: answering yes-no questions from a toy dataset based on Shakespeare's \emph{Romeo and Juliet}.
+In short, we performed the first NLP experiment on quantum hardware.
+
+Our QNLP models can be understood as a quantum implementation of \emph{Categorical Compositional Distributional} (DisCoCat) models~\cite{ClarkEtAl08}.
+While the fields of NLP and artificial intelligence are torn apart between the symbolic approach of logic-based expert systems and the connectionist approach of black-box neural networks, DisCoCat models offer the best of worlds.
+Indeed, they bring together formal grammar and distributional semantics into one NLP model in the form of a monoidal functor from syntax to meaning.
+However, the conceptual advantage of DisCoCat models comes at a price: they can be exponentially hard to evaluate on a classical computer.
+This is where QNLP comes in: quantum computers may allow to compute approximations of DisCoCat models exponentially faster than any classical computer.
+We demonstrated that our framework applies both to the large-scale fault-tolerant regime where we can load our data onto a qRAM, and to the NISQ era where we have only a few noisy qubits.
+
+The field of QNLP is still in its infancy and there remains much work to be done both on the theoretical side (can we prove that QNLP models offer a significant advantage compared to their classical counterpart?) and on the experimental side (can we demonstrate this advantage on real-world data?).
+We argue that the biggest challenge is not so much how to evaluate NLP models on quantum hardware, but how to train them.
+Indeed, if the architecture of our parameterised quantum circuit is random then the probability of non-zero gradients is exponentially small in the number of qubits and training our model may take an exponential time: this is the so-called \emph{barren plateau} phenomenon.
+Thankfully the quantum circuits for QNLP models are not random: we can exploit their internal structure, which comes from the grammatical structure of sentences.
+As a first step in that direction, we introduced \emph{diagrammatic differentiation} as a graphical notation for computing the gradient of QNLP models and parameterised diagrams in general.
+
+We conclude with some directions for future work.
+An obvious direction is to generalise QNLP models either in their domain or their codomain, i.e. syntax or semantics.
+On the syntax side, we may consider grammatical frameworks other than the pregroup grammars used in this thesis.
+Promising candidates include the Lambek calculus with a relevant modality that we used in previous work~\cite{McPheatEtAl21} to model anaphora, and the related \emph{text grammar} proposed by Coecke~\cite{Coecke21} and Wang~\cite{CoeckeWang21}.
+On the semantics side, we may generalise our definition of QNLP models beyond the standard quantum circuit model.
+Indeed, we may consider their implementation on different kinds of quantum hardware such as linear optical quantum computers~\cite{KokEtAl07} or analog quantum computers based on neutral atoms~\cite{HenrietEtAl20}.
+
+After syntax and semantics, it is natural to explore the \emph{pragmatics} of QNLP: how do we train our models and what kind of tasks do we solve? e.g. generation or language modeling
+e.g. initialisation strategy and generative adversarial methods

@@ -43,8 +43,8 @@ wiring = rigid.Functor(
     ar={Alice: Box("Alice", Ty(), n), Bob: Box("Bob", Ty(), n),
         loves: Cap(n.r, n) @ Cap(n, n.l) >> n.r @ Box("loves", n @ n, s) @ n.l})
 
-drawing.equation(
-    sentence, wiring(sentence), wiring(sentence).normal_form(), symbol='$\\mapsto$')
+steps = sentence, wiring(sentence), wiring(sentence).normal_form()
+drawing.equation(*steps, symbol='$\\mapsto$')
 \end{minted}
 
 \ctikzfig{img/qnlp/snake-removal}
@@ -55,9 +55,11 @@ For example, the following functor $G : F^M(\Sigma) \to \mathbf{Pyth}$ was intro
 
 \begin{minted}{python}
 G = monoidal.Functor(
-    dom=Category(rigid.Ty, rigid.Diagram), cod=Category(tuple[type, ...], Function),
+    dom=Category(rigid.Ty, rigid.Diagram),
+    cod=Category(tuple[type, ...], Function),
     ob={s: pregroup.Parsing, n: pregroup.Parsing},
-    ar={Box("Alice", Ty(), n): lambda: Alice, Box("Bob", Ty(), n): lambda: Bob,
+    ar={Box("Alice", Ty(), n): lambda: Alice,
+        Box("Bob", Ty(), n): lambda: Bob,
         Box("loves", n @ n, s): lambda f, g:
             f @ loves @ g >> Cup(n, n.r) @ s @ Cup(n.l, n)})
 
@@ -133,8 +135,8 @@ trivial = rigid.Functor(
     cod=Category(rigid.Ty, rigid.Diagram),
     ob=lambda x: x, ar=trivial_ar)
 
-drawing.equation(
-    sentence, trivial(sentence), trivial(sentence).normal_form(), symbol='$\\mapsto$')
+steps = sentence, trivial(sentence), trivial(sentence).normal_form()
+drawing.equation(*steps, symbol='$\\mapsto$')
 \end{minted}
 \ctikzfig{img/qnlp/snake-removal-trivial}
 \end{example}

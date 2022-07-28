@@ -39,9 +39,9 @@ An object $x_0 \times x_1 \in C_0$ is the product of two objects $x_0, x_1 \in C
 such that for all pairs of arrows $f_0 : y \to x_0$ and $f_1 : y \to x_1$ there is a unique $f = \langle f_0, f_1 \rangle : y \to x_0 \times x_1$ such that $f \fcmp \pi_0 = f_0$ and $f \fcmp \pi_1 = f_1$.
 These definitions are usually drawn as commutative diagrams where the full lines are universally quantified and the dotted line is uniquely existentially quantified.
 
-From these two \emph{universal properties} we can deduce that terminal objects and categorical products are unique up to a unique isomorphism and that they form a monoid on objects $(C_0, \times, 1)$, up to natural isomorphism.
+From these two \emph{universal properties} we can deduce that terminal objects and categorical products are unique up to a unique isomorphism.
 Given two arrows $f : a \to b$ and $g : c \to d$ we have two arrows $\pi_0 \fcmp f : a \times c \to b$ and $\pi_1 \fcmp g : a \times c \to d$, thus there is a unique $f \times  g = \langle \pi_0 \fcmp f, \pi_1 \fcmp g \rangle : a \times b \to c \times d$.
-One can show that this makes the category $C$ a monoidal category, i.e. $(C_1, \times, \id(1))$ is a monoid and the interchange law holds.
+One can show that this makes the category $C$ a (non-strict) monoidal category.
 Furthermore, we can show $C$ is symmetric with the swaps given by $S(x, y) = \langle \pi_1, \pi_0 \rangle : x \times y \to y \times x$.
 Finally, we can show $C$ has coherent natural commutative comonoids given by $\ttsplit(x) = \langle \id(x), \id(x) \rangle : x \to x \times x$ and $\counit(x) : x \to 1$.
 
@@ -54,7 +54,7 @@ For any arrows $f_0 : y \to x_0$ and $f_1 : y \to x_1$ we can define
 and show that $\otimes = \times$ is in fact a categorical product, see Selinger's survey~\cite[Section 6.1]{Selinger10}.
 A functor is cartesian when it preserves the categorical product, or equivalently if it is a symmetric functor that preserves the comonoid.
 This defines a category $\mathbf{CCat}$ of cartesian categories and functors.
-From lemma~\ref{lemma:foo-monoidal} we can assume that cartesian categories are free-on-objects, i.e. the monoid axioms for objects are equalities rather than natural transformations.
+We can assume that cartesian categories are free-on-objects, i.e. the monoid axioms for objects are equalities rather than natural transformations.
 Thus, we get a forgetful functor $U : \mathbf{CCat} \to \mathbf{MonSig}$ with its left adjoint given by a quotient of the free symmetric category $F^C(\Sigma) = F^S(\Sigma \cup \ttsplit \cup \counit) / R$ with the relations $R$ given by the naturality equations for each box.
 
 Taking the opposite definition, a \emph{cocartesian category} is one with a categorical coproduct, or equivalently with a coherent natural commutative monoid.
@@ -111,7 +111,8 @@ class Functor(symmetric.Functor):
 
     def __call__(self, other):
         if isinstance(other, Copy):
-            factory = getattr(self.cod.ar, "merge" if other.is_dagger else "copy")
+            factory = getattr(
+                self.cod.ar, "merge" if other.is_dagger else "copy")
             return factory(self(other.dom), len(other.cod))
         return super().__call__(other)
 \end{minted}
@@ -144,7 +145,9 @@ drawing.equation(zero >> discard, Diagram.id(Ty()))
 \tikzfig{img/cartesian/zero-hom-counit}
 \end{center}
 \begin{minted}{python}
-drawing.equation(copy >> minus @ x >> add, discard >> zero, copy >> x @ minus >> add)
+drawing.equation(copy >> minus @ x >> add,
+                 discard >> zero,
+                 copy >> x @ minus >> add)
 \end{minted}
 \ctikzfig{img/cartesian/hopf}
 
@@ -227,7 +230,7 @@ assert F(copy >> swap) == F(copy)
 \end{minted}
 \end{example}
 
-A category with distinct cartesian and cocartesian structures is an example of a \emph{rig category}, i.e. it has two monoidal structures $\oplus$ and $\otimes$ that satisfy the equations of a rig up to natural isomorphism.
+A \emph{rig category} has two monoidal structures $\oplus$ and $\otimes$ that satisfy the equations of a rig up to natural isomorphism.
 This is the case for the category $\mathbf{Set}$ as well as for $\mathbf{Pyth}$.
 The Kronecker product is not a cartesian product for $\mathbf{Mat}_\S$ (since this role is taken by direct sums) but it does form a rig category with the direct sum.
 The arrows of free rig categories can be described as (equivalence classes of) three-dimensional \emph{sheet diagrams} where composition, additive and multiplicative tensor are encoded in three orthogonal axes~\cite{ComfortEtAl20}.
@@ -245,8 +248,8 @@ We use the same syntax for the direct sum of two tensors.
 {\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian category with \py{tuple} and a cocartesian category with \py{tagged_union}.}
 
 \begin{minted}{python}
-is_tuple = lambda typ: hasattr(typ, "__origin__") and typ.__origin__ is tuple
-is_union = lambda typ: hasattr(typ, "__origin__") and typ.__origin__ is TaggedUnion
+is_tuple = lambda typ: getattr(typ, "__origin__", None) is tuple
+is_union = lambda typ: getattr(typ, "__origin__", None) is TaggedUnion
 
 class Function(monoidal.Function):
     is_additive = False
@@ -282,8 +285,10 @@ class Function(monoidal.Function):
         return super().tuple(other)
 
     def tagged_union(self, other: Function) -> Function:
-        if not self.is_additive: return self.make_additive().tagged_union(other)
-        if not other.is_additive: return self.tagged_union(other.make_additive())
+        if not self.is_additive:
+            return self.make_additive().tagged_union(other)
+        if not other.is_additive:
+            return self.tagged_union(other.make_additive())
         inside = self.inside if len(self.dom) == 1 and len(other.dom) == 0\
             else other.inside if len(self.dom) == 0 and len(other.dom) == 1\
             else lambda i, x: self(i, x) if i < len(self.dom)
@@ -305,7 +310,8 @@ class Function(monoidal.Function):
 
     @inductive
     def tensor(self, other: Function) -> Function:
-        return self.tagged_union(other) if self.is_additive else self.tuple(other)
+        method = self.tagged_union if self.is_additive else self.tuple
+        return method(other)
 
     __or__ = tagged_union
 \end{minted}
@@ -329,7 +335,7 @@ F = Functor(ob={x: int}, ar={
     bias: lambda: -1, **dict(zip(weights, [0, 1, 2, 3]))},
     cod=Category(tuple[type, ...], Function))
 
-assert F(network)(42, -43) == max(0, sum([42 * 0, -43 * 1, 42 * 2, -43 * 3, -1]))
+assert F(network)(42, 43) == max(0, sum([42 * 0, 43 * 1, 42 * 2, 43 * 3, -1]))
 \end{minted}
 
 We could implement a neural network that can operate on different kinds of data (e.g. discrete versus continuous) using a cocartesian diagram instead.
@@ -352,7 +358,8 @@ class Matrix:
     @classmethod
     def copy(cls, x: int, n: int, is_dagger=False) -> Matrix:
         dom, cod = (x ** n, x) if is_dagger else (x, x ** n)
-        inside = [[i % n == j for j in range(x)] for i in range(x ** n)] if is_dagger\
+        inside = [[i % n == j for j in range(x)] for i in range(x ** n)]\
+            if is_dagger\
             else [[i == j % n for j in range(x ** n)] for i in range(x)]]
         return cls(inside, dom, cod)
 
@@ -405,13 +412,15 @@ class FakeInt:
     __int__ = lambda self: len(self.inside)
     __iter__ = property(lambda self: self.inside.__iter__)
     __add__ = lambda self, other: FakeInt(self.inside + other.inside)
-    __mul__ = lambda self, other: FakeInt([x0 @ x1 for x0 in self.inside for x1 in other])
+    __mul__ = lambda self, other: FakeInt(
+        [x0 @ x1 for x0 in self.inside for x1 in other])
     __pow__ = lambda self, n: product(n * (self, ), unit=FakeInt())
 
 class Biproduct(Matrix):
     dtype = Diagram
 
-    def __init__(self, inside: list[list[Diagram]], dom: tuple[Ty, ...], cod: tuple[Ty, ...]):
+    def __init__(self, inside: list[list[Diagram]],
+                 dom: tuple[Ty, ...], cod: tuple[Ty, ...]):
         self.dom, self.cod, self.inside = tuple(dom), tuple(cod), [[
             cls.dtype.id(x) if val is 1 and x == y
             else cls.dtype.zero(x, y) if val is 0
@@ -423,7 +432,8 @@ class Biproduct(Matrix):
         self.dom, self.cod = map(FakeInt, (self.dom, self.cod))
         yield self
         self.dom, self.cod = map(tuple, (self.dom, self.cod))
-        delattr(self.dtype, "__mul__") if tmp is None else setattr(self.dtype, "__mul__", tmp)
+        delattr(self.dtype, "__mul__") if tmp is None\
+            else setattr(self.dtype, "__mul__", tmp)
 
     @classmethod
     def cast(cls, old: Diagram):
@@ -452,11 +462,8 @@ class Biproduct(Matrix):
     __or__ = lambda self, other: self.direct_sum(self.cast(other))
     __eq__ = lambda self, other: Matrix.__eq__(self, self.cast(other))
 
-for method in ("self", "other"):
-    setattr(Diagram, method, inductive(
-        lambda self, other: getattr(self.biproduct.cast(self), method)(other)
-        if isinstance(other, Biproduct) else getattr(monoidal.Diagram, method)(other)))
-Diagram.direct_sum = lambda self, *others: self.biproduct.cast(self).direct_sum(*other)
+Diagram.direct_sum = lambda self, *others:\
+    self.biproduct.cast(self).direct_sum(*other)
 Diagram.__or__ = Diagram.direct_sum
 Diagram.__eq__ = lambda self, other:\
     other.inside = [[self]] if isinstance(other, Biproduct)\
@@ -464,7 +471,8 @@ Diagram.__eq__ = lambda self, other:\
 
 @classmethod
 def basis(cls, x: tuple[Ty, ...], i: int):
-    terms = [cls.id(x[i]) if i == j else cls.zero(x[i], x[j]) for j in range(len(x))]
+    terms = [cls.id(x[i]) if i == j else cls.zero(x[i], x[j])
+             for j in range(len(x))]
     return cls.copy(x[i], len(x)) >> cls.direct_sum(*terms)
 
 class Functor(monoidal.Functor):

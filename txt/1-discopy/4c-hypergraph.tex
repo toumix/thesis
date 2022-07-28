@@ -217,14 +217,17 @@ def coherence(factory):
             return method(cls, a, 1, x) >> shift >> method(cls, 1, b, x)
         if (a, b) in [(1, 0), (0, 1)]: # Coherence for (co)units.
             return cls.tensor(*[factory(a, b, obj) for obj in x])
-        if (co, a, b) == [(True, 1, 2), (False, 2, 1)]:  # Coherence for (co)products.
+        # Coherence for binary (co)products.
+        if (co, a, b) == [(True, 1, 2), (False, 2, 1)]:
             product_or_co = factory(a, b, x[0]) @ method(cls, a, b, x[1:])
             braid = x[0] @ cls.braid(x[0], x[1:]) @ x[1:]
             return product_or_co >> braid if co else braid >> product_or_co
         if a == 1:  # We can now assume b > 2.
-            return method(cls, 1, b - 1, x) >> method(cls, 1, 2, x) @ (x ** (b - 2))
+            return method(cls, 1, b - 1, x)\
+                >> method(cls, 1, 2, x) @ (x ** (b - 2))
         if b == 1:  # We can now assume a > 2.
-            return method(cls, 2, 1, x) @ (x ** (a - 2)) >> method(cls, a - 1, 1, x)
+            return method(cls, 2, 1, x) @ (x ** (a - 2))\
+                >> method(cls, a - 1, 1, x)
         return method(cls, a, 1, x) >> method(cls, 1, b, x)
 
 Diagram.spiders = coherence(Spider)
@@ -255,7 +258,8 @@ class Predicate(Box, Formula):
 
 def model(size: dict[Ty, int], data: dict[Predicate, list[bool]]):
     return Functor(ob=size, ar={p: [data[p]] for p in data},
-                   dom=Category(Ty, Formula), cod=Category(list[int], Tensor[bool]))
+                   dom=Category(Ty, Formula),
+                   cod=Category(list[int], Tensor[bool]))
 
 objects, categories = Ty('o'), Ty('c')
 has_object, has_unit = [Predicate(name, categories @ objects) for name in "OU"]
@@ -267,9 +271,10 @@ rigid_cartesian_implies_trivial = (
 
 size = {objects: 2, categories: 2}
 predicate_values = itertools.product(*size[categories] * [[0, 1]])
-relation_values = itertools.product(*size[categories] * size[o  bjects] * [[0, 1]])
+relation_values = itertools.product(*size[categories] * size[objects] * [[0, 1]])
 
-for O, U, R, C in itertools.product(2 * [predicate_values] + 2 * [relation_values]):
+for O, U, R, C in itertools.product(
+        2 * [predicate_values] + 2 * [relation_values]):
     F = model(size, {has_object: O, has_unit: U, is_rigid: R, is_cartesian: C})
     is_rigid_cartesian_and_has_object = lambda i, j:\
         F(has_object)[i, j] and F(is_rigid)[i] and F(is_cartesian)[i]

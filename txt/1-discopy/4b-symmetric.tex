@@ -69,7 +69,8 @@ The optional argument \py{left: bool} allows to choose between left and right na
 \begin{minted}{python}
 class Diagram(monoidal.Diagram):
     def simplify(self):
-        for i, (x, f, _), (y, g, _) in enumerate(zip(self.inside, self.inside[1:])):
+        for i, (x, f, _), (y, g, _) in enumerate(
+                zip(self.inside, self.inside[1:])):
             if x == y and isinstance(f, Braid) and f == g[::-1]:
                 inside = self.inside[:i] + self.inside[i + 2:]
                 return simplify(self.cast(Diagram(inside, self.dom, self.cod)))
@@ -160,7 +161,8 @@ We can check that \py{Braid}, its inverse and \py{Swap} are all natural.
 a, b = Ty('a'), Ty('b')
 f = Box('f', a, b)
 
-for braid in [Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.Swap]:
+for braid in [
+        Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.Swap]:
     source, target = x @ f >> braid(x, b), braid(x, a) >> f @ x
     assert source.naturality(0, braid=braid) == target
     assert target.naturality(1, left=False, down=False, braid=braid) == source
@@ -211,9 +213,9 @@ G = Functor(
     ar={f: lambda z: abs(z) ** 2},
     cod=Category(tuple[type, ...], Function))
 
-assert G(f @ x >> Swap(b, x))(1j, 2) == G(Swap(a, x) >> x @ f)(1j, 2) == (2, f(1j))
-assert G(x @ f >> Swap(x, b))(2, 1j) == G(Swap(x, a) >> f @ x)(2, 1j) == (f(1j), 2)
-assert G(swap_twice)(42, True, "meaning of life") == (42, True, "meaning of life")
+assert G(f @ x >> Swap(b, x))(1j, 2) == G(Swap(a, x) >> x @ f)(1j, 2)
+assert G(x @ f >> Swap(x, b))(2, 1j) == G(Swap(x, a) >> f @ x)(2, 1j)
+assert G(swap_twice)(42, True, "foo") == (42, True, "foo")
 \end{minted}
 \end{example}
 

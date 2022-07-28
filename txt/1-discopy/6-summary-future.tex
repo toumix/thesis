@@ -6,7 +6,7 @@ This chapter gave a comprehensive overview of DisCoPy and the mathematics behind
 Figure~\ref{fig:summary} summarises the different modules and their inheritance hierarchy, implementing a subset of the hierarchy of graphical languages surveyed by Selinger~\cite{Selinger10}.
 We hope it may be useful both as an introduction to monoidal categories for the Python programmer, and an introduction to Python programming for the applied category theorist.
 
-\begin{figure}[H]% https://q.uiver.app/?q=WzAsMTcsWzEsMCwiXFxweXtjYXR9XjEiXSxbMSwxLCJcXHB5e21vbm9pZGFsfV4yIl0sWzAsMiwiXFxweXtjbG9zZWR9Il0sWzIsMiwiXFxweXtzcGFjaWFsfV4zIl0sWzIsMywiXFxweXticmFpZGVkfSJdLFsyLDQsIlxccHl7c3ltbWV0cmljfV4zIl0sWzAsMywiXFxweXtyaWdpZH1eMiJdLFswLDQsIlxccHl7cGl2b3RhbH0iXSxbMCw1LCJcXHB5e3RvcnRpbGV9Il0sWzAsNiwiXFxweXtjb21wYWN0fV4zIl0sWzAsNywiXFxweXtoeXBlcmdyYXBofV4zIl0sWzIsNSwiXFxweXtjYXJ0ZXNpYW59Il0sWzEsNiwiXFxweXt0cmFjZWR9XjMiXSxbMSw4LCJcXHB5e2JpcHJvZHVjdHN9XjEiXSxbMCw4LCJcXHB5e3RlbnNvcn0iXSxbMSw3LCJcXHB5e21hdHJpeH0iXSxbMiw3LCJcXHB5e3B5dGhvbn0iXSxbMCwxXSxbMSwyXSxbMSwzXSxbMiw2XSxbMyw0XSxbNiw3XSxbMTUsMTRdLFsxNSwxM10sWzcsOF0sWzgsOV0sWzksMTBdLFsxMCwxNF0sWzQsNV0sWzUsMTFdLFs1LDEyXSxbMTIsOV0sWzExLDE2XSxbMTEsMTVdLFsxMiwxNV0sWzIsMTZdXQ==
+\begin{figure}% https://q.uiver.app/?q=WzAsMTcsWzEsMCwiXFxweXtjYXR9XjEiXSxbMSwxLCJcXHB5e21vbm9pZGFsfV4yIl0sWzAsMiwiXFxweXtjbG9zZWR9Il0sWzIsMiwiXFxweXtzcGFjaWFsfV4zIl0sWzIsMywiXFxweXticmFpZGVkfSJdLFsyLDQsIlxccHl7c3ltbWV0cmljfV4zIl0sWzAsMywiXFxweXtyaWdpZH1eMiJdLFswLDQsIlxccHl7cGl2b3RhbH0iXSxbMCw1LCJcXHB5e3RvcnRpbGV9Il0sWzAsNiwiXFxweXtjb21wYWN0fV4zIl0sWzAsNywiXFxweXtoeXBlcmdyYXBofV4zIl0sWzIsNSwiXFxweXtjYXJ0ZXNpYW59Il0sWzEsNiwiXFxweXt0cmFjZWR9XjMiXSxbMSw4LCJcXHB5e2JpcHJvZHVjdHN9XjEiXSxbMCw4LCJcXHB5e3RlbnNvcn0iXSxbMSw3LCJcXHB5e21hdHJpeH0iXSxbMiw3LCJcXHB5e3B5dGhvbn0iXSxbMCwxXSxbMSwyXSxbMSwzXSxbMiw2XSxbMyw0XSxbNiw3XSxbMTUsMTRdLFsxNSwxM10sWzcsOF0sWzgsOV0sWzksMTBdLFsxMCwxNF0sWzQsNV0sWzUsMTFdLFs1LDEyXSxbMTIsOV0sWzExLDE2XSxbMTEsMTVdLFsxMiwxNV0sWzIsMTZdXQ==
 \centering
 \begin{tikzcd}
 	& {\py{cat}^{\ref{section:cat}}} \\
@@ -41,9 +41,28 @@ We hope it may be useful both as an introduction to monoidal categories for the 
 	\arrow[from=3-1, to=8-3]
     \arrow[from=4-3, to=6-1]
 \end{tikzcd}
-\caption{DisCoPy's modules and the sections where they are discussed.}
+\caption{DisCoPy's modules and the sections where they are discussed, arrows indicate software dependency.}
 \label{fig:summary}
 \end{figure}
+
+Note that the code presented in this thesis represents a significant refactoring of the original implementation of DisCoPy \py{v0.4.2} as available online at the time this thesis is submitted\footnote
+{\url{https://github.com/oxford-quantum-group/discopy/releases/tag/0.4.2}}.
+It will be available as a fork\footnote
+{\url{https://github.com/toumix/discopy}} of the original repository which will later be released as DisCoPy \py{v1.0}.
+We list some of the significant changes between the two versions.
+\begin{itemize}
+\item We add type annotations throughout the codebase, using the postponed evaluation of annotations introduced in Python \py{3.7}~\cite{Langa17}.
+\item We simplify the inheritance mechanism using Python's \py{classmethod} decorator.
+This improves the code reuse for composition of diagrams, application of functors, etc.
+\item We reorganise the codebase so that it follows more closely the hierarchy of categorical structures.
+For example, we move the code for \py{Braid} outside of the \py{monoidal} module into its own \py{braided} module, we also introduce e.g. the \py{tortile} module which imports from both \py{rigid} and \py{braided}.
+\item We make the syntax more uniform for arrows in different categories, which are all initialised with the same attributes \py{inside}, \py{dom} and \py{cod}.
+\item We implement whiskering, i.e. tensoring with the identity of a given type on the left or right.
+This avoids to clutter diagram definitions with \py{Id}.
+\item Arrows in concrete categories like \py{Matrix}, \py{Tensor} and \py{Function} are no longer subclasses of \py{Box}. Instead, we implement the syntactic sugar for composition, whiskering, etc. with abstract classes \py{Composable} and \py{Tensorable}.
+\item We make the \py{Matrix} and \py{Tensor} classes parameterised by the datatype of their entries.
+This makes use of the magic method \py{__class_getitem__} which appeared in Python \py{3.10}~\cite{Levkivskyi17}.
+\end{itemize}
 
 We list but a few of the many potential directions for further developments.
 

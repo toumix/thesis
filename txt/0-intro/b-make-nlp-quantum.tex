@@ -104,13 +104,13 @@ Word meanings and grammatical structure are to linguistics what quantum states a
 DisCoCat word meanings live in vector spaces and they compose with tensor products: the states of quantum theory do too.
 Grammar tells you how words are connected and how information flows in a sentence and in the same way, entanglement connects quantum states and tells you how information flows in a complex quantum system.
 This analogy allows to borrow well-established mathematical tools from quantum theory, and it was implemented on classical hardware with some empirical success on small-scale tasks such as sentence comparison~\cite{GrefenstetteEtAl11} and word sense disambiguation~\cite{GrefenstetteSadrzadeh11,KartsaklisEtAl13}.
-However representing the meaning of sentences as quantum processes comes with a price: they can be exponentially hard to simulate classically.
+However representing the meaning of sentences as quantum processes comes at a price: they can be exponentially hard to simulate classically.
 
 If DisCoCat models are intractable for classical computers, why not use a quantum computer instead?
 Zeng and Coecke~\cite{ZengCoecke16} answered this question with the first quantum natural language processing (QNLP) algorithm\footnote
 {We exclude previous algorithms that are inspired by quantum theory but run on classical computers such as the frameworks of Chen~\cite{Chen02} and Blacoe et al.~\cite{BlacoeEtAl13}.}
 and the proof of a quadratic speedup on a sentence classification task.
-Wieber et al. ~\cite{WiebeEtAl19} later defined a QNLP algorithm based on a generalisation of the tensor product representation and proved it is \texttt{BQP}-complete: if any quantum algorithm has an exponential advantage, then in principle there must be one for QNLP.
+Wieber et al.~\cite{WiebeEtAl19} later defined a QNLP algorithm based on a generalisation of the tensor product representation and proved it is \texttt{BQP}-complete: if any quantum algorithm has an exponential advantage, then in principle there must be one for QNLP.
 However promising they may be, both algorithms assume fault-tolerance and they are at least as far away from solving real-world problems as Grover and HHL.
 
 This is where the work presented in this thesis comes in: we show it is possible to implement DisCoCat models on the machines available today.

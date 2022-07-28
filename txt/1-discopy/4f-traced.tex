@@ -89,7 +89,8 @@ class Function:
             return dom @ self.unit(traced)\
                 >> self >> cod @ iterated >> self.merge(cod)
         fixed = (self >> self.discard(cod) @ traced).fix()
-        return self.copy(dom) >> dom @ fixed >> self >> cod @ self.discard(traced)
+        return self.copy(dom) >> dom @ fixed\
+            >> self >> cod @ self.discard(traced)
 \end{minted}
 \end{python}
 
@@ -119,7 +120,8 @@ class Matrix:
     ...
     def repeat(self):
         assert self.dtype is bool and self.dom == self.cod
-        return sum(Matrix.id(self.dom).then(*n * [self]) for n in range(self.dom + 1))
+        return sum(
+            Matrix.id(self.dom).then(*n * [self]) for n in range(self.dom + 1))
 
     def trace(self, n=1):
         assert self.dtype is bool

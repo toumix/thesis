@@ -12,7 +12,7 @@ The data for a category is given by a tuple $C = (C_0, C_1, \dom, \cod, \id, \th
 \item $\then : C_1 \times C_1 \to C_1$ is a partial function called \emph{composition}, denoted by $(\fcmp)$.
 \end{itemize}
 Given two objects $x, y \in C_0$, the set\footnote
-{We will assume that this forms a set rather than a proper class, i.e. we will only work with \emph{locally small} categories.}
+{We assume this is a set rather than a proper class, i.e. we work with \emph{locally small} categories.}
 $C(x, y) = \{f \in C_1 \s \vert \s \dom(f), \cod(f) = x, y \}$ is called a \emph{homset} and we write $f : x \to y$ whenever $f \in C(x, y)$.
 We denote the composition $\then(f, g)$ by $f \fcmp g$, translated to \py{f >> g} or \py{g << f} in Python.
 The axioms for the category $C$ are the following:
@@ -120,7 +120,6 @@ In the same way that there is a set $Y^X$ of functions $X \to Y$ for any two set
 We can define the category $\mathbf{Pyth}$ with objects the class of all Python types and arrows the class of all Python functions.
 Domain and codomain could be extracted from type annotations, but instead we implement a class \py{Function} with attributes \py{inside: Callable} as well as \py{dom: Ty} and \py{cod: Ty}.
 Identity and composition is given by \py{lambda x: x} and \py{lambda f, g:} \py{lambda x:} \py{g(f(x)))}.
-However, equality of functions in Python is undecidable so there will be no way to check the axioms hold in general.
 
 As discussed by Milewski~\cite{Milewski14} in the case of Haskell, endofunctors $\mathbf{Pyth} \to \mathbf{Pyth}$ can be thought of as data containers.
 For example, we can define a $\mathbf{List}$ functor which sends a type \py{t} to \py{List[t]} and a function \py{f} to \py{lambda *xs: map(f, xs)}.
@@ -128,10 +127,18 @@ There is a natural transformation $\eta : \mathbf{Id} \to \mathbf{List}$ from th
 Its components send objects \py{x : t} of any type \py{t} to the singleton list \py{[x] : List[t]}.
 \end{example}
 
+\begin{remark}\label{remark:category-Pyth}
+It's not entirely clear what we mean by equality of Python function and hence we can ask whether $\mathbf{Pyth}$ even is a category at all.
+We can define a notion of \emph{contextual equivalence}, an instance of Leibniz's \emph{identity of indiscernibles}: two functions are equal if they are interchangeable in all observable contexts.
+However, the associativity and unitality axioms may fail in the presence of non-terminating programs.
+In the same informal way as in ``platonic'' $\mathbf{Hask}$~\cite{HaskellWikiContributors12}, we may think of a ``platonic'' $\mathbf{Pyth}$, a subset of Python functions where we exclude non-termination and where the axioms of categories hold.
+See Danielsson et al. \emph{Fast and loose reasoning is morally correct}~\cite{DanielssonEtAl06} for a theoretical justification of such informal reasoning.
+\end{remark}
+
 \begin{python}
 {\normalfont Syntactic sugar for composition.}
 
-\py{Composable} implements the syntactic sugar \py{self >> other} (and \py{self << other}) for composition in diagrammatic order (and its opposite) as well as \py{n * self} for $n$-fold composition.
+\py{Composable} implements the syntactic sugar \py{>>} and \py{<<} for composition in diagrammatic order and its opposite, as well as \py{n * self} for $n$-fold composition.
 It is an abstract class, i.e. it is subclassed but never instantiated.
 The higher-order function \py{inductive} takes a binary method and makes it $n$-ary by using a left fold, we use it as a decorator.
 
@@ -421,7 +428,8 @@ class Functor:
     cod: Category = Category(Ob, Arrow)
 
     def __init__(self, ob, ar, dom=Category(Ob, Arrow), cod=Category(Ob, Arrow)):
-        ob, ar = (d if hasattr(d, "__getitem__") else FakeDict(d) for d in (ob, ar))
+        ob, ar = (
+            d if hasattr(d, "__getitem__") else FakeDict(d) for d in (ob, ar))
         self.ob, self.ar, self.dom, self.cod = ob, ar, dom, cod
 
     def __call__(self, other: Ob | Arrow) -> Ob | Arrow:
@@ -762,11 +770,25 @@ class Matrix:
 \end{minted}
 \end{python}
 
-A \emph{bubble} on a (subcategory of a) category $C$ is a pair of unary operators $\beta_\dom, \beta_\cod : C_0 \to C_0$ on objects and a unary operator between homsets $\beta : C(x, y) \to C(\beta_\dom(x), \beta_\cod(y))$ for (some) pairs of objects $x, y \in C_0$.
+We define a \emph{bubble} on a category $C$ as a pair of unary operators $\beta_\dom, \beta_\cod : C_0 \to C_0$ on objects and a unary operator between homsets $\beta : C(x, y) \to C(\beta_\dom(x), \beta_\cod(y))$ for pairs of objects $x, y \in C_0$.
 Given a signature $\Sigma$ and a pair $\beta_\dom, \beta_\cod : C_0 \to C_0$, we construct the free category with bubbles $F(\Sigma^\beta)$ by induction on the maximum level $n$ of bubble nesting: take the signature $\Sigma^\beta = \bigcup_{n \in \N} \Sigma^\beta_n$
 for $\Sigma^\beta_0 = \Sigma$ and $\Sigma^\beta_{n + 1} = \Sigma + \{ \beta(f) \ \vert \ f \in F(\Sigma^\beta_n) \}$.
 That is, box in $\Sigma^\beta$ is a box in $\Sigma^\beta_{n}$ for some $n \in \N$.
 A box in $\Sigma^\beta_{n}$ is either a box in $\Sigma$ or an arrow $f : x \to y$ in $F(\Sigma^\beta_{n - 1})$ that we have put inside a bubble $\beta(f) : \beta_\dom(x) \to \beta_\cod(y)$.
+
+\begin{remark}
+Bubbles are called \emph{unary operator on homsets} (uooh) in \cite{HaydonSobocinski20} where they are used to encode the sep lines of Peirce's existential graphs, see example~\ref{example:monoidal-formula}.
+As we will discuss in section~\ref{section:diag-diff}, they first appeared in Penrose and Rindler \cite{PenroseRindler84} as an informal notation for the covariant derivative.
+\end{remark}
+
+\begin{example}
+The functorial boxes of Melli\`es \cite{Mellies06} can be thought of as
+well-behaved bubbles, i.e. such that the composition of bubbles is the
+bubble of the composition. Indeed, a functor $F : \mathbf{C} \to \mathbf{D}$
+between two categories $\mathbf{C}$ and $\mathbf{D}$ defines a bubble on the
+subcategory of their coproduct $\mathbf{C} \coprod \mathbf{D}$ spanned by $\mathbf{C}$.
+\end{example}
+
 
 \begin{example}\label{example:endofunctor-bubbles}
 Any endofunctor $\beta : C \to C$ also defines a bubble, thus we can define a bubble-preserving functor $F(U(C)^\beta) \to C$ which interprets bubbles as functor application.
@@ -777,8 +799,7 @@ These functor bubbles have also been called \emph{functorial boxes}~\cite{Mellie
 \begin{example}
 An \emph{exponential rig} is a one-object CM-enriched category $\S$ with a bubble $\exp : \S \to \S$ which is a homomorphism from sum to product, i.e. $\exp(a + b) = \exp(a) \exp(b)$ and $\exp(0) = 1$.
 Any rig $\S$ is an exponetial rig by taking $\exp(a) = 1$ for all $a \in \S$.
-Non-trivial examples include the complex numbers as well as the Boolean rig with negation.
-Thus, exponential rigs provide enough syntax to define the matrices of most quantum gates, as well as any propositional logic formula.
+Non-trivial examples include complex numbers as well as the Boolean rig with negation.
 \end{example}
 
 \begin{example}
@@ -822,8 +843,9 @@ class Functor(cat.Functor):
     def __call__(self, other):
         if isinstance(other, Bubble):
             method = getattr(self.cod.ar, other.method)
-            return method(self(other.diagram)) if other.is_id_on_objects\
-                else method(self(other.diagram), self(other.dom), self(other.cod))
+            if other.is_id_on_objects:
+                return method(self(other.diagram))
+            return method(self(other.diagram), self(other.dom), self(other.cod))
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -899,8 +921,8 @@ for a, b in itertools.product([0, 1], [0, 1]):
 \end{minted}
 \end{example}
 
-\begin{remark}
-The constructions for dagger, sums and bubbles all commute with each other.
-Moreover, there is cube of faithful functors which embed free categories in free $\dagger$-categories with sums and bubbles.
-Thus, they are all implemented by default in the same class \py{Arrow}.
-\end{remark}
+% \begin{remark}
+% The constructions for dagger, sums and bubbles all commute with each other.
+% Moreover, there is cube of faithful functors which embed free categories in free $\dagger$-categories with sums and bubbles.
+% Thus, they are all implemented by default in the same class \py{Arrow}.
+% \end{remark}

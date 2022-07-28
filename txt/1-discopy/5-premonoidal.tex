@@ -20,9 +20,11 @@ While a functor on a cartesian product $F : C \times D \to E$ can be seen as a f
 
 Now recall that a (strict) monoidal category $C$ is a monoid in $(\mathbf{Cat}, \times)$, i.e. the tensor is a functor on a cartesian product $\otimes : C \times C \to C$.
 In a similar way, we define a (strict) \emph{premonoidal category} as a monoid in $(\mathbf{Cat}, \Box)$, i.e. a category $C$ with an associative, unital functor on the funny product $\boxtimes : C \Box C \to C$.
-A (strict) \emph{premonoidal functor} is a functor that commutes with $\boxtimes$, i.e. $F(f \boxtimes g) = F(f) \boxtimes F(g)$, thus we get a category $\mathbf{PreMonCat}$.
-Similarly a \emph{premonoidal transformation} is a transformation $\alpha : F \to G$ between two premonoidal functors such that $\alpha(x \boxtimes y) = \alpha(x) \boxtimes \alpha(y)$.
-As for monoidal categories, we can show that every premonoidal category is premonoidally equivalent to a foo one, i.e. where the monoid of objects is free, thus we get a forgetful functor $U : \mathbf{PreMonCat} \to \mathbf{MonSig}$.
+A (strict) \emph{premonoidal functor}\footnote
+{As we mention in remark~\ref{remark:non-strict-premonoidal}, the original definition from Power and Robinson~\cite{PowerRobinson97} requires premonoidal functors to be center-preserving.
+This is not necessary for strict premonoidal functors.}
+is a functor that commutes with $\boxtimes$, i.e. $F(f \boxtimes g) = F(f) \boxtimes F(g)$, thus we get a category $\mathbf{PreMonCat}$.
+As for monoidal categories, we can show that every premonoidal category is equivalent to a foo one, i.e. where the monoid of objects is free, thus we get a forgetful functor $U : \mathbf{PreMonCat} \to \mathbf{MonSig}$.
 The image of $\boxtimes$ on objects may be given by concatenation, its image on arrows is called \emph{whiskering}, it is denoted by $\boxtimes(0, f, x) = f \boxtimes x$ and $\boxtimes(1, x, f) = x \boxtimes f$.
 As we have seen in section~\ref{section:monoidal}, from whiskering we can define a (biased) tensor product on arrows $f \boxtimes g = f \boxtimes \dom(g) \fcmp \cod(f) \boxtimes g$ and conversely, we can define whiskering as tensoring with identity arrows.
 
@@ -30,9 +32,17 @@ Thus, we can take the data for a premonoidal category $C$ to be the same as that
 That is, a premonoidal category is almost a monoidal category, only the interchange law does not necessarily hold.
 Every monoidal category (functor) is also a premonoidal category (functor), hence we have an inclusion functor $\mathbf{MonCat} \injects \mathbf{PreMonCat}$.
 An arrow of a premonoidal category $C$ is called \emph{central} if it interchanges with every other arrow, a transformation is called central if every component is central.
-Every identity is central and composition preserves centrality, thus we can define the \emph{center} $Z(C)$ as the subcategory of central arrows and show that $Z : \mathbf{PreMonCat} \to \mathbf{MonCat}$ is in fact the right adjoint of the inclusion.
+Every identity is central and composition preserves centrality, thus we can define the \emph{center} $Z(C)$ as the subcategory of central arrows and show that $Z : \mathbf{PreMonCat} \to \mathbf{MonCat}$.
 A \emph{symmetric premonoidal category} is a premonoidal category with a central natural isomorphism $S : x \boxtimes y \to y \boxtimes x$ such that the hexagon equations hold and $S(x, 1) = \id(x) = S(1, x)$.
-Again, we get an inclusion functor from symmetric monoidal categories to symmetric premonoidal, and its right adjoint given by the center.
+
+\begin{remark}\label{remark:non-strict-premonoidal}
+The definition of non-strict premonoidal category and functor requires some caution.
+Indeed, in order to get a coherence theorem (i.e. in order to prove that every premonoidal category is equivalent to a strict one) we need to assume that the associator and unitor morphisms are central.
+Then for the composition of premonoidal functors to be well-defined, we need them to be center-preserving which rules out important examples~\cite{StatonLevy13}.
+This motivates the definition of (non-cartesian) \emph{Freyd categories}, also called \emph{effectful categories}~\cite{Roman22}: a triple $(C, V, J)$ of a premonoidal category $C$, a monoidal category $V$ of \emph{values} and an identity-on-objects strict premonoidal functor $J : V \to C$ whose image is central.
+An effectful functor is a functor between effectful categories which restricts to a monoidal functor on their values.
+Every premonoidal category can be taken as an effectful category with its center as values (in which case effectful functors are center-preserving) or with its discrete category of objects as values (in which case effectful functors don't necessarily preserve centers).
+\end{remark}
 
 \begin{example}
 A premonoidal category with one object is just a set with two monoid structures.
@@ -66,8 +76,8 @@ More generally, we can ask only for a (bi)\emph{strong monad}, equipped with two
 It is monoidal precisely when the monad is commutative, i.e. the two arrows from $T(x) \otimes T(y)$ to $T(x \otimes y)$ are equal.
 
 \begin{example}
-Take the category $C = \mathbf{FinSet}$ and the \emph{distribution monad} $T(X) = \S^X$ for a rig $\S$ with the image on arrows given by \emph{pushforward} $T(f : X \to Y)(p : X \to \S) : y \mapsto \sum_{x \in f^{-1}(y)} p(x)$, the multiplication and unit induced by the rig multiplication and unit.
-Its Kleisli category is precisely the category $\mathbf{Mat}_S$ of matrices, i.e. functions $m : Y \to \S^X \simeq X \times Y \to \S$.
+Take the category $C = \mathbf{Set}$ and the \emph{distribution monad} $T(X) = \{ p : X \to \S \ \vert \ p \text{has finite support} \}$ for a rig $\S$ with the image on arrows given by \emph{pushforward} $T(f : X \to Y)(p : X \to \S) : y \mapsto \sum_{x \in f^{-1}(y)} p(x)$, the multiplication and unit induced by the rig multiplication and unit.
+If we construct its Kleisli category and take the subcategory spanned by finite sets, we get the category $\mathbf{Mat}_S$ of matrices seen as functions $m : Y \to \S^X \simeq X \times Y \to \S$.
 One can show this is a strong monad, and it is commutative precisely when the rig is commutative.
 \end{example}
 
@@ -81,8 +91,9 @@ Whiskering an arrow $f : s \otimes x \to s \otimes y$ by an object $z$ on the le
 Jeffrey~\cite{Jeffrey97} then gave the first definition of free premonoidal categories, his construction formalises the intuition that non-central arrows are to be thought as arrows with side effects.
 The \emph{state construction} takes as input a symmetric monoidal category $C$ and an object $s$, and builds a symmetric premonoidal category $\mathbf{St}(C, s)$ with the same objects as $C$, arrows given by $\mathbf{St}(C, s)(x, y) = C(s \otimes x, s \otimes y)$ and whiskering defined as in the state monad.
 Intuitively, an arrow in $\mathbf{St}(C, s)$ is an arrow in $C$ which also updates a global state encoded in the object $s$, which we can draw as an extra wire passing through every box of the diagram, preventing them from being interchanged.
-More formally, given a monoidal signature $\Sigma$ we can construct the free symmetric premonoidal category $F^{SP}(\Sigma) = \mathbf{St}(F^S(\Sigma + \{ s \}), s)$ as the state construction over the free symmetric category with an extra object.
+More formally, given a monoidal signature $\Sigma$ we can construct the free symmetric premonoidal category by taking the state construction $\mathbf{St}(F^S(\Sigma + \{ s \}), s)$ over the free symmetric category with an extra object $s$, then taking the subcategory spanned by objects of the form $s \otimes t$ for $t \in \Sigma_0^\star$.
 We can generalise this to (non-symmetric) free premonoidal categories but we still need symmetry at least for the extra object, i.e. natural isomorphisms $S(s, x) : s \otimes x \to x \otimes s$ for each object $x$, subject to hexagon and unit equations.
+We refer the reader to Roman~\cite{Roman22} for a formalisation of this result in the framework of effectful categories.
 
 We call this definition of the free premonoidal category as a state construction over a free monoidal category with an extra swappable object the \emph{monoidal approach} to premonoidal categories.
 In what we call the \emph{premonoidal approach} to monoidal categories, definitions go the other way around with free premonoidal categories as the fundamental notion and free monoidal categories as an interesting quotient.
@@ -90,13 +101,13 @@ Indeed, we have been using the arrows of free premonoidal categories all along: 
 Equivalently, they are labeled generic progressive plane graphs up to generic deformation, i.e. with at most one box node at each height.
 While in the monoidal approach, string diagrams are defined as non-planar graphs and the ordering of boxes is materalised by extra wires connecting the boxes in sequence, in the premonoidal approach we take this ordering as data: boxes are in a list.
 This comes with an immediate advantage: equality of premonoidal diagrams can be defined in terms of equality of lists, hence it is decidable in linear time whereas equality of monoidal diagrams has quadratic complexity and equality of symmetric diagrams could be as hard as graph isomorphism.
-Another advantage of representing string diagrams with lists rather than graphs is that the code for functor application, i.e. the interpretation of diagrams, is a simple \py{for} loop rather than an elaborate graph algorithm, it requires no choices.
+Another advantage of representing string diagrams with lists rather than graphs is that the code for functor application, i.e. the interpretation of diagrams, is a simple \py{for} loop rather than an elaborate graph algorithm.
 Similarly, the algorithm for drawing premonoidal diagrams requires almost no choices, the order of wires and boxes is fixed, we can only choose their shape and the spacing between them.
 On the other hand, drawing graphs requires complex heuristics and graphical interfaces in order to get satisfying results.
 
 \subsection{Hypergraph versus premonoidal diagrams}\label{subsection:hypergraph-vs-premonoidal}
 
-In order to compare the two approaches, we need to say a few words about how string diagrams for symmetric categories are implemented.
+In order to compare the graph-based and list-based approaches, we need to say a few words about how string diagrams for symmetric categories are implemented.
 Recall from sections~\ref{subsection:symmetric} and \ref{subsection:hypergraph} that equality of diagrams in symmetric and hypergraph categories reduce to graph and hypergraph isomorphisms respectively.
 This can be made explicit by implementing these diagrams as graphs and hypergraphs rather than lists of layers with explicit boxes for swaps and spiders.
 Given a monoidal signature $\Sigma$, a \emph{hypergraph diagram} (also called hypergraphs with \emph{ports}) $f$ is given by:
@@ -282,7 +293,8 @@ class Colour(cat.Ob):
 
 class Ty(cat.Arrow, monoidal.Ty):
     def __init__(self, inside: cat.Arrow | str, dom=Colour(), cod=Colour()):
-        inside = inside if isinstance(inside, Arrow) else cat.Box(inside, dom, cod)
+        if not isinstance(inside, Arrow):
+            inside = cat.Box(inside, dom, cod)
         Arrow.__init__(self, inside.inside, inside.dom, inside.cod)
 
     @classmethod
@@ -336,7 +348,8 @@ class Transformation(Composable, Tensorable):
         return Transformation(lambda x: other(self(x)), self.dom, other.cod)
 
     def tensor(self, other: Transformation | Functor) -> Transformation:
-        if isinstance(other, Transformation): return self @ other.dom >> self.cod @ other
+        if isinstance(other, Transformation):
+            return self @ other.dom >> self.cod @ other
         return Transformation(
             lambda x: other(self(x)), self.dom >> other, self.cod >> other)
 

@@ -83,14 +83,16 @@ def draw(self: Diagram) -> PlaneGraph:
     for j, (left, box, _) in enumerate(self.inside):
         box_node, left_of_box =\
             Node('box', box, -1, j), make_space(scan, box, offset)
-        position[box_node] = (left_of_box + max(len(box.dom), len(box.cod)) / 2, j)
+        position[box_node] = (
+            left_of_box + max(len(box.dom), len(box.cod)) / 2, j)
         for kind, epsilon in (('dom', -.1), ('cod', .1)):
             for i, x in enumerate(getattr(box, kind)):
                 position[Node(kind, x, i, j)] = (left_of_box + i, j + epsilon)
         box_cod_nodes = [Node('cod', x, i, j) for i, x in enumerate(box.cod)]
         scan = scan[:len(left)] + box_cod_nodes + scan[len(left @ box.dom):]
     for i, x in enumerate(self.cod):
-        position[Node('cod', x, i, len(self))] = (position[scan[i]][0], len(self))
+        cod_node = Node('cod', x, i, len(self))
+        position[cod_node] = (position[scan[i]][0], len(self))
     return graph, position
 
 Diagram.draw = draw
@@ -201,9 +203,11 @@ u, v = Box('u', Ty(), x), Box('v', x, Ty())
 
 def spiral(length: int) -> Diagram:
     diagram, n = u, length // 2 - 1
-    for i in range(n): diagram >>= Id(x ** i) @ f @ Id(x ** (i + 1))
+    for i in range(n):
+        diagram >>= Id(x ** i) @ f @ Id(x ** (i + 1))
     diagram >>= Id(x ** n) @ v @ Id(x ** n)
-    for i in range(n): diagram >>= Id(x ** (n - i - 1)) @ g @ Id(x ** (n - i - 1))
+    for i in range(n):
+        diagram >>= Id(x ** (n - i - 1)) @ g @ Id(x ** (n - i - 1))
     return diagram
 
 diagram = spiral(8)
@@ -219,7 +223,6 @@ Diagram.to_gif(*diagram.normalize())
 \tikzfig{img/spiral/8} $\quad \sim \quad$
 \tikzfig{img/spiral/nf}
 \end{center}
-
 The interchangers between these two diagrams can be downloaded as a \py{.gif}\footnote
 {\href{https://github.com/oxford-quantum-group/discopy/blob/f364ce218890d87fda4aa5c1f4f770f07c7b4f25/docs/_static/imgs/spiral.gif}{\nolinkurl{https://github.com/oxford-quantum-group/discopy/.../imgs/spiral.gif}}} video.
 \end{example}
@@ -247,7 +250,7 @@ def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
 \end{python}
 
 \begin{proposition}\label{proposition:graph2diagram(self.draw())}
-We have \py{graph2diagram(self.draw()) == self} for all \py{self: Diagram}.
+The equality \py{graph2diagram(self.draw()) == self} holds for all \py{self: Diagram}.
 \end{proposition}
 
 \begin{proof}
@@ -343,7 +346,7 @@ Hence, we have defined a functor\footnote
 {For lack of a better notation, we use the same letter $G$ to refer to an arbitrary graph as well as for the functor $G  : \mathbf{Monsig} \to \mathbf{MonCat}$.} $G : \mathbf{Monsig} \to \mathbf{MonCat}$ which we claim is naturally isomorphic to the free functor $F : \mathbf{Monsig} \to \mathbf{MonCat}$ defined in the previous section.
 An abstract way to prove this is to appeal to the universal property of free monoidal categories: if the topological and the combinatorial definitions are both free monoidal, they are necessarily isomorphic.
 More concretely, we can implement this natural isomorphism as a commutative diagram in $\mathbf{Pyth}$ and think of it as a software test for our drawing and reading algorithms.
-\pagebreak
+
 \begin{python}\label{listing:G_of_f}
 {\normalfont Implementation of the functor $G : \mathbf{Monsig} \to \mathbf{MonCat}$.}
 

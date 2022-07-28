@@ -51,12 +51,15 @@ class Function:
     def curry(self, n=1, left=True) -> Function:
         inside = lambda *xs: lambda *ys: self(*(ys + xs) if left else (xs + ys))
         dom, cod = (self.dom[n:], exp(self.cod, self.dom[:n])) if left\
-            else (self.dom[:len(self.dom) - n], exp(self.cod, self.dom[len(diagram) - n:]))
+            else (self.dom[:len(self.dom) - n],
+                  exp(self.cod, self.dom[len(diagram) - n:]))
         return Function(inside, dom, cod)
 
     @staticmethod
-    def ev(base: tuple[type, ...], exponent: tuple[type, ...], left=True) -> Function:
-        inside = (lambda *xs: xs[-1](*xs[:-1])) if left else (lambda f, *xs: f(*xs))
+    def ev(base: tuple[type, ...], exponent: tuple[type, ...],
+           left=True) -> Function:
+        inside = (lambda *xs: xs[-1](*xs[:-1])) if left\
+            else (lambda f, *xs: f(*xs))
         dom, cod = (exponent + exp(base, exponent), base) if left\
             else (exp(base, exponent) + exponent, base)
         return Function(inside, dom, cod)
@@ -77,7 +80,8 @@ We can check the axioms for cartesian closed categories hold in $\mathbf{Pyth}$.
 
 \begin{minted}{python}
 x, y, z = (complex, ), (bool, ), (float, )
-f = Function(dom=y, cod=exp(z, x), inside=lambda y: lambda x: abs(x) ** 2 if y else 0)
+f = Function(dom=y, cod=exp(z, x),
+             inside=lambda y: lambda x: abs(x) ** 2 if y else 0)
 g = Function(dom=x + y, cod=z, inside=lambda x, y: f(y)(x))
 
 assert f.uncurry().curry()(True)(1j) == f(True)(1j)
@@ -95,6 +99,7 @@ The left adjoint $F^C : \mathbf{MonSig} \to \mathbf{CMonSig}$ takes a monoidal s
 Now we can define the left adjoint $F : \mathbf{CMonSig} \to \mathbf{CCCat}$ as a quotient of the free cartesian category with boxes for evaluations, bubbles for currying (i.e. by induction on the number of nested curryings) and relations given by the axioms for natural isomorphisms.
 Composing the two adjunctions we get $F^{CC} : \mathbf{MonSig} \to \mathbf{CCCat}$.
 
+\begin{remark}
 Diagrams in free cartesian closed categories can also be seen as terms of the \emph{simply typed lambda calculus} (up to $\beta\eta$-equivalence) or as proofs in \emph{minimal logic} (the fragment of propositional logic with only conjunction and implication).
 See Abramsky and Tzevelekos~\cite{AbramskyTzevelekos11} for an introduction to this \emph{Curry-Howard-Lambek correspondence}.
 The problem of deciding the ($\beta\eta$) equivalence of a given pair of simply typed lambda terms (or equivalently the equivalence of two minimal logic formulae) is decidable~\cite{Tait67} but not elementary recursive~\cite{Statman79}, i.e. its time complexity is not bounded by any tower of exponentials.
@@ -103,6 +108,7 @@ If we remove the copying and discarding, the word problem for free symmetric clo
 The algorithm is based on a variant of Gentzen's cut-elimination theorem~\cite{Gentzen35} for \emph{multiplicative intuitionistic linear logic} (MILL), a \emph{substructural logic} where the \emph{weakening} and \emph{contraction} rules are omitted, i.e. we cannot discard or copy assumptions.
 To the best of our knowledge, the case of (non-symmetric) closed monoidal categories is still open.
 We conjecture it can be solved with a variant of cut-elimination for a \emph{non-commutative logic} omitting the \emph{exchange} rule, i.e. we cannot swap assumptions.
+\end{remark}
 
 DisCoPy implements the types of the closed diagrams with a subclass \py{Exp} of \py{Ty} for exponentials.
 \py{Over} and \py{Under} are two subclasses of \py{Exp}, shortened to \py{x >> y} and \py{y << x}, and attached to the \py{Diagram} class as two static methods \py{over} and \py{under}.
@@ -117,10 +123,14 @@ We also need to override the \py{cast} method so that the unit law is satisfied,
 class Ty(monoidal.Ty):
     @classmethod
     def cast(cls, old: monoidal.Ty) -> Ty:
-        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(old.inside)
+        if len(old) == 1 and isinstance(old[0], Exp):
+            return old[0]
+        return cls(old.inside)
 
     def __pow__(self, other):
-        return Exp(self, other) if isinstance(other, Ty) else super().__pow__(other)
+        if isinstance(other, Ty):
+            return Exp(self, other)
+        return super().__pow__(other)
 
 class Exp(Ty):
     cast = Ty.cast
@@ -170,7 +180,8 @@ class Diagram(monoidal.Diagram):
 
 class Ev(Box):
     def __init__(self, x: Exp):
-        self.base, self.exponent, self.left = x.base, x.exponent, isinstance(x, Over)
+        self.base, self.exponent = x.base, x.exponent
+        self.left = isinstance(x, Over)
         dom, cod = self.exponent @ x, self.base if self.left\
             else x @ self.exponent, self.base
         super().__init__("Ev" + str(x), dom, cod)
@@ -196,7 +207,8 @@ class Functor(monoidal.Functor):
             return self.cod.ar.curry(
                 self(other.diagram), len(self(other.cod.exponent)), other.left)
         if isinstance(other, Ev):
-            return self.cod.ar.ev(self(other.base), self(other.exponent), other.left)
+            return self.cod.ar.ev(
+                self(other.base), self(other.exponent), other.left)
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -258,7 +270,8 @@ We can draw closed diagrams by applying a functor to a rigid category with bubbl
 class ClosedDrawing(rigid.Diagram):
     ev = staticmethod(lambda base, exponent, left=True:
         rigid.Diagram.ev(base, exponent, left).bubble())
-    curry = lambda self, n=1, left=True: rigid.Diagram.curry(self, n, left).bubble()
+    curry = lambda self, n=1, left=True:\
+        rigid.Diagram.curry(self, n, left).bubble()
 
 Draw = Functor(lambda x: x, lambda f: f, cod=Category(rigid.Ty, ClosedDrawing))
 Diagram.draw = lambda self, **params: Draw(self).draw(**params)

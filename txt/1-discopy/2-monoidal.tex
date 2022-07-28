@@ -61,20 +61,6 @@ For any category $C$, there is a monoidal category $C^C$ where the objects are e
 \begin{example}
 The category $\mathbf{Pyth}$ is monoidal with unit \py{()} and \py{tuple[t1, t2]} as the tensor of types \py{t1} and \py{t2}.
 Given two functions \py{f} and \py{g}, we can define their tensor \py{f @ g = lambda x, y: f(x), g(y)}.
-
-There are two caveats however.
-First, $\mathbf{Pyth}$ is not strict monoidal: \py{(x, (y, z))} is not strictly equal to \py{((x, y), z)} but only naturally isomorphic, similarly for \py{((), x) != x != (x, ())}.
-These natural isomorphisms are subject to coherence conditions which make sure that all the ways to rebracket \py{(((x, y), z), w)} into \py{(x, (y, (z, w)))} are the same.
-In practice, this bureaucracy of parenthesis does not pose any problem: MacLane's coherence theorem~\cite[VII]{MacLane71} makes sure that every monoidal category is monoidally equivalent\footnote
-{An \emph{equivalence} of categories is an adjunction where the unit and counit are in fact natural isomorphisms.
-It is a \emph{monoidal equivalence} when they are also monoidal transformations.} to a strict one.
-
-Second, the interchange law only holds for the subcategory of $\mathbf{Pyth}$ with \emph{pure functions} as arrows.
-Indeed, if the functions \py{f} and \py{g} are impure (e.g. they call \py{random} or \py{print}) then their tensor \py{f @ g} will depend on the order in which they are evaluated, i.e. \py{f @ id >> id @ g != id @ g >> f @ id}.
-As we will discuss in section~\ref{section:premonoidal}, $\mathbf{Pyth}$ is in fact a \emph{premonoidal category}.
-The states, i.e. the functions \py{f : () -> t}, can be identified with their value \py{f(): t}.
-There is only one pure effect, i.e. a unique pure function \py{f : t -> ()} called \emph{discarding}, and thus a unique pure scalar.
-If we take all impure functions into account, the scalars form a non-commutative monoid of side-effects.
 \end{example}
 
 \begin{python}
@@ -89,13 +75,30 @@ class Function:
 \end{minted}
 \end{python}
 
+\begin{remark}
+As discussed in remark~\ref{remark:category-Pyth}, it's not clear whether $\mathbf{Pyth}$ is a category.
+It's even less clear whether it can be called a monoidal category, for two reasons.
+First, $\mathbf{Pyth}$ is not strict monoidal: \py{(x, (y, z)) != ((x, y), z)} and \py{((), x) != x != (x, ())} are not strictly equal but only naturally isomorphic.
+These natural isomorphisms are subject to coherence conditions which make sure that all the ways to rebracket \py{(((x, y), z), w)} into \py{(x, (y, (z, w)))} are the same.
+In practice, this bureaucracy of parenthesis does not pose any problem: MacLane's coherence theorem~\cite[VII]{MacLane71} makes sure that every monoidal category is monoidally equivalent\footnote
+{An \emph{equivalence} of categories is an adjunction where the unit and counit are in fact natural isomorphisms.
+It is a \emph{monoidal equivalence} when they are also monoidal transformations.} to a strict one.
+
+Second, the interchange law only holds for the subcategory of $\mathbf{Pyth}$ with \emph{pure functions} as arrows.
+Indeed, if the functions \py{f} and \py{g} are impure (e.g. they call \py{random} or \py{print}) then their tensor \py{f @ g} will depend on the order in which they are evaluated, i.e. \py{f @ id >> id @ g != id @ g >> f @ id}.
+As we will discuss in section~\ref{section:premonoidal}, $\mathbf{Pyth}$ is in fact a \emph{premonoidal category}.
+The states, i.e. the functions \py{f : () -> t}, can be identified with their value \py{f(): t}.
+There is only one pure effect, i.e. a unique pure function \py{f : t -> ()} called \emph{discarding}, and thus a unique pure scalar.
+If we take all impure functions into account, the scalars form a non-commutative monoid of side-effects.
+\end{remark}
+
 \begin{example}
 We can also make $\mathbf{Pyth}$ monoidal with the \emph{tagged union} as tensor on objects and \py{typing.NoReturn} as unit.
 Given two types \py{t0, t1}, their tagged union \py{t0 + t1} is the union of the types \py{tuple[0, t0]} and \py{tuple[1, t1]}\footnote
 {What we really mean is \py{tuple[Literal[0], t0] | tuple[Literal[1], t1]}.}, i.e. a term \py{(b, x): t0 + t1} is a pair of a Boolean \py{b: bool} and a term \py{x: t0} if \py{b} else a term \py{x: t1}.
 Given two functions \py{f, g} we can define their tensor as $\py{lambda b, x:} \py{(b, f(x) if b else g(x))}$.
 \end{example}
-\pagebreak
+
 \begin{python}
 {\normalfont Implementation of $\mathbf{Pyth}$ as a (non-strict) monoidal category with \py{tagged_union} as tensor.}
 
@@ -123,6 +126,8 @@ The category $\mathbf{Mat}_\S$ is monoidal with addition of natural numbers as t
 When the rig $\S$ is commutative, $\mathbf{Mat}_\S$ is also monoidal with multiplication of natural numbers as tensor on objects and the \emph{Kronecker product} as tensor on arrows.
 The inclusion functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ is monoidal in two ways: it sends disjoint unions to direct sums and Cartesian products to Kronecker products.
 \end{example}
+
+\pagebreak
 
 \begin{python}
 {\normalfont Implementation of $\mathbf{Mat}_\S$ as a monoidal category with \py{direct_sum} and \py{Kronecker} as tensor.}
@@ -159,22 +164,8 @@ As in the case of free categories, free monoidal categories will be the image of
 A monoidal signature $\Sigma$ is a monoidal category without identity, composition or tensor: a pair of sets $\Sigma_0, \Sigma_1$ and a pair of functions $\dom, \cod : \Sigma_1 \to \Sigma_0^\star$ from boxes to lists of objects.
 A morphism of monoidal signatures $f : \Sigma \to \Sigma'$ is a pair of functions $f : \Sigma_0 \to \Sigma'_0$ and $f : \Sigma_1 \to \Sigma'_1$ with $f \fcmp \dom = \dom \fcmp f^\star$ and $f \fcmp \cod = \cod \fcmp f^\star$.
 Thus, we have defined the category $\mathbf{MonSig}$ of monoidal signatures and their morphisms.
-In order to define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$, we will need the following technical lemma.
 
-\begin{definition}
-A monoidal category $C$ is \emph{foo} (free on objects) when its monoid of objects $(C_0, \otimes, 1)$ is a free monoid $C_0 = X^\star$ generated by some set of objects $X$.
-\end{definition}
-
-\begin{lemma}\label{lemma:foo-monoidal}
-Every monoidal category is monoidally equivalent to a foo one.
-\end{lemma}
-
-\begin{proof}
-Given a monoidal category $C$, we construct $C'$ with objects $C_0^\star$ the free monoid over the objects of $C$ and $C'(x, y) = C(\epsilon_{C_0^\star}(x), \epsilon_{C_0^\star}(y))$ for $\epsilon_{C_0} : C_0^\star \to C_0$ the counit of the list adjunction.
-That is, an arrow $f : x \to y$ between two lists $x, y \in C_0^\star$ in $C'$ is an arrow $f : \epsilon_{C_0}(x) \to \epsilon_{C_0}(y)$ between their multiplication in $C$.
-From left to right, the monoidal equivalence $C \simeq C'$ sends every object $x \in C_0$ to its singleton list $x \in C_0^\star$ and every arrow to itself, from right to left it sends every list to its multiplication and every arrow to itself.
-\end{proof}
-
+In order to define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$, we will make our lives easier and add an extra assumption: that monoidal categories are \emph{free on objects} (foo), i.e. that the monoid of objects $(C_0, \otimes, 1)$ is a free monoid $C_0 = X^\star$ generated by some set of objects $X$.
 This means we can take the data for a monoidal category $C$ to be the following:
 \begin{itemize}
 \item a class $C_0$ of \emph{generating objects} and a class $C_1$ of arrows,
@@ -185,14 +176,23 @@ This means we can take the data for a monoidal category $C$ to be the following:
 The axioms for the objects to be a monoid now come for free, we only need to require that tensor on arrows is a monoid with the interchange law.
 With this definition of (free-on-objects) monoidal category, we can define the forgetful functor $U : \mathbf{MonCat} \to \mathbf{MonSig}$: it forgets the identity, composition and tensor on arrows, but not the tensor on objects which is free.
 
+\begin{remark}\label{remark:coloured-PRO}
+In the cases of monoidal categories where the objects are the natural numbers with addition as tensor, such as $\mathbf{FinSet}$ with disjoint union, $\mathbf{Mat}_\S$ with direct sum or $\mathbf{Circ}$, the monoid of objects is already free: $(\N, +, 0)$ is the free monoid generated by the singleton set.
+These monoidal categories are also called \emph{PROs} (for PROduct categories).
+When the objects are generated by a more-than-one-element set they are also called \emph{coloured PROs}, which is the standard name for foo-monoidal categories.
+For example, we can take all the Python types as colours and define $\mathbf{Pyth}$ as a foo-monoidal category with \py{tuple[type, ...]} as objects.
+\end{remark}
+
+\begin{remark}
+Given any non-foo monoidal category $C$, we can construct an equivalent foo-monoidal category $C'$ with objects $C_0^\star$ the free monoid over the objects of $C$ and $C'(x, y) = C(\epsilon_{C_0^\star}(x), \epsilon_{C_0^\star}(y))$ for $\epsilon_{C_0} : C_0^\star \to C_0$ the counit of the list adjunction.
+That is, an arrow $f : x \to y$ between two lists $x, y \in C_0^\star$ in $C'$ is an arrow $f : \epsilon_{C_0}(x) \to \epsilon_{C_0}(y)$ between their multiplication in $C$.
+From left to right, the equivalence $C \simeq C'$ sends every object $x \in C_0$ to its singleton list $x \in C_0^\star$ and every arrow to itself, from right to left it sends every list to its multiplication and every arrow to itself.
+Note that the functor $F : C \to C'$ witnessing the equivalence is not strict monoidal, indeed $F(x \otimes y)$ is a singleton list whereas the list $F(x) \otimes F(y)$ has two elements.
+\end{remark}
+
 \begin{example}
 Take a monoid $M$ seen as a discrete monoidal category, we get an equivalent monoidal category $M'$ with objects the free monoid $M^\star$ and an isomorphism $x_1 \dots x_n \to y_1 \dots y_m$ whenever $x_1 \times \dots \times x_n = y_1 \times \dots \times y_m$ in $M$.
 \end{example}
-
-In the cases of monoidal categories where the objects are the natural numbers with addition as tensor, such as $\mathbf{FinSet}$ with disjoint union, $\mathbf{Mat}_\S$ with direct sum or $\mathbf{Circ}$, the monoid of objects is already free: $(\N, +, 0)$ is the free monoid generated by the singleton set.
-These monoidal categories are also called \emph{PROs} (for PROduct categories).
-When the objects are generated by a more-than-one-element set they are also called \emph{coloured PROs}, this is the same thing as a foo-monoidal category.
-For example, we can take all the Python types as colours and define $\mathbf{Pyth}$ as a foo-monoidal category with \py{tuple[type, ...]} as objects.
 
 \begin{python}
 {\normalfont Syntactic sugar for whiskering and tensor.}
@@ -243,7 +243,8 @@ class Tensor(Tensorable, Matrix):
     cod: tuple[int, ...]
 
     def downgrade(self) -> Matrix:
-        return Matrix[self.dtype](self.inside, product(self.dom), product(self.cod))
+        return Matrix[self.dtype](
+            self.inside, product(self.dom), product(self.cod))
 
     @classmethod
     def id(cls, x: tuple[int, ...]) -> Tensor:
@@ -261,7 +262,8 @@ class Tensor(Tensorable, Matrix):
 
     def __getitem__(self, key : int | tuple) -> Tensor:
         if isinstance(key, tuple):
-            key = sum(key[i] * product(self.dom[i + 1:]) for i in range(len(key)))
+            key = sum(
+                key[i] * product(self.dom[i + 1:]) for i in range(len(key)))
         inside = Matrix.__getitem__(self.downgrade(), key).inside
         dom, cod = ((), cod) if product(self.dom) == 1 else ((), ())
         return type(self)(inside, dom, cod)
@@ -313,18 +315,9 @@ That is, we can interchange two consecutive layers whenever the output of the fi
 Note that for an effect $f : x \to 1$ followed by a state $g : 1 \to y$, we have two options: we can apply the right interchanger $(1, f, 1) \fcmp (1, g, 1) \to_R (1, g, x) \fcmp (y, f, 1)$ or its opposite $(1, f, 1) \fcmp (1, g, 1) \leftarrow_R (x, g, 1) \fcmp (1, f, y)$.
 For the composition of two scalars $a : 1 \to 1$ and $b : 1 \to 1$, we can apply interchangers indefinitely $a \fcmp b \to_R b \fcmp a \to_R a \fcmp b$: this is the Eckmann-Hilton argument.
 Delpeuch and Vicary~\cite{VicaryDelpeuch22} give a quadratic solution to the word problem for free monoidal categories, i.e. deciding when two diagrams are equal.
-
-\begin{theorem}[\cite{VicaryDelpeuch22}]
-\label{theorem:monoidal-normal-form}
-The equality of diagrams is decidable in linear time in the connected case, and quadratic in the general case.
-The right interchanger is confluent and for connected diagrams, i.e. when the Eckmann-Hilton argument does not apply, it reaches a normal form in a cubic number of steps.
-\end{theorem}
-
-\begin{proof}
-The linear-time algorithm for the connected case works by reduction to isomorphism of planar maps.
-In the general case, computing the tree of connected components of the diagram takes quadratic time.
-The cubic worst-case for normal forms is given in example~\ref{example:spiral}.
-\end{proof}
+It is linear time in the connected case, and quadratic in the general case.
+The right interchanger is confluent and for connected diagrams, i.e. when the Eckmann-Hilton argument does not apply.
+It reaches a normal form in a cubic number of steps, the worst-case is given in example~\ref{example:spiral}.
 
 We have defined the equality of diagrams, there remains to define the tensor operation.
 First, we define the \emph{whiskering} $f \otimes z$ of a diagram $f$ by an object $z \in \Sigma_0^\star$ on the right: we tensor $z$ to the right-hand side of each layer $(x_i, f_i, y_i)$, i.e. $f \otimes z = (x_1, f_1, y_1 z) \fcmp \dots \fcmp (x_n, f_n, y_n z)$ and symmetrically for the whiskering $z \otimes f$ on the left.
@@ -419,7 +412,7 @@ Now we have all the ingredients to define \py{Diagram} as a subclass of \py{Arro
 The \py{tensor} method is defined in terms of left and right whiskering of layers.
 The \py{interchange} method takes an integer \py{i < len(self)} and returns the diagram with boxes \py{i} and \py{i + 1} interchanged, or raises an \py{AssertionError} if they are connected.
 It also takes an optional argument \py{left: bool} which allows to choose between left and right in case we're interchanging an effect then a state.
-The \py{normal_form} method applies \py{interchange} until it reaches a normal form, or raises \py{NotImplementedError} if the diagram is disconnected.
+The \py{normal_form} method implements applies \py{interchange} until it reaches a normal form, or raises \py{NotImplementedError} if the diagram is disconnected.
 The \py{draw} method renders the diagram as an image, it implements the drawing algorithm discussed in the next section.
 
 \begin{python}\label{listing:monoidal.Diagram}
@@ -461,8 +454,11 @@ class Box(cat.Box, Diagram):
         Diagram.__init__(self, (Layer.cast(self), ), dom, cod)
 
     def __eq__(self, other):
-        if isinstance(other, Box): return cat.Box.__eq__(self, other)
-        return isinstance(other, Diagram) and other.inside == (Layer.cast(self), )
+        if isinstance(other, Box):
+            return cat.Box.__eq__(self, other)
+        if isinstance(other, Diagram):
+            return other.inside == (Layer.cast(self), )
+        return False
 \end{minted}
 \end{python}
 
@@ -502,7 +498,7 @@ The \py{monoidal.Functor} class is a subclass of \py{cat.Functor}.
 It overrides the \py{__call__} method to define the image of types and layers, and it delegates to its superclass for the image of boxes and composition.
 To make the syntax look nicer, we define the domain of the object mapping as types of length one rather than their generating object, e.g. we can define a functor with \py{ob={x: y}} for \py{x = Ty('x')} and \py{y = Ty('y')} rather than \py{ob={x.inside[0]: y}}.
 We also implement some syntactic sugar for the codomain so that we can define e.g. a \py{Tensor}-valued functor with \py{ob={x: n}} rather than \py{ob={x: [n]}} for a \py{x = Ty('x')} and \py{n: int}.
-We make the best use of Python's duck typing so that the codomain can be \py{Ty} or \py{tuple} indifferently, in both cases computed using the built-in \py{sum} with the \py{Ty()} or \py{()} as unit.
+We make use of Python's duck typing so that the codomain can be \py{Ty} or \py{tuple} indifferently, in both cases computed using the built-in \py{sum} with \py{Ty()} or \py{()} as unit.
 
 \begin{python}
 {\normalfont Implementation of monoidal functors.}
@@ -515,7 +511,8 @@ class Functor(cat.Functor):
             return sum([self(obj) for obj in other.inside], self.cod.ob())
         if isinstance(other, Ob):
             result = self.ob[self.dom.ob((other, ))]
-            return result if isinstance(result, self.cod.ob) else self.cod.ob((result, ))
+            return result if isinstance(result, self.cod.ob)\
+                else self.cod.ob((result, ))
         if isinstance(other, Layer):
             return self(layer.left) @ self(layer.box) @ self(layer.right)
         return super().__call__(other)

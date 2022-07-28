@@ -45,7 +45,7 @@ They send objects to their left and right adjoints, and each arrow $f : x \to y$
 \hspace{50pt} and \hspace{50pt}
 \tikzfig{img/rigid/transpose-right}
 \end{center}
-A rigid category $C$ is called \emph{pivotal} when it has a monoidal natural isomorphism $x^l \sim x^r$ for each object $x$, which implies that the left and right transpose coincide: we can rotate diagrams by 360 degrees.
+A rigid category $C$ is called \emph{pivotal} when it has a monoidal natural isomorphism $x^l \sim x^r$ for each object $x$, which implies that the left and right transpose coincide: we can rotate diagrams by 360 degrees~\cite[§4.2]{Selinger10}.
 We say $C$ is strictly piotal when this isomorphism is an equality.
 This is the case for any rigid category $C$ with a dagger structure: the dagger of the cup (cap) for an object $x$ is the cap (cup) of its left adjoint $x^l$.
 When this is the case, $C$ is called $\dagger$-pivotal.
@@ -192,7 +192,6 @@ Each snake removed reduces the length $n$ of the diagram by 2, hence the \py{sna
 Finally, we call \py{monoidal.Diagram.normal_form} which takes at most cubic time.
 Finding a snake takes quadratic time (for each cap we need to follow the wire at each layer) as well as removing it (for each obstruction we make a linear number of calls to \py{interchange}).
 Thus, we can compute normal forms for diagrams in free rigid categories in cubic time.
-We conjecture that we can in fact solve the word problem (i.e. deciding whether two diagrams are equal) in quadratic time using the same reduction to planar map isomorphism as in theorem~\ref{theorem:monoidal-normal-form}.
 
 \begin{python}\label{listing:snake-removal}
 {\normalfont Outline of the snake removal algorithm.}
@@ -201,9 +200,11 @@ We conjecture that we can in fact solve the word problem (i.e. deciding whether 
 Obstruction = tuple[tuple[int, ...], tuple[int, ...]]
 Yankable = tuple[int, int, Obstruction, bool]
 
-def follow_wire(self: Diagram, i: int, j: int) -> tuple[int, int, Obstruction]: ...
+def follow_wire(
+    self: Diagram, i: int, j: int) -> tuple[int, int, Obstruction]: ...
 def find_snake(self: Diagram) -> Optional[Yankable]: ...
 def unsnake(self: Diagram, yankable: Yankable) -> Diagram: ...
+
 def snake_removal(self: Diagram) -> Diagram:
     yankable = find_snake(diagram)
     return snake_removal(unsnake(diagram, yankable)) if yankable else diagram
@@ -240,11 +241,11 @@ We can check that left and right transpose cancel up to normal form.
 \begin{minted}{python}
 f = Box('f', x, y)
 
-left_right_transpose = f.transpose(left=True).transpose(left=False)
-right_left_transpose = f.transpose(left=False).transpose(left=True)
+lr_transpose = f.transpose(left=True).transpose(left=False)
+rl_transpose = f.transpose(left=False).transpose(left=True)
 
-assert left_right_transpose.normal_form() == f == right_left_transpose.normal_form()
-drawing.equation(left_right_transpose, f, right_left_transpose)
+assert lr_transpose.normal_form() == f == rl_transpose.normal_form()
+drawing.equation(lr_transpose, f, rl_transpose)
 \end{minted}
 
 \ctikzfig{img/rigid/transpose-inverse}
@@ -321,7 +322,7 @@ F = Functor(
     cod=Category(tuple[int, ...], Tensor[int]))
 
 assert F(left_snake) == F(Diagram.id(x)) == F(right_snake)
-assert F(f.transpose(left=True)) == F(f).transpose() == F(f.transpose(left=False))
+assert F(f.transpose()) == F(f).transpose() == F(f.transpose(left=False))
 
 # Diagrammatic and algebraic transpose differ for tensors of order >= 2.
 assert F(f @ f).transpose() != F((f @ f).transpose())

@@ -27,7 +27,6 @@ This includes an implementation of:
 \item We give an elementary definition of string diagrams for monoidal categories.
 Our construction decomposes the free monoidal category construction into three basic steps: 1) a layer endofunctor on the category of monoidal signatures, 2) the free premonoidal category as a free category of layers and 3) the free monoidal category as a quotient by interchangers.
 To the best of our knowledge, this \emph{premonoidal approach} had been relegated to mathematical folklore: it was known by those who knew it, yet it never appeared in print.
-The monoidal categories we implement are all strict and furthermore they are \emph{free on objects} (foo), lemma~\ref{lemma:foo-monoidal} shows that every monoidal category is monoidally equivalent to a foo one.
 This includes:
 \begin{itemize}
     \item $\mathbf{Pyth}$ with lists of types as objects and tupling as tensor (listing~\ref{listing:monoidal.Function}),
@@ -68,14 +67,14 @@ This includes:
 \end{enumerate}
 The second chapter deals with QNLP, building on joint work with Bob Coecke, Giovanni de Felice and Konstantinos Meichanetzidis \cite{MeichanetzidisEtAl20,CoeckeEtAl20,MeichanetzidisEtAl20a}.
 \begin{itemize}
-\item Section~\ref{section:NLP} gives a very short introduction to formal grammars and ambiguity (\ref{subsection:chomsky}), the Lambek calculus, Montague semantics and DisCocat models (\ref{subsection:lambek-discocat}).
+\item Section~\ref{section:NLP} gives a short introduction to formal grammars and ambiguity (\ref{subsection:chomsky}), the Lambek calculus, Montague semantics and DisCocat models (\ref{subsection:lambek-discocat}).
 We conclude with a discussion of previous work on anaphora and the quantum complexity of language (\ref{section:anaphora}).
 \item Section~\ref{section:discocat-qnlp} defines QNLP models as functors from grammar to quantum circuits and show that any DisCoCat model can be implemented in this way.
 We discuss our implementation of classical-quantum channels and mixed quantum circuits (\ref{section:mixed-circuits}) and the use of our snake removal algorithm to reduce both the number of qubits and the amount of post-selection required for QNLP models (\ref{subsection:snake-removal}).
 \item We review previous implementations of DisCoCat models and study their relationship with \emph{knowledge graph embeddings} (\ref{subsection:kge}) and  hybrid classical-quantum algorithm to train QNLP models on a question-answering task (\ref{subsection:vqqa}).
 The underlying idea of \emph{functorial learning}, i.e. learning structure-preserving functors from diagram-like data, provides a theoretical framework for machine learning on structured data.
 \end{itemize}
-The last section has been published in joint work with Richie Yeung and Giovanni de Felice~\cite{ToumiEtAl21a}.
+The last section has been published in joint work with Richie Yeung and Giovanni de Felice~\cite{ToumiEtAl21}.
 It introduces \emph{diagrammatic differentiation}, a graphical calculus for computing the gradients of parameterised diagrams which applies to the training of QNLP models but also to functorial learning in general.
 \begin{itemize}
 \item In section~\ref{2-dual-diagrams}, we generalise the dual number construction from rings to monoidal categories. Dual diagrams are formal sums of a string diagram (the real part) and its derivative with respect to some parameter (the epsilon part).
@@ -97,7 +96,7 @@ The material presented in this thesis builds on the following publications.
 \item \enumcite{CoeckeEtAl20}\vspace{-10pt}
 \item \enumcite{MeichanetzidisEtAl20}\vspace{-10pt}
 \item \enumcite{KartsaklisEtAl21}\vspace{-10pt}
-\item \enumcite{ToumiEtAl21a}
+\item \enumcite{ToumiEtAl21}
 \item \enumcite{ToumiKoziell-Pipe21}\vspace{5pt}
 \end{itemize}\vspace{10pt}
 During his DPhil, the author has also published the following articles.
