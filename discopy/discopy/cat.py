@@ -89,7 +89,8 @@ class Box(Arrow):
     def __repr__(self):
         if self.is_dagger:
             return repr(self.dagger()) + ".dagger()"
-        return "Box({}, {}, {})".format(self.name, self.dom, self.cod)
+        return "Box({}, {}, {})".format(*map(repr, (
+            self.name, self.dom, self.cod)))
 
     __str__ = lambda self: self.name + ("[::-1]" if self.is_dagger else "")
     __hash__ = lambda self: hash(repr(self))
@@ -107,7 +108,8 @@ class Functor(Composable):
     dom: Category = Category(Ob, Arrow)
     cod: Category = Category(Ob, Arrow)
 
-    def __init__(self, ob, ar, dom=Category(Ob, Arrow), cod=Category(Ob, Arrow)):
+    def __init__(self, ob, ar, dom=None, cod=None):
+        dom, cod = dom or type(self).dom, cod or type(self).cod
         ob = ob if hasattr(ob, "__getitem__") else FakeDict(ob)
         ar = ar if hasattr(ar, "__getitem__") else FakeDict(ar)
         self.ob, self.ar, self.dom, self.cod = ob, ar, dom, cod
@@ -193,3 +195,22 @@ class Bubble(Box):
 
 
 Arrow.sum, Arrow.bubble = Sum, lambda self, **params: Bubble(self, **params)
+
+
+@dataclass
+class Function(Composable):
+    inside: Callable
+    dom: type
+    cod: type
+
+    @staticmethod
+    def id(dom: type) -> Function:
+        return Function(lambda x: x, dom, dom)
+
+    @inductive
+    def then(self, other: Function) -> Function:
+        assert self.cod == other.dom
+        return Function(lambda x: other(self(x)), self.dom, other.cod)
+
+    def __call__(self, x):
+        return self.inside(x)

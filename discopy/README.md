@@ -6,6 +6,6 @@ DisCoPy (Distributional Compositional Python) is a toolbox for applied category 
 
 ```shell
 pip install -r test/requirements.txt
-coverage run -m pytest --doctest-modules --pycodestyle
+coverage run -m pytest --doctest-modules --pdb
 coverage report -m discopy/*.py
 ```

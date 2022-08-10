@@ -17,7 +17,15 @@ def inductive(method):
 class Composable:
     __rshift__ = __llshift__ = lambda self, other: self.then(other)
     __lshift__ = __lrshift__ = lambda self, other: other.then(self)
-    __rmul__ = lambda self, n: self.id(self.dom).then(*n * (self, ))
+
+
+class Tensorable:
+    @classmethod
+    def whisker(cls, other):
+        return other if isinstance(other, Tensorable) else cls.id(other)
+
+    __matmul__ = lambda self, other: self.tensor(self.whisker(other))
+    __rmatmul__ = lambda self, other: self.whisker(other).tensor(self)
 
 
 class DictOrCallable:

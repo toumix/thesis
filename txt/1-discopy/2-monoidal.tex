@@ -144,7 +144,7 @@ class Matrix:
 
     def Kronecker(self, other: Matrix) -> Matrix:
         dom, cod = self.dom * other.dom, self.cod * other.cod
-        inside = [[self[i_dom][i_cod] * other[j_dom][j_cod]
+        inside = [[self.inside[i_dom][i_cod] * other.inside[j_dom][j_cod]
             for i_cod in range(self.cod) for j_cod in range(other.cod)]
             for i_dom in range(self.dom) for j_dom in range(other.dom)]
         return type(self)(inside, dom, cod)
@@ -201,7 +201,7 @@ Take a monoid $M$ seen as a discrete monoidal category, we get an equivalent mon
 class Tensorable:
     @classmethod
     def whisker(cls, other):
-        return other if isinstance(other, cls) else cls.id(other)
+        return other if isinstance(other, Tensorable) else cls.id(other)
 
     __matmul__ = lambda self, other: self.tensor(self.whisker(other))
     __rmatmul__ = lambda self, other: self.whisker(other).tensor(self)
@@ -235,7 +235,7 @@ Note that we could define yet another equivalent category where the objects are 
 {\normalfont Implementation of the foo-monoidal category $\mathbf{Tensor}_\S \simeq \mathbf{Mat}_\S$ with \py{tuple[int, ...]} as objects and \py{Tensor[dtype]} as arrows.}
 
 \begin{minted}{python}
-def product(x, unit=1): return unit if not x else product(unit * x[0], x[1:])
+def product(x, unit=1): return unit if not x else product(x[1:], x[0] * unit)
 
 class Tensor(Tensorable, Matrix):
     inside: list[list[Number]]
@@ -268,8 +268,8 @@ class Tensor(Tensorable, Matrix):
         dom, cod = ((), cod) if product(self.dom) == 1 else ((), ())
         return type(self)(inside, dom, cod)
 
-    for attr in ("__bool__", "__int__", "__float__", "__complex__"):
-        setattr(Tensor, attr, lambda self: getattr(self.downgrade(), attr)())
+for attr in ("__bool__", "__int__", "__float__", "__complex__"):
+    setattr(Tensor, attr, lambda self: getattr(self.downgrade(), attr)())
 \end{minted}
 \end{python}
 
@@ -334,35 +334,32 @@ In the next section, we will show that this construction is in fact equivalent t
 \begin{python}\label{listing:Ty}
 {\normalfont Outline of the class \py{monoidal.Ty}.}
 \begin{minted}{python}
-@dataclass
 class Ty(Ob):
     def __init__(self, inside: Optional[tuple[Ob | str, ...]] = ()):
-        self.inside = (x if isinstance(x, Ob) else Ob(x) for x in inside)
-        name = ' @ '.join(map(str, inside)) if inside
+        self.inside = tuple(x if isinstance(x, Ob) else Ob(x) for x in inside)
+        name = ' @ '.join(map(str, inside)) if inside\
             else "{}()".format(type(self).__name__)
         super().__init__(name)
 
-    @classmethod
-    def cast(cls, old: Ob) -> Ty:
-        if isinstance(old, cls): return old
-        return cls(old.inside) if isinstance(old, Ty) else cls(old)
-
     def tensor(self, *others: Ty) -> Ty:
         if all(isinstance(other, Ty) for other in others):
-            return self.cast(Ty(
-                self.inside + sum([other.inside for other in others], ())))
+            inside = self.inside + sum([other.inside for other in others], ())
+            return type(self)(inside)
         return NotImplemented  # This will allow whiskering on the left.
 
+    def __getitem__(self, key):
+        if isinstance(key, slice):
+            return type(self)(self.inside[key])
+        return type(self)((self.inside[key], ))
+
     __matmul__ = __add__ = tensor
-    __getitem__ = lambda self, key: self.cast(Ty(
-        self.inside[key] if isinstance(key, slice) else (self.inside[key], )))
-    __pow__ = lambda self, n: self.cast(Ty(n * self.inside))
+    __pow__ = lambda self, n: type(self)(n * self.inside)
     __len__ = lambda self: len(self.inside)
 \end{minted}
 \end{python}
 
 The implementation of the class \py{Ty} for types (i.e. lists of objects) is straightforward, it is sketched in listing~\ref{listing:Ty}.
-The only subtlety is in the method \py{cast} which allows the user to subclass \py{Ty} in a way that the tensor of subclassed objects stays within the subclass, without having to redefine the \py{tensor} method.
+The only subtlety is in the use of \py{type(self)} which allows the tensor of objects in a subclass to stay within the subclass, without having to redefine the \py{tensor} method.
 We also use it to define indexing (which returns a type of length one), slicing and exponentiation by a natural number.
 
 \begin{example}
@@ -374,7 +371,7 @@ class Qubits(Ty):
 
 qubit = Qubits('1')
 
-assert isinstance(qubit ** 0, Qubits) and isinstance(qubit ** 42, Qubits)
+nstance(qubit ** 0, Qubits) and isinstance(qubit ** 42, Qubits)
 \end{minted}
 \end{example}
 
@@ -404,7 +401,8 @@ class Layer(cat.Box):
 
     @classmethod
     def cast(cls, old: cat.Box) -> Layer:
-        return old if isinstance(old, cls) else cls(old.dom[:0], old, old.dom[:0])
+        if isinstance(old, cls): return old
+        return cls(old.dom[:0], old, old.dom[:0])
 \end{minted}
 \end{python}
 
@@ -447,8 +445,6 @@ We also want the \py{cast} method of \py{Box} to be that of \py{Diagram}.
 {\normalfont Outline of the class \py{monoidal.Box}.}
 \begin{minted}[fontsize=\footnotesize]{python}
 class Box(cat.Box, Diagram):
-    cast = Diagram.cast
-
     def __init__(self, name: str, dom: Ty, cod: Ty, **params):
         cat.Box.__init__(self, name, dom, cod, **params)
         Diagram.__init__(self, (Layer.cast(self), ), dom, cod)
@@ -459,6 +455,9 @@ class Box(cat.Box, Diagram):
         if isinstance(other, Diagram):
             return other.inside == (Layer.cast(self), )
         return False
+
+    __hash__ = cat.Box.__hash__
+    cast = Diagram.cast
 \end{minted}
 \end{python}
 
@@ -473,17 +472,19 @@ class Gate(Box, Circuit): pass
 
 class Bra(Box, Circuit):
     def __init__(self, *bits: bool):
-        self.bits, dom, cod = bits, Qubits(len(bits)), Qubits(0)
-        Box.__init__(self, "Bra({})".format(', '.join(map(str, bits))), dom, cod)
+        name = "Bra({})".format(', '.join(map(str, bits)))
+        self.bits, dom, cod = bits, qubit ** len(bits), qubit ** 0
+        Box.__init__(self, name, dom, cod)
 
-    def dagger(self) -> Ket: return Ket(*self.bits)
+    def dagger(self) -> Circuit: return Ket(*self.bits)
 
 class Ket(Box, Circuit):
     def __init__(self, *bits: bool):
-        self.bits, dom, cod = bits, Qubits(0), Qubits(len(bits))
-        Box.__init__(self, "Ket({})".format(', '.join(map(str, bits))), dom, cod)
+        name = "Ket({})".format(', '.join(map(str, bits)))
+        self.bits, dom, cod = bits, qubit ** 0, qubit ** len(bits)
+        Box.__init__(self, name, dom, cod)
 
-    def dagger(self) -> Bra: return Bra(*self.bits)
+    def dagger(self) -> Circuit: return Bra(*self.bits)
 
 Gate.cast = Ket.cast = Circuit.cast
 
@@ -514,11 +515,11 @@ class Functor(cat.Functor):
             return result if isinstance(result, self.cod.ob)\
                 else self.cod.ob((result, ))
         if isinstance(other, Layer):
-            return self(layer.left) @ self(layer.box) @ self(layer.right)
+            return self(other.left) @ self(other.box) @ self(other.right)
         return super().__call__(other)
 \end{minted}
 
-Note that the domain the dictionary \py{ob} can be either an \py{Ob} or a \py{Ty} of length $1$.
+Note that the keys of the dictionary \py{ob} are \py{Ty} of length $1$.
 \end{python}
 
 \begin{example}
@@ -527,7 +528,10 @@ We override the \py{__call__} method to define the image of \py{Bra} and \py{Ket
 
 \begin{minted}{python}
 class Eval(Functor):
-    dom, cod = Category(Qubits, Circuit), Category(tuple[int, ...], Tensor[complex])
+    def __init__(self, ob, ar):
+        super().__init__(ob, ar,
+                         dom=Category(Qubits, Circuit),
+                         cod=Category(tuple[int, ...], Tensor[complex]))
 
     def __call__(self, other):
         if isinstance(other, Ket):
@@ -539,12 +543,12 @@ class Eval(Functor):
             return self(other.dagger()).dagger()
         return super().__call__(other)
 
-Circuit.eval = Eval(
+Circuit.eval = lambda self: Eval(
     ob={qubit: 2},
     ar={X: [[0, 1], [1, 0]], Y: [[0, -1j], [1j, 0]], Z: [[1, 0], [0, -1]],
         H: [[1 / sqrt(2), 1 / sqrt(2)], [1 / sqrt(2), -1 / sqrt(2)]],
         CX: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]],
-        sqrt2: [[sqrt(2)]]})
+        sqrt2: [[sqrt(2)]]})(self)
 
 circuit = sqrt2 @ Ket(0, 0) >> H @ qubit >> CX
 superposition = Ket(0, 0) + Ket(1, 1)

@@ -1,26 +1,22 @@
 from __future__ import annotations
 
-from discopy.sugar import dataclass, inductive, Composable, Callable
+from discopy import cat
+from discopy.sugar import dataclass, inductive, Callable, Tensorable
 
 
 tuplify = lambda stuff: stuff if isinstance(stuff, tuple) else (stuff, )
 untuplify = lambda stuff: stuff[0] if len(stuff) == 1 else stuff
 
 
-@dataclass
-class Function(Composable):
+class Function(cat.Function, Tensorable):
     inside: Callable
-    dom: type
-    cod: type
-
-    @staticmethod
-    def id(dom: type) -> Function:
-        return Function(lambda x: x, dom, dom)
+    dom: tuple[type, ...]
+    cod: tuple[type, ...]
 
     @inductive
-    def then(self, other: Function) -> Function:
-        assert self.cod == other.dom
-        return Function(lambda x: other(self(x)), self.dom, other.cod)
-
-    def __call__(self, x):
-        return self.inside(x)
+    def tensor(self, other: Function) -> Function:
+        def inside(*xs):
+            left, right = xs[:len(self.dom)], xs[len(self.dom):]
+            result = tuple(self(*left)) + tuple(other(*right))
+            return result[0] if len(self.cod + other.cod) == 1 else result
+        return Function(inside, self.dom + other.dom, self.cod + other.cod)

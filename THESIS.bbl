@@ -1244,6 +1244,37 @@
       \endverb
       \keyw{Mathematics - Category Theory,Mathematics - Quantum Algebra,Quantum Physics}
     \endentry
+    \entry{BaezFong15}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ab1aafd907691f61277607d4db8b7f0c}{%
+           family={Baez},
+           familyi={B\bibinitperiod},
+           given={John\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=73645f147c1a5ec6f127cac2c822e9c6}{%
+           family={Fong},
+           familyi={F\bibinitperiod},
+           given={Brendan},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{1753ba3e1599a0371bc94a65331931e0}
+      \strng{fullhash}{1753ba3e1599a0371bc94a65331931e0}
+      \strng{bibnamehash}{1753ba3e1599a0371bc94a65331931e0}
+      \strng{authorbibnamehash}{1753ba3e1599a0371bc94a65331931e0}
+      \strng{authornamehash}{1753ba3e1599a0371bc94a65331931e0}
+      \strng{authorfullhash}{1753ba3e1599a0371bc94a65331931e0}
+      \field{labelalpha}{BF15}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A {{Compositional Framework}} for {{Passive Linear Networks}}}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \verb{eprint}
+      \verb arXiv:1504.05625
+      \endverb
+    \endentry
     \entry{BaezPollard17}{article}{}
       \name{author}{2}{}{%
         {{hash=ab1aafd907691f61277607d4db8b7f0c}{%
@@ -2896,6 +2927,57 @@
       \verb{url}
       \verb http://people.cs.uchicago.edu/~brady/beta98.ps
       \endverb
+    \endentry
+    \entry{BrassardEtAl05}{article}{}
+      \name{author}{3}{}{%
+        {{hash=504bb784f2241f359d5030d2ca7f2bdd}{%
+           family={Brassard},
+           familyi={B\bibinitperiod},
+           given={Gilles},
+           giveni={G\bibinitperiod}}}%
+        {{hash=9ea2a45d7ab1a2ec555771051f412c9b}{%
+           family={Broadbent},
+           familyi={B\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ffbcbc5eda6edf64a21ce3b8529b1ce0}{%
+           family={Tapp},
+           familyi={T\bibinitperiod},
+           given={Alain},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{99bb2f57b144798b842b97bc7daf500a}
+      \strng{fullhash}{99bb2f57b144798b842b97bc7daf500a}
+      \strng{bibnamehash}{99bb2f57b144798b842b97bc7daf500a}
+      \strng{authorbibnamehash}{99bb2f57b144798b842b97bc7daf500a}
+      \strng{authornamehash}{99bb2f57b144798b842b97bc7daf500a}
+      \strng{authorfullhash}{99bb2f57b144798b842b97bc7daf500a}
+      \field{labelalpha}{BBT05}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Quantum information processing is at the crossroads of physics, mathematics and computer science. It is concerned with what we can and cannot do with quantum information that goes beyond the abilities of classical information processing devices. Communication complexity is an area of classical computer science that aims at quantifying the amount of communication necessary to solve distributed computational problems. Quantum communication complexity uses quantum mechanics to reduce the amount of communication that would be classically required.}
+      \field{day}{1}
+      \field{issn}{1572-9516}
+      \field{journaltitle}{Foundations of Physics}
+      \field{langid}{english}
+      \field{month}{11}
+      \field{number}{11}
+      \field{shortjournal}{Found Phys}
+      \field{title}{Quantum {{Pseudo-Telepathy}}}
+      \field{volume}{35}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \field{pages}{1877\bibrangedash 1907}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1007/s10701-005-7353-4
+      \endverb
+      \verb{file}
+      \verb /Users/alexis.toumi/WORK/Zotero/storage/EMRPWVVD/Brassard et al. - 2005 - Quantum Pseudo-Telepathy.pdf
+      \endverb
+      \keyw{Bell’s theorem,entanglement,nonlocality,pseudo-telepathy,quantum communication complexity,quantum information processing}
     \endentry
     \entry{BrassardEtAl02}{article}{}
       \name{author}{4}{}{%
@@ -14251,6 +14333,41 @@
       \field{year}{2013}
       \field{dateera}{ce}
     \endentry
+    \entry{ReutterVicary19}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=8c4d0f15d3a509e8474fefe3837721d6}{%
+           family={Reutter},
+           familyi={R\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ccff9cb0ea86d9f63e3984a5b7d2f23a}{%
+           family={Vicary},
+           familyi={V\bibinitperiod},
+           given={Jamie},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f6fe6f74894d7abe66211e38bbfa940}
+      \strng{fullhash}{6f6fe6f74894d7abe66211e38bbfa940}
+      \strng{bibnamehash}{6f6fe6f74894d7abe66211e38bbfa940}
+      \strng{authorbibnamehash}{6f6fe6f74894d7abe66211e38bbfa940}
+      \strng{authornamehash}{6f6fe6f74894d7abe66211e38bbfa940}
+      \strng{authorfullhash}{6f6fe6f74894d7abe66211e38bbfa940}
+      \field{labelalpha}{RV19}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2019 34th Annual {{ACM}}/{{IEEE}} Symposium on Logic in Computer Science ({{LICS}})}
+      \field{eprinttype}{arxiv}
+      \field{title}{High-Level Methods for Homotopy Construction in Associative n-Categories}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{1\bibrangedash 13}
+      \range{pages}{13}
+      \verb{eprint}
+      \verb 1902.03831
+      \endverb
+    \endentry
     \entry{RiehlVerity16}{article}{}
       \name{author}{2}{}{%
         {{hash=45a94503b2898b54c4e429a46414d3ad}{%
@@ -19270,9 +19387,7 @@
   \keyalias{FritzEtAl20a}{FritzEtAl20}
   \keyalias{Grishin83}{grishin1983generalization}
   \keyalias{HeunenVicary19a}{HeunenVicary19}
-  \missing{BaezFong15}
   \missing{Groote01}
-  \missing{ReutterVicary19}
 \endrefsection
 \endinput
 

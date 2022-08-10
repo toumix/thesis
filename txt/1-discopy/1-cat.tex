@@ -146,7 +146,6 @@ The higher-order function \py{inductive} takes a binary method and makes it $n$-
 class Composable:
     __rshift__ = __llshift__ = lambda self, other: self.then(other)
     __lshift__ = __lrshift__ = lambda self, other: other.then(self)
-    __rmul__ = lambda self, n: self.id(self.dom).then(*n * (self, ))
 
 def inductive(method):
     def result(self, *others):
@@ -222,7 +221,8 @@ class Matrix(Composable):
     def __class_getitem__(cls, dtype: type):
         class C(cls): pass
         C.dtype = dtype
-        C.__name__ = C.__qualname__ = "Matrix[{}]".format(dtype.__name__)
+        C.__name__ = C.__qualname__ = "{}[{}]".format(
+            cls.__name__, dtype.__name__)
         return C
 
     def __init__(self, inside: list[list[Number]], dom: int, cod: int):
@@ -427,9 +427,10 @@ class Functor:
     dom: Category = Category(Ob, Arrow)
     cod: Category = Category(Ob, Arrow)
 
-    def __init__(self, ob, ar, dom=Category(Ob, Arrow), cod=Category(Ob, Arrow)):
-        ob, ar = (
-            d if hasattr(d, "__getitem__") else FakeDict(d) for d in (ob, ar))
+    def __init__(self, ob, ar, dom=None, cod=None):
+        dom, cod = dom or type(self).dom, cod or type(self).cod
+        ob = ob if hasattr(ob, "__getitem__") else FakeDict(ob)
+        ar = ar if hasattr(ar, "__getitem__") else FakeDict(ar)
         self.ob, self.ar, self.dom, self.cod = ob, ar, dom, cod
 
     def __call__(self, other: Ob | Arrow) -> Ob | Arrow:

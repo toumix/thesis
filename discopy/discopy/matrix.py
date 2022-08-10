@@ -14,13 +14,13 @@ class Matrix(Composable):
     inside: list[list[dtype]]
 
     def __class_getitem__(cls, dtype: type):
-        class C(cls):
-            __name__ = __qualname__ = "Matrix[{}]".format(dtype.__name__)
+        class C(cls): pass
         C.dtype = dtype
+        C.__name__ = C.__qualname__ = "{}[{}]".format(
+            cls.__name__, dtype.__name__)
         return C
 
     def __init__(self, inside: list[list[dtype]], dom: int, cod: int):
-        assert len(inside) == dom and all(len(row) == cod for row in inside)
         self.inside, self.dom, self.cod =\
             [list(map(self.dtype, row)) for row in inside], dom, cod
 
@@ -83,6 +83,20 @@ class Matrix(Composable):
     @classmethod
     def zero(cls, dom: int, cod: int) -> Matrix:
         return cls([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
+
+    def direct_sum(self, other: Matrix) -> Matrix:
+        dom, cod = self.dom + other.dom, self.cod + other.cod
+        left, right = (len(m.inside[0]) if m.inside else 0 for m in (self, other))
+        inside = [row + right * [0] if i < len(self.inside) else left * [0] + row
+                  for i, row in enumerate(self.inside + other.inside)]
+        return type(self)(inside, dom, cod)
+
+    def Kronecker(self, other: Matrix) -> Matrix:
+        dom, cod = self.dom * other.dom, self.cod * other.cod
+        inside = [[self.inside[i_dom][i_cod] * other.inside[j_dom][j_cod]
+            for i_cod in range(self.cod) for j_cod in range(other.cod)]
+            for i_dom in range(self.dom) for j_dom in range(other.dom)]
+        return type(self)(inside, dom, cod)
 
 
 for converter in (bool, int, float, complex):

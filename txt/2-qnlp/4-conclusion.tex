@@ -22,11 +22,15 @@ Thankfully the quantum circuits for QNLP models are not random: we can exploit t
 As a first step in that direction, we introduced \emph{diagrammatic differentiation} as a graphical notation for computing the gradient of QNLP models and parameterised diagrams in general.
 
 We conclude with some directions for future work.
-An obvious direction is to generalise QNLP models either in their domain or their codomain, i.e. syntax or semantics.
+An obvious direction would be to generalise QNLP models either in their domain or their codomain, i.e. syntax or semantics.
 On the syntax side, we may consider grammatical frameworks other than the pregroup grammars used in this thesis.
 Promising candidates include the Lambek calculus with a relevant modality that we used in previous work~\cite{McPheatEtAl21} to model anaphora, and the related \emph{text grammar} proposed by Coecke~\cite{Coecke21} and Wang~\cite{CoeckeWang21}.
-On the semantics side, we may generalise our definition of QNLP models beyond the standard quantum circuit model.
-Indeed, we may consider their implementation on different kinds of quantum hardware such as linear optical quantum computers~\cite{KokEtAl07} or analog quantum computers based on neutral atoms~\cite{HenrietEtAl20}.
+On the semantics side, we may generalise our definition of QNLP models beyond the standard quantum circuit model, experimenting with different kinds of quantum hardware such as linear optical quantum computers~\cite{KokEtAl07} or analog quantum computers based on neutral atoms~\cite{HenrietEtAl20}.
 
-After syntax and semantics, it is natural to explore the \emph{pragmatics} of QNLP: how do we train our models and what kind of tasks do we solve? e.g. generation or language modeling
-e.g. initialisation strategy and generative adversarial methods
+After syntax and semantics, it is natural to explore the \emph{pragmatics} of QNLP: how do we train our models and what kind of tasks do we solve?
+An important direction would be to remove the need for labeled data with a form of self-supervised learning such as \emph{functorial language models}~\cite{ToumiKoziell-Pipe21}.
+This requires our models to predict missing words rather than binary labels, a subroutine that will also be necessary for language generation and automated translation.
+Our framework would also be suitable to \emph{generative adversarial} modeling, where we train a pair of models against each other in what can be formalised as a \emph{functorial language game}~\cite{FeliceEtAl20}.
+In this game-theoretic setup, it becomes possible to imagine the two players, i.e. the QNLP models for generator and discriminator, sharing an entangled quantum state and communicating with \emph{quantum pseudo-telepathy}~\cite{BrassardEtAl05}.
+While most of this thesis focused on the \emph{computational} advantage of QNLP models, these quantum language games would exhibit a form of \emph{communication} advantage: if quantum players can solve distributed problems beyond what is possible with classical means.
+Hence we may expect quantum machines to have conversations incomprehensible to classical minds.

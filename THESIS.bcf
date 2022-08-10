@@ -2562,9 +2562,12 @@
     <bcf:citekey order="509">CoeckeWang21</bcf:citekey>
     <bcf:citekey order="510">KokEtAl07</bcf:citekey>
     <bcf:citekey order="511">HenrietEtAl20</bcf:citekey>
-    <bcf:citekey order="512">FritzEtAl20a</bcf:citekey>
-    <bcf:citekey order="513">Grishin83</bcf:citekey>
-    <bcf:citekey order="514">HeunenVicary19a</bcf:citekey>
+    <bcf:citekey order="512">ToumiKoziell-Pipe21</bcf:citekey>
+    <bcf:citekey order="513">FeliceEtAl20</bcf:citekey>
+    <bcf:citekey order="514">BrassardEtAl05</bcf:citekey>
+    <bcf:citekey order="515">FritzEtAl20a</bcf:citekey>
+    <bcf:citekey order="516">Grishin83</bcf:citekey>
+    <bcf:citekey order="517">HeunenVicary19a</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

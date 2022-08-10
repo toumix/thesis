@@ -1,6 +1,5 @@
 from discopy import *
 from discopy.cat import *
-from discopy.python import *
 from discopy.matrix import *
 
 
