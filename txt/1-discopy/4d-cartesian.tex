@@ -82,38 +82,43 @@ class Copyable:
     @classmethod
     def unit(cls, x: Ty): return cls.discard(x, is_dagger=True)
 
-class Diagram(Copyable, symmetric.Diagram):
+class Diagram(Copyable, braided.Diagram):
     @classmethod
     def copy(cls, x: Ty, n=2, is_dagger=False) -> Diagram:
-        def factory(a, b, y):
+        def factory(a, b, y, _):
             assert b == 1 if is_dagger else a == 1
-            return Copy(a, y)[::-1] if is_dagger else Copy(b, x)
+            return Copy(y, a)[::-1] if is_dagger else Copy(y, b)
         a, b = (n, 1) if is_dagger else (1, n)
-        return coherence(factory)(cls, a, b, x)
+        return coherence(factory).__func__(cls, a, b, x)
 
-class Box(symmetric.Box, Diagram):
+class Box(braided.Box, Diagram):
     cast = Diagram.cast
+
+class Swap(braided.Swap, Box): pass
+
+Diagram.swap = Diagram.braid = hexagon(Swap)
 
 class Copy(Box):
     def __init__(self, x: Ty, n: int = 2, is_dagger=False):
         assert len(x) == 1
         name = "Copy({}, {}){}".format(x, n, "[::-1]" if is_dagger else "")
         dom, cod = (x ** n, x) if is_dagger else (x, x ** n)
-        super().__init__(name, dom, cod, is_dagger)
+        super().__init__(name, dom, cod, is_dagger=is_dagger)
 
     def dagger(self):
         x = self.cod if self.is_dagger else self.dom
         n = len(self.dom) if self.is_dagger else len(self.cod)
         return Copy(x, n, not self.is_dagger)
 
-class Functor(symmetric.Functor):
-    dom = cod = Category(monoidal.Ty, Diagram)
+class Functor(braided.Functor):
+    dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):
         if isinstance(other, Copy):
-            factory = getattr(
-                self.cod.ar, "merge" if other.is_dagger else "copy")
-            return factory(self(other.dom), len(other.cod))
+            x = self(other.cod if other.is_dagger else other.dom)
+            n = len(other.dom) if other.is_dagger else len(other.cod)
+            method = getattr(self.cod.ar, "merge" if other.is_dagger else "copy")
+            return method(x, n)
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -127,7 +132,7 @@ x = Ty('x')
 add, minus, zero = Box('+', x @ x, x), Box('-', x, x), Box('0', Ty(), x)
 copy, discard = Diagram.copy(x), Diagram.discard(x)
 
-drawing.equation(add >> copy, copy @ copy >> x @ Braid(x, x) @ x >> add @ add)
+drawing.equation(add >> copy, copy @ copy >> x @ Swap(x, x) @ x >> add @ add)
 drawing.equation(zero >> copy, zero @ zero)
 \end{minted}
 \begin{center}
@@ -183,17 +188,12 @@ Implementation of the free cocartesian category $\mathbf{FinSet}$ with \py{int} 
 
 \begin{minted}{python}
 @dataclass
-class Dict(Composable, Tensorable):
+class Dict(Composable, Tensorable, Copyable):
     inside: dict[int, int]
     dom: int
     cod: int
 
     __getitem__ = lambda self, key: self.inside[key]
-
-    def __init__(self, inside, dom, cod):
-        assert set(inside.keys()) == set(range(dom))
-        assert set(inside.values()) <= set(range(cod))
-        self.inside, self.dom, self.cod = inside, dom, cod
 
     @staticmethod
     def id(x: int = 0): return Dict({i: i for i in range(x)}, x, x)
@@ -206,9 +206,14 @@ class Dict(Composable, Tensorable):
     @inductive
     def tensor(self, other: Dict) -> Dict:
         inside = {i: self[i] for i in range(self.dom)}
-        inside.update({len(self.dom) + i: len(self.cod) + other[i]
-                       for i in range(other.dom)})
+        inside.update({
+            self.dom + i: self.cod + other[i] for i in range(other.dom)})
         return Dict(inside, self.dom + other.dom, self.cod + other.cod)
+
+    @staticmethod
+    def swap(x: int, y: int) -> Dict:
+        inside = {i: i + x if i < x else i - x for i in range(x + y)}
+        return Dict(inside, x + y, x + y)
 
     @staticmethod
     def merge(x: int, n: int) -> Dict:
@@ -251,69 +256,53 @@ We use the same syntax for the direct sum of two tensors.
 is_tuple = lambda typ: getattr(typ, "__origin__", None) is tuple
 is_union = lambda typ: getattr(typ, "__origin__", None) is TaggedUnion
 
-class Function(monoidal.Function):
+class Function(python.Function):
     is_additive = False
 
-    @classmethod
-    @property
-    def additive(cls):
-        class C(cls): pass
-        C.is_additive = True; return C
-
-    def __repr__(self): super().__repr__().replace(
-        "Function", "Function.additive" if self.is_additive else "Function")
-
     def make_additive(self) -> Function:
-        if self.is_additive: return self
         dom, cod = (
             (tuple[x], ) if len(x) != 1
             else x[0].__args__ if is_union(x[0])
             else x for x in (self.dom, self.cod))
-        return Function.additive(self.inside, dom, cod)
+        return AdditiveFunction(self.inside, dom, cod)
+
+    @inductive
+    def tensor(self, other: Function) -> Function:
+        if other.is_additive:
+            return self.tensor(other.make_multiplicative())
+        return python.Function.tensor(self, other)
+
+    @staticmethod
+    def copy(x: tuple[type, ...], n: int, is_dagger=False):
+        if is_dagger: return AdditiveFunction.merge(x, n)
+        if n == 1: return Function.id(x)
+        return Function(lambda *xs: n * xs, dom=x, cod=n * x)
+
+class AdditiveFunction(Function):
+    is_additive = True
 
     def make_multiplicative(self) -> Function:
-        if not self.is_additive: return self
         dom, cod = (
             (TaggedUnion[x], ) if len(x) != 1
             else x[0].__args__ if is_tuple(x[0])
             else x for x in (self.dom, self.cod))
         return Function(self.inside, dom, cod)
 
-    def tuple(self, other: Function) -> Function:
-        if self.is_additive: return self.make_multiplicative().tuple(other)
-        if other.is_additive: return self.tuple(other.make_multiplicative())
-        return super().tuple(other)
-
-    def tagged_union(self, other: Function) -> Function:
-        if not self.is_additive:
-            return self.make_additive().tagged_union(other)
+    def tensor(self, other: Function) -> Function:
         if not other.is_additive:
-            return self.tagged_union(other.make_additive())
+            return self.tensor(other.make_additive())
         inside = self.inside if len(self.dom) == 1 and len(other.dom) == 0\
             else other.inside if len(self.dom) == 0 and len(other.dom) == 1\
-            else lambda i, x: self(i, x) if i < len(self.dom)
+            else lambda i, x: self(i, x) if i < len(self.dom)\
             else other(i - len(self.dom), x)
         dom, cod = self.dom + other.dom, self.cod + other.cod
         return Function(inside, dom, cod)
 
     @staticmethod
-    def copy(x: tuple[type, ...], n: int, is_dagger=False):
-        if is_dagger: return Function.merge(x, n)
-        if n == 1: return Function.id(x)
-        return Function(lambda *xs: n * xs, dom=x, cod=n * x)
-
-    @staticmethod
     def merge(x: tuple[type, ...], n: int, is_dagger=False):
         if is_dagger: return Function.copy(x, n)
-        if n == 1: return Function.additive.id(x)
-        return Function.additive(lambda _, xs: xs, dom=n * x, cod=x)
-
-    @inductive
-    def tensor(self, other: Function) -> Function:
-        method = self.tagged_union if self.is_additive else self.tuple
-        return method(other)
-
-    __or__ = tagged_union
+        if n == 1: return AdditiveFunction.id(x)
+        return AdditiveFunction(lambda _, xs: xs, dom=n * x, cod=x)
 \end{minted}
 \end{python}
 
@@ -338,7 +327,21 @@ F = Functor(ob={x: int}, ar={
 assert F(network)(42, 43) == max(0, sum([42 * 0, 43 * 1, 42 * 2, 43 * 3, -1]))
 \end{minted}
 
-We could implement a neural network that can operate on different kinds of data (e.g. discrete versus continuous) using a cocartesian diagram instead.
+We can implement a pipeline that operates on different kinds of data using a cocartesian diagram.
+
+\begin{minted}{python}
+f, g = Box('f', y, z), Box('g', z, w)
+pipeline = f @ z >> Diagram.merge(z, 2) >> g
+
+G = Functor(
+    ob={y: str, z: tuple[int, int], w: int},
+    ar={f: lambda s: (len(set(s)), len(s)),
+        g: F(network)},
+    cod=Category(tuple[type, ...], AdditiveFunction))
+
+assert G(pipeline)(0, "hello") == F(network)(4, 5)
+\end{minted}
+\end{minted}
 \end{example}
 
 \subsection{Biproducts}\label{subsection:biproducts}

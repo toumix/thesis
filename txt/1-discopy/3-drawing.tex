@@ -73,21 +73,26 @@ All the diagrams in this thesis were drawn using DisCoPy together with TikZiT\fo
 Embedding = dict[Node, tuple[float, float]]
 PlaneGraph = tuple[Graph, Embedding]
 
+def make_space(position: Embedding, scan: list[Node], box: Box, offset: int
+        ) -> tuple[Embedding, float]:
+    """ Update the graph to make space and return the left of the box. """
+
 def draw(self: Diagram) -> PlaneGraph:
     graph = diagram2graph(self)
-    def make_space(scan: list[Node], box: Box, offset: int) -> float:
-        """ Update the graph to make space and return the left of the box. """
     box_nodes = [Node('box', box, -1, j) for j, box in enumerate(self.boxes)]
     dom_nodes = scan = [Node('dom', x, i, -1) for i, x in enumerate(self.dom)]
     position = {node: (i, -1) for i, node in enumerate(dom_nodes)}
     for j, (left, box, _) in enumerate(self.inside):
-        box_node, left_of_box =\
-            Node('box', box, -1, j), make_space(scan, box, offset)
+        box_node = Node('box', box, -1, j)
+        position, left_of_box = make_space(position, scan, box, len(left))
         position[box_node] = (
             left_of_box + max(len(box.dom), len(box.cod)) / 2, j)
-        for kind, epsilon in (('dom', -.1), ('cod', .1)):
-            for i, x in enumerate(getattr(box, kind)):
-                position[Node(kind, x, i, j)] = (left_of_box + i, j + epsilon)
+        for i, x in enumerate(box.dom):
+            cod_node, = filter(lambda node: node.kind != "box",
+                               graph.neighbors(Node('dom', x, i, j)))
+            position[Node('dom', x, i, j)] = (position[cod_node][0], j - .1)
+        for i, x in enumerate(box.cod):
+            position[Node('cod', x, i, j)] = (left_of_box + i, j + .1)
         box_cod_nodes = [Node('cod', x, i, j) for i, x in enumerate(box.cod)]
         scan = scan[:len(left)] + box_cod_nodes + scan[len(left @ box.dom):]
     for i, x in enumerate(self.cod):
@@ -204,10 +209,10 @@ u, v = Box('u', Ty(), x), Box('v', x, Ty())
 def spiral(length: int) -> Diagram:
     diagram, n = u, length // 2 - 1
     for i in range(n):
-        diagram >>= Id(x ** i) @ f @ Id(x ** (i + 1))
-    diagram >>= Id(x ** n) @ v @ Id(x ** n)
+        diagram >>= x ** i @ f @ x ** (i + 1)
+    diagram >>= x ** n @ v @ x ** n
     for i in range(n):
-        diagram >>= Id(x ** (n - i - 1)) @ g @ Id(x ** (n - i - 1))
+        diagram >>= x ** (n - i - 1) @ g @ x ** (n - i - 1)
     return diagram
 
 diagram = spiral(8)
@@ -245,7 +250,7 @@ def graph2diagram(graph: Graph, position: Embedding) -> Diagram:
         box_cod_nodes = [Node('cod', x, i, j) for i, x in enumerate(box.cod)]
         scan = scan[:offset] + box_cod_nodes + scan[offset + len(box.dom):]
         offsets.append(offset)
-    return decode(dom, zip(boxes, offsets))
+    return decode(Encoding(dom, list(zip(boxes, offsets))))
 \end{minted}
 \end{python}
 

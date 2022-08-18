@@ -175,7 +175,7 @@ class Function(Composable):
     @inductive
     def then(self, other: Function) -> Function:
         assert self.cod == other.dom
-        return Function(lambda x: other(self(x)), self.dom, other.cod)
+        return Function(lambda xs: other(self(xs)), self.dom, other.cod)
 
     def __call__(self, x):
         return self.inside(x)
@@ -826,6 +826,7 @@ class Bubble(Box):
 
     def __init__(self, diagram: Arrow, dom=None, cod=None, **params):
         self.diagram = diagram
+        self.method = params.pop("method", type(self).method)
         name = "Bubble({}, {}, {})".format(diagram, dom, cod)
         dom, cod = dom or diagram.dom, cod or diagram.cod
         super().__init__(name, dom, cod, **params)
@@ -838,7 +839,7 @@ class Bubble(Box):
     def is_id_on_objects(self):
         return self.dom == self.diagram.dom and self.cod == self.diagram.cod
 
-Arrow.bubble = lambda self: Bubble(self)
+Arrow.bubble = lambda self, **kwargs: Bubble(self, **kwargs)
 
 class Functor(cat.Functor):
     def __call__(self, other):

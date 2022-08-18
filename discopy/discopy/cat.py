@@ -84,7 +84,8 @@ class Box(Arrow):
         return isinstance(other, Arrow) and other.inside == (self, )
 
     def dagger(self):
-        return type(self)(self.name, self.cod, self.dom, not self.is_dagger)
+        return type(self)(
+            self.name, self.cod, self.dom, is_dagger=not self.is_dagger)
 
     def __repr__(self):
         if self.is_dagger:
@@ -181,6 +182,7 @@ class Bubble(Box):
 
     def __init__(self, diagram: Arrow, dom=None, cod=None, **params):
         self.diagram = diagram
+        self.method = params.pop("method", type(self).method)
         name = "Bubble({}, {}, {})".format(diagram, dom, cod)
         dom, cod = dom or diagram.dom, cod or diagram.cod
         super().__init__(name, dom, cod, **params)
@@ -194,23 +196,4 @@ class Bubble(Box):
         return self.dom == self.diagram.dom and self.cod == self.diagram.cod
 
 
-Arrow.sum, Arrow.bubble = Sum, lambda self, **params: Bubble(self, **params)
-
-
-@dataclass
-class Function(Composable):
-    inside: Callable
-    dom: type
-    cod: type
-
-    @staticmethod
-    def id(dom: type) -> Function:
-        return Function(lambda x: x, dom, dom)
-
-    @inductive
-    def then(self, other: Function) -> Function:
-        assert self.cod == other.dom
-        return Function(lambda x: other(self(x)), self.dom, other.cod)
-
-    def __call__(self, x):
-        return self.inside(x)
+Arrow.sum, Arrow.bubble = Sum, lambda self, **kwargs: Bubble(self, **kwargs)

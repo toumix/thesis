@@ -53,6 +53,27 @@ class Layer(cat.Box):
     __repr__ = lambda self: "Layer({}, {}, {})".format(
         *map(repr, [self.left, self.box, self.right]))
 
+    def __iter__(self): yield self.left; yield self.box; yield self.right
+
+    def dagger(self) -> Layer:
+        return Layer(self.left, self.box.dagger(), self.right)
+
+
+@dataclass
+class Encoding:
+    dom: Ty
+    boxes_and_offsets: tuple[tuple[Box, int], ...]
+
+
+@dataclass
+class Match:
+    top: Diagram
+    bottom: Diagram
+    left: Ty
+    right: Ty
+
+    def subs(self, target):
+        return self.top >> self.left @ target @ self.right >> self.bottom
 
 
 class Diagram(cat.Arrow, Tensorable):
@@ -62,6 +83,8 @@ class Diagram(cat.Arrow, Tensorable):
 
     @inductive
     def tensor(self, other: Diagram) -> Diagram:
+        if isinstance(other, Sum):
+            self.sum.cast(self).tensor(other)
         layers = tuple(layer @ other.dom for layer in self.inside)\
             + tuple(self.cod @ layer for layer in other.inside)
         dom, cod = self.dom @ other.dom, self.cod @ other.cod
@@ -70,6 +93,46 @@ class Diagram(cat.Arrow, Tensorable):
     def interchange(self, i: int, left=False) -> Diagram: ...
     def normal_form(self, left=False) -> Diagram: ...
     def draw(self, **params): ...
+
+    @property
+    def boxes(self) -> tuple[Diagram]:
+        return tuple(box for _, box, _ in self.inside)
+
+    @property
+    def offsets(self) -> tuple[int]:
+        return tuple(len(left) for left, _, _ in self.inside)
+
+    def encode(self) -> Encoding:
+        return Encoding(self.dom, tuple(zip(self.boxes, self.offsets)))
+
+    @staticmethod
+    def decode(encoding: Encoding) -> Diagram:
+        diagram = Diagram.id(encoding.dom)
+        for box, offset in encoding.boxes_and_offsets:
+            left, right =\
+                diagram.cod[:offset], diagram.cod[offset + len(box.dom):]
+            diagram >>= left @ box @ right
+        return diagram
+
+    def match(self, pattern: Diagram) -> Iterator[Match]:
+        for i in range(len(self) - len(pattern) + 1):
+            for j in range(len(self[i].dom) + 1):
+                match = Match(
+                    self[:i], self[i + len(pattern):],
+                    self[i].dom[:j], self[i].dom[j + len(pattern.dom):])
+                well_typed =\
+                    match.top.cod == match.left @ pattern.dom @ match.right and\
+                    match.left @ pattern.cod @ match.right == match.bottom.dom
+                if well_typed and self == match.subs(pattern): yield match
+
+    def draw(self):
+        import networkx
+        from matplotlib import pyplot as plt
+        from discopy.drawing import draw
+        graph, position = draw(self)
+        networkx.draw(graph, position,
+                      labels={node: node.label for node in graph.nodes})
+        plt.show()
 
 
 class Box(cat.Box, Diagram):
@@ -96,8 +159,24 @@ class Functor(cat.Functor):
             return sum([self(obj) for obj in other.inside], self.cod.ob())
         if isinstance(other, Ob):
             result = self.ob[self.dom.ob((other, ))]
-            return result if isinstance(result, self.cod.ob)\
-                else self.cod.ob(result)
+            dtype = getattr(self.cod.ob, "__origin__", self.cod.ob)
+            return result if isinstance(result, dtype)\
+                else self.cod.ob((result, ))  # Syntactic sugar for {x: n}.
         if isinstance(other, Layer):
             return self(other.left) @ self(other.box) @ self(other.right)
         return super().__call__(other)
+
+
+class Sum(cat.Sum, Box):
+    @inductive
+    def tensor(self, other: Sum) -> Sum:
+        terms = tuple(f @ g for f in self.terms for g in self.cast(other).terms)
+        return Sum(terms, self.dom @ other.dom, self.cod @ other.cod)
+
+
+class Bubble(cat.Bubble, Box):
+    pass
+
+
+Diagram.bubble = lambda self, **kwargs: Bubble(self, **kwargs)
+Diagram.sum = Sum

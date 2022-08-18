@@ -64,12 +64,12 @@ Given two functions \py{f} and \py{g}, we can define their tensor \py{f @ g = la
 \end{example}
 
 \begin{python}
-{\normalfont Implementation of $\mathbf{Pyth}$ as a (non-strict pre)monoidal category with \py{tuple} as tensor.}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a (non-strict pre)monoidal category with tuple as tensor.}
 
 \begin{minted}{python}
 class Function:
     ...
-    def tuple(self, other: Function) -> Function:
+    def tensor(self, other: Function) -> Function:
         dom, cod = tuple[self.dom, other.dom], tuple[self.cod, other.cod]
         return Function(lambda x, y: (self(x), other(y)), dom, cod)
 \end{minted}
@@ -210,9 +210,12 @@ class Tensorable:
 
 \begin{python}\label{listing:monoidal.Function}
 
-{\normalfont $\mathbf{Pyth}$ as a foo-monoidal category with \py{tuple[type, ...]} as objects, \py{Function} as arrows and \py{tuple} as tensor.}
+{\normalfont $\mathbf{Pyth}$ as a foo-monoidal category with \py{tuple[type, ...]} as objects, \py{Function} as arrows and tuple as tensor.}
 
 \begin{minted}{python}
+tuplify = lambda stuff: stuff if isinstance(stuff, tuple) else (stuff, )
+untuplify = lambda stuff: stuff[0] if len(stuff) == 1 else stuff
+
 class Function(cat.Function, Tensorable):
     inside: Callable
     dom: tuple[type, ...]
@@ -222,8 +225,7 @@ class Function(cat.Function, Tensorable):
     def tensor(self, other: Function) -> Function:
         def inside(*xs):
             left, right = xs[:len(self.dom)], xs[len(self.dom):]
-            result = tuple(self(*left)) + tuple(other(*right))
-            return result[0] if len(self.cod + other.cod) == 1 else result
+            return untuplify(tuplify(self(*left)) + tuplify(other(*right)))
         return Function(inside, self.dom + other.dom, self.cod + other.cod)
 \end{minted}
 \end{python}
@@ -265,7 +267,7 @@ class Tensor(Tensorable, Matrix):
             key = sum(
                 key[i] * product(self.dom[i + 1:]) for i in range(len(key)))
         inside = Matrix.__getitem__(self.downgrade(), key).inside
-        dom, cod = ((), cod) if product(self.dom) == 1 else ((), ())
+        dom, cod = ((), self.cod) if product(self.dom) == 1 else ((), ())
         return type(self)(inside, dom, cod)
 
 for attr in ("__bool__", "__int__", "__float__", "__complex__"):
@@ -398,6 +400,8 @@ class Layer(cat.Box):
 
     def __rmatmul__(self, other: Ty) -> Layer:
         return Layer(other @ self.left, self.box, self.right)
+
+    def __iter__(self): yield self.left; yield self.box; yield self.right
 
     @classmethod
     def cast(cls, old: cat.Box) -> Layer:
@@ -537,7 +541,7 @@ class Eval(Functor):
         if isinstance(other, Ket):
             if not other.bits: return Tensor.id(())
             head, *tail = other.bits
-            return Tensor[complex]([[head, not head]], (), (2, ))\
+            return Tensor[complex]([[not head, head]], (), (2, ))\
                 @ self(Ket(*tail))
         if isinstance(other, Bra):
             return self(other.dagger()).dagger()
@@ -552,7 +556,7 @@ Circuit.eval = lambda self: Eval(
 
 circuit = sqrt2 @ Ket(0, 0) >> H @ qubit >> CX
 superposition = Ket(0, 0) + Ket(1, 1)
-assert circuit.eval() == superposition.eval()
+assert circuit.eval() == Circuit.eval(superposition)
 \end{minted}
 \end{example}
 
@@ -571,12 +575,12 @@ Diagram.offsets = property(
     lambda self: tuple(len(left) for left, _, _ in self.inside))
 
 def encode(diagram: Diagram) -> Encoding:
-    return Encoding(diagram.dom, zip(diagram.boxes, diagram.offsets))
+    return Encoding(diagram.dom, tuple(zip(diagram.boxes, diagram.offsets)))
 
 def decode(encoding: Encoding) -> Diagram:
     diagram = Diagram.id(encoding.dom)
     for box, offset in encoding.boxes_and_offsets:
-        left, right = result.cod[:offset], result.cod[offset + len(box.dom):]
+        left, right = diagram.cod[:offset], diagram.cod[offset + len(box.dom):]
         diagram >>= left @ box @ right
     return diagram
 
@@ -622,13 +626,15 @@ class Match:
     def subs(self, target):
         return self.top >> self.left @ target @ self.right >> self.bottom
 
-def match(self: Diagram, pattern: Diagram) -> Iterator[Match]:
-    for i, layer in enumerate(self.inside + [self.id(self.cod)]):
-        for j in range(len(layer.dom) + 1):
+def match(self, pattern: Diagram) -> Iterator[Match]:
+    for i in range(len(self) - len(pattern) + 1):
+        for j in range(len(self[i].dom) - len(pattern.dom) + 1):
             match = Match(
-                top=self[:i], bottom=self[i + len(pattern):],
-                left=self[i].dom[:j], right=self[i].dom[j + len(pattern.dom):])
-            if self == match.subs(pattern): yield match
+                self[:i], self[i + len(pattern):],
+                self[i].dom[:j], self[i].dom[j + len(pattern.dom):])
+            well_typed = match.top.cod == match.left @ pattern.dom @ match.right\
+                and match.left @ pattern.cod @ match.right == match.bottom.dom
+            if well_typed and self == match.subs(pattern): yield match
 \end{minted}
 \end{python}
 
@@ -666,13 +672,13 @@ def simplify(circuit, rules):
             return simplify(match.subs(target), rules)
     return circuit
 
-rules = [(Ket(b) >> X, Ket(not b))
+rules = [(Ket(b) >> X, Ket(int(not b)))
          for b in [0, 1]] + [
-         (Ket(b0) @ Ket(b1) >> CX, Ket(b0) @ Ket(not b1 if b0 else b1))
+         (Ket(b0) @ Ket(b1) >> CX, Ket(b0) @ Ket(int(not b1 if b0 else b1)))
          for b0 in [0, 1] for b1 in [0, 1]]
-circuit = Ket(0) @ Ket(0) >> X @ qubit >> CX >> qubit @ X
+circuit = Ket(1) @ Ket(0) >> CX >> qubit @ X
 
-assert simplify(circuit, rules) == Ket(1) @ Ket(0)
+assert simplify(circuit, rules) == Ket(1) >> qubit @ Ket(0)
 \end{minted}
 \end{example}
 
@@ -731,7 +737,7 @@ As we mentioned in the previous section, bubbles do give us a strictly more expr
 \begin{minted}{python}
 class Bubble(cat.Bubble, Box): pass
 
-Diagram.bubble = Bubble
+Diagram.bubble = lambda self, **kwargs: Bubble(self, **kwargs)
 \end{minted}
 \end{python}
 
@@ -750,16 +756,16 @@ Born_rule = lambda x: abs(x) ** 2
 Circuit.measure = lambda self: self.bubble(method="squared_amplitude")
 Tensor.squared_amplitude = lambda self: self.map(Born_rule)
 
-assert float((Ket(0) >> H >> Bra(0)).measure().eval()) == .5
+assert Circuit.eval((Ket(0) >> H >> Bra(0)).measure())[0][0] == .5
 
-biased_ReLU = lambda x: max(0, 2 * x - 1)
+biased_ReLU = lambda x: max(0, 2 * x.real - 1)
 Circuit.post_process = lambda self: self.bubble(method="non_linearity")
 Tensor.non_linearity = lambda self: self.map(biased_ReLU)
 
 circuit = Ket(0, 0) >> H @ qubit >> CX >> Bra(0, 0)
 post_processed_circuit = circuit.measure().post_process()
-assert float(post_processed_circuit.eval())\
-    == biased_ReLU(Born_rule(float(circuit.eval())))
+assert Circuit.eval(post_processed_circuit).inside\
+    == biased_ReLU(Born_rule(complex(circuit.eval())))
 \end{minted}
 \end{example}
 
@@ -775,11 +781,14 @@ The evaluation of a formula in a finite model corresponds to the application of 
 
 \begin{minted}{python}
 class Formula(Diagram):
-    cut = lambda self: self.bubble(name="_not")
-    # TODO: dagger of Bubble
+    cut = lambda self: Cut(self)
+
+class Cut(Bubble, Formula):
+    method = "_not"
+    cast = Formula.cast
 
 class Predicate(Box, Formula):
-    def __init__(self, name, dom): Box.__init__(self, name, Ty(), dom)
+    cast = Formula.cast
 
 def model(size: dict[Ty, int], data: dict[Predicate, list[bool]]):
     return Functor(
@@ -787,7 +796,7 @@ def model(size: dict[Ty, int], data: dict[Predicate, list[bool]]):
         dom=Category(Ty, Formula), cod=Category(tuple[int, ...], Tensor[bool]))
 
 x = Ty('x')
-dog, god, mortal = [Predicate(name, dom=x) for name in ("dog", "god", "mortal")]
+dog, god, mortal = [Predicate(name, Ty(), x) for name in ("dog", "god", "mortal")]
 all_dogs_are_mortal = (dog.cut() >> mortal.dagger()).cut()
 gods_are_not_mortal = (god >> mortal.dagger()).cut()
 there_is_no_god_but_god = god >> (Formula.id(x).cut() >> god.dagger()).cut()
@@ -799,8 +808,8 @@ for dogs, gods, mortals in itertools.product(*3 * [
     F = model(size, {dog: dogs, god: gods, mortal: mortals})
     assert F(all_dogs_are_mortal) == all(
         not F(dog)[i] or F(mortal)[i] for i in range(size[x]))
-    assert F(gods_are_not_mortal) == not any(
-        F(god)[i] and F(mortal)[i] for i in range(size[x]))
+    assert F(gods_are_not_mortal) == all(
+        not F(god)[i] or not F(mortal)[i] for i in range(size[x]))
     assert F(there_is_no_god_but_god) == any(F(god)[i] and not any(
         F(god)[j] and j != i for j in range(size[x])) for i in range(size[x]))
 \end{minted}
@@ -863,16 +872,16 @@ class Node:
 def diagram2graph(diagram: Diagram) -> Graph:
     graph = Graph()
     scan = [Node('dom', x, i, -1) for i, x in enumerate(diagram.dom)]
-    graph.add_edges(zip(scan, scan))
+    graph.add_edges_from(zip(scan, scan))
     for j, (left, box, _) in enumerate(diagram.inside):
         box_node = Node('box', box, -1, j)
-        dom_nodes = [Node('dom', x, i, j) for i in enumerate(box.dom)]
-        cod_nodes = [Node('cod', x, i, j) for i in enumerate(box.cod)]
-        graph.add_edges(zip(scan[len(left): len(left @ box.dom)], dom_nodes))
-        graph.add_edges(zip(dom_nodes, len(box.dom) * [box_node]))
-        graph.add_edges(zip(len(box.cod) * [box_node], cod_nodes))
+        dom_nodes = [Node('dom', x, i, j) for i, x in enumerate(box.dom)]
+        cod_nodes = [Node('cod', x, i, j) for i, x in enumerate(box.cod)]
+        graph.add_edges_from(zip(scan[len(left): len(left @ box.dom)], dom_nodes))
+        graph.add_edges_from(zip(dom_nodes, len(box.dom) * [box_node]))
+        graph.add_edges_from(zip(len(box.cod) * [box_node], cod_nodes))
         scan = scan[len(left):] + cod_nodes + scan[len(left @ box.dom):]
-    graph.add_edges(zip(scan, [
+    graph.add_edges_from(zip(scan, [
         Node('cod', x, i, len(diagram)) for i, x in enumerate(diagram.cod)]))
     return graph
 \end{minted}

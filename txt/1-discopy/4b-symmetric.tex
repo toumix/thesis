@@ -69,11 +69,11 @@ The optional argument \py{left: bool} allows to choose between left and right na
 \begin{minted}{python}
 class Diagram(monoidal.Diagram):
     def simplify(self):
-        for i, (x, f, _), (y, g, _) in enumerate(
+        for i, ((x, f, _), (y, g, _)) in enumerate(
                 zip(self.inside, self.inside[1:])):
             if x == y and isinstance(f, Braid) and f == g[::-1]:
                 inside = self.inside[:i] + self.inside[i + 2:]
-                return simplify(self.cast(Diagram(inside, self.dom, self.cod)))
+                return self.cast(Diagram(inside, self.dom, self.cod)).simplify()
         return self
 
 class Box(monoidal.Box, Diagram):
@@ -82,20 +82,16 @@ class Box(monoidal.Box, Diagram):
 class Braid(Box):
     def __init__(self, x: Ty, y: Ty, is_dagger=False):
         assert len(x) == len(y) == 1
-        name = "Braid({}, {})[::-1]".format(y, x)\
-            if is_dagger else "Braid({}, {})".format(y, x)
+        name = "{}({}, {})[::-1]".format(type(self), y, x) if is_dagger\
+            else "{}({}, {})".format(type(self), x, y)
         super().__init__(name, x @ y, y @ x, is_dagger)
 
     def dagger(self): return Braid(*self.cod, is_dagger=not self.is_dagger)
 
 class Swap(Braid):
-    def __init__(self, x: Ty, y: Ty):
-        super().__init__(x, y); self.name = self.name.replace("Braid", "Swap")
-
     def dagger(self): return Swap(*self.cod)
 
 def hexagon(factory) -> Callable:
-    @classmethod
     def method(cls, x: Ty, y: Ty) -> Diagram:
         if len(x) == 0: return cls.id(y)
         if len(x) == 1:
@@ -104,35 +100,38 @@ def hexagon(factory) -> Callable:
                 >> cls.id(y[:1]) @ method(cls, x, y[1:])  # left hexagon equation.
         return cls.id(x[:1]) @ method(cls, x[1:], y)\
             >> method(cls, x[:1], y) @ cls.id(x[1:])  # right hexagon equation.
-    return method
+    return classmethod(method)
 
 Diagram.braid, Diagram.swap = hexagon(Braid), hexagon(Swap)
 
 def naturality(self: Diagram, i: int, left=True, down=True, braid=None):
     braid = braid or self.braid
     layer, box = self.inside[i], self.inside[i].box
-    def pattern(left, down):
-        if left and down:
-            return layer.left[-1] @ box >> braid(layer.left[-1], box.cod)
-        if down: return box @ layer.right[0] >> braid(box.cod, layer.right[0])
-        if left: return braid(box.dom, layer.right[0]) >> layer.right[0] @ box
-        return braid(layer.left[-1], box.dom) >> box @ layer.left[-1]
-    source, target = pattern(left, down), pattern(not left, not down)
+    if left and down:
+        source = layer.left[-1] @ box >> braid(layer.left[-1], box.cod)
+        target = braid(layer.left[-1], box.dom) >> box @ layer.left[-1]
+    elif left: ...
+    elif down: ...
+    else:
+        source = braid(layer.right[0], box.dom) >> box @ layer.right[0]
+        target = layer.right[0] @ box >> braid(layer.right[0], box.cod)
     match = Match(top=self[:i] if down else self[:i - len(source) + 1],
                   bottom=self[i + len(source):] if down else self[i + 1:],
-                  left=layer.left[-1] if left == down else layer.left,
-                  right=layer.right if left == down else layer.right[1:])
+                  left=layer.left[:-1] if left else layer.left,
+                  right=layer.right if left else layer.right[1:])
     assert self == match.subs(source)
     return match.subs(target)
 
 Diagram.naturality = naturality
 
 class Functor(monoidal.Functor):
+    dom = cod = Category(Ty, Diagram)
+
     def __call__(self, other):
         if isinstance(other, Swap):
-            return self.cod.ar.swap(self(other[0]), self(other[1]))
+            return self.cod.ar.swap(self(other.dom[0]), self(other.dom[1]))
         if isinstance(other, Braid) and not other.is_dagger:
-            return self.cod.ar.braid(self(other[0]), self(other[1]))
+            return self.cod.ar.braid(self(other.dom[0]), self(other.dom[1]))
         return super().__call__(other)
 \end{minted}
 \end{python}
@@ -152,7 +151,7 @@ We can check that \py{Braid} is an isomorphism up to a \py{simplify} call.
 \begin{minted}{python}
 assert (Diagram.braid(x, y @ z) >> Diagram.braid(x, y @ z)[::-1]).simplify()\
     == Diagram.id(x @ y @ z)\
-    == (Diagram.braid(x, y @ z)[::-1] >> Diagram.braid(x, y @ z)).simplify()
+    == (Diagram.braid(y @ z, x)[::-1] >> Diagram.braid(y @ z, x)).simplify()
 \end{minted}
 
 We can check that \py{Braid}, its inverse and \py{Swap} are all natural.
@@ -162,7 +161,7 @@ a, b = Ty('a'), Ty('b')
 f = Box('f', a, b)
 
 for braid in [
-        Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.Swap]:
+        Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.swap]:
     source, target = x @ f >> braid(x, b), braid(x, a) >> f @ x
     assert source.naturality(0, braid=braid) == target
     assert target.naturality(1, left=False, down=False, braid=braid) == source
@@ -177,7 +176,7 @@ for braid in [
 def function_swap(x: tuple[type, ...], y: tuple[type, ...]) -> Function:
     def inside(*xs):
         assert len(xs) == len(x + y)
-        return untuple(xs[len(x):] + xs[:len(x)])
+        return untuplify(xs[len(x):] + xs[:len(x)])
     return Function(inside, dom=x + y, cod=y + x)
 
 Function.swap = Function.braid = function_swap
@@ -200,7 +199,7 @@ We can check the axioms for symmetric categories hold in $\mathbf{Tensor}_\S$ an
 swap_twice = Diagram.swap(x, y @ z) >> Diagram.swap(y @ z, x)
 
 F = Functor(
-    ob={a: 2, b: 3, x: 4, y: 5, z: 6},
+    ob={a: 1, b: 2, x: 3, y: 4, z: 5},
     ar={f: [[1-2j, 3+4j]]},
     cod=Category(tuple[int, ...], Tensor[complex]))
 
@@ -209,7 +208,7 @@ assert F(x @ f >> Swap(x, b)) == F(Swap(x, a) >> f @ x)
 assert F(swap_twice) == Tensor.id(F(x @ y @ z))
 
 G = Functor(
-    ob={a: complex, b: real, x: int, y: bool, z: str},
+    ob={a: complex, b: float, x: int, y: bool, z: str},
     ar={f: lambda z: abs(z) ** 2},
     cod=Category(tuple[type, ...], Function))
 
@@ -252,20 +251,49 @@ In any case, DisCoPy does not implement any normal forms for diagrams with braid
 Of course, we can also enrich rigid and braided categories in commutative monoids, i.e. we can take formal sums of diagrams with cups, caps and braids in the same way as any other box.
 We can also define bubbles and draw them in the same way as for monoidal diagrams.
 
-\begin{example}
-We can define knot polynomials such as the Kauffman bracket using pivotal functors into a category where braids are defined as a weighted sum of diagrams.
+\begin{python}
+{\normalfont Implementation of free tortile categories and functors.}
 
 \begin{minted}{python}
-x = pivotal.Ty('$x$')
-A, A.inverse = Box('$A$', Ty(), Ty()), Box('$A^{-1}$', Ty(), Ty())
+class Ty(pivotal.Ty, braided.Ty): pass
 
-class Polynomial(pivotal.Diagram):
+class Diagram(pivotal.Diagram, braided.Diagram): pass
+
+class Box(pivotal.Box, braided.Box, Diagram):
+    cast = Diagram.cast
+
+class Cup(pivotal.Cup, Box): pass
+
+class Cap(pivotal.Cap, Box): pass
+
+class Braid(braided.Braid, Box): pass
+
+Diagram.braid = hexagon(Braid)
+Diagram.cups, Diagram.caps = nesting(Cup), nesting(Cap)
+
+class Functor(pivotal.Functor, braided.Functor):
+    dom = cod = Category(Ty, Diagram)
+
+    def __call__(self, other):
+        if isinstance(other, Braid):
+            return braided.Functor.__call__(self, other)
+        return pivotal.Functor.__call__(self, other)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can define knot polynomials such as the Kauffman bracket using tortile functors into a category where the braiding is defined as a weighted sum of diagrams.
+
+\begin{minted}{python}
+x, A = Ty('x'), Box('A', Ty(), Ty())
+
+class Polynomial(Diagram):
     def braid(x, y):
         assert x == y and len(x) == len(y) == 1
-        return (A @ x @ y) + (Cup(x, y) >> A.inverse >> Cap(x, y))
+        return (A @ x @ y) + (Cup(x, y) >> A.dagger() >> Cap(x, y))
 
 Kauffman = Functor(
-    ob={x: x}, ar={}, cod=Category(pivotal.Ty, Polynomial))
+    ob={x: x}, ar={}, cod=Category(Ty, Polynomial))
 
 drawing.equation(Braid(x, x).bubble(), Kauffman(Braid(x, x)))
 \end{minted}

@@ -58,7 +58,8 @@ class Matrix(Composable):
         return type(self)(inside, dom, cod)
 
     def transpose(self) -> Matrix:
-        inside = [[self[j, i] for j in range(self.dom)] for i in range(self.cod)]
+        inside = [[self.inside[j][i] for j in range(self.dom)]
+                                     for i in range(self.cod)]
         return type(self)(inside, self.cod, self.dom)
 
     def map(self, func: Callable[[Number], Number]) -> Matrix:

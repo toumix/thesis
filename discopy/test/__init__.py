@@ -1,0 +1,1 @@
+""" DisCoPy tests """

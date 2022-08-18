@@ -1,6 +1,29 @@
+from __future__ import annotations
+
 from discopy import *
+from discopy.sugar import *
 from discopy.cat import *
 from discopy.matrix import *
+
+
+
+@dataclass
+class Function(Composable):
+    inside: Callable
+    dom: type
+    cod: type
+
+    @staticmethod
+    def id(dom: type) -> Function:
+        return Function(lambda x: x, dom, dom)
+
+    @inductive
+    def then(self, other: Function) -> Function:
+        assert self.cod == other.dom
+        return Function(lambda x: other(self(x)), self.dom, other.cod)
+
+    def __call__(self, x):
+        return self.inside(x)
 
 
 def test_circuit():
