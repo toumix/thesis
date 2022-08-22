@@ -58,38 +58,30 @@ We can assume that cartesian categories are free-on-objects, i.e. the monoid axi
 Thus, we get a forgetful functor $U : \mathbf{CCat} \to \mathbf{MonSig}$ with its left adjoint given by a quotient of the free symmetric category $F^C(\Sigma) = F^S(\Sigma \cup \ttsplit \cup \counit) / R$ with the relations $R$ given by the naturality equations for each box.
 
 Taking the opposite definition, a \emph{cocartesian category} is one with a categorical coproduct, or equivalently with a coherent natural commutative monoid.
-For example, the category $\mathbf{Set}$ is cocartesian with the disjoint union, the category $\mathbf{Pyth}$ is cocartesian with the tagged union: the merging function takes a tagged element of an n-fold disjoint union and forgets the tag.
-While cartesian structures can be thought of in terms of product types and data copying, cocartesian structures formalise tagged unions and conditional branching.
+For example, the category $\mathbf{Set}$ is cocartesian with the disjoint union as tensor.
+The category $\mathbf{Pyth}$ is cocartesian with tagged union: the merging function takes a tagged element of an n-fold union and forgets the tag.
+While cartesian structures can be thought of in terms of data copying, cocartesian structures formalise conditional branching.
 Indeed, when we interpret cocartesian diagrams in $\mathbf{Pyth}$ parallel wires encode the different branches of a program, merging two wires of the same type means forgetting the difference between two branches.
 
-DisCoPy implements free (co)cartesian categories with a subclass of \py{Box} for making (merging) \py{n} copies of a type \py{x} of length one.
-The class method \py{Diagram.copy} allows to make \py{n} copies of an arbitrary type \py{x} by calling the \py{coherence} subroutine of the previous section, it takes an optional argument \py{is_dagger} that allows to merge copies instead.
-Cartesian functors take \py{Copy} boxes of its domain to the \py{copy} method of its codomain.
+DisCoPy implements free (co)cartesian categories with subclasses of \py{Box} for making and merging \py{n} copies of a type \py{x} of length one.
+The class methods \py{copy} and \py{merge} extend this to types of arbitrary length by calling the \py{coherence} subroutine of the previous section.
+Cartesian functors take \py{Copy} (\py{Merge}) boxes of its domain to the \py{copy} (\py{merge}) method of its codomain.
 
 \begin{python}
 {\normalfont Implementation of free (co)cartesian categories and functors.}
 
 \begin{minted}{python}
-class Copyable:
+class Diagram(braided.Diagram):
     @classmethod
-    def discard(cls, x: Ty, is_dagger=False) -> Copyable:
-        return cls.copy(x, 0, is_dagger)
+    def copy(cls, x: Ty, n=2) -> Diagram:
+        def factory(a, b, x, _):
+            assert a == 1
+            return Copy(x, b)
+        return coherence(factory).__func__(cls, 1, n, x)
 
     @classmethod
-    def merge(cls, x: Ty, n=2, is_dagger=False) -> Copyable:
-        return cls.copy(x, n, not is_dagger)
-
-    @classmethod
-    def unit(cls, x: Ty): return cls.discard(x, is_dagger=True)
-
-class Diagram(Copyable, braided.Diagram):
-    @classmethod
-    def copy(cls, x: Ty, n=2, is_dagger=False) -> Diagram:
-        def factory(a, b, y, _):
-            assert b == 1 if is_dagger else a == 1
-            return Copy(y, a)[::-1] if is_dagger else Copy(y, b)
-        a, b = (n, 1) if is_dagger else (1, n)
-        return coherence(factory).__func__(cls, a, b, x)
+    def merge(cls, x: Ty, n=2) -> Diagram:
+        return cls.copy(x, n).dagger()
 
 class Box(braided.Box, Diagram):
     cast = Diagram.cast
@@ -99,29 +91,65 @@ class Swap(braided.Swap, Box): pass
 Diagram.swap = Diagram.braid = hexagon(Swap)
 
 class Copy(Box):
-    def __init__(self, x: Ty, n: int = 2, is_dagger=False):
-        assert len(x) == 1
-        name = "Copy({}, {}){}".format(x, n, "[::-1]" if is_dagger else "")
-        dom, cod = (x ** n, x) if is_dagger else (x, x ** n)
-        super().__init__(name, dom, cod, is_dagger=is_dagger)
+    def __init__(self, x: Ty, n: int = 2):
+        super().__init__(name="Copy({}, {})".format(x, n), dom=x, cod=x ** n)
 
-    def dagger(self):
-        x = self.cod if self.is_dagger else self.dom
-        n = len(self.dom) if self.is_dagger else len(self.cod)
-        return Copy(x, n, not self.is_dagger)
+    dagger = lambda self: Merge(self.dom, len(self.cod))
+
+class Merge(Box):
+    def __init__(self, x: Ty, n: int = 2):
+        super().__init__(name="Merge({}, {})".format(x, n), dom=x ** n, cod=x)
+
+    dagger = lambda self: Copy(self.cod, len(self.dom))
 
 class Functor(braided.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):
         if isinstance(other, Copy):
-            x = self(other.cod if other.is_dagger else other.dom)
-            n = len(other.dom) if other.is_dagger else len(other.cod)
-            method = getattr(self.cod.ar, "merge" if other.is_dagger else "copy")
-            return method(x, n)
+            return self.cod.ar.copy(self(other.dom), len(other.cod))
+        if isinstance(other, Merge):
+            return self.cod.ar.merge(self(other.cod), len(other.dom))
         return super().__call__(other)
 \end{minted}
 \end{python}
+
+\begin{python}\label{listing:python-co-cartesian}
+{\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian category.}
+
+\begin{minted}{python}
+class Function:
+    ...
+    @staticmethod
+    def copy(x: tuple[type, ...], n: int):
+        return Function(lambda *xs: n * xs, dom=x, cod=n * x)
+\end{minted}
+\end{python}
+
+\begin{example}
+We can implement the architecture of a neural network as a cartesian diagram and its evaluation as a functor to \py{Function}.
+
+\begin{minted}{python}
+x = Ty('x')
+add = lambda n: Box('$+$', x ** n, x)
+ReLU = Box('$\sigma$', x, x)
+weights = [Box('w{}'.format(i), x, x) for i in range(4)]
+bias = Box('b', Ty(), x)
+
+network = Diagram.copy(x @ x, 2)\
+>> Diagram.tensor(*weights) @ bias >> add(5) >> ReLU
+
+F = Functor(ob={x: int}, ar={
+        add(5): lambda *xs: sum(xs),
+        ReLU: lambda x: max(0, x),
+        bias: lambda: -1, **{
+            weight: lambda x, w=w: x * w
+            for weight, w in zip(weights, range(4))}},
+    cod=Category(tuple[type, ...], Function))
+
+assert F(network)(42, 43) == max(0, sum([42 * 0, 43 * 1, 42 * 2, 43 * 3, -1]))
+\end{minted}
+\end{example}
 
 \begin{example}
 In a cartesian category, every monoid is automatically a \emph{bialgebra}, i.e. the monoid is a comonoid homomorphism or equivalently, the comonoid is a homomorphism for the monoid.
@@ -129,8 +157,8 @@ When furthermore the monoid has an inverse, then it is automatically a \emph{Hop
 
 \begin{minted}{python}
 x = Ty('x')
+copy, discard = Copy(x), Copy(x, n=0)
 add, minus, zero = Box('+', x @ x, x), Box('-', x, x), Box('0', Ty(), x)
-copy, discard = Diagram.copy(x), Diagram.discard(x)
 
 drawing.equation(add >> copy, copy @ copy >> x @ Swap(x, x) @ x >> add @ add)
 drawing.equation(zero >> copy, zero @ zero)
@@ -184,11 +212,11 @@ It is easy to show that the rules for naturality are confluent and terminating w
 At each rewrite step there is one fewer box node above a comonoid node, thus we can reduce the word problem for free cartesian categories to that of free symmetric categories and then to graph isomorphism.
 
 \begin{python}
-Implementation of the free cocartesian category $\mathbf{FinSet}$ with \py{int} as objects and \py{Dict} as arrows.
+Implementation of the free cartesian category $\mathbf{FinSet}^{op}$ with \py{int} as objects and \py{Dict} as arrows.
 
 \begin{minted}{python}
 @dataclass
-class Dict(Composable, Tensorable, Copyable):
+class Dict(Composable, Tensorable):
     inside: dict[int, int]
     dom: int
     cod: int
@@ -200,14 +228,14 @@ class Dict(Composable, Tensorable, Copyable):
 
     @inductive
     def then(self, other: Dict) -> Dict:
-        return Dict(
-            {i: other[self[i]] for i in range(self.dom)}, self.dom, other.cod)
+        inside = {i: self[other[i]] for i in range(other.cod)}
+        return Dict(inside, self.dom, other.cod)
 
     @inductive
     def tensor(self, other: Dict) -> Dict:
-        inside = {i: self[i] for i in range(self.dom)}
+        inside = {i: self[i] for i in range(self.cod)}
         inside.update({
-            self.dom + i: self.cod + other[i] for i in range(other.dom)})
+            self.cod + i: self.dom + other[i] for i in range(other.cod)})
         return Dict(inside, self.dom + other.dom, self.cod + other.cod)
 
     @staticmethod
@@ -216,8 +244,8 @@ class Dict(Composable, Tensorable, Copyable):
         return Dict(inside, x + y, x + y)
 
     @staticmethod
-    def merge(x: int, n: int) -> Dict:
-        return Dict({i: i % x for i in range(n * x)}, n * x, x)
+    def copy(x: int, n: int) -> Dict:
+        return Dict({i: i % x for i in range(n * x)}, x, n * x)
 \end{minted}
 \end{python}
 
@@ -226,11 +254,11 @@ We can check equality of cartesian diagrams with one generating object and no bo
 
 \begin{minted}{python}
 x = Ty('x')
-copy, discard, swap = Diagram.copy(x), Diagram.discard(x), Diagram.swap(x, x)
-F = lambda f: Functor({x: 1}, {}, cod=Category(int, Dict))(f.dagger())
+copy, discard, swap = Copy(x, 2), Copy(x, 0), Swap(x, x)
+F = Functor({x: 1}, {}, cod=Category(int, Dict))
 
 assert F(copy >> discard @ x) == F(Diagram.id(x)) == F(copy >> x @ discard)
-assert F(copy >> copy @ x) == F(Diagram.copy(x, 3)) == F(copy >> x @ copy)
+assert F(copy >> copy @ x) == F(Copy(x, 3)) == F(copy >> x @ copy)
 assert F(copy >> swap) == F(copy)
 \end{minted}
 \end{example}
@@ -241,109 +269,6 @@ The Kronecker product is not a cartesian product for $\mathbf{Mat}_\S$ (since th
 The arrows of free rig categories can be described as (equivalence classes of) three-dimensional \emph{sheet diagrams} where composition, additive and multiplicative tensor are encoded in three orthogonal axes~\cite{ComfortEtAl20}.
 These 3d diagrams are a complete language for \emph{dataflow programming}~\cite{Delpeuch20a}, they are not implemented in DisCoPy yet.
 
-The implementation of $\mathbf{Pyth}$ as a cartesian category with \py{tuple} and a cocartesian category with \py{tagged_union} is straightforward.
-What is more challenging is to make both monoidal structures fit in the same class, i.e. implementing a rig category.
-Indeed, if we take $(\mathbf{Pyth}, \py{tuple})$ as the foo-monoidal category implemented in section~\ref{section:monoidal}, \py{dom: tuple[type, ...]} and \py{cod: tuple[type, ...]} are interpreted as a \py{tuple}.
-On the other hand, if we implement $(\mathbf{Pyth}, \py{tagged_union})$ as a foo-monoidal category, lists of types will be interpreted as a \py{TaggedUnion} instead.
-Hence, we need to add an optional argument \py{is_additive: bool} which tells us how we should interpret \py{dom} and \py{cod}, and a pair of methods for converting additive into multiplicative functions.
-In order to keep the syntax simple, we keep the notation \py{f @ g} for \py{tuple} and override the vertical line symbol \py{f | g} to denote the \py{tagged_union}.
-We use the same syntax for the direct sum of two tensors.
-
-\begin{python}\label{listing:python-co-cartesian}
-{\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian category with \py{tuple} and a cocartesian category with \py{tagged_union}.}
-
-\begin{minted}{python}
-is_tuple = lambda typ: getattr(typ, "__origin__", None) is tuple
-is_union = lambda typ: getattr(typ, "__origin__", None) is TaggedUnion
-
-class Function(python.Function):
-    is_additive = False
-
-    def make_additive(self) -> Function:
-        dom, cod = (
-            (tuple[x], ) if len(x) != 1
-            else x[0].__args__ if is_union(x[0])
-            else x for x in (self.dom, self.cod))
-        return AdditiveFunction(self.inside, dom, cod)
-
-    @inductive
-    def tensor(self, other: Function) -> Function:
-        if other.is_additive:
-            return self.tensor(other.make_multiplicative())
-        return python.Function.tensor(self, other)
-
-    @staticmethod
-    def copy(x: tuple[type, ...], n: int, is_dagger=False):
-        if is_dagger: return AdditiveFunction.merge(x, n)
-        if n == 1: return Function.id(x)
-        return Function(lambda *xs: n * xs, dom=x, cod=n * x)
-
-class AdditiveFunction(Function):
-    is_additive = True
-
-    def make_multiplicative(self) -> Function:
-        dom, cod = (
-            (TaggedUnion[x], ) if len(x) != 1
-            else x[0].__args__ if is_tuple(x[0])
-            else x for x in (self.dom, self.cod))
-        return Function(self.inside, dom, cod)
-
-    def tensor(self, other: Function) -> Function:
-        if not other.is_additive:
-            return self.tensor(other.make_additive())
-        inside = self.inside if len(self.dom) == 1 and len(other.dom) == 0\
-            else other.inside if len(self.dom) == 0 and len(other.dom) == 1\
-            else lambda i, x: self(i, x) if i < len(self.dom)\
-            else other(i - len(self.dom), x)
-        dom, cod = self.dom + other.dom, self.cod + other.cod
-        return Function(inside, dom, cod)
-
-    @staticmethod
-    def merge(x: tuple[type, ...], n: int, is_dagger=False):
-        if is_dagger: return Function.copy(x, n)
-        if n == 1: return AdditiveFunction.id(x)
-        return AdditiveFunction(lambda _, xs: xs, dom=n * x, cod=x)
-\end{minted}
-\end{python}
-
-\begin{example}
-We can implement the architecture of a neural network as a cartesian diagram and its evaluation as a functor to \py{Function}.
-
-\begin{minted}{python}
-add = lambda x, n: Box('$+$', x ** n, x)
-ReLU = lambda x: Box('$\sigma$', x, x)
-weights = [Box('w{}{}'.format(i, j), x, x) for i in range(2) for j in range(2)]
-bias = Box('b', Ty(), x)
-
-network = Diagram.copy(x @ x, 2)\
-    >> Diagram.tensor(*weights) @ bias >> add(x, 5) >> ReLU(x)
-
-F = Functor(ob={x: int}, ar={
-    add(x, 5): lambda *xs: sum(xs),
-    ReLU(x): lambda x: max(0, x),
-    bias: lambda: -1, **dict(zip(weights, [0, 1, 2, 3]))},
-    cod=Category(tuple[type, ...], Function))
-
-assert F(network)(42, 43) == max(0, sum([42 * 0, 43 * 1, 42 * 2, 43 * 3, -1]))
-\end{minted}
-
-We can implement a pipeline that operates on different kinds of data using a cocartesian diagram.
-
-\begin{minted}{python}
-f, g = Box('f', y, z), Box('g', z, w)
-pipeline = f @ z >> Diagram.merge(z, 2) >> g
-
-G = Functor(
-    ob={y: str, z: tuple[int, int], w: int},
-    ar={f: lambda s: (len(set(s)), len(s)),
-        g: F(network)},
-    cod=Category(tuple[type, ...], AdditiveFunction))
-
-assert G(pipeline)(0, "hello") == F(network)(4, 5)
-\end{minted}
-\end{minted}
-\end{example}
-
 \subsection{Biproducts}\label{subsection:biproducts}
 
 A category has \emph{biproducts} if the cartesian and cocartesian structures coincide,
@@ -351,24 +276,19 @@ a $\dagger$-category has \emph{$\dagger$-biproducts} when furthermore the monoid
 This is the case in the $\dagger$-category $\mathbf{Mat}_\S$ with direct sum $\oplus$ as tensor.
 
 \begin{python}
-{\normalfont Implementation of $\dagger$-biproducts for $\mathbf{Mat}_\S$
-and $\mathbf{Tensor}_\S$ as a rig category with direct sum and Kronecker product.}
+{\normalfont Implementation of $\dagger$-biproducts for $\mathbf{Mat}_\S$.}
 
 \begin{minted}{python}
-@Copyable
 class Matrix:
     ...
     @classmethod
-    def copy(cls, x: int, n: int, is_dagger=False) -> Matrix:
-        dom, cod = (x ** n, x) if is_dagger else (x, x ** n)
-        inside = [[i % n == j for j in range(x)] for i in range(x ** n)]\
-            if is_dagger\
-            else [[i == j % n for j in range(x ** n)] for i in range(x)]]
-        return cls(inside, dom, cod)
+    def copy(cls, x: int, n: int) -> Matrix:
+        inside = [[i == j % n for j in range(x ** n)] for i in range(x)]
+        return cls(inside, x, x ** n)
 
     @classmethod
-    def merge(cls, x: int, n: int, is_dagger=False) -> Matrix:
-        return cls.copy(x, n, not is_dagger)
+    def merge(cls, x: int, n: int) -> Matrix:
+        return cls.copy(x, n).dagger()
 
     @classmethod
     def basis(cls, x: int, i: int, is_dagger=False) -> Matrix:
@@ -376,15 +296,6 @@ class Matrix:
         inside = [[val] for val in inside] if is_dagger else [inside]
         dom, cod = (x, x ** 0) if is_dagger else (x ** 0, x)
         return cls(inside, dom, cod)
-
-class Tensor:
-    ...
-    @inductive
-    def direct_sum(self, other: Tensor) -> Tensor:
-        old = self.downgrade().direct_sum(other.downgrade())
-        return type(self)(old.inside, [old.dom], [old.cod])
-
-    __or__ = direct_sum
 \end{minted}
 \end{python}
 
@@ -418,6 +329,17 @@ class FakeInt:
     __mul__ = lambda self, other: FakeInt(
         [x0 @ x1 for x0 in self.inside for x1 in other])
     __pow__ = lambda self, n: product(n * (self, ), unit=FakeInt())
+
+class Diagram(monoidal.Diagram):
+    def __eq__(self, other):
+        if isinstance(other, Biproduct):
+            return other.inside == [[self]]
+        return monoidal.Diagram.__eq__(self, other)
+
+    def direct_sum(self, *others):
+        return Biproduct.cast(self).direct_sum(*others)
+
+    __or__ = direct_sum
 
 class Biproduct(Matrix):
     dtype = Diagram
@@ -454,29 +376,19 @@ class Biproduct(Matrix):
             return Matrix.Kronecker(self, self.cast(other))
 
     @classmethod
-    def copy(cls, x: tuple[Ty, ...], n: int, is_dagger=False):
+    def copy(cls, x: tuple[Ty, ...], n: int):
         with cls.id(x).fake_multiplication(cls.then) as biproduct:
-            return Matrix.copy(biproduct.dom, n, is_dagger)
+            return Matrix.copy(biproduct.dom, n)
 
     @classmethod
-    def discard(cls, x, is_dagger=False): return cls.copy(x, 0, is_dagger)
+    def basis(cls, x: tuple[Ty, ...], i: int):
+        terms = [cls.id(x[i]) if i == j else cls.zero(x[i], x[j])
+                 for j in range(len(x))]
+        return cls.copy(x[i], len(x)) >> cls.direct_sum(*terms)
 
     dagger = lambda self: self.transpose().map(lambda f: f.dagger())
     __or__ = lambda self, other: self.direct_sum(self.cast(other))
     __eq__ = lambda self, other: Matrix.__eq__(self, self.cast(other))
-
-Diagram.direct_sum = lambda self, *others:\
-    self.biproduct.cast(self).direct_sum(*other)
-Diagram.__or__ = Diagram.direct_sum
-Diagram.__eq__ = lambda self, other:\
-    other.inside = [[self]] if isinstance(other, Biproduct)\
-    else monoidal.Diagram.__eq__(self, other)
-
-@classmethod
-def basis(cls, x: tuple[Ty, ...], i: int):
-    terms = [cls.id(x[i]) if i == j else cls.zero(x[i], x[j])
-             for j in range(len(x))]
-    return cls.copy(x[i], len(x)) >> cls.direct_sum(*terms)
 
 class Functor(monoidal.Functor):
     dom = cod = Category(tuple[Ty, ...], Biproduct)

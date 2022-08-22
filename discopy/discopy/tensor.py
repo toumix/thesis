@@ -1,14 +1,10 @@
 from __future__ import annotations
 
-from discopy.sugar import Tensorable, inductive
+from discopy.sugar import Tensorable, inductive, product
 from discopy.matrix import Number, Matrix
 
 
-def product(x, unit=1):
-    return unit if not x else product(x[1:], x[0] * unit)
-
-
-class Tensor(Tensorable, Matrix):
+class Tensor(Matrix):
     inside: list[list[Number]]
     dom: tuple[int, ...]
     cod: tuple[int, ...]

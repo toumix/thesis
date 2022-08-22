@@ -6,6 +6,10 @@ def dataclass(cls):
     return dataclasses.dataclass(eq=True, frozen=True)(cls)
 
 
+def product(x, unit=1):
+    return unit if not x else product(x[1:], x[0] * unit)
+
+
 def inductive(method):
     def result(self, *others):
         if not others: return self

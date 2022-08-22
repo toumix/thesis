@@ -67,6 +67,7 @@ class Arrow(Composable):
     __str__ = lambda self: ' >> '.join(map(str, self.inside))\
         if self.inside else '{}.id({})'.format(type(self).__name__, self.dom)
     __add__ = lambda self, other: self.sum.cast(self) + other
+    __radd__ = lambda self, other: self if not other else self + other
     __lt__ = lambda self, other: hash(self) < hash(other)  # An arbitrary order.
 
 
@@ -167,6 +168,8 @@ class Sum(Box):
     @classmethod
     def cast(cls, old: cat.Arrow) -> Sum:
         return old if isinstance(old, cls) else cls((old, ), old.dom, old.cod)
+
+    id = lambda x: Sum.cast(Arrow.id(x))
 
     @inductive
     def then(self, other):

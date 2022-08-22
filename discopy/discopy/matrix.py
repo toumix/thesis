@@ -3,10 +3,10 @@ import math
 from numbers import Number
 from numpy import isclose
 
-from discopy.sugar import dataclass, inductive, Composable
+from discopy.sugar import dataclass, inductive, Composable, Tensorable
 
 
-class Matrix(Composable):
+class Matrix(Composable, Tensorable):
     dtype = int
 
     dom: int
@@ -85,6 +85,7 @@ class Matrix(Composable):
     def zero(cls, dom: int, cod: int) -> Matrix:
         return cls([[0 for _ in range(cod)] for _ in range(dom)], dom, cod)
 
+    @inductive
     def direct_sum(self, other: Matrix) -> Matrix:
         dom, cod = self.dom + other.dom, self.cod + other.cod
         left, right = (len(m.inside[0]) if m.inside else 0 for m in (self, other))
@@ -92,12 +93,31 @@ class Matrix(Composable):
                   for i, row in enumerate(self.inside + other.inside)]
         return type(self)(inside, dom, cod)
 
+    @inductive
     def Kronecker(self, other: Matrix) -> Matrix:
         dom, cod = self.dom * other.dom, self.cod * other.cod
         inside = [[self.inside[i_dom][i_cod] * other.inside[j_dom][j_cod]
             for i_cod in range(self.cod) for j_cod in range(other.cod)]
             for i_dom in range(self.dom) for j_dom in range(other.dom)]
         return type(self)(inside, dom, cod)
+
+    @classmethod
+    def copy(cls, x: int, n: int) -> Matrix:
+        inside = [[i + int(j % n * x) == j for j in range(n * x)] for i in range(x)]
+        return cls(inside, x, n * x)
+
+    @classmethod
+    def merge(cls, x: int, n: int) -> Matrix:
+        return cls.copy(x, n).dagger()
+
+    @classmethod
+    def basis(cls, x: int, i: int, is_dagger=False) -> Matrix:
+        inside = [i % j == 0 for j in range(x)]
+        inside = [[val] for val in inside] if is_dagger else [inside]
+        dom, cod = (x, x ** 0) if is_dagger else (x ** 0, x)
+        return cls(inside, dom, cod)
+
+    tensor = direct_sum
 
 
 for converter in (bool, int, float, complex):

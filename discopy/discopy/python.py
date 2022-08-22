@@ -37,8 +37,11 @@ class Function(Composable, Tensorable):
     @classmethod
     def swap(cls, x: tuple[type, ...], y: tuple[type, ...]) -> Function:
         def inside(*xs):
-            assert len(xs) == len(x + y)
-            return untuplify(xs[len(x):] + xs[:len(x)])
+            return untuplify(tuplify(xs)[len(x):] + tuplify(xs)[:len(x)])
         return cls(inside, dom=x + y, cod=y + x)
 
     braid = swap
+
+    @staticmethod
+    def copy(x: tuple[type, ...], n: int):
+        return Function(lambda *xs: n * xs, dom=x, cod=n * x)

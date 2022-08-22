@@ -168,10 +168,12 @@ class Functor(cat.Functor):
 
 
 class Sum(cat.Sum, Box):
+    id = lambda x: Sum.cast(Diagram.id(x))
+
     @inductive
     def tensor(self, other: Sum) -> Sum:
         terms = tuple(f @ g for f in self.terms for g in self.cast(other).terms)
-        return Sum(terms, self.dom @ other.dom, self.cod @ other.cod)
+        return type(self)(terms, self.dom @ other.dom, self.cod @ other.cod)
 
 
 class Bubble(cat.Bubble, Box):
