@@ -724,6 +724,8 @@ class Sum(cat.Sum, Box):
         terms = tuple(f @ g for f in self.terms for g in self.cast(other).terms)
         return Sum(terms, self.dom @ other.dom, self.cod @ other.cod)
 
+    id = lambda x: Sum.cast(Diagram.id(x))
+
 Diagram.sum = Sum
 \end{minted}
 \end{python}

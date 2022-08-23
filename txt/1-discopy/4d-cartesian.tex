@@ -283,19 +283,17 @@ class Matrix:
     ...
     @classmethod
     def copy(cls, x: int, n: int) -> Matrix:
-        inside = [[i == j % n for j in range(x ** n)] for i in range(x)]
-        return cls(inside, x, x ** n)
+        inside = [[
+            i + int(j % n * x) == j for j in range(n * x)] for i in range(x)]
+        return cls(inside, x, n * x)
 
     @classmethod
     def merge(cls, x: int, n: int) -> Matrix:
         return cls.copy(x, n).dagger()
 
     @classmethod
-    def basis(cls, x: int, i: int, is_dagger=False) -> Matrix:
-        inside = [i % j == 0 for j in range(x)]
-        inside = [[val] for val in inside] if is_dagger else [inside]
-        dom, cod = (x, x ** 0) if is_dagger else (x ** 0, x)
-        return cls(inside, dom, cod)
+    def basis(cls, x: int, i: int) -> Matrix:
+        return cls([[i == j for j in range(x)]], x ** 0, x)
 \end{minted}
 \end{python}
 
@@ -308,12 +306,10 @@ One can verify that the free completion is indeed the left adjoint to the forget
 Similarly, if $C$ is a $\dagger$-category then $\mathbf{Mat}_C$ is its free $\dagger$-biproduct completion with the element-wise dagger of the transpose.
 If $C$ is also a monoidal category, then $\mathbf{Mat}_C$ is a rig category with the tensor given by an extension of the usual Kronecker product with tensor as product.
 
-We implement free $\dagger$-biproduct completion as a subclass of \py{Matrix[Diagram]} with \py{tuple[Ty, ...]} as objects and addition given by the formal sum of diagrams.
+We implement free $\dagger$-biproduct completion as a subclass of \py{Matrix[Sum]} with \py{tuple[Ty, ...]} as objects and addition given by the formal sum of diagrams.
 We use Python's duck typing to lift the code for composition, tensor and direct sum from \py{int} to \py{tuple[Ty, ...]}.
-We also use a \py{contextmanager} to temporarily replace the multiplication of two \py{Diagram} entries.
+We also use a \py{contextmanager} to temporarily replace the multiplication of two \py{Sum} entries by composition or tensor.
 Again, we override equality so that diagrams are equal to the matrix of just themselves.
-The implementation of biproduct-preserving functors requires some work: given a matrix of diagrams, we construct its image as the sum of the images of its entries, pre- and post-composed by the basis row and column vectors.
-The \py{basis} subroutine constructs basis vectors for an arbitrary class using only its methods \py{id}, \py{zero}, \py{copy} and \py{direct_sum}.
 
 \begin{python}
 {\normalfont Implementation of free $\dagger$-biproduct completion.}
@@ -323,11 +319,12 @@ The \py{basis} subroutine constructs basis vectors for an arbitrary class using 
 class FakeInt:
     inside: tuple[Ty, ...] = (Ty(), )
 
-    __int__ = lambda self: len(self.inside)
+    __index__ = lambda self: len(self.inside)
     __iter__ = property(lambda self: self.inside.__iter__)
     __add__ = lambda self, other: FakeInt(self.inside + other.inside)
     __mul__ = lambda self, other: FakeInt(
-        [x0 @ x1 for x0 in self.inside for x1 in other])
+        tuple(x0 @ x1 for x0 in self.inside for x1 in other))
+    __rmul__ = lambda self, n: FakeInt(n * self.inside)
     __pow__ = lambda self, n: product(n * (self, ), unit=FakeInt())
 
 class Diagram(monoidal.Diagram):
@@ -341,68 +338,52 @@ class Diagram(monoidal.Diagram):
 
     __or__ = direct_sum
 
-class Biproduct(Matrix):
-    dtype = Diagram
+class Box(monoidal.Box, Diagram):
+    cast = Diagram.cast
 
-    def __init__(self, inside: list[list[Diagram]],
-                 dom: tuple[Ty, ...], cod: tuple[Ty, ...]):
-        self.dom, self.cod, self.inside = tuple(dom), tuple(cod), [[
-            cls.dtype.id(x) if val is 1 and x == y
-            else cls.dtype.zero(x, y) if val is 0
-            else val for y, val in zip(cod, row)] for x, row in zip(dom, inside)]
+class Sum(monoidal.Sum, Box):
+    id = lambda x: Sum.cast(Diagram.id(x))
+
+Diagram.sum = Sum
+
+class Biproduct(Matrix):
+    dtype = Sum
+
+    def __init__(self, inside: list[list[Sum]], dom: FakeInt, cod: FakeInt):
+        self.dom, self.cod, self.inside = dom, cod, [[
+            self.dtype.id(x) if val == 1
+            else self.dtype.zero(x, y) if val == 0
+            else self.dtype.cast(val)
+            for y, val in zip(cod, row)] for x, row in zip(dom, inside)]
 
     @contextmanager
     def fake_multiplication(self, method):
-        tmp, self.dtype.__mul__ = getattr(self.dtype, "__mul__", None), method
-        self.dom, self.cod = map(FakeInt, (self.dom, self.cod))
-        yield self
-        self.dom, self.cod = map(tuple, (self.dom, self.cod))
-        delattr(self.dtype, "__mul__") if tmp is None\
-            else setattr(self.dtype, "__mul__", tmp)
+        self.dtype.__mul__ = getattr(self.dtype, method)
+        yield
+        delattr(self.dtype, "__mul__")
 
     @classmethod
     def cast(cls, old: Diagram):
         if isinstance(old, cls): return old
-        return cls([[old]], [old.dom], [old.cod])
+        return cls([[old]], FakeInt((old.dom, )), FakeInt((old.cod, )))
 
     @inductive
     def then(self, other: Biproduct | Diagram) -> Biproduct:
-        with self.fake_multiplication(self.dtype.then) as self:
+        with self.fake_multiplication("then"):
             return Matrix.then(self, self.cast(other))
 
     @inductive
     def tensor(self, other: Biproduct | Diagram) -> Biproduct:
-        with self.fake_multiplication(self.dtype.tensor) as self:
+        with self.fake_multiplication("tensor"):
             return Matrix.Kronecker(self, self.cast(other))
 
-    @classmethod
-    def copy(cls, x: tuple[Ty, ...], n: int):
-        with cls.id(x).fake_multiplication(cls.then) as biproduct:
-            return Matrix.copy(biproduct.dom, n)
-
-    @classmethod
-    def basis(cls, x: tuple[Ty, ...], i: int):
-        terms = [cls.id(x[i]) if i == j else cls.zero(x[i], x[j])
-                 for j in range(len(x))]
-        return cls.copy(x[i], len(x)) >> cls.direct_sum(*terms)
+    @inductive
+    def direct_sum(self, other: Biproduct | Diagram) -> Biproduct:
+        with self.fake_multiplication("then"):
+            return Matrix.direct_sum(self, self.cast(other))
 
     dagger = lambda self: self.transpose().map(lambda f: f.dagger())
-    __or__ = lambda self, other: self.direct_sum(self.cast(other))
     __eq__ = lambda self, other: Matrix.__eq__(self, self.cast(other))
-
-class Functor(monoidal.Functor):
-    dom = cod = Category(tuple[Ty, ...], Biproduct)
-
-    def __call__(self, other):
-        if isinstance(other, Biproduct):
-            result = self(other.zero(other.dom, other.cod))
-            for i, row in enumerate(other.inside):
-                effect = basis(self.cod.ar, list(map(self, other.dom)), i)[::-1]
-                for j, diagram in enumerate(row):
-                    state = basis(self.cod.ar, list(map(self, other.cod)), j)
-                    result += effect >> self(diagram) >> state
-            return result
-        return super().__call__(other)
 \end{minted}
 \end{python}
 
@@ -411,34 +392,26 @@ We can define the object \py{bit} as the list of two empty types, with \py{true}
 then we can implement conditional expressions as biproducts.
 
 \begin{minted}{python}
-bit = 2 * [Ty()]
-true = Biproduct.copy(Ty(), 2) >> Diagram.id(Ty()) | Diagram.zero(Ty(), Ty())
-false = Biproduct.copy(Ty(), 2) >> Diagram.zero(Ty(), Ty()) | Diagram.id(Ty())
+unit = FakeInt()
+true = Biproduct.copy(unit, 2)\
+    >> (Biproduct.id(unit) | Biproduct.zero(unit, unit))
+false = Biproduct.copy(unit, 2)\
+    >> (Biproduct.zero(unit, unit) | Biproduct.id(unit))
 
 x, y = Ty('x'), Ty('y')
 f, g = Box('f', x, y), Box('g', x, y)
-conditional = f | g >> Biproduct.merge(y, 2)
+conditional = (f | g) >> Biproduct.merge(FakeInt((y, )), 2)
 
-assert true @ x >> conditional == f and false @ x >> conditional == g
+assert true @ FakeInt((x, )) >> conditional == f\
+    and false @ FakeInt((x, )) >> conditional == g
 \end{minted}
 \end{example}
 
 \begin{example}\label{example:biproduct-measurement}
-We can implement classical control as a biproduct of two quantum states and measurement as a biproduct of two quantum effects.
+We can implement quantum measurements as biproducts of two quantum effects and classical control as a biproduct of two quantum states.
 When we compose classical control with measurement, we get a matrix where the entries are scalar diagrams.
 The squared amplitude of the evaluation of these scalars give us the measurement probabilities for each classical choice of state.
-
-\begin{minted}{python}
-control = Biproduct([[Ket(0)], [Ket(1)]], bit, [qubit])
-measure = Biproduct([[Bra(0), Bra(1)]], [qubit], bit)
-
-F = Functor(
-    ob={qubit: 2}, ar=lambda f: f.eval(),
-    cod=Category(tuple[int, ...], Tensor[complex]))
-
-assert F(control >> H >> measure).inside\
-    == [[(Ket(i) >> H >> Bra(j)).eval() for j in [0, 1]] for i in [0, 1]]
-\end{minted}
+We leave the implementation of such biproduct-valued functors to future work: it would require to augment the syntax of types from monoids to semirings.
 \end{example}
 
 As we mentioned at the end of section~\ref{section:monoidal}, DisCoPy uses a \emph{point-free} syntax and it can be rather tedious to define any complex diagram in this way.

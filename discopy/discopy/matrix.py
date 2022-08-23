@@ -111,11 +111,8 @@ class Matrix(Composable, Tensorable):
         return cls.copy(x, n).dagger()
 
     @classmethod
-    def basis(cls, x: int, i: int, is_dagger=False) -> Matrix:
-        inside = [i % j == 0 for j in range(x)]
-        inside = [[val] for val in inside] if is_dagger else [inside]
-        dom, cod = (x, x ** 0) if is_dagger else (x ** 0, x)
-        return cls(inside, dom, cod)
+    def basis(cls, x: int, i: int) -> Matrix:
+        return cls([[i == j for j in range(x)]], x ** 0, x)
 
     tensor = direct_sum
 

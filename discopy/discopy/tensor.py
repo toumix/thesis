@@ -36,7 +36,7 @@ class Tensor(Matrix):
         return type(self)(inside, dom, cod)
 
     @classmethod
-    def zero(cls, dom: int, cod: int) -> Tensor:
+    def zero(cls, dom: tuple[int, ...], cod: tuple[int, ...]) -> Tensor:
         return cls([[0 for _ in range(product(cod))]
                     for _ in range(product(dom))], dom, cod)
 

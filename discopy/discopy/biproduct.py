@@ -60,10 +60,9 @@ class Biproduct(Matrix):
 
     @contextmanager
     def fake_multiplication(self, method):
-        tmp, self.dtype.__mul__ = getattr(self.dtype, "__mul__", None), method
+        self.dtype.__mul__ = getattr(self.dtype, method)
         yield
-        delattr(self.dtype, "__mul__") if tmp is None\
-            else setattr(self.dtype, "__mul__", tmp)
+        delattr(self.dtype, "__mul__")
 
     @classmethod
     def cast(cls, old: Diagram):
@@ -72,34 +71,19 @@ class Biproduct(Matrix):
 
     @inductive
     def then(self, other: Biproduct | Diagram) -> Biproduct:
-        with self.fake_multiplication(self.dtype.then):
+        with self.fake_multiplication("then"):
             return Matrix.then(self, self.cast(other))
 
     @inductive
     def tensor(self, other: Biproduct | Diagram) -> Biproduct:
-        with self.fake_multiplication(self.dtype.tensor):
+        with self.fake_multiplication("tensor"):
             return Matrix.Kronecker(self, self.cast(other))
 
     @inductive
     def direct_sum(self, other: Biproduct | Diagram) -> Biproduct:
-        with self.fake_multiplication(self.dtype.then):
+        with self.fake_multiplication("then"):
             return Matrix.direct_sum(self, self.cast(other))
 
     dagger = lambda self: self.transpose().map(lambda f: f.dagger())
     __or__ = lambda self, other: self.direct_sum(self.cast(other))
     __eq__ = lambda self, other: Matrix.__eq__(self, self.cast(other))
-
-
-class Functor(monoidal.Functor):
-    dom = cod = Category(tuple[Ty, ...], Biproduct)
-
-    def __call__(self, other):
-        if isinstance(other, Biproduct):
-            result = self(other.zero(other.dom, other.cod))
-            for i, row in enumerate(other.inside):
-                effect = basis(self.cod.ar, list(map(self, other.dom)), i)[::-1]
-                for j, diagram in enumerate(row):
-                    state = basis(self.cod.ar, list(map(self, other.cod)), j)
-                    result += effect >> self(diagram) >> state
-            return result
-        return super().__call__(other)

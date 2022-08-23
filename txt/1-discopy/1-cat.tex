@@ -736,6 +736,8 @@ class Sum(cat.Box, Arrow):
     def dagger(self):
         return type(self)(tuple(f.dagger() for f in self.terms), self.cod, self.dom)
 
+    id = lambda x: Sum.cast(Arrow.id(x))
+
 Arrow.sum = Sum
 
 class Functor(cat.Functor):
