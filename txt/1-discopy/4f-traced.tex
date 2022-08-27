@@ -15,16 +15,19 @@ In the category of finite sets and relations $\mathbf{Mat}_\B$ with the direct s
 {\normalfont Implementation of the syntax for free traced categories.}
 
 \begin{minted}{python}
+class Diagram(symmetric.Diagram):
+    trace = Trace
+
+class Box(symmetric.Box, Diagram):
+    cast = Diagram.cast
+
 class Trace(Box):
     def __init__(self, diagram: Diagram, n=1):
         assert diagram.dom[-n:] == diagram.cod[-n:]
         self.diagram, name = inside, "Trace({}, {})".format(diagram, n)
         super().__init__(name, diagram.dom[:-n], diagram.cod[:-n])
 
-class Diagram(monoidal.Diagram):
-    trace = Trace
-
-class Functor(monoidal.Functor):
+class Functor(symmetric.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):

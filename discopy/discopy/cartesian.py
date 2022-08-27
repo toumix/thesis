@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from discopy import braided
+from discopy import symmetric
 from discopy.cat import Category
-from discopy.braided import Ty, hexagon
+from discopy.symmetric import Ty, hexagon
 from discopy.hypergraph import coherence
 
 
-class Diagram(braided.Diagram):
+class Diagram(symmetric.Diagram):
     @classmethod
     def copy(cls, x: Ty, n=2) -> Diagram:
         def factory(a, b, x, _):
@@ -14,10 +14,10 @@ class Diagram(braided.Diagram):
             return Copy(x, b)
         return coherence(factory).__func__(cls, 1, n, x)
 
-class Box(braided.Box, Diagram):
+class Box(symmetric.Box, Diagram):
     cast = Diagram.cast
 
-class Swap(braided.Swap, Box): pass
+class Swap(symmetric.Swap, Box): pass
 
 Diagram.swap = Diagram.braid = hexagon(Swap)
 
@@ -26,7 +26,7 @@ class Copy(Box):
         assert len(x) == 1
         super().__init__(name="Copy({}, {})".format(x, n), dom=x, cod=x ** n)
 
-class Functor(braided.Functor):
+class Functor(symmetric.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):

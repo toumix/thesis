@@ -64,7 +64,7 @@ The \py{naturality} method applies the naturality axiom to the box at a given in
 The optional argument \py{left: bool} allows to choose between left and right naturality axioms, \py{down: bool} allows to move the box either up or down the braid and \py{braid: Callable} allows to apply naturality to any subclass of \py{Braid}.
 
 \begin{python}
-{\normalfont Implementation of free $\dagger$-braided and $\dagger$-symmetric categories.}
+{\normalfont Implementation of free $\dagger$-braided categories.}
 
 \begin{minted}{python}
 class Diagram(monoidal.Diagram):
@@ -87,9 +87,6 @@ class Braid(Box):
         super().__init__(name, x @ y, y @ x, is_dagger)
 
     def dagger(self): return Braid(*self.cod, is_dagger=not self.is_dagger)
-
-class Swap(Braid):
-    def dagger(self): return Swap(*self.cod)
 
 def hexagon(factory) -> Callable:
     def method(cls, x: Ty, y: Ty) -> Diagram:
@@ -128,8 +125,6 @@ class Functor(monoidal.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):
-        if isinstance(other, Swap):
-            return self.cod.ar.swap(self(other.dom[0]), self(other.dom[1]))
         if isinstance(other, Braid) and not other.is_dagger:
             return self.cod.ar.braid(self(other.dom[0]), self(other.dom[1]))
         return super().__call__(other)
@@ -154,19 +149,43 @@ assert (Diagram.braid(x, y @ z) >> Diagram.braid(x, y @ z)[::-1]).simplify()\
     == (Diagram.braid(y @ z, x)[::-1] >> Diagram.braid(y @ z, x)).simplify()
 \end{minted}
 
-We can check that \py{Braid}, its inverse and \py{Swap} are all natural.
+We can check that \py{Braid} and its dagger are natural.
 
 \begin{minted}{python}
 a, b = Ty('a'), Ty('b')
 f = Box('f', a, b)
 
-for braid in [
-        Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1]), Diagram.swap]:
+for braid in [Diagram.braid, (lambda x, y: Diagram.braid(y, x)[::-1])]:
     source, target = x @ f >> braid(x, b), braid(x, a) >> f @ x
     assert source.naturality(0, braid=braid) == target
     assert target.naturality(1, left=False, down=False, braid=braid) == source
 \end{minted}
 \end{example}
+
+
+\begin{python}
+{\normalfont Implementation of free $\dagger$-symmetric categories.}
+
+\begin{minted}{python}
+class Diagram(braided.Diagram): pass
+
+class Box(braided.Box, Diagram):
+    cast = Diagram.cast
+
+class Swap(Braid, Box):
+    def dagger(self): return Swap(*self.cod)
+
+Diagram.braid = Diagram.swap = hexagon(Swap)
+
+class Functor(braided.Functor):
+    dom = cod = Category(Ty, Diagram)
+
+    def __call__(self, other):
+        if isinstance(other, Swap):
+            return self.cod.ar.swap(self(other.dom[0]), self(other.dom[1]))
+        return super().__call__(other)
+\end{minted}
+\end{python}
 
 \begin{python}
 {\normalfont Implementation of $\mathbf{Pyth}$ and $\mathbf{Tensor}_\S$ as symmetric categories.}
@@ -255,16 +274,12 @@ We can also define bubbles and draw them in the same way as for monoidal diagram
 
 \begin{minted}{python}
 class Ty(pivotal.Ty, braided.Ty): pass
-
 class Diagram(pivotal.Diagram, braided.Diagram): pass
-
 class Box(pivotal.Box, braided.Box, Diagram):
     cast = Diagram.cast
 
 class Cup(pivotal.Cup, Box): pass
-
 class Cap(pivotal.Cap, Box): pass
-
 class Braid(braided.Braid, Box): pass
 
 Diagram.braid = hexagon(Braid)
@@ -281,14 +296,14 @@ class Functor(pivotal.Functor, braided.Functor):
 \end{python}
 
 \begin{example}
-We can define knot polynomials such as the Kauffman bracket using tortile functors into a category where the braiding is defined as a weighted sum of diagrams.
+We can define knot polynomials such as the Kauffman bracket using tortile functors into a self-dual category where the braiding is defined as a weighted sum of diagrams.
 
 \begin{minted}{python}
+Ty.l = Ty.r = property(lambda self: self)
 x, A = Ty('x'), Box('A', Ty(), Ty())
 
 class Polynomial(Diagram):
     def braid(x, y):
-        assert x == y and len(x) == len(y) == 1
         return (A @ x @ y) + (Cup(x, y) >> A.dagger() >> Cap(x, y))
 
 Kauffman = Functor(

@@ -1,4 +1,17 @@
 """ DisCoPy """
 
 from discopy import (
-    cat, monoidal, rigid, braided, python, matrix, tensor, drawing)
+    cat,
+    monoidal,
+    rigid,
+    pivotal,
+    braided,
+    symmetric,
+    tortile,
+    compact,
+    closed,
+    hypergraph,
+    python,
+    matrix,
+    tensor,
+    drawing)

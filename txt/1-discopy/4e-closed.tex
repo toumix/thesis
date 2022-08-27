@@ -43,35 +43,36 @@ Intuitively, if we take a higher-order function, evaluate it then abstract away 
 {\normalfont Implementation of $\mathbf{Pyth}$ as a cartesian closed category.}
 
 \begin{minted}{python}
-def exp(base: tuple[type, ...], exponent: tuple[type, ...]) -> tuple[type, ...]:
-    return [Callable[exponent, tuple[base]]]
+Ty = tuple[type, ...]
+
+def exp(base: Ty, exponent: Ty) -> Ty:
+    return (Callable[exponent, tuple[base]], )
 
 class Function:
     ...
     def curry(self, n=1, left=True) -> Function:
-        inside = lambda *xs: lambda *ys: self(*(ys + xs) if left else (xs + ys))
-        dom, cod = (self.dom[n:], exp(self.cod, self.dom[:n])) if left\
-            else (self.dom[:len(self.dom) - n],
-                  exp(self.cod, self.dom[len(diagram) - n:]))
+        inside = lambda *xs: lambda *ys: self(*(xs + ys) if left else (ys + xs))
+        if left:
+            dom = self.dom[:len(self.dom) - n]
+            cod = exp(self.cod, self.dom[len(self.dom) - n:])
+        else: dom, cod = self.dom[n:], exp(self.cod, self.dom[:n])
         return Function(inside, dom, cod)
 
     @staticmethod
-    def ev(base: tuple[type, ...], exponent: tuple[type, ...],
-           left=True) -> Function:
-        inside = (lambda *xs: xs[-1](*xs[:-1])) if left\
-            else (lambda f, *xs: f(*xs))
-        dom, cod = (exponent + exp(base, exponent), base) if left\
-            else (exp(base, exponent) + exponent, base)
-        return Function(inside, dom, cod)
+    def ev(base: Ty, exponent: Ty, left=True) -> Function:
+        if left:
+            inside = lambda f, *xs: f(*xs)
+            return Function(inside, exp(base, exponent) + exponent, base)
+        inside = lambda *xs: xs[-1](*xs[:-1])
+        return Function(inside, exponent + exp(base, exponent), base)
 
     def uncurry(self, left=True) -> Function:
-        if len(self.cod) != 1 or not self.cod[0]._name == "Callable": return self
-        *exponent, output = self.cod[0].__args__
-        base = output.__args__ if is_tuple(output) else (output, )
-        return exponent @ self >> Function.ev(base, exponent) if left\
-            else self @ exponent >> Function.ev(base, exponent, left=False)
+        base, exponent = self.cod[0].__args__[-1], self.cod[0].__args__[:-1]
+        base = tuple(base.__args__) if is_tuple(base) else (base, )
+        return self @ exponent >> Function.ev(base, exponent) if left\
+            else exponent @ self >> Function.ev(base, exponent, left=False)
 
-    under, over = staticmethod(exp), staticmethod(lambda x, y: exp(y, x))
+    exp = under = over = staticmethod(exp)
 \end{minted}
 \end{python}
 
@@ -85,7 +86,7 @@ f = Function(dom=y, cod=exp(z, x),
 g = Function(dom=x + y, cod=z, inside=lambda x, y: f(y)(x))
 
 assert f.uncurry().curry()(True)(1j) == f(True)(1j)
-assert g.curry().uncurry(True, 1j) == g(True, 1j)
+assert g.curry().uncurry()(True, 1j) == g(True, 1j)
 \end{minted}
 \end{example}
 
@@ -123,14 +124,11 @@ We also need to override the \py{cast} method so that the unit law is satisfied,
 class Ty(monoidal.Ty):
     @classmethod
     def cast(cls, old: monoidal.Ty) -> Ty:
-        if len(old) == 1 and isinstance(old[0], Exp):
-            return old[0]
-        return cls(old.inside)
+        return old[0] if len(old) == 1 and isinstance(old[0], Exp) else cls(old)
 
     def __pow__(self, other):
-        if isinstance(other, Ty):
-            return Exp(self, other)
-        return super().__pow__(other)
+        return Exp(self, other) if isinstance(other, Ty)\
+            else super().__pow__(other)
 
 class Exp(Ty):
     cast = Ty.cast
@@ -151,8 +149,8 @@ class Over(Exp):
 class Under(Exp):
     __str__ = lambda self: "({} >> {})".format(self.exponent, self.base)
 
-Ty.__lshift__, Ty.__rshift__ = Over, lambda self, other: Under(other, self)
-Diagram.over, Diagram.under, Diagram.exp = map(staticmethod, (Over, Under, Exp))
+Ty.__lshift__ = lambda self, other: Over(self, other)
+Ty.__rshift__ = lambda self, other: Under(other, self)
 \end{minted}
 \end{python}
 
@@ -170,30 +168,35 @@ class Diagram(monoidal.Diagram):
 
     @staticmethod
     def ev(base: Ty, exponent: Ty, left=True) -> Ev:
-        return Ev(exponent >> base if left else base << exponent)
+        return Ev(base << exponent if left else exponent >> base)
 
     def uncurry(self: Diagram, left=True) -> Diagram:
-        if not isinstance(self.cod, (Over if left else Under)): return self
         base, exponent = self.cod.base, self.cod.exponent
-        return exponent @ self >> Ev(exponent >> base) if left\
-            else self @ exponent >> Ev(base << exponent)
+        return self @ exponent >> Ev(base << exponent) if left\
+            else exponent @ self >> Ev(exponent >> base)
+
+class Box(monoidal.Box, Diagram):
+    cast = Diagram.cast
 
 class Ev(Box):
     def __init__(self, x: Exp):
         self.base, self.exponent = x.base, x.exponent
         self.left = isinstance(x, Over)
-        dom, cod = self.exponent @ x, self.base if self.left\
-            else x @ self.exponent, self.base
+        dom, cod = (x @ self.exponent, self.base) if self.left\
+            else (self.exponent @ x, self.base)
         super().__init__("Ev" + str(x), dom, cod)
 
 class Curry(Box):
     def __init__(self, diagram: Diagram, n=1, left=True):
         self.diagram, self.n, self.left = diagram, n, left
         name = "Curry({}, {}, {})".format(diagram, n, left)
-        dom, cod = (diagram.dom[n:], diagram.dom[:n] >> diagram.cod) if left\
-            else (diagram.dom[:len(diagram.dom) - n],
-                  diagram.cod << diagram.dom[len(diagram.dom) - n:])
+        if left:
+            dom = diagram.dom[:len(diagram.dom) - n]
+            cod = diagram.cod << diagram.dom[len(diagram.dom) - n:]
+        else: dom, cod = diagram.dom[n:], diagram.dom[:n] >> diagram.cod
         super().__init__(name, dom, cod)
+
+Diagram.over, Diagram.under, Diagram.exp = map(staticmethod, (Over, Under, Exp))
 
 class Functor(monoidal.Functor):
     dom = cod = Category(Ty, Diagram)
@@ -224,10 +227,10 @@ F = Functor(
     ob={x: complex, y: bool, z: float},
     ar={f: lambda y: lambda x: abs(x) ** 2 if y else 0,
         g: lambda y: lambda z: z + 1j if y else -1j}
-    cod=Category(tuple[type, ...], Function))
+    cod=Category(Ty, Function))
 
-assert F(f.uncurry(left=False).curry(left=False))(True)(1j) == F(f)(True)(1j)
-assert F(g.uncurry().curry())(True)(1.2) == F(g)(True)(1.2)
+assert F(f.uncurry().curry())(True)(1j) == F(f)(True)(1j)
+assert F(g.uncurry(left=False).curry(left=False))(True)(1.2) == F(g)(True)(1.2)
 \end{minted}
 \end{example}
 
@@ -250,14 +253,16 @@ rigid.Diagram.under = staticmethod(lambda base, exponent: exponent >> base)
 
 @classmethod
 def ev(cls, base: rigid.Ty, exponent: rigid.Ty, left=True) -> rigid.Diagram:
-    return cls.cups(exponent, exponent.l) @ cls.id(base) if left\
-        else cls.id(base) @ cls.cups(exponent.r, exponent)
+    return base @ cls.cups(exponent.l, exponent) if left\
+        else cls.cups(exponent, exponent.r) @ base
 
 def curry(self: rigid.Diagram, n=1, left=True) -> rigid.Diagram:
-    base, exponent = (self.dom[n:], self.dom[:n]) if left\
-        else (self.dom[len(self.dom) - n:], self.dom[:len(self.dom) - n])
-    return self.caps(exponent.r, exponent) @ base >> exponent.r @ self if left\
-        else base @ self.caps(exponent, exponent.l) >> self @ @ exponent.l
+    if left:
+        base, exponent = self.dom[:n], self.dom[n:]
+        return base @ self.caps(exponent, exponent.l) >> self @ exponent.l
+    offset = len(self.dom) - n
+    base, exponent = self.dom[offset:], self.dom[:offset]
+    return self.caps(exponent.r, exponent) @ base >> exponent.r @ self
 
 Diagram.ev, Diagram.curry = ev, curry
 \end{minted}
@@ -278,8 +283,8 @@ Diagram.draw = lambda self, **params: Draw(self).draw(**params)
 
 f, g, h = Box('f', x, z << y), Box('g', x @ y, z), Box('h', y, x >> z)
 
-drawing.equation(f.uncurry(left=False).curry(left=False), f)
-drawing.equation(h.uncurry().curry(), h)
+drawing.equation(f.uncurry().curry(), f)
+drawing.equation(h.uncurry(left=False).curry(left=False), h)
 \end{minted}
 
 \begin{center}
@@ -289,7 +294,7 @@ drawing.equation(h.uncurry().curry(), h)
 \end{center}
 
 \begin{minted}{python}
-drawing.equation(g.curry(left=False).uncurry(left=False), g, g.curry().uncurry())
+drawing.equation(g.curry().uncurry(), g, g.curry(left=False).uncurry(left=False))
 \end{minted}
 
 \ctikzfig{img/closed/uncurry}

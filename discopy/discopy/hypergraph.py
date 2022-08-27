@@ -1,6 +1,6 @@
-from discopy import braided
+from discopy import symmetric
 from discopy.rigid import nesting
-from discopy.braided import Ty, Diagram, Box
+from discopy.symmetric import Ty, Diagram, Box
 
 
 class Spider(Box):
@@ -46,7 +46,7 @@ Diagram.cups = nesting(lambda x, _: Spider(0, 2, x))
 Diagram.caps = nesting(lambda x, _: Spider(2, 0, x))
 
 
-class Functor(braided.Functor):
+class Functor(symmetric.Functor):
     def __call__(self, other):
         if isinstance(other, Spider):
             a, b = len(other.dom), len(other.cod)

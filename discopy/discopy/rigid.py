@@ -16,6 +16,11 @@ class Ob(cat.Ob):
     def cast(cls, old: cat.Ob) -> Ob:
         return old if isinstance(old, cls) else cls(str(old), z=0)
 
+    def __str__(self):
+        return str(self.r) + '.l' if self.z < 0\
+            else str(self.l) + '.r' if self.z > 0\
+            else self.name
+
 
 class Ty(monoidal.Ty, Ob):
     def __init__(self, inside=()):
@@ -23,6 +28,8 @@ class Ty(monoidal.Ty, Ob):
 
     l = property(lambda self: type(self)([x.l for x in self.inside[::-1]]))
     r = property(lambda self: type(self)([x.r for x in self.inside[::-1]]))
+    __lshift__ = lambda self, other: self @ other.l
+    __rshift__ = lambda self, other: self.r @ other
 
 
 class Diagram(monoidal.Diagram):
@@ -31,6 +38,22 @@ class Diagram(monoidal.Diagram):
         return self.caps(self.dom.r, self.dom) @ self.id(self.cod.r)\
             >> self.id(self.dom.r) @ self @ self.id(self.cod.r)\
             >> self.id(self.dom.r) @ self.cups(self.cod, self.cod.r)
+
+    over = staticmethod(lambda base, exponent: base << exponent)
+    under = staticmethod(lambda base, exponent: exponent >> base)
+
+    @classmethod
+    def ev(cls, base: Ty, exponent: Ty, left=True) -> Diagram:
+        return base @ cls.cups(exponent.l, exponent) if left\
+            else cls.cups(exponent, exponent.r) @ base
+
+    def curry(self, n=1, left=True) -> Diagram:
+        if left:
+            base, exponent = self.dom[:n], self.dom[n:]
+            return base @ self.caps(exponent, exponent.l) >> self @ exponent.l
+        offset = len(self.dom) - n
+        base, exponent = self.dom[offset:], self.dom[:offset]
+        return self.caps(exponent.r, exponent) @ base >> exponent.r @ self
 
 class Box(monoidal.Box, Diagram):
     cast = Diagram.cast

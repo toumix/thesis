@@ -4,8 +4,6 @@ from discopy.rigid import nesting
 from discopy.pivotal import Ty
 from discopy.braided import hexagon
 
-class Ty(pivotal.Ty, braided.Ty): pass
-
 class Diagram(pivotal.Diagram, braided.Diagram): pass
 
 class Box(pivotal.Box, braided.Box, Diagram):

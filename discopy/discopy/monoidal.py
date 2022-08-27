@@ -15,19 +15,21 @@ class Ty(Ob):
     def tensor(self, *others: Ty) -> Ty:
         if all(isinstance(other, Ty) for other in others):
             inside = self.inside + sum([other.inside for other in others], ())
-            return type(self)(inside)
+            return self.cast(inside)
         return NotImplemented  # This will allow whiskering on the left.
 
     def __getitem__(self, key):
         if isinstance(key, slice):
-            return type(self)(self.inside[key])
-        return type(self)((self.inside[key], ))
+            return self.cast(self.inside[key])
+        return self.cast((self.inside[key], ))
 
     __matmul__ = __add__ = tensor
-    __pow__ = lambda self, n: type(self)(n * self.inside)
+    __pow__ = lambda self, n: self.cast(n * self.inside)
     __len__ = lambda self: len(self.inside)
     __repr__ = lambda self: "{}({})".format(
         type(self).__name__, ', '.join(map(repr, self.inside)))
+
+    cast = classmethod(lambda cls, inside: cls(inside))
 
 
 class Layer(cat.Box):

@@ -8,7 +8,7 @@ class Ob(rigid.Ob):
 
 class Ty(rigid.Ty, Ob):
     def __init__(self, inside=()):
-        rigid.Ty.__init__(self, inside=map(Ob.cast, inside))
+        rigid.Ty.__init__(self, inside=tuple(map(Ob.cast, inside)))
 
 class Diagram(rigid.Diagram): pass
 

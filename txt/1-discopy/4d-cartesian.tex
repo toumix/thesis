@@ -71,7 +71,7 @@ Cartesian functors take \py{Copy} (\py{Merge}) boxes of its domain to the \py{co
 {\normalfont Implementation of free (co)cartesian categories and functors.}
 
 \begin{minted}{python}
-class Diagram(braided.Diagram):
+class Diagram(symmetric.Diagram):
     @classmethod
     def copy(cls, x: Ty, n=2) -> Diagram:
         def factory(a, b, x, _):
@@ -83,10 +83,10 @@ class Diagram(braided.Diagram):
     def merge(cls, x: Ty, n=2) -> Diagram:
         return cls.copy(x, n).dagger()
 
-class Box(braided.Box, Diagram):
+class Box(symmetric.Box, Diagram):
     cast = Diagram.cast
 
-class Swap(braided.Swap, Box): pass
+class Swap(symmetric.Swap, Box): pass
 
 Diagram.swap = Diagram.braid = hexagon(Swap)
 
@@ -102,7 +102,7 @@ class Merge(Box):
 
     dagger = lambda self: Copy(self.cod, len(self.dom))
 
-class Functor(braided.Functor):
+class Functor(symmetric.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):

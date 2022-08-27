@@ -26,9 +26,6 @@ class Braid(Box):
 
     def dagger(self): return Braid(*self.cod, is_dagger=not self.is_dagger)
 
-class Swap(Braid):
-    def dagger(self): return Swap(*self.cod)
-
 def hexagon(factory) -> Callable:
     def method(cls, x: Ty, y: Ty) -> Diagram:
         if len(x) == 0: return cls.id(y)
@@ -40,7 +37,7 @@ def hexagon(factory) -> Callable:
             >> method(cls, x[:1], y) @ cls.id(x[1:])  # right hexagon equation.
     return classmethod(method)
 
-Diagram.braid, Diagram.swap = hexagon(Braid), hexagon(Swap)
+Diagram.braid = hexagon(Braid)
 
 def naturality(self: Diagram, i: int, left=True, down=True, braid=None):
     braid = braid or self.braid
@@ -66,8 +63,6 @@ class Functor(monoidal.Functor):
     dom = cod = Category(Ty, Diagram)
 
     def __call__(self, other):
-        if isinstance(other, Swap):
-            return self.cod.ar.swap(self(other.dom[0]), self(other.dom[1]))
         if isinstance(other, Braid) and not other.is_dagger:
             return self.cod.ar.braid(self(other.dom[0]), self(other.dom[1]))
         return super().__call__(other)
