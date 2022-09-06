@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from discopy import cat
+from discopy.cat import Category
 from discopy.sugar import dataclass, inductive, Callable, Composable, Tensorable
 
 
@@ -23,7 +24,7 @@ class Function(Composable, Tensorable):
 
     @classmethod
     def id(cls, dom: type) -> Function:
-        return cls(lambda *xs: xs, dom, dom)
+        return cls(lambda *xs: untuplify(xs), dom, dom)
 
     @inductive
     def then(self, other: Function) -> Function:
@@ -76,3 +77,30 @@ class Function(Composable, Tensorable):
             else exponent @ self >> Function.ev(base, exponent, left=False)
 
     exp = under = over = staticmethod(exp)
+
+    def fix(self, n=1):
+        if n > 1: return self.fix().fix(n - 1)
+        dom, cod = self.dom[:-1], self.cod
+        def inside(*xs, y=None):
+            result = self.inside(*xs + (() if y is None else (y, )))
+            return y if result == y else inside(*xs, y=result)
+        return Function(inside, dom, cod)
+
+    def trace(self, n=1):
+        dom, cod, traced = self.dom[:-n], self.cod[:-n], self.dom[-n:]
+        fixed = (self >> self.discard(cod) @ traced).fix()
+        return self.copy(dom) >> dom @ fixed\
+            >> self >> cod @ self.discard(traced)
+
+
+class Functor(cat.Functor):
+    dom = cod = Category(Ty, Function)
+
+    def __call__(self, other):
+        if isinstance(other, Function):
+            return self.ar[other]
+        if isinstance(other, tuple):
+            return tuple(map(self, other))
+        if isinstance(other, type):
+            return self.ob[other]
+        raise TypeError

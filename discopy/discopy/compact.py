@@ -4,7 +4,10 @@ from discopy.tortile import Ty, hexagon, nesting
 
 
 class Diagram(symmetric.Diagram, tortile.Diagram):
-    pass
+    def trace(self, n=1):
+        return self.dom[:-n] @ self.caps(self.dom[-n:], self.dom[-n:].r)\
+            >> self @ self.dom[-n:].r\
+            >> self.cod[:-n] @ self.cups(self.cod[-n:], self.cod[-n:].r)
 
 class Box(symmetric.Box, tortile.Box, Diagram):
     cast = Diagram.cast

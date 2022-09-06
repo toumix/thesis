@@ -4,18 +4,16 @@ from discopy.symmetric import Ty
 
 
 class Diagram(symmetric.Diagram):
-    pass
+    def trace(self, n=1):
+        return Trace(self, n)
 
 class Box(symmetric.Box, Diagram):
     cast = Diagram.cast
 
 class Trace(Box):
     def __init__(self, diagram: Diagram, n=1):
-        assert diagram.dom[-n:] == diagram.cod[-n:]
-        self.diagram, name = inside, "Trace({}, {})".format(diagram, n)
+        self.diagram, name = diagram, "Trace({}, {})".format(diagram, n)
         super().__init__(name, diagram.dom[:-n], diagram.cod[:-n])
-
-Diagram.trace = Trace
 
 class Functor(symmetric.Functor):
     dom = cod = Category(Ty, Diagram)

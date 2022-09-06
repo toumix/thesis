@@ -12,7 +12,7 @@ class Ob:
 
 @dataclass
 class Arrow(Composable):
-    inside: tuple[Arrow, ...]
+    inside: tuple[Box, ...]
     dom: Ob
     cod: Ob
 
@@ -75,7 +75,9 @@ class Box(Arrow):
     cast = Arrow.cast
 
     def __init__(self, name: str, dom: Ob, cod: Ob, is_dagger=False):
-        self.name, self.is_dagger = name, is_dagger
+        # This allows sesqui.Ty to subclass both Box and Ob.
+        object.__setattr__(self, "name", name)
+        self.is_dagger = is_dagger
         super().__init__((self, ), dom, cod)
 
     def __eq__(self, other):

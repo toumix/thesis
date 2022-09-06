@@ -4813,6 +4813,48 @@
       \verb https://wiki.haskell.org/index.php?title=Hask&oldid=52908
       \endverb
     \endentry
+    \entry{CorreiaEtAl22}{article}{}
+      \name{author}{3}{}{%
+        {{hash=527d78f69a3050c8d6ab2f74b98356ed}{%
+           family={Correia},
+           familyi={C\bibinitperiod},
+           given={Adriana\bibnamedelima D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=c73b24892dc79a5a63ee0140b27424be}{%
+           family={Moortgat},
+           familyi={M\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bfdc2572ca98d3aefd663575bf12a847}{%
+           family={Stoof},
+           familyi={S\bibinitperiod},
+           given={Henk\bibnamedelimb T.\bibnamedelimi C.},
+           giveni={H\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{041c564fbc0b95290ef215de5926ac88}
+      \strng{fullhash}{041c564fbc0b95290ef215de5926ac88}
+      \strng{bibnamehash}{041c564fbc0b95290ef215de5926ac88}
+      \strng{authorbibnamehash}{041c564fbc0b95290ef215de5926ac88}
+      \strng{authornamehash}{041c564fbc0b95290ef215de5926ac88}
+      \strng{authorfullhash}{041c564fbc0b95290ef215de5926ac88}
+      \field{labelalpha}{CMS22}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Quantum Information Processing}
+      \field{number}{4}
+      \field{shortjournal}{Quantum Inf. Process.}
+      \field{title}{Quantum Computations for Disambiguation and Question Answering}
+      \field{volume}{21}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{pages}{126}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1007/s11128-022-03441-9
+      \endverb
+    \endentry
     \entry{CowtanEtAl20a}{article}{}
       \name{author}{5}{}{%
         {{hash=f763f6aad69ada4ba6870502095fb5b1}{%

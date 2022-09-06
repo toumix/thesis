@@ -99,35 +99,11 @@ Given two types \py{t0, t1}, their tagged union \py{t0 + t1} is the union of the
 Given two functions \py{f, g} we can define their tensor as $\py{lambda b, x:} \py{(b, f(x) if b else g(x))}$.
 \end{example}
 
-\begin{python}
-{\normalfont Implementation of $\mathbf{Pyth}$ as a (non-strict) monoidal category with \py{tagged_union} as tensor.}
-
-\begin{minted}{python}
-class TaggedUnion:
-    _name = "TaggedUnion"
-
-    def __class_getitem__(cls, types):
-        if not types: return NoReturn
-        result = Union[tuple(tuple[Literal[i], t] for i, t in enumerate(types))]
-        result.__origin__, result.__args__ = TaggedUnion, types; return result
-
-class Function:
-    ...
-    def tagged_union(self: Function, other: Function) -> Function:
-        inside = lambda b, x: (b, self(x)) if b else (b, other(x))
-        dom = TaggedUnion[self.dom, other.dom]
-        cod = TaggedUnion[self.cod, other.cod]
-        return Function(inside, dom, cod)
-\end{minted}
-\end{python}
-
 \begin{example}
 The category $\mathbf{Mat}_\S$ is monoidal with addition of natural numbers as tensor on objects and the \emph{direct sum} $f \oplus g = \big(\begin{smallmatrix}f & 0\\ 0 & g\end{smallmatrix}\big)$ as tensor on arrows.
 When the rig $\S$ is commutative, $\mathbf{Mat}_\S$ is also monoidal with multiplication of natural numbers as tensor on objects and the \emph{Kronecker product} as tensor on arrows.
 The inclusion functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ is monoidal in two ways: it sends disjoint unions to direct sums and Cartesian products to Kronecker products.
 \end{example}
-
-\pagebreak
 
 \begin{python}
 {\normalfont Implementation of $\mathbf{Mat}_\S$ as a monoidal category with \py{direct_sum} and \py{Kronecker} as tensor.}
@@ -390,7 +366,7 @@ This will prove useful in sections~\ref{subsection:rigid}, \ref{subsection:close
 
 \begin{minted}[fontsize=\footnotesize]{python}
 class Layer(cat.Box):
-    def __init__(self, left: Ty, box: cat.Box, right: Ty):
+    def __init__(self, left: Ty, box: Box, right: Ty):
         self.left, self.box, self.right = left, box, right
         name = ("{} @ ".format(left) if left else "") + box.name\
             + (" @ {}".format(right) if right else "")
@@ -406,9 +382,8 @@ class Layer(cat.Box):
     def __iter__(self): yield self.left; yield self.box; yield self.right
 
     @classmethod
-    def cast(cls, old: cat.Box) -> Layer:
-        if isinstance(old, cls): return old
-        return cls(old.dom[:0], old, old.dom[:0])
+    def cast(cls, old: Box) -> Layer:
+        return cls(old.dom[:0], old, old.dom[len(old.dom):])
 \end{minted}
 \end{python}
 

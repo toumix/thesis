@@ -288,45 +288,60 @@ The implementation is straightforward: we just need to make \py{Ty} a subclass o
 
 \begin{minted}{python}
 class Colour(cat.Ob):
-    def __init__(self, name="white"):
-        super().__init__(name)
+    pass
 
-class Ty(cat.Arrow, monoidal.Ty):
-    def __init__(self, inside: cat.Arrow | str, dom=Colour(), cod=Colour()):
-        if not isinstance(inside, Arrow):
-            inside = cat.Box(inside, dom, cod)
-        Arrow.__init__(self, inside.inside, inside.dom, inside.cod)
+class TyArrow(cat.Arrow, monoidal.Ty):
+    @inductive
+    def tensor(self, other):
+        if isinstance(other, TyArrow):
+            return cat.Arrow.then(self, other)
+        return NotImplemented  # Allows whiskering on the left.
 
-    @classmethod
-    def cast(cls, old: Arrow | monoidal.Ty) -> Ty:
-        return old if isinstance(old, cls) else cls(
-            old.inside if isinstance(old, monoidal.Ty) else old)
+    __matmul__ = tensor
 
-    tensor = Arrow.then
+class Ty(cat.Box, TyArrow):
+    cast = TyArrow.cast
 
-class Layer(monoidal.Layer): pass
+class Layer(monoidal.Layer):
+    def __init__(self, left: Ty, box: monoidal.Box, right: Ty):
+        assert left.cod == box.dom.dom and box.dom.cod == right.dom
+        super().__init__(left, box, right)
 
-class Diagram(monoidal.Diagram): pass
+class Diagram(monoidal.Diagram):
+    pass
 
 class Box(monoidal.Box, Diagram):
     def __init__(self, name: str, dom: Ty, cod: Ty):
         assert (dom.dom, dom.cod) == (cod.dom, cod.cod)
         monoidal.Box.__init__(self, name, dom, cod)
+        Diagram.__init__(self, (Layer.cast(self), ), dom, cod)
+
+    cast = Diagram.cast
 
 @dataclass
-class TwoCategory(Category):
-    colours: type
+class TwoCategory:
+    colours: type = Colour
+    ob: type = Ty
+    ar: type = Diagram
 
 @dataclass
 class TwoFunctor(monoidal.Functor):
-    colours: dict[Ob, Ob]
+    colours: DictOrCallable[Colour, Colour]
+    ob: DictOrCallable[Ty, Ty]
+    ar: DictOrCallable[Box, Diagram]
 
-    dom = cod = TwoCategory(colours=Colour, ob=Ty, ar=Diagram)
+    dom: TwoCategory = TwoCategory()
+    cod: TwoCategory = TwoCategory()
 
     def __call__(self, other):
-        if isinstance(other, (Diagram, Layer)): return super().__call__(other)
-        dom, cod = (Category(C.colours, C.ob) for C in [self.dom, self.cod])
-        return cat.Functor(ob=self.colours, ar=self.ob, dom=dom, cod=cod)(other)
+        if isinstance(other, Colour):
+            return self.colours[other]
+        if isinstance(other, Ty):
+            return self.ob[other]
+        if isinstance(other, TyArrow):
+            base_case = self.cod.ob.id(self(other.dom))
+            return base_case.then(*[self(box) for box in other.inside])
+        return super().__call__(other)
 \end{minted}
 \end{python}
 
@@ -341,28 +356,33 @@ class Transformation(Composable, Tensorable):
 
     @staticmethod
     def id(F: Functor):
-        return Transformation(lambda x: F.cod.ar.id(x), dom=F, cod=F)
+        return Transformation(F.cod.ar.id, dom=F, cod=F)
 
+    @inductive
     def then(self, other: Transformation) -> Transformation:
-        assert self.cod == other.dom
-        return Transformation(lambda x: other(self(x)), self.dom, other.cod)
+        return Transformation(lambda x: self(x) >> other(x), self.dom, other.cod)
 
-    def tensor(self, other: Transformation | Functor) -> Transformation:
-        if isinstance(other, Transformation):
-            return self @ other.dom >> self.cod @ other
-        return Transformation(
-            lambda x: other(self(x)), self.dom >> other, self.cod >> other)
+    @inductive
+    def tensor(self, other: Transformation) -> Transformation:
+        return self @ other.dom >> self.cod @ other
 
-    def __rmatmul__(self, other: Functor) -> Transformation:
-        return Transformation(
-            lambda x: self(other(x)), other >> self.dom, other >> self.cod)
+    def __matmul__(self, other: Transformation | Functor) -> Transformation:
+        if isinstance(other, Functor):
+            return Transformation(
+                lambda x: other(self(x)), self.dom >> other, self.cod >> other)
+        return self.tensor(other)
 
-    def __call__(self, other: Ty):
+    def __rmatmul__(self, other: Transformation | Functor) -> Transformation:
+        if isinstance(other, Functor):
+            return Transformation(
+                lambda x: self(other(x)), other >> self.dom, other >> self.cod)
+        raise TypeError
+
+    def __call__(self, other: Ob) -> Arrow:
         inside, dom, cod = self.inside(other), self.dom(other), self.cod(other)
-        return inside if isinstance(inside, self.cod.ar)\
-            else self.cod.ar(inside, dom, cod)
+        return self.cod.cod.ar(inside, dom, cod)
 
-Cat = TwoCategory(colours=Category, ob=Functor, ar=Transformation)
+Cat = TwoCategory(Category, Functor, Transformation)
 \end{minted}
 \end{python}
 
@@ -375,14 +395,23 @@ x = Ty('x', dom=a, cod=a)
 f, g = Box('f', Ty.id(a), x), Box('g', x @ x, x)
 
 Pyth = Category(tuple[type, ...], Function)
-List = Functor(dom=Pyth, cod=Pyth,
-               ob=lambda xs: [list[xs]], ar=lambda f: lambda xs: map(f, xs))
-Unit = Transformation(lambda _: lambda x: [x], dom=Functor.id(Pyth), cod=List)
-Mult = Transformation(lambda _: lambda xs: sum(xs, []), dom=List >> List, cod=List)
+List = Functor(
+    ob=lambda xs: list[xs],
+    ar=lambda f: lambda xs: list(map(f, xs)),
+    dom=Pyth, cod=Pyth)
+Unit = Transformation(
+    lambda _: lambda x: [x], dom=Functor.id(Pyth), cod=List)
+Mult = Transformation(
+    lambda _: lambda xs: sum(xs, []), dom=List >> List, cod=List)
 
-F = TwoFunctor(colours={a: Pyth}, ob={x: List}, ar: {f: Unit, g: Mult}, cod=Cat)
-assert F(f)(int)(42) == [42] and F(g)(int)([[1], [2], [3]]) == [1, 2, 3]
-assert F(f @ x >> g)(int)([1, 2, 3]) == [1, 2, 3]
+F = TwoFunctor(
+    colours={a: Pyth}, ob={x: List}, ar={f: Unit, g: Mult}, cod=Cat)
+
+assert F(f @ x >> g)(int)([1, 2, 3])\
+    == F(x @ f >> g)(int)([1, 2, 3])\
+    == F(Diagram.id(x))(int)([1, 2, 3]) == [1, 2, 3]
+
+assert F(g @ x >> g)(int)([[[42]]]) == [42] == F(x @ g >> g)(int)([[[42]]])
 \end{minted}
 \end{example}
 
@@ -393,51 +422,32 @@ It generates a free premonoidal sesquicategory with types $\Sigma_0^\star$ as 0-
 We can construct it explicitly by generalising layers to \emph{slices} with not only types on the left and right but also diagrams on the top and bottom, i.e. a rewrite rule together with a match.
 \py{Rule} is a subclass of \py{Box} with diagrams as domain and codomain, \py{Slice} is a box made of a rule inside a match with methods for left and right whiskering as well as pre- and post-composition.
 \py{Rewrite} is a subclass of \py{Diagram} with \py{Slice} as layers, it inherits its vertical composition (i.e. two rewrites applied in sequence) from the diagram class as well as its tensor product (i.e. two rewrites applied in parallel on the tensor of two diagrams).
-The horizontal composition (i.e. two rewrites applied in parallel on the composition of two diagrams) is given by an optional argument to \py{then} which temporarily replaces left and right whiskering by pre- and post-composition before calling \py{Diagram.tensor}.
+The horizontal composition (i.e. two rewrites applied in parallel on the composition of two diagrams) can be implemented by temporarily replacing left and right whiskering by pre- and post-composition before calling \py{Diagram.tensor}.
 
 \begin{python}\label{listing:free-monoidal-2-category}
 {\normalfont Outline of the implementation of free premonoidal sesquicategories.}
 
 \begin{minted}{python}
-class Rule(Box):
-    def __init__(self, name: str, dom: Diagram, cod: Diagram):
-        super().__init__(name, dom, cod)
-
-class Slice(Box):
+class Slice(monoidal.Box):
     def __init__(self, rule: Rule, match: Match):
-        dom, cod = match.subs(rule.dom), matchs.subs(rule.cod)
+        dom, cod = match.subs(rule.dom), match.subs(rule.cod)
         super().__init__("Slice({}, {})".format(rule, match), dom, cod)
 
-    __matmul__ = lambda self, other: Slice(self.rule, self.match @ other)
-    __rmatmul__ = lambda self, other: Slice(self.rule, other @ self.match)
-    __lshift__ = __rrshift__ = lambda self, other:\
-        Slice(self.rule, self.match >> other)
-    __rshift__ = __rlshift__ = lambda self, other:\
-        Slice(self.rule, other >> self.match)
-
-Match.__matmul__ = lambda self, other: Match(
-    self.top @ other.dom, self.bottom @ other, self.left, self.right @ other.dom)
-Match.__rmatmul__ = lambda self, other: Match(
-    other @ self.top, other.cod @ self.bottom, other.cod @ self.left, self.right)
-Match.__lshift__ = Match.__rrshift__ = lambda self, other: Match(
-    self.top, self.bottom >> other, self.left, self.right)
-Match.__rshift__ = Match.__rlshift__ = lambda self, other: Match(
-    other >> self.top, self.bottom, self.left, self.right)
+    @classmethod
+    def cast(cls, old: Rule) -> Slice:
+        x, y = old.dom.dom, old.cod.cod
+        top, bottom, left, right = old.id(x), old.id(y), x[:0], y[len(y):]
+        return cls(old, Match(top, bottom, left, right))
 
 class Rewrite(Diagram):
-    def __init__(self, slices: tuple[Slice, ...],
-                 dom: Ty | Diagram, cod: Ty | Diagram):
-        dom, cod =\
-            (x if isinstance(x, Diagram) else Diagram.id(x) for x in (dom, cod))
-        super().__init__(slices, dom, cod)
+    inside: tuple[Slice, ...]
+    dom: Diagram
+    cod: Diagram
 
-    def then(self, other, horizontal=False):
-        if not horizontal: return super().then(other)
-        tmp = Slice.__matmul__, Slice.__rmatmul__
-        Slice.__matmul__, Slice.__rmatmul__ = Slice.__lshift__, Slice.__rshift__
-        result = super().tensor(other)
-        Slice.__matmul__, Slice.__rmatmul__ = tmp
-        return result
+class Rule(monoidal.Box, Rewrite):
+    def __init__(self, name: str, dom: Diagram, cod: Diagram):
+        monoidal.Box.__init__(self, name, dom, cod)
+        Rewrite.__init__(self, (Slice.cast(self), ), dom, cod)
 \end{minted}
 \end{python}
 

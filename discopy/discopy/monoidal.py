@@ -33,12 +33,11 @@ class Ty(Ob):
 
 
 class Layer(cat.Box):
-    def __init__(self, left: Ty, box: cat.Box, right: Ty):
+    def __init__(self, left: Ty, box: Box, right: Ty):
         self.left, self.box, self.right = left, box, right
         name = ("{} @ ".format(left) if left else "") + box.name\
             + (" @ {}".format(right) if right else "")
         dom, cod = left @ box.dom @ right, left @ box.cod @ right
-        if not isinstance(dom, Ty): import pdb; pdb.set_trace()
         super().__init__(name, dom, cod)
 
     def __matmul__(self, other: Ty) -> Layer:
@@ -48,9 +47,8 @@ class Layer(cat.Box):
         return Layer(other @ self.left, self.box, self.right)
 
     @classmethod
-    def cast(cls, old: cat.Box) -> Layer:
-        if isinstance(old, cls): return old
-        return cls(old.dom[:0], old, old.dom[:0])
+    def cast(cls, old: Box) -> Layer:
+        return cls(old.dom[:0], old, old.dom[len(old.dom):])
 
     __repr__ = lambda self: "Layer({}, {}, {})".format(
         *map(repr, [self.left, self.box, self.right]))

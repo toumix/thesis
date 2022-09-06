@@ -200,6 +200,7 @@ It is read as the equation \py{sum(range(n)) = n * (n - 1) // 2}.
 The category $\mathbf{Mat}_\S$ has natural numbers as objects and $n \times m$ matrices with values in $\S$ as arrows $n \to m$.
 The identity and composition are given by the identity matrix and matrix multiplication respectively.
 In order for matrix multiplication to be well-defined and for $\mathbf{Mat}_\S$ to be a category, the scalars $\S$ should have at least the structure of a \emph{rig} (a riNg without Negatives, also called a \emph{semiring}): a pair of monoids $(\S, +, 0)$ and $(\S, \times, 1)$ with the first one commutative and the second a homomorphism for the first, i.e. $a \times 0 = 0 = 0 \times a$ and $(a + b) \times (c + d) = a c + a d + b c + b d$.
+
 The category $\mathbf{Mat}_\C$ is equivalent to the category of finite dimensional vector spaces and linear maps.
 When the scalars are Booleans with disjunction and conjunction as addition and multiplication, the category $\mathbf{Mat}_\B$ is equivalent to the category of finite sets and relations.
 There is a faithful functor $\mathbf{FinSet} \to \mathbf{Mat}_\B$ which sends finite sets to their cardinality and functions to their graph.
@@ -330,7 +331,7 @@ class Ob:
 
 @dataclass
 class Arrow(Composable):
-    inside: tuple[Arrow, ...]
+    inside: tuple[Box, ...]
     dom: Ob
     cod: Ob
 

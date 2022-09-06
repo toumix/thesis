@@ -116,6 +116,20 @@ class Matrix(Composable, Tensorable):
 
     tensor = direct_sum
 
+    def repeat(self):
+        assert self.dtype is bool and self.dom == self.cod
+        return sum(
+            Matrix.id(self.dom).then(*n * [self]) for n in range(self.dom + 1))
+
+    def trace(self, n=1):
+        assert self.dtype is bool
+        A, B, C, D = (row >> self >> column
+                      for row in [self.id(self.dom - n) @ self.unit(n),
+                                  self.unit(self.dom - n) @ self.id(n)]
+                      for column in [self.id(self.cod - n) @ self.discard(n),
+                                     self.discard(self.cod - n) @ self.id(n)])
+        return A + (B >> D.repeat() >> C)
+
 
 for converter in (bool, int, float, complex):
     # Downcasting a 1 by 1 Matrix to a scalar.

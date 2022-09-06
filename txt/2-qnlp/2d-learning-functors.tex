@@ -31,6 +31,7 @@ This variational approach to question answering was first demonstrated in a clas
 Because the circuits were simulated classically it was possible to use standard gradient descent, with results comparable to the state-of-the-art.
 The first NLP experiment on quantum hardware to appear in print was \cite{MeichanetzidisEtAl20}, where we used functorial learning to solve a toy question-answering task on a Shakespeare-inspired dataset.
 We used SPSA for the optimisation and the snake removal functor defined in example~\ref{example:autonomisation-who} to simplify the circuits of sentences with relative pronouns like ``Romeo who loves Juliet dies''.
+Although this first experiment answered only yes-no questions, the same framework can be applied to \emph{wh}-questions, with Grover's algorithm yielding a quadratic speedup~\cite{CorreiaEtAl22}.
 This functorial learning pipeline was then applied on a larger dataset by Lorenz et al.~\cite{LorenzEtAl21}, demonstrating the convergence of the model and its statistical significance over a random baseline.
 The pipeline was packaged into its own Python library, \py{lambeq}~\cite{KartsaklisEtAl21}, which builds upon DisCoPy and state-of-the art parsers.
-It has also been adapted from question-answering to machine learning translation~\cite{AbbaszadeEtAl21,VicenteNieto21}, word-sense disambiguation~\cite{Hoffmann21} and even to generative music~\cite{MirandaEtAl21}.
+It has also been adapted from question-answering to machine translation~\cite{AbbaszadeEtAl21,VicenteNieto21}, word-sense disambiguation~\cite{Hoffmann21} and even to generative music~\cite{MirandaEtAl21}.
