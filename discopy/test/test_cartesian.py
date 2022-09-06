@@ -67,7 +67,7 @@ def test_FinSet():
 def test_neural_network():
     x = Ty('x')
     add = lambda n: Box('$+$', x ** n, x)
-    ReLU = Box('$\sigma$', x, x)
+    ReLU = Box('$\\sigma$', x, x)
     weights = [Box('w{}'.format(i), x, x) for i in range(4)]
     bias = Box('b', Ty(), x)
 
