@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Embedding} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{[}\PYG{n}{Node}\PYG{p}{,} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{float}\PYG{p}{,} \PYG{n+nb}{float}\PYG{p}{]]}
+\PYG{n}{PlaneGraph} \PYG{o}{=} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Graph}\PYG{p}{,} \PYG{n}{Embedding}\PYG{p}{]}
+
+\PYG{k}{def} \PYG{n+nf}{make\PYGZus{}space}\PYG{p}{(}\PYG{n}{position}\PYG{p}{:} \PYG{n}{Embedding}\PYG{p}{,} \PYG{n}{scan}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{Node}\PYG{p}{],} \PYG{n}{box}\PYG{p}{:} \PYG{n}{Box}\PYG{p}{,} \PYG{n}{offset}\PYG{p}{:} \PYG{n+nb}{int}
+        \PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Embedding}\PYG{p}{,} \PYG{n+nb}{float}\PYG{p}{]:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} Update the graph to make space and return the left of the box. \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+\PYG{k}{def} \PYG{n+nf}{draw}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{PlaneGraph}\PYG{p}{:}
+    \PYG{n}{graph} \PYG{o}{=} \PYG{n}{diagram2graph}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+    \PYG{n}{box\PYGZus{}nodes} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}box\PYGZsq{}}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{k}{for} \PYG{n}{j}\PYG{p}{,} \PYG{n}{box} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boxes}\PYG{p}{)]}
+    \PYG{n}{dom\PYGZus{}nodes} \PYG{o}{=} \PYG{n}{scan} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}dom\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)]}
+    \PYG{n}{position} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{node}\PYG{p}{:} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{node} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{dom\PYGZus{}nodes}\PYG{p}{)\PYGZcb{}}
+    \PYG{k}{for} \PYG{n}{j}\PYG{p}{,} \PYG{p}{(}\PYG{n}{left}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{):}
+        \PYG{n}{box\PYGZus{}node} \PYG{o}{=} \PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}box\PYGZsq{}}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)}
+        \PYG{n}{position}\PYG{p}{,} \PYG{n}{left\PYGZus{}of\PYGZus{}box} \PYG{o}{=} \PYG{n}{make\PYGZus{}space}\PYG{p}{(}\PYG{n}{position}\PYG{p}{,} \PYG{n}{scan}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left}\PYG{p}{))}
+        \PYG{n}{position}\PYG{p}{[}\PYG{n}{box\PYGZus{}node}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}
+            \PYG{n}{left\PYGZus{}of\PYGZus{}box} \PYG{o}{+} \PYG{n+nb}{max}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):}
+            \PYG{n}{cod\PYGZus{}node}\PYG{p}{,} \PYG{o}{=} \PYG{n+nb}{filter}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{node}\PYG{p}{:} \PYG{n}{node}\PYG{o}{.}\PYG{n}{kind} \PYG{o}{!=} \PYG{l+s+s2}{\PYGZdq{}box\PYGZdq{}}\PYG{p}{,}
+                               \PYG{n}{graph}\PYG{o}{.}\PYG{n}{neighbors}\PYG{p}{(}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}dom\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)))}
+            \PYG{n}{position}\PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}dom\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{position}\PYG{p}{[}\PYG{n}{cod\PYGZus{}node}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{j} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{.1}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{):}
+            \PYG{n}{position}\PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}cod\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{left\PYGZus{}of\PYGZus{}box} \PYG{o}{+} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mf}{.1}\PYG{p}{)}
+        \PYG{n}{box\PYGZus{}cod\PYGZus{}nodes} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}cod\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)]}
+        \PYG{n}{scan} \PYG{o}{=} \PYG{n}{scan}\PYG{p}{[:}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left}\PYG{p}{)]} \PYG{o}{+} \PYG{n}{box\PYGZus{}cod\PYGZus{}nodes} \PYG{o}{+} \PYG{n}{scan}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left} \PYG{o}{@} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):]}
+    \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{):}
+        \PYG{n}{cod\PYGZus{}node} \PYG{o}{=} \PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}cod\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{))}
+        \PYG{n}{position}\PYG{p}{[}\PYG{n}{cod\PYGZus{}node}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{position}\PYG{p}{[}\PYG{n}{scan}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]][}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{))}
+    \PYG{k}{return} \PYG{n}{graph}\PYG{p}{,} \PYG{n}{position}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{draw} \PYG{o}{=} \PYG{n}{draw}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{)}
+\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{g}\PYG{p}{)[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{();} \PYG{p}{(}\PYG{n}{f}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{@} \PYG{n}{g}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\PYG{k}{assert} \PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{g}\PYG{p}{)[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{()} \PYG{o}{==} \PYG{n}{f}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{@} \PYG{n}{g}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+\end{Verbatim}

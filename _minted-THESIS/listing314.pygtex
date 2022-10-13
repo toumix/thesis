@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Bubble}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Bubble}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{):} \PYG{k}{pass}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{bubble} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{:} \PYG{n}{Bubble}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{)}
+\end{Verbatim}

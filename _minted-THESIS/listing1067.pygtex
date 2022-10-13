@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{grad}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n}{sympy}\PYG{o}{.}\PYG{n}{Expr}\PYG{p}{],} \PYG{n}{var}\PYG{p}{:} \PYG{n}{sympy}\PYG{o}{.}\PYG{n}{Symbol}\PYG{p}{):}
+    \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{o}{.}\PYG{n}{diff}\PYG{p}{(}\PYG{n}{var}\PYG{p}{))}
+
+\PYG{n}{Tensor}\PYG{o}{.}\PYG{n}{grad} \PYG{o}{=} \PYG{n}{grad}
+\end{Verbatim}

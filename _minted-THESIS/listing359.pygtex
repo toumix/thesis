@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}abcxyzw\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}box\PYGZsq{}}\PYG{p}{,} \PYG{n}{a} \PYG{o}{@} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

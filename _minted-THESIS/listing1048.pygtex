@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{for} \PYG{n+nb+bp}{cls} \PYG{o+ow}{in} \PYG{p}{(}\PYG{n}{Gate}\PYG{p}{,} \PYG{n}{Bra}\PYG{p}{,} \PYG{n}{Ket}\PYG{p}{):}                  \PYG{n+nb}{setattr}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}is\PYGZus{}pure\PYGZdq{}}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{)}
+\PYG{k}{for} \PYG{n+nb+bp}{cls} \PYG{o+ow}{in} \PYG{p}{(}\PYG{n}{Encode}\PYG{p}{,} \PYG{n}{Measure}\PYG{p}{,} \PYG{n}{Discard}\PYG{p}{,} \PYG{n}{Mixed}\PYG{p}{):} \PYG{n+nb}{setattr}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}is\PYGZus{}pure\PYGZdq{}}\PYG{p}{,} \PYG{k+kc}{False}\PYG{p}{)}
+
+\PYG{n}{Circuit}\PYG{o}{.}\PYG{n}{is\PYGZus{}pure} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:}
+    \PYG{n+nb}{all}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{is\PYGZus{}pure} \PYG{k}{for} \PYG{n}{box} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boxes}\PYG{p}{)}
+    \PYG{o+ow}{and} \PYG{n+nb}{all}\PYG{p}{(}\PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{obj}\PYG{p}{,} \PYG{n}{Qudit}\PYG{p}{)} \PYG{k}{for} \PYG{n}{obj} \PYG{o+ow}{in} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{))}
+
+\PYG{k}{class} \PYG{n+nc}{PureEval}\PYG{p}{(}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{ob} \PYG{o}{=} \PYG{n}{ar} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+    \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{),} \PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{])}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Qudit}\PYG{p}{):} \PYG{k}{return} \PYG{p}{[}\PYG{n}{other}\PYG{o}{.}\PYG{n}{n}\PYG{p}{]}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Gate}\PYG{p}{)} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{other}\PYG{o}{.}\PYG{n}{is\PYGZus{}dagger}\PYG{p}{:}
+            \PYG{k}{return} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{](}\PYG{n}{other}\PYG{o}{.}\PYG{n}{array}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Bra}\PYG{p}{):} \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{())}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ket}\PYG{p}{):}
+            \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{other}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Tensor}\PYG{o}{.}\PYG{n}{id}\PYG{p}{([])}
+            \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+                \PYG{n}{inside} \PYG{o}{=} \PYG{p}{[[}\PYG{n}{i} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{base}\PYG{p}{)]]}
+                \PYG{k}{return} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{](}\PYG{n}{inside}\PYG{p}{,} \PYG{p}{[],} \PYG{p}{[}\PYG{n}{other}\PYG{o}{.}\PYG{n}{base}\PYG{p}{])}
+            \PYG{n}{head}\PYG{p}{,} \PYG{o}{*}\PYG{n}{tail} \PYG{o}{=} \PYG{n}{other}\PYG{o}{.}\PYG{n}{digits}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{Ket}\PYG{p}{(}\PYG{n}{head}\PYG{p}{,} \PYG{n}{base}\PYG{o}{=}\PYG{n}{other}\PYG{o}{.}\PYG{n}{base}\PYG{p}{))}\PYGZbs{}
+                \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{Ket}\PYG{p}{(}\PYG{o}{*}\PYG{n}{tail}\PYG{p}{,} \PYG{n}{base}\PYG{o}{=}\PYG{n}{other}\PYG{o}{.}\PYG{n}{base}\PYG{p}{))}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{MixedEval}\PYG{p}{(}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{ob} \PYG{o}{=} \PYG{n}{ar} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+    \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{),} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{CQ}\PYG{p}{,} \PYG{n}{Channel}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Qudit}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Q}\PYG{p}{([}\PYG{n}{other}\PYG{o}{.}\PYG{n}{n}\PYG{p}{])}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Digit}\PYG{p}{):} \PYG{k}{return} \PYG{n}{C}\PYG{p}{([}\PYG{n}{other}\PYG{o}{.}\PYG{n}{n}\PYG{p}{])}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Scalar}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{([[}
+            \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{z}\PYG{p}{)} \PYG{o}{**} \PYG{l+m+mi}{2} \PYG{k}{if} \PYG{n}{other}\PYG{o}{.}\PYG{n}{is\PYGZus{}pure} \PYG{k}{else} \PYG{n}{other}\PYG{o}{.}\PYG{n}{z}\PYG{p}{]],} \PYG{n}{CQ}\PYG{p}{(),} \PYG{n}{CQ}\PYG{p}{())}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{box}\PYG{p}{,} \PYG{p}{(}\PYG{n}{Gate}\PYG{p}{,} \PYG{n}{Bra}\PYG{p}{,} \PYG{n}{Ket}\PYG{p}{)):}
+            \PYG{k}{return} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{double}\PYG{p}{(}\PYG{n}{PureEval}\PYG{p}{()(}\PYG{n}{box}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{box}\PYG{p}{,} \PYG{n}{Encode}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{box}\PYG{p}{,} \PYG{n}{Measure}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{measure}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{box}\PYG{p}{,} \PYG{n}{Discard}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{discard}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{box}\PYG{p}{,} \PYG{n}{MixtedState}\PYG{p}{):} \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{())}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{eval}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{mixed}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{backend}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Tensor} \PYG{o}{|} \PYG{n}{Channel}\PYG{p}{:}
+    \PYG{k}{if} \PYG{n}{backend} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{k+kc}{None}\PYG{p}{:} \PYG{o}{...}  \PYG{c+c1}{\PYGZsh{} Interface with pytket.}
+    \PYG{k}{return} \PYG{n}{PureEval}\PYG{p}{()(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{mixed} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{is\PYGZus{}pure} \PYG{k}{else} \PYG{n}{MixedEval}\PYG{p}{()(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+\end{Verbatim}

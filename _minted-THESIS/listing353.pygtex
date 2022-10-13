@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{return} \PYG{n}{decode}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{boxes}\PYG{p}{,} \PYG{n}{offsets}\PYG{p}{))}
+\end{Verbatim}

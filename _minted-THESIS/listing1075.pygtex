@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Rz}\PYG{p}{(}\PYG{n}{Gate}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{phase}\PYG{p}{:} \PYG{n}{sympy}\PYG{o}{.}\PYG{n}{Expr}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase} \PYG{o}{=} \PYG{n}{phase}
+        \PYG{n}{half\PYGZus{}theta} \PYG{o}{=} \PYG{n}{sympy}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{phase}
+        \PYG{n}{array} \PYG{o}{=} \PYG{p}{[[}\PYG{n}{sympy}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{n}{j} \PYG{o}{*} \PYG{n}{half\PYGZus{}theta}\PYG{p}{),} \PYG{l+m+mi}{0}\PYG{p}{],}
+                 \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{sympy}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{n}{j} \PYG{o}{*} \PYG{n}{half\PYGZus{}theta}\PYG{p}{)]]}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Rz(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{phase}\PYG{p}{),} \PYG{n}{qubit}\PYG{p}{,} \PYG{n}{qubit}\PYG{p}{,} \PYG{n}{array}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{grad}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{s} \PYG{o}{=} \PYG{n}{Scalar}\PYG{p}{(}\PYG{n}{sympy}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase}\PYG{o}{.}\PYG{n}{diff}\PYG{p}{(}\PYG{n}{var}\PYG{p}{))}
+        \PYG{k}{return} \PYG{n}{s} \PYG{o}{@} \PYG{n}{Rz}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase} \PYG{o}{+} \PYG{l+m+mf}{.25}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{s} \PYG{o}{@} \PYG{n}{Rz}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{.25}\PYG{p}{))}
+
+\PYG{n}{phi} \PYG{o}{=} \PYG{n}{sympy}\PYG{o}{.}\PYG{n}{Symbol}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{phi\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{circuit} \PYG{o}{=} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Rz}\PYG{p}{(}\PYG{n}{phi} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Rz}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{phi} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{.5}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Measure}\PYG{p}{()} \PYG{o}{@} \PYG{n}{Measure}\PYG{p}{()}
+
+\PYG{k}{assert} \PYG{n}{circuit}\PYG{o}{.}\PYG{n}{grad}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()} \PYG{o}{==} \PYG{n}{circuit}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()}\PYG{o}{.}\PYG{n}{grad}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}
+\end{Verbatim}

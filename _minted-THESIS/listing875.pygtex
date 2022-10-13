@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{compact\PYGZus{}trace}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{):}
+    \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{]} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{caps}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{:],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{:]}\PYG{o}{.}\PYG{n}{r}\PYG{p}{)}\PYGZbs{}
+        \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{:]}\PYG{o}{.}\PYG{n}{r}\PYGZbs{}
+        \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{]} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cups}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{:],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{:]}\PYG{o}{.}\PYG{n}{r}\PYG{p}{)}
+
+\PYG{n}{compact}\PYG{o}{.}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{trace} \PYG{o}{=} \PYG{n}{compact\PYGZus{}trace}
+
+\PYG{k}{class} \PYG{n+nc}{TracedDrawing}\PYG{p}{(}\PYG{n}{compact}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n}{trace} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n}{compact\PYGZus{}trace}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}\PYG{o}{.}\PYG{n}{bubble}\PYG{p}{()}
+
+\PYG{n}{Draw} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{p}{,} \PYG{k}{lambda} \PYG{n}{f}\PYG{p}{:} \PYG{n}{f}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{TracedDrawing}\PYG{p}{))}
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{draw} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{params}\PYG{p}{:} \PYG{n}{Draw}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{(}\PYG{o}{**}\PYG{n}{params}\PYG{p}{)}
+
+\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}abx\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{a} \PYG{o}{@} \PYG{n}{x}\PYG{p}{,} \PYG{n}{b} \PYG{o}{@} \PYG{n}{x}\PYG{p}{)}\PYG{o}{.}\PYG{n}{trace}\PYG{p}{()}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

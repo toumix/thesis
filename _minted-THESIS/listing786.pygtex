@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Tensor}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{spider}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{a}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{b}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{phase}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Tensor}\PYG{p}{:}
+        \PYG{n}{phase} \PYG{o}{=} \PYG{n}{phase} \PYG{o+ow}{or} \PYG{n}{n} \PYG{o}{*} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{[[}\PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{phase}\PYG{p}{)]]} \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{a} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{b}\PYGZbs{}
+            \PYG{k}{else} \PYG{p}{[[}\PYG{n}{phase}\PYG{p}{[}\PYG{n}{xs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]} \PYG{k}{for} \PYG{n}{xs} \PYG{o+ow}{in} \PYG{n}{itertools}\PYG{o}{.}\PYG{n}{product}\PYG{p}{(}\PYG{o}{*}\PYG{n}{b} \PYG{o}{*} \PYG{p}{[}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)])}
+                   \PYG{k}{if} \PYG{n+nb}{all}\PYG{p}{(}\PYG{n}{x} \PYG{o}{==} \PYG{n}{xs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{xs}\PYG{p}{)]]}\PYGZbs{}
+            \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{a} \PYG{k}{else} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{spider}\PYG{p}{([],} \PYG{n}{a} \PYG{o}{+} \PYG{n}{b}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}\PYG{o}{.}\PYG{n}{inside}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{a} \PYG{o}{*} \PYG{p}{[}\PYG{n}{n}\PYG{p}{],} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{b} \PYG{o}{*} \PYG{p}{[}\PYG{n}{n}\PYG{p}{])}
+\end{Verbatim}

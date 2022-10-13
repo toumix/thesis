@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{rigid}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{dom}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n}{rigid}\PYG{o}{.}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Parsing}\PYG{p}{),} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Tensor}\PYG{p}{),}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{s}\PYG{p}{:} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{Alice}\PYG{p}{:} \PYG{p}{[[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]],} \PYG{n}{loves}\PYG{p}{:} \PYG{p}{[[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]],} \PYG{n}{Bob}\PYG{p}{:} \PYG{p}{[[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]]\PYGZcb{})}
+
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{sentence}\PYG{p}{)}
+\end{Verbatim}

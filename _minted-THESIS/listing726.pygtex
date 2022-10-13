@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{t} \PYG{o}{=} \PYG{n}{x} \PYG{o}{@} \PYG{n}{y}
+
+\PYG{n}{left\PYGZus{}snake} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{t}\PYG{o}{.}\PYG{n}{l}\PYG{p}{)}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\PYG{n}{right\PYGZus{}snake} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{t}\PYG{p}{)}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{k}{assert} \PYG{n}{left\PYGZus{}snake}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{()} \PYG{o}{==} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{t}\PYG{p}{)}\PYGZbs{}
+    \PYG{o+ow}{and} \PYG{n}{right\PYGZus{}snake}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{()} \PYG{o}{==} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{t}\PYG{o}{.}\PYG{n}{l}\PYG{p}{)}
+
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}
+    \PYG{n}{drawing}\PYG{o}{.}\PYG{n}{Equation}\PYG{p}{(}\PYG{n}{left\PYGZus{}snake}\PYG{p}{,} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{t}\PYG{p}{)),}
+    \PYG{n}{drawing}\PYG{o}{.}\PYG{n}{Equation}\PYG{p}{(}\PYG{n}{right\PYGZus{}snake}\PYG{p}{,} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{t}\PYG{o}{.}\PYG{n}{l}\PYG{p}{)),}
+    \PYG{n}{symbol}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}and\PYGZsq{}}\PYG{p}{,} \PYG{n}{space}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{draw\PYGZus{}type\PYGZus{}labels}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\end{Verbatim}

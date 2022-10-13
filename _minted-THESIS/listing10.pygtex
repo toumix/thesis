@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{\PYGZus{}\PYGZus{}future\PYGZus{}\PYGZus{}} \PYG{k+kn}{import} \PYG{n}{annotations}
+\PYG{k+kn}{from} \PYG{n+nn}{dataclasses} \PYG{k+kn}{import} \PYG{n}{dataclass}
+\PYG{k+kn}{from} \PYG{n+nn}{typing} \PYG{k+kn}{import} \PYG{n}{overload}
+
+\PYG{k}{class} \PYG{n+nc}{Ob}\PYG{p}{:} \PYG{o}{...}
+
+\PYG{k}{class} \PYG{n+nc}{Arrow}\PYG{p}{:}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ob}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ob}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:} \PYG{o}{...}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Category}\PYG{p}{:}
+    \PYG{n}{ob}\PYG{p}{:} \PYG{n+nb}{type} \PYG{o}{=} \PYG{n}{Ob}
+    \PYG{n}{ar}\PYG{p}{:} \PYG{n+nb}{type} \PYG{o}{=} \PYG{n}{Arrow}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{:}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Category}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Category}
+
+    \PYG{n+nd}{@overload}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ob}\PYG{p}{:} \PYG{o}{...}
+
+    \PYG{n+nd}{@overload}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{f}\PYG{p}{:} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:} \PYG{o}{...}
+
+\PYG{k}{class} \PYG{n+nc}{Transformation}\PYG{p}{:}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Functor}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Functor}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:} \PYG{o}{...}
+\end{Verbatim}

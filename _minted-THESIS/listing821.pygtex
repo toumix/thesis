@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Matrix}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{copy}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Matrix}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{[[}
+            \PYG{n}{i} \PYG{o}{+} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZpc{}} \PYG{n}{n} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{n}{j} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)]}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{n} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{merge}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Matrix}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{basis}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{i}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Matrix}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{([[}\PYG{n}{i} \PYG{o}{==} \PYG{n}{j} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)]],} \PYG{n}{x} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\end{Verbatim}

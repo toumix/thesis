@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{dom} \PYG{o}{=} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other} \PYG{p}{:} \PYG{n}{Ty} \PYG{o}{|} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ty} \PYG{o}{|} \PYG{n}{Diagram}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb}{sum}\PYG{p}{([}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{obj}\PYG{p}{)} \PYG{k}{for} \PYG{n}{obj} \PYG{o+ow}{in} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{())}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ob}\PYG{p}{):}
+            \PYG{n}{result} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{((}\PYG{n}{other}\PYG{p}{,} \PYG{p}{))]}
+            \PYG{k}{return} \PYG{n}{result} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{result}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{)}\PYGZbs{}
+                \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{((}\PYG{n}{result}\PYG{p}{,} \PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Layer}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{left}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{box}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{right}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

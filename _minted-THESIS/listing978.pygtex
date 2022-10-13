@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{nltk} \PYG{k+kn}{import} \PYG{n}{CFG}\PYG{p}{,} \PYG{n}{BottomUpChartParser} \PYG{k}{as} \PYG{n}{Parser}
+
+\PYG{n}{grammar} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{n \PYGZhy{}\PYGZgt{} a n}
+\PYG{l+s+s2}{n \PYGZhy{}\PYGZgt{} n n}
+\PYG{l+s+s2}{a \PYGZhy{}\PYGZgt{} \PYGZsq{}black\PYGZsq{}}
+\PYG{l+s+s2}{a \PYGZhy{}\PYGZgt{} \PYGZsq{}metal\PYGZsq{}}
+\PYG{l+s+s2}{n \PYGZhy{}\PYGZgt{} \PYGZsq{}metal\PYGZsq{}}
+\PYG{l+s+s2}{n \PYGZhy{}\PYGZgt{} \PYGZsq{}fan\PYGZsq{}}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{n}{parser} \PYG{o}{=} \PYG{n}{Parser}\PYG{p}{(}\PYG{n}{CFG}\PYG{o}{.}\PYG{n}{fromstring}\PYG{p}{(}\PYG{n}{grammar}\PYG{p}{))}\PYG{o}{.}\PYG{n}{parse}
+
+\PYG{k}{for} \PYG{n}{tree} \PYG{o+ow}{in} \PYG{n}{parser}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}black metal fan\PYGZdq{}}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()):} \PYG{n}{Parsing}\PYG{o}{.}\PYG{n}{fromtree}\PYG{p}{(}\PYG{n}{tree}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Ty} \PYG{o}{=} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+
+\PYG{k}{def} \PYG{n+nf}{exp}\PYG{p}{(}\PYG{n}{base}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ty}\PYG{p}{:}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{Callable}\PYG{p}{[}\PYG{n}{exponent}\PYG{p}{,} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{base}\PYG{p}{]],} \PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Function}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{curry}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Function}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{k}{lambda} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{k}{lambda} \PYG{o}{*}\PYG{n}{ys}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{o}{*}\PYG{p}{(}\PYG{n}{xs} \PYG{o}{+} \PYG{n}{ys}\PYG{p}{)} \PYG{k}{if} \PYG{n}{left} \PYG{k}{else} \PYG{p}{(}\PYG{n}{ys} \PYG{o}{+} \PYG{n}{xs}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n}{left}\PYG{p}{:}
+            \PYG{n}{dom} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{]}
+            \PYG{n}{cod} \PYG{o}{=} \PYG{n}{exp}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{:])}
+        \PYG{k}{else}\PYG{p}{:} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{n}{n}\PYG{p}{:],} \PYG{n}{exp}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{n}{n}\PYG{p}{])}
+        \PYG{k}{return} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{ev}\PYG{p}{(}\PYG{n}{base}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Function}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n}{left}\PYG{p}{:}
+            \PYG{n}{inside} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{f}\PYG{p}{,} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{n}{f}\PYG{p}{(}\PYG{o}{*}\PYG{n}{xs}\PYG{p}{)}
+            \PYG{k}{return} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{exp}\PYG{p}{(}\PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{)} \PYG{o}{+} \PYG{n}{exponent}\PYG{p}{,} \PYG{n}{base}\PYG{p}{)}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{k}{lambda} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{n}{xs}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{](}\PYG{o}{*}\PYG{n}{xs}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+        \PYG{k}{return} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{exponent} \PYG{o}{+} \PYG{n}{exp}\PYG{p}{(}\PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{),} \PYG{n}{base}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{uncurry}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Function}\PYG{p}{:}
+        \PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}args\PYGZus{}\PYGZus{}}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}args\PYGZus{}\PYGZus{}}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{base} \PYG{o}{=} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{base}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}args\PYGZus{}\PYGZus{}}\PYG{p}{)} \PYG{k}{if} \PYG{n}{is\PYGZus{}tuple}\PYG{p}{(}\PYG{n}{base}\PYG{p}{)} \PYG{k}{else} \PYG{p}{(}\PYG{n}{base}\PYG{p}{,} \PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb+bp}{self} \PYG{o}{@} \PYG{n}{exponent} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Function}\PYG{o}{.}\PYG{n}{ev}\PYG{p}{(}\PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{)} \PYG{k}{if} \PYG{n}{left}\PYGZbs{}
+            \PYG{k}{else} \PYG{n}{exponent} \PYG{o}{@} \PYG{n+nb+bp}{self} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Function}\PYG{o}{.}\PYG{n}{ev}\PYG{p}{(}\PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{n}{exp} \PYG{o}{=} \PYG{n}{under} \PYG{o}{=} \PYG{n}{over} \PYG{o}{=} \PYG{n+nb}{staticmethod}\PYG{p}{(}\PYG{n}{exp}\PYG{p}{)}
+\end{Verbatim}

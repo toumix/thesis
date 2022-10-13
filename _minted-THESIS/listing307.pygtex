@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Layer}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Layer}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Layer}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{left}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{(),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{right}\PYG{p}{)}
+\end{Verbatim}

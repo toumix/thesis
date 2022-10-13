@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{typing} \PYG{k+kn}{import} \PYG{n}{Number}
+
+\PYG{k}{class} \PYG{n+nc}{Matrix}\PYG{p}{(}\PYG{n}{Composable}\PYG{p}{):}
+    \PYG{n}{dtype} \PYG{o}{=} \PYG{n+nb}{int}
+
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{dtype}\PYG{p}{]]}
+
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}class\PYGZus{}getitem\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{dtype}\PYG{p}{:} \PYG{n+nb}{type}\PYG{p}{):}
+        \PYG{k}{class} \PYG{n+nc}{C}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{):} \PYG{k}{pass}
+        \PYG{n}{C}\PYG{o}{.}\PYG{n}{dtype} \PYG{o}{=} \PYG{n}{dtype}
+        \PYG{n}{C}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{n}{C}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}qualname\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{[}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{]\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}
+            \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{,} \PYG{n}{dtype}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{C}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{inside}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{Number}\PYG{p}{]],} \PYG{n}{dom}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{)} \PYG{o}{==} \PYG{n}{dom} \PYG{o+ow}{and} \PYG{n+nb}{all}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{row}\PYG{p}{)} \PYG{o}{==} \PYG{n}{cod} \PYG{k}{for} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n}{inside}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{=}\PYGZbs{}
+            \PYG{p}{[}\PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{p}{,} \PYG{n}{row}\PYG{p}{))} \PYG{k}{for} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n}{inside}\PYG{p}{],} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Matrix}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{==} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{==} \PYG{n}{other}
+        \PYG{k}{return} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}\PYGZbs{}
+            \PYG{o}{==} \PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dtype}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Matrix}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{([[}\PYG{n}{i} \PYG{o}{==} \PYG{n}{j} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)]} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)],} \PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Matrix}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Matrix}\PYG{p}{:}
+        \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dtype} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{[[}\PYG{n+nb}{sum}\PYG{p}{(}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{*} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{j}\PYG{p}{][}\PYG{n}{k}\PYG{p}{]} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+            \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)]}
+        \PYG{k}{return} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)(}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}getitem\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{key}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{|} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Matrix}\PYG{p}{:}
+        \PYG{n}{key} \PYG{o}{=} \PYG{n}{key} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{key}\PYG{p}{,} \PYG{n+nb}{tuple}\PYG{p}{)} \PYG{k}{else} \PYG{p}{(}\PYG{n}{key}\PYG{p}{,} \PYG{p}{)}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{[[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{key} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)]]}\PYGZbs{}
+            \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{key}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{k}{else} \PYG{p}{[[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{key}\PYG{p}{]]]}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{key}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{k}{else} \PYG{l+m+mi}{1}
+        \PYG{k}{return} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+\PYG{k}{for} \PYG{n}{converter} \PYG{o+ow}{in} \PYG{p}{(}\PYG{n+nb}{bool}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n+nb}{float}\PYG{p}{,} \PYG{n+nb}{complex}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf}{method}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}  \PYG{c+c1}{\PYGZsh{} Downcasting a 1 by 1 Matrix to a scalar.}
+        \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{==} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{l+m+mi}{1}
+        \PYG{k}{return} \PYG{n}{converter}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{])}
+    \PYG{n+nb}{setattr}\PYG{p}{(}\PYG{n}{Matrix}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{converter}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{),} \PYG{n}{method}\PYG{p}{)}
+\end{Verbatim}

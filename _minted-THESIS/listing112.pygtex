@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{DictOrCallable}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}class\PYGZus{}getitem\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{source}\PYG{p}{,} \PYG{n}{target}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb}{dict}\PYG{p}{[}\PYG{n}{source}\PYG{p}{,} \PYG{n}{target}\PYG{p}{]} \PYG{o}{|} \PYG{n}{Callable}\PYG{p}{[[}\PYG{n}{source}\PYG{p}{],} \PYG{n}{target}\PYG{p}{]}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{FakeDict}\PYG{p}{:}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n}{Callable}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}getitem\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{key}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{(}\PYG{n}{key}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{:}
+    \PYG{n}{ob}\PYG{p}{:} \PYG{n}{dictOrCallable}\PYG{p}{[}\PYG{n}{Ob}\PYG{p}{,} \PYG{n}{Ob}\PYG{p}{]}
+    \PYG{n}{ar}\PYG{p}{:} \PYG{n}{dictOrCallable}\PYG{p}{[}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Ar}\PYG{p}{]}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Category} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{)}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Category} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{ob}\PYG{p}{,} \PYG{n}{ar}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{):}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{dom} \PYG{o+ow}{or} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o+ow}{or} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{cod}
+        \PYG{n}{ob} \PYG{o}{=} \PYG{n}{ob} \PYG{k}{if} \PYG{n+nb}{hasattr}\PYG{p}{(}\PYG{n}{ob}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}getitem\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{)} \PYG{k}{else} \PYG{n}{FakeDict}\PYG{p}{(}\PYG{n}{ob}\PYG{p}{)}
+        \PYG{n}{ar} \PYG{o}{=} \PYG{n}{ar} \PYG{k}{if} \PYG{n+nb}{hasattr}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}getitem\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{)} \PYG{k}{else} \PYG{n}{FakeDict}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{=} \PYG{n}{ob}\PYG{p}{,} \PYG{n}{ar}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Ob} \PYG{o}{|} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ob} \PYG{o}{|} \PYG{n}{Arrow}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ob}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{[}\PYG{n}{other}\PYG{p}{]}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{):}
+            \PYG{n}{result} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{other}\PYG{p}{]}
+            \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{result}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{):} \PYG{k}{return} \PYG{n}{result}
+            \PYG{c+c1}{\PYGZsh{} This allows some nice syntactic sugar for the ar mapping.}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{(}\PYG{n}{result}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{):}
+            \PYG{n}{base\PYGZus{}case} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+            \PYG{k}{return} \PYG{n}{base\PYGZus{}case}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{o}{*}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{box}\PYG{p}{)} \PYG{k}{for} \PYG{n}{box} \PYG{o+ow}{in} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{])}
+        \PYG{k}{raise} \PYG{n+ne}{TypeError}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Category}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Functor}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{obj}\PYG{p}{:} \PYG{n}{obj}\PYG{p}{,} \PYG{k}{lambda} \PYG{n}{box}\PYG{p}{:} \PYG{n}{box}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{x}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Functor}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Functor}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Functor}\PYG{p}{:}
+        \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}
+        \PYG{n}{ob}\PYG{p}{,} \PYG{n}{ar} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{other}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]],} \PYG{k}{lambda} \PYG{n}{f}\PYG{p}{:} \PYG{n}{other}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{f}\PYG{p}{]]}
+        \PYG{k}{return} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)(}\PYG{n}{ob}\PYG{p}{,} \PYG{n}{ar}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+\end{Verbatim}

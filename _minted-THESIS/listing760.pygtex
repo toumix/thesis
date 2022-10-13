@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Tensor}\PYG{o}{.}\PYG{n}{cups} \PYG{o}{=} \PYG{n+nb}{classmethod}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{x} \PYG{o}{+} \PYG{n}{y}\PYG{p}{,} \PYG{p}{()))}
+\PYG{n}{Tensor}\PYG{o}{.}\PYG{n}{caps} \PYG{o}{=} \PYG{n+nb}{classmethod}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{p}{(),} \PYG{n}{x} \PYG{o}{+} \PYG{n}{y}\PYG{p}{))}
+\end{Verbatim}

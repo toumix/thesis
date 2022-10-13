@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{discopy} \PYG{k+kn}{import} \PYG{n}{drawing}
+
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{n}{h} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)}
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{Equation}\PYG{p}{(}\PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{,} \PYG{n}{h}\PYG{p}{,} \PYG{n}{symbol}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}+\PYGZdl{}\PYGZsq{}}\PYG{p}{),}
+                 \PYG{n}{drawing}\PYG{o}{.}\PYG{n}{Equation}\PYG{p}{(}\PYG{n}{h}\PYG{p}{,} \PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{,} \PYG{n}{symbol}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}+\PYGZdl{}\PYGZsq{}}\PYG{p}{))}
+\end{Verbatim}

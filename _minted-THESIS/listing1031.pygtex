@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Digit}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{n} \PYG{o}{=} \PYG{n}{n}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}bit\PYGZdq{}} \PYG{k}{if} \PYG{n}{n} \PYG{o}{==} \PYG{l+m+mi}{2} \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}Digit(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{n}\PYG{p}{))}
+
+\PYG{k}{class} \PYG{n+nc}{Qudit}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{n} \PYG{o}{=} \PYG{n}{n}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}qubit\PYGZdq{}} \PYG{k}{if} \PYG{n}{n} \PYG{o}{==} \PYG{l+m+mi}{2} \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}Qudit(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{n}\PYG{p}{))}
+
+\PYG{n}{bit}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{Digit}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)),} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{Qudit}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{))}
+
+\PYG{k}{class} \PYG{n+nc}{Circuit}\PYG{p}{(}\PYG{n}{Diagram}\PYG{p}{):} \PYG{k}{pass}
+
+\PYG{k}{class} \PYG{n+nc}{Gate}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,}
+                 \PYG{n}{array}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]],} \PYG{n}{is\PYGZus{}dagger}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{array} \PYG{o}{=} \PYG{n}{array}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{,} \PYG{n}{is\PYGZus{}dagger}\PYG{o}{=}\PYG{n}{is\PYGZus{}dagger}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Gate}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Gate}\PYG{p}{(}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{array}\PYG{p}{,} \PYG{n}{is\PYGZus{}dagger}\PYG{o}{=}\PYG{o+ow}{not} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{is\PYGZus{}dagger}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Bra}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{digits}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{base}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base} \PYG{o}{=} \PYG{n}{digits}\PYG{p}{,} \PYG{n}{base}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Bra(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, base=}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{digits}\PYG{p}{)),} \PYG{n}{base}\PYG{p}{)}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{digits}\PYG{p}{),} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ket}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Ket}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{,} \PYG{n}{base}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Ket}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{digits}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{base}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{,} \PYG{n}{name} \PYG{o}{=} \PYG{n}{digits}\PYG{p}{,} \PYG{n}{base}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Ket(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, base=}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{digits}\PYG{p}{)),} \PYG{n}{base}\PYG{p}{)}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{digits}\PYG{p}{))}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Bra}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Bra}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{digits}\PYG{p}{,} \PYG{n}{base}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Encode}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{bit}\PYG{p}{):}
+        \PYG{n}{obj}\PYG{p}{,} \PYG{o}{=} \PYG{n}{dom}\PYG{o}{.}\PYG{n}{inside}
+        \PYG{k}{assert} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{obj}\PYG{p}{,} \PYG{n}{Digit}\PYG{p}{)}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Encode(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{n}\PYG{p}{),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{Qudit}\PYG{p}{(}\PYG{n}{obj}\PYG{o}{.}\PYG{n}{n}\PYG{p}{)))}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Measure}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Measure}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Measure}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{qubit}\PYG{p}{):}
+        \PYG{n}{obj}\PYG{p}{,} \PYG{o}{=} \PYG{n}{dom}\PYG{o}{.}\PYG{n}{inside}
+        \PYG{k}{assert} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{obj}\PYG{p}{,} \PYG{n}{Qudit}\PYG{p}{)}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Measure(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{n}\PYG{p}{),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{Digit}\PYG{p}{(}\PYG{n}{obj}\PYG{o}{.}\PYG{n}{n}\PYG{p}{)))}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Encode}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Encode}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Discard}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Discard(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{x}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{())}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{MixedState}\PYG{p}{:} \PYG{k}{return} \PYG{n}{MixedState}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{MixedState}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}MixedState(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(),} \PYG{n}{x}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Discard}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Discard}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+\end{Verbatim}

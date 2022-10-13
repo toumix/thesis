@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Parsing}\PYG{p}{(}\PYG{n}{rigid}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{,} \PYG{n}{categorial}\PYG{o}{.}\PYG{n}{Parsing}\PYG{p}{):} \PYG{k}{pass}
+\PYG{k}{class} \PYG{n+nc}{Cup}\PYG{p}{(}\PYG{n}{rigid}\PYG{o}{.}\PYG{n}{Cup}\PYG{p}{,} \PYG{n}{Parsing}\PYG{p}{):} \PYG{k}{pass}
+\PYG{k}{class} \PYG{n+nc}{Word}\PYG{p}{(}\PYG{n}{categorial}\PYG{o}{.}\PYG{n}{Word}\PYG{p}{,} \PYG{n}{Parsing}\PYG{p}{):} \PYG{k}{pass}
+\PYG{n}{Cup}\PYG{o}{.}\PYG{n}{cast} \PYG{o}{=} \PYG{n}{Word}\PYG{o}{.}\PYG{n}{cast} \PYG{o}{=} \PYG{n}{Parsing}\PYG{o}{.}\PYG{n}{cast}
+\end{Verbatim}

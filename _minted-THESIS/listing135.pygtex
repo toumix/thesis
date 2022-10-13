@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{assert} \PYG{p}{(}\PYG{n}{Z} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{H}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()} \PYG{o}{==} \PYG{p}{(}\PYG{n}{H} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{X}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()}
+\PYG{k}{assert} \PYG{p}{(}\PYG{n}{Z} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{X}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()} \PYG{o}{==} \PYG{p}{(}\PYG{n}{X} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Z}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{)}
+\PYG{k}{for} \PYG{n}{gate} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{H}\PYG{p}{,} \PYG{n}{Z}\PYG{p}{,} \PYG{n}{X}\PYG{p}{]:} \PYG{k}{assert} \PYG{p}{(}\PYG{n}{gate} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{gate}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()} \PYG{o}{==} \PYG{n}{Matrix}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+\end{Verbatim}

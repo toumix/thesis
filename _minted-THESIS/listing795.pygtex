@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{delete}\PYG{p}{(}\PYG{n}{f}\PYG{p}{(}\PYG{n}{xs}\PYG{p}{))} \PYG{o}{==} \PYG{n}{delete}\PYG{p}{(}\PYG{n}{xs}\PYG{p}{)}
+\end{Verbatim}

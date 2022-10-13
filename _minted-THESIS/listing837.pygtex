@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{lambda} \PYG{o}{*}\PYG{n}{ys}\PYG{p}{:} \PYG{k}{lambda} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{n}{ys} \PYG{o}{+} \PYG{n}{xs}
+\end{Verbatim}

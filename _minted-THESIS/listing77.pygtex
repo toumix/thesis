@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f} \PYG{o}{==} \PYG{n}{Arrow}\PYG{p}{((}\PYG{n}{f}\PYG{p}{,} \PYG{p}{),} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+\end{Verbatim}

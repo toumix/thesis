@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Spider}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{a}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{b}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{phase}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{object}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase} \PYG{o}{=} \PYG{n}{x}\PYG{p}{,} \PYG{n}{phase} \PYG{o+ow}{or} \PYG{l+m+mi}{0}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Spider(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{phase}\PYG{p}{))))}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{x} \PYG{o}{**} \PYG{n}{a}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{x} \PYG{o}{**} \PYG{n}{b}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{object}
+        \PYG{n}{phase} \PYG{o}{=} \PYG{k+kc}{None} \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase} \PYG{o+ow}{is} \PYG{k+kc}{None} \PYG{k}{else} \PYG{o}{\PYGZhy{}}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{phase}
+        \PYG{k}{return} \PYG{n}{Spider}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{phase}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{coherence}\PYG{p}{(}\PYG{n}{factory}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{a}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{b}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{phase}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0} \PYG{o+ow}{and} \PYG{n}{phase} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:} \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:} \PYG{k}{return} \PYG{n}{factory}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{phase}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n}{phase} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{k+kc}{None}\PYG{p}{:}  \PYG{c+c1}{\PYGZsh{} Coherence for phase shifters.}
+            \PYG{n}{shift} \PYG{o}{=} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{o}{*}\PYG{p}{[}\PYG{n}{factory}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{obj}\PYG{p}{,} \PYG{n}{phase}\PYG{p}{)} \PYG{k}{for} \PYG{n}{obj} \PYG{o+ow}{in} \PYG{n}{x}\PYG{p}{])}
+            \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{shift} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{in} \PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{),} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)]:} \PYG{c+c1}{\PYGZsh{} Coherence for (co)units.}
+            \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{o}{*}\PYG{p}{[}\PYG{n}{factory}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{obj}\PYG{p}{)} \PYG{k}{for} \PYG{n}{obj} \PYG{o+ow}{in} \PYG{n}{x}\PYG{p}{])}
+        \PYG{c+c1}{\PYGZsh{} Coherence for binary (co)products.}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{in} \PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{),} \PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)]:}
+            \PYG{n}{spiders}\PYG{p}{,} \PYG{n}{braids} \PYG{o}{=} \PYG{p}{(}
+                \PYG{n}{factory}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{phase}\PYG{p}{)} \PYG{o}{@} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:],} \PYG{n}{phase}\PYG{p}{),}
+                \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{@} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])} \PYG{o}{@} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])}
+            \PYG{k}{return} \PYG{n}{spiders} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{braids} \PYG{k}{if} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o}{==} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{else} \PYG{n}{braids} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{spiders}
+        \PYG{k}{if} \PYG{n}{a} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}  \PYG{c+c1}{\PYGZsh{} We can now assume b \PYGZgt{} 2.}
+            \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{b} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}\PYGZbs{}
+                \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o}{@} \PYG{p}{(}\PYG{n}{x} \PYG{o}{**} \PYG{p}{(}\PYG{n}{b} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n}{b} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}  \PYG{c+c1}{\PYGZsh{} We can now assume a \PYGZgt{} 2.}
+            \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o}{@} \PYG{p}{(}\PYG{n}{x} \PYG{o}{**} \PYG{p}{(}\PYG{n}{a} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{))}\PYGZbs{}
+                \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{a} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n+nb}{classmethod}\PYG{p}{(}\PYG{n}{method}\PYG{p}{)}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{spiders} \PYG{o}{=} \PYG{n}{coherence}\PYG{p}{(}\PYG{n}{Spider}\PYG{p}{)}
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{cups} \PYG{o}{=} \PYG{n}{nesting}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{:} \PYG{n}{Spider}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))}
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{caps} \PYG{o}{=} \PYG{n}{nesting}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{:} \PYG{n}{Spider}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{symmetric}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Spider}\PYG{p}{):}
+            \PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+            \PYG{n}{x}\PYG{p}{,} \PYG{n}{phase} \PYG{o}{=} \PYG{n}{other}\PYG{o}{.}\PYG{n}{object}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{phase}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{spiders}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{phase}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

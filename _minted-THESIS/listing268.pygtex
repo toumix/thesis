@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Circuit}\PYG{p}{(}\PYG{n}{Diagram}\PYG{p}{):} \PYG{k}{pass}
+
+\PYG{k}{class} \PYG{n+nc}{Gate}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):} \PYG{k}{pass}
+
+\PYG{k}{class} \PYG{n+nc}{Bra}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{bits}\PYG{p}{:} \PYG{n+nb}{bool}\PYG{p}{):}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Bra(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{bits}\PYG{p}{)))}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{bits}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{bits}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{bits}\PYG{p}{),} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Circuit}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Ket}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{bits}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Ket}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{bits}\PYG{p}{:} \PYG{n+nb}{bool}\PYG{p}{):}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Ket(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{bits}\PYG{p}{)))}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{bits}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{bits}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{bits}\PYG{p}{)}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Circuit}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Bra}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{bits}\PYG{p}{)}
+
+\PYG{n}{Gate}\PYG{o}{.}\PYG{n}{cast} \PYG{o}{=} \PYG{n}{Ket}\PYG{o}{.}\PYG{n}{cast} \PYG{o}{=} \PYG{n}{Circuit}\PYG{o}{.}\PYG{n}{cast}
+
+\PYG{n}{X}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{Z}\PYG{p}{,} \PYG{n}{H} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Gate}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,} \PYG{n}{qubit}\PYG{p}{,} \PYG{n}{qubit}\PYG{p}{)} \PYG{k}{for} \PYG{n}{name} \PYG{o+ow}{in} \PYG{l+s+s2}{\PYGZdq{}XYZH\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{CX} \PYG{o}{=} \PYG{n}{Gate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}CX\PYGZdq{}}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{n}{sqrt2} \PYG{o}{=} \PYG{n}{Gate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s2}{sqrt}\PYG{l+s+si}{\PYGZob{}2\PYGZcb{}}\PYG{l+s+s2}{\PYGZdl{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{sqrt2} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{H} \PYG{o}{@} \PYG{n}{qubit} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{CX}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{CQ}\PYG{o}{.}\PYG{n}{l} \PYG{o}{=} \PYG{n}{CQ}\PYG{o}{.}\PYG{n}{r} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{)}
+
+\PYG{k}{for} \PYG{n}{attr} \PYG{o+ow}{in} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}swap\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}cups\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}caps\PYGZdq{}}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf}{channel\PYGZus{}method}\PYG{p}{(}\PYG{n}{left}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{,} \PYG{n}{right}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{n}{tensor\PYGZus{}method} \PYG{o}{=} \PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n}{Tensor}\PYG{p}{,} \PYG{n}{attr}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{single}\PYG{p}{(}\PYG{n}{tensor\PYGZus{}method}\PYG{p}{(}\PYG{n}{left}\PYG{o}{.}\PYG{n}{classical}\PYG{p}{,} \PYG{n}{right}\PYG{o}{.}\PYG{n}{classical}\PYG{p}{))}\PYGZbs{}
+            \PYG{o}{@} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{double}\PYG{p}{(}\PYG{n}{tensor\PYGZus{}method}\PYG{p}{(}\PYG{n}{left}\PYG{o}{.}\PYG{n}{quantum}\PYG{p}{,} \PYG{n}{right}\PYG{o}{.}\PYG{n}{quantum}\PYG{p}{))}
+    \PYG{n+nb}{setattr}\PYG{p}{(}\PYG{n}{Channel}\PYG{p}{,} \PYG{n}{attr}\PYG{p}{,} \PYG{n}{channel\PYGZus{}method}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}add\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Channel}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+    \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}
+    \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+\PYG{n+nd}{@staticmethod}
+\PYG{k}{def} \PYG{n+nf}{zero}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+    \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{Tensor}\PYG{o}{.}\PYG{n}{zero}\PYG{p}{(}\PYG{n}{dom}\PYG{o}{.}\PYG{n}{dowgrade}\PYG{p}{(),} \PYG{n}{cod}\PYG{o}{.}\PYG{n}{downgrade}\PYG{p}{()),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+\PYG{n}{Channel}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}add\PYGZus{}\PYGZus{}}\PYG{p}{,} \PYG{n}{Channel}\PYG{o}{.}\PYG{n}{zero} \PYG{o}{=} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}add\PYGZus{}\PYGZus{}}\PYG{p}{,} \PYG{n}{zero}
+\end{Verbatim}

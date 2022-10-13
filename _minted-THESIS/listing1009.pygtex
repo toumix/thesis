@@ -1,0 +1,62 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{CQ}\PYG{p}{:}
+    \PYG{n}{classical}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]} \PYG{o}{=} \PYG{p}{()}
+    \PYG{n}{quantum}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]} \PYG{o}{=} \PYG{p}{()}
+
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{CQ}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{CQ}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{classical} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{classical}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{quantum} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{quantum}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{downgrade}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{]:}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{classical} \PYG{o}{+} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{quantum}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}matmul\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{n}{tensor}
+
+\PYG{n}{C}\PYG{p}{,} \PYG{n}{Q} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{(}\PYG{n}{classical}\PYG{o}{=}\PYG{n}{x}\PYG{p}{),} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{(}\PYG{n}{quantum}\PYG{o}{=}\PYG{n}{x}\PYG{p}{)}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Channel}\PYG{p}{(}\PYG{n}{Composable}\PYG{p}{,} \PYG{n}{Tensorable}\PYG{p}{):}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{CQ}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{CQ}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{o}{.}\PYG{n}{downgrade}\PYG{p}{()))}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{(),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Channel}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Channel}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{o}{...}  \PYG{c+c1}{\PYGZsh{} Given by the diagram above.}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{@} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{@} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{double}\PYG{p}{(}\PYG{n}{f}\PYG{p}{:} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{f}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{o}{.}\PYG{n}{conjugate}\PYG{p}{()),} \PYG{n}{Q}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n}{Q}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{single}\PYG{p}{(}\PYG{n}{f}\PYG{p}{:} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{float}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{](}\PYG{n}{f}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{f}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{f}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{C}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n}{C}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{measure}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{spider}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{p}{),} \PYG{n}{Q}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{C}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{encode}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{spider}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{x}\PYG{p}{),} \PYG{n}{C}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{Q}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{discard}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n}{CQ}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Channel}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{spider}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{x}\PYG{o}{.}\PYG{n}{classical}\PYG{p}{)}\PYGZbs{}
+            \PYG{o}{@} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{cups}\PYG{p}{(}\PYG{n}{x}\PYG{o}{.}\PYG{n}{quantum}\PYG{p}{,} \PYG{n}{x}\PYG{o}{.}\PYG{n}{quantum}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+        \PYG{k}{return} \PYG{n}{Channel}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{CQ}\PYG{p}{())}
+\end{Verbatim}

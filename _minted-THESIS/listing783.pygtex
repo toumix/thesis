@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{swap\PYGZus{}twice} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{swap}\PYG{p}{(}\PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{a}\PYG{p}{:} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{b}\PYG{p}{:} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{z}\PYG{p}{:} \PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{f}\PYG{p}{:} \PYG{p}{[[}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{n}{j}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{o}{+}\PYG{l+m+mi}{4}\PYG{n}{j}\PYG{p}{]]\PYGZcb{},}
+    \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Tensor}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]))}
+
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Swap}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Swap}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{@} \PYG{n}{f}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{b}\PYG{p}{))} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{f} \PYG{o}{@} \PYG{n}{x}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{swap\PYGZus{}twice}\PYG{p}{)} \PYG{o}{==} \PYG{n}{Tensor}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{F}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{))}
+
+\PYG{n}{G} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{a}\PYG{p}{:} \PYG{n+nb}{complex}\PYG{p}{,} \PYG{n}{b}\PYG{p}{:} \PYG{n+nb}{float}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n+nb}{bool}\PYG{p}{,} \PYG{n}{z}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{f}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{z}\PYG{p}{:} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{z}\PYG{p}{)} \PYG{o}{**} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Function}\PYG{p}{))}
+
+\PYG{k}{assert} \PYG{n}{G}\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Swap}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))(}\PYG{l+m+mi}{1}\PYG{n}{j}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{==} \PYG{n}{G}\PYG{p}{(}\PYG{n}{Swap}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{@} \PYG{n}{f}\PYG{p}{)(}\PYG{l+m+mi}{1}\PYG{n}{j}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{G}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{b}\PYG{p}{))(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{n}{j}\PYG{p}{)} \PYG{o}{==} \PYG{n}{G}\PYG{p}{(}\PYG{n}{Swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{f} \PYG{o}{@} \PYG{n}{x}\PYG{p}{)(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{n}{j}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{G}\PYG{p}{(}\PYG{n}{swap\PYGZus{}twice}\PYG{p}{)(}\PYG{l+m+mi}{42}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}foo\PYGZdq{}}\PYG{p}{)} \PYG{o}{==} \PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}foo\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

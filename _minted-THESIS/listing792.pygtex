@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{copy} \PYG{o}{=} \PYG{k}{lambda} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{n}{xs} \PYG{o}{+} \PYG{n}{xs}
+\end{Verbatim}

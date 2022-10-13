@@ -1,0 +1,57 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Colour}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Ob}\PYG{p}{):}
+    \PYG{k}{pass}
+
+\PYG{k}{class} \PYG{n+nc}{TyArrow}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Arrow}\PYG{p}{,} \PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Ty}\PYG{p}{):}
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{TyArrow}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{cat}\PYG{o}{.}\PYG{n}{Arrow}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb+bp}{NotImplemented}  \PYG{c+c1}{\PYGZsh{} Allows whiskering on the left.}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}matmul\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{n}{tensor}
+
+\PYG{k}{class} \PYG{n+nc}{Ty}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{TyArrow}\PYG{p}{):}
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{TyArrow}\PYG{o}{.}\PYG{n}{cast}
+
+\PYG{k}{class} \PYG{n+nc}{Layer}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Layer}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{left}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{box}\PYG{p}{:} \PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{right}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n}{left}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{o}{.}\PYG{n}{dom} \PYG{o+ow}{and} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{right}\PYG{o}{.}\PYG{n}{dom}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{left}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{n}{right}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Diagram}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{k}{pass}
+
+\PYG{k}{class} \PYG{n+nc}{Box}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{p}{(}\PYG{n}{dom}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)} \PYG{o}{==} \PYG{p}{(}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+        \PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+        \PYG{n}{Diagram}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{(}\PYG{n}{Layer}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{),} \PYG{p}{),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{cast}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{TwoCategory}\PYG{p}{:}
+    \PYG{n}{colours}\PYG{p}{:} \PYG{n+nb}{type} \PYG{o}{=} \PYG{n}{Colour}
+    \PYG{n}{ob}\PYG{p}{:} \PYG{n+nb}{type} \PYG{o}{=} \PYG{n}{Ty}
+    \PYG{n}{ar}\PYG{p}{:} \PYG{n+nb}{type} \PYG{o}{=} \PYG{n}{Diagram}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{TwoFunctor}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{colours}\PYG{p}{:} \PYG{n}{DictOrCallable}\PYG{p}{[}\PYG{n}{Colour}\PYG{p}{,} \PYG{n}{Colour}\PYG{p}{]}
+    \PYG{n}{ob}\PYG{p}{:} \PYG{n}{DictOrCallable}\PYG{p}{[}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{]}
+    \PYG{n}{ar}\PYG{p}{:} \PYG{n}{DictOrCallable}\PYG{p}{[}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{]}
+
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{TwoCategory} \PYG{o}{=} \PYG{n}{TwoCategory}\PYG{p}{()}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{TwoCategory} \PYG{o}{=} \PYG{n}{TwoCategory}\PYG{p}{()}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Colour}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colours}\PYG{p}{[}\PYG{n}{other}\PYG{p}{]}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{[}\PYG{n}{other}\PYG{p}{]}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{TyArrow}\PYG{p}{):}
+            \PYG{n}{base\PYGZus{}case} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ob}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+            \PYG{k}{return} \PYG{n}{base\PYGZus{}case}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{o}{*}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{box}\PYG{p}{)} \PYG{k}{for} \PYG{n}{box} \PYG{o+ow}{in} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{])}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

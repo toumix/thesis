@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Layer}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{left}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{box}\PYG{p}{:} \PYG{n}{Box}\PYG{p}{,} \PYG{n}{right}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{left}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{box}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{right} \PYG{o}{=} \PYG{n}{left}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{n}{right}
+        \PYG{n}{name} \PYG{o}{=} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ @ \PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{left}\PYG{p}{)} \PYG{k}{if} \PYG{n}{left} \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)} \PYG{o}{+} \PYG{n}{box}\PYG{o}{.}\PYG{n}{name}\PYGZbs{}
+            \PYG{o}{+} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{} @ }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{right}\PYG{p}{)} \PYG{k}{if} \PYG{n}{right} \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{left} \PYG{o}{@} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{@} \PYG{n}{right}\PYG{p}{,} \PYG{n}{left} \PYG{o}{@} \PYG{n}{box}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{@} \PYG{n}{right}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}matmul\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Layer}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Layer}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{left}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{box}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{right} \PYG{o}{@} \PYG{n}{other}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}rmatmul\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Layer}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Layer}\PYG{p}{(}\PYG{n}{other} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{left}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{box}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{right}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}iter\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):} \PYG{k}{yield} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{left}\PYG{p}{;} \PYG{k}{yield} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{box}\PYG{p}{;} \PYG{k}{yield} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{right}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{cast}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{old}\PYG{p}{:} \PYG{n}{Box}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Layer}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n}{old}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{old}\PYG{p}{,} \PYG{n}{old}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{old}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):])}
+\end{Verbatim}

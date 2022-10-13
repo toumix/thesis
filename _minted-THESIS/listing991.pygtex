@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{size} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{for} \PYG{n}{mans}\PYG{p}{,} \PYG{n}{islands} \PYG{o+ow}{in} \PYG{n}{itertools}\PYG{o}{.}\PYG{n}{product}\PYG{p}{(}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{p}{[}
+        \PYG{n}{itertools}\PYG{o}{.}\PYG{n}{product}\PYG{p}{(}\PYG{o}{*}\PYG{n}{size}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{*} \PYG{p}{[[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]])]):}
+    \PYG{n}{F} \PYG{o}{=} \PYG{n}{model}\PYG{p}{(}\PYG{n}{size}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{n}{Predicate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}man\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{):} \PYG{n}{mans}\PYG{p}{,} \PYG{n}{Predicate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}island\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{):} \PYG{n}{islands}\PYG{p}{\PYGZcb{})}
+    \PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Montague}\PYG{p}{(}\PYG{n}{no\PYGZus{}man\PYGZus{}is\PYGZus{}an\PYGZus{}island}\PYG{p}{)())} \PYG{o}{==} \PYG{o+ow}{not} \PYG{n+nb}{any}\PYG{p}{(}
+        \PYG{n}{F}\PYG{p}{(}\PYG{n}{Predicate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}man\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))[}\PYG{n}{i}\PYG{p}{]} \PYG{o+ow}{and} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Predicate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}island\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))[}\PYG{n}{i}\PYG{p}{]}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]))}
+\end{Verbatim}

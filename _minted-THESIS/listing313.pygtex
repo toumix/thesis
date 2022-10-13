@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Diagram}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sum}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}\PYGZbs{}
+            \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Sum}\PYG{p}{)} \PYG{k}{else} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Sum}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Sum}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{):}
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Sum}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Sum}\PYG{p}{:}
+        \PYG{n}{terms} \PYG{o}{=} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{g} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms} \PYG{k}{for} \PYG{n}{g} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{Sum}\PYG{p}{(}\PYG{n}{terms}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{@} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{@} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nb}{id} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Sum}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{sum} \PYG{o}{=} \PYG{n}{Sum}
+\end{Verbatim}

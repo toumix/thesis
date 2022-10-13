@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Bubble}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{):}
+    \PYG{n}{method} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}bubble\PYGZdq{}}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{diagram}\PYG{p}{:} \PYG{n}{Arrow}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{o}{**}\PYG{n}{params}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{diagram} \PYG{o}{=} \PYG{n}{diagram}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{method} \PYG{o}{=} \PYG{n}{params}\PYG{o}{.}\PYG{n}{pop}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}method\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{method}\PYG{p}{)}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Bubble(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{diagram}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{dom} \PYG{o+ow}{or} \PYG{n}{diagram}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o+ow}{or} \PYG{n}{diagram}\PYG{o}{.}\PYG{n}{cod}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{,} \PYG{o}{**}\PYG{n}{params}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)(}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{diagram}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n}{is\PYGZus{}dagger}\PYG{o}{=}\PYG{o+ow}{not} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{is\PYGZus{}dagger}\PYG{p}{)}
+
+    \PYG{n+nd}{@property}
+    \PYG{k}{def} \PYG{n+nf}{is\PYGZus{}id\PYGZus{}on\PYGZus{}objects}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{==} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{dom} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{cod}
+
+\PYG{n}{Arrow}\PYG{o}{.}\PYG{n}{bubble} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{:} \PYG{n}{Bubble}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Bubble}\PYG{p}{):}
+            \PYG{n}{method} \PYG{o}{=} \PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{method}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{other}\PYG{o}{.}\PYG{n}{is\PYGZus{}id\PYGZus{}on\PYGZus{}objects}\PYG{p}{:}
+                \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{diagram}\PYG{p}{))}
+            \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{diagram}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

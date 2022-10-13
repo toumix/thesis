@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}xy\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{program}\PYG{p}{,} \PYG{n}{runs} \PYG{o}{=} \PYG{n}{Word}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}program\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{),} \PYG{n}{Word}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}runs\PYGZdq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{y}\PYG{p}{)}
+\PYG{n}{program\PYGZus{}runs} \PYG{o}{=} \PYG{n}{program} \PYG{o}{@} \PYG{n}{runs} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Ev}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{y}\PYG{p}{)}
+
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{closed}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{dom}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Parsing}\PYG{p}{),} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Function}\PYG{p}{),}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{program}\PYG{p}{:} \PYG{k}{lambda}\PYG{p}{:} \PYG{l+m+mi}{42}\PYG{p}{,} \PYG{n}{runs}\PYG{p}{:} \PYG{k}{lambda}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{n}\PYG{p}{:} \PYG{n}{n} \PYG{o}{*} \PYG{l+m+mi}{10}\PYG{p}{\PYGZcb{})}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{program\PYGZus{}runs}\PYG{p}{)()} \PYG{o}{==} \PYG{l+m+mi}{420}
+\end{Verbatim}

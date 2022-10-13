@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Sqrt}\PYG{p}{(}\PYG{n}{Gate}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{float}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s2}{sqrt }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdl{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(),} \PYG{n}{Ty}\PYG{p}{(),} \PYG{n}{array}\PYG{o}{=}\PYG{p}{[[}\PYG{n}{math}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)]])}
+
+\PYG{k}{class} \PYG{n+nc}{Scalar}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Circuit}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{z}\PYG{p}{:} \PYG{n+nb}{complex}\PYG{p}{,} \PYG{n}{is\PYGZus{}pure}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{z}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{is\PYGZus{}pure} \PYG{o}{=} \PYG{n}{z}\PYG{p}{,} \PYG{n}{is\PYGZus{}pure}
+        \PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}
+            \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Scalar(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, is\PYGZus{}pure=}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{z}\PYG{p}{,} \PYG{n}{is\PYGZus{}pure}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(),} \PYG{n}{Ty}\PYG{p}{())}
+\end{Verbatim}

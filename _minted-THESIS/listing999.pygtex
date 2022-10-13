@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{pytket.backends.ibm} \PYG{k+kn}{import} \PYG{n}{IBMQBackend}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{sentence}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{(}
+    \PYG{n}{backend}\PYG{o}{=}\PYG{n}{IBMQBackend}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}ibmq\PYGZus{}singapore\PYGZsq{}}\PYG{p}{,} \PYG{n}{hub}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}ibmq\PYGZsq{}}\PYG{p}{),} \PYG{n}{n\PYGZus{}shots}\PYG{o}{=}\PYG{l+m+mi}{2} \PYG{o}{**} \PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{.5}
+\end{Verbatim}

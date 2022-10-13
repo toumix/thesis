@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{pushout}\PYG{p}{(}\PYG{n}{left}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{right}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,}
+            \PYG{n}{left\PYGZus{}wires}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{right\PYGZus{}wires}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+            \PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{dict}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{],} \PYG{n+nb}{dict}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{]]:} \PYG{o}{...}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Diagram}\PYG{p}{(}\PYG{n}{Composable}\PYG{p}{,} \PYG{n}{Tensorable}\PYG{p}{):}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ty}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ty}
+    \PYG{n}{boxes}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Diagram}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+    \PYG{n}{wires}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+    \PYG{n}{spider\PYGZus{}types}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Ty}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{others}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{others}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{interchange}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{i}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+
+    \PYG{n}{swap}\PYG{p}{:} \PYG{n}{Callable}\PYG{p}{[[}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{],} \PYG{n}{Diagram}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{staticmethod}\PYG{p}{(}\PYG{o}{...}\PYG{p}{)}
+    \PYG{n}{spiders}\PYG{p}{:} \PYG{n}{Callable}\PYG{p}{[[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{],} \PYG{n}{Diagram}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{staticmethod}\PYG{p}{(}\PYG{o}{...}\PYG{p}{)}
+
+    \PYG{n}{is\PYGZus{}bijective}\PYG{p}{:} \PYG{n+nb}{bool} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{o}{...}\PYG{p}{)}
+    \PYG{n}{is\PYGZus{}monogamous}\PYG{p}{:} \PYG{n+nb}{bool} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{o}{...}\PYG{p}{)}
+    \PYG{n}{is\PYGZus{}progressive}\PYG{p}{:} \PYG{n+nb}{bool} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{o}{...}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{make\PYGZus{}bijective}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{make\PYGZus{}monogamous}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{make\PYGZus{}progressive}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+
+    \PYG{k}{def} \PYG{n+nf}{downgrade}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{compact}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{:} \PYG{o}{...}
+
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n+nb}{staticmethod}\PYG{p}{(}\PYG{n}{compact}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{(}
+        \PYG{n}{ob}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{x}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]),}
+        \PYG{n}{ar}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{box}\PYG{p}{:} \PYG{n}{Box}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{),}
+        \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{)))}
+
+    \PYG{k}{def} \PYG{n+nf}{draw}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{params}\PYG{p}{):} \PYG{o}{...}
+
+\PYG{k}{class} \PYG{n+nc}{Box}\PYG{p}{(}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+        \PYG{n}{boxes}\PYG{p}{,} \PYG{n}{spider\PYGZus{}types}\PYG{p}{,} \PYG{n}{wires} \PYG{o}{=} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{),} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{dom} \PYG{o}{@} \PYG{n}{cod}\PYG{p}{)),} \PYG{o}{...}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name} \PYG{o}{=} \PYG{n}{name}\PYG{p}{;} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{,} \PYG{n}{boxes}\PYG{p}{,} \PYG{n}{wires}\PYG{p}{,} \PYG{n}{spider\PYGZus{}types}\PYG{p}{)}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{cat}\PYG{o}{.}\PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{)}\PYGZbs{}
+            \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{)} \PYG{k}{else} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

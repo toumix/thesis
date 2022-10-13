@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}xyz\PYGZdq{}}\PYG{p}{)}
+
+\PYG{k}{assert} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{)} \PYG{o}{==} \PYG{n}{Braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{o}{@} \PYG{n}{z} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{y} \PYG{o}{@} \PYG{n}{Braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)} \PYG{o}{==} \PYG{n}{x} \PYG{o}{@} \PYG{n}{Braid}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)} \PYG{o}{@} \PYG{n}{y}
+\end{Verbatim}

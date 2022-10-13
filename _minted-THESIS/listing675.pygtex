@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Ob}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Ob}\PYG{p}{):}
+    \PYG{n}{z}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+    \PYG{n}{l} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{z} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{))}
+    \PYG{n}{r} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{z} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{cast}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{old}\PYG{p}{:} \PYG{n}{cat}\PYG{o}{.}\PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ob}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{old} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{old}\PYG{p}{,} \PYG{n+nb+bp}{cls}\PYG{p}{)} \PYG{k}{else} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{old}\PYG{p}{),} \PYG{n}{z}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Ty}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Ob}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{inside}\PYG{o}{=}\PYG{p}{()):}
+        \PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Ty}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{inside}\PYG{o}{=}\PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ob}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{,} \PYG{n}{inside}\PYG{p}{)))}
+
+    \PYG{n}{l} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)([}\PYG{n}{x}\PYG{o}{.}\PYG{n}{l} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]]))}
+    \PYG{n}{r} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)([}\PYG{n}{x}\PYG{o}{.}\PYG{n}{r} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]]))}
+\end{Verbatim}

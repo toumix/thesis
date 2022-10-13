@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{numpy} \PYG{k+kn}{import} \PYG{n}{array}\PYG{p}{,} \PYG{n}{argmin}
+\PYG{k+kn}{from} \PYG{n+nn}{skimage.measure} \PYG{k+kn}{import} \PYG{n}{regionprops}\PYG{p}{,} \PYG{n}{label}
+
+\PYG{k}{def} \PYG{n+nf}{read}\PYG{p}{(}\PYG{n}{box\PYGZus{}pixels}\PYG{p}{:} \PYG{n}{array}\PYG{p}{,} \PYG{n}{wire\PYGZus{}pixels}\PYG{p}{:} \PYG{n}{array}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:}
+    \PYG{n}{connected\PYGZus{}components} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{img}\PYG{p}{:} \PYG{n}{regionprops}\PYG{p}{(}\PYG{n}{label}\PYG{p}{(}\PYG{n}{img}\PYG{p}{))}
+    \PYG{n}{box\PYGZus{}nodes}\PYG{p}{,} \PYG{n}{wires} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{connected\PYGZus{}components}\PYG{p}{,} \PYG{p}{(}\PYG{n}{box\PYGZus{}pixels}\PYG{p}{,} \PYG{n}{wire\PYGZus{}pixels}\PYG{p}{))}
+    \PYG{n}{source}\PYG{p}{,} \PYG{n}{target}\PYG{p}{,} \PYG{n}{length}\PYG{p}{,} \PYG{n}{width} \PYG{o}{=} \PYG{p}{[],} \PYG{p}{[],} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box\PYGZus{}pixels}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box\PYGZus{}pixels}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+    \PYG{n}{critical\PYGZus{}heights} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{p}{[}
+        \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{node}\PYG{o}{.}\PYG{n}{centroid}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{k}{for} \PYG{n}{node} \PYG{o+ow}{in} \PYG{n}{box\PYGZus{}nodes}\PYG{p}{]} \PYG{o}{+} \PYG{p}{[}\PYG{n}{length}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{wire}\PYG{p}{,} \PYG{n}{region} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{wires}\PYG{p}{):}
+        \PYG{n}{top}\PYG{p}{,} \PYG{n}{bottom} \PYG{o}{=} \PYG{p}{(}
+            \PYG{n}{minmax}\PYG{p}{(}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n}{region}\PYG{o}{.}\PYG{n}{coords}\PYG{p}{)} \PYG{k}{for} \PYG{n}{minmax} \PYG{o+ow}{in} \PYG{p}{(}\PYG{n+nb}{min}\PYG{p}{,} \PYG{n+nb}{max}\PYG{p}{))}
+        \PYG{n}{source}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{argmin}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{array}\PYG{p}{(}\PYG{n}{critical\PYGZus{}heights}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{top}\PYG{p}{)))}
+        \PYG{n}{target}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{argmin}\PYG{p}{(}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{array}\PYG{p}{(}\PYG{n}{critical\PYGZus{}heights}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{bottom}\PYG{p}{)))}
+    \PYG{n}{scan} \PYG{o}{=} \PYG{p}{[}\PYG{n}{wire} \PYG{k}{for} \PYG{n}{wire}\PYG{p}{,} \PYG{n}{node} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{source}\PYG{p}{)} \PYG{k}{if} \PYG{n}{node} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n}{dom}\PYG{p}{,} \PYG{n}{boxes\PYGZus{}and\PYGZus{}offsets} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{)} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{scan}\PYG{p}{),} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{depth}\PYG{p}{,} \PYG{n}{box\PYGZus{}node} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{box\PYGZus{}nodes}\PYG{p}{):}
+        \PYG{n}{input\PYGZus{}wires} \PYG{o}{=} \PYG{p}{[}\PYG{n}{wire} \PYG{k}{for} \PYG{n}{wire} \PYG{o+ow}{in} \PYG{n}{scan} \PYG{k}{if} \PYG{n}{target}\PYG{p}{[}\PYG{n}{wire}\PYG{p}{]} \PYG{o}{==} \PYG{n}{depth} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{output\PYGZus{}wires} \PYG{o}{=} \PYG{p}{[}
+            \PYG{n}{wire} \PYG{k}{for} \PYG{n}{wire}\PYG{p}{,} \PYG{n}{node} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{source}\PYG{p}{)} \PYG{k}{if} \PYG{n}{node} \PYG{o}{==} \PYG{n}{depth} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{)} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{input\PYGZus{}wires}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{)} \PYG{o}{**} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{output\PYGZus{}wires}\PYG{p}{)}
+        \PYG{n}{box} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}box\PYGZus{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{cod}\PYG{p}{)),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+        \PYG{n}{height}\PYG{p}{,} \PYG{n}{left} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{box\PYGZus{}node}\PYG{o}{.}\PYG{n}{centroid}\PYG{p}{)}
+        \PYG{n}{left\PYGZus{}of\PYGZus{}box} \PYG{o}{=} \PYG{p}{[}\PYG{n}{wire} \PYG{k}{for} \PYG{n}{wire} \PYG{o+ow}{in} \PYG{n}{scan} \PYG{k}{if} \PYG{n}{wire} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{input\PYGZus{}wires}
+                       \PYG{o+ow}{and} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{wires}\PYG{p}{[}\PYG{n}{wire}\PYG{p}{]}\PYG{o}{.}\PYG{n}{coords}\PYG{p}{)}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{height}\PYG{p}{,} \PYG{n}{width}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n}{left}\PYG{p}{]}
+        \PYG{n}{offset} \PYG{o}{=} \PYG{n+nb}{max}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left\PYGZus{}of\PYGZus{}box}\PYG{p}{),} \PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{n}{boxes\PYGZus{}and\PYGZus{}offsets}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{box}\PYG{p}{,} \PYG{n}{offset}\PYG{p}{))}
+        \PYG{n}{scan} \PYG{o}{=} \PYG{n}{scan}\PYG{p}{[:}\PYG{n}{offset}\PYG{p}{]} \PYG{o}{+} \PYG{n}{output\PYGZus{}wires} \PYG{o}{+} \PYG{n}{scan}\PYG{p}{[}\PYG{n}{offset} \PYG{o}{+} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{input\PYGZus{}wires}\PYG{p}{):]}
+    \PYG{k}{return} \PYG{n}{decode}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{boxes\PYGZus{}and\PYGZus{}offsets}\PYG{p}{))}
+\end{Verbatim}

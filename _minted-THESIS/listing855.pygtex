@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Ty}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Ty}\PYG{p}{):}
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{cast}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{old}\PYG{p}{:} \PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Ty}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Ty}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{old}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{old}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{old}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{Exp}\PYG{p}{)} \PYG{k}{else} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n}{old}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}pow\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n}{Exp}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{)} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{)}\PYGZbs{}
+            \PYG{k}{else} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}pow\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Exp}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{):}
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{Ty}\PYG{o}{.}\PYG{n}{cast}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exponent} \PYG{o}{=} \PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{inside}\PYG{o}{=}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{))}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{))}\PYGZbs{}
+            \PYG{o+ow}{and} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exponent}\PYG{p}{)} \PYG{o}{==} \PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{base}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{exponent}\PYG{p}{)}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ ** }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exponent}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Over}\PYG{p}{(}\PYG{n}{Exp}\PYG{p}{):}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ \PYGZlt{}\PYGZlt{} }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exponent}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Under}\PYG{p}{(}\PYG{n}{Exp}\PYG{p}{):}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ \PYGZgt{}\PYGZgt{} }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exponent}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{base}\PYG{p}{)}
+
+\PYG{n}{Ty}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}lshift\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Over}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{)}
+\PYG{n}{Ty}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}rshift\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Under}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{)}
+\end{Verbatim}

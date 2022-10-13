@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{qubit} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{Qudit}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{))}
+\end{Verbatim}

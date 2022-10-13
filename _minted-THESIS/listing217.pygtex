@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Qubits}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{):}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}qubit ** }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{))}
+
+\PYG{n}{qubit} \PYG{o}{=} \PYG{n}{Qubits}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}1\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{nstance}\PYG{p}{(}\PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{Qubits}\PYG{p}{)} \PYG{o+ow}{and} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{42}\PYG{p}{,} \PYG{n}{Qubits}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{networkx} \PYG{k+kn}{import} \PYG{n}{Graph}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Node}\PYG{p}{:}
+    \PYG{n}{kind}\PYG{p}{:} \PYG{n+nb}{str}
+    \PYG{n}{label}\PYG{p}{:} \PYG{n}{Ty} \PYG{o}{|} \PYG{n}{Box}
+    \PYG{n}{i}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{j}\PYG{p}{:} \PYG{n+nb}{int}
+
+\PYG{k}{def} \PYG{n+nf}{diagram2graph}\PYG{p}{(}\PYG{n}{diagram}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Graph}\PYG{p}{:}
+    \PYG{n}{graph} \PYG{o}{=} \PYG{n}{Graph}\PYG{p}{()}
+    \PYG{n}{scan} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}dom\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)]}
+    \PYG{n}{graph}\PYG{o}{.}\PYG{n}{add\PYGZus{}edges\PYGZus{}from}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{scan}\PYG{p}{,} \PYG{n}{scan}\PYG{p}{))}
+    \PYG{k}{for} \PYG{n}{j}\PYG{p}{,} \PYG{p}{(}\PYG{n}{left}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{):}
+        \PYG{n}{box\PYGZus{}node} \PYG{o}{=} \PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}box\PYGZsq{}}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)}
+        \PYG{n}{dom\PYGZus{}nodes} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}dom\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)]}
+        \PYG{n}{cod\PYGZus{}nodes} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}cod\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)]}
+        \PYG{n}{graph}\PYG{o}{.}\PYG{n}{add\PYGZus{}edges\PYGZus{}from}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{scan}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left}\PYG{p}{):} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left} \PYG{o}{@} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)],} \PYG{n}{dom\PYGZus{}nodes}\PYG{p}{))}
+        \PYG{n}{graph}\PYG{o}{.}\PYG{n}{add\PYGZus{}edges\PYGZus{}from}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{dom\PYGZus{}nodes}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{*} \PYG{p}{[}\PYG{n}{box\PYGZus{}node}\PYG{p}{]))}
+        \PYG{n}{graph}\PYG{o}{.}\PYG{n}{add\PYGZus{}edges\PYGZus{}from}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)} \PYG{o}{*} \PYG{p}{[}\PYG{n}{box\PYGZus{}node}\PYG{p}{],} \PYG{n}{cod\PYGZus{}nodes}\PYG{p}{))}
+        \PYG{n}{scan} \PYG{o}{=} \PYG{n}{scan}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left}\PYG{p}{):]} \PYG{o}{+} \PYG{n}{cod\PYGZus{}nodes} \PYG{o}{+} \PYG{n}{scan}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left} \PYG{o}{@} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):]}
+    \PYG{n}{graph}\PYG{o}{.}\PYG{n}{add\PYGZus{}edges\PYGZus{}from}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{scan}\PYG{p}{,} \PYG{p}{[}
+        \PYG{n}{Node}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}cod\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{diagram}\PYG{p}{))} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)]))}
+    \PYG{k}{return} \PYG{n}{graph}
+\end{Verbatim}

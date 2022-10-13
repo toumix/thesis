@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Dict}\PYG{p}{(}\PYG{n}{Composable}\PYG{p}{,} \PYG{n}{Tensorable}\PYG{p}{):}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n+nb}{dict}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{]}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n+nb}{int}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}getitem\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{key}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{key}\PYG{p}{]}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Dict}\PYG{p}{(\PYGZob{}}\PYG{n}{i}\PYG{p}{:} \PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)\PYGZcb{},} \PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Dict}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Dict}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{other}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{Dict}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Dict}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Dict}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)\PYGZcb{}}
+        \PYG{n}{inside}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(\PYGZob{}}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{+} \PYG{n}{i}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{+} \PYG{n}{other}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)\PYGZcb{})}
+        \PYG{k}{return} \PYG{n}{Dict}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Dict}\PYG{p}{:}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{:} \PYG{n}{i} \PYG{o}{+} \PYG{n}{x} \PYG{k}{if} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{x} \PYG{k}{else} \PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{n}{x} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x} \PYG{o}{+} \PYG{n}{y}\PYG{p}{)\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{Dict}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{x} \PYG{o}{+} \PYG{n}{y}\PYG{p}{,} \PYG{n}{x} \PYG{o}{+} \PYG{n}{y}\PYG{p}{)}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Dict}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Dict}\PYG{p}{(\PYGZob{}}\PYG{n}{i}\PYG{p}{:} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n}{x} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)\PYGZcb{},} \PYG{n}{x}\PYG{p}{,} \PYG{n}{n} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)}
+\end{Verbatim}

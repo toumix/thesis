@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{a} \PYG{o}{=} \PYG{n}{Colour}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{a}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{a}\PYG{p}{)}
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{Ty}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{a}\PYG{p}{),} \PYG{n}{x}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{Pyth} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Function}\PYG{p}{)}
+\PYG{n}{List} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{xs}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{xs}\PYG{p}{],}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{f}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{xs}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,} \PYG{n}{xs}\PYG{p}{)),}
+    \PYG{n}{dom}\PYG{o}{=}\PYG{n}{Pyth}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Pyth}\PYG{p}{)}
+\PYG{n}{Unit} \PYG{o}{=} \PYG{n}{Transformation}\PYG{p}{(}
+    \PYG{k}{lambda} \PYG{n}{\PYGZus{}}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{p}{[}\PYG{n}{x}\PYG{p}{],} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{Functor}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{Pyth}\PYG{p}{),} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{List}\PYG{p}{)}
+\PYG{n}{Mult} \PYG{o}{=} \PYG{n}{Transformation}\PYG{p}{(}
+    \PYG{k}{lambda} \PYG{n}{\PYGZus{}}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{xs}\PYG{p}{:} \PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{xs}\PYG{p}{,} \PYG{p}{[]),} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{List} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{List}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{List}\PYG{p}{)}
+
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{TwoFunctor}\PYG{p}{(}
+    \PYG{n}{colours}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{a}\PYG{p}{:} \PYG{n}{Pyth}\PYG{p}{\PYGZcb{},} \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{n}{List}\PYG{p}{\PYGZcb{},} \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{f}\PYG{p}{:} \PYG{n}{Unit}\PYG{p}{,} \PYG{n}{g}\PYG{p}{:} \PYG{n}{Mult}\PYG{p}{\PYGZcb{},} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Cat}\PYG{p}{)}
+
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)(}\PYG{n+nb}{int}\PYG{p}{)([}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{])}\PYGZbs{}
+    \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)(}\PYG{n+nb}{int}\PYG{p}{)([}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{])}\PYGZbs{}
+    \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))(}\PYG{n+nb}{int}\PYG{p}{)([}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{])} \PYG{o}{==} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{]}
+
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{g} \PYG{o}{@} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)(}\PYG{n+nb}{int}\PYG{p}{)([[[}\PYG{l+m+mi}{42}\PYG{p}{]]])} \PYG{o}{==} \PYG{p}{[}\PYG{l+m+mi}{42}\PYG{p}{]} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)(}\PYG{n+nb}{int}\PYG{p}{)([[[}\PYG{l+m+mi}{42}\PYG{p}{]]])}
+\end{Verbatim}

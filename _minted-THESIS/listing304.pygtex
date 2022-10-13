@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{simplify}\PYG{p}{(}\PYG{n}{circuit}\PYG{p}{,} \PYG{n}{rules}\PYG{p}{):}
+    \PYG{k}{for} \PYG{n}{source}\PYG{p}{,} \PYG{n}{target} \PYG{o+ow}{in} \PYG{n}{rules}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{match} \PYG{o+ow}{in} \PYG{n}{circuit}\PYG{o}{.}\PYG{n}{match}\PYG{p}{(}\PYG{n}{source}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{simplify}\PYG{p}{(}\PYG{n}{match}\PYG{o}{.}\PYG{n}{subs}\PYG{p}{(}\PYG{n}{target}\PYG{p}{),} \PYG{n}{rules}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{circuit}
+
+\PYG{n}{rules} \PYG{o}{=} \PYG{p}{[(}\PYG{n}{Ket}\PYG{p}{(}\PYG{n}{b}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{X}\PYG{p}{,} \PYG{n}{Ket}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{(}\PYG{o+ow}{not} \PYG{n}{b}\PYG{p}{)))}
+         \PYG{k}{for} \PYG{n}{b} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]]} \PYG{o}{+} \PYG{p}{[}
+         \PYG{p}{(}\PYG{n}{Ket}\PYG{p}{(}\PYG{n}{b0}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{n}{b1}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{CX}\PYG{p}{,} \PYG{n}{Ket}\PYG{p}{(}\PYG{n}{b0}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{(}\PYG{o+ow}{not} \PYG{n}{b1} \PYG{k}{if} \PYG{n}{b0} \PYG{k}{else} \PYG{n}{b1}\PYG{p}{)))}
+         \PYG{k}{for} \PYG{n}{b0} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{k}{for} \PYG{n}{b1} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]]}
+\PYG{n}{circuit} \PYG{o}{=} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{CX} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{qubit} \PYG{o}{@} \PYG{n}{X}
+
+\PYG{k}{assert} \PYG{n}{simplify}\PYG{p}{(}\PYG{n}{circuit}\PYG{p}{,} \PYG{n}{rules}\PYG{p}{)} \PYG{o}{==} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{qubit} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\end{Verbatim}

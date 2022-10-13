@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{eval}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{f}\PYG{p}{))} \PYG{o}{==} \PYG{n}{f}
+\end{Verbatim}

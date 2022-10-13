@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{god} \PYG{o}{=} \PYG{n}{Predicate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}G\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{n}{formula} \PYG{o}{=} \PYG{n}{god} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{Formula}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{o}{.}\PYG{n}{cut}\PYG{p}{()} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{god}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{())}\PYG{o}{.}\PYG{n}{cut}\PYG{p}{()}
+\PYG{n}{formula}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

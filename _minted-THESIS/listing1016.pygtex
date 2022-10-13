@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{bit} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{n}{Digit}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{))}
+\end{Verbatim}

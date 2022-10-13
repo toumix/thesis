@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Function}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{fix}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n}{n} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{:} \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{fix}\PYG{p}{()}\PYG{o}{.}\PYG{n}{fix}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}
+        \PYG{k}{def} \PYG{n+nf}{inside}\PYG{p}{(}\PYG{o}{*}\PYG{n}{xs}\PYG{p}{,} \PYG{n}{y}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{):}
+            \PYG{n}{result} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{(}\PYG{o}{*}\PYG{n}{xs} \PYG{o}{+} \PYG{p}{(()} \PYG{k}{if} \PYG{n}{y} \PYG{o+ow}{is} \PYG{k+kc}{None} \PYG{k}{else} \PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{p}{)))}
+            \PYG{k}{return} \PYG{n}{y} \PYG{k}{if} \PYG{n}{result} \PYG{o}{==} \PYG{n}{y} \PYG{k}{else} \PYG{n}{inside}\PYG{p}{(}\PYG{o}{*}\PYG{n}{xs}\PYG{p}{,} \PYG{n}{y}\PYG{o}{=}\PYG{n}{result}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{trace}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{):}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{,} \PYG{n}{traced} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{p}{:]}
+        \PYG{n}{fixed} \PYG{o}{=} \PYG{p}{(}\PYG{n+nb+bp}{self} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{discard}\PYG{p}{(}\PYG{n}{cod}\PYG{p}{)} \PYG{o}{@} \PYG{n}{traced}\PYG{p}{)}\PYG{o}{.}\PYG{n}{fix}\PYG{p}{()}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{dom} \PYG{o}{@} \PYG{n}{fixed}\PYGZbs{}
+            \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{cod} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{discard}\PYG{p}{(}\PYG{n}{traced}\PYG{p}{)}
+\end{Verbatim}

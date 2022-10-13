@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f}\PYG{o}{.}\PYG{n}{make\PYGZus{}bijective}\PYG{p}{()}\PYG{o}{.}\PYG{n}{is\PYGZus{}bijective}
+\end{Verbatim}

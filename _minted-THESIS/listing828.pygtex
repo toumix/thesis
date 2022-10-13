@@ -1,0 +1,71 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{FakeInt}\PYG{p}{:}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Ty}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Ty}\PYG{p}{(),} \PYG{p}{)}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}index\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{)}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}iter\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}iter\PYGZus{}\PYGZus{}}\PYG{p}{)}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}add\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{FakeInt}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{)}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}mul\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{FakeInt}\PYG{p}{(}
+        \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{x0} \PYG{o}{@} \PYG{n}{x1} \PYG{k}{for} \PYG{n}{x0} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{k}{for} \PYG{n}{x1} \PYG{o+ow}{in} \PYG{n}{other}\PYG{p}{))}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}rmul\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n}{FakeInt}\PYG{p}{(}\PYG{n}{n} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{)}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}pow\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n}{product}\PYG{p}{(}\PYG{n}{n} \PYG{o}{*} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{),} \PYG{n}{unit}\PYG{o}{=}\PYG{n}{FakeInt}\PYG{p}{())}
+
+\PYG{k}{class} \PYG{n+nc}{Diagram}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Biproduct}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{==} \PYG{p}{[[}\PYG{n+nb+bp}{self}\PYG{p}{]]}
+        \PYG{k}{return} \PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{direct\PYGZus{}sum}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{others}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{direct\PYGZus{}sum}\PYG{p}{(}\PYG{o}{*}\PYG{n}{others}\PYG{p}{)}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}or\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{n}{direct\PYGZus{}sum}
+
+\PYG{k}{class} \PYG{n+nc}{Box}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{cast}
+
+\PYG{k}{class} \PYG{n+nc}{Sum}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Sum}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{):}
+    \PYG{n+nb}{id} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Sum}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{sum} \PYG{o}{=} \PYG{n}{Sum}
+
+\PYG{k}{class} \PYG{n+nc}{Biproduct}\PYG{p}{(}\PYG{n}{Matrix}\PYG{p}{):}
+    \PYG{n}{dtype} \PYG{o}{=} \PYG{n}{Sum}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{inside}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{Sum}\PYG{p}{]],} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{FakeInt}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{FakeInt}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{=} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{,} \PYG{p}{[[}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{k}{if} \PYG{n}{val} \PYG{o}{==} \PYG{l+m+mi}{1}
+            \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{o}{.}\PYG{n}{zero}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{k}{if} \PYG{n}{val} \PYG{o}{==} \PYG{l+m+mi}{0}
+            \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{val}\PYG{p}{)}
+            \PYG{k}{for} \PYG{n}{y}\PYG{p}{,} \PYG{n}{val} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{cod}\PYG{p}{,} \PYG{n}{row}\PYG{p}{)]} \PYG{k}{for} \PYG{n}{x}\PYG{p}{,} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{inside}\PYG{p}{)]}
+
+    \PYG{n+nd}{@contextmanager}
+    \PYG{k}{def} \PYG{n+nf}{fake\PYGZus{}multiplication}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{method}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}mul\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{p}{,} \PYG{n}{method}\PYG{p}{)}
+        \PYG{k}{yield}
+        \PYG{n+nb}{delattr}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}mul\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{cast}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{old}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{old}\PYG{p}{,} \PYG{n+nb+bp}{cls}\PYG{p}{):} \PYG{k}{return} \PYG{n}{old}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{p}{([[}\PYG{n}{old}\PYG{p}{]],} \PYG{n}{FakeInt}\PYG{p}{((}\PYG{n}{old}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{p}{)),} \PYG{n}{FakeInt}\PYG{p}{((}\PYG{n}{old}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{p}{)))}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Biproduct} \PYG{o}{|} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Biproduct}\PYG{p}{:}
+        \PYG{k}{with} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{fake\PYGZus{}multiplication}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}then\PYGZdq{}}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{Matrix}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{))}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Biproduct} \PYG{o}{|} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Biproduct}\PYG{p}{:}
+        \PYG{k}{with} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{fake\PYGZus{}multiplication}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}tensor\PYGZdq{}}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{Matrix}\PYG{o}{.}\PYG{n}{Kronecker}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{))}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{direct\PYGZus{}sum}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Biproduct} \PYG{o}{|} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Biproduct}\PYG{p}{:}
+        \PYG{k}{with} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{fake\PYGZus{}multiplication}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}then\PYGZdq{}}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{Matrix}\PYG{o}{.}\PYG{n}{direct\PYGZus{}sum}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{))}
+
+    \PYG{n}{dagger} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{()}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{f}\PYG{p}{:} \PYG{n}{f}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{())}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Matrix}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{))}
+\end{Verbatim}

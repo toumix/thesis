@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f} \PYG{o}{@} \PYG{n+nb}{id} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb}{id} \PYG{o}{@} \PYG{n}{g} \PYG{o}{!=} \PYG{n+nb}{id} \PYG{o}{@} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{f} \PYG{o}{@} \PYG{n+nb}{id}
+\end{Verbatim}

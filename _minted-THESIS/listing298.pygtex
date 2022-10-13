@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Match}\PYG{p}{:}
+    \PYG{n}{top}\PYG{p}{:} \PYG{n}{Diagram}
+    \PYG{n}{bottom}\PYG{p}{:} \PYG{n}{Diagram}
+    \PYG{n}{left}\PYG{p}{:} \PYG{n}{Ty}
+    \PYG{n}{right}\PYG{p}{:} \PYG{n}{Ty}
+
+    \PYG{k}{def} \PYG{n+nf}{subs}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{target}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{top} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{left} \PYG{o}{@} \PYG{n}{target} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{right} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{bottom}
+
+\PYG{k}{def} \PYG{n+nf}{match}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{pattern}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Iterator}\PYG{p}{[}\PYG{n}{Match}\PYG{p}{]:}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{pattern}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{):}
+            \PYG{n}{match} \PYG{o}{=} \PYG{n}{Match}\PYG{p}{(}
+                \PYG{n+nb+bp}{self}\PYG{p}{[:}\PYG{n}{i}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{):],}
+                \PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{n}{j}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{n}{j} \PYG{o}{+} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{pattern}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):])}
+            \PYG{n}{well\PYGZus{}typed} \PYG{o}{=} \PYG{n}{match}\PYG{o}{.}\PYG{n}{top}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{match}\PYG{o}{.}\PYG{n}{left} \PYG{o}{@} \PYG{n}{pattern}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{@} \PYG{n}{match}\PYG{o}{.}\PYG{n}{right}\PYGZbs{}
+                \PYG{o+ow}{and} \PYG{n}{match}\PYG{o}{.}\PYG{n}{left} \PYG{o}{@} \PYG{n}{pattern}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{@} \PYG{n}{match}\PYG{o}{.}\PYG{n}{right} \PYG{o}{==} \PYG{n}{match}\PYG{o}{.}\PYG{n}{bottom}\PYG{o}{.}\PYG{n}{dom}
+            \PYG{k}{if} \PYG{n}{well\PYGZus{}typed} \PYG{o+ow}{and} \PYG{n+nb+bp}{self} \PYG{o}{==} \PYG{n}{match}\PYG{o}{.}\PYG{n}{subs}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{):} \PYG{k}{yield} \PYG{n}{match}
+\end{Verbatim}

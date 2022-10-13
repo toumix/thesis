@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{circuit} \PYG{o}{=} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{H} \PYG{o}{@} \PYG{n}{qubit} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{CX} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Measure}\PYG{p}{()} \PYG{o}{@} \PYG{n}{Measure}\PYG{p}{()}
+\PYG{n}{circuit}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}y\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{Ty}\PYG{p}{()}\PYG{o}{.}\PYG{n}{l} \PYG{o}{==} \PYG{n}{Ty}\PYG{p}{()} \PYG{o}{==} \PYG{n}{Ty}\PYG{p}{()}\PYG{o}{.}\PYG{n}{r}
+\PYG{k}{assert} \PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{y}\PYG{p}{)}\PYG{o}{.}\PYG{n}{l} \PYG{o}{==} \PYG{n}{y}\PYG{o}{.}\PYG{n}{l} \PYG{o}{@} \PYG{n}{x}\PYG{o}{.}\PYG{n}{l} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{y}\PYG{p}{)}\PYG{o}{.}\PYG{n}{r} \PYG{o}{==} \PYG{n}{y}\PYG{o}{.}\PYG{n}{r} \PYG{o}{@} \PYG{n}{x}\PYG{o}{.}\PYG{n}{r}
+\PYG{k}{assert} \PYG{n}{x}\PYG{o}{.}\PYG{n}{r}\PYG{o}{.}\PYG{n}{l} \PYG{o}{==} \PYG{n}{x} \PYG{o}{==} \PYG{n}{x}\PYG{o}{.}\PYG{n}{l}\PYG{o}{.}\PYG{n}{r}
+\end{Verbatim}

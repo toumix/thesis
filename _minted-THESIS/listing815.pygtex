@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{minus} \PYG{o}{@} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{add}\PYG{p}{,}
+                 \PYG{n}{discard} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{zero}\PYG{p}{,}
+                 \PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{@} \PYG{n}{minus} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{add}\PYG{p}{)}
+\end{Verbatim}

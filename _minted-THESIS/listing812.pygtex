@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{add} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{n}\PYG{p}{:} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}+\PYGZdl{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{**} \PYG{n}{n}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{n}{ReLU} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{sigma\PYGZdl{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{n}{weights} \PYG{o}{=} \PYG{p}{[}\PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}w}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{i}\PYG{p}{),} \PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{)]}
+\PYG{n}{bias} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{(),} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{network} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{x} \PYG{o}{@} \PYG{n}{x}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYGZbs{}
+\PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{o}{*}\PYG{n}{weights}\PYG{p}{)} \PYG{o}{@} \PYG{n}{bias} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{add}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{ReLU}
+
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}\PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{\PYGZcb{},} \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{n}{add}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{):} \PYG{k}{lambda} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{xs}\PYG{p}{),}
+        \PYG{n}{ReLU}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{max}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{x}\PYG{p}{),}
+        \PYG{n}{bias}\PYG{p}{:} \PYG{k}{lambda}\PYG{p}{:} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{**}\PYG{p}{\PYGZob{}}
+            \PYG{n}{weight}\PYG{p}{:} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{,} \PYG{n}{w}\PYG{o}{=}\PYG{n}{w}\PYG{p}{:} \PYG{n}{x} \PYG{o}{*} \PYG{n}{w}
+            \PYG{k}{for} \PYG{n}{weight}\PYG{p}{,} \PYG{n}{w} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{weights}\PYG{p}{,} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{))\PYGZcb{}\PYGZcb{},}
+    \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{Function}\PYG{p}{))}
+
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{network}\PYG{p}{)(}\PYG{l+m+mi}{42}\PYG{p}{,} \PYG{l+m+mi}{43}\PYG{p}{)} \PYG{o}{==} \PYG{n+nb}{max}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{sum}\PYG{p}{([}\PYG{l+m+mi}{42} \PYG{o}{*} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{43} \PYG{o}{*} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{42} \PYG{o}{*} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{43} \PYG{o}{*} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]))}
+\end{Verbatim}

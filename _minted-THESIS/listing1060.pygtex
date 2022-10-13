@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{who} \PYG{o}{=} \PYG{n}{Word}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}who\PYGZdq{}}\PYG{p}{,} \PYG{n}{n}\PYG{o}{.}\PYG{n}{r} \PYG{o}{@} \PYG{n}{n} \PYG{o}{@} \PYG{n}{s}\PYG{o}{.}\PYG{n}{l} \PYG{o}{@} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{phrase} \PYG{o}{=} \PYG{n}{Alice} \PYG{o}{@} \PYG{n}{who} \PYG{o}{@} \PYG{n}{loves} \PYG{o}{@} \PYG{n}{Bob}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Cup}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,} \PYG{n}{n}\PYG{o}{.}\PYG{n}{r}\PYG{p}{)} \PYG{o}{@} \PYG{n}{n} \PYG{o}{@} \PYG{n}{s}\PYG{o}{.}\PYG{n}{l} \PYG{o}{@} \PYG{n}{Cup}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,} \PYG{n}{n}\PYG{o}{.}\PYG{n}{r}\PYG{p}{)} \PYG{o}{@} \PYG{n}{s} \PYG{o}{@} \PYG{n}{Cup}\PYG{p}{(}\PYG{n}{n}\PYG{o}{.}\PYG{n}{l}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{n} \PYG{o}{@} \PYG{n}{Cup}\PYG{p}{(}\PYG{n}{s}\PYG{o}{.}\PYG{n}{l}\PYG{p}{,} \PYG{n}{s}\PYG{p}{)}
+
+\PYG{n}{wiring}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{who}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Cap}\PYG{p}{(}\PYG{n}{n}\PYG{o}{.}\PYG{n}{r}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{n}\PYG{o}{.}\PYG{n}{r} \PYG{o}{@} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}who\PYGZus{}1\PYGZdq{}}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{n}\PYG{p}{)}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{n}\PYG{o}{.}\PYG{n}{r} \PYG{o}{@} \PYG{n}{x} \PYG{o}{@} \PYG{n}{Cap}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,} \PYG{n}{s}\PYG{o}{.}\PYG{n}{l}\PYG{p}{)} \PYG{o}{@} \PYG{n}{n}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{n}\PYG{o}{.}\PYG{n}{r} \PYG{o}{@} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}who\PYGZus{}2\PYGZdq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{s}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)} \PYG{o}{@} \PYG{n}{s}\PYG{o}{.}\PYG{n}{l} \PYG{o}{@} \PYG{n}{n}
+
+\PYG{n}{G}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{qubit}
+\PYG{n}{G}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}who\PYGZus{}1\PYGZdq{}}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{n}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{H} \PYG{o}{@} \PYG{n}{sqrt2} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{CX}
+\PYG{n}{G}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}who\PYGZus{}2\PYGZdq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{s}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{Circuit}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{qubit}\PYG{p}{)}
+
+\PYG{n}{rewrite\PYGZus{}steps} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n}{phrase}\PYG{p}{,}
+    \PYG{n}{wiring}\PYG{p}{(}\PYG{n}{phrase}\PYG{p}{),}
+    \PYG{n}{wiring}\PYG{p}{(}\PYG{n}{phrase}\PYG{p}{)}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{(),}
+    \PYG{n}{G}\PYG{p}{(}\PYG{n}{wiring}\PYG{p}{(}\PYG{n}{phrase}\PYG{p}{)}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{()))}
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{rewrite\PYGZus{}steps}\PYG{p}{,} \PYG{n}{symbol}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{mapsto\PYGZdl{}\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{for} \PYG{n}{c} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{X}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{Z}\PYG{p}{,} \PYG{n}{H}\PYG{p}{,} \PYG{n}{X} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Y} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Z} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{H}\PYG{p}{]:}
+    \PYG{k}{assert} \PYG{p}{(}\PYG{n}{c} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{c}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()}\PYGZbs{}
+        \PYG{o}{==} \PYG{n}{Matrix}\PYG{p}{[}\PYG{n+nb}{complex}\PYG{p}{]}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYGZbs{}
+        \PYG{o}{==} \PYG{p}{(}\PYG{n}{c}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{c}\PYG{p}{)}\PYG{o}{.}\PYG{n}{eval}\PYG{p}{()}
+\end{Verbatim}

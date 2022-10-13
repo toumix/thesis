@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Arrow}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Arrow}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n}{other}\PYG{o}{.}\PYG{n}{terms} \PYG{o}{==} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{)} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Sum}\PYG{p}{)}\PYGZbs{}
+            \PYG{k}{else} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sum}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Sum}\PYG{p}{)}\PYGZbs{}
+            \PYG{k}{else} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{zero}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:} \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{((),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}add\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sum}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{+} \PYG{n}{other}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}lt\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n+nb}{hash}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n+nb}{hash}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} An arbitrary order.}
+
+\PYG{k}{class} \PYG{n+nc}{Sum}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{terms}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Arrow}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n+nb}{all}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{==} \PYG{n}{dom} \PYG{o+ow}{and} \PYG{n}{f}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{cod} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{terms}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{,} \PYG{n}{name} \PYG{o}{=} \PYG{n}{terms}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Sum(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, [}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{])\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}
+            \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}, \PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{terms}\PYG{p}{)))}
+        \PYG{n}{cat}\PYG{o}{.}\PYG{n}{Box}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Sum}\PYG{p}{):}
+            \PYG{k}{return} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{))}\PYGZbs{}
+                \PYG{o}{==} \PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{))}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms} \PYG{o}{==} \PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}add\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Sum}\PYG{p}{):} \PYG{k}{return} \PYG{n+nb+bp}{self} \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{Sum}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{cast}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{old}\PYG{p}{:} \PYG{n}{cat}\PYG{o}{.}\PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Sum}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{old} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{old}\PYG{p}{,} \PYG{n+nb+bp}{cls}\PYG{p}{)} \PYG{k}{else} \PYG{n+nb+bp}{cls}\PYG{p}{((}\PYG{n}{old}\PYG{p}{,} \PYG{p}{),} \PYG{n}{old}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{old}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{n}{terms} \PYG{o}{=} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms} \PYG{k}{for} \PYG{n}{g} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)(}\PYG{n}{terms}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)(}\PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)}
+
+    \PYG{n+nb}{id} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Sum}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{Arrow}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))}
+
+\PYG{n}{Arrow}\PYG{o}{.}\PYG{n}{sum} \PYG{o}{=} \PYG{n}{Sum}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{dom} \PYG{o}{=} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Sum}\PYG{p}{):}
+            \PYG{n}{unit} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{zero}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+            \PYG{k}{return} \PYG{n+nb}{sum}\PYG{p}{([}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{other}\PYG{o}{.}\PYG{n}{terms}\PYG{p}{],} \PYG{n}{unit}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

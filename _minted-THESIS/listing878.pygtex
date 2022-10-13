@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Matrix}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{k}{def} \PYG{n+nf}{repeat}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype} \PYG{o+ow}{is} \PYG{n+nb}{bool} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{==} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}
+        \PYG{k}{return} \PYG{n+nb}{sum}\PYG{p}{(}
+            \PYG{n}{Matrix}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)}\PYG{o}{.}\PYG{n}{then}\PYG{p}{(}\PYG{o}{*}\PYG{n}{n} \PYG{o}{*} \PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{p}{])} \PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+    \PYG{k}{def} \PYG{n+nf}{trace}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dtype} \PYG{o+ow}{is} \PYG{n+nb}{bool}
+        \PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{p}{,} \PYG{n}{C}\PYG{p}{,} \PYG{n}{D} \PYG{o}{=} \PYG{p}{(}\PYG{n}{row} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{column}
+                      \PYG{k}{for} \PYG{n}{row} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{unit}\PYG{p}{(}\PYG{n}{n}\PYG{p}{),}
+                                  \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{unit}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)]}
+                      \PYG{k}{for} \PYG{n}{column} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{discard}\PYG{p}{(}\PYG{n}{n}\PYG{p}{),}
+                                     \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{discard}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)])}
+        \PYG{k}{return} \PYG{n}{A} \PYG{o}{+} \PYG{p}{(}\PYG{n}{B} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{D}\PYG{o}{.}\PYG{n}{repeat}\PYG{p}{()} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{C}\PYG{p}{)}
+\end{Verbatim}

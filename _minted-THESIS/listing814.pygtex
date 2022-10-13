@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{add} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{discard}\PYG{p}{,} \PYG{n}{discard} \PYG{o}{@} \PYG{n}{discard}\PYG{p}{)}
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{zero} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{discard}\PYG{p}{,} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{()))}
+\end{Verbatim}

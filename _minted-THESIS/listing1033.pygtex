@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Digit}\PYG{o}{.}\PYG{n}{l} \PYG{o}{=} \PYG{n}{Digit}\PYG{o}{.}\PYG{n}{r} \PYG{o}{=} \PYG{n}{Qudit}\PYG{o}{.}\PYG{n}{l} \PYG{o}{=} \PYG{n}{Qudit}\PYG{o}{.}\PYG{n}{r} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{)}
+
+\PYG{n}{X}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{Z}\PYG{p}{,} \PYG{n}{H} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Gate}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,} \PYG{n}{qubit}\PYG{p}{,} \PYG{n}{qubit}\PYG{p}{,} \PYG{n}{array}\PYG{p}{)} \PYG{k}{for} \PYG{n}{name}\PYG{p}{,} \PYG{n}{array} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}XYZH\PYGZdq{}}\PYG{p}{,} \PYG{p}{[}
+    \PYG{p}{[[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]],} \PYG{p}{[[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{n}{j}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{n}{j}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]],} \PYG{p}{[[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]],}
+    \PYG{p}{[[}\PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{),} \PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)],} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{),} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)]]]))}
+\PYG{n}{CX} \PYG{o}{=} \PYG{n}{Gate}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}CX\PYGZsq{}}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{qubit} \PYG{o}{**} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{p}{[[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                         \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                         \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{],}
+                                         \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]])}
+\PYG{n+nd}{@staticmethod}
+\PYG{n+nd}{@nesting}
+\PYG{k}{def} \PYG{n+nf}{cups}\PYG{p}{(}\PYG{n}{left}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{right}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{):}
+    \PYG{k}{if} \PYG{n}{left} \PYG{o}{==} \PYG{n}{right} \PYG{o}{==} \PYG{n}{qubit}\PYG{p}{:} \PYG{k}{return} \PYG{n}{Sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{H} \PYG{o}{@} \PYG{n}{qubit} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{CX}
+    \PYG{k}{raise} \PYG{n+ne}{NotImplementedError}
+
+\PYG{n}{Circuit}\PYG{o}{.}\PYG{n}{cups}\PYG{p}{,} \PYG{n}{Circuit}\PYG{o}{.}\PYG{n}{caps} \PYG{o}{=} \PYG{n}{cups}\PYG{p}{,} \PYG{k}{lambda} \PYG{n}{left}\PYG{p}{,} \PYG{n}{right}\PYG{p}{:} \PYG{n}{cups}\PYG{p}{(}\PYG{n}{left}\PYG{p}{,} \PYG{n}{right}\PYG{p}{)}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()}
+\end{Verbatim}

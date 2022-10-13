@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{unit} \PYG{o}{=} \PYG{n}{FakeInt}\PYG{p}{()}
+\PYG{n}{true} \PYG{o}{=} \PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{)} \PYG{o}{|} \PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{zero}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{,} \PYG{n}{unit}\PYG{p}{))}
+\PYG{n}{false} \PYG{o}{=} \PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{zero}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{,} \PYG{n}{unit}\PYG{p}{)} \PYG{o}{|} \PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{))}
+
+\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}y\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+\PYG{n}{conditional} \PYG{o}{=} \PYG{p}{(}\PYG{n}{f} \PYG{o}{|} \PYG{n}{g}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Biproduct}\PYG{o}{.}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{FakeInt}\PYG{p}{((}\PYG{n}{y}\PYG{p}{,} \PYG{p}{)),} \PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{k}{assert} \PYG{n}{true} \PYG{o}{@} \PYG{n}{FakeInt}\PYG{p}{((}\PYG{n}{x}\PYG{p}{,} \PYG{p}{))} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{conditional} \PYG{o}{==} \PYG{n}{f}\PYGZbs{}
+    \PYG{o+ow}{and} \PYG{n}{false} \PYG{o}{@} \PYG{n}{FakeInt}\PYG{p}{((}\PYG{n}{x}\PYG{p}{,} \PYG{p}{))} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{conditional} \PYG{o}{==} \PYG{n}{g}
+\end{Verbatim}

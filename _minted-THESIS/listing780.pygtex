@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{),} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{f} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+
+\PYG{k}{for} \PYG{n}{braid} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{,} \PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])]:}
+    \PYG{n}{source}\PYG{p}{,} \PYG{n}{target} \PYG{o}{=} \PYG{n}{x} \PYG{o}{@} \PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{b}\PYG{p}{),} \PYG{n}{braid}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{f} \PYG{o}{@} \PYG{n}{x}
+    \PYG{k}{assert} \PYG{n}{source}\PYG{o}{.}\PYG{n}{naturality}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{braid}\PYG{o}{=}\PYG{n}{braid}\PYG{p}{)} \PYG{o}{==} \PYG{n}{target}
+    \PYG{k}{assert} \PYG{n}{target}\PYG{o}{.}\PYG{n}{naturality}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{down}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{braid}\PYG{o}{=}\PYG{n}{braid}\PYG{p}{)} \PYG{o}{==} \PYG{n}{source}
+\end{Verbatim}

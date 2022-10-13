@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Function}\PYG{p}{:}
+    \PYG{o}{...}
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{],} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n}{Function}\PYG{p}{(}\PYG{k}{lambda} \PYG{o}{*}\PYG{n}{xs}\PYG{p}{:} \PYG{n}{n} \PYG{o}{*} \PYG{n}{xs}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{x}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{n} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f0}\PYG{p}{,} \PYG{n}{g0} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}f0\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}g0\PYGZdq{}}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)}
+\PYG{n}{f1}\PYG{p}{,} \PYG{n}{g1} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}f1\PYGZdq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}g1\PYGZdq{}}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{)}
+\PYG{p}{((}\PYG{n}{f0} \PYG{o}{+} \PYG{n}{f1}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{g0} \PYG{o}{+} \PYG{n}{g1}\PYG{p}{))}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{dom} \PYG{o}{=} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{)} \PYG{o+ow}{or} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ob}\PYG{p}{)} \PYG{o+ow}{and} \PYG{n}{other}\PYG{o}{.}\PYG{n}{z} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+            \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Ob}\PYG{p}{):}
+            \PYG{k}{if} \PYG{o+ow}{not} \PYG{n+nb}{hasattr}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ob}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}l\PYGZsq{}} \PYG{k}{if} \PYG{n}{other}\PYG{o}{.}\PYG{n}{z} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{):}
+                \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n}{z}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{))[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{r}\PYG{p}{)}\PYG{o}{.}\PYG{n}{l} \PYG{k}{if} \PYG{n}{other}\PYG{o}{.}\PYG{n}{z} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0} \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{l}\PYG{p}{)}\PYG{o}{.}\PYG{n}{r}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Cup}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{cups}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{]),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:]))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Cap}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{caps}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{]),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:]))}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

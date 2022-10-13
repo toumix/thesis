@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Encoding}\PYG{p}{:}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ty}
+    \PYG{n}{boxes\PYGZus{}and\PYGZus{}offsets}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Box}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{],} \PYG{o}{...}\PYG{p}{]}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{boxes} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{box} \PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{box}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{))}
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{offsets} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}
+    \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{left}\PYG{p}{)} \PYG{k}{for} \PYG{n}{left}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{))}
+
+\PYG{k}{def} \PYG{n+nf}{encode}\PYG{p}{(}\PYG{n}{diagram}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Encoding}\PYG{p}{:}
+    \PYG{k}{return} \PYG{n}{Encoding}\PYG{p}{(}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{diagram}\PYG{o}{.}\PYG{n}{boxes}\PYG{p}{,} \PYG{n}{diagram}\PYG{o}{.}\PYG{n}{offsets}\PYG{p}{)))}
+
+\PYG{k}{def} \PYG{n+nf}{decode}\PYG{p}{(}\PYG{n}{encoding}\PYG{p}{:} \PYG{n}{Encoding}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:}
+    \PYG{n}{diagram} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{encoding}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{box}\PYG{p}{,} \PYG{n}{offset} \PYG{o+ow}{in} \PYG{n}{encoding}\PYG{o}{.}\PYG{n}{boxes\PYGZus{}and\PYGZus{}offsets}\PYG{p}{:}
+        \PYG{n}{left}\PYG{p}{,} \PYG{n}{right} \PYG{o}{=} \PYG{n}{diagram}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[:}\PYG{n}{offset}\PYG{p}{],} \PYG{n}{diagram}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{[}\PYG{n}{offset} \PYG{o}{+} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):]}
+        \PYG{n}{diagram} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{n}{left} \PYG{o}{@} \PYG{n}{box} \PYG{o}{@} \PYG{n}{right}
+    \PYG{k}{return} \PYG{n}{diagram}
+
+\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}xyz\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{n}{h} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{,} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{n}{encoding} \PYG{o}{=} \PYG{n}{Encoding}\PYG{p}{(}\PYG{n}{dom}\PYG{o}{=}\PYG{n}{x} \PYG{o}{@} \PYG{n}{y}\PYG{p}{,} \PYG{n}{boxes\PYGZus{}and\PYGZus{}offsets}\PYG{o}{=}\PYG{p}{((}\PYG{n}{f}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{),} \PYG{p}{(}\PYG{n}{g}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{),} \PYG{p}{(}\PYG{n}{h}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)))}
+\PYG{k}{assert} \PYG{n}{decode}\PYG{p}{(}\PYG{n}{encoding}\PYG{p}{)} \PYG{o}{==} \PYG{n}{f} \PYG{o}{@} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{h} \PYG{o+ow}{and} \PYG{n}{encode}\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{h}\PYG{p}{)} \PYG{o}{==} \PYG{n}{encoding}
+\end{Verbatim}

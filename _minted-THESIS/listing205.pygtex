@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{tuplify} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{stuff}\PYG{p}{:} \PYG{n}{stuff} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{stuff}\PYG{p}{,} \PYG{n+nb}{tuple}\PYG{p}{)} \PYG{k}{else} \PYG{p}{(}\PYG{n}{stuff}\PYG{p}{,} \PYG{p}{)}
+\PYG{n}{untuplify} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{stuff}\PYG{p}{:} \PYG{n}{stuff}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{stuff}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{k}{else} \PYG{n}{stuff}
+
+\PYG{k}{class} \PYG{n+nc}{Function}\PYG{p}{(}\PYG{n}{cat}\PYG{o}{.}\PYG{n}{Function}\PYG{p}{,} \PYG{n}{Tensorable}\PYG{p}{):}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n}{Callable}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{type}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Function}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Function}\PYG{p}{:}
+        \PYG{k}{def} \PYG{n+nf}{inside}\PYG{p}{(}\PYG{o}{*}\PYG{n}{xs}\PYG{p}{):}
+            \PYG{n}{left}\PYG{p}{,} \PYG{n}{right} \PYG{o}{=} \PYG{n}{xs}\PYG{p}{[:}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)],} \PYG{n}{xs}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{):]}
+            \PYG{k}{return} \PYG{n}{untuplify}\PYG{p}{(}\PYG{n}{tuplify}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{o}{*}\PYG{n}{left}\PYG{p}{))} \PYG{o}{+} \PYG{n}{tuplify}\PYG{p}{(}\PYG{n}{other}\PYG{p}{(}\PYG{o}{*}\PYG{n}{right}\PYG{p}{)))}
+        \PYG{k}{return} \PYG{n}{Function}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{+} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+\end{Verbatim}

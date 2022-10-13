@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+
+\PYG{n}{lr\PYGZus{}transpose} \PYG{o}{=} \PYG{n}{f}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\PYG{n}{rl\PYGZus{}transpose} \PYG{o}{=} \PYG{n}{f}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}\PYG{o}{.}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{k}{assert} \PYG{n}{lr\PYGZus{}transpose}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{()} \PYG{o}{==} \PYG{n}{f} \PYG{o}{==} \PYG{n}{rl\PYGZus{}transpose}\PYG{o}{.}\PYG{n}{normal\PYGZus{}form}\PYG{p}{()}
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{lr\PYGZus{}transpose}\PYG{p}{,} \PYG{n}{f}\PYG{p}{,} \PYG{n}{rl\PYGZus{}transpose}\PYG{p}{)}
+\end{Verbatim}

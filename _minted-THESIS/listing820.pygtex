@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{Ty}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{copy}\PYG{p}{,} \PYG{n}{discard}\PYG{p}{,} \PYG{n}{swap} \PYG{o}{=} \PYG{n}{Copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{),} \PYG{n}{Copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{),} \PYG{n}{Swap}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}\PYGZcb{},} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{Dict}\PYG{p}{))}
+
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{discard} \PYG{o}{@} \PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{))} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{@} \PYG{n}{discard}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{copy} \PYG{o}{@} \PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{Copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{))} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{@} \PYG{n}{copy}\PYG{p}{)}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{swap}\PYG{p}{)} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{copy}\PYG{p}{)}
+\end{Verbatim}

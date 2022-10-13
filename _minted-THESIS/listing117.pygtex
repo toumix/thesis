@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{I} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{),} \PYG{n}{y}\PYG{p}{:} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ob}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{),} \PYG{n}{z}\PYG{p}{:} \PYG{n}{Category}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{Matrix}\PYG{p}{)\PYGZcb{},}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{f}\PYG{p}{:} \PYG{n}{F}\PYG{p}{,} \PYG{n}{g}\PYG{p}{:} \PYG{n}{H}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{cod}\PYG{o}{=}\PYG{n}{Category}\PYG{p}{(}\PYG{n}{Category}\PYG{p}{,} \PYG{n}{Functor}\PYG{p}{))}
+\PYG{k}{assert} \PYG{n}{I}\PYG{p}{(}\PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)(}\PYG{n}{h}\PYG{p}{)} \PYG{o}{==} \PYG{n}{H}\PYG{p}{(}\PYG{n}{F}\PYG{p}{(}\PYG{n}{h}\PYG{p}{))} \PYG{o}{==} \PYG{n}{H}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+\end{Verbatim}

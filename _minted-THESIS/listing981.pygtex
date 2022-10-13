@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{n}\PYG{p}{,} \PYG{n}{np}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n}{closed}\PYG{o}{.}\PYG{n}{Ty}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}n\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}np\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}s\PYGZsq{}}\PYG{p}{))}
+\PYG{n}{man}\PYG{p}{,} \PYG{n}{island} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Word}\PYG{p}{(}\PYG{n}{noun}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)} \PYG{k}{for} \PYG{n}{noun} \PYG{o+ow}{in} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}man\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}island\PYGZdq{}}\PYG{p}{))}
+\PYG{n}{no}\PYG{p}{,} \PYG{n}{an} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Word}\PYG{p}{(}\PYG{n}{determinant}\PYG{p}{,} \PYG{n}{np} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{n}\PYG{p}{)} \PYG{k}{for} \PYG{n}{determinant} \PYG{o+ow}{in} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}no\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}an\PYGZdq{}}\PYG{p}{))}
+\PYG{n}{\PYGZus{}is} \PYG{o}{=} \PYG{n}{Word}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}is\PYGZdq{}}\PYG{p}{,} \PYG{p}{(}\PYG{n}{np} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{s}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{np}\PYG{p}{)}
+
+\PYG{n}{no\PYGZus{}man\PYGZus{}is\PYGZus{}an\PYGZus{}island} \PYG{o}{=} \PYG{n}{no} \PYG{o}{@} \PYG{n}{man} \PYG{o}{@} \PYG{n}{\PYGZus{}is} \PYG{o}{@} \PYG{n}{an} \PYG{o}{@} \PYG{n}{island}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Ev}\PYG{p}{(}\PYG{n}{np} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{n}\PYG{p}{)} \PYG{o}{@} \PYG{p}{((}\PYG{n}{np} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{s}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{np}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Ev}\PYG{p}{(}\PYG{n}{np} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{n}\PYG{p}{)}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Parsing}\PYG{o}{.}\PYG{n}{type\PYGZus{}raise}\PYG{p}{(}\PYG{n}{np}\PYG{p}{,} \PYG{n}{s}\PYG{p}{)} \PYG{o}{@} \PYG{n}{Ev}\PYG{p}{((}\PYG{n}{np} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{s}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{np}\PYG{p}{)}\PYGZbs{}
+    \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{Ev}\PYG{p}{(}\PYG{n}{s} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{n}{np} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{s}\PYG{p}{))}
+
+\PYG{n}{no\PYGZus{}man\PYGZus{}is\PYGZus{}an\PYGZus{}island}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

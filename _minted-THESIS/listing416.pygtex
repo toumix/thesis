@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{()),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{(),} \PYG{n}{w}\PYG{p}{)}
+\PYG{p}{(}\PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)}\PYG{o}{.}\PYG{n}{interchange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\PYG{p}{(}\PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\PYG{p}{(}\PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g}\PYG{p}{)}\PYG{o}{.}\PYG{n}{interchange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

@@ -1,0 +1,63 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Diagram}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf}{simplify}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{p}{((}\PYG{n}{x}\PYG{p}{,} \PYG{n}{f}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{),} \PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{))} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}
+                \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])):}
+            \PYG{k}{if} \PYG{n}{x} \PYG{o}{==} \PYG{n}{y} \PYG{o+ow}{and} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,} \PYG{n}{Braid}\PYG{p}{)} \PYG{o+ow}{and} \PYG{n}{f} \PYG{o}{==} \PYG{n}{g}\PYG{p}{[::}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                \PYG{n}{inside} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[:}\PYG{n}{i}\PYG{p}{]} \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{2}\PYG{p}{:]}
+                \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{Diagram}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}\PYG{o}{.}\PYG{n}{simplify}\PYG{p}{()}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}
+
+\PYG{k}{class} \PYG{n+nc}{Box}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{cast}
+
+\PYG{k}{class} \PYG{n+nc}{Braid}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{is\PYGZus{}dagger}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)[::\PYGZhy{}1]\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{),} \PYG{n}{y}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{k}{if} \PYG{n}{is\PYGZus{}dagger}\PYGZbs{}
+            \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{),} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{y}\PYG{p}{,} \PYG{n}{y} \PYG{o}{@} \PYG{n}{x}\PYG{p}{,} \PYG{n}{is\PYGZus{}dagger}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{dagger}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):} \PYG{k}{return} \PYG{n}{Braid}\PYG{p}{(}\PYG{o}{*}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n}{is\PYGZus{}dagger}\PYG{o}{=}\PYG{o+ow}{not} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{is\PYGZus{}dagger}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{hexagon}\PYG{p}{(}\PYG{n}{factory}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Callable}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:} \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:} \PYG{k}{return} \PYG{n}{factory}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{y}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+            \PYG{k}{return} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{@} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{y}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])}\PYGZbs{}
+                \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{y}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{@} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])}  \PYG{c+c1}{\PYGZsh{} left hexagon equation.}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{@} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:],} \PYG{n}{y}\PYG{p}{)}\PYGZbs{}
+            \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{method}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{y}\PYG{p}{)} \PYG{o}{@} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])}  \PYG{c+c1}{\PYGZsh{} right hexagon equation.}
+    \PYG{k}{return} \PYG{n+nb}{classmethod}\PYG{p}{(}\PYG{n}{method}\PYG{p}{)}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{,} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{swap} \PYG{o}{=} \PYG{n}{hexagon}\PYG{p}{(}\PYG{n}{Braid}\PYG{p}{),} \PYG{n}{hexagon}\PYG{p}{(}\PYG{n}{Swap}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{naturality}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Diagram}\PYG{p}{,} \PYG{n}{i}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{down}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{braid}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{):}
+    \PYG{n}{braid} \PYG{o}{=} \PYG{n}{braid} \PYG{o+ow}{or} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{braid}
+    \PYG{n}{layer}\PYG{p}{,} \PYG{n}{box} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{box}
+    \PYG{k}{if} \PYG{n}{left} \PYG{o+ow}{and} \PYG{n}{down}\PYG{p}{:}
+        \PYG{n}{source} \PYG{o}{=} \PYG{n}{layer}\PYG{o}{.}\PYG{n}{left}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{@} \PYG{n}{box} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{braid}\PYG{p}{(}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{left}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+        \PYG{n}{target} \PYG{o}{=} \PYG{n}{braid}\PYG{p}{(}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{left}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{box} \PYG{o}{@} \PYG{n}{layer}\PYG{o}{.}\PYG{n}{left}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{k}{elif} \PYG{n}{left}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{elif} \PYG{n}{down}\PYG{p}{:} \PYG{o}{...}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n}{source} \PYG{o}{=} \PYG{n}{braid}\PYG{p}{(}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{right}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{box}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{box} \PYG{o}{@} \PYG{n}{layer}\PYG{o}{.}\PYG{n}{right}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+        \PYG{n}{target} \PYG{o}{=} \PYG{n}{layer}\PYG{o}{.}\PYG{n}{right}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{@} \PYG{n}{box} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{braid}\PYG{p}{(}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{right}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{box}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+    \PYG{n}{match} \PYG{o}{=} \PYG{n}{Match}\PYG{p}{(}\PYG{n}{top}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{p}{[:}\PYG{n}{i}\PYG{p}{]} \PYG{k}{if} \PYG{n}{down} \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{p}{[:}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{source}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{],}
+                  \PYG{n}{bottom}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{source}\PYG{p}{):]} \PYG{k}{if} \PYG{n}{down} \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{:],}
+                  \PYG{n}{left}\PYG{o}{=}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{left}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{k}{if} \PYG{n}{left} \PYG{k}{else} \PYG{n}{layer}\PYG{o}{.}\PYG{n}{left}\PYG{p}{,}
+                  \PYG{n}{right}\PYG{o}{=}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{right} \PYG{k}{if} \PYG{n}{left} \PYG{k}{else} \PYG{n}{layer}\PYG{o}{.}\PYG{n}{right}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:])}
+    \PYG{k}{assert} \PYG{n+nb+bp}{self} \PYG{o}{==} \PYG{n}{match}\PYG{o}{.}\PYG{n}{subs}\PYG{p}{(}\PYG{n}{source}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{match}\PYG{o}{.}\PYG{n}{subs}\PYG{p}{(}\PYG{n}{target}\PYG{p}{)}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{naturality} \PYG{o}{=} \PYG{n}{naturality}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{dom} \PYG{o}{=} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Braid}\PYG{p}{)} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{other}\PYG{o}{.}\PYG{n}{is\PYGZus{}dagger}\PYG{p}{:}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{braid}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]),} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]))}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

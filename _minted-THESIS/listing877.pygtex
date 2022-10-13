@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{phi} \PYG{o}{=} \PYG{n}{Function}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{:} \PYG{l+m+mi}{1} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{x}\PYG{p}{,} \PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{],} \PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{])}\PYG{o}{.}\PYG{n}{fix}\PYG{p}{()}
+\PYG{k}{assert} \PYG{n}{phi}\PYG{p}{()} \PYG{o}{==} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{))} \PYG{o}{/} \PYG{l+m+mi}{2}
+\end{Verbatim}

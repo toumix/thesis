@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Diagram}\PYG{p}{(}\PYG{n}{symmetric}\PYG{o}{.}\PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{copy}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:}
+        \PYG{k}{def} \PYG{n+nf}{factory}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{\PYGZus{}}\PYG{p}{):}
+            \PYG{k}{assert} \PYG{n}{a} \PYG{o}{==} \PYG{l+m+mi}{1}
+            \PYG{k}{return} \PYG{n}{Copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{coherence}\PYG{p}{(}\PYG{n}{factory}\PYG{p}{)}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}func\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{merge}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Diagram}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()}
+
+\PYG{k}{class} \PYG{n+nc}{Box}\PYG{p}{(}\PYG{n}{symmetric}\PYG{o}{.}\PYG{n}{Box}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{cast}
+
+\PYG{k}{class} \PYG{n+nc}{Swap}\PYG{p}{(}\PYG{n}{symmetric}\PYG{o}{.}\PYG{n}{Swap}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{):} \PYG{k}{pass}
+
+\PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{swap} \PYG{o}{=} \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{braid} \PYG{o}{=} \PYG{n}{hexagon}\PYG{p}{(}\PYG{n}{Swap}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Copy}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Copy(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{n}\PYG{p}{),} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{x}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{x} \PYG{o}{**} \PYG{n}{n}\PYG{p}{)}
+
+    \PYG{n}{dagger} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Merge}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+
+\PYG{k}{class} \PYG{n+nc}{Merge}\PYG{p}{(}\PYG{n}{Box}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ty}\PYG{p}{,} \PYG{n}{n}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Merge(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{)\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{n}\PYG{p}{),} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{x} \PYG{o}{**} \PYG{n}{n}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{n}{dagger} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n}{Copy}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+
+\PYG{k}{class} \PYG{n+nc}{Functor}\PYG{p}{(}\PYG{n}{symmetric}\PYG{o}{.}\PYG{n}{Functor}\PYG{p}{):}
+    \PYG{n}{dom} \PYG{o}{=} \PYG{n}{cod} \PYG{o}{=} \PYG{n}{Category}\PYG{p}{(}\PYG{n}{Ty}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Copy}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{))}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Merge}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{merge}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{))}
+        \PYG{k}{return} \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+\end{Verbatim}

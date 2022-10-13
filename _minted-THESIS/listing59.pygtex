@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Ob}\PYG{p}{:}
+    \PYG{n}{name}\PYG{p}{:} \PYG{n+nb}{str}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{Arrow}\PYG{p}{(}\PYG{n}{Composable}\PYG{p}{):}
+    \PYG{n}{inside}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{Box}\PYG{p}{,} \PYG{o}{...}\PYG{p}{]}
+    \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ob}
+    \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ob}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{cast}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{old}\PYG{p}{:} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{old} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{old}\PYG{p}{,} \PYG{n+nb+bp}{cls}\PYG{p}{)} \PYG{k}{else} \PYG{n+nb+bp}{cls}\PYG{p}{(}\PYG{n}{old}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{old}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{old}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@classmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n+nb+bp}{cls}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{cls}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{Arrow}\PYG{p}{((),} \PYG{n}{x}\PYG{p}{,} \PYG{n}{x}\PYG{p}{))}
+
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{*}\PYG{n}{others}\PYG{p}{:} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{f}\PYG{p}{,} \PYG{n}{g} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{((}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{)} \PYG{o}{+} \PYG{n}{others}\PYG{p}{,} \PYG{n}{others}\PYG{p}{):} \PYG{k}{assert} \PYG{n}{f}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{==} \PYG{n}{g}\PYG{o}{.}\PYG{n}{dom}
+        \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{others}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{cod} \PYG{k}{if} \PYG{n}{others} \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}
+        \PYG{n}{inside} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{+} \PYG{n+nb}{sum}\PYG{p}{([}\PYG{n}{other}\PYG{o}{.}\PYG{n}{inside} \PYG{k}{for} \PYG{n}{other} \PYG{o+ow}{in} \PYG{n}{others}\PYG{p}{],} \PYG{p}{())}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{Arrow}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{))}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}len\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{)}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{} \PYGZgt{}\PYGZgt{} \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{))}\PYGZbs{}
+        \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{.id(}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{)\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Box}\PYG{p}{(}\PYG{n}{Arrow}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name} \PYG{o}{=} \PYG{n}{name}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{((}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{),} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}eq\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Box}\PYG{p}{):}
+            \PYG{k}{return} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}\PYGZbs{}
+                \PYG{o}{==} \PYG{p}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Arrow}\PYG{p}{)} \PYG{o+ow}{and} \PYG{n}{other}\PYG{o}{.}\PYG{n}{inside} \PYG{o}{==} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{p}{)}
+
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}hash\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb}{hash}\PYG{p}{(}\PYG{n+nb}{repr}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{))}
+    \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}str\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name}
+    \PYG{n}{cast} \PYG{o}{=} \PYG{n}{Arrow}\PYG{o}{.}\PYG{n}{cast}
+\end{Verbatim}

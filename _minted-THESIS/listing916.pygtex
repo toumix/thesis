@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Transformation}\PYG{p}{(}\PYG{n}{Composable}\PYG{p}{,} \PYG{n}{Tensorable}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{inside}\PYG{p}{:} \PYG{n}{Callable}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{:} \PYG{n}{Functor}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{:} \PYG{n}{Functor}\PYG{p}{):}
+        \PYG{k}{assert} \PYG{p}{(}\PYG{n}{dom}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)} \PYG{o}{==} \PYG{p}{(}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{=} \PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}
+
+    \PYG{n+nd}{@staticmethod}
+    \PYG{k}{def} \PYG{n+nf}{id}\PYG{p}{(}\PYG{n}{F}\PYG{p}{:} \PYG{n}{Functor}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n}{Transformation}\PYG{p}{(}\PYG{n}{F}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{o}{.}\PYG{n}{id}\PYG{p}{,} \PYG{n}{dom}\PYG{o}{=}\PYG{n}{F}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{F}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{then}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Transformation}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Transformation}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{Transformation}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{other}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+
+    \PYG{n+nd}{@inductive}
+    \PYG{k}{def} \PYG{n+nf}{tensor}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Transformation}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Transformation}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n+nb+bp}{self} \PYG{o}{@} \PYG{n}{other}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{@} \PYG{n}{other}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}matmul\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Transformation} \PYG{o}{|} \PYG{n}{Functor}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Transformation}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Functor}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{Transformation}\PYG{p}{(}
+                \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{other}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{other}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{other}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}rmatmul\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Transformation} \PYG{o}{|} \PYG{n}{Functor}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Transformation}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{other}\PYG{p}{,} \PYG{n}{Functor}\PYG{p}{):}
+            \PYG{k}{return} \PYG{n}{Transformation}\PYG{p}{(}
+                \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{(}\PYG{n}{other}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)),} \PYG{n}{other} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{,} \PYG{n}{other} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{)}
+        \PYG{k}{raise} \PYG{n+ne}{TypeError}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{other}\PYG{p}{:} \PYG{n}{Ob}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Arrow}\PYG{p}{:}
+        \PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inside}\PYG{p}{(}\PYG{n}{other}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{dom}\PYG{p}{(}\PYG{n}{other}\PYG{p}{),} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{p}{(}\PYG{n}{other}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{cod}\PYG{o}{.}\PYG{n}{ar}\PYG{p}{(}\PYG{n}{inside}\PYG{p}{,} \PYG{n}{dom}\PYG{p}{,} \PYG{n}{cod}\PYG{p}{)}
+
+\PYG{n}{Cat} \PYG{o}{=} \PYG{n}{TwoCategory}\PYG{p}{(}\PYG{n}{Category}\PYG{p}{,} \PYG{n}{Functor}\PYG{p}{,} \PYG{n}{Transformation}\PYG{p}{)}
+\end{Verbatim}

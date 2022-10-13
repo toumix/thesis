@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{n}{h} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}f\PYGZsq{}}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{,} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{(}\PYG{n}{f} \PYG{o}{@} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{h}\PYG{p}{)}\PYG{o}{.}\PYG{n}{bubble}\PYG{p}{(}\PYG{n}{dom}\PYG{o}{=}\PYG{n}{a} \PYG{o}{@} \PYG{n}{b}\PYG{p}{,} \PYG{n}{cod}\PYG{o}{=}\PYG{n}{c}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s2}{beta\PYGZdl{}\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}

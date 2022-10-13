@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}\PYG{n}{g}\PYG{o}{.}\PYG{n}{curry}\PYG{p}{()}\PYG{o}{.}\PYG{n}{uncurry}\PYG{p}{(),} \PYG{n}{g}\PYG{p}{,} \PYG{n}{g}\PYG{o}{.}\PYG{n}{curry}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}\PYG{o}{.}\PYG{n}{uncurry}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{))}
+\end{Verbatim}

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{drawing}\PYG{o}{.}\PYG{n}{equation}\PYG{p}{(}
+    \PYG{n}{Diagram}\PYG{o}{.}\PYG{n}{id}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),}
+    \PYG{n}{x} \PYG{o}{@} \PYG{n}{zero} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{@} \PYG{n}{copy} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{add} \PYG{o}{@} \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{discard} \PYG{o}{@} \PYG{n}{x}\PYG{p}{,}
+    \PYG{n}{x} \PYG{o}{@} \PYG{n}{zero} \PYG{o}{@} \PYG{n}{zero} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{discard} \PYG{o}{@} \PYG{n}{discard} \PYG{o}{@} \PYG{n}{x}\PYG{p}{,}
+    \PYG{n}{discard} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{zero}\PYG{p}{)}
+\end{Verbatim}

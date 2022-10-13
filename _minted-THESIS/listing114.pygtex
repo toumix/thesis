@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{F} \PYG{o}{=} \PYG{n}{Functor}\PYG{p}{(}
+    \PYG{n}{ob}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{:} \PYG{n}{y}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n}{z}\PYG{p}{,} \PYG{n}{z}\PYG{p}{:} \PYG{n}{x}\PYG{p}{\PYGZcb{},}
+    \PYG{n}{ar}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{f}\PYG{p}{:} \PYG{n}{g}\PYG{p}{,} \PYG{n}{g}\PYG{p}{:} \PYG{n}{h}\PYG{p}{,} \PYG{n}{h}\PYG{p}{:} \PYG{n}{f}\PYG{p}{\PYGZcb{})}
+\PYG{k}{assert} \PYG{n}{F}\PYG{p}{(}\PYG{n}{f} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{h}\PYG{p}{)} \PYG{o}{==} \PYG{n}{F}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{F}\PYG{p}{(}\PYG{n}{g}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{F}\PYG{p}{(}\PYG{n}{h}\PYG{p}{)} \PYG{o}{==} \PYG{n}{g} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{h} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{f}
+\end{Verbatim}

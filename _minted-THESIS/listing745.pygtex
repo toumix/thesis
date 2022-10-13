@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Qubits}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Qubits}\PYG{p}{,} \PYG{n}{Ty}\PYG{p}{):}
+    \PYG{n}{l} \PYG{o}{=} \PYG{n}{r} \PYG{o}{=} \PYG{n+nb}{property}\PYG{p}{(}\PYG{k}{lambda} \PYG{n+nb+bp}{self}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{Circuit}\PYG{p}{(}\PYG{n}{monoidal}\PYG{o}{.}\PYG{n}{Circuit}\PYG{p}{,} \PYG{n}{Diagram}\PYG{p}{):}
+    \PYG{n}{cups} \PYG{o}{=} \PYG{n}{nesting}\PYG{p}{(}\PYG{k}{lambda} \PYG{o}{*}\PYG{n}{\PYGZus{}}\PYG{p}{:} \PYG{n}{sqrt2} \PYG{o}{@} \PYG{n}{Ket}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{H} \PYG{o}{@} \PYG{n}{qubit}\PYG{p}{)}
+    \PYG{n}{caps} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{:} \PYG{n}{Circuit}\PYG{o}{.}\PYG{n}{cups}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}\PYG{o}{.}\PYG{n}{dagger}\PYG{p}{()}
+\end{Verbatim}

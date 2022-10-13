@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{left}\PYG{p}{,} \PYG{n}{right} \PYG{o}{=} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}left\PYGZsq{}}\PYG{p}{,} \PYG{n}{a} \PYG{o}{@} \PYG{n}{b}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{),} \PYG{n}{Box}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}right\PYGZsq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{@} \PYG{n}{y} \PYG{o}{@} \PYG{n}{z}\PYG{p}{,} \PYG{n}{c}\PYG{p}{)}
+\PYG{p}{(}\PYG{n}{left} \PYG{o}{@} \PYG{n}{right}\PYG{p}{)}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{()}
+\end{Verbatim}
