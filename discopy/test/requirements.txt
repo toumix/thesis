@@ -1,4 +1,0 @@
-pytest
-coverage
-pycodestyle
-pytest-pycodestyle

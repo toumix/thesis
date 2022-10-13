@@ -1,0 +1,16 @@
+class Rz(Gate):
+    def __init__(self, phase: sympy.Expr):
+        self.phase = phase
+        half_theta = sympy.pi * phase
+        array = [[sympy.exp(-1j * half_theta), 0],
+                 [0, sympy.exp(1j * half_theta)]]
+        super().__init__("Rz({})".format(phase), qubit, qubit, array)
+
+    def grad(self):
+        s = Scalar(sympy.pi * self.phase.diff(var))
+        return s @ Rz(self.phase + .25) - s @ Rz(self.phase - .25))
+
+phi = sympy.Symbol('\\phi')
+circuit = Ket(0, 0) >> Rz(phi + 1) @ Rz(2 * phi - .5) >> Measure() @ Measure()
+
+assert circuit.grad(phi).eval() == circuit.eval().grad(phi)
